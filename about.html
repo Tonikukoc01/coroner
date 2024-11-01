@@ -1,19 +1,145 @@
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-        <title>About me</title>
+        <title>About - Toni Kukoc</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Learn more about Toni Kukoc, a Business Project Manager specializing in value optimization." />
+        <meta name="description" content="About Toni Kukoc - Business Project Manager specializing in value optimization" />
         
         <!-- Google Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
         
         <!-- Stylesheets -->
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
+        <style>
+            /* Modern Typography */
+            h1 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+            }
+
+            header p {
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+                letter-spacing: 0.01em;
+            }
+
+            /* Navigation Styles */
+            .nav-menu {
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                z-index: 1000;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .nav-menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .nav-menu a {
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .nav-menu a:hover {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            /* Hamburger Menu */
+            .menu-toggle {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                margin-left: 2rem;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: rgba(255, 255, 255, 0.8);
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle:hover span {
+                background-color: #ffffff;
+            }
+
+            .logo {
+                position: fixed;
+                top: 2rem;
+                left: 2rem;
+                z-index: 1000;
+            }
+
+            .logo-link {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                font-size: 1.2rem;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .logo-link:hover {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            /* Mobile Responsive */
+            @media screen and (max-width: 768px) {
+                .nav-menu ul li:not(:last-child) {
+                    display: none;
+                }
+
+                .menu-toggle {
+                    margin-left: 0;
+                }
+
+                .nav-menu.active ul {
+                    display: flex;
+                    flex-direction: column;
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    background: rgba(0, 0, 0, 0.95);
+                    padding: 5rem 2rem 2rem;
+                    height: 100vh;
+                    width: 250px;
+                }
+
+                .nav-menu.active ul li {
+                    display: block;
+                }
+            }
+        </style>
     </head>
-    <body>
+    <body class="is-preload">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="#home" class="logo-link">tonikukoc.me</a>
+        </div>
+
         <!-- Navigation Menu -->
         <nav class="nav-menu">
             <ul>
@@ -21,26 +147,38 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="blog.html">Blog</a></li>
+                <li>
+                    <div class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </li>
             </ul>
         </nav>
 
         <div id="wrapper">
-            <header id="header">
-                <h1>About Toni Kukoc</h1>
-                <p>Brief introduction about Toni Kukoc and his experience.</p>
-            </header>
+            <div id="bg"></div>
+            <div id="overlay"></div>
             
-            <!-- Main Content -->
-            <main>
-                <section>
-                    <h2>Biography</h2>
-                    <p>Details about Toni's background, skills, and professional journey.</p>
-                </section>
-                <section>
-                    <h2>Mission</h2>
-                    <p>Information on what Toni aims to achieve as a Business Project Manager.</p>
-                </section>
-            </main>
+            <div id="main">
+                <header id="header">
+                    <h1>About Me</h1>
+                    <p>Business Project Manager & Value Optimization Specialist</p>
+                    
+                    <div class="content">
+                        <section>
+                            <h2>Background</h2>
+                            <p>With extensive experience in project management, I specialize in optimizing business processes and delivering measurable value to organizations.</p>
+                        </section>
+                        
+                        <section>
+                            <h2>Mission</h2>
+                            <p>My goal is to help businesses achieve their objectives through effective project management and strategic optimization of resources and processes.</p>
+                        </section>
+                    </div>
+                </header>
+            </div>
         </div>
     </body>
 </html>
