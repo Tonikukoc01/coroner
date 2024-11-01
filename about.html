@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
         
+        <!-- Font Awesome (Make sure this matches your index.html version) -->
+        <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+        
         <!-- Stylesheets -->
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
@@ -160,25 +163,55 @@
         <div id="wrapper">
             <div id="bg"></div>
             <div id="overlay"></div>
-            
             <div id="main">
+                <!-- Header -->
                 <header id="header">
                     <h1>About Me</h1>
-                    <p>Business Project Manager & Value Optimization Specialist</p>
-                    
-                    <div class="content">
-                        <section>
-                            <h2>Background</h2>
-                            <p>With extensive experience in project management, I specialize in optimizing business processes and delivering measurable value to organizations.</p>
-                        </section>
-                        
-                        <section>
-                            <h2>Mission</h2>
-                            <p>My goal is to help businesses achieve their objectives through effective project management and strategic optimization of resources and processes.</p>
-                        </section>
-                    </div>
+                    <p>Business Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Background</p>
+                    <nav aria-label="Social Media Links">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/your-profile" class="icon brands fa-linkedin" aria-label="LinkedIn Profile"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/Tonikukoc01" class="icon brands fa-github" aria-label="Github Profile"><span class="label">Github</span></a></li>
+                            <li><a href="mailto:your.email@example.com" class="icon solid fa-envelope" aria-label="Email Contact"><span class="label">Email</span></a></li>
+                        </ul>
+                    </nav>
                 </header>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <span class="copyright">&copy; 2024 Toni Kukoc. All rights reserved.</span>
+                </footer>
             </div>
         </div>
+
+        <script>
+            window.onload = function() {
+                document.body.classList.remove('is-preload');
+                // Navigation menu toggle
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                    }
+                });
+                
+                // Smooth scroll for navigation
+                document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        navMenu.classList.remove('active');
+                        document.querySelector(this.getAttribute('href'))?.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+            }
+        </script>
     </body>
 </html>
