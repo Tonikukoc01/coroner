@@ -1,21 +1,124 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <!-- Keep your existing head section the same -->
     <head>
-        <!-- ... existing head content ... -->
+        <title>Toni Kukoc</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Toni Kukoc - IT Project Manager specializing in value optimization" />
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
         <style>
-            /* Add to your existing styles */
             html {
                 scroll-behavior: smooth;
                 height: 100%;
-            }
-
-            body {
-                min-height: 100%;
                 overflow-x: hidden;
             }
 
-            /* Style for additional sections */
+            body {
+                overflow-x: hidden;
+                min-height: 100%;
+            }
+
+            /* Typography */
+            h1 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+            }
+
+            header p {
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+                letter-spacing: 0.01em;
+            }
+
+            /* Navigation */
+            .nav-menu {
+                position: fixed;
+                top: 2rem;
+                right: 2rem;
+                z-index: 1000;
+                font-family: 'Inter', sans-serif;
+            }
+
+            .nav-menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+
+            .nav-menu a {
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+
+            .nav-menu a:hover {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            /* Logo */
+            .logo {
+                position: fixed;
+                top: 2rem;
+                left: 2rem;
+                z-index: 1000;
+            }
+
+            .logo-link {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                font-size: 1.2rem;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .logo-link:hover {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            /* Hamburger Menu */
+            .menu-toggle {
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                margin-left: 2rem;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: rgba(255, 255, 255, 0.8);
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle:hover span {
+                background-color: #ffffff;
+            }
+
+            /* Sections */
             .content-section {
                 min-height: 100vh;
                 width: 100%;
@@ -23,32 +126,98 @@
                 align-items: center;
                 justify-content: center;
                 padding: 4rem 2rem;
+                position: relative;
+                color: white;
             }
 
-            #wrapper {
-                min-height: 100vh; /* Instead of fixed height */
+            .section-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                width: 100%;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s ease-out;
             }
 
-            /* Style each section differently */
+            .section-content.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Section-specific styles */
+            #home {
+                height: 100vh;
+                position: relative;
+            }
+
             #about {
-                background: rgba(20, 20, 20, 0.95);
+                background: linear-gradient(to bottom, rgba(20, 20, 20, 0.95), rgba(25, 25, 25, 0.95));
             }
 
             #portfolio {
-                background: rgba(25, 25, 25, 0.95);
+                background: linear-gradient(to bottom, rgba(25, 25, 25, 0.95), rgba(30, 30, 30, 0.95));
             }
 
             #blog {
-                background: rgba(30, 30, 30, 0.95);
+                background: linear-gradient(to bottom, rgba(30, 30, 30, 0.95), rgba(35, 35, 35, 0.95));
+            }
+
+            /* Background animation */
+            #bg {
+                animation: subtleFloat 20s ease-in-out infinite;
+            }
+
+            @keyframes subtleFloat {
+                0% {
+                    transform: scale(1.1) translate(0, 0);
+                }
+                50% {
+                    transform: scale(1.15) translate(-1%, -1%);
+                }
+                100% {
+                    transform: scale(1.1) translate(0, 0);
+                }
+            }
+
+            /* Mobile Responsive */
+            @media screen and (max-width: 768px) {
+                .nav-menu ul li:not(:last-child) {
+                    display: none;
+                }
+
+                .menu-toggle {
+                    margin-left: 0;
+                }
+
+                .nav-menu.active ul {
+                    display: flex;
+                    flex-direction: column;
+                    position: fixed;
+                    top: 0;
+                    right: 0;
+                    background: rgba(0, 0, 0, 0.95);
+                    padding: 5rem 2rem 2rem;
+                    height: 100vh;
+                    width: 250px;
+                }
+
+                .nav-menu.active ul li {
+                    display: block;
+                }
+
+                .content-section {
+                    padding: 3rem 1rem;
+                }
             }
         </style>
     </head>
     <body class="is-preload">
-        <!-- Logo and Nav stay the same -->
+        <!-- Logo -->
         <div class="logo">
             <a href="#home" class="logo-link">tonikukoc.me</a>
         </div>
 
+        <!-- Navigation -->
         <nav class="nav-menu">
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -65,13 +234,13 @@
             </ul>
         </nav>
 
-        <!-- Home section (your current landing page) -->
+        <!-- Home Section -->
         <section id="home">
             <div id="wrapper">
                 <div id="bg"></div>
                 <div id="overlay"></div>
                 <div id="main">
-                    <!-- Your existing header content -->
+                    <!-- Header -->
                     <header id="header">
                         <h1>Toni Kukoc</h1>
                         <p>IT Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Portfolio</p>
@@ -91,7 +260,7 @@
         <section id="about" class="content-section">
             <div class="section-content">
                 <h2>About Me</h2>
-                <!-- Your about content here -->
+                <p>Your about content here...</p>
             </div>
         </section>
 
@@ -99,7 +268,7 @@
         <section id="portfolio" class="content-section">
             <div class="section-content">
                 <h2>Portfolio</h2>
-                <!-- Your portfolio content here -->
+                <p>Your portfolio content here...</p>
             </div>
         </section>
 
@@ -107,7 +276,7 @@
         <section id="blog" class="content-section">
             <div class="section-content">
                 <h2>Blog</h2>
-                <!-- Your blog content here -->
+                <p>Your blog content here...</p>
             </div>
         </section>
 
@@ -117,19 +286,46 @@
         </footer>
 
         <script>
-            window.onload = function() {
-                document.body.classList.remove('is-preload');
+            window.onload = function() { 
+                document.body.classList.remove('is-preload'); 
 
-                // Your existing menu toggle code...
+                // Navigation menu toggle
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navMenu = document.querySelector('.nav-menu');
+                
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!navMenu.contains(e.target)) {
+                        navMenu.classList.remove('active');
+                    }
+                });
 
                 // Smooth scroll for navigation
                 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         e.preventDefault();
-                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        navMenu.classList.remove('active');
+                        document.querySelector(this.getAttribute('href'))?.scrollIntoView({
                             behavior: 'smooth'
                         });
                     });
+                });
+
+                // Intersection Observer for section animations
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.section-content').forEach(section => {
+                    observer.observe(section);
                 });
             }
         </script>
