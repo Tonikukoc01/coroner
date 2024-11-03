@@ -16,7 +16,15 @@
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         
         <style>
-            /* Modern Typography */
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+
+            /* Keeping your existing styles */
             h1 {
                 font-family: 'Poppins', sans-serif;
                 font-weight: 600;
@@ -29,7 +37,6 @@
                 letter-spacing: 0.01em;
             }
 
-            /* Navigation Styles */
             .nav-menu {
                 position: fixed;
                 top: 2rem;
@@ -62,124 +69,143 @@
                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
 
-            /* Hamburger Menu */
-            .menu-toggle {
-                width: 24px;
-                height: 24px;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                margin-left: 2rem;
-            }
-
-            .menu-toggle span {
-                display: block;
-                width: 100%;
-                height: 2px;
-                background-color: rgba(255, 255, 255, 0.8);
-                transition: all 0.3s ease;
-            }
-
-            .menu-toggle:hover span {
-                background-color: #ffffff;
-            }
-
             .logo {
-    position: fixed;
-    top: 2rem; /* Same as the nav menu */
-    left: 2rem;
-    z-index: 1000;
-}
+                position: fixed;
+                top: 2rem;
+                left: 2rem;
+                z-index: 1000;
+            }
 
-.logo-link {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 1.2rem; /* Adjust as necessary */
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
+            .logo-link {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                font-size: 1.2rem;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
 
-.logo-link:hover {
-    color: #ffffff; /* Change to full white on hover */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
+            /* New styles for scrollable sections */
+            .section {
+                min-height: 100vh;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 4rem 2rem;
+            }
 
+            #home {
+                height: 100vh;
+                position: relative;
+            }
 
-            /* Mobile Responsive */
+            #about {
+                background: rgba(30, 30, 30, 0.95);
+                color: white;
+            }
+
+            #portfolio {
+                background: rgba(25, 25, 25, 0.95);
+                color: white;
+            }
+
+            #blog {
+                background: rgba(20, 20, 20, 0.95);
+                color: white;
+            }
+
+            .section-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                width: 100%;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.6s ease-out;
+            }
+
+            .section.active .section-content {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Responsive adjustments */
             @media screen and (max-width: 768px) {
-                .nav-menu ul li:not(:last-child) {
-                    display: none;
-                }
-
-                .menu-toggle {
-                    margin-left: 0;
-                }
-
-                .nav-menu.active ul {
-                    display: flex;
-                    flex-direction: column;
-                    position: fixed;
-                    top: 0;
-                    right: 0;
-                    background: rgba(0, 0, 0, 0.95);
-                    padding: 5rem 2rem 2rem;
-                    height: 100vh;
-                    width: 250px;
-                }
-
-                .nav-menu.active ul li {
-                    display: block;
+                .section {
+                    padding: 3rem 1rem;
                 }
             }
         </style>
     </head>
     <body class="is-preload">
- <!-- Navigation Menu -->
         <div class="logo">
             <a href="#home" class="logo-link">tonikukoc.me</a>
         </div>
-      <!-- In about.html, modify the nav to: -->
-<nav class="nav-menu">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </li>
-    </ul>
-</nav>
 
-        <div id="wrapper">
-            <div id="bg"></div>
-            <div id="overlay"></div>
-            <div id="main">
-                <!-- Header -->
-                <header id="header">
-                    <h1>Toni Kukoc</h1>
-                    <p>IT Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Portfolio</p>
-                    <nav aria-label="Social Media Links">
-                        <ul>
-                            <li><a href="https://www.linkedin.com/in/your-profile" class="icon brands fa-linkedin" aria-label="LinkedIn Profile"><span class="label">LinkedIn</span></a></li>
-                            <li><a href="https://github.com/Tonikukoc01" class="icon brands fa-github" aria-label="Github Profile"><span class="label">Github</span></a></li>
-                            <li><a href="mailto:your.email@example.com" class="icon solid fa-envelope" aria-label="Email Contact"><span class="label">Email</span></a></li>
-                        </ul>
-                    </nav>
-                </header>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li>
+                    <div class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
 
-                <!-- Footer -->
-                <footer id="footer">
-                    <span class="copyright">&copy; 2024 Toni Kukoc. All rights reserved.</span>
-                </footer>
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div id="wrapper">
+                <div id="bg"></div>
+                <div id="overlay"></div>
+                <div id="main">
+                    <header id="header">
+                        <h1>Toni Kukoc</h1>
+                        <p>IT Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Portfolio</p>
+                        <nav aria-label="Social Media Links">
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/your-profile" class="icon brands fa-linkedin" aria-label="LinkedIn Profile"><span class="label">LinkedIn</span></a></li>
+                                <li><a href="https://github.com/Tonikukoc01" class="icon brands fa-github" aria-label="Github Profile"><span class="label">Github</span></a></li>
+                                <li><a href="mailto:your.email@example.com" class="icon solid fa-envelope" aria-label="Email Contact"><span class="label">Email</span></a></li>
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-content">
+                <h2>About Me</h2>
+                <p>Your about content here...</p>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <div class="section-content">
+                <h2>Portfolio</h2>
+                <p>Your portfolio content here...</p>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section">
+            <div class="section-content">
+                <h2>Blog</h2>
+                <p>Your blog content here...</p>
+            </div>
+        </section>
+
+        <footer id="footer">
+            <span class="copyright">&copy; 2024 Toni Kukoc. All rights reserved.</span>
+        </footer>
 
         <script>
             window.onload = function() { 
@@ -201,7 +227,7 @@
                 });
 
                 // Smooth scroll for navigation
-                document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         e.preventDefault();
                         navMenu.classList.remove('active');
@@ -210,6 +236,18 @@
                         });
                     });
                 });
+
+                // Intersection Observer for section animations
+                const sections = document.querySelectorAll('.section');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                sections.forEach(section => observer.observe(section));
             }
         </script>
     </body>
