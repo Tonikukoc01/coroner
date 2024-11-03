@@ -16,20 +16,46 @@
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         
         <style>
-            /* Modern Typography */
-            h1 {
+            /* General Styles */
+            body, html {
+                margin: 0;
+                padding: 0;
+                font-family: 'Inter', sans-serif;
+                scroll-behavior: smooth;
+            }
+
+            /* Left-aligned Home Section */
+            #home {
+                padding: 4rem 1rem;
+                text-align: left;
+                max-width: 800px;
+                margin: 0 auto 4rem 0; /* Align to the left */
+                padding-left: 4rem; /* Add extra padding on the left */
+            }
+            #home h1 {
                 font-family: 'Poppins', sans-serif;
                 font-weight: 600;
                 letter-spacing: -0.02em;
             }
-
-            header p {
+            #home p {
                 font-family: 'Inter', sans-serif;
                 font-weight: 400;
                 letter-spacing: 0.01em;
             }
 
-            /* Navigation Styles */
+            /* Sections Styling */
+            section {
+                padding: 4rem 1rem;
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+            section h2 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+            }
+
+            /* Navigation Menu */
             .nav-menu {
                 position: fixed;
                 top: 2rem;
@@ -37,7 +63,6 @@
                 z-index: 1000;
                 font-family: 'Inter', sans-serif;
             }
-
             .nav-menu ul {
                 list-style: none;
                 padding: 0;
@@ -46,133 +71,109 @@
                 gap: 2rem;
                 align-items: center;
             }
-
             .nav-menu a {
                 color: rgba(255, 255, 255, 0.8);
                 text-decoration: none;
                 font-size: 0.9rem;
                 font-weight: 500;
-                transition: all 0.3s ease;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
+                transition: color 0.3s ease;
             }
-
-            .nav-menu a:hover {
+            .nav-menu a:hover, .nav-menu a.active {
                 color: #ffffff;
                 text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             }
 
-            /* Hamburger Menu */
-            .menu-toggle {
-                width: 24px;
-                height: 24px;
-                cursor: pointer;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                margin-left: 2rem;
+            /* Footer */
+            #footer {
+                text-align: center;
+                padding: 2rem;
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.8);
             }
 
-            .menu-toggle span {
-                display: block;
-                width: 100%;
-                height: 2px;
-                background-color: rgba(255, 255, 255, 0.8);
-                transition: all 0.3s ease;
-            }
-
-            .menu-toggle:hover span {
-                background-color: #ffffff;
-            }
-
-            .logo {
-    position: fixed;
-    top: 2rem; /* Same as the nav menu */
-    left: 2rem;
-    z-index: 1000;
-}
-
-.logo-link {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 1.2rem; /* Adjust as necessary */
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.logo-link:hover {
-    color: #ffffff; /* Change to full white on hover */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-
-            /* Mobile Responsive */
+            /* Responsive Mobile Navigation */
             @media screen and (max-width: 768px) {
                 .nav-menu ul li:not(:last-child) {
                     display: none;
                 }
-
                 .menu-toggle {
-                    margin-left: 0;
+                    display: flex;
+                    flex-direction: column;
+                    cursor: pointer;
+                    gap: 4px;
                 }
-
+                .menu-toggle span {
+                    display: block;
+                    width: 24px;
+                    height: 2px;
+                    background-color: rgba(255, 255, 255, 0.8);
+                }
                 .nav-menu.active ul {
                     display: flex;
                     flex-direction: column;
+                    background: rgba(0, 0, 0, 0.95);
+                    padding: 5rem 2rem;
                     position: fixed;
                     top: 0;
                     right: 0;
-                    background: rgba(0, 0, 0, 0.95);
-                    padding: 5rem 2rem 2rem;
                     height: 100vh;
                     width: 250px;
-                }
-
-                .nav-menu.active ul li {
-                    display: block;
                 }
             }
         </style>
     </head>
     <body class="is-preload">
- <!-- Navigation Menu -->
+        <!-- Logo and Navigation -->
         <div class="logo">
             <a href="#home" class="logo-link">tonikukoc.me</a>
         </div>
-      <!-- In about.html, modify the nav to: -->
-<nav class="nav-menu">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </li>
-    </ul>
-</nav>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li>
+                    <div class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
 
         <div id="wrapper">
             <div id="bg"></div>
             <div id="overlay"></div>
             <div id="main">
-                <!-- Header -->
-                <header id="header">
-                    <h1>Toni Kukoc</h1>
-                    <p>IT Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Portfolio</p>
-                    <nav aria-label="Social Media Links">
-                        <ul>
-                            <li><a href="https://www.linkedin.com/in/your-profile" class="icon brands fa-linkedin" aria-label="LinkedIn Profile"><span class="label">LinkedIn</span></a></li>
-                            <li><a href="https://github.com/Tonikukoc01" class="icon brands fa-github" aria-label="Github Profile"><span class="label">Github</span></a></li>
-                            <li><a href="mailto:your.email@example.com" class="icon solid fa-envelope" aria-label="Email Contact"><span class="label">Email</span></a></li>
-                        </ul>
-                    </nav>
-                </header>
+                <!-- Home Section -->
+                <section id="home">
+                    <header>
+                        <h1>Toni Kukoc</h1>
+                        <p>IT Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Portfolio</p>
+                    </header>
+                </section>
+
+                <!-- About Section -->
+                <section id="about">
+                    <h2>About Me</h2>
+                    <p>Here you can include a brief introduction, background, and insights about your work philosophy.</p>
+                </section>
+
+                <!-- Experience Section -->
+                <section id="experience">
+                    <h2>Experience</h2>
+                    <p>List your relevant work experiences, responsibilities, and achievements.</p>
+                </section>
+
+                <!-- Blog Section -->
+                <section id="blog">
+                    <h2>Blog</h2>
+                    <p>Share recent articles, insights, and updates related to your professional work.</p>
+                </section>
 
                 <!-- Footer -->
                 <footer id="footer">
@@ -182,10 +183,10 @@
         </div>
 
         <script>
-            window.onload = function() { 
-                document.body.classList.remove('is-preload'); 
+            window.onload = function() {
+                document.body.classList.remove('is-preload');
 
-                // Navigation menu toggle
+                // Menu toggle for mobile
                 const menuToggle = document.querySelector('.menu-toggle');
                 const navMenu = document.querySelector('.nav-menu');
                 
@@ -193,19 +194,12 @@
                     navMenu.classList.toggle('active');
                 });
 
-                // Close menu when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!navMenu.contains(e.target)) {
-                        navMenu.classList.remove('active');
-                    }
-                });
-
-                // Smooth scroll for navigation
+                // Smooth scrolling
                 document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
                     anchor.addEventListener('click', function (e) {
                         e.preventDefault();
                         navMenu.classList.remove('active');
-                        document.querySelector(this.getAttribute('href'))?.scrollIntoView({
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
                             behavior: 'smooth'
                         });
                     });
