@@ -120,6 +120,59 @@
 
             /* Sections */
             .content-section {
+
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.about-header {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.about-subheader {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 4rem;
+    max-width: 600px;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.content-block {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.content-block.right-aligned {
+    flex-direction: row-reverse;
+}
+
+.content-text {
+    flex: 1;
+    padding: 1rem;
+}
+
+.right-aligned .content-text {
+    text-align: right;
+}
+
+.content-image {
+    width: 400px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
                 min-height: 100vh;
                 width: 100%;
                 display: flex;
@@ -257,12 +310,35 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="content-section">
-            <div class="section-content">
-                <h2>About Me</h2>
-                <p>Your about content here...</p>
+      <section id="about" class="section content-section">
+    <div class="section-content">
+        <h1 class="about-header">About Me</h1>
+        <p class="about-subheader">
+            Passionate about creating efficient solutions and optimizing processes. 
+            Bringing years of experience in IT project management and value delivery.
+        </p>
+        
+        <div class="about-content">
+            <div class="content-block right-aligned">
+                <div class="content-text">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                </div>
+                <img src="/api/placeholder/400/320" alt="Professional headshot" class="content-image">
             </div>
-        </section>
+            
+            <div class="content-block">
+                <div class="content-text">
+                    <p>
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+                </div>
+                <img src="/api/placeholder/400/320" alt="Working environment" class="content-image">
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- Portfolio Section -->
         <section id="portfolio" class="content-section">
