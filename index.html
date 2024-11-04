@@ -238,18 +238,17 @@ header p {
     position: fixed;
     right: 0;
     top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-    transform-origin: center;
-    color: #bbbbbb; /* Stronger grey color */
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    transform: rotate(90deg) translateY(-50%);
+    transform-origin: right center;
+    font-size: 12px;
+    color: #a9a9a9; /* Stronger gray for better visibility */
     writing-mode: vertical-rl;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: none; /* Ensure no background color */
+    padding: 0.5rem; /* Optional, to give it some spacing */
+    letter-spacing: 0.1em;
 }
-
-
 #footer span {
     display: inline-block;
     text-transform: uppercase;
@@ -283,6 +282,7 @@ header p {
 
     .content-section {
         padding: 3rem 1rem;
+        
     }
 }
         </style>
