@@ -261,6 +261,27 @@
                 .content-section {
                     padding: 3rem 1rem;
                 }
+/* Footer styling to fix it on the right side of the screen */
+#footer {
+    position: fixed;
+    right: 0; /* Aligns footer to the right side */
+    bottom: 50%; /* Centers footer vertically */
+    transform: rotate(90deg) translateY(50%); /* Rotates text and repositions it */
+    transform-origin: right bottom; /* Rotates from the bottom right */
+    font-size: 12px; /* Small font size */
+    color: grey; /* Grey color for subtle effect */
+    writing-mode: vertical-rl; /* Alternative way to align text vertically */
+    text-align: center;
+    font-family: Arial, sans-serif; /* Optional: set a specific font */
+}
+
+/* Additional styling for text within the footer */
+#footer span {
+    display: inline-block;
+    text-transform: uppercase; /* Converts text to uppercase for "MMXXIV" style */
+}
+
+
             }
         </style>
     </head>
@@ -356,10 +377,11 @@
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer id="footer">
-            <span class="copyright">&copy; 2024 Toni Kukoc. All rights reserved.</span>
-        </footer>
+        <!-- Footer --
+<footer id="footer">
+    <span>&copy; MMXXIV Toni Kukoc</span>
+</footer>
+
 
         <script>
             window.onload = function() { 
