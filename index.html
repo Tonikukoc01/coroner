@@ -29,16 +29,54 @@ body {
 }
 
 /* Typography */
-h1 {
+#header {
+            display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+}
+
+#header h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
+    font-size: 3rem;
+    margin: 0;
     letter-spacing: -0.02em;
 }
 
-header p {
+#header p {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 1rem;
     letter-spacing: 0.01em;
+}
+
+#header nav ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+
+#header nav ul li {
+    list-style: none;
+}
+
+#header nav a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+#header nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Navigation */
@@ -326,8 +364,8 @@ header p {
 <section id="home">
     <!-- Header -->
     <header id="header">
-        <h1>Toni Kukoc</h1>
-        <p>IT Project Manager &nbsp;&bull;&nbsp; Value Through Optimization &nbsp;&bull;&nbsp; Professional Portfolio</p>
+        <h1>Hi, my name is Toni</h1>
+        <p>I am IT Project Manager</p>
         <nav aria-label="Social Media Links">
             <ul>
                 <li><a href="https://www.linkedin.com/in/your-profile" class="icon brands fa-linkedin" aria-label="LinkedIn Profile"><span class="label">LinkedIn</span></a></li>
