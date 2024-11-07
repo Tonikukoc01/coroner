@@ -296,7 +296,7 @@ body {
 .section-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5rem;
+    padding: 5rem 0 5rem 10%;
 }
 
 .about-header {
@@ -314,6 +314,7 @@ body {
     margin-bottom: 2rem;
     margin-top: 2rem;
     max-width: 600px;
+    text-align: left;
 }
 
 .about-content {
@@ -322,12 +323,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6rem;
+    padding-right: 10%
 }
 
 .content-block {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
+    justify-content: flex-start;
 }
 
 .content-block.right-aligned {
@@ -336,7 +339,8 @@ body {
 
 .content-text {
     flex: 1;
-    padding: 1rem;
+    padding: 1rem 0; /* Remove horizontal padding */
+    text-align: left; /* Ensure text is left-aligned */
 }
 
 .right-aligned .content-text {
