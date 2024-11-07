@@ -497,6 +497,21 @@ body {
 
 
         <script>
+// Get the scroll indicator line element
+const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+
+// Add an event listener for the scroll event
+window.addEventListener('scroll', () => {
+  // Get the current scroll position
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Calculate the gradient stop positions based on the scroll position
+  const gradientStops = `transparent, goldenrod ${(scrollTop / (document.body.scrollHeight - document.documentElement.clientHeight)) * 80}%, goldenrod ${(scrollTop / (document.body.scrollHeight - document.documentElement.clientHeight)) * 80 + 20}%, transparent`;
+
+  // Update the background gradient of the scroll indicator line
+  scrollLine.style.background = `linear-gradient(to bottom, ${gradientStops})`;
+});
+
 window.onload = function() {
   document.body.classList.remove('is-preload');
 
