@@ -279,6 +279,10 @@ body {
 }
 
 /* About Section Styles */
+#about::before {
+    content: none; /* Removes the border above the About Me section */
+}
+
 .section-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -288,16 +292,17 @@ body {
 .about-header {
     font-family: SkemaProDisplay
     font-size: 4rem;
-    font-weight: bold;
+    font-weight: normal;
     text-align: left;
     margin-bottom: 1rem;
 }
 
 .about-subheader {
     font-family: SkemaProDisplay
-    font-size: 1.2rem;
+    font-size: 4rem;
     color: white;
     margin-bottom: 4rem;
+    margin-top: 4rem;
     max-width: 600px;
 }
 
