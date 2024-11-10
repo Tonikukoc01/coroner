@@ -203,6 +203,22 @@ body {
     margin-left: 0.5rem; /* Space between logo and vertical line */
 }
 
+/* MENU Text Styling */
+.menu-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-left: 1rem; /* Space between vertical line and "MENU" */
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.menu-text:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 /* Hamburger Menu */
 .menu-toggle {
     width: 24px;
@@ -407,6 +423,10 @@ body {
         <a href="#home" class="logo-link">tonikukoc.me</a>
         <!-- Vertical Line -->
         <div class="logo-line"></div>
+<!-- "MENU" Text as Placeholder for Hamburger Menu -->
+    <div class="menu-text">MENU</div>
+
+
     </div>
 
         <!-- Navigation -->
