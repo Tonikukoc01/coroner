@@ -172,20 +172,35 @@ body {
     top: 2rem;
     left: 2rem;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+
 }
+
+/* Logo Styling */
+
 
 .logo-link {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 1.2rem;
+    margin-right: 0.5rem;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .logo-link:hover {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Vertical Line Styling */
+.logo-line {
+    width: 2px;         /* Width of the vertical line */
+    height: 1.2rem;     /* Height should match the logo's font size */
+    background-color: #d4af37; /* Gold color */
+    margin-left: 0.5rem; /* Space between logo and vertical line */
 }
 
 /* Hamburger Menu */
@@ -387,10 +402,12 @@ body {
         </style>
     </head>
     <body class="is-preload">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="#home" class="logo-link">tonikukoc.me</a>
-        </div>
+       <!-- Logo Section with Vertical Line -->
+    <div class="logo">
+        <a href="#home" class="logo-link">tonikukoc.me</a>
+        <!-- Vertical Line -->
+        <div class="logo-line"></div>
+    </div>
 
         <!-- Navigation -->
         <nav class="nav-menu">
