@@ -396,25 +396,29 @@ body {
 }
         </style>
     </head>
+    
     <body class="is-preload">
+        
        <!-- Logo Section with Vertical Line -->
-    <div class="logo">
-        <a href="#home" class="logo-link">tonikukoc.me</a>
-        <!-- Vertical Line -->
-        <div class="logo-line"></div>
-  <!-- MENU Text (Hamburger-style) -->
-    <div class="menu-text">MENU</div>
-    </div>
 
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-        </nav>
+<div class="logo">
+    <a href="#home" class="logo-link">tonikukoc.me</a>
+    <!-- Vertical Line -->
+    <div class="logo-line"></div> <!-- Now properly closed -->
+    <!-- MENU Text (Hamburger-style) -->
+    <div class="menu-text">MENU</div> <!-- Now properly closed -->
+</div>
+
+<!-- Navigation -->
+<nav class="nav-menu">
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+</nav>
 
    <!-- Home Section -->
+
 <section id="home">
     <!-- Header -->
     <header id="header">
@@ -451,6 +455,7 @@ process optimization, human relations & reducing on delivery time.
         </div>
     </div>
 </section>
+        
         <script>
 // Get the scroll indicator line element
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
