@@ -174,6 +174,7 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
+
 }
 
 /* Logo Styling */
@@ -200,25 +201,6 @@ body {
     height: 1.2rem;     /* Height should match the logo's font size */
     background-color: #d4af37; /* Gold color */
     margin-left: 0.5rem; /* Space between logo and vertical line */
-}
-
-* MENU Text Styling */
-.menu-text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    margin-left: 0.75rem;  /* Space between the vertical line and MENU */
-}
-
-/* Hover Effect for "MENU" */
-.menu-text:hover {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Sections */
@@ -396,29 +378,23 @@ body {
 }
         </style>
     </head>
-    
     <body class="is-preload">
-        
        <!-- Logo Section with Vertical Line -->
+    <div class="logo">
+        <a href="#home" class="logo-link">tonikukoc.me</a>
+        <!-- Vertical Line -->
+        <div class="logo-line"></div>
+    </div>
 
-<div class="logo">
-    <a href="#home" class="logo-link">tonikukoc.me</a>
-    <!-- Vertical Line -->
-    <div class="logo-line"></div> <!-- Now properly closed -->
-    <!-- MENU Text (Hamburger-style) -->
-    <div class="menu-text">MENU</div> <!-- Now properly closed -->
-</div>
-
-<!-- Navigation -->
-<nav class="nav-menu">
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
-</nav>
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
 
    <!-- Home Section -->
-
 <section id="home">
     <!-- Header -->
     <header id="header">
@@ -455,7 +431,6 @@ process optimization, human relations & reducing on delivery time.
         </div>
     </div>
 </section>
-        
         <script>
 // Get the scroll indicator line element
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
