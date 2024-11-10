@@ -174,7 +174,6 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
-
 }
 
 /* Logo Styling */
@@ -201,6 +200,25 @@ body {
     height: 1.2rem;     /* Height should match the logo's font size */
     background-color: #d4af37; /* Gold color */
     margin-left: 0.5rem; /* Space between logo and vertical line */
+}
+
+* MENU Text Styling */
+.menu-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    margin-left: 0.75rem;  /* Space between the vertical line and MENU */
+}
+
+/* Hover Effect for "MENU" */
+.menu-text:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 /* Sections */
@@ -384,6 +402,8 @@ body {
         <a href="#home" class="logo-link">tonikukoc.me</a>
         <!-- Vertical Line -->
         <div class="logo-line"></div>
+  <!-- MENU Text (Hamburger-style) -->
+    <div class="menu-text">MENU</div>
     </div>
 
         <!-- Navigation -->
