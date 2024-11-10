@@ -346,6 +346,32 @@ body {
     padding: 0;
 }
 
+/* Button Styling */
+.collaboration-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(to right, #d4af37, #f7f7f7); /* Gold fading to light */
+    color: #ffffff;
+    font-family: 'SemsproDisplay', sans-serif; /* Font inside button */
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px; /* Rounded corners */
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+/* Hover Effect */
+.collaboration-btn:hover {
+    background: linear-gradient(to right, #d4af37, #eaeaea); /* Slightly lighter gold on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+.collaboration-btn:focus {
+    outline: none;
+}
+
 .about-content {
     font-family: SkemaProDisplay;
     font-size: 0.5rem;
@@ -470,6 +496,9 @@ body {
             Bringing years of experience in IT project management and value delivery.
             Process optimization, human relations & reducing on delivery time.
         </p>
+        
+        <!-- Button -->
+        <a href="#collaborate" class="collaboration-btn">Approach to collaboration</a>
     </div>
 </section>
 
