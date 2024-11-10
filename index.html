@@ -32,6 +32,19 @@ html {
     overflow-x: hidden;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+
+main {
+    flex: 1; /* This makes the main content area take up available space */
+    display: flex;
+    flex-direction: column;
+
 body {
     min-height:100vh;
     overflow-x: hidden;
@@ -403,68 +416,69 @@ body {
         </style>
     </head>
     <body class="is-preload">
-        <!-- Logo -->
-        <div class="logo">
-            <a href="#home" class="logo-link">tonikukoc.me</a>
-        </div>
+    <!-- Logo -->
+    <div class="logo">
+        <a href="#home" class="logo-link">tonikukoc.me</a>
+    </div>
 
-        <!-- Navigation -->
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li>
-                    <div class="menu-toggle">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+    <!-- Navigation -->
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
-   <!-- Home Section -->
-<section id="home">
-    <!-- Header -->
-    <header id="header">
-        <h1>
-        Hi, my<br>
-        name is <span class="bold-toni">Toni</span>
-  </h1>
-       <p>I am <span class="bold-Split">independent IT project manager</span>
-<br>from Split, Croatia.
-</p>
- <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <div class="scroll-text">SCROLL</div>
-                <div class="scroll-line"></div>
-    </header>
-</section>
+    <!-- Main Content Area -->
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <header id="header">
+                <h1>
+                    Hi, my<br>
+                    name is <span class="bold-toni">Toni</span>
+                </h1>
+                <p>I am <span class="bold-Split">independent IT project manager</span><br>from Split, Croatia.</p>
+
+                <!-- Scroll Indicator -->
+                <div class="scroll-indicator">
+                    <div class="scroll-text">SCROLL</div>
+                    <div class="scroll-line"></div>
+                </div>
+            </header>
+        </section>
 
         <!-- About Section -->
-      <section id="about" class="section content-section">
-    <div class="section-content">
-        <h1 class="about-header">let's collaborate</h1>
-        <p class="about-subheader">
-            Bringing years of experience in IT project management and value delivery.
-process optimization, human relations & reducing on delivery time.
-        </p>
-            <div class="content-block">
-                <div class="content-text">
-                    <p>
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    </p>
+        <section id="about" class="section content-section">
+            <div class="section-content">
+                <h1 class="about-header">let's collaborate</h1>
+                <p class="about-subheader">
+                    Bringing years of experience in IT project management and value delivery,
+                    process optimization, human relations & reducing delivery time.
+                </p>
+                <div class="content-block">
+                    <div class="content-text">
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum...
+                        </p>
+                    </div>
+                    <img src="/api/placeholder/400/320" alt="Working environment" class="content-image">
                 </div>
-                <img src="/api/placeholder/400/320" alt="Working environment" class="content-image">
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+    </main>
 
-        <!-- Footer -->
-<footer id="footer">
-    <span>&copy; MMXXIV Toni Kukoc</span>
-</footer>
+    <!-- Footer -->
+    <footer id="footer">
+        <span>&copy; MMXXIV Toni Kukoc</span>
+    </footer>
 
 
         <script>
