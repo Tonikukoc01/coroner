@@ -242,6 +242,64 @@ body {
     background-color: #ffffff;
 }
 
+/* Side Menu Styles */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Start hidden off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s ease;
+    padding-top: 20px;
+    color: white;
+}
+
+.side-menu .menu-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-menu .menu-list li {
+    padding: 15px;
+    text-align: center;
+}
+
+.side-menu .menu-list li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+}
+
+.side-menu .menu-list li a:hover {
+    background-color: #444;
+
+/* Menu Toggle */
+#menu-toggle {
+    display: none;
+}
+
+/* Show the side menu when checkbox is checked */
+#menu-toggle:checked + .side-menu {
+    left: 0; /* Bring the menu into view */
+}
+
+/* Close Button (X) */
+.menu-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+/* Hover effect for close button */
+.menu-close:hover {
+    color: #d4af37;
+}
+
 /* Sections */
 .content-section::before {
     content: '';
@@ -289,11 +347,6 @@ body {
 
 #about {
     background: linear-gradient(to top, rgba(20, 20, 20, 0.95), rgba(25, 25, 25, 0.95));
-}
-
-/* Background animation */
-#bg {
-    animation: subtleFloat 20s ease-in-out infinite;
 }
 
 @keyframes subtleFloat {
@@ -443,6 +496,7 @@ body {
         </style>
     </head>
     <body class="is-preload">
+        
        <!-- Logo Section with Vertical Line -->
     <div class="logo">
         <a href="#home" class="logo-link">tonikukoc.me</a>
@@ -450,8 +504,6 @@ body {
         <div class="logo-line"></div>
 <!-- "MENU" Text as Placeholder for Hamburger Menu -->
     <div class="menu-text">MENU</div>
-
-
     </div>
 
         <!-- Navigation -->
@@ -468,6 +520,19 @@ body {
     </ul>
 </nav>
 
+<!-- Side Menu -->
+<div class="side-menu">
+    <label for="menu-toggle" class="menu-close">X</label>
+    <ul class="menu-list">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+
+<!-- Menu Toggle Checkbox -->
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
    <!-- Home Section -->
 <section id="home">
     <!-- Header -->
