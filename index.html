@@ -108,7 +108,7 @@ body {
     height: 100vh;
     width: 1px;
     height: 10cm; /* Line height */
-    background: linear-gradient(to bottom, transparent, #d4af37 20%, #d4af37 80%, transparent);
+    background: linear-gradient(to bottom, transparent, goldenrod 20%, goldenrod 80%, transparent);
 }
 
 
@@ -608,10 +608,8 @@ window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollHeight = document.body.scrollHeight - document.documentElement.clientHeight;
 
-   // Calculate the new height of the scroll indicator line
-  const lineHeight = (scrollTop / scrollHeight) * 100 + 'vh';
-  scrollLine.style.height = lineHeight;
-});
+  // Calculate the gradient stop positions based on the scroll position
+const gradientStops = `transparent, #d4af37 ${(scrollTop / scrollHeight) * 80}%, #d4af37 ${(scrollTop / scrollHeight) * 80 + 20}%, transparent`;
 
   // Update the background gradient of the scroll indicator line
   scrollLine.style.background = `linear-gradient(to bottom, ${gradientStops})`;
