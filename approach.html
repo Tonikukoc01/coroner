@@ -1,0 +1,674 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>Toni Kukoc</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Toni Kukoc - IT Project Manager specializing in value optimization" />
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        
+        <style>
+          /* Global Styles */
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 200; /* Adjust weight based on preference */
+    font-style: normal;
+    src: url('../coroner/assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+         url('../coroner/assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+}
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height:100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column; 
+}
+
+/* Typography */
+#header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    position: absolute;
+    top: 35%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+}
+
+#header h1 {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 600;
+    font-size: 5.5rem;
+    margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+    color: #d4af37; /* Light gold color */
+    line-height: 1.2;
+    text-align: left;
+}
+
+#header h1 br {
+    margin-bottom: 0.5rem; /* Add space between the lines */
+}
+
+.bold-toni {
+    font-weight: 650 !important;
+    font-size: 5.5rem !important;
+}
+.bold-split {
+    font-weight: 550 !important;
+    font-size: 3.8rem !important;
+}
+
+     #header p {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 300;
+            font-size: 1.5rem; /* Increase size of subheader text */
+            margin: 0 0 2rem; /* Increase margin below subheader */
+            color: #d4af37;
+        }
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the line and text within the scroll indicator */
+    text-align: center;
+    gap: 0.5rem;
+    margin-left: 250px;  /* Move the whole scroll indicator further to the right */
+    margin-top: 20px
+    position: fixed;
+
+}
+
+.scroll-indicator .scroll-text {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #d4af37; /* Gold color */
+    letter-spacing: 0.1em;
+}
+
+.scroll-indicator .scroll-line {
+    height: 100vh;
+    width: 1px;
+    height: 10cm; /* Line height */
+    background: linear-gradient(to bottom, transparent, goldenrod 20%, goldenrod 80%, transparent);
+}
+
+
+#header nav ul {
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+
+#header nav ul li {
+    list-style: none;
+}
+
+#header nav a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+#header nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Navigation */
+.nav-menu {
+    position: fixed;
+    top: 3.7rem;
+    right: 4rem;
+    z-index: 1000;
+    font-family: 'Inter', sans-serif;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-menu a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Logo */
+.logo {
+    position: fixed;
+    top: 3.7rem;
+    left: 4rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+
+}
+
+/* Logo Styling */
+
+
+.logo-link {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Vertical Line Styling */
+.logo-line {
+    width: 2px;         /* Width of the vertical line */
+    height: 1.2rem;     /* Height should match the logo's font size */
+    background-color: #d4af37; /* Gold color */
+    margin-left: 0.5rem; /* Space between logo and vertical line */
+}
+
+/* MENU Text Styling */
+.menu-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin-left: 1rem; /* Space between vertical line and "MENU" */
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    bottom: 2rem; /* Move the "MENU" text closer to the bottom */
+    left: 4rem; /* Align the "MENU" text to the left */
+
+}
+
+.menu-text:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 2rem;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover span {
+    background-color: #ffffff;
+}
+
+/* Side Menu Styles */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(20, 20, 20, 0.95), rgba(25, 25, 25, 0.95));
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.side-menu.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: 'SkemaProDisplay', sans-serif;
+  color: #fff;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.side-menu-nav {
+  margin-bottom: 4rem; /* Increased margin between social icons and first menu item */
+}
+
+.side-menu-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem; /* Increased margin between menu items */
+}
+
+.side-menu-nav a {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.8rem;
+  font-weight: 350;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.side-menu-nav a:hover {
+  color: #ffffff;
+}
+
+.side-menu-social {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem; /* Increased margin between last menu item and social icons */
+}
+
+.social-icon {
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #ffffff;
+}
+
+/* Sections */
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0; /* Position at the top of the section */
+    left: 0;
+    right: 0;
+    height: 2px; /* Height of the golden border */
+    background: linear-gradient(to right, transparent, goldenrod 20%, goldenrod 80%, transparent); /* Golden gradient */
+}
+
+.content-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    color: white;
+}
+
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.section-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section-specific styles */
+#home {
+  min-height: 100vh; /* Remove the fixed height */
+  padding-top: 8rem; /* Add some top padding */
+  padding-bottom: 8rem;
+  position: relative;
+  background: linear-gradient(to bottom, rgba(20, 20, 20, 0.95), rgba(25, 25, 25, 0.95)) !important;
+}
+
+#about {
+    background: linear-gradient(to top, rgba(20, 20, 20, 0.95), rgba(25, 25, 25, 0.95));
+}
+
+/* Background animation */
+#bg {
+    animation: subtleFloat 20s ease-in-out infinite;
+}
+
+@keyframes subtleFloat {
+    0% {
+        transform: scale(1.1) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.15) translate(-1%, -1%);
+    }
+    100% {
+        transform: scale(1.1) translate(0, 0);
+    }
+}
+
+/* About Section Styles */
+#about {
+    position: relative;
+    padding-top: 5rem; /* Adjust padding to give space at the top */
+}
+
+#about::before {
+    content: none; /* Removes the border above the About Me section */
+}
+
+.section-content {
+    max-width: 1200px;
+    left: 10%;
+    margin: 0;
+    padding: 8rem 0%;
+    width: 80%;
+}
+
+.about-header {
+    font-family: SkemaProDisplay;
+    font-size: 4rem;
+    font-weight: normal;
+    text-align: left;
+    margin-bottom: 2.1rem;
+    padding: 0;
+}
+
+.about-subheader {
+    font-family: SkemaProDisplay;
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 2.1rem;
+    max-width: 600px;
+    text-align: left;
+    padding: 0;
+}
+
+/* Button Styling */
+.collaboration-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(to right, #d4af37, #f7f7f7); /* Gold fading to light */
+    color: #ffffff;
+    font-family: SkemaproDisplay;
+    font-size: 1.1rem;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 4px; /* Rounded corners */
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+    text-align: center;
+}
+
+/* Hover Effect */
+.collaboration-btn:hover {
+    background: linear-gradient(to right, #d4af37, #eaeaea); /* Slightly lighter gold on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+}
+
+.collaboration-btn:focus {
+    outline: none;
+}
+
+.about-content {
+    font-family: SkemaProDisplay;
+    font-size: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    padding-right: 10%
+}
+
+.content-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.content-block.right-aligned {
+    flex-direction: row-reverse;
+}
+
+.content-text {
+    flex: 1;
+    padding: 1rem 0; /* Remove horizontal padding */
+    text-align: left; /* Ensure text is left-aligned */
+}
+
+.right-aligned .content-text {
+    text-align: right;
+}
+
+.content-image {
+    width: 400px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    .nav-menu ul li:not(:last-child) {
+        display: none;
+    }
+
+    .menu-toggle {
+        margin-left: 0;
+    }
+
+    .nav-menu.active ul {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 5rem 2rem 2rem;
+        height: 100vh;
+        width: 250px;
+    }
+
+    .nav-menu.active ul li {
+        display: block;
+    }
+
+    .content-section {
+        padding: 3rem 1rem;
+        
+    }
+}
+        </style>
+    </head>
+    <body class="is-preload">
+       <!-- Logo Section with Vertical Line -->
+    <div class="logo">
+        <a href="#home" class="logo-link">tonikukoc.me</a>
+        <!-- Vertical Line -->
+        <div class="logo-line"></div>
+<!-- "MENU" Text as Placeholder for Hamburger Menu -->
+    <div class="menu-text">MENU</div>
+
+    </div>
+
+<div class="side-menu">
+  <div class="side-menu-content">
+    <nav class="side-menu-nav">
+      <ul>
+        <li><a href="#home">home</a></li>
+        <li><a href="#collaboration">approach to collaboration</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#about">about my life</a></li>
+      </ul>
+    </nav>
+    <div class="side-menu-social">
+      <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</div>
+
+
+        <!-- Navigation -->
+    <nav class="nav-menu">
+    <ul>
+        <li><a href="#home">Hire</a></li>
+        <li>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+   <!-- Home Section -->
+<section id="home">
+    <!-- Header -->
+    <header id="header">
+        <h1>
+        Hi, my<br>
+        name is <span class="bold-toni">Toni</span>
+  </h1>
+       <p>I am <span class="bold-Split">independent IT project manager</span>
+<br>from Split, Croatia.
+</p>
+ <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-text">SCROLL</div>
+                <div class="scroll-line"></div>
+    </header>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section content-section">
+    <div class="section-content">
+        <h1 class="about-header">let's collaborate</h1>
+        <p class="about-subheader">
+            Bringing years of experience in IT project management and value delivery.
+            Process optimization, human relations & reducing on delivery time.
+        </p>
+        
+        <!-- Button -->
+        <a href="#collaborate" class="collaboration-btn">Approach to collaboration</a>
+    </div>
+</section>
+
+
+        <script>
+// Get the scroll indicator line element
+const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+
+// Add an event listener for the scroll event
+window.addEventListener('scroll', () => {
+  // Get the current scroll position
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+  // Calculate the gradient stop positions based on the scroll position
+  const gradientStops = `transparent, goldenrod ${(scrollTop / (document.body.scrollHeight - document.documentElement.clientHeight)) * 80}%, goldenrod ${(scrollTop / (document.body.scrollHeight - document.documentElement.clientHeight)) * 80 + 20}%, transparent`;
+
+  // Update the background gradient of the scroll indicator line
+  scrollLine.style.background = `linear-gradient(to bottom, ${gradientStops})`;
+});
+
+window.onload = function() {
+  document.body.classList.remove('is-preload');
+
+  // Navigation menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target)) {
+      navMenu.classList.remove('active');
+    }
+  });
+
+  // Smooth scroll for navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      navMenu.classList.remove('active');
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  // Section visibility animations based on scroll position
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    document.querySelectorAll('.section-content').forEach(section => {
+      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
+        section.classList.add('visible');
+      } else {
+        section.classList.remove('visible');
+      }
+    });
+  });
+}
+
+// Toggle side menu
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.querySelector('.side-menu');
+
+menuToggle.addEventListener('click', () => {
+  sideMenu.classList.toggle('active');
+});
+
+// Close side menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+});
+
+        </script>
+    </body>
+</html>
