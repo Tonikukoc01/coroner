@@ -252,7 +252,7 @@ body {
  /* Language Dropdown Styles - previously defined styles remain the same */
        .language-dropdown {
     position: fixed;
-    top: 3.7rem;
+    top: 3.3rem;
     right: 8rem; /* Adjusted to be left of the nav-menu */
     z-index: 1000;
     font-family: 'SkemaProDisplay';
@@ -263,7 +263,9 @@ body {
         .language-selector {
             display: flex;
             align-items: center;
-            border: 1px solid #F0F4F8;
+            border: 1px solid transparent;
+            border-image: linear-gradient(to right, #F0F4F8, #A0A8B1);
+            border-image-slice: 1;
             border-radius: 4px;
             padding: 0.3rem 0.5rem;
             gap: 0.5rem;
@@ -276,17 +278,18 @@ body {
         }
 
         .language-flag {
-            width: 20px;
+            width: 17px;
             height: 15px;
             object-fit: cover;
             border-radius: 2px;
+            margin-bottom: 4px;
         }
 
         .language-code {
             color: #F0F4F8;
             font-family: 'SkemaProDisplay', sans-serif;
             font-size: 0.9rem;
-            font-weight: 300;
+            font-weight: 1500;
         }
 
         .language-options {
@@ -294,8 +297,9 @@ body {
             position: absolute;
             top: 100%;
             right: 0;
-            background-color: rgba(26, 43, 60, 0.9);
-            border: 1px solid #F0F4F8;
+            border: 1px solid transparent;
+            border-image: linear-gradient(to right, #F0F4F8, #A0A8B1);
+            border-image-slice: 1;
             border-radius: 4px;
             margin-top: 0.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
