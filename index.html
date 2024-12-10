@@ -911,23 +911,26 @@ document.addEventListener('click', (e) => {
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
-            const languages = {
-                'en': { 
-                    code: 'EN', 
-                    name: 'English', 
-                    alternatives: ['fr', 'hr'] 
-                },
-                'fr': { 
-                    code: 'FR', 
-                    name: 'French', 
-                    alternatives: ['en', 'hr'] 
-                },
-                'hr': { 
-                    code: 'HR', 
-                    name: 'Croatian', 
-                    alternatives: ['en', 'fr'] 
-                }
-            };
+         const languages = {
+    'en': { 
+        code: 'EN', 
+        name: 'English', 
+        flag: '/assets/UK.png', // Update with the actual path to your UK flag
+        alternatives: ['fr', 'hr'] 
+    },
+    'fr': { 
+        code: 'FR', 
+        name: 'French', 
+        flag: '/assets/FR.png', // Update with the actual path to your French flag
+        alternatives: ['en', 'hr'] 
+    },
+    'hr': { 
+        code: 'HR', 
+        name: 'Croatian', 
+        flag: '/assets/HR.png', // Update with the actual path to your Croatian flag
+        alternatives: ['en', 'fr'] 
+    }
+};
 
             const languageDropdown = document.querySelector('.language-dropdown');
             const languageSelector = languageDropdown.querySelector('.language-selector');
@@ -948,7 +951,7 @@ document.addEventListener('click', (e) => {
                     option.dataset.lang = langCode;
 
                     const flag = document.createElement('img');
-                    flag.src = '/api/placeholder/20/15';
+                    flag.src = languages[langCode].flag;
                     flag.alt = `${languages[langCode].name} Flag`;
                     flag.className = 'language-flag';
                     flag.dataset.lang = langCode;
