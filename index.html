@@ -253,7 +253,7 @@ body {
        .language-dropdown {
     position: fixed;
     top: 3.3rem;
-    right: 8rem; /* Adjusted to be left of the nav-menu */
+    right: 6.8rem; /* Adjusted to be left of the nav-menu */
     z-index: 1000;
     font-family: 'SkemaProDisplay';
     display: flex;
@@ -849,21 +849,21 @@ const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
 // Add an event listener for the scroll event
 window.addEventListener('scroll', () => {
-  // Get the current scroll position
+// Get the current scroll position
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollHeight = document.body.scrollHeight - document.documentElement.clientHeight;
 
-  // Calculate the gradient stop positions based on the scroll position
+// Calculate the gradient stop positions based on the scroll position
 const gradientStops = `transparent, #d4af37 ${(scrollTop / scrollHeight) * 80}%, #d4af37 ${(scrollTop / scrollHeight) * 80 + 20}%, transparent`;
 
-  // Update the background gradient of the scroll indicator line
+// Update the background gradient of the scroll indicator line
   scrollLine.style.background = `linear-gradient(to bottom, ${gradientStops})`;
 });
 
 window.onload = function() {
   document.body.classList.remove('is-preload');
 
-  // Navigation menu toggle
+// Navigation menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.nav-menu');
 
@@ -871,14 +871,14 @@ window.onload = function() {
     navMenu.classList.toggle('active');
   });
 
-  // Close menu when clicking outside
+// Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!navMenu.contains(e.target)) {
       navMenu.classList.remove('active');
     }
   });
 
-  // Smooth scroll for navigation
+// Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -889,7 +889,7 @@ window.onload = function() {
     });
   });
 
-  // Section visibility animations based on scroll position
+// Section visibility animations based on scroll position
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     document.querySelectorAll('.section-content').forEach(section => {
@@ -944,15 +944,15 @@ document.addEventListener('click', (e) => {
             const languageSelector = languageDropdown.querySelector('.language-selector');
             const languageOptions = languageDropdown.querySelector('.language-options');
 
-            // Function to update language options
+    // Function to update language options
             function updateLanguageOptions(currentLang) {
-                // Clear existing options
+    // Clear existing options
                 languageOptions.innerHTML = '';
 
-                // Get alternative languages
+    // Get alternative languages
                 const alternativeLangs = languages[currentLang].alternatives;
 
-                // Create new language options
+    // Create new language options
                 alternativeLangs.forEach(langCode => {
                     const option = document.createElement('div');
                     option.className = 'language-option';
@@ -973,11 +973,11 @@ document.addEventListener('click', (e) => {
                     languageOptions.appendChild(option);
                 });
 
-                // Re-attach event listeners
+    // Re-attach event listeners
                 attachLanguageOptionListeners();
             }
 
-            // Attach event listeners to language options
+    // Attach event listeners to language options
             function attachLanguageOptionListeners() {
                 const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
                 
@@ -986,7 +986,7 @@ document.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const selectedLang = option.dataset.lang;
                         
-                        // Update selector
+    // Update selector
                         const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
                         const selectedCode = option.querySelector('.language-code').textContent;
 
@@ -999,10 +999,10 @@ document.addEventListener('click', (e) => {
                         codeSpan.textContent = selectedCode;
                         languageSelector.appendChild(codeSpan);
 
-                        // Update available options
+    // Update available options
                         updateLanguageOptions(selectedLang);
 
-                        // Close dropdown
+    // Close dropdown
                         languageDropdown.classList.remove('active');
                     });
                 });
@@ -1023,16 +1023,16 @@ document.addEventListener('click', (e) => {
         languageDropdown.classList.remove('active');
     });
 });
-            // Initial setup
+    // Initial setup
             updateLanguageOptions('en');
 
-            // Toggle dropdown
+    // Toggle dropdown
             languageSelector.addEventListener('click', (e) => {
                 e.stopPropagation();
                 languageDropdown.classList.toggle('active');
             });
 
-            // Close dropdown when clicking outside
+    // Close dropdown when clicking outside
             document.addEventListener('click', (e) => {
                 if (!languageDropdown.contains(e.target)) {
                     languageDropdown.classList.remove('active');
