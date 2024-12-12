@@ -857,7 +857,7 @@ window.addEventListener('scroll', () => {
   const scrollHeight = document.body.scrollHeight - document.documentElement.clientHeight;
 
 // Calculate the gradient stop positions based on the scroll position
-const gradientStops = `transparent, #d4af37 ${(scrollTop / scrollHeight) * 80}%, #d4af37 ${(scrollTop / scrollHeight) * 80 + 20}%, transparent`;
+const gradientStops = `transparent, #87CEEB ${(scrollTop / scrollHeight) * 80}%, #87CEEB ${(scrollTop / scrollHeight) * 80 + 20}%, transparent`;
 
 // Update the background gradient of the scroll indicator line
   scrollLine.style.background = `linear-gradient(to bottom, ${gradientStops})`;
