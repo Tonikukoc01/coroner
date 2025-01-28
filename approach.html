@@ -731,19 +731,22 @@ body {
     font-size: 0.5rem;
     flex-direction: column;
     gap: 6rem;
-    padding-right: 10%
+    padding-right: 0 4rem;
+    max-width: 1400px;
+    margin: 0 auto; 
 }
 
 .content-block {
     display: flex;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 4rem;
     justify-content: flex-start;
     padding: 0;
 }
 
 .content-block.right-aligned {
     flex-direction: row-reverse;
+    justify-content: flex-start;
 }
 
 .content-text {
@@ -753,7 +756,9 @@ body {
 }
 
 .right-aligned .content-text {
+     padding-left: 10%;
     text-align: right;
+    margin-right: 0;
 }
 
 .content-image {
@@ -761,6 +766,7 @@ body {
     height: 320px;
     object-fit: cover;
     border-radius: 8px;
+    flex-shrink: 0;
 }
 
 /* Mobile Responsive */
