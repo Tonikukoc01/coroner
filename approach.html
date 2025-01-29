@@ -138,14 +138,20 @@
          url('../coroner/assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
 }
 
-@keyframes fadeInUp {
-    from {
+@keyframes fadeInUpProminent {
+    0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(60px) scale(0.9);
+        filter: blur(5px);
     }
-    to {
+    60% {
+        opacity: 0.8;
+        filter: blur(2px);
+    }
+    100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        filter: blur(0);
     }
 }
 
@@ -779,13 +785,23 @@ body {
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
-        opacity: 0;
+    opacity: 0;
+    will-change: transform, opacity; /* Performance optimization */
+    perspective: 1000px;
 }
 
 .content-image.visible {
-    animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUpProminent 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.content-block:nth-child(2) .content-image.visible {
+    animation-delay: 0.2s;
 }
             
+.content-block:nth-child(3) .content-image.visible {
+    animation-delay: 0.4s;
+}
+         
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
@@ -1203,7 +1219,7 @@ document.addEventListener('click', (e) => {
 const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.3 // Trigger when 30% of the image is visible
+    threshold: 0.2 // Trigger when 20% of the image is visible
 };
 
 const imageObserver = new IntersectionObserver((entries, observer) => {
