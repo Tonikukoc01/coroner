@@ -138,6 +138,18 @@
          url('../coroner/assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 html {
     scroll-behavior: smooth;
     height: 100%;
@@ -767,8 +779,13 @@ body {
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
+        opacity: 0;
 }
 
+.content-image.visible {
+    animation: fadeInUp 0.8s ease forwards;
+}
+            
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
@@ -1183,6 +1200,26 @@ document.addEventListener('click', (e) => {
                 }
             });
         });
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3 // Trigger when 30% of the image is visible
+};
+
+const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Optional: stop observing after animation
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all content images
+document.querySelectorAll('.content-image').forEach(img => {
+    imageObserver.observe(img);
+});
         </script>
     </body>
 </html>
