@@ -764,12 +764,15 @@ body {
 }
 
 .content-block.right-aligned {
-   justify-content: flex-end;
-   flex-direction: row-reverse;
-    padding-right: 10%;
-    padding-left: 0;
-    margin-left: auto;
+    display: flex;
+    flex-direction: row-reverse;
     justify-content: flex-start;
+    padding: 7rem 0;
+    margin: 0;
+    margin-left: auto; /* This pushes the entire block to the right */
+    width: 90%;
+    position: relative;
+    right: 10%; /* This ensures it aligns with the right edge */
 }
 
 .content-text {
@@ -779,9 +782,10 @@ body {
 }
 
 .right-aligned .content-text {
-     padding: 0;
     text-align: right;
-    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    flex: 1;
 }
 
 .content-image {
@@ -792,6 +796,11 @@ body {
     flex-shrink: 0;
     opacity: 0;
     will-change: transform, opacity;
+}
+
+ .content-block.right-aligned .content-image {
+    margin-right: 0;
+    margin-left: 8rem; /* Maintain the gap between text and image */
 }
 
 .content-image.visible {
