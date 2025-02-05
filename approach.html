@@ -218,7 +218,15 @@ body {
             font-size: 1.5rem; /* Increase size of subheader text */
             margin: 0 0 2rem; /* Increase margin below subheader */
             color: #F0F4F8;
+            line-height: 2; 
         }
+
+#header p br {
+    content: "";
+    margin-bottom: 1rem;
+    display: block;
+}
+
 
 .scroll-indicator {
     display: flex;
@@ -928,22 +936,27 @@ footer {
    <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-    <header id="header">
-        <h1>
+<header id="header">
+    <h1>
         Approach to work. 
-  </h1>
-<div class="horizontal-line-header"></div>
-       <p> I specialize in breaking down complex, large-scale projects into manageable, 
-<br> actionable chunks, ensuring streamlined processes and efficient delivery. 
-<br> By focusing on <span class="bold-split"> clear segmentation </span> and <span class="bold-split"> strategic planning </span>, 
-<br> I empower teams to achieve their goals with precision and agility.
-
-</p>
- <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <div class="scroll-text">SCROLL</div>
-                <div class="scroll-line"></div>
-    </header>
+    </h1>
+    <div class="horizontal-line-header"></div>
+    <p>
+        I specialize in breaking down complex, large-scale projects into manageable,
+        <br> actionable chunks, ensuring streamlined processes and efficient delivery.
+    </p>
+    
+    <p style="margin-top: 2rem;">
+        By focusing on <span class="bold-split">clear segmentation</span> and <span class="bold-split">strategic planning</span>,
+        <br> I empower teams to achieve their goals with precision and agility.
+    </p>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-text">SCROLL</div>
+        <div class="scroll-line"></div>
+    </div>
+</header>
 </section>
 <section id="about" class="section content-section">
     <div class="about-content">
