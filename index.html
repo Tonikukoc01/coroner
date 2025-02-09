@@ -138,6 +138,39 @@
          url('../coroner/assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
 }
 
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes expandFromLeft {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes slideFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
 html {
     scroll-behavior: smooth;
     height: 100%;
@@ -635,15 +668,22 @@ body {
     object-fit: cover;
     border-radius: 12px;
     box-shadow: none;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideFromRight 1s ease forwards;
 }
 
 .horizontal-line {
-            width: 3.5cm; 
-            height: 2px;
-            background-color: #F0F4F8; 
-            border: none; 
-            margin-bottom: 3rem;
-        }
+    width: 3.5cm; 
+    height: 2px;
+    background-color: #F0F4F8; 
+    border: none; 
+    margin-bottom: 3rem;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: expandFromLeft 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
 .about-header {
     font-family: SkemaProDisplay;
     color: #F0F4F8;
@@ -676,8 +716,14 @@ body {
     max-width: 600px;
     text-align: left;
     padding: 0;
+    animation-delay: 0.6s;
 }
 
+.about-subheader, .about-subheader1, .collaboration-btn {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideFromBottom 0.8s ease forwards;
+}
 
 /* Button Styling */
 .collaboration-btn {
@@ -694,6 +740,7 @@ body {
     transition: background 0.3s ease, transform 0.3s ease;
     text-align: center;
     align-self: flex-start;
+    animation-delay: 1s;
 }
 
 /* Hover Effect */
@@ -1096,6 +1143,25 @@ document.addEventListener('click', (e) => {
                 }
             });
         });
+
+const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe the about section
+document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
+    observer.observe(element);
+});
         </script>
     </body>
 </html>
