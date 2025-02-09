@@ -669,10 +669,16 @@ body {
     border-radius: 12px;
     box-shadow: none;
     opacity: 0;
-    transform: translateX(50px);
-    animation: slideFromRight 1s ease forwards;
+    transform: translateX(100px); /* Increased distance */
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+.about-collaboration-image.visible {
+    opacity: 1;
+    transform: translateX(0);
+}      
+   
 .horizontal-line {
     width: 3.5cm; 
     height: 2px;
@@ -681,9 +687,13 @@ body {
     margin-bottom: 3rem;
     transform: scaleX(0);
     transform-origin: left;
-    animation: expandFromLeft 0.8s ease forwards;
-    animation-delay: 0.3s;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.horizontal-line.visible {
+    transform: scaleX(1);
+}
+
 .about-header {
     font-family: SkemaProDisplay;
     color: #F0F4F8;
@@ -721,8 +731,15 @@ body {
 
 .about-subheader, .about-subheader1, .collaboration-btn {
     opacity: 0;
-    transform: translateY(20px);
-    animation: slideFromBottom 0.8s ease forwards;
+    transform: translateY(50px); /* Increased distance */
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about-subheader.visible,
+.about-subheader1.visible,
+.collaboration-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Button Styling */
@@ -1162,6 +1179,26 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
     observer.observe(element);
 });
+
+// Scroll-based animation handler
+function handleScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
+    
+    animatedElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight * 0.8; // Trigger when element is 80% into view
+        
+        if (elementTop < triggerPoint) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', handleScrollAnimations);
+// Initial check for elements already in view
+window.addEventListener('load', handleScrollAnimations);
+
         </script>
     </body>
 </html>
