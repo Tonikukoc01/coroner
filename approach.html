@@ -750,6 +750,12 @@ body {
     opacity: 0;
 }
 
+.content-block.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 .content-block.animate .about-header {
     animation: slideInFromLeft 0.8s ease-out forwards;
 }
@@ -864,6 +870,9 @@ body {
     margin: 0;
     width: 90%;
     padding-left: 10%;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .content-block.right-aligned {
@@ -900,6 +909,9 @@ body {
     flex-shrink: 0;
     opacity: 0;
     will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
  .content-block.right-aligned .content-image {
@@ -909,11 +921,20 @@ body {
 
 .content-image.visible {
     animation: fadeInUpSubtle 0.9s ease-out forwards;
+opacity: 1;
+    transform: translateY(0);
 }
 
 .content-block:nth-child(2) .content-image.visible {
     animation-delay: 0.1s;
 }
+
+.no-js .content-block,
+.no-js .content-image {
+    opacity: 1;
+    transform: none;
+}
+
 
 .content-block:nth-child(3) .content-image.visible {
     animation-delay: 0.2s;
@@ -1326,47 +1347,24 @@ document.addEventListener('click', (e) => {
                 }
             });
         });
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.25 // Trigger when 25% of the image is visible
-};
-
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Optional: stop observing after animation
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe all content images
-document.querySelectorAll('.content-image').forEach(img => {
-    imageObserver.observe(img);
-});
-
-// Intersection Observer setup for animations
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.2 // Trigger when 20% of element is visible
-};
-
+// Animation observer for content blocks
 const animationObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate');
-            // Optional: stop observing after animation
             observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all content blocks and CTA section
+// Initialize observers when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Observe main content blocks
+    // Observe all content images
+    document.querySelectorAll('.content-image').forEach(img => {
+        imageObserver.observe(img);
+    });
+
+    // Observe content blocks
     document.querySelectorAll('.content-block').forEach(block => {
         animationObserver.observe(block);
     });
