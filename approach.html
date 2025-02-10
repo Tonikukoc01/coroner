@@ -138,6 +138,50 @@
          url('../coroner/assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
 }
 
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 @keyframes fadeInUpSubtle {
     0% {
@@ -699,6 +743,65 @@ body {
 }
 /* Update the about section spacing */
 
+.content-block .about-header,
+.content-block .about-subheader,
+.content-block .about-subheader1,
+.content-block .content-image {
+    opacity: 0;
+}
+
+content-block.animate .about-header {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.content-block.animate .about-subheader {
+    animation: slideInFromLeft 0.8s ease-out 0.2s forwards;
+}
+
+.content-block.animate .about-subheader1 {
+    animation: slideInFromLeft 0.8s ease-out 0.4s forwards;
+}
+
+.content-block.animate .content-image {
+    animation: slideInFromRight 0.8s ease-out 0.6s forwards;
+}
+
+/* Right-aligned block animations */
+.content-block.right-aligned.animate .about-header {
+    animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.content-block.right-aligned.animate .about-subheader,
+.content-block.right-aligned.animate .about-subheader1 {
+    animation: slideInFromRight 0.8s ease-out 0.2s forwards;
+}
+
+.content-block.right-aligned.animate .content-image {
+    animation: slideInFromLeft 0.8s ease-out 0.6s forwards;
+}
+
+/* Bottom CTA section animations */
+.cta-section .about-header {
+    opacity: 0;
+}
+
+.cta-section .about-subheader,
+.cta-section .collaboration-btn {
+    opacity: 0;
+}
+
+.cta-section.animate .about-header {
+    animation: slideInFromTop 0.8s ease-out forwards;
+}
+
+.cta-section.animate .about-subheader {
+    animation: slideInFromBottom 0.8s ease-out 0.3s forwards;
+}
+
+.cta-section.animate .collaboration-btn {
+    animation: slideInFromBottom 0.8s ease-out 0.5s forwards;
+}
+
 #about {
     padding: 0;
     width: 100%;
@@ -1022,7 +1125,9 @@ footer {
         </div>
     </div>
 </section>
-
+<section class="cta-section" style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
+    <!-- existing content -->
+</section>
 <footer>
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
@@ -1245,6 +1350,38 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.content-image').forEach(img => {
     imageObserver.observe(img);
 });
+
+// Intersection Observer setup for animations
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2 // Trigger when 20% of element is visible
+};
+
+const animationObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            // Optional: stop observing after animation
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all content blocks and CTA section
+document.addEventListener('DOMContentLoaded', () => {
+    // Observe main content blocks
+    document.querySelectorAll('.content-block').forEach(block => {
+        animationObserver.observe(block);
+    });
+
+    // Observe CTA section
+    const ctaSection = document.querySelector('.cta-section');
+    if (ctaSection) {
+        animationObserver.observe(ctaSection);
+    }
+});
+
         </script>
     </body>
 </html>
