@@ -139,18 +139,6 @@
 }
 
 
-@keyframes fadeInUpSubtle {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
 html {
     scroll-behavior: smooth;
     height: 100%;
@@ -795,7 +783,7 @@ body {
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
-    opacity: 0;
+    opacity: 1;
     will-change: transform, opacity;
 }
 
@@ -805,15 +793,15 @@ body {
 }
 
 .content-image.visible {
-    animation: fadeInUpSubtle 0.9s ease-out forwards;
+    animation: none;
 }
 
 .content-block:nth-child(2) .content-image.visible {
-    animation-delay: 0.1s;
+    animation-delay: 0s;
 }
 
 .content-block:nth-child(3) .content-image.visible {
-    animation-delay: 0.2s;
+    animation-delay: 0s;
 }
 
 /* Mobile Responsive */
@@ -1230,21 +1218,6 @@ const observerOptions = {
     rootMargin: '0px',
     threshold: 0.25 // Trigger when 25% of the image is visible
 };
-
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            // Optional: stop observing after animation
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe all content images
-document.querySelectorAll('.content-image').forEach(img => {
-    imageObserver.observe(img);
-});
         </script>
     </body>
 </html>
