@@ -706,15 +706,14 @@ body {
 .collaboration-btn {
     display: inline-block;
     padding: 12px 30px;
-    background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
     color: #F0F4F8;
     font-family: SkemaproDisplay;
     font-size: 1.2rem;
     font-weight: 200;
     text-decoration: none;
-    border-radius: 3px; /* Rounded corners */
+    border-radius: 3px;
     margin-top: 25px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
     text-align: center;
     align-self: flex-start;
 }
@@ -728,6 +727,24 @@ body {
 .collaboration-btn:focus {
     outline: none;
 }
+
+.gradient-btn {
+    background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
+}
+.outline-btn {
+    background: transparent;
+    border: 2px solid #F0F4F8;
+}
+
+.outline-btn:hover {
+    background: rgba(240, 244, 248, 0.1);
+    transform: translateY(-2px);
+}
+
+.gradient-btn {
+    background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
+}
+
 
 .about-content {
     font-family: SkemaProDisplay;
