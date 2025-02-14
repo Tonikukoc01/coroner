@@ -15,12 +15,6 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.css">
-
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-
-       <script src="TravelGallery.js"></script>
 
         <style>
           /* Global Styles */
@@ -849,9 +843,9 @@ footer {
     <nav class="side-menu-nav">
       <ul>
         <li><a href="index.html">home</a></li>
-        <li><a href="about.html">about my life</a></li>
         <li><a href="approach.html">approach to collaboration</a></li>
-        <li><a href="experience.html">experience</a></li>
+        <li><a href="about.html">about my life</a></li>
+       
       </ul>
     </nav>
   </div>
@@ -955,11 +949,6 @@ footer {
             <img src="assets/output-onlinepngtools.png" alt="Leadership" class="content-image">
         </div>
     </div>
-</section>
-
-
-<section class="travel-gallery-section">
-    <div id="travel-gallery-root"></div>
 </section>
 
 <footer>
@@ -1164,12 +1153,6 @@ document.addEventListener('click', (e) => {
                 }
             });
         });
-
-
-const travelGalleryRoot = document.getElementById('travel-gallery-root');
-if (travelGalleryRoot) {
-    ReactDOM.createRoot(travelGalleryRoot).render(React.createElement(TravelGallery));
-}
 
         </script>
     </body>
