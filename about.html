@@ -802,6 +802,85 @@ body {
     }
 }
 
+/* Gallery Section Styles */
+#gallery {
+    background: #1A2B3C;
+    padding: 4rem 2rem 6rem;
+}
+
+.gallery-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 3rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.gallery-item.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+/* Different aspect ratios */
+.portrait {
+    grid-row: span 2;
+    min-height: 400px;
+}
+
+.landscape {
+    grid-column: span 2;
+    min-height: 250px;
+}
+
+.square {
+    min-height: 250px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .landscape {
+        grid-column: span 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portrait {
+        grid-row: span 1;
+    }
+}
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -950,6 +1029,41 @@ footer {
         </div>
     </div>
 </section>
+
+<!-- Image Gallery Section -->
+<section id="gallery" class="section content-section">
+    <div class="gallery-content">
+        <h1 class="about-header">My Journey</h1>
+        <div class="horizontal-line"></div>
+        <div class="gallery-grid">
+            <!-- Image 1 (Portrait) -->
+            <div class="gallery-item portrait">
+                <img src="assets/gallery1.png" alt="Portrait image" class="gallery-image">
+            </div>
+            <!-- Image 2 (Landscape) -->
+            <div class="gallery-item landscape">
+                <img src="assets/gallery2.png" alt="Landscape image" class="gallery-image">
+            </div>
+            <!-- Image 3 (Square) -->
+            <div class="gallery-item square">
+                <img src="assets/gallery3.png" alt="Square image" class="gallery-image">
+            </div>
+            <!-- Image 4 (Portrait) -->
+            <div class="gallery-item portrait">
+                <img src="assets/gallery4.png" alt="Portrait image" class="gallery-image">
+            </div>
+            <!-- Image 5 (Landscape) -->
+            <div class="gallery-item landscape">
+                <img src="assets/gallery5.png" alt="Landscape image" class="gallery-image">
+            </div>
+            <!-- Image 6 (Square) -->
+            <div class="gallery-item square">
+                <img src="assets/gallery6.png" alt="Square image" class="gallery-image">
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <footer>
     <div class="footer-content">Toni Kukoc © MMXXV</div>
@@ -1154,6 +1268,30 @@ document.addEventListener('click', (e) => {
             });
         });
 
+// Gallery loading animation
+window.addEventListener('DOMContentLoaded', () => {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    function checkIfInView() {
+        galleryItems.forEach((item, index) => {
+            const bounding = item.getBoundingClientRect();
+            if (
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                bounding.bottom >= 0
+            ) {
+                // Add staggered delay for more interesting animation
+                setTimeout(() => {
+                    item.classList.add('loaded');
+                }, 150 * index);
+            }
+        });
+    }
+    // Check on initial load
+    checkIfInView();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkIfInView);
+});
         </script>
     </body>
 </html>
