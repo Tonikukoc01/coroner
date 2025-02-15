@@ -964,6 +964,63 @@ body {
 .cv-close-button:hover {
     color: #ffffff;
 }
+
+.slide-from-top {
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-from-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation for buttons coming from bottom */
+.slide-from-bottom {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-from-bottom.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation for line coming from left */
+.slide-from-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-from-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Animation for text coming from right */
+.slide-from-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-from-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Add delay classes if needed */
+.delay-200 {
+    transition-delay: 200ms;
+}
+
+.delay-400 {
+    transition-delay: 400ms;
+}
+
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1114,23 +1171,23 @@ footer {
     </div>
 </section>
 <!-- Call to Action Section -->
-<section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
+section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
     <div style="max-width: 1200px; margin: 0 auto;">
-        <h1 class="about-header" style="text-align: center; margin-bottom: 2rem;">
+        <h1 class="about-header slide-from-top" style="text-align: center; margin-bottom: 2rem;">
             Let's Build Something Together
         </h1>
 
         <!-- Horizontal Line -->
-        <div class="horizontal-line" style="margin: 0 auto 3rem auto;"></div>
+        <div class="horizontal-line slide-from-left" style="margin: 0 auto 3rem auto;"></div>
 
-        <p class="about-subheader" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <p class="about-subheader slide-from-right" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
             I specialize in breaking down complex, large-scale projects into manageable,
             actionable chunks, ensuring streamlined processes and efficient delivery.
             By focusing on clear segmentation and strategic planning, I empower teams
             to achieve their goals with precision and agility.
         </p>
 
-        <div style="display: flex; justify-content: center; gap: 2rem;">
+        <div class="slide-from-bottom" style="display: flex; justify-content: center; gap: 2rem;">
             <a href="#" class="collaboration-btn gradient-btn">
                 View my CV
             </a>
@@ -1139,6 +1196,7 @@ footer {
             </a>
         </div>
     </div>
+</section>
 <div class="cv-popup-overlay" id="cvPopup">
     <div class="cv-popup-content">
         <button class="cv-close-button" onclick="closePopup()">&times;</button>
@@ -1427,6 +1485,31 @@ document.querySelector('.gradient-btn').addEventListener('click', function(e) {
     e.preventDefault();
     showPopup();
 });
+
+onst observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2 // Trigger when 20% of the element is visible
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Optional: Stop observing after animation
+            // observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Start observing elements when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    // Observe all animated elements
+    document.querySelectorAll('.slide-from-top, .slide-from-bottom, .slide-from-left, .slide-from-right').forEach(el => {
+        observer.observe(el);
+    });
+});
+
         </script>
     </body>
 </html>
