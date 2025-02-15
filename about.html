@@ -535,15 +535,6 @@ body {
 }
 
 /* Sections */
-.content-section::before {
-    content: '';
-    position: absolute;
-    top: 0; /* Position at the top of the section */
-    left: 0;
-    right: 0;
-    height: 2px; /* Height of the golden border */
-    background: linear-gradient(to right, transparent, goldenrod 20%, goldenrod 80%, transparent); /* Golden gradient */
-}
 
 .content-section {
     min-height: 100vh;
@@ -803,9 +794,14 @@ body {
 }
 
 /* Gallery Section Styles */
+#gallery .about-content {
+    padding-top: 0; /* Remove any top padding */
+}
+
 #gallery {
     background: #1A2B3C;
     padding: 0 2rem 6rem;
+    margin-top: -4rem;
 }
 .gallery-grid {
     display: grid;
@@ -813,7 +809,7 @@ body {
     grid-gap: 2rem;
     max-width: 1250px;
     margin: 0 auto;
-    padding: 2rem 7rem;
+    padding: 0 7rem;
 }
 
 .gallery-item {
