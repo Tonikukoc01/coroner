@@ -1281,46 +1281,6 @@ window.addEventListener('DOMContentLoaded', () => {
     // Check on scroll
     window.addEventListener('scroll', checkIfInView);
 });
-
-// Get the scroll indicator line element and initialize it once
-const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-
-window.addEventListener('scroll', () => {
-  // Use the already declared scrollLine constant
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  
-  // Calculate the percentage of scroll
-  const scrollPercentage = (scrollTop / scrollHeight) * 100;
-  
-  // Adjust the height of the scroll line
-  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
-  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
-  
-  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
-});
-
-
-// Scroll animation functionality
-function handleScrollAnimations() {
-    const blocks = document.querySelectorAll('.content-block');
-    const triggerPoint = window.innerHeight * 0.75; // Trigger when element is 75% in view
-
-    blocks.forEach(block => {
-        const blockTop = block.getBoundingClientRect().top;
-        
-        if (blockTop < triggerPoint) {
-            block.classList.add('animate');
-        }
-    });
-}
-
-// Initialize animations
-document.addEventListener('DOMContentLoaded', () => {
-    handleScrollAnimations(); // Check for elements in view on initial load
-    window.addEventListener('scroll', handleScrollAnimations);
-});
-
         </script>
     </body>
 </html>
