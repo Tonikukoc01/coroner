@@ -734,6 +734,8 @@ body {
     gap: 8rem;
     justify-content: flex-start;
     padding: 7rem;
+    opacity: 0;
+   visibility: hidden;
 }
 
 .content-block.right-aligned {
@@ -745,6 +747,9 @@ body {
     flex: 1;
     padding: 1rem 0; /* Remove horizontal padding */
     text-align: left; /* Ensure text is left-aligned */
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .right-aligned .content-text {
@@ -759,7 +764,45 @@ body {
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out
 }
+
+.content-block.right-aligned .content-text {
+                transform: translateX(100px);
+            }
+
+            .content-block.right-aligned .content-image {
+                transform: translateX(-100px);
+            }
+
+            /* Animation classes */
+            .content-block.animate {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .content-block.animate .content-text {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .content-block.animate .content-image {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Special animation for the last block (On the move) */
+            .content-block:last-child .content-text {
+                transform: translateX(-100px);
+            }
+
+            .content-block:last-child.animate .content-text {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
@@ -1281,6 +1324,26 @@ window.addEventListener('DOMContentLoaded', () => {
     // Check on scroll
     window.addEventListener('scroll', checkIfInView);
 });
+
+/ Add new scroll animation functionality
+            function handleScrollAnimations() {
+                const blocks = document.querySelectorAll('.content-block');
+                const triggerPoint = window.innerHeight * 0.75; // Trigger when element is 75% in view
+
+                blocks.forEach(block => {
+                    const blockTop = block.getBoundingClientRect().top;
+                    
+                    if (blockTop < triggerPoint) {
+                        block.classList.add('animate');
+                    }
+                });
+            }
+
+            // Initialize animations
+            document.addEventListener('DOMContentLoaded', () => {
+                handleScrollAnimations(); // Check for elements in view on initial load
+                window.addEventListener('scroll', handleScrollAnimations);
+            });
         </script>
     </body>
 </html>
