@@ -1281,6 +1281,71 @@ window.addEventListener('DOMContentLoaded', () => {
     // Check on scroll
     window.addEventListener('scroll', checkIfInView);
 });
+
+// Get the scroll indicator line element
+const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+
+window.addEventListener('scroll', () => {
+  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  
+  // Calculate the percentage of scroll
+  const scrollPercentage = (scrollTop / scrollHeight) * 100;
+  
+  // Adjust the height of the scroll line
+  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
+  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+  
+  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+});
+
+// Gallery loading animation
+window.addEventListener('DOMContentLoaded', () => {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    function checkIfInView() {
+        galleryItems.forEach((item, index) => {
+            const bounding = item.getBoundingClientRect();
+            if (
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                bounding.bottom >= 0
+            ) {
+                // Add staggered delay for more interesting animation
+                setTimeout(() => {
+                    item.classList.add('loaded');
+                }, 150 * index);
+            }
+        });
+    }
+    
+    // Check on initial load
+    checkIfInView();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkIfInView);
+});
+
+// Scroll animation functionality
+function handleScrollAnimations() {
+    const blocks = document.querySelectorAll('.content-block');
+    const triggerPoint = window.innerHeight * 0.75; // Trigger when element is 75% in view
+
+    blocks.forEach(block => {
+        const blockTop = block.getBoundingClientRect().top;
+        
+        if (blockTop < triggerPoint) {
+            block.classList.add('animate');
+        }
+    });
+}
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', () => {
+    handleScrollAnimations(); // Check for elements in view on initial load
+    window.addEventListener('scroll', handleScrollAnimations);
+});
+
         </script>
     </body>
 </html>
