@@ -594,6 +594,29 @@ body {
     }
 }
 
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
 /* About Section Styles */
 #about {
     position: relative;
@@ -887,6 +910,39 @@ body {
         grid-row: span 1;
     }
 }
+
+.content-block {
+    opacity: 0; /* Start invisible */
+}
+
+/* First block animations */
+.content-block:nth-child(1).animate .content-text {
+    animation: slideInFromLeft 1s ease forwards;
+}
+
+.content-block:nth-child(1).animate .content-image {
+    animation: slideInFromRight 1s ease forwards;
+}
+
+/* Second block animations (reverse direction) */
+.content-block:nth-child(2).animate .content-text {
+    animation: slideInFromRight 1s ease forwards;
+}
+
+.content-block:nth-child(2).animate .content-image {
+    animation: slideInFromLeft 1s ease forwards;
+}
+
+/* Third block animations */
+.content-block:nth-child(3).animate .content-text {
+    animation: slideInFromLeft 1s ease forwards;
+}
+
+/* Make sure elements maintain their final state */
+.content-block.animate {
+    opacity: 1;
+}
+
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1086,6 +1142,28 @@ window.addEventListener('scroll', () => {
 
 window.onload = function() {
   document.body.classList.remove('is-preload');
+
+// Intersection Observer for content blocks
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2 // Triggers when 20% of the element is visible
+};
+
+const contentObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target); // Stop observing once animation is triggered
+        }
+    });
+}, observerOptions);
+
+// Observe all content blocks
+document.querySelectorAll('.content-block').forEach(block => {
+    contentObserver.observe(block);
+});
+
 
 // Navigation menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
@@ -1288,6 +1366,9 @@ window.addEventListener('DOMContentLoaded', () => {
     // Check on scroll
     window.addEventListener('scroll', checkIfInView);
 });
+
+
+
         </script>
     </body>
 </html>
