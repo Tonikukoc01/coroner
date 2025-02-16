@@ -760,7 +760,7 @@ body {
 
 .content-block {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 8rem;
     justify-content: flex-start;
     padding: 7rem;
@@ -773,7 +773,7 @@ body {
 
 .content-text {
     flex: 1;
-    padding: 1rem 0; /* Remove horizontal padding */
+    padding: 0; /* Remove horizontal padding */
     text-align: left; /* Ensure text is left-aligned */
 }
 
@@ -781,6 +781,7 @@ body {
      padding-left: 5%;
     text-align: right;
     margin-right: 0;
+    justify-content: center;
 }
 
 .content-image {
@@ -789,6 +790,7 @@ body {
     object-fit: cover;
     border-radius: 8px;
     flex-shrink: 0;
+    align-self: center;
 }
 
 /* Mobile Responsive */
