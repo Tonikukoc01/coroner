@@ -541,10 +541,15 @@ body {
   margin-bottom: 2.5rem; /* Increased margin between last menu item and social icons */
 }
 
+ .side-menu-social a {
+  text-decoration: none; /* Remove underline */
+}
+
 .social-icon {
   font-size: 1.6rem;
   color: #F0F4F8;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .horizontal-line-side-menu {
@@ -559,6 +564,12 @@ body {
   color: #ffffff;
 }
 
+.side-menu-nav a:hover,
+.side-menu-social a:hover,
+.social-icon:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
 /* Sections */
 
 .content-section {
