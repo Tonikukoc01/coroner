@@ -234,6 +234,22 @@ body {
     background: #F0F4F8; 
 }
 
+.scroll-text span {
+    display: inline-block;
+    animation: shake 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px) rotate(-2deg);
+    }
+    75% {
+        transform: translateX(2px) rotate(2deg);
+    }
+}
 
 #header nav ul {
     display: flex;
@@ -1427,6 +1443,22 @@ document.querySelector('.gradient-btn').addEventListener('click', function(e) {
     e.preventDefault();
     showPopup();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollText = document.querySelector('.scroll-text');
+    const text = scrollText.textContent;
+    scrollText.textContent = ''; // Clear the current text
+    
+    // Create spans for each letter
+    [...text].forEach((letter, i) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
+        scrollText.appendChild(span);
+    });
+});
+
+
         </script>
     </body>
 </html>
