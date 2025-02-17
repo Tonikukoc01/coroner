@@ -517,7 +517,7 @@ body {
   z-index: 1000;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -532,18 +532,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;
   font-family: 'SkemaProDisplay', sans-serif;
   font-weight: 100;
   font-style: normal;  
   color: #e6c55e;
   text-align: right;
   padding-right: 3.8rem;
-  gap: 4rem;
+  padding-top: 9rem;
 }
 
 .side-menu-nav {
-  margin-bottom: 0rem; /* Increased margin between social icons and first menu item */
+  margin-top: 2rem; /* Increased margin between social icons and first menu item */
 }
 
 .side-menu-nav ul {
@@ -552,7 +552,7 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 3rem; /* Increased margin between menu items */
+  gap: 3.5rem; /* Increased margin between menu items */
 }
 
 .side-menu-nav a {
@@ -569,15 +569,20 @@ body {
 
 .side-menu-social {
   display: flex;
-  gap: 1.6rem;\
+  gap: 2rem;\
   margin-top: auto;
-  margin-bottom: 1rem; /* Increased margin between last menu item and social icons */
+  margin-bottom: 2.5rem; /* Increased margin between last menu item and social icons */
+}
+
+ .side-menu-social a {
+  text-decoration: none; /* Remove underline */
 }
 
 .social-icon {
   font-size: 1.6rem;
   color: #F0F4F8;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .horizontal-line-side-menu {
@@ -585,10 +590,18 @@ body {
     height: 2px;
     background-color: #F0F4F8; 
     border: none; 
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
 }
 .social-icon:hover {
   color: #ffffff;
+}
+
+.side-menu-nav a:hover,
+.side-menu-social a:hover,
+.social-icon:hover {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* Sections */
