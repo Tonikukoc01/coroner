@@ -999,6 +999,56 @@ body {
     animation-delay: 500ms;
 }
 
+.cta-section {
+    text-align: center;
+    padding: 8rem 2rem;
+    background: #1A2B3C;
+}
+
+.cta-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Ensure the heading maintains its style while animating */
+.cta-section .about-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: SkemaProDisplay;
+    color: #F0F4F8;
+    font-size: 2.7rem;
+    font-weight: normal;
+}
+
+/* Maintain the horizontal line styling */
+.cta-section .horizontal-line {
+    width: 3.5cm;
+    height: 2px;
+    background-color: #F0F4F8;
+    border: none;
+    margin: 0 auto 3rem auto;
+}
+
+/* Preserve the text styling */
+.cta-section .about-subheader {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    font-family: SkemaProDisplay;
+    font-size: 1.2rem;
+    font-weight: 100;
+    font-style: normal;
+    color: #B0B8C1;
+}
+
+/* Keep the buttons container styling */
+.cta-section .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+
 .cv-popup-overlay {
     display: none;
     position: fixed;
@@ -1208,23 +1258,23 @@ footer {
     </div>
 </section>
 <!-- Call to Action Section -->
-<section class="cta-section">
-    <div class="cta-content">
-        <h1 class="about-header cta-header">
+<section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;" class="cta-section">
+    <div style="max-width: 1200px; margin: 0 auto;" class="cta-content">
+        <h1 class="about-header cta-header" style="text-align: center; margin-bottom: 2rem;">
             Let's Build Something Together
         </h1>
 
         <!-- Horizontal Line -->
-        <div class="horizontal-line cta-line"></div>
+        <div class="horizontal-line cta-line" style="margin: 0 auto 3rem auto;"></div>
 
-        <p class="about-subheader cta-text">
+        <p class="about-subheader cta-text" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
             I specialize in breaking down complex, large-scale projects into manageable,
             actionable chunks, ensuring streamlined processes and efficient delivery.
             By focusing on clear segmentation and strategic planning, I empower teams
             to achieve their goals with precision and agility.
         </p>
 
-        <div class="cta-buttons">
+        <div class="cta-buttons" style="display: flex; justify-content: center; gap: 2rem;">
             <a href="#" class="collaboration-btn gradient-btn">
                 View my CV
             </a>
@@ -1233,6 +1283,7 @@ footer {
             </a>
         </div>
     </div>
+</section>
 <div class="cv-popup-overlay" id="cvPopup">
     <div class="cv-popup-content">
         <button class="cv-close-button" onclick="closePopup()">&times;</button>
@@ -1242,7 +1293,7 @@ footer {
         </div>
     </div>
 </div>
-</section>
+
 <footer>
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
