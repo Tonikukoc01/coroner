@@ -626,6 +626,37 @@ body {
     }
 }
 
+@keyframes slideFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUpButtons {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lineGrow {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 3.5cm;
+    }
+}
+
 @keyframes slideFromLeft {
     0% {
         opacity: 0;
@@ -931,6 +962,43 @@ body {
     }
 }
 
+.cta-section {
+    text-align: center;
+    padding: 8rem 2rem;
+    background: #1A2B3C;
+}
+
+.cta-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+}
+
+.cta-header {
+    opacity: 0;
+}
+
+.cta-text {
+    opacity: 0;
+}
+
+.cta-buttons {
+    opacity: 0;
+}
+
+/* Animation delays */
+.delay-100 {
+    animation-delay: 100ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+.delay-500 {
+    animation-delay: 500ms;
+}
+
 .cv-popup-overlay {
     display: none;
     position: fixed;
@@ -1140,23 +1208,23 @@ footer {
     </div>
 </section>
 <!-- Call to Action Section -->
-<section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h1 class="about-header" style="text-align: center; margin-bottom: 2rem;">
+<section class="cta-section">
+    <div class="cta-content">
+        <h1 class="about-header cta-header">
             Let's Build Something Together
         </h1>
 
         <!-- Horizontal Line -->
-        <div class="horizontal-line" style="margin: 0 auto 3rem auto;"></div>
+        <div class="horizontal-line cta-line"></div>
 
-        <p class="about-subheader" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <p class="about-subheader cta-text">
             I specialize in breaking down complex, large-scale projects into manageable,
             actionable chunks, ensuring streamlined processes and efficient delivery.
             By focusing on clear segmentation and strategic planning, I empower teams
             to achieve their goals with precision and agility.
         </p>
 
-        <div style="display: flex; justify-content: center; gap: 2rem;">
+        <div class="cta-buttons">
             <a href="#" class="collaboration-btn gradient-btn">
                 View my CV
             </a>
@@ -1174,9 +1242,7 @@ footer {
         </div>
     </div>
 </div>
-
 </section>
-
 <footer>
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
@@ -1410,6 +1476,48 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
+const ctaObserverOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2
+};
+
+const ctaObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const ctaSection = entry.target;
+            
+            // Animate header from top
+            const header = ctaSection.querySelector('.cta-header');
+            header.classList.add('slide-from-top');
+            
+            // Animate line growth
+            const line = ctaSection.querySelector('.cta-line');
+            line.classList.add('line-grow', 'delay-100');
+            
+            // Animate text from left
+            const text = ctaSection.querySelector('.cta-text');
+            text.classList.add('slide-from-left', 'delay-300');
+            
+            // Animate buttons from bottom
+            const buttons = ctaSection.querySelector('.cta-buttons');
+            buttons.classList.add('fade-up', 'delay-500');
+            
+            // Stop observing after animation
+            ctaObserver.unobserve(ctaSection);
+        }
+    });
+}, ctaObserverOptions);
+
+// Start observing CTA section when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    const ctaSection = document.querySelector('.cta-section');
+    if (ctaSection) {
+        ctaObserver.observe(ctaSection);
+    }
+});
+
 
 // Start observing blocks when the page loads
 document.addEventListener('DOMContentLoaded', () => {
