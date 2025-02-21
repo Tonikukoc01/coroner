@@ -891,30 +891,27 @@ body {
 .content-block {
     display: flex;
     align-items: flex-start;
-    gap: 8rem;
+    gap: 10rem; /* Increased from 8rem to give more breathing room */
     justify-content: flex-start;
-    padding: 7rem 10%;
+    padding: 8rem 12%; /* Adjusted padding */
     margin: 0;
     width: 90%;
-    padding-left: 10%;
 }
 
 .content-block.right-aligned {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-start;
-    padding: 7rem 0;
+    padding: 8rem 0;
     margin: 0;
-    margin-left: auto; /* This pushes the entire block to the right */
+    margin-left: auto;
     width: 90%;
-    right: 10%; /* This ensures it aligns with the right edge */
-    
 }
 
 .content-text {
     flex: 1;
-    padding: 0; /* Remove horizontal padding */
-    text-align: left; /* Ensure text is left-aligned */
+    max-width: 50%; /* Added max-width to prevent text from stretching too wide */
+    padding: 0;
 }
 
 .right-aligned .content-text {
@@ -925,13 +922,14 @@ body {
 }
 
 .content-image {
-    width: 300px;
-    height: 220px;
+    width: 450px;  /* Increased from 300px */
+    height: 330px; /* Increased from 220px */
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 12px; /* Slightly increased for better proportion */
     flex-shrink: 0;
     opacity: 1;
     will-change: transform, opacity;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
  .content-block.right-aligned .content-image {
@@ -952,6 +950,38 @@ body {
 }
 
 /* Mobile Responsive */
+
+@media screen and (max-width: 1200px) {
+    .content-image {
+        width: 400px;
+        height: 290px;
+    }
+    
+    .content-block {
+        gap: 6rem;
+        padding: 6rem 8%;
+    }
+}
+
+/* Media query for mobile screens */
+@media screen and (max-width: 768px) {
+    .content-block,
+    .content-block.right-aligned {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 4rem 5%;
+    }
+
+    .content-image {
+        width: 100%;
+        height: 250px;
+    }
+
+    .content-text {
+        max-width: 100%;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
         display: none;
