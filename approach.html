@@ -663,6 +663,27 @@ body {
     }
 }
 
+@keyframes fadeUpFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes growLine {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 3.5cm;
+    }
+}
+
+
 .slide-from-left {
     opacity: 0;
     animation: slideFromLeft 1s ease forwards;
@@ -689,7 +710,23 @@ body {
     animation-delay: 400ms;
 }
 
+.slide-from-bottom {
+    opacity: 0;
+    animation: fadeUpFromBottom 0.8s ease forwards;
+}
 
+.grow-line {
+    animation: growLine 0.8s ease-out forwards;
+}
+
+/* Update the timing for the buttons */
+.slide-from-bottom.delay-400 {
+    animation-delay: 400ms;
+}
+
+.slide-from-bottom.delay-600 {
+    animation-delay: 600ms;
+}
 
 /* About Section Styles */
 #about {
@@ -1154,14 +1191,15 @@ footer {
 <!-- Call to Action Section -->
 <section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
     <div style="max-width: 1200px; margin: 0 auto;">
-        <h1 class="about-header" style="text-align: center; margin-bottom: 2rem;">
+        <h1 class="about-header" style="text-align: center; margin-bottom: 2rem; opacity: 0;">
             Let's Build Something Together
         </h1>
 
         <!-- Horizontal Line -->
-        <div class="horizontal-line" style="margin: 0 auto 3rem auto;"></div>
+        <div class="horizontal-line" style="margin: 0 auto 3rem auto; width: 0;">
+        </div>
 
-        <p class="about-subheader" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <p class="about-subheader" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; opacity: 0;">
             I specialize in breaking down complex, large-scale projects into manageable,
             actionable chunks, ensuring streamlined processes and efficient delivery.
             By focusing on clear segmentation and strategic planning, I empower teams
@@ -1169,14 +1207,15 @@ footer {
         </p>
 
         <div style="display: flex; justify-content: center; gap: 2rem;">
-            <a href="#" class="collaboration-btn gradient-btn">
+            <a href="#" class="collaboration-btn gradient-btn" style="opacity: 0;">
                 View my CV
             </a>
-            <a href="https://tonikukoc01.github.io/coroner/about.html" class="collaboration-btn outline-btn">
+            <a href="https://tonikukoc01.github.io/coroner/about.html" class="collaboration-btn outline-btn" style="opacity: 0;">
                 More about me
             </a>
         </div>
     </div>
+</section>
 <div class="cv-popup-overlay" id="cvPopup">
     <div class="cv-popup-content">
         <button class="cv-close-button" onclick="closePopup()">&times;</button>
@@ -1480,7 +1519,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const buildSection = document.querySelector('section:last-of-type');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate header from right
+                entry.target.querySelector('.about-header').classList.add('slide-from-right');
+                
+                // Animate horizontal line
+                entry.target.querySelector('.horizontal-line').classList.add('grow-line');
+                
+                // Animate paragraph from left
+                entry.target.querySelector('.about-subheader').classList.add('slide-from-left');
+                
+                // Animate buttons from bottom with delays
+                const buttons = entry.target.querySelectorAll('.collaboration-btn');
+                buttons[0].classList.add('slide-from-bottom', 'delay-400');
+                buttons[1].classList.add('slide-from-bottom', 'delay-600');
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
 
+    observer.observe(buildSection);
+});
         </script>
     </body>
 </html>
