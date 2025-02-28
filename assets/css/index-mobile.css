@@ -1,44 +1,7 @@
-/* Mobile Responsive Styles */
+/* Mobile Styles */
 
-/* Base Mobile Adjustments */
 @media screen and (max-width: 768px) {
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-    }
-    
-    /* Header Adjustments */
-    #header {
-        top: 30%;
-        left: 5%;
-        width: 90%;
-    }
-    
-    #header h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .bold-toni {
-        font-size: 3rem;
-    }
-    
-    #header p {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
-    }
-    
-    /* Scroll Indicator */
-    .scroll-indicator {
-        margin-left: 0;
-        margin-top: 2rem;
-    }
-    
-    .scroll-indicator .scroll-line {
-        height: 5cm;
-    }
-    
-    /* Navigation */
+    /* Logo positioning */
     .logo {
         top: 2rem;
         left: 1.5rem;
@@ -48,17 +11,53 @@
         font-size: 1.1rem;
     }
     
-    .nav-menu {
+    /* Menu toggle positioning */
+    .menu-toggle {
+        position: fixed;
         top: 2rem;
         right: 1.5rem;
+        z-index: 1500;
+        margin: 0;
     }
     
-    .language-dropdown {
-        top: 2rem;
-        right: 5rem;
+    /* Hide contact text on mobile */
+    .menu-text {
+        display: none;
     }
     
-    /* Side Menu */
+    /* Header adjustments */
+    #header {
+        top: 30%;
+        left: 5%;
+        width: 90%;
+    }
+    
+    #header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .bold-toni {
+        font-size: 3.5rem;
+    }
+    
+    #header p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Center and adjust scroll indicator */
+    .scroll-indicator {
+        margin-left: 0;
+        margin-top: 2rem;
+        align-items: center;
+    }
+    
+    .scroll-indicator .scroll-line {
+        height: 5cm;
+    }
+    
+    /* Side menu adjustments */
     .side-menu-content {
         padding-right: 2rem;
         padding-top: 6rem;
@@ -66,14 +65,37 @@
     }
     
     .side-menu-nav ul {
-        gap: 2rem;
+        gap: 2.5rem;
     }
     
     .side-menu-nav a {
         font-size: 1.5rem;
     }
     
-    /* About Section */
+    /* Language dropdown integration into side menu */
+    .language-dropdown {
+        position: static;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .side-menu-content .language-dropdown {
+        align-self: flex-end;
+    }
+    
+    .language-options {
+        top: auto;
+        bottom: 100%;
+        right: 0;
+        margin-bottom: 0.3rem;
+    }
+    
+    /* Hide language dropdown in the main view on mobile */
+    body > .language-dropdown {
+        display: none;
+    }
+    
+    /* About section adjustments */
     .about-layout {
         flex-direction: column;
         gap: 2rem;
@@ -91,12 +113,18 @@
     }
     
     .about-collaboration-image {
-        max-width: 100%;
-        max-height: 200px;
+        width: 100%;
+        max-height: 250px;
     }
     
     .about-header {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    
+    .horizontal-line {
+        width: 2.5cm;
         margin-bottom: 2rem;
     }
     
@@ -104,46 +132,33 @@
         font-size: 1.1rem;
     }
     
+    .about-subheader1 {
+        margin-bottom: 2rem;
+    }
+    
     .collaboration-btn {
-        width: 100%;
-        text-align: center;
-        padding: 12px 20px;
+        padding: 10px 25px;
+        font-size: 1.1rem;
     }
     
-    /* Content Blocks */
-    .content-block {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .content-block.right-aligned {
-        flex-direction: column;
-    }
-    
-    .content-image {
-        width: 100%;
-        height: 200px;
-    }
-    
-    /* Footer */
+    /* Footer adjustments */
     footer {
         padding: 1.5rem;
     }
     
     .footer-content {
         font-size: 0.9rem;
-        text-align: center;
     }
 }
 
-/* Extra Small Devices */
+/* Additional adjustments for very small screens */
 @media screen and (max-width: 480px) {
     #header h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
     .bold-toni {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
     #header p {
@@ -151,68 +166,6 @@
     }
     
     .about-header {
-        font-size: 2rem;
-    }
-    
-    .menu-text {
-        display: none;
-    }
-    
-    .logo-line {
-        display: none;
-    }
-    
-    .side-menu-content {
-        padding-top: 5rem;
-    }
-    
-    .horizontal-line-side-menu {
-        width: 2.5cm;
-    }
-}
-
-/* Menu Adjustments */
-@media screen and (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-        margin-left: 0;
-        z-index: 1001;
-    }
-    
-    .menu-text {
-        font-size: 0.9rem;
-    }
-    
-    .side-menu-nav {
-        width: 100%;
-    }
-    
-    .language-dropdown .language-options {
-        right: 0;
-    }
-}
-
-/* Fix for Side Menu */
-@media screen and (max-width: 768px) {
-    .side-menu.active {
-        width: 100%;
-    }
-    
-    .side-menu-content {
-        width: 100%;
-        align-items: center;
-        text-align: center;
-    }
-    
-    .side-menu-nav ul {
-        align-items: center;
-    }
-    
-    .horizontal-line-side-menu {
-        margin: 1.5rem auto;
-    }
-    
-    .side-menu-social {
-        justify-content: center;
+        font-size: 2.4rem;
     }
 }
