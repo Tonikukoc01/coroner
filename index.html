@@ -1262,6 +1262,110 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Mobile adjustments for side menu
+document.addEventListener('DOMContentLoaded', function() {
+    // Clone language dropdown for side menu
+    const originalDropdown = document.querySelector('.language-dropdown');
+    const clonedDropdown = originalDropdown.cloneNode(true);
+    
+    // Add it to the side menu content
+    const sideMenuContent = document.querySelector('.side-menu-content');
+    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
+    
+    // Reinitialize language dropdown functionality for the cloned dropdown
+    const languageSelector = clonedDropdown.querySelector('.language-selector');
+    const languageOptions = clonedDropdown.querySelector('.language-options');
+    
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clonedDropdown.classList.toggle('active');
+    });
+    
+    // Handle window resize to adjust layouts
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            // Mobile layout adjustments
+            document.body.classList.add('mobile-view');
+        } else {
+            // Desktop layout adjustments
+            document.body.classList.remove('mobile-view');
+        }
+    }
+    
+    // Initial check and add resize listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Fix for scroll indicator on mobile
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (window.innerWidth <= 768) {
+        scrollIndicator.style.marginLeft = '0';
+    }
+});
+
+// Enhance side menu for mobile
+function enhanceSideMenuForMobile() {
+    const sideMenu = document.querySelector('.side-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // Make sure menu toggle is visible and functional on mobile
+    menuToggle.style.display = 'flex';
+    
+    // Ensure the menu closes when a navigation item is clicked
+    const navLinks = document.querySelectorAll('.side-menu-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
+    });
+    
+    // Handle the language option clicks in side menu
+    const languageOptions = document.querySelectorAll('.side-menu .language-option');
+    languageOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Get the selected language
+            const selectedLang = option.dataset.lang;
+            
+            // Update both the original and cloned selectors
+            updateLanguageSelectors(selectedLang);
+            
+            // Close dropdown and side menu
+            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            sideMenu.classList.remove('active');
+        });
+    });
+}
+
+// Update all language selectors with the selected language
+function updateLanguageSelectors(langCode) {
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+    
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const flag = selector.querySelector('.language-flag');
+        const code = selector.querySelector('.language-code');
+        
+        // Update the flag and code
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.dataset.lang = langCode;
+        code.textContent = languages[langCode].code;
+        
+        // Update data attribute
+        selector.dataset.currentLang = langCode;
+        
+        // Update available options
+        updateLanguageOptions(dropdown, langCode);
+    });
+}
+
+// Initialize mobile enhancements
+document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
         </script>
     </body>
 </html>
