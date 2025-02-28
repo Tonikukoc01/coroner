@@ -1,14 +1,37 @@
 /* Mobile Styles */
-
 @media screen and (max-width: 768px) {
-    /* Logo positioning */
+    /* Logo positioning - moved up and more left */
     .logo {
-        top: 2rem;
-        left: 1.5rem;
+        top: 1.5rem; /* Reduced from 2rem */
+        left: 1rem; /* Reduced from 1.5rem */
     }
     
     .logo-link {
         font-size: 1.1rem;
+    }
+    
+    /* TK logo with straight line and contact button */
+    .logo-link {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo-link:after {
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 2px;
+        background-color: currentColor;
+        margin: 0 10px;
+    }
+    
+    .contact-button {
+        display: inline-block;
+        font-size: 0.9rem;
+        border: 1px solid currentColor;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: inherit;
     }
     
     /* Menu toggle positioning */
@@ -25,25 +48,26 @@
         display: none;
     }
     
-    /* Header adjustments */
+    /* Header adjustments - centered and reduced size */
     #header {
-        top: 30%;
-        left: 5%;
-        width: 90%;
+        top: 25%; /* Moved up from 30% */
+        left: 0;
+        width: 100%;
+        text-align: center;
     }
     
     #header h1 {
-        font-size: 3.5rem;
+        font-size: 3rem; /* Reduced from 3.5rem */
         margin-bottom: 0.5rem;
     }
     
     .bold-toni {
-        font-size: 3.5rem;
+        font-size: 3rem; /* Reduced from 3.5rem */
     }
     
+    /* Remove the operations manager text */
     #header p {
-        font-size: 1.2rem;
-        margin-bottom: 1.5rem;
+        display: none;
     }
     
     /* Center and adjust scroll indicator */
@@ -54,45 +78,7 @@
     }
     
     .scroll-indicator .scroll-line {
-        height: 5cm;
-    }
-    
-    /* Side menu adjustments */
-    .side-menu-content {
-        padding-right: 2rem;
-        padding-top: 6rem;
-        width: 100%;
-    }
-    
-    .side-menu-nav ul {
-        gap: 2.5rem;
-    }
-    
-    .side-menu-nav a {
-        font-size: 1.5rem;
-    }
-    
-    /* Language dropdown integration into side menu */
-    .language-dropdown {
-        position: static;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-    
-    .side-menu-content .language-dropdown {
-        align-self: flex-end;
-    }
-    
-    .language-options {
-        top: auto;
-        bottom: 100%;
-        right: 0;
-        margin-bottom: 0.3rem;
-    }
-    
-    /* Hide language dropdown in the main view on mobile */
-    body > .language-dropdown {
-        display: none;
+        height: 4cm; /* Slightly reduced */
     }
     
     /* About section adjustments */
@@ -107,6 +93,33 @@
         order: 1;
     }
     
+    /* Let's collaborate - reduced font and moved left */
+    .about-header {
+        font-size: 2.4rem; /* Reduced from 2.8rem */
+        margin-bottom: 1.5rem; /* Reduced from 2rem */
+        text-align: left;
+    }
+    
+    .horizontal-line {
+        width: 2.5cm;
+        margin-bottom: 1.5rem; /* Reduced from 2rem */
+    }
+    
+    .about-subheader, .about-subheader1 {
+        font-size: 1rem; /* Reduced from 1.1rem */
+        text-align: left;
+    }
+    
+    .about-subheader1 {
+        margin-bottom: 1.5rem; /* Reduced from 2rem */
+    }
+    
+    .collaboration-btn {
+        padding: 8px 20px; /* Slightly smaller */
+        font-size: 1rem; /* Reduced from 1.1rem */
+        margin-left: 0; /* Align left */
+    }
+    
     .about-image-column {
         order: 2;
         width: 100%;
@@ -114,36 +127,18 @@
     
     .about-collaboration-image {
         width: 100%;
-        max-height: 250px;
+        max-height: 220px; /* Reduced from 250px */
     }
     
-    .about-header {
-        font-size: 2.8rem;
-        margin-bottom: 2rem;
-        text-align: left;
-    }
-    
-    .horizontal-line {
-        width: 2.5cm;
-        margin-bottom: 2rem;
-    }
-    
-    .about-subheader, .about-subheader1 {
-        font-size: 1.1rem;
-    }
-    
-    .about-subheader1 {
-        margin-bottom: 2rem;
-    }
-    
-    .collaboration-btn {
-        padding: 10px 25px;
-        font-size: 1.1rem;
+    /* Reduce margin between image and footer */
+    .about-image-column {
+        margin-bottom: 1rem; /* Reduced margin */
     }
     
     /* Footer adjustments */
     footer {
-        padding: 1.5rem;
+        padding: 1.2rem; /* Reduced from 1.5rem */
+        margin-top: 0; /* Remove top margin */
     }
     
     .footer-content {
@@ -154,18 +149,14 @@
 /* Additional adjustments for very small screens */
 @media screen and (max-width: 480px) {
     #header h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem; /* Further reduced */
     }
     
     .bold-toni {
-        font-size: 2.8rem;
-    }
-    
-    #header p {
-        font-size: 1rem;
+        font-size: 2.5rem; /* Further reduced */
     }
     
     .about-header {
-        font-size: 2.4rem;
+        font-size: 2.2rem; /* Further reduced */
     }
 }
