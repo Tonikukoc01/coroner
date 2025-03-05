@@ -896,6 +896,22 @@ body {
     }
 
     /* Header Adjustments */
+
+    #home {
+        min-height: 70vh; /* Reduce from 100vh to create less space */
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+    }
+
+    #about {
+        padding-top: 2rem; /* Reduce top padding */
+    }
+
+    .about-layout {
+        padding: 2rem 1rem; /* Reduce padding around the layout */
+    }
+}
+
     #header {
         top: 25%;
         left: 6%;
@@ -1554,6 +1570,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Ensure language dropdown is in side menu
+function setupLanguageDropdownInSideMenu() {
+    const originalDropdown = document.querySelector('.language-dropdown');
+    const sideMenuContent = document.querySelector('.side-menu-content');
+    
+    // Check if dropdown is already in side menu
+    if (sideMenuContent && !sideMenuContent.querySelector('.language-dropdown')) {
+        // Clone the entire language dropdown
+        const clonedDropdown = originalDropdown.cloneNode(true);
+        
+        // Insert at the top of side menu content
+        sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
+        
+        // Reinitialize dropdown functionality for cloned dropdown
+        initializeLanguageDropdown(clonedDropdown);
+    }
+}
+
+// Function to initialize language dropdown functionality
+function initializeLanguageDropdown(dropdownElement) {
+    const languageSelector = dropdownElement.querySelector('.language-selector');
+    const languageOptions = dropdownElement.querySelector('.language-options');
+
+    // Toggle dropdown
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownElement.classList.toggle('active');
+    });
+
+    // Handle language option selection
+    const languageOptionEls = dropdownElement.querySelectorAll('.language-option');
+    languageOptionEls.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const selectedLang = option.dataset.lang;
+            const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+            const selectedCode = option.querySelector('.language-code').textContent;
+
+            // Update selector
+            languageSelector.innerHTML = '';
+            languageSelector.appendChild(selectedFlag);
+            languageSelector.dataset.currentLang = selectedLang;
+            
+            const codeSpan = document.createElement('span');
+            codeSpan.className = 'language-code';
+            codeSpan.textContent = selectedCode;
+            languageSelector.appendChild(codeSpan);
+
+            // Close dropdown
+            dropdownElement.classList.remove('active');
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdownElement.contains(e.target)) {
+            dropdownElement.classList.remove('active');
+        }
+    });
+}
+
+// Call on DOM load
+document.addEventListener('DOMContentLoaded', setupLanguageDropdownInSideMenu);
+
         </script>
     </body>
 </html>
