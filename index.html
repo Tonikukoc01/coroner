@@ -902,6 +902,7 @@ body {
         transform: translate(-50%, -50%);
         text-align: center;
         width: 90%;
+        max-width: 400px;
         align-items: center;
     }
 
@@ -909,16 +910,30 @@ body {
         font-size: 2.5rem; /* Reduce font size */
         text-align: center;
         width: 100%;
+        word-wrap: break-word;
+
     }
 
     #header p {
         font-size: 1.2rem; /* Adjust subheader size */
         text-align: center;
+        width: 100%;
     }
 
     #header p {
         display: none; /* Hide subheader on mobile */
     }
+
+   .bold-toni, .bold-split {
+        display: inline-block;
+    }
+
+    /* Remove scroll indicator on mobile */
+    .scroll-indicator {
+        display: none;
+    }
+}
+
 
     /* About Section Mobile Layout */
     .about-layout {
@@ -1502,6 +1517,43 @@ document.addEventListener('DOMContentLoaded', setupMobileSideMenu);
 // Recheck on window resize
 window.addEventListener('resize', setupMobileSideMenu);
 
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.querySelector('.side-menu');
+    const sideMenuNavLinks = document.querySelectorAll('.side-menu-nav a');
+
+    // Mobile Side Menu Toggle Function
+    function toggleSideMenu(e) {
+        e.stopPropagation(); // Prevent event from bubbling
+        sideMenu.classList.toggle('active');
+        
+        // Manage body scroll
+        if (sideMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    // Always add these event listeners
+    menuToggle.addEventListener('click', toggleSideMenu);
+
+    // Close menu when nav links are clicked
+    sideMenuNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            sideMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
         </script>
     </body>
 </html>
