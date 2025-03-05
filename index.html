@@ -859,11 +859,28 @@ body {
     .logo {
         top: 2rem;
         left: 1rem;
+        gap: 0.5rem;
     }
 
     .logo-link {
         display: none; /* Hide text logo */
     }
+
+ .logo-line {
+        height: 1.2rem; /* Adjust height to match logo size */
+        margin: 0; /* Remove default margins */
+    }
+
+    .menu-text {
+        position: static; /* Reset positioning */
+        margin-left: 0.5rem; /* Small margin from the line */
+    }
+
+
+    .language-selector {
+        display: none; /* hide language selector on the phone. */
+    }
+    
 
     .logo::before {
         content: url('assets/logo-placeholder.png'); /* Add placeholder logo */
@@ -889,9 +906,14 @@ body {
     }
 
     #header h1 {
-        font-size: 3rem;
+        font-size: 2.5rem; /* Reduce font size */
         text-align: center;
         width: 100%;
+    }
+
+    #header p {
+        font-size: 1.2rem; /* Adjust subheader size */
+        text-align: center;
     }
 
     #header p {
@@ -945,23 +967,48 @@ body {
     }
 
     /* Side Menu Adjustments */
-    .side-menu-content {
-        width: 100%;
-        padding-right: 0;
-        align-items: center;
+       .side-menu {
+        background: rgba(26, 43, 60, 0.95); /* More opaque background */
+        backdrop-filter: blur(10px); /* Add blur effect */
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
     }
 
-    .side-menu-nav {
-        text-align: center;
+    .side-menu.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .side-menu-content {
+        width: 80%; /* Adjust width */
+        height: 100vh;
+        padding-right: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Align items to the right */
+        justify-content: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .side-menu.active .side-menu-content {
+        transform: translateX(0);
     }
 
     .side-menu-nav ul {
-        align-items: center;
+        text-align: right;
+        align-items: flex-end;
     }
 
     .side-menu-nav a {
         font-size: 1.5rem;
+        text-align: right;
     }
+}
 
     /* Language Dropdown in Side Menu */
     .side-menu .language-dropdown {
@@ -1406,6 +1453,55 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollText.appendChild(span);
     });
 });
+
+// Mobile-specific side menu toggle
+function setupMobileSideMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.querySelector('.side-menu');
+    const sideMenuNavLinks = document.querySelectorAll('.side-menu-nav a');
+
+    // Only add these listeners if we're on a mobile device
+    if (window.innerWidth <= 768) {
+        // Mobile-specific side menu toggle
+        function toggleMobileSideMenu(e) {
+            e.stopPropagation(); // Prevent event from bubbling
+            sideMenu.classList.toggle('active');
+            
+            // Manage body scroll
+            if (sideMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Add event listeners
+        menuToggle.addEventListener('click', toggleMobileSideMenu);
+
+        // Close menu when nav links are clicked
+        sideMenuNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sideMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                sideMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+}
+
+// Call the setup function when DOM is loaded
+document.addEventListener('DOMContentLoaded', setupMobileSideMenu);
+
+// Recheck on window resize
+window.addEventListener('resize', setupMobileSideMenu);
+
         </script>
     </body>
 </html>
