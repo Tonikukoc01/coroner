@@ -889,6 +889,165 @@ body {
     }
 }
 
+@media screen and (max-width: 768px) {
+    /* Header Adjustments */
+    #header {
+        top: 40%;
+        left: 5%;
+        width: 90%;
+    }
+    
+    #header h1 {
+        font-size: 3.5rem;
+    }
+    
+    .bold-toni {
+        font-size: 3.5rem;
+    }
+    
+    #header p {
+        font-size: 1.2rem;
+    }
+    
+    /* Scroll Indicator Adjustments */
+    .scroll-indicator {
+        margin-left: 0;
+        align-items: flex-start;
+        margin-top: 2rem;
+    }
+    
+    .scroll-indicator .scroll-line {
+        height: 5cm;
+    }
+    
+    /* Navigation Adjustments */
+    .logo {
+        top: 2rem;
+        left: 1.5rem;
+    }
+    
+    .nav-menu {
+        top: 2rem;
+        right: 1.5rem;
+    }
+    
+    .language-dropdown {
+        top: 2rem;
+        right: 4rem;
+    }
+    
+    /* Side Menu Adjustments */
+    .side-menu-content {
+        padding-right: 2rem;
+        padding-top: 6rem;
+        width: 100%;
+    }
+    
+    .side-menu-nav ul {
+        gap: 2rem;
+    }
+    
+    .side-menu-nav a {
+        font-size: 1.5rem;
+    }
+    
+    /* About Section Adjustments */
+    .about-layout {
+        flex-direction: column-reverse;
+        padding: 4rem 1.5rem;
+        gap: 3rem;
+    }
+    
+    .about-text-column {
+        max-width: 100%;
+    }
+    
+    .about-header {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-collaboration-image {
+        max-width: 100%;
+        max-height: 250px;
+    }
+    
+    .collaboration-btn {
+        align-self: center;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Content Layout Adjustments */
+    .content-block {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .content-block.right-aligned {
+        flex-direction: column;
+    }
+    
+    .content-image {
+        width: 100%;
+        height: auto;
+    }
+    
+    .right-aligned .content-text {
+        text-align: left;
+    }
+    
+    /* Footer Adjustments */
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Small Mobile Adjustments */
+@media screen and (max-width: 480px) {
+    #header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .bold-toni {
+        font-size: 2.8rem;
+    }
+    
+    #header p {
+        font-size: 1rem;
+    }
+    
+    .about-header {
+        font-size: 2.2rem;
+    }
+    
+    .about-subheader, .about-subheader1 {
+        font-size: 1rem;
+    }
+    
+    .side-menu-nav a {
+        font-size: 1.3rem;
+    }
+}
+
+/* Animation Preservation */
+@media screen and (max-width: 768px) {
+    /* Ensure animations still work on mobile */
+    .about-subheader, .about-subheader1, .collaboration-btn, .horizontal-line, .about-collaboration-image {
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Adjust animation distances for mobile */
+    .about-collaboration-image {
+        transform: translateY(50px);
+    }
+    
+    .about-collaboration-image.visible {
+        transform: translateY(0);
+    }
+}
+
+
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1366,6 +1525,88 @@ function updateLanguageSelectors(langCode) {
 
 // Initialize mobile enhancements
 document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile detection
+    const isMobile = window.innerWidth <= 768;
+    
+    // Mobile-specific adjustments
+    if (isMobile) {
+        // Adjust scroll indicator position
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.style.marginLeft = '0';
+        }
+        
+        // Make side menu full width on mobile
+        const sideMenu = document.querySelector('.side-menu');
+        if (sideMenu) {
+            sideMenu.addEventListener('click', function(e) {
+                // Close menu when clicking anywhere except navigation items
+                if (e.target === sideMenu) {
+                    sideMenu.classList.remove('active');
+                }
+            });
+        }
+        
+        // Optimize animations for mobile performance
+        document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
+            // Change transform direction for image on mobile
+            if (element.classList.contains('about-collaboration-image')) {
+                element.style.transform = 'translateY(50px)';
+            }
+        });
+    }
+    
+    // Handle orientation changes
+    window.addEventListener('orientationchange', function() {
+        // Force recalculation of animation elements
+        setTimeout(function() {
+            handleScrollAnimations();
+            
+            // Update layout adjustments
+            const isMobile = window.innerWidth <= 768;
+            document.body.classList.toggle('mobile-view', isMobile);
+            
+            // Adjust scroll indicator
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.style.marginLeft = isMobile ? '0' : '250px';
+            }
+        }, 200);
+    });
+    
+    // Enhanced scroll animation handler for better mobile performance
+    function handleScrollAnimations() {
+        const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
+        
+        animatedElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            // Lower trigger point for mobile to ensure animations happen
+            const triggerPoint = window.innerHeight * (window.innerWidth <= 768 ? 0.9 : 0.8);
+            
+            if (elementTop < triggerPoint) {
+                element.classList.add('visible');
+            }
+        });
+    }
+    
+    // Optimize scroll event with requestAnimationFrame
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                handleScrollAnimations();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Initial check for elements already in view
+    handleScrollAnimations();
+});
+
         </script>
     </body>
 </html>
