@@ -27,6 +27,10 @@
         <!-- Stylesheets -->
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+<!-- Add this before the closing </head> tag -->
+<link rel="stylesheet" href="../coroner/assets/css/index-mobile.css" />      
+
         
         <style>
           /* Global Styles */
@@ -855,193 +859,6 @@ body {
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
-    /* Logo Adjustments */
-    .logo {
-        top: 2rem;
-        left: 1rem;
-        gap: 0.5rem;
-    }
-
-    .logo-link {
-        display: none; /* Hide text logo */
-    }
-
- .logo-line {
-        height: 1.2rem; /* Adjust height to match logo size */
-        margin: 0; /* Remove default margins */
-    }
-
-    .menu-text {
-        position: static; /* Reset positioning */
-        margin-left: 0.5rem; /* Small margin from the line */
-    }
-
-
-    .language-selector {
-        display: none; /* hide language selector on the phone. */
-    }
-    
-
-    .logo::before {
-        background-image: url('./assets/TK.png');
-         background-size: contain; /* Ensures the image scales properly */
-        display: block;
-        width: 50px; /* Adjust size as needed */
-        height: 50px;
-    }
-
-    /* Navigation Menu Toggle */
-    .nav-menu {
-        top: 2rem;
-        right: 1rem;
-    }
-
-    /* Header Adjustments */
-    #header {
-        top: 25%;
-        left: 6%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        width: 90%;
-        max-width: 400px;
-        align-items: center;
-    }
-
-    #header h1 {
-        font-size: 2.5rem; /* Reduce font size */
-        text-align: center;
-        width: 100%;
-        word-wrap: break-word;
-
-    }
-
-    #header p {
-        font-size: 1.2rem; /* Adjust subheader size */
-        text-align: center;
-        width: 100%;
-    }
-
-    #header p {
-        display: none; /* Hide subheader on mobile */
-    }
-
-   .bold-toni, .bold-split {
-        display: inline-block;
-    }
-
-    /* Remove scroll indicator on mobile */
-    .scroll-indicator {
-        display: none;
-    }
-}
-
-
-    /* About Section Mobile Layout */
-    .about-layout {
-        flex-direction: column;
-        padding: 2rem 1rem;
-        text-align: center;
-    }
-
-    .about-text-column {
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .about-header {
-        font-size: 2.5rem;
-        text-align: center;
-    }
-
-    .about-subheader, 
-    .about-subheader1 {
-        text-align: center;
-        max-width: 100%;
-    }
-
-    .about-image-column {
-        order: -1; /* Move image above text */
-        margin-bottom: 2rem;
-        width: 100%;
-    }
-
-    .about-collaboration-image {
-        max-width: 100%;
-        max-height: 250px;
-    }
-
-    .collaboration-btn {
-        align-self: center;
-        margin-top: 1rem;
-    }
-
-    /* Scroll Indicator */
-    .scroll-indicator {
-        display: none; /* Hide on mobile */
-    }
-
-    /* Side Menu Adjustments */
-       .side-menu {
-        background: rgba(26, 43, 60, 0.95); /* More opaque background */
-        backdrop-filter: blur(10px); /* Add blur effect */
-        display: flex;
-        justify-content: flex-end;
-        align-items: flex-start;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s ease;
-    }
-
-    .side-menu.active {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .side-menu-content {
-        width: 80%; /* Adjust width */
-        height: 100vh;
-        padding-right: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end; /* Align items to the right */
-        justify-content: center;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-    }
-
-    .side-menu.active .side-menu-content {
-        transform: translateX(0);
-    }
-
-    .side-menu-nav ul {
-        text-align: right;
-        align-items: flex-end;
-    }
-
-    .side-menu-nav a {
-        font-size: 1.5rem;
-        text-align: right;
-    }
-}
-
-    /* Language Dropdown in Side Menu */
-    .side-menu .language-dropdown {
-        position: static;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-    }
-
-    .side-menu .language-selector {
-        min-width: 100px;
-        justify-content: center;
-    }
-}
-
-
-@media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
         display: none;
     }
@@ -1194,229 +1011,205 @@ footer {
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
-// Preserve all of your original script functions and add mobile enhancements
-document.addEventListener('DOMContentLoaded', function() {
-    // Your original onload functions
-    document.body.classList.remove('is-preload');
+// Get the scroll indicator line element
+const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
-    // Navigation menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+window.addEventListener('scroll', () => {
+  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  
+  // Calculate the percentage of scroll
+  const scrollPercentage = (scrollTop / scrollHeight) * 100;
+  
+  // Adjust the height of the scroll line
+  // As you scroll down, the line will get shorter
+  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
+  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+  
+  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+});
 
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
+window.onload = function() {
+  document.body.classList.remove('is-preload');
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-        }
-    });
+// Navigation menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
 
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            navMenu.classList.remove('active');
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
 
-    // Section visibility animations based on scroll position
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        document.querySelectorAll('.section-content').forEach(section => {
-            if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
-                section.classList.add('visible');
-            } else {
-                section.classList.remove('visible');
-            }
-        });
-    });
-
-    // Mobile Menu and Side Menu Enhancements
-    const sideMenu = document.querySelector('.side-menu');
-    const sideMenuNavLinks = document.querySelectorAll('.side-menu-nav a');
-
-    // Enhanced Side Menu Toggle
-    function toggleSideMenu() {
-        sideMenu.classList.toggle('active');
-        
-        // Prevent body scrolling when side menu is open
-        if (sideMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+// Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target)) {
+      navMenu.classList.remove('active');
     }
+  });
 
-    // Add click event to menu toggle
-    menuToggle.addEventListener('click', toggleSideMenu);
-
-    // Close side menu when a nav link is clicked
-    sideMenuNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+// Smooth scroll for navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      navMenu.classList.remove('active');
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
     });
+  });
 
-    // Close side menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            sideMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+// Section visibility animations based on scroll position
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    document.querySelectorAll('.section-content').forEach(section => {
+      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
+        section.classList.add('visible');
+      } else {
+        section.classList.remove('visible');
+      }
     });
+  });
+}
 
-    // Language Dropdown Functionality (your original code)
-    const languages = {
-        'en': { 
-            code: 'EN', 
-            name: 'English', 
-            flag: './assets/UK.png',
-            alternatives: ['fr', 'hr'] 
-        },
-        'fr': { 
-            code: 'FR', 
-            name: 'French', 
-            flag: './assets/FR.png',
-            alternatives: ['en', 'hr'] 
-        },
-        'hr': { 
-            code: 'HR', 
-            name: 'Croatian', 
-            flag: './assets/HR.png',
-            alternatives: ['en', 'fr'] 
-        }
-    };
+// Toggle side menu
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.querySelector('.side-menu');
 
+menuToggle.addEventListener('click', () => {
+  sideMenu.classList.toggle('active');
+});
+
+// Close side menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+});
+// Language Dropdown Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Language configuration
+         const languages = {
+    'en': { 
+        code: 'EN', 
+        name: 'English', 
+        flag: './assets/UK.png', // Update with the actual path to your UK flag
+        alternatives: ['fr', 'hr'] 
+    },
+    'fr': { 
+        code: 'FR', 
+        name: 'French', 
+        flag: './assets/FR.png', // Update with the actual path to your French flag
+        alternatives: ['en', 'hr'] 
+    },
+    'hr': { 
+        code: 'HR', 
+        name: 'Croatian', 
+        flag: './assets/HR.png', // Update with the actual path to your Croatian flag
+        alternatives: ['en', 'fr'] 
+    }
+};
+
+            const languageDropdown = document.querySelector('.language-dropdown');
+            const languageSelector = languageDropdown.querySelector('.language-selector');
+            const languageOptions = languageDropdown.querySelector('.language-options');
+
+    // Function to update language options
+            function updateLanguageOptions(currentLang) {
+    // Clear existing options
+                languageOptions.innerHTML = '';
+
+    // Get alternative languages
+                const alternativeLangs = languages[currentLang].alternatives;
+
+    // Create new language options
+                alternativeLangs.forEach(langCode => {
+                    const option = document.createElement('div');
+                    option.className = 'language-option';
+                    option.dataset.lang = langCode;
+
+                    const flag = document.createElement('img');
+                    flag.src = languages[langCode].flag;
+                    flag.alt = `${languages[langCode].name} Flag`;
+                    flag.className = 'language-flag';
+                    flag.dataset.lang = langCode;
+
+                    const code = document.createElement('span');
+                    code.className = 'language-code';
+                    code.textContent = languages[langCode].code;
+
+                    option.appendChild(flag);
+                    option.appendChild(code);
+                    languageOptions.appendChild(option);
+                });
+
+    // Re-attach event listeners
+                attachLanguageOptionListeners();
+            }
+
+    // Attach event listeners to language options
+            function attachLanguageOptionListeners() {
+                const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+                
+                languageOptionEls.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const selectedLang = option.dataset.lang;
+                        
+    // Update selector
+                        const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+                        const selectedCode = option.querySelector('.language-code').textContent;
+
+                        languageSelector.innerHTML = '';
+                        languageSelector.appendChild(selectedFlag);
+                        languageSelector.dataset.currentLang = selectedLang;
+                        
+                        const codeSpan = document.createElement('span');
+                        codeSpan.className = 'language-code';
+                        codeSpan.textContent = selectedCode;
+                        languageSelector.appendChild(codeSpan);
+
+    // Update available options
+                        updateLanguageOptions(selectedLang);
+
+    // Close dropdown
+                        languageDropdown.classList.remove('active');
+                    });
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
     const languageDropdown = document.querySelector('.language-dropdown');
     const languageSelector = languageDropdown.querySelector('.language-selector');
     const languageOptions = languageDropdown.querySelector('.language-options');
 
-    // Function to update language options
-    function updateLanguageOptions(currentLang) {
-        languageOptions.innerHTML = '';
-        const alternativeLangs = languages[currentLang].alternatives;
-
-        alternativeLangs.forEach(langCode => {
-            const option = document.createElement('div');
-            option.className = 'language-option';
-            option.dataset.lang = langCode;
-
-            const flag = document.createElement('img');
-            flag.src = languages[langCode].flag;
-            flag.alt = `${languages[langCode].name} Flag`;
-            flag.className = 'language-flag';
-            flag.dataset.lang = langCode;
-
-            const code = document.createElement('span');
-            code.className = 'language-code';
-            code.textContent = languages[langCode].code;
-
-            option.appendChild(flag);
-            option.appendChild(code);
-            languageOptions.appendChild(option);
-        });
-
-        attachLanguageOptionListeners();
-    }
-
-    // Attach event listeners to language options
-    function attachLanguageOptionListeners() {
-        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-        
-        languageOptionEls.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const selectedLang = option.dataset.lang;
-                
-                // Update selector
-                const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-                const selectedCode = option.querySelector('.language-code').textContent;
-
-                languageSelector.innerHTML = '';
-                languageSelector.appendChild(selectedFlag);
-                languageSelector.dataset.currentLang = selectedLang;
-                
-                const codeSpan = document.createElement('span');
-                codeSpan.className = 'language-code';
-                codeSpan.textContent = selectedCode;
-                languageSelector.appendChild(codeSpan);
-
-                // Update available options
-                updateLanguageOptions(selectedLang);
-
-                // Close dropdown
-                languageDropdown.classList.remove('active');
-            });
-        });
-    }
-
-    // Hover and click events for language dropdown
-    document.addEventListener('DOMContentLoaded', () => {
-        languageSelector.addEventListener('mouseenter', () => {
-            languageDropdown.classList.add('active');
-        });
-
-        languageDropdown.addEventListener('mouseleave', () => {
-            languageDropdown.classList.remove('active');
-        });
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
     });
 
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
+        languageDropdown.classList.remove('active');
+    });
+});
     // Initial setup
-    updateLanguageOptions('en');
+            updateLanguageOptions('en');
 
     // Toggle dropdown
-    languageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        languageDropdown.classList.toggle('active');
-    });
+            languageSelector.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('active');
+            });
 
     // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!languageDropdown.contains(e.target)) {
-            languageDropdown.classList.remove('active');
-        }
-    });
+            document.addEventListener('click', (e) => {
+                if (!languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+        });
 
-    // Mobile adjustments for side menu
-    const originalDropdown = document.querySelector('.language-dropdown');
-    const clonedDropdown = originalDropdown.cloneNode(true);
-    
-    // Add it to the side menu content
-    const sideMenuContent = document.querySelector('.side-menu-content');
-    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
-    
-    // Reinitialize language dropdown functionality for the cloned dropdown
-    const clonedLanguageSelector = clonedDropdown.querySelector('.language-selector');
-    
-    clonedLanguageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        clonedDropdown.classList.toggle('active');
-    });
-    
-    // Handle window resize to adjust layouts
-    function handleResize() {
-        if (window.innerWidth <= 768) {
-            // Mobile layout adjustments
-            document.body.classList.add('mobile-view');
-        } else {
-            // Desktop layout adjustments
-            document.body.classList.remove('mobile-view');
-        }
-    }
-    
-    // Initial check and add resize listener
-    handleResize();
-    window.addEventListener('resize', handleResize);
-});
-
-// Scroll-based animations
 const observerOptions = {
     threshold: 0.3,
     rootMargin: '0px'
@@ -1436,7 +1229,7 @@ document.querySelector('#about').querySelectorAll('.about-collaboration-image, .
     observer.observe(element);
 });
 
-// Original scroll animation handlers
+// Scroll-based animation handler
 function handleScrollAnimations() {
     const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
     
@@ -1455,7 +1248,6 @@ window.addEventListener('scroll', handleScrollAnimations);
 // Initial check for elements already in view
 window.addEventListener('load', handleScrollAnimations);
 
-// Animated scroll text
 document.addEventListener('DOMContentLoaded', () => {
     const scrollText = document.querySelector('.scroll-text');
     const text = scrollText.textContent;
@@ -1470,91 +1262,110 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Mobile-specific side menu toggle
-function setupMobileSideMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sideMenu = document.querySelector('.side-menu');
-    const sideMenuNavLinks = document.querySelectorAll('.side-menu-nav a');
-
-    // Only add these listeners if we're on a mobile device
-    if (window.innerWidth <= 768) {
-        // Mobile-specific side menu toggle
-        function toggleMobileSideMenu(e) {
-            e.stopPropagation(); // Prevent event from bubbling
-            sideMenu.classList.toggle('active');
-            
-            // Manage body scroll
-            if (sideMenu.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        // Add event listeners
-        menuToggle.addEventListener('click', toggleMobileSideMenu);
-
-        // Close menu when nav links are clicked
-        sideMenuNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                sideMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                sideMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
-}
-
-// Call the setup function when DOM is loaded
-document.addEventListener('DOMContentLoaded', setupMobileSideMenu);
-
-// Recheck on window resize
-window.addEventListener('resize', setupMobileSideMenu);
-
+// Mobile adjustments for side menu
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sideMenu = document.querySelector('.side-menu');
-    const sideMenuNavLinks = document.querySelectorAll('.side-menu-nav a');
-
-    // Mobile Side Menu Toggle Function
-    function toggleSideMenu(e) {
-        e.stopPropagation(); // Prevent event from bubbling
-        sideMenu.classList.toggle('active');
-        
-        // Manage body scroll
-        if (sideMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
+    // Clone language dropdown for side menu
+    const originalDropdown = document.querySelector('.language-dropdown');
+    const clonedDropdown = originalDropdown.cloneNode(true);
+    
+    // Add it to the side menu content
+    const sideMenuContent = document.querySelector('.side-menu-content');
+    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
+    
+    // Reinitialize language dropdown functionality for the cloned dropdown
+    const languageSelector = clonedDropdown.querySelector('.language-selector');
+    const languageOptions = clonedDropdown.querySelector('.language-options');
+    
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clonedDropdown.classList.toggle('active');
+    });
+    
+    // Handle window resize to adjust layouts
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            // Mobile layout adjustments
+            document.body.classList.add('mobile-view');
         } else {
-            document.body.style.overflow = 'auto';
+            // Desktop layout adjustments
+            document.body.classList.remove('mobile-view');
         }
     }
+    
+    // Initial check and add resize listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Fix for scroll indicator on mobile
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (window.innerWidth <= 768) {
+        scrollIndicator.style.marginLeft = '0';
+    }
+});
 
-    // Always add these event listeners
-    menuToggle.addEventListener('click', toggleSideMenu);
-
-    // Close menu when nav links are clicked
-    sideMenuNavLinks.forEach(link => {
+// Enhance side menu for mobile
+function enhanceSideMenuForMobile() {
+    const sideMenu = document.querySelector('.side-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // Make sure menu toggle is visible and functional on mobile
+    menuToggle.style.display = 'flex';
+    
+    // Ensure the menu closes when a navigation item is clicked
+    const navLinks = document.querySelectorAll('.side-menu-nav a');
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
             sideMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
         });
     });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    
+    // Handle the language option clicks in side menu
+    const languageOptions = document.querySelectorAll('.side-menu .language-option');
+    languageOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Get the selected language
+            const selectedLang = option.dataset.lang;
+            
+            // Update both the original and cloned selectors
+            updateLanguageSelectors(selectedLang);
+            
+            // Close dropdown and side menu
+            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
             sideMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+        });
     });
-});
+}
+
+// Update all language selectors with the selected language
+function updateLanguageSelectors(langCode) {
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+    
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const flag = selector.querySelector('.language-flag');
+        const code = selector.querySelector('.language-code');
+        
+        // Update the flag and code
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.dataset.lang = langCode;
+        code.textContent = languages[langCode].code;
+        
+        // Update data attribute
+        selector.dataset.currentLang = langCode;
+        
+        // Update available options
+        updateLanguageOptions(dropdown, langCode);
+    });
+}
+
+// Initialize mobile enhancements
+document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
         </script>
     </body>
 </html>
