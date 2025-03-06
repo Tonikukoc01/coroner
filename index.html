@@ -858,6 +858,186 @@ body {
 }
 
 /* Mobile Responsive */
+/* Mobile Responsive Styles - add this to your existing CSS file */
+
+@media screen and (max-width: 768px) {
+    /* Global adjustments */
+    html, body {
+        overflow-x: hidden;
+    }
+    
+    /* Header Section */
+    #header {
+        width: 80%;
+        left: 5%;
+        top: 30%;
+    }
+    
+    #header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .bold-toni {
+        font-size: 3.5rem;
+    }
+    
+    #header p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Scroll Indicator */
+    .scroll-indicator {
+        margin-left: 0;
+        margin-top: 2rem;
+    }
+    
+    .scroll-indicator .scroll-line {
+        height: 5cm;
+    }
+    
+    /* Navigation */
+    .logo {
+        top: 2rem;
+        left: 1.5rem;
+    }
+    
+    .logo-link {
+        font-size: 1.1rem;
+    }
+    
+    .menu-text {
+        font-size: 1rem;
+    }
+    
+    .nav-menu {
+        top: 2rem;
+        right: 1.5rem;
+    }
+    
+    .language-dropdown {
+        top: 2rem;
+        right: 4rem;
+    }
+    
+    /* Side Menu */
+    .side-menu-content {
+        padding-right: 2rem;
+        padding-top: 6rem;
+        width: 100%;
+    }
+    
+    .side-menu-nav ul {
+        gap: 2.5rem;
+    }
+    
+    .side-menu-nav a {
+        font-size: 1.5rem;
+    }
+    
+    /* About Section */
+    .about-layout {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 4rem 1.5rem;
+    }
+    
+    .about-text-column {
+        max-width: 100%;
+        order: 1;
+    }
+    
+    .about-image-column {
+        order: 2;
+        width: 100%;
+    }
+    
+    .about-collaboration-image {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .about-header {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-subheader, .about-subheader1 {
+        font-size: 1.1rem;
+    }
+    
+    .horizontal-line {
+        width: 2.5cm;
+        margin-bottom: 2rem;
+    }
+    
+    .collaboration-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+    
+    /* Sections */
+    .section-content {
+        padding: 4rem 1.5rem;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 1.5rem;
+    }
+    
+    .footer-content {
+        font-size: 0.9rem;
+    }
+    
+    /* Ensures the menu toggle is always visible on mobile */
+    .menu-toggle {
+        display: flex !important;
+    }
+    
+    /* Animation adjustments for mobile */
+    .about-collaboration-image, 
+    .horizontal-line, 
+    .about-subheader, 
+    .about-subheader1, 
+    .collaboration-btn {
+        transform: translateY(30px);
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    #header h1 {
+        font-size: 3rem;
+    }
+    
+    .bold-toni {
+        font-size: 3rem;
+    }
+    
+    #header p {
+        font-size: 1rem;
+    }
+    
+    .about-header {
+        font-size: 2.4rem;
+    }
+    
+    .about-subheader, .about-subheader1 {
+        font-size: 1rem;
+    }
+    
+    .collaboration-btn {
+        font-size: 1rem;
+    }
+    
+    .side-menu-nav a {
+        font-size: 1.3rem;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
         display: none;
