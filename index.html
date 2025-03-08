@@ -1011,38 +1011,44 @@ footer {
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
-// Scroll Indicator Line
+// Get the scroll indicator line element
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+
 window.addEventListener('scroll', () => {
+  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   
+  // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
-  const maxLineHeight = window.innerHeight * 0.7;
+  // Adjust the height of the scroll line
+  // As you scroll down, the line will get shorter
+  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
   const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
   
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
 
-// On Load
 window.onload = function() {
   document.body.classList.remove('is-preload');
-  
-  // Navigation menu toggle
+
+// Navigation menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('.nav-menu');
+
   menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
   });
 
+// Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!navMenu.contains(e.target)) {
       navMenu.classList.remove('active');
     }
   });
 
-  // Smooth scroll for navigation
+// Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1053,7 +1059,7 @@ window.onload = function() {
     });
   });
 
-  // Section visibility animations based on scroll position
+// Section visibility animations based on scroll position
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     document.querySelectorAll('.section-content').forEach(section => {
@@ -1064,10 +1070,12 @@ window.onload = function() {
       }
     });
   });
-};
+}
 
-// Side Menu Toggle
+// Toggle side menu
+const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
+
 menuToggle.addEventListener('click', () => {
   sideMenu.classList.toggle('active');
 });
@@ -1078,232 +1086,286 @@ document.addEventListener('click', (e) => {
     sideMenu.classList.remove('active');
   }
 });
-
 // Language Dropdown Functionality
-const languages = {
-  'en': { 
-    code: 'EN', 
-    name: 'English', 
-    flag: './assets/UK.png',
-    alternatives: ['fr', 'hr'] 
-  },
-  'fr': { 
-    code: 'FR', 
-    name: 'French', 
-    flag: './assets/FR.png',
-    alternatives: ['en', 'hr'] 
-  },
-  'hr': { 
-    code: 'HR', 
-    name: 'Croatian', 
-    flag: './assets/HR.png',
-    alternatives: ['en', 'fr'] 
-  }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Language configuration
+         const languages = {
+    'en': { 
+        code: 'EN', 
+        name: 'English', 
+        flag: './assets/UK.png', // Update with the actual path to your UK flag
+        alternatives: ['fr', 'hr'] 
+    },
+    'fr': { 
+        code: 'FR', 
+        name: 'French', 
+        flag: './assets/FR.png', // Update with the actual path to your French flag
+        alternatives: ['en', 'hr'] 
+    },
+    'hr': { 
+        code: 'HR', 
+        name: 'Croatian', 
+        flag: './assets/HR.png', // Update with the actual path to your Croatian flag
+        alternatives: ['en', 'fr'] 
+    }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const languageDropdown = document.querySelector('.language-dropdown');
-  const languageSelector = languageDropdown.querySelector('.language-selector');
-  const languageOptions = languageDropdown.querySelector('.language-options');
+            const languageDropdown = document.querySelector('.language-dropdown');
+            const languageSelector = languageDropdown.querySelector('.language-selector');
+            const languageOptions = languageDropdown.querySelector('.language-options');
 
-  function updateLanguageOptions(currentLang) {
-    languageOptions.innerHTML = '';
-    const alternativeLangs = languages[currentLang].alternatives;
-    alternativeLangs.forEach(langCode => {
-      const option = document.createElement('div');
-      option.className = 'language-option';
-      option.dataset.lang = langCode;
+    // Function to update language options
+            function updateLanguageOptions(currentLang) {
+    // Clear existing options
+                languageOptions.innerHTML = '';
 
-      const flag = document.createElement('img');
-      flag.src = languages[langCode].flag;
-      flag.alt = `${languages[langCode].name} Flag`;
-      flag.className = 'language-flag';
-      flag.dataset.lang = langCode;
+    // Get alternative languages
+                const alternativeLangs = languages[currentLang].alternatives;
 
-      const code = document.createElement('span');
-      code.className = 'language-code';
-      code.textContent = languages[langCode].code;
+    // Create new language options
+                alternativeLangs.forEach(langCode => {
+                    const option = document.createElement('div');
+                    option.className = 'language-option';
+                    option.dataset.lang = langCode;
 
-      option.appendChild(flag);
-      option.appendChild(code);
-      languageOptions.appendChild(option);
+                    const flag = document.createElement('img');
+                    flag.src = languages[langCode].flag;
+                    flag.alt = `${languages[langCode].name} Flag`;
+                    flag.className = 'language-flag';
+                    flag.dataset.lang = langCode;
+
+                    const code = document.createElement('span');
+                    code.className = 'language-code';
+                    code.textContent = languages[langCode].code;
+
+                    option.appendChild(flag);
+                    option.appendChild(code);
+                    languageOptions.appendChild(option);
+                });
+
+    // Re-attach event listeners
+                attachLanguageOptionListeners();
+            }
+
+    // Attach event listeners to language options
+            function attachLanguageOptionListeners() {
+                const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+                
+                languageOptionEls.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const selectedLang = option.dataset.lang;
+                        
+    // Update selector
+                        const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+                        const selectedCode = option.querySelector('.language-code').textContent;
+
+                        languageSelector.innerHTML = '';
+                        languageSelector.appendChild(selectedFlag);
+                        languageSelector.dataset.currentLang = selectedLang;
+                        
+                        const codeSpan = document.createElement('span');
+                        codeSpan.className = 'language-code';
+                        codeSpan.textContent = selectedCode;
+                        languageSelector.appendChild(codeSpan);
+
+    // Update available options
+                        updateLanguageOptions(selectedLang);
+
+    // Close dropdown
+                        languageDropdown.classList.remove('active');
+                    });
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    const languageOptions = languageDropdown.querySelector('.language-options');
+
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
     });
 
-    attachLanguageOptionListeners();
-  }
-
-  function attachLanguageOptionListeners() {
-    const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-    languageOptionEls.forEach(option => {
-      option.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const selectedLang = option.dataset.lang;
-        const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-        const selectedCode = option.querySelector('.language-code').textContent;
-
-        languageSelector.innerHTML = '';
-        languageSelector.appendChild(selectedFlag);
-        languageSelector.dataset.currentLang = selectedLang;
-
-        const codeSpan = document.createElement('span');
-        codeSpan.className = 'language-code';
-        codeSpan.textContent = selectedCode;
-        languageSelector.appendChild(codeSpan);
-
-        updateLanguageOptions(selectedLang);
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
         languageDropdown.classList.remove('active');
-      });
     });
-  }
-
-  languageSelector.addEventListener('click', (e) => {
-    e.stopPropagation();
-    languageDropdown.classList.toggle('active');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!languageDropdown.contains(e.target)) {
-      languageDropdown.classList.remove('active');
-    }
-  });
-
-  languageSelector.addEventListener('mouseenter', () => {
-    languageDropdown.classList.add('active');
-  });
-
-  languageDropdown.addEventListener('mouseleave', () => {
-    languageDropdown.classList.remove('active');
-  });
-
-  updateLanguageOptions('en');
 });
+    // Initial setup
+            updateLanguageOptions('en');
 
-// IntersectionObserver for Scroll Animations
-const observerOptions = { threshold: 0.3, rootMargin: '0px' };
+    // Toggle dropdown
+            languageSelector.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('active');
+            });
+
+    // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+        });
+
+const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px'
+};
+
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.visibility = 'visible';
-      observer.unobserve(entry.target);
-    }
-  });
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            observer.unobserve(entry.target);
+        }
+    });
 }, observerOptions);
 
-document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
-  observer.observe(element);
+// Observe the about section
+document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
+    observer.observe(element);
 });
 
 // Scroll-based animation handler
 function handleScrollAnimations() {
-  const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
-  animatedElements.forEach(element => {
-    const elementTop = element.getBoundingClientRect().top;
-    const triggerPoint = window.innerHeight * 0.8; 
-    if (elementTop < triggerPoint) {
-      element.classList.add('visible');
-    }
-  });
+    const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
+    
+    animatedElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight * 0.8; // Trigger when element is 80% into view
+        
+        if (elementTop < triggerPoint) {
+            element.classList.add('visible');
+        }
+    });
 }
 
+// Add scroll event listener
 window.addEventListener('scroll', handleScrollAnimations);
+// Initial check for elements already in view
 window.addEventListener('load', handleScrollAnimations);
 
-// Animation for scroll text
 document.addEventListener('DOMContentLoaded', () => {
-  const scrollText = document.querySelector('.scroll-text');
-  const text = scrollText.textContent;
-  scrollText.textContent = '';
-  
-  [...text].forEach((letter, i) => {
-    const span = document.createElement('span');
-    span.textContent = letter;
-    span.style.animationDelay = `${i * 0.1}s`; 
-    scrollText.appendChild(span);
-  });
+    const scrollText = document.querySelector('.scroll-text');
+    const text = scrollText.textContent;
+    scrollText.textContent = ''; // Clear the current text
+    
+    // Create spans for each letter
+    [...text].forEach((letter, i) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
+        scrollText.appendChild(span);
+    });
 });
 
 // Mobile adjustments for side menu
 document.addEventListener('DOMContentLoaded', function() {
-  const originalDropdown = document.querySelector('.language-dropdown');
-  const clonedDropdown = originalDropdown.cloneNode(true);
-  
-  const sideMenuContent = document.querySelector('.side-menu-content');
-  sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
-  
-  const languageSelector = clonedDropdown.querySelector('.language-selector');
-  const languageOptions = clonedDropdown.querySelector('.language-options');
-  
-  languageSelector.addEventListener('click', (e) => {
-    e.stopPropagation();
-    clonedDropdown.classList.toggle('active');
-  });
-
-  function handleResize() {
-    if (window.innerWidth <= 768) {
-      document.body.classList.add('mobile-view');
-    } else {
-      document.body.classList.remove('mobile-view');
+    // Clone language dropdown for side menu
+    const originalDropdown = document.querySelector('.language-dropdown');
+    const clonedDropdown = originalDropdown.cloneNode(true);
+    
+    // Add it to the side menu content
+    const sideMenuContent = document.querySelector('.side-menu-content');
+    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
+    
+    // Reinitialize language dropdown functionality for the cloned dropdown
+    const languageSelector = clonedDropdown.querySelector('.language-selector');
+    const languageOptions = clonedDropdown.querySelector('.language-options');
+    
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clonedDropdown.classList.toggle('active');
+    });
+    
+    // Handle window resize to adjust layouts
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            // Mobile layout adjustments
+            document.body.classList.add('mobile-view');
+        } else {
+            // Desktop layout adjustments
+            document.body.classList.remove('mobile-view');
+        }
     }
-  }
-
-  handleResize();
-  window.addEventListener('resize', handleResize);
-
-  const scrollIndicator = document.querySelector('.scroll-indicator');
-  if (window.innerWidth <= 768) {
-    scrollIndicator.style.marginLeft = '0';
-  }
+    
+    // Initial check and add resize listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Fix for scroll indicator on mobile
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (window.innerWidth <= 768) {
+        scrollIndicator.style.marginLeft = '0';
+    }
 });
 
 // Enhance side menu for mobile
 function enhanceSideMenuForMobile() {
-  const sideMenu = document.querySelector('.side-menu');
-  const menuToggle = document.querySelector('.menu-toggle');
-  
-  menuToggle.style.display = 'flex';
-  
-  const navLinks = document.querySelectorAll('.side-menu-nav a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      sideMenu.classList.remove('active');
+    const sideMenu = document.querySelector('.side-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // Make sure menu toggle is visible and functional on mobile
+    menuToggle.style.display = 'flex';
+    
+    // Ensure the menu closes when a navigation item is clicked
+    const navLinks = document.querySelectorAll('.side-menu-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
     });
-  });
-
-  const languageOptions = document.querySelectorAll('.side-menu .language-option');
-  languageOptions.forEach(option => {
-    option.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const selectedLang = option.dataset.lang;
-      updateLanguageSelectors(selectedLang);
-      document.querySelectorAll('.language-dropdown').forEach(dropdown => {
-        dropdown.classList.remove('active');
-      });
-      sideMenu.classList.remove('active');
+    
+    // Handle the language option clicks in side menu
+    const languageOptions = document.querySelectorAll('.side-menu .language-option');
+    languageOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Get the selected language
+            const selectedLang = option.dataset.lang;
+            
+            // Update both the original and cloned selectors
+            updateLanguageSelectors(selectedLang);
+            
+            // Close dropdown and side menu
+            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            sideMenu.classList.remove('active');
+        });
     });
-  });
 }
 
+// Update all language selectors with the selected language
 function updateLanguageSelectors(langCode) {
-  const languageDropdowns = document.querySelectorAll('.language-dropdown');
-  
-  languageDropdowns.forEach(dropdown => {
-    const selector = dropdown.querySelector('.language-selector');
-    const flag = selector.querySelector('.language-flag');
-    const code = selector.querySelector('.language-code');
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
     
-    flag.src = languages[langCode].flag;
-    flag.alt = `${languages[langCode].name} Flag`;
-    flag.dataset.lang = langCode;
-    code.textContent = languages[langCode].code;
-    selector.dataset.currentLang = langCode;
-    
-    updateLanguageOptions(langCode);
-  });
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const flag = selector.querySelector('.language-flag');
+        const code = selector.querySelector('.language-code');
+        
+        // Update the flag and code
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.dataset.lang = langCode;
+        code.textContent = languages[langCode].code;
+        
+        // Update data attribute
+        selector.dataset.currentLang = langCode;
+        
+        // Update available options
+        updateLanguageOptions(dropdown, langCode);
+    });
 }
 
 // Initialize mobile enhancements
 document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
-
         </script>
     </body>
 </html>
