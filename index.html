@@ -859,6 +859,144 @@ body {
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
+    /* Header section adjustments */
+    #header {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 2rem;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    #header h1 {
+        font-size: 3.5rem;
+        text-align: center;
+    }
+
+    #header p {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .bold-toni {
+        font-size: 3.5rem;
+    }
+
+    .scroll-indicator {
+        margin-left: 0;
+        margin-top: 2rem;
+        align-self: center;
+    }
+
+    /* About section adjustments */
+    .about-layout {
+        flex-direction: column-reverse;
+        padding: 3rem 1.5rem;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .about-text-column {
+        max-width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-header {
+        text-align: center;
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .horizontal-line {
+        margin: 0 auto 2rem auto;
+    }
+
+    .about-subheader, .about-subheader1 {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .collaboration-btn {
+        align-self: center;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .about-image-column {
+        width: 100%;
+    }
+
+    .about-collaboration-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Menu toggle fixes */
+    .menu-toggle {
+        display: flex !important;
+        position: fixed;
+        top: 3.7rem;
+        right: 4rem;
+        z-index: 1001;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .side-menu-content {
+        padding-top: 5rem;
+        padding-right: 2rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .side-menu-nav ul {
+        align-items: center;
+    }
+
+    .side-menu-nav a {
+        font-size: 1.5rem;
+    }
+
+    /* Navigation adjustments */
+    .nav-menu {
+        right: 4rem;
+    }
+
+    /* Logo adjustments */
+    .logo {
+        left: 2rem;
+    }
+
+    /* Language dropdown adjustments */
+    .language-dropdown {
+        top: 3.3rem;
+        right: 8rem;
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Ensure menu toggle stays visible */
+.menu-toggle {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Fix for side menu when closed */
+.side-menu:not(.active) + .menu-toggle {
+    display: flex !important;
+}
+
+@media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
         display: none;
     }
