@@ -858,95 +858,37 @@ body {
 }
 
 /* Mobile Responsive */
-
 @media screen and (max-width: 768px) {
-    /* Header adjustments */
-    #header {
-        left: 5%;
-        width: 90%;
+    .nav-menu ul li:not(:last-child) {
+        display: none;
     }
-    
-    #header h1 {
-        font-size: 3.2rem;
-    }
-    
-    .bold-toni {
-        font-size: 3.2rem;
-    }
-    
-    #header p {
-        font-size: 1.2rem;
-    }
-    
-    /* Menu positioning */
-    .logo {
-        top: 2rem;
-        left: 1.5rem;
-    }
-    
-    .nav-menu {
-        top: 2rem;
-        right: 1.5rem;
-    }
-    
-    .language-dropdown {
-        top: 2rem;
-        right: 4rem;
-    }
-    
-    /* Scroll indicator adjustment */
-    .scroll-indicator {
+
+    .menu-toggle {
         margin-left: 0;
-        align-items: flex-start;
     }
-    
-    /* About section layout */
-    .about-layout {
+
+    .nav-menu.active ul {
+        display: flex;
         flex-direction: column;
-        padding: 4rem 1.5rem;
-        gap: 2rem;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 5rem 2rem 2rem;
+        height: 100vh;
+        width: 250px;
     }
-    
-    .about-text-column {
-        max-width: 100%;
+
+    .nav-menu.active ul li {
+        display: block;
     }
-    
-    .about-image-column {
-        width: 100%;
-    }
-    
-    .about-collaboration-image {
-        max-width: 100%;
-    }
-    
-    .about-header {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-    }
-    
-    /* Side menu adjustments */
-    .side-menu-content {
-        padding-right: 2rem;
-        padding-top: 6rem;
-        width: 100%;
-    }
-    
-    /* Footer adjustment */
-    footer {
-        padding: 1.5rem;
+
+    .content-section {
+        padding: 3rem 1rem;
+        
     }
 }
 
-/* Fix for side menu on both mobile and desktop */
-.side-menu {
-    background: rgba(26, 43, 60, 0.95); /* Make background more opaque for better visibility */
-    visibility: hidden; /* Use visibility instead of pointer-events for better compatibility */
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.side-menu.active {
-    visibility: visible;
-}
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1424,212 +1366,6 @@ function updateLanguageSelectors(langCode) {
 
 // Initialize mobile enhancements
 document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
-
-// Mobile Menu Enhancements
-function enhanceMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sideMenu = document.querySelector('.side-menu');
-    const menuText = document.querySelector('.menu-text');
-    
-    // Toggle side menu when clicking on menu text or hamburger icon
-    menuText.addEventListener('click', (e) => {
-        e.stopPropagation();
-        sideMenu.classList.toggle('active');
-    });
-    
-    // Ensure menu closes when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!sideMenu.contains(e.target) && 
-            !menuToggle.contains(e.target) && 
-            !menuText.contains(e.target)) {
-            sideMenu.classList.remove('active');
-        }
-    });
-    
-    // Close menu when clicking a link
-    const menuLinks = document.querySelectorAll('.side-menu-nav a');
-    menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
-    });
-    
-    // Fix for language dropdown in mobile view
-    const languageDropdown = document.querySelector('.language-dropdown');
-    const languageSelector = languageDropdown.querySelector('.language-selector');
-    
-    // Make language selector work with touch
-    languageSelector.addEventListener('touchstart', (e) => {
-        e.stopPropagation();
-        languageDropdown.classList.toggle('active');
-    });
-}
-
-// Adjust animations for mobile
-function adjustMobileAnimations() {
-    // Check if on mobile
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-        // Adjust animation thresholds for mobile
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px' });
-        
-        // Re-observe elements with adjusted threshold
-        document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Adjust scroll indicator position
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        if (scrollIndicator) {
-            scrollIndicator.style.marginLeft = '0';
-        }
-    }
-}
-
-// Responsive resize handler
-function handleResponsiveResize() {
-    adjustMobileAnimations();
-    
-    // Update layout classes based on viewport width
-    if (window.innerWidth <= 768) {
-        document.body.classList.add('mobile-view');
-    } else {
-        document.body.classList.remove('mobile-view');
-    }
-}
-
-// Initialize mobile enhancements
-document.addEventListener('DOMContentLoaded', () => {
-    enhanceMobileMenu();
-    handleResponsiveResize();
-    
-    // Listen for resize events
-    window.addEventListener('resize', handleResponsiveResize);
-    
-    // Initial animation check
-    window.setTimeout(adjustMobileAnimations, 100);
-});
-
-// Enhanced menu toggle functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sideMenu = document.querySelector('.side-menu');
-    const menuText = document.querySelector('.menu-text');
-    
-    // Toggle side menu when clicking menu icon or menu text
-    menuToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        sideMenu.classList.toggle('active');
-    });
-    
-    menuText.addEventListener('click', function(e) {
-        e.stopPropagation();
-        sideMenu.classList.toggle('active');
-    });
-    
-    // Close side menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (sideMenu.classList.contains('active') && 
-            !sideMenu.contains(e.target) && 
-            !menuToggle.contains(e.target) &&
-            !menuText.contains(e.target)) {
-            sideMenu.classList.remove('active');
-        }
-    });
-    
-    // Close menu when clicking a menu item
-    const navLinks = document.querySelectorAll('.side-menu-nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            sideMenu.classList.remove('active');
-        });
-    });
-    
-    // Fix animations for mobile
-    function handleScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
-        
-        animatedElements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Check if element is in viewport
-            if (elementPosition.top < windowHeight * 0.8) {
-                element.classList.add('visible');
-            }
-        });
-    }
-    
-    // Run animation check on page load and scroll
-    window.addEventListener('load', handleScrollAnimations);
-    window.addEventListener('scroll', handleScrollAnimations);
-    window.addEventListener('resize', handleScrollAnimations);
-    
-    // Handle responsive adjustments
-    function handleResponsiveLayout() {
-        const isMobile = window.innerWidth <= 768;
-        
-        // Adjust scroll indicator position for mobile
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        if (scrollIndicator) {
-            scrollIndicator.style.marginLeft = isMobile ? '0' : '250px';
-        }
-        
-        // Adjust menu positioning
-        if (isMobile) {
-            document.body.classList.add('mobile-view');
-        } else {
-            document.body.classList.remove('mobile-view');
-        }
-    }
-    
-    // Run responsive adjustments on page load and resize
-    handleResponsiveLayout();
-    window.addEventListener('resize', handleResponsiveLayout);
-});
-
-// Fix language dropdown for both desktop and mobile
-document.addEventListener('DOMContentLoaded', function() {
-    const languageDropdowns = document.querySelectorAll('.language-dropdown');
-    
-    languageDropdowns.forEach(dropdown => {
-        const selector = dropdown.querySelector('.language-selector');
-        const options = dropdown.querySelector('.language-options');
-        
-        // Toggle dropdown on click
-        selector.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdown.classList.toggle('active');
-        });
-        
-        // Add hover functionality for desktop
-        if (window.innerWidth > 768) {
-            dropdown.addEventListener('mouseenter', function() {
-                dropdown.classList.add('active');
-            });
-            
-            dropdown.addEventListener('mouseleave', function() {
-                dropdown.classList.remove('active');
-            });
-        }
-    });
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function() {
-        languageDropdowns.forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
-    });
-});
-
-
         </script>
     </body>
 </html>
