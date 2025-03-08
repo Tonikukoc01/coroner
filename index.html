@@ -858,6 +858,142 @@ body {
 }
 
 /* Mobile Responsive */
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Header adjustments */
+    #header {
+        left: 5%;
+        top: 40%;
+        width: 90%;
+    }
+    
+    #header h1 {
+        font-size: 3.5rem;
+    }
+    
+    .bold-toni {
+        font-size: 3.5rem;
+    }
+    
+    #header p {
+        font-size: 1.2rem;
+    }
+    
+    /* Logo and menu adjustments */
+    .logo {
+        top: 2rem;
+        left: 1.5rem;
+    }
+    
+    .logo-link {
+        font-size: 1.1rem;
+    }
+    
+    .menu-text {
+        font-size: 1rem;
+    }
+    
+    /* Navigation menu */
+    .nav-menu {
+        top: 2rem;
+        right: 1.5rem;
+    }
+    
+    /* Language dropdown */
+    .language-dropdown {
+        top: 2rem;
+        right: 4rem;
+    }
+    
+    /* Scroll indicator */
+    .scroll-indicator {
+        margin-left: 0;
+        margin-top: 3rem;
+    }
+    
+    .scroll-indicator .scroll-line {
+        height: 5cm;
+    }
+    
+    /* Side menu adjustments */
+    .side-menu-content {
+        padding-right: 2rem;
+        padding-top: 6rem;
+        width: 100%;
+    }
+    
+    .side-menu-nav ul {
+        gap: 2rem;
+    }
+    
+    .side-menu-nav a {
+        font-size: 1.5rem;
+    }
+    
+    /* About section */
+    .about-layout {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 4rem 1.5rem;
+    }
+    
+    .about-text-column {
+        max-width: 100%;
+    }
+    
+    .about-image-column {
+        width: 100%;
+    }
+    
+    .about-collaboration-image {
+        max-width: 100%;
+    }
+    
+    .about-header {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .about-subheader, .about-subheader1 {
+        font-size: 1.1rem;
+    }
+    
+    .horizontal-line {
+        width: 2.5cm;
+    }
+    
+    /* Footer adjustments */
+    footer {
+        padding: 1.5rem;
+    }
+    
+    .footer-content {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+    #header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .bold-toni {
+        font-size: 2.8rem;
+    }
+    
+    #header p {
+        font-size: 1rem;
+    }
+    
+    .collaboration-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px 20px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
         display: none;
@@ -1366,6 +1502,99 @@ function updateLanguageSelectors(langCode) {
 
 // Initialize mobile enhancements
 document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
+
+// Mobile Menu Enhancements
+function enhanceMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.querySelector('.side-menu');
+    const menuText = document.querySelector('.menu-text');
+    
+    // Toggle side menu when clicking on menu text or hamburger icon
+    menuText.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sideMenu.classList.toggle('active');
+    });
+    
+    // Ensure menu closes when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!sideMenu.contains(e.target) && 
+            !menuToggle.contains(e.target) && 
+            !menuText.contains(e.target)) {
+            sideMenu.classList.remove('active');
+        }
+    });
+    
+    // Close menu when clicking a link
+    const menuLinks = document.querySelectorAll('.side-menu-nav a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
+    });
+    
+    // Fix for language dropdown in mobile view
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    
+    // Make language selector work with touch
+    languageSelector.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('active');
+    });
+}
+
+// Adjust animations for mobile
+function adjustMobileAnimations() {
+    // Check if on mobile
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Adjust animation thresholds for mobile
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px' });
+        
+        // Re-observe elements with adjusted threshold
+        document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Adjust scroll indicator position
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.style.marginLeft = '0';
+        }
+    }
+}
+
+// Responsive resize handler
+function handleResponsiveResize() {
+    adjustMobileAnimations();
+    
+    // Update layout classes based on viewport width
+    if (window.innerWidth <= 768) {
+        document.body.classList.add('mobile-view');
+    } else {
+        document.body.classList.remove('mobile-view');
+    }
+}
+
+// Initialize mobile enhancements
+document.addEventListener('DOMContentLoaded', () => {
+    enhanceMobileMenu();
+    handleResponsiveResize();
+    
+    // Listen for resize events
+    window.addEventListener('resize', handleResponsiveResize);
+    
+    // Initial animation check
+    window.setTimeout(adjustMobileAnimations, 100);
+});
+
         </script>
     </body>
 </html>
