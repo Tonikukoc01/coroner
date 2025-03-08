@@ -951,16 +951,17 @@ body {
     .side-menu-content {
         padding-top: 5rem;
         padding-right: 2rem;
-        align-items: center;
+        align-items: flex-end;
         width: 100%;
     }
 
     .side-menu-nav ul {
-        align-items: center;
+        align-items: flex-end;
     }
 
     .side-menu-nav a {
         font-size: 1.5rem;
+        text-align: right;
     }
 
     /* Navigation adjustments */
@@ -971,6 +972,12 @@ body {
     /* Logo adjustments */
     .logo {
         left: 2rem;
+        font-size: 0;
+        background-image: url('/path-to-placeholder.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 40px; /* Adjust size as needed */
+        height: 40px;
     }
 
     /* Language dropdown adjustments */
@@ -983,6 +990,23 @@ body {
     footer {
         padding: 1.5rem;
     }
+
+   .side-menu.active::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+        z-index: 999; /* Below the side menu but above everything else */
+    }
+    .side-menu.active .side-menu-content {
+        position: relative;
+        z-index: 1000; /* Above the overlay */
+        background-color: #fff; /* Or whatever your menu background color is */
+    }
+
 }
 
 /* Ensure menu toggle stays visible */
@@ -1015,6 +1039,8 @@ body {
         padding: 5rem 2rem 2rem;
         height: 100vh;
         width: 250px;
+        align-items: right;
+        text-align: right;
     }
 
     .nav-menu.active ul li {
