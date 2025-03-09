@@ -1013,12 +1013,15 @@ body {
 #about {
     padding-top: 1.5rem; /* Reduce top padding of about section */
 }
-
+    .about-content {
+        gap: 2rem; /* Reduced from 3rem or 6rem */
+        padding-right: 0;
+    }
     .about-layout {
         flex-direction: column-reverse;
-        padding: 3rem 1.5rem;
+        padding: 2rem 1.5rem;
         align-items: center;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
     .about-text-column {
@@ -1067,7 +1070,8 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: left;
-        gap: 1.5rem;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
     }
 
 .content-text, 
@@ -1080,13 +1084,16 @@ body {
 
  .content-image {
         width: 100%;
-        max-width: 500px;
+        max-width: 450px;
         height: auto;
         order: -1; /* This ensures images appear above text */
+        display: block;
+        margin: 0 auto;
+
     }
        .section-content {
         width: 100%;
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
         margin: 0 auto;
     }
 
@@ -1278,6 +1285,13 @@ body {
     
     .about-header {
         font-size: 2rem;
+    }
+     .about-content {
+        gap: 1.5rem; /* Even smaller gap for tiny screens */
+    }
+    
+.content-block {
+        margin-bottom: 1rem; /* Smaller margin between blocks */
     }
     
     .horizontal-line {
