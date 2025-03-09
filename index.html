@@ -458,6 +458,13 @@ body {
 .logo-link:focus {
     outline: none;
 }
+
+.logo-image {
+    height: 25px;
+    width: auto;
+    display: none; /* Hidden on desktop */
+}
+
 /* Vertical Line Styling */
 .logo-line {
     width: 1px;         /* Width of the vertical line */
@@ -974,6 +981,16 @@ body {
         top: 2.3rem;
     }
 
+   .logo-link span {
+        display: none; /* Hide the text logo on mobile */
+    }
+    
+    .logo-image {
+        display: block; /* Show the image logo on mobile */
+        height: 25px;
+        margin-right: 0.5rem;
+    }
+
     /* Language dropdown adjustments */
     .language-dropdown {
         top: 2.1rem;
@@ -1049,13 +1066,17 @@ footer {
         </style>
     </head>
     <body class="is-preload">
-       <!-- Logo Section with Vertical Line -->
-    <div class="logo">
-       <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">tonikukoc.me</a>
+           <div class="logo">
+        <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
+            <span>tonikukoc.me</span>
+            <img src="assets/TK.png" alt="Logo" class="logo-image">
+        </a>
         <!-- Vertical Line -->
         <div class="logo-line"></div>
-<!-- "MENU" Text as Placeholder for Hamburger Menu -->
-    <div class="menu-text">contact</div>
+        <!-- "MENU" Text as Placeholder for Hamburger Menu -->
+        <div class="menu-text">contact</div>
+    </div>
+
 
     </div>
 <div class="side-menu">
