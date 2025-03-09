@@ -888,13 +888,23 @@ body {
         font-size: 1.2rem;
     }
 
+.remove-br {
+        display: none;
+    }
+
+
     .bold-toni {
         font-size: 3.5rem;
     } 
 
     .bold-split {
        font-size: 1.6rem;
+       color: inherit;
  } 
+
+ .bold-split::after {
+        content: "IT Manager";
+    }
 
     .scroll-indicator {
         margin-left: 0;
@@ -1147,14 +1157,17 @@ footer {
    <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-    <header id="header">
+  <header id="header">
         <h1>
-        Hi, my<br>
-        name is <span class="bold-toni">Toni.</span>
-  </h1>
-       <p>I am independent <span class="bold-split">IT operations manager</span>
-<br>from Split, Croatia.
-</p>
+            Hi, my<br class="remove-br">
+            name is <span class="bold-toni">Toni.</span>
+        </h1>
+        <p>
+            I am independent 
+            <span class="bold-split">IT operations manager</span>
+            <br class="remove-br">
+            from Split, Croatia.
+        </p>
  <!-- Scroll Indicator -->
             <div class="scroll-indicator">
                 <div class="scroll-text">SCROLL</div>
