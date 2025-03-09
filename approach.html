@@ -959,8 +959,6 @@ body {
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
-    /* Header section adjustments */
-
     #home {
      padding-bottom: 0rem;
  }
@@ -1029,6 +1027,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        padding: 0 1rem;
     }
 
     .about-header {
@@ -1054,11 +1053,41 @@ body {
 
     .about-image-column {
         width: 100%;
+        padding: 0 1rem;
     }
 
     .about-collaboration-image {
         max-width: 100%;
         height: auto;
+        margin: 0 auto;
+    }
+
+.content-block, 
+    .content-block.right-aligned {
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+        gap: 1.5rem;
+    }
+
+.content-text, 
+    .right-aligned .content-text {
+        width: 100%;
+        max-width: 100%;
+        text-align: left;
+        padding: 0 1rem;
+    }
+
+ .content-image {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        order: -1; /* This ensures images appear above text */
+    }
+       .section-content {
+        width: 100%;
+        padding: 2rem 1rem;
+        margin: 0 auto;
     }
 
     /* Menu toggle fixes */
@@ -1237,6 +1266,30 @@ body {
 .cv-close-button:hover {
     color: #ffffff;
 }
+
+@media screen and (max-width: 480px) {
+    #header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .bold-toni {
+        font-size: 2.8rem;
+    }
+    
+    .about-header {
+        font-size: 2rem;
+    }
+    
+    .horizontal-line {
+        width: 2.5cm;
+    }
+    
+    .about-subheader, 
+    .about-subheader1 {
+        font-size: 1rem;
+    }
+}
+
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
