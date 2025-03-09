@@ -953,6 +953,192 @@ body {
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
+    /* Header section adjustments */
+
+    #home {
+     padding-bottom: 0rem;
+ }
+    #header {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 2rem;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    #header h1 {
+        font-size: 3.5rem;
+        text-align: center;
+    }
+
+    #header p {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+.remove-br {
+        display: none;
+    }
+
+
+    .bold-toni {
+        font-size: 3.5rem;
+    } 
+
+    .bold-split {
+       font-size: 1.4rem;
+       color: inherit;
+ } 
+
+    .scroll-indicator {
+        margin-left: 0;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        align-self: center;
+    }
+
+    .scroll-indicator .scroll-line {
+        height: 6cm; /* Reduced height for mobile */
+    }
+
+    /* About section adjustments */
+ 
+#about {
+    padding-top: 1.5rem; /* Reduce top padding of about section */
+}
+
+    .about-layout {
+        flex-direction: column-reverse;
+        padding: 3rem 1.5rem;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .about-text-column {
+        max-width: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .about-header {
+        text-align: left;
+        font-size: 2.3rem;
+        margin-bottom: 2rem;
+    }
+
+    .horizontal-line {
+        margin: 0 0 1.5rem 0;   
+ }
+
+    .about-subheader, .about-subheader1 {
+        text-align: left;
+        max-width: 100%;
+    }
+
+    .collaboration-btn {
+        align-self: center;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .about-image-column {
+        width: 100%;
+    }
+
+    .about-collaboration-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Menu toggle fixes */
+    .menu-toggle {
+        display: flex !important;
+        position: fixed;
+        top: 3.7rem;
+        right: 4rem;
+        z-index: 1001;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .side-menu-content {
+        padding-top: 5rem;
+        padding-right: 2rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .side-menu-nav ul {
+        align-items: center;
+    }
+
+    .side-menu-nav a {
+        font-size: 1.5rem;
+    }
+
+    /* Navigation adjustments */
+    .nav-menu {
+        right: 4rem;
+    }
+
+    /* Logo adjustments */
+    .logo {
+        left: 2rem;
+        top: 2.3rem;
+    }
+
+   .logo-link span {
+        display: none; /* Hide the text logo on mobile */
+    }
+    
+    .logo-image {
+        display: block; /* Show the image logo on mobile */
+        height: 39px;
+    }
+
+.logo-line {
+    margin-left: 0;
+}
+
+.menu-text {
+    margin-left: 0.5rem;
+}
+
+    /* Language dropdown adjustments */
+    .language-dropdown {
+        top: 2.5rem;
+        right: 5.5rem;
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Ensure menu toggle stays visible */
+.menu-toggle {
+    visibility: visible !important;
+    opacity: 1 !important;
+    top: 2.7rem;
+    right: 2.5rem; /* Moved more to the right from 4rem */
+    z-index: 1001;
+    margin-left: 0;
+    margin-top: 0;
+    margin-left: 7rem;
+}
+
+/* Fix for side menu when closed */
+.side-menu:not(.active) + .menu-toggle {
+    display: flex !important;
+}
+
+@media screen and (max-width: 768px) {
     .nav-menu ul li:not(:last-child) {
         display: none;
     }
