@@ -436,6 +436,13 @@ body {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+.logo-image {
+    height: 25px;
+    width: auto;
+    display: none; /* Hidden on desktop */
+}
+
+
 /* Vertical Line Styling */
 .logo-line {
     width: 1px;         /* Width of the vertical line */
@@ -1259,7 +1266,10 @@ footer {
     <body class="is-preload">
        <!-- Logo Section with Vertical Line -->
     <div class="logo">
-        <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">tonikukoc.me</a>
+       <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
+            <span>tonikukoc.me</span>
+            <img src="assets/TK.png" alt="Logo" class="logo-image">
+        </a>
         <!-- Vertical Line -->
         <div class="logo-line"></div>
 <!-- "MENU" Text as Placeholder for Hamburger Menu -->
