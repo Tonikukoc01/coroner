@@ -1853,48 +1853,61 @@ function updateHeaderForMobile() {
 function updateContentForMobile() {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768;
+    console.log("Is mobile:", isMobile);
     
     // 1. Change "Tailored Technology Solutions" to "Tailored Solutions" on mobile
-    const solutionsHeader = document.querySelector(".block-2 .about-header");
+    const solutionsHeader = document.querySelector(".right-aligned.block-2 .about-header");
+    console.log("Solutions header found:", !!solutionsHeader);
     if (solutionsHeader) {
+        console.log("Current solutions header text:", solutionsHeader.textContent);
         solutionsHeader.textContent = isMobile ? "Tailored Solutions" : "Tailored Technology Solutions";
+        console.log("New solutions header text:", solutionsHeader.textContent);
     }
     
     // 2. Add break after "specific needs." and "system performance..."
-    const solutionsParagraph = document.querySelector(".block-2 .about-subheader1");
+    const solutionsParagraph = document.querySelector(".right-aligned.block-2 .about-subheader1:first-of-type");
+    console.log("Solutions paragraph found:", !!solutionsParagraph);
     if (solutionsParagraph) {
+        console.log("Current paragraph text:", solutionsParagraph.innerHTML);
         if (isMobile) {
-            // Replace the period after "specific needs" with period + line break
-            let newText = solutionsParagraph.innerHTML.replace(
-                "specific needs.", 
-                "specific needs.<br><br>"
-            );
+            // Store the original text content if not already stored
+            if (!solutionsParagraph.dataset.originalText) {
+                solutionsParagraph.dataset.originalText = solutionsParagraph.innerHTML;
+            }
             
-            // Replace the period after "system performance" with period + line break
-            newText = newText.replace(
-                "system performance.", 
-                "system performance.<br><br>"
-            );
-            
+            // Apply the mobile formatting
+            let newText = solutionsParagraph.dataset.originalText;
+            newText = newText.replace("specific needs.", "specific needs.<br><br>");
+            newText = newText.replace("system performance.", "system performance.<br><br>");
             solutionsParagraph.innerHTML = newText;
-        } else {
-            // Restore original text without breaks for desktop
-            solutionsParagraph.innerHTML = "I focus on selecting, implementing, and maintaining technology solutions that fit your team's specific needs. This involves choosing the right infrastructure, integrating third-party tools, automating tasks, and improving system performance.";
+        } else if (solutionsParagraph.dataset.originalText) {
+            // Restore original text for desktop
+            solutionsParagraph.innerHTML = solutionsParagraph.dataset.originalText;
         }
+        console.log("New paragraph text:", solutionsParagraph.innerHTML);
     }
     
     // 3. Change "Let's Build Something Together" to "Let's build together" on mobile
     const ctaHeader = document.querySelector("section[style*='text-align: center'] .about-header");
+    console.log("CTA header found:", !!ctaHeader);
     if (ctaHeader) {
+        console.log("Current CTA header text:", ctaHeader.textContent);
         ctaHeader.textContent = isMobile ? "Let's build together" : "Let's Build Something Together";
+        console.log("New CTA header text:", ctaHeader.textContent);
     }
 }
 
-
 // Run on page load
-document.addEventListener("DOMContentLoaded", updateHeaderForMobile);
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM content loaded, running updateContentForMobile");
+    updateContentForMobile();
+});
+
 // Run on window resize
-window.addEventListener("resize", updateHeaderForMobile);
+window.addEventListener("resize", function() {
+    console.log("Window resized, running updateContentForMobile");
+    updateContentForMobile();
+});
         </script>
     </body>
 </html>
