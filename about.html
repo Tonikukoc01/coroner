@@ -904,6 +904,9 @@ body {
     .about-content {
         gap: 2rem; /* Reduced from 3rem or 6rem */
         padding-right: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 0.5rem;
     }
 
 .about-content .content-block {
@@ -941,10 +944,12 @@ body {
     .about-subheader, .about-subheader1 {
         text-align: left;
         max-width: 100%;
+        font-size: 1rem;
     }
 
  .about-subheader {
         margin-bottom: 0.5rem; /* Reduced from 1rem */
+     
     }
 
      .about-subheader1 {
@@ -981,7 +986,12 @@ body {
         text-align: left;
         gap: 1rem;
         margin-bottom: 1.5rem;
-        padding: 2rem;
+        padding: 2rem 1 rem;
+        width: 100%;
+        max-width: 100%;
+
+
+
     }
 
    .content-block.right-aligned .content-image {
@@ -999,12 +1009,20 @@ body {
 
  .content-image {
         width: 100%;
-        max-width: 450px;
+        max-width: 100%;
         height: auto;
         order: -1; /* This ensures images appear above text */
         display: block;
-        margin: 0 auto;
+        margin: 0;
+     
 
+    }
+
+.section {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
        .section-content {
         width: 100%;
