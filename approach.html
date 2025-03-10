@@ -949,6 +949,15 @@ body {
     animation: none;
 }
 
+.desktop-text {
+    display: block;
+}
+.mobile-text {
+    display: none;
+}
+
+
+
 .content-block:nth-child(2) .content-image.visible {
     animation-delay: 0s;
 }
@@ -1200,6 +1209,12 @@ body {
     margin-top: 0;
     margin-left: 7rem;
 }
+    .desktop-text {
+        display: none;
+    }
+    .mobile-text {
+        display: block;
+    }
 
 /* Fix for side menu when closed */
 .side-menu:not(.active) + .menu-toggle {
@@ -1419,12 +1434,16 @@ footer {
         Approach to <span class="bold-toni">work</span>. 
   </h1>
 <div class="horizontal-line-header"></div>
-       <p> I believe it’s all about keeping things clear, practical, and adaptable.
-<br> Whether it’s improving daily operations or tackling bigger challenges,  
-<br> I focus on understanding <span class="bold-split"> real needs </span> of your teams.
-<br> By breaking down complex ideas into manageable steps, I ensure that
-<br> your company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.
-</p>
+       <p class="desktop-text"> 
+        I believe it's all about keeping things clear, practical, and adaptable.
+        <br> Whether it's improving daily operations or tackling bigger challenges,  
+        <br> I focus on understanding <span class="bold-split">real needs</span> of your teams.
+        <br> By breaking down complex ideas into manageable steps, I ensure that
+        <br> your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.
+    </p>
+    <p class="mobile-text">
+        I believe it's all about keeping things clear, practical, and adaptable. Whether it's improving daily operations or tackling bigger challenges, I focus on understanding <span class="bold-split">real needs</span> of your teams. By breaking down complex ideas into manageable steps, I ensure that your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.
+    </p>
  <!-- Scroll Indicator -->
             <div class="scroll-indicator">
                 <div class="scroll-text">SCROLL</div>
