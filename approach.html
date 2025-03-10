@@ -1926,6 +1926,28 @@ window.addEventListener("resize", function() {
     console.log("Window resized, running updateContentForMobile");
     updateContentForMobile();
 });
+
+function updateHeaderForMobile() {
+    const headerParagraph = document.querySelector("#header p");
+
+    if (!headerParagraph) return;
+
+    if (window.innerWidth <= 768) {
+        // Remove line breaks for mobile
+        headerParagraph.innerHTML = headerParagraph.innerHTML.replace(/<br\s*\/?>/g, ' ');
+    } else {
+        // Restore original formatting for desktop
+        headerParagraph.innerHTML = `I believe it’s all about keeping things clear, practical, and adaptable.<br> 
+        Whether it’s improving daily operations or tackling bigger challenges,<br> 
+        I focus on understanding <span class="bold-split">real needs</span> of your teams.<br> 
+        By breaking down complex ideas into manageable steps, I ensure that<br> 
+        your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.`;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", updateHeaderForMobile);
+window.addEventListener("resize", updateHeaderForMobile);
+
         </script>
     </body>
 </html>
