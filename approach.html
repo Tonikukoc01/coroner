@@ -1839,16 +1839,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function updateHeaderForMobile() {
-    const headerParagraph = document.querySelector("#header p");
+    const headerParagraph = document.querySelector("h1 + .horizontal-line-header + p"); // Adjusted selector
     
+    if (!headerParagraph) {
+        console.error("Header paragraph not found.");
+        return;
+    }
+
     if (window.innerWidth <= 768) {
-        // Mobile version - remove line breaks and set as a single paragraph
         headerParagraph.innerHTML = 'By breaking down complex ideas into manageable steps, I ensure that your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.';
     } else {
-        // Desktop version - with line breaks
         headerParagraph.innerHTML = 'I believe it\'s all about keeping things clear, practical, and adaptable.<br> Whether it\'s improving daily operations or tackling bigger challenges,<br> I focus on understanding <span class="bold-split">real needs</span> of your teams.<br> By breaking down complex ideas into manageable steps, I ensure that<br> your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.';
     }
 }
+
+// Ensure it runs on load and resize
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("DOM content loaded, running updateHeaderForMobile");
+    updateHeaderForMobile();
+});
+
+window.addEventListener("resize", function () {
+    console.log("Window resized, running updateHeaderForMobile");
+    updateHeaderForMobile();
+});
+
 
 function updateContentForMobile() {
     // Check if we're on mobile
