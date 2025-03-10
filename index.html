@@ -980,8 +980,16 @@ body {
     }
 
     .side-menu {
-        /* Keep the same background color and opacity */
-        background: rgba(26, 43, 60, 0.75);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 43, 60, 0.75); /* Same as desktop */
+        z-index: 1000;
+        opacity: 0; /* Start with transparency */
+        pointer-events: none;
+        transition: opacity 0.3s ease;
     }
      .side-menu-nav {
         margin-top: 1rem; /* Slightly reduced margin for mobile */
@@ -995,7 +1003,7 @@ body {
     }
 
     .side-menu-nav ul {
-        align-items: center;
+        align-items: right;
         gap: 2rem;
     }
 
@@ -1003,7 +1011,7 @@ body {
         font-size: 1.5rem;
     }
 
-.side-menu-social {
+    .side-menu-social {
         gap: 1.5rem;
         justify-content: center; /* Center social icons */
         margin-top: 2rem;
