@@ -1192,50 +1192,46 @@ footer {
     </ul>
 </nav>
 
-   <!-- Home Section -->
+<!-- Home Section -->
 <section id="home">
     <!-- Header -->
   <header id="header">
-        <h1>
+        <h1 data-i18n="greeting">
             Hi, my<br class="remove-br">
             name is <span class="bold-toni">Toni.</span>
         </h1>
-  <p>
+  <p data-i18n="profession">
     I am independent <span class="bold-split">IT operations manager</span>
     <br class="remove-br"> from Split, Croatia.
 </p>
  <!-- Scroll Indicator -->
             <div class="scroll-indicator">
-                <div class="scroll-text">SCROLL</div>
+                <div class="scroll-text" data-i18n="scroll">SCROLL</div>
                 <div class="scroll-line"></div>
     </header>
 </section>
-
 <!-- About Section -->
 <section id="about" class="section content-section">
     <div class="section-content about-layout">
         <div class="about-text-column">
-            <h1 class="about-header">let's collaborate</h1>
+            <h1 class="about-header" data-i18n="aboutHeader">let's collaborate</h1>
         <div class="horizontal-line"></div>
-
-            <p class="about-subheader">
+            <p class="about-subheader" data-i18n="aboutText">
   From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.
 </p>
-<p class="about-subheader1">
+<p class="about-subheader1" data-i18n="aboutText2">
   The greater the challenge, the more rewarding the solution!
 </p>
-
             <!-- Button -->
-                        <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Approach to work</a>
-
+            <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn" data-i18n="approachBtn">Approach to work</a>
         </div>
         <div class="about-image-column">
-            <img src="assets/output-onlinepngtools.png"" alt="Collaboration" class="about-collaboration-image">
+            <img src="assets/output-onlinepngtools.png" alt="Collaboration" class="about-collaboration-image">
         </div>
     </div>
 </section>
 <footer>
-    <div class="footer-content">Toni Kukoc © MMXXV</div>
+    <div class="footer-content" data-i18n="footer">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
 // Get the scroll indicator line element
@@ -1610,6 +1606,126 @@ document.addEventListener("DOMContentLoaded", updateTextForMobile);
 // Run on window resize (so it updates dynamically)
 window.addEventListener("resize", updateTextForMobile);
 
+// Add this to your JavaScript file
+const translations = {
+  'en': {
+    'greeting': "Hi, my name is <span class='bold-toni'>Toni.</span>",
+    'profession': "I am independent <span class='bold-split'>IT operations manager</span><br class='remove-br'> from Split, Croatia.",
+    'scroll': "SCROLL",
+    'aboutHeader': "let's collaborate",
+    'aboutText': "From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.",
+    'aboutText2': "The greater the challenge, the more rewarding the solution!",
+    'approachBtn': "Approach to work",
+    'footer': "Toni Kukoc © MMXXV"
+  },
+  'fr': {
+    'greeting': "Bonjour, je m'appelle <span class='bold-toni'>Toni.</span>",
+    'profession': "Je suis <span class='bold-split'>responsable des opérations informatiques</span><br class='remove-br'> indépendant de Split, Croatie.",
+    'scroll': "DÉFILER",
+    'aboutHeader': "collaborons ensemble",
+    'aboutText': "De la maintenance des performances de l'infrastructure à la gestion des ressources cloud; du support informatique quotidien à l'adaptation pour la croissance - j'aide les entreprises à maintenir leur infrastructure informatique sécurisée, efficace et adaptable.",
+    'aboutText2': "Plus le défi est grand, plus la solution est gratifiante!",
+    'approachBtn': "Approche de travail",
+    'footer': "Toni Kukoc © MMXXV"
+  },
+  'hr': {
+    'greeting': "Bok, moje ime je <span class='bold-toni'>Toni.</span>",
+    'profession': "Ja sam nezavisni <span class='bold-split'>IT operations manager</span><br class='remove-br'> iz Splita, Hrvatska.",
+    'scroll': "SKROLAJ",
+    'aboutHeader': "surađujmo",
+    'aboutText': "Od održavanja performansi infrastrukture do upravljanja cloud resursima; od svakodnevne IT podrške do skaliranja za rast - pomažem tvrtkama održavati njihovu IT infrastrukturu sigurnom, učinkovitom i prilagodljivom.",
+    'aboutText2': "Što veći izazov, to zadovoljavajuće rješenje!",
+    'approachBtn': "Pristup radu",
+    'footer': "Toni Kukoc © MMXXV"
+  }
+};
+
+// Add this function to your JavaScript
+function changeLanguage(langCode) {
+  // Save the selected language in localStorage
+  localStorage.setItem('selectedLanguage', langCode);
+  
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (translations[langCode] && translations[langCode][key]) {
+      element.innerHTML = translations[langCode][key];
+    }
+  });
+  
+  // Special handling for mobile text adjustment
+  if (langCode === 'en') {
+    updateTextForMobile();
+  } else if (langCode === 'fr') {
+    document.querySelector(".bold-split").textContent = window.innerWidth <= 768 ? 
+      "Responsable IT" : "responsable des opérations informatiques";
+  } else if (langCode === 'hr') {
+    document.querySelector(".bold-split").textContent = window.innerWidth <= 768 ? 
+      "IT Manager" : "IT operations manager";
+  }
+}
+
+// Modify your existing language option click handlers
+function attachLanguageOptionListeners() {
+  const languageOptionEls = document.querySelectorAll('.language-option');
+  
+  languageOptionEls.forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const selectedLang = option.dataset.lang;
+      
+      // Update selector UI
+      const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+      const selectedCode = option.querySelector('.language-code').textContent;
+
+      // Update all language selectors
+      document.querySelectorAll('.language-selector').forEach(selector => {
+        selector.innerHTML = '';
+        selector.appendChild(selectedFlag.cloneNode(true));
+        selector.dataset.currentLang = selectedLang;
+        
+        const codeSpan = document.createElement('span');
+        codeSpan.className = 'language-code';
+        codeSpan.textContent = selectedCode;
+        selector.appendChild(codeSpan);
+      });
+
+      // Apply language change
+      changeLanguage(selectedLang);
+      
+      // Update available options
+      updateLanguageOptions(selectedLang);
+
+      // Close dropdown
+      document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    });
+  });
+}
+
+// Initialize with saved language or default
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+  changeLanguage(savedLanguage);
+  
+  // Make sure the language selector shows the correct language
+  document.querySelectorAll('.language-selector').forEach(selector => {
+    selector.dataset.currentLang = savedLanguage;
+    const langCode = selector.querySelector('.language-code');
+    if (langCode) {
+      langCode.textContent = languages[savedLanguage].code;
+    }
+    const langFlag = selector.querySelector('.language-flag');
+    if (langFlag) {
+      langFlag.src = languages[savedLanguage].flag;
+      langFlag.alt = `${languages[savedLanguage].name} Flag`;
+    }
+  });
+  
+  // Update options for the correct language
+  updateLanguageOptions(savedLanguage);
+});
         </script>
     </body>
 </html>
