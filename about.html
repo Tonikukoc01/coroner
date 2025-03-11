@@ -978,6 +978,79 @@ body {
         margin: 0 auto;
     }
 
+   .side-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 43, 60, 0.75); /* Same as desktop */
+backdrop-filter: blur(5px); /* Add blur effect */
+        -webkit-backdrop-filter: blur(5px); /* For Safari support */
+        z-index: 1000;
+        opacity: 0; /* Start with transparency */
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+     .side-menu-nav {
+        margin-top: 1rem; /* Slightly reduced margin for mobile */
+    }
+    .side-menu-content {
+        padding-top: 6rem;
+        padding-right: 2rem;
+        align-items: flex-end;
+        width: 100%;
+        text-align: right;
+    }
+
+    .side-menu-nav ul {
+        align-items: right;
+        gap: 2.5rem;
+    }
+
+    .side-menu-nav a {
+        font-size: 1.5rem;
+    }
+
+    .side-menu-social {
+        gap: 1.5rem;
+        justify-content: center; /* Center social icons */
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+ .horizontal-line-side-menu {
+        width: 60%; /* Use percentage instead of cm for responsiveness */
+        margin-bottom: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+@media screen and (max-width: 768px) {
+    .nav-menu ul li:not(:last-child) {
+        display: none;
+    }
+
+    .nav-menu.active ul {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 5rem 2rem 2rem;
+        height: 100vh;
+        width: 250px;
+    }
+
+    .nav-menu.active ul li {
+        display: block;
+    }
+
+    .content-section {
+        padding: 3rem 1rem;
+        
+    }
+}
+
 .content-block {
         flex-direction: column;
         gap: 2rem;
@@ -1290,7 +1363,7 @@ footer {
     <div class="logo">
        <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
             <span>tonikukoc.me</span>
-            <img src="assets/TK.png" alt="Logo" class="logo-image">
+            <img src="assets/TK-new.png" alt="Logo" class="logo-image">
         </a>
         <!-- Vertical Line -->
         <div class="logo-line"></div>
