@@ -1609,7 +1609,205 @@ document.addEventListener("DOMContentLoaded", updateTextForMobile);
 
 // Run on window resize (so it updates dynamically)
 window.addEventListener("resize", updateTextForMobile);
+// Improved Language Switcher Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Define languages and their configurations
+    const languages = {
+        'en': { 
+            code: 'EN', 
+            name: 'English', 
+            flag: './assets/UK.png',
+            alternatives: ['fr', 'hr'] 
+        },
+        'fr': { 
+            code: 'FR', 
+            name: 'French', 
+            flag: './assets/FR.png',
+            alternatives: ['en', 'hr'] 
+        },
+        'hr': { 
+            code: 'HR', 
+            name: 'Croatian', 
+            flag: './assets/HR.png',
+            alternatives: ['en', 'fr'] 
+        }
+    };
 
+    // Translations for all website content
+    const translations = {
+        'en': {
+            'home': 'home',
+            'approach': 'approach to collaboration',
+            'about': 'about my life',
+            'contact': 'contact',
+            'hi-my-name': 'Hi, my',
+            'name-is': 'name is',
+            'toni': 'Toni.',
+            'i-am': 'I am independent',
+            'it-manager': 'IT operations manager',
+            'from-split': 'from Split, Croatia.',
+            'scroll': 'SCROLL',
+            'lets-collaborate': 'let\'s collaborate',
+            'about-text-1': 'From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.',
+            'about-text-2': 'The greater the challenge, the more rewarding the solution!',
+            'approach-btn': 'Approach to work',
+            'footer-copyright': 'Toni Kukoc © MMXXV'
+        },
+        'hr': {
+            'home': 'početna',
+            'approach': 'pristup suradnji',
+            'about': 'o mom životu',
+            'contact': 'kontakt',
+            'hi-my-name': 'Bok,',
+            'name-is': 'zovem se',
+            'toni': 'Toni.',
+            'i-am': 'Ja sam neovisni',
+            'it-manager': 'IT operativni menadžer',
+            'from-split': 'iz Splita, Hrvatska.',
+            'scroll': 'POMAKNI',
+            'lets-collaborate': 'surađujmo',
+            'about-text-1': 'Od održavanja performansi infrastrukture do upravljanja resursima u oblaku; od svakodnevne IT podrške do skaliranja za rast - pomažem tvrtkama održavati njihovu IT infrastrukturu sigurnom, učinkovitom i prilagodljivom.',
+            'about-text-2': 'Što je veći izazov, to je rješenje nagrađenije!',
+            'approach-btn': 'Pristup radu',
+            'footer-copyright': 'Toni Kukoč © MMXXV'
+        },
+        'fr': {
+            'home': 'accueil',
+            'approach': 'approche de collaboration',
+            'about': 'à propos de ma vie',
+            'contact': 'contact',
+            'hi-my-name': 'Bonjour,',
+            'name-is': 'je m\'appelle',
+            'toni': 'Toni.',
+            'i-am': 'Je suis un',
+            'it-manager': 'responsable des opérations informatiques',
+            'from-split': 'de Split, Croatie.',
+            'scroll': 'DÉFILER',
+            'lets-collaborate': 'collaborons',
+            'about-text-1': 'De la maintenance des performances de l\'infrastructure à la gestion des ressources cloud; du support informatique quotidien à la mise à l\'échelle pour la croissance - j\'aide les entreprises à maintenir leur infrastructure informatique sécurisée, efficace et adaptable.',
+            'about-text-2': 'Plus le défi est grand, plus la solution est gratifiante!',
+            'approach-btn': 'Approche de travail',
+            'footer-copyright': 'Toni Kukoc © MMXXV'
+        }
+    };
+
+    // Function to change language
+    function changeLanguage(langCode) {
+        console.log('Changing language to:', langCode);
+        
+        // Add the data-lang attribute to the html tag for CSS styling if needed
+        document.documentElement.setAttribute('data-lang', langCode);
+        
+        // Save language preference
+        localStorage.setItem('preferredLanguage', langCode);
+        
+        try {
+            // Update all text elements with new language
+            document.querySelector('.menu-text').textContent = translations[langCode]['contact'];
+            
+            // Update navigation
+            const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+            navItems[0].textContent = translations[langCode]['home'];
+            navItems[1].textContent = translations[langCode]['approach'];
+            navItems[2].textContent = translations[langCode]['about'];
+            
+            // Update header content
+            const headerH1 = document.querySelector('#header h1');
+            headerH1.innerHTML = `${translations[langCode]['hi-my-name']}<br class="remove-br"> ${translations[langCode]['name-is']} <span class="bold-toni">${translations[langCode]['toni']}</span>`;
+            
+            // Update paragraph with job title
+            const jobParagraph = document.querySelector('#header p');
+            jobParagraph.innerHTML = `${translations[langCode]['i-am']} <span class="bold-split">${translations[langCode]['it-manager']}</span> <br class="remove-br"> ${translations[langCode]['from-split']}`;
+            
+            // Update scroll text
+            document.querySelector('.scroll-text').textContent = translations[langCode]['scroll'];
+            
+            // Update about section
+            document.querySelector('.about-header').textContent = translations[langCode]['lets-collaborate'];
+            document.querySelector('.about-subheader').textContent = translations[langCode]['about-text-1'];
+            document.querySelector('.about-subheader1').textContent = translations[langCode]['about-text-2'];
+            document.querySelector('.collaboration-btn').textContent = translations[langCode]['approach-btn'];
+            
+            // Update footer
+            document.querySelector('.footer-content').textContent = translations[langCode]['footer-copyright'];
+            
+        } catch (error) {
+            console.error('Error updating language:', error);
+        }
+        
+        // Also update the mobile text adjustment
+        updateTextForMobile(langCode);
+    }
+
+    // Update text based on screen size and selected language
+    function updateTextForMobile(currentLang) {
+        const boldSplit = document.querySelector(".bold-split");
+        if (!boldSplit) return;
+        
+        if (window.innerWidth <= 768) {
+            // Use shortened version for mobile
+            if (currentLang === 'en') {
+                boldSplit.textContent = "IT Manager";
+            } else if (currentLang === 'hr') {
+                boldSplit.textContent = "IT menadžer";
+            } else if (currentLang === 'fr') {
+                boldSplit.textContent = "responsable IT";
+            }
+        } else {
+            // Use full version for desktop
+            boldSplit.textContent = translations[currentLang]['it-manager'];
+        }
+    }
+
+    // Fix dropdown hover functionality
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    
+    // Make sure the hover/click events are properly attached
+    languageSelector.addEventListener('mouseenter', function() {
+        languageDropdown.classList.add('active');
+    });
+    
+    languageDropdown.addEventListener('mouseleave', function() {
+        languageDropdown.classList.remove('active');
+    });
+    
+    // Explicitly handle click for mobile devices
+    languageSelector.addEventListener('click', function(e) {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('active');
+    });
+
+    // Add language switching functionality to all language options
+    const allLanguageOptions = document.querySelectorAll('.language-option');
+    
+    allLanguageOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const selectedLang = this.getAttribute('data-lang');
+            console.log('Language option clicked:', selectedLang);
+            
+            if (selectedLang && translations[selectedLang]) {
+                changeLanguage(selectedLang);
+                languageDropdown.classList.remove('active');
+            }
+        });
+    });
+
+    // Initialize with either saved preference or English
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage && translations[savedLanguage]) {
+        changeLanguage(savedLanguage);
+    } else {
+        changeLanguage('en');
+    }
+
+    // Run text update on window resize
+    window.addEventListener("resize", function() {
+        const currentLang = document.documentElement.getAttribute('data-lang') || 'en';
+        updateTextForMobile(currentLang);
+    });
+});
         </script>
     </body>
 </html>
