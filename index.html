@@ -1406,7 +1406,16 @@ document.addEventListener('click', (e) => {
     const languageSelector = languageDropdown.querySelector('.language-selector');
     const languageOptions = languageDropdown.querySelector('.language-options');
 
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
+    });
 
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
+        languageDropdown.classList.remove('active');
+    });
+});
     // Initial setup
             updateLanguageOptions('en');
 
@@ -1849,29 +1858,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const languageDropdown = document.querySelector('.language-dropdown');
-    const languageSelector = languageDropdown.querySelector('.language-selector');
-    const languageOptions = languageDropdown.querySelector('.language-options');
-
-    // Click event to open or close the dropdown when clicking inside the whole container
-    languageDropdown.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents the click event from propagating to the document
-        languageDropdown.classList.toggle('active'); // Toggle the visibility of the dropdown
-    });
-
-    // Close dropdown when clicking outside the container
-    document.addEventListener('click', (e) => {
-        if (!languageDropdown.contains(e.target)) {
-            languageDropdown.classList.remove('active'); // Close the dropdown if clicked outside
-        }
-    });
-
-    // Initial setup to update language options
-    updateLanguageOptions('en');
-});
-
         </script>
     </body>
 </html>
