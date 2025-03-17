@@ -1858,20 +1858,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
-
-  // Click event to open or close the dropdown when clicking inside the whole container
-    languageDropdown.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents the click event from propagating to the document
-        languageDropdown.classList.toggle('active'); // Toggle the visibility of the dropdown
-    });
-
-    // Close dropdown when clicking outside the container
-    document.addEventListener('click', (e) => {
-        if (!languageDropdown.contains(e.target)) {
-            languageDropdown.classList.remove('active'); // Close the dropdown if clicked outside
-        }
-    });
-
         </script>
     </body>
 </html>
