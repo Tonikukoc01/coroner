@@ -1653,13 +1653,23 @@ document.querySelectorAll('.content-block').forEach(block => {
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
 
-menuToggle.addEventListener('click', () => {
+// Toggle menu when clicking the menu button
+menuToggle.addEventListener('click', (e) => {
   sideMenu.classList.toggle('active');
+  e.stopPropagation(); // Prevent the event from propagating to document click handler
 });
 
 // Close side menu when clicking outside
 document.addEventListener('click', (e) => {
+  console.log('Document click detected:', e.target);
+
+  // Check if the click is outside the side menu and menu toggle
   if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+
+  // If the click is inside the side menu (anywhere in the active side menu), close the menu
+  if (sideMenu.classList.contains('active') && sideMenu.contains(e.target)) {
     sideMenu.classList.remove('active');
   }
 });
