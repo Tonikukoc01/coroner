@@ -1299,12 +1299,15 @@ window.onload = function() {
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
 
-menuToggle.addEventListener('click', () => {
+menuToggle.addEventListener('click', (e) => {
   sideMenu.classList.toggle('active');
+  e.stopPropagation(); // Prevent event from propagating to document click handler
 });
 
 // Close side menu when clicking outside
 document.addEventListener('click', (e) => {
+  console.log('Document click detected:', e.target); // Debugging log to see the event
+
   if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
     sideMenu.classList.remove('active');
   }
