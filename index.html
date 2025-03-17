@@ -1303,7 +1303,12 @@ menuToggle.addEventListener('click', () => {
   sideMenu.classList.toggle('active');
 });
 
-
+// Close side menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+});
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
@@ -1396,9 +1401,37 @@ menuToggle.addEventListener('click', () => {
                 });
             }
 
+            document.addEventListener('DOMContentLoaded', () => {
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    const languageOptions = languageDropdown.querySelector('.language-options');
+
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
+    });
+
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
+        languageDropdown.classList.remove('active');
+    });
+});
     // Initial setup
             updateLanguageOptions('en');
 
+    // Toggle dropdown
+            languageSelector.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('active');
+            });
+
+    // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+        });
 
 const observerOptions = {
     threshold: 0.3,
@@ -1572,6 +1605,27 @@ document.addEventListener("DOMContentLoaded", updateTextForMobile);
 
 // Run on window resize (so it updates dynamically)
 window.addEventListener("resize", updateTextForMobile);
+// Language configuration
+const languages = {
+    'en': { 
+        code: 'EN', 
+        name: 'English', 
+        flag: './assets/UK.png',
+        alternatives: ['fr', 'hr'] 
+    },
+    'fr': { 
+        code: 'FR', 
+        name: 'French', 
+        flag: './assets/FR.png',
+        alternatives: ['en', 'hr'] 
+    },
+    'hr': { 
+        code: 'HR', 
+        name: 'Croatian', 
+        flag: './assets/HR.png',
+        alternatives: ['en', 'fr'] 
+    }
+};
 
 // Translations object for all text content
 const translations = {
@@ -1804,57 +1858,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
-// Fix for side menu to ensure it closes when clicking elsewhere on desktop
-document.addEventListener('click', (e) => {
-  const sideMenu = document.querySelector('.side-menu');
-  const menuToggle = document.querySelector('.menu-toggle');
-  
-  // Make sure we check if the menu is active before trying to close it
-  if (sideMenu && sideMenu.classList.contains('active')) {
-    // Check if click is outside both the menu and toggle button
-    if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-      sideMenu.classList.remove('active');
-    }
-  }
-});
-
-// Fix for language dropdown to make the entire container responsive
-document.addEventListener('DOMContentLoaded', () => {
-  const languageDropdowns = document.querySelectorAll('.language-dropdown');
-  
-  languageDropdowns.forEach(dropdown => {
-    // Make the entire dropdown area responsive to hovering
-    dropdown.addEventListener('mouseenter', () => {
-      dropdown.classList.add('active');
-    });
-    
-    dropdown.addEventListener('mouseleave', () => {
-      dropdown.classList.remove('active');
-    });
-    
-    // Ensure clicking anywhere in the dropdown container toggles it
-    dropdown.addEventListener('click', (e) => {
-      e.stopPropagation();
-      
-      // If clicking on an option, handle the language change
-      if (e.target.closest('.language-option')) {
-        const option = e.target.closest('.language-option');
-        const selectedLang = option.dataset.lang;
-        
-        // Handle language change (your existing code)
-        // ...
-        
-        // Then close the dropdown
-        dropdown.classList.remove('active');
-      } else if (!e.target.closest('.language-options')) {
-        // If not clicking on options list, toggle dropdown
-        dropdown.classList.toggle('active');
-      }
-    });
-  });
-});
-
-
         </script>
     </body>
 </html>
