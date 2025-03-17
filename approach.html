@@ -1586,7 +1586,174 @@ window.onload = function() {
     navMenu.classList.toggle('active');
   });
 
+// Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target)) {
+      navMenu.classList.remove('active');
+    }
+  });
 
+// Smooth scroll for navigation
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      navMenu.classList.remove('active');
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+// Section visibility animations based on scroll position
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    document.querySelectorAll('.section-content').forEach(section => {
+      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
+        section.classList.add('visible');
+      } else {
+        section.classList.remove('visible');
+      }
+    });
+  });
+}
+
+// Toggle side menu
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.querySelector('.side-menu');
+
+menuToggle.addEventListener('click', () => {
+  sideMenu.classList.toggle('active');
+});
+
+// Close side menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+});
+// Language Dropdown Functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Language configuration
+         const languages = {
+    'en': { 
+        code: 'EN', 
+        name: 'English', 
+        flag: './assets/UK.png', // Update with the actual path to your UK flag
+        alternatives: ['fr', 'hr'] 
+    },
+    'fr': { 
+        code: 'FR', 
+        name: 'French', 
+        flag: './assets/FR.png', // Update with the actual path to your French flag
+        alternatives: ['en', 'hr'] 
+    },
+    'hr': { 
+        code: 'HR', 
+        name: 'Croatian', 
+        flag: './assets/HR.png', // Update with the actual path to your Croatian flag
+        alternatives: ['en', 'fr'] 
+    }
+};
+
+            const languageDropdown = document.querySelector('.language-dropdown');
+            const languageSelector = languageDropdown.querySelector('.language-selector');
+            const languageOptions = languageDropdown.querySelector('.language-options');
+
+    // Function to update language options
+            function updateLanguageOptions(currentLang) {
+    // Clear existing options
+                languageOptions.innerHTML = '';
+
+    // Get alternative languages
+                const alternativeLangs = languages[currentLang].alternatives;
+
+    // Create new language options
+                alternativeLangs.forEach(langCode => {
+                    const option = document.createElement('div');
+                    option.className = 'language-option';
+                    option.dataset.lang = langCode;
+
+                    const flag = document.createElement('img');
+                    flag.src = languages[langCode].flag;
+                    flag.alt = `${languages[langCode].name} Flag`;
+                    flag.className = 'language-flag';
+                    flag.dataset.lang = langCode;
+
+                    const code = document.createElement('span');
+                    code.className = 'language-code';
+                    code.textContent = languages[langCode].code;
+
+                    option.appendChild(flag);
+                    option.appendChild(code);
+                    languageOptions.appendChild(option);
+                });
+
+    // Re-attach event listeners
+                attachLanguageOptionListeners();
+            }
+
+    // Attach event listeners to language options
+            function attachLanguageOptionListeners() {
+                const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+
+                languageOptionEls.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const selectedLang = option.dataset.lang;
+
+    // Update selector
+                        const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+                        const selectedCode = option.querySelector('.language-code').textContent;
+
+                        languageSelector.innerHTML = '';
+                        languageSelector.appendChild(selectedFlag);
+                        languageSelector.dataset.currentLang = selectedLang;
+
+                        const codeSpan = document.createElement('span');
+                        codeSpan.className = 'language-code';
+                        codeSpan.textContent = selectedCode;
+                        languageSelector.appendChild(codeSpan);
+
+    // Update available options
+                        updateLanguageOptions(selectedLang);
+
+    // Close dropdown
+                        languageDropdown.classList.remove('active');
+                    });
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    const languageOptions = languageDropdown.querySelector('.language-options');
+
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
+    });
+
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
+        languageDropdown.classList.remove('active');
+    });
+});
+    // Initial setup
+            updateLanguageOptions('en');
+
+    // Toggle dropdown
+            languageSelector.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('active');
+            });
+
+    // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
+            });
+        });
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -1791,297 +1958,6 @@ window.addEventListener("resize", function() {
     console.log("Window resized, running updateContentForMobile");
     updateContentForMobile();
 });
-
-// Translations object for the approach page content
-const approachTranslations = {
-    'en': {
-        'approach_header': 'Approach to <span class="bold-toni">work</span>.',
-        'approach_description': 'I believe it\'s all about keeping things clear, practical, and adaptable.\nWhether it\'s improving daily operations or tackling bigger challenges,\nI focus on understanding <span class="bold-split"> real needs </span> of your teams.\nBy breaking down complex ideas into manageable steps, I ensure that\nyour company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.',
-        'scroll_text': 'SCROLL',
-        
-        'optimizing_header': 'Optimizing Operations',
-        'optimizing_desc1': 'I work closely with teams to improve IT operations and remove obstacles, making it easier for people to work effectively.',
-        'optimizing_desc2': 'By reviewing workflows and implementing the right solutions, I\'ll ensure that your operations run more smoothly, allowing your team to focus on what matters most—delivering the product and creating value.',
-        
-        'tailored_header': 'Tailored Technology Solutions',
-        'tailored_desc1': 'I focus on selecting, implementing, and maintaining technology solutions that fit your team\'s specific needs. This involves choosing the right infrastructure, integrating third-party tools, automating tasks, and improving system performance.',
-        'tailored_desc2': 'Whether it\'s upgrading existing systems or setting up new platforms, I ensure solutions are scalable, secure, and aligned with both technical and business goals.',
-        
-        'support_header': 'Support & Scalability',
-        'support_desc1': 'As your company grows and things get intense, I\'ll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure.',
-        'support_desc2': 'Whether it\'s expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.',
-        
-        'cta_header': 'Let\'s Build Something Together',
-        'cta_text': 'I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let\'s build something that works—get in touch.',
-        'cta_btn1': 'View my CV',
-        'cta_btn2': 'About me'
-    },
-    'fr': {
-        'approach_header': 'Approche de <span class="bold-toni">travail</span>.',
-        'approach_description': 'Je crois qu\'il s\'agit avant tout de garder les choses claires, pratiques et adaptables.\nQu\'il s\'agisse d\'améliorer les opérations quotidiennes ou de relever des défis plus importants,\nje me concentre sur la compréhension des <span class="bold-split"> besoins réels </span> de vos équipes.\nEn décomposant des idées complexes en étapes gérables, je m\'assure que\nvotre entreprise dispose des bons outils et du bon soutien pour <span class="bold-split"> réussir </span> et <span class="bold-split"> grandir </span>.',
-        'scroll_text': 'DÉFILER',
-        
-        'optimizing_header': 'Optimisation des Opérations',
-        'optimizing_desc1': 'Je travaille en étroite collaboration avec les équipes pour améliorer les opérations informatiques et éliminer les obstacles, facilitant ainsi le travail efficace des personnes.',
-        'optimizing_desc2': 'En révisant les flux de travail et en mettant en œuvre les bonnes solutions, je m\'assurerai que vos opérations se déroulent plus facilement, permettant à votre équipe de se concentrer sur l\'essentiel—livrer le produit et créer de la valeur.',
-        
-        'tailored_header': 'Solutions Technologiques Sur Mesure',
-        'tailored_desc1': 'Je me concentre sur la sélection, l\'implémentation et la maintenance de solutions technologiques adaptées aux besoins spécifiques de votre équipe. Cela implique de choisir la bonne infrastructure, d\'intégrer des outils tiers, d\'automatiser des tâches et d\'améliorer les performances du système.',
-        'tailored_desc2': 'Qu\'il s\'agisse de mettre à niveau des systèmes existants ou de configurer de nouvelles plateformes, je veille à ce que les solutions soient évolutives, sécurisées et alignées sur les objectifs techniques et commerciaux.',
-        
-        'support_header': 'Support & Évolutivité',
-        'support_desc1': 'À mesure que votre entreprise se développe et que les choses s\'intensifient, je m\'assurerai que votre configuration informatique suit le rythme en offrant un support continu et des mises à jour pour maintenir tout en bon fonctionnement sous pression.',
-        'support_desc2': 'Qu\'il s\'agisse d\'étendre votre infrastructure pour plus d\'utilisateurs, d\'introduire de nouveaux outils numériques pour faciliter la vie, ou d\'organiser vos données pour aider à prendre des décisions commerciales plus intelligentes.',
-        
-        'cta_header': 'Construisons Quelque Chose Ensemble',
-        'cta_text': 'Je simplifie les projets complexes, optimise les flux de travail et implémente la bonne technologie pour assurer le bon fonctionnement de votre entreprise. Construisons quelque chose qui fonctionne—contactez-moi.',
-        'cta_btn1': 'Voir mon CV',
-        'cta_btn2': 'À propos de moi'
-    },
-    'hr': {
-        'approach_header': 'Pristup <span class="bold-toni">radu</span>.',
-        'approach_description': 'Vjerujem da je sve u tome da stvari ostanu jasne, praktične i prilagodljive.\nBilo da se radi o poboljšanju svakodnevnih operacija ili rješavanju većih izazova,\nfokusiram se na razumijevanje <span class="bold-split"> stvarnih potreba </span> vaših timova.\nRazbijanjem složenih ideja u upravljive korake, osiguravam da\nvaša tvrtka ima prave alate i podršku za <span class="bold-split"> uspjeh </span> i <span class="bold-split"> rast </span>.',
-        'scroll_text': 'SKROLAJ',
-        
-        'optimizing_header': 'Optimizacija Operacija',
-        'optimizing_desc1': 'Usko surađujem s timovima kako bih poboljšao IT operacije i uklonio prepreke, olakšavajući ljudima da učinkovito rade.',
-        'optimizing_desc2': 'Pregledom radnih procesa i implementacijom pravih rješenja, osigurat ću da vaše operacije teku glatko, omogućujući vašem timu da se fokusira na ono što je najvažnije—isporuku proizvoda i stvaranje vrijednosti.',
-        
-        'tailored_header': 'Prilagođena Tehnološka Rješenja',
-        'tailored_desc1': 'Fokusiram se na odabir, implementaciju i održavanje tehnoloških rješenja koja odgovaraju specifičnim potrebama vašeg tima. To uključuje odabir prave infrastrukture, integraciju alata trećih strana, automatizaciju zadataka i poboljšanje performansi sustava.',
-        'tailored_desc2': 'Bilo da se radi o nadogradnji postojećih sustava ili postavljanju novih platformi, osiguravam da su rješenja skalabilna, sigurna i usklađena s tehničkim i poslovnim ciljevima.',
-        
-        'support_header': 'Podrška i Skalabilnost',
-        'support_desc1': 'Kako vaša tvrtka raste i stvari postaju intenzivnije, pobrinut ću se da vaš IT sustav održi korak nudeći stalnu podršku i ažuriranja kako bi sve funkcioniralo glatko pod pritiskom.',
-        'support_desc2': 'Bilo da se radi o proširenju vaše infrastrukture za više korisnika, uvođenju novih digitalnih alata za olakšavanje života ili organiziranju vaših podataka za donošenje pametnijih poslovnih odluka.',
-        
-        'cta_header': 'Izgradimo Nešto Zajedno',
-        'cta_text': 'Pojednostavljujem složene projekte, optimiziram radne procese i implementiram pravu tehnologiju kako bi vaše poslovanje teklo glatko. Izgradimo nešto što funkcionira—javite mi se.',
-        'cta_btn1': 'Pogledaj moj životopis',
-        'cta_btn2': 'O meni'
-    }
-};
-
-// Function to update text content for the approach page based on selected language
-function updateApproachLanguage(lang) {
-    // Store the current language in localStorage
-    localStorage.setItem('selectedLanguage', lang);
-    
-    // Update header section
-    document.querySelector('#header h1').innerHTML = approachTranslations[lang].approach_header;
-    
-    // Update description paragraph with line breaks preserved
-    document.querySelector('#header p').innerHTML = approachTranslations[lang].approach_description;
-    // Note: We keep the HTML formatting in the translation object, including <br> tags
-    
-    document.querySelector('.scroll-text').textContent = approachTranslations[lang].scroll_text;
-    
-    // Update Optimizing Operations section
-    const block1 = document.querySelector('.block-1');
-    block1.querySelector('.about-header').textContent = approachTranslations[lang].optimizing_header;
-    block1.querySelector('.about-subheader').textContent = approachTranslations[lang].optimizing_desc1;
-    block1.querySelector('.about-subheader1').textContent = approachTranslations[lang].optimizing_desc2;
-    
-    // Update Tailored Technology Solutions section
-    const block2 = document.querySelector('.block-2');
-    block2.querySelector('.about-header').textContent = approachTranslations[lang].tailored_header;
-    const block2Paragraphs = block2.querySelectorAll('.about-subheader1');
-    block2Paragraphs[0].textContent = approachTranslations[lang].tailored_desc1;
-    block2Paragraphs[1].textContent = approachTranslations[lang].tailored_desc2;
-    
-    // Update Support & Scalability section
-    const block3 = document.querySelector('.block-3');
-    block3.querySelector('.about-header').textContent = approachTranslations[lang].support_header;
-    block3.querySelector('.about-subheader').textContent = approachTranslations[lang].support_desc1;
-    block3.querySelector('.about-subheader1').textContent = approachTranslations[lang].support_desc2;
-    
-    // Update CTA section
-    const ctaSection = document.querySelector('section[style*="text-align: center"]');
-    ctaSection.querySelector('.about-header').textContent = approachTranslations[lang].cta_header;
-    ctaSection.querySelector('.about-subheader').textContent = approachTranslations[lang].cta_text;
-    
-    const ctaButtons = ctaSection.querySelectorAll('.collaboration-btn');
-    ctaButtons[0].textContent = approachTranslations[lang].cta_btn1;
-    ctaButtons[1].textContent = approachTranslations[lang].cta_btn2;
-    
-    // Update navigation
-    const navItems = document.querySelectorAll('.side-menu-nav ul li a');
-    navItems[0].textContent = translations[lang].nav_home;
-    navItems[1].textContent = translations[lang].nav_approach;
-    navItems[2].textContent = translations[lang].nav_about;
-    
-    // Update menu text
-    document.querySelector('.menu-text').textContent = translations[lang].menu_text;
-    
-    // Update footer
-    document.querySelector('.footer-content').textContent = translations[lang].footer_text;
-    
-    // Update document language attribute
-    document.documentElement.lang = lang;
-    
-    // Re-initialize any animations that depend on text content
-    initializeTextAnimations();
-}
-
-// Function to initialize text animations
-function initializeTextAnimations() {
-    const scrollText = document.querySelector('.scroll-text');
-    const text = scrollText.textContent;
-    scrollText.textContent = ''; // Clear the current text
-    
-    // Create spans for each letter
-    [...text].forEach((letter, i) => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
-        scrollText.appendChild(span);
-    });
-}
-
-// Language Dropdown Functionality
-document.addEventListener('DOMContentLoaded', () => {
-    // Language configuration
-    const languages = {
-        'en': { 
-            code: 'EN', 
-            name: 'English', 
-            flag: './assets/UK.png',
-            alternatives: ['fr', 'hr'] 
-        },
-        'fr': { 
-            code: 'FR', 
-            name: 'French', 
-            flag: './assets/FR.png',
-            alternatives: ['en', 'hr'] 
-        },
-        'hr': { 
-            code: 'HR', 
-            name: 'Croatian', 
-            flag: './assets/HR.png',
-            alternatives: ['en', 'fr'] 
-        }
-    };
-
-    const languageDropdown = document.querySelector('.language-dropdown');
-    const languageSelector = languageDropdown.querySelector('.language-selector');
-    const languageOptions = languageDropdown.querySelector('.language-options');
-
-    // Function to update language options
-    function updateLanguageOptions(currentLang) {
-        // Clear existing options
-        languageOptions.innerHTML = '';
-
-        // Get alternative languages
-        const alternativeLangs = languages[currentLang].alternatives;
-
-        // Create new language options
-        alternativeLangs.forEach(langCode => {
-            const option = document.createElement('div');
-            option.className = 'language-option';
-            option.dataset.lang = langCode;
-
-            const flag = document.createElement('img');
-            flag.src = languages[langCode].flag;
-            flag.alt = `${languages[langCode].name} Flag`;
-            flag.className = 'language-flag';
-            flag.dataset.lang = langCode;
-
-            const code = document.createElement('span');
-            code.className = 'language-code';
-            code.textContent = languages[langCode].code;
-
-            option.appendChild(flag);
-            option.appendChild(code);
-            languageOptions.appendChild(option);
-        });
-
-        // Re-attach event listeners
-        attachLanguageOptionListeners();
-    }
-
-    // Attach event listeners to language options
-    function attachLanguageOptionListeners() {
-        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-
-        languageOptionEls.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const selectedLang = option.dataset.lang;
-                
-                // Update the language content
-                updateApproachLanguage(selectedLang);
-
-                // Update selector
-                const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-                const selectedCode = option.querySelector('.language-code').textContent;
-
-                languageSelector.innerHTML = '';
-                languageSelector.appendChild(selectedFlag);
-                languageSelector.dataset.currentLang = selectedLang;
-
-                const codeSpan = document.createElement('span');
-                codeSpan.className = 'language-code';
-                codeSpan.textContent = selectedCode;
-                languageSelector.appendChild(codeSpan);
-
-                // Update available options
-                updateLanguageOptions(selectedLang);
-
-                // Close dropdown
-                languageDropdown.classList.remove('active');
-            });
-        });
-    }
-
-    // Hover event to open dropdown
-    languageSelector.addEventListener('mouseenter', () => {
-        languageDropdown.classList.add('active');
-    });
-
-    // Leave event to close dropdown
-    languageDropdown.addEventListener('mouseleave', () => {
-        languageDropdown.classList.remove('active');
-    });
-
-    // Get saved language or default to English
-    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-    
-    // Set initial language
-    updateApproachLanguage(savedLanguage);
-    
-    // Update language selector UI to match saved language
-    const currentLang = savedLanguage;
-    const selectedFlag = document.createElement('img');
-    selectedFlag.src = languages[currentLang].flag;
-    selectedFlag.alt = `${languages[currentLang].name} Flag`;
-    selectedFlag.className = 'language-flag';
-    
-    languageSelector.innerHTML = '';
-    languageSelector.appendChild(selectedFlag);
-    languageSelector.dataset.currentLang = currentLang;
-    
-    const codeSpan = document.createElement('span');
-    codeSpan.className = 'language-code';
-    codeSpan.textContent = languages[currentLang].code;
-    languageSelector.appendChild(codeSpan);
-    
-    // Initial setup of language options
-    updateLanguageOptions(currentLang);
-
-    // Toggle dropdown
-    languageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        languageDropdown.classList.toggle('active');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!languageDropdown.contains(e.target)) {
-            languageDropdown.classList.remove('active');
-        }
-    });
-});
-
         </script>
     </body>
 </html>
