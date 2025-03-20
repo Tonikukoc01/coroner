@@ -1320,6 +1320,38 @@ backdrop-filter: blur(5px); /* Add blur effect */
     min-height: 250px;
 }
 
+.location-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 43, 60, 0.75);
+    color: #F0F4F8;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 0 0 8px 8px;
+}
+
+.location-icon {
+    font-size: 1rem;
+}
+
+/* Show the location caption on hover */
+.gallery-item:hover .location-caption {
+    transform: translateY(0);
+}
+
+/* When the item is loaded, prepare the caption for hover effect */
+.gallery-item.loaded .location-caption {
+    opacity: 1;
+}
+
+
 /* Responsive adjustments */
 @media screen and (max-width: 1200px) {
     .gallery-grid {
@@ -1529,29 +1561,48 @@ footer {
     </div>
 </section>
 
-<!-- Image Gallery Section -->
 <section id="gallery" class="section content-section">
     <div class="about-content">
         <div class="gallery-grid">
             <!-- Image 1 (Portrait) -->
             <div class="gallery-item portrait">
-                <img src="assets/toni-vertical-image1.jpg" alt="Travel portrait" class="gallery-image">
+                <img src="assets/Vertical-image1.jpg" alt="Travel portrait" class="gallery-image">
+                <div class="location-caption">
+                    <i class="location-icon">📍</i>
+                    <span>Azores</span>
+                </div>
             </div>
             <!-- Image 2 (Landscape) -->
             <div class="gallery-item landscape">
-                <img src="assets/toni-square-image1.jpg" alt="Travel landscape" class="gallery-image">
+                <img src="assets/Square-image1.jpg" alt="Travel landscape" class="gallery-image">
+                <div class="location-caption">
+                    <i class="location-icon">📍</i>
+                    <span>Granada</span>
+                </div>
             </div>
             <!-- Image 3 (Square) -->
             <div class="gallery-item square">
-                <img src="assets/toni-regular-image1.jpg" alt="Travel square" class="gallery-image">
+                <img src="assets/regular-image1.jpg" alt="Travel square" class="gallery-image">
+                <div class="location-caption">
+                    <i class="location-icon">📍</i>
+                    <span>Vannes</span>
+                </div>
             </div>
             <!-- Image 4 (Portrait) -->
             <div class="gallery-item portrait">
-                <img src="assets/toni-vertical-image2.jpg" alt="Travel portrait" class="gallery-image">
+                <img src="assets/Vertical-image2.jpg" alt="Travel portrait" class="gallery-image">
+                <div class="location-caption">
+                    <i class="location-icon">📍</i>
+                    <span>London</span>
+                </div>
             </div>
             <!-- Image 5 (Landscape) -->
             <div class="gallery-item landscape">
-                <img src="assets/toni-regular-image2.jpg" alt="Travel landscape" class="gallery-image">
+                <img src="assets/regular-image2.jpg" alt="Travel landscape" class="gallery-image">
+                <div class="location-caption">
+                    <i class="location-icon">📍</i>
+                    <span>Les Menuires</span>
+                </div>
             </div>
         </div>
     </div>
@@ -1800,7 +1851,7 @@ function attachLanguageOptionListeners() {
             });
         });
 
-// Gallery loading animation
+// Gallery loading animation with caption handling
 window.addEventListener('DOMContentLoaded', () => {
     const galleryItems = document.querySelectorAll('.gallery-item');
     
@@ -1814,17 +1865,26 @@ window.addEventListener('DOMContentLoaded', () => {
                 // Add staggered delay for more interesting animation
                 setTimeout(() => {
                     item.classList.add('loaded');
+                    
+                    // Briefly show and then hide the location caption when first loaded
+                    const caption = item.querySelector('.location-caption');
+                    if (caption) {
+                        caption.style.transform = 'translateY(0)';
+                        setTimeout(() => {
+                            caption.style.transform = '';
+                        }, 1500);
+                    }
                 }, 150 * index);
             }
         });
     }
+    
     // Check on initial load
     checkIfInView();
     
     // Check on scroll
     window.addEventListener('scroll', checkIfInView);
 });
-
 document.addEventListener('DOMContentLoaded', () => {
     const scrollText = document.querySelector('.scroll-text');
     const text = scrollText.textContent;
