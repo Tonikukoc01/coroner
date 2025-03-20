@@ -1331,7 +1331,7 @@ backdrop-filter: blur(5px); /* Add blur effect */
     padding: 8px 0;
     font-size: 0.8rem;
     font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 300; /* Light font weight */
+    font-weight: 100; /* Light font weight */
     letter-spacing: 0.5px;
     text-align: center;
     transform: translateY(100%);
@@ -1351,18 +1351,19 @@ backdrop-filter: blur(5px); /* Add blur effect */
     vertical-align: middle;
 }
 
-/* Alternative style on hover */
-.gallery-item:hover .location-caption {
-    transform: translateY(0);
-    opacity: 1;
-    background: rgba(26, 43, 60, 0.9); /* Slightly darker on hover */
-}
 
-/* When the item is loaded, prepare the caption */
-.gallery-item.loaded .location-caption {
-    /* Initial state when loaded but not hovered */
-    transform: translateY(100%);
-    opacity: 0;
+/* Desktop hover effect (screens larger than 768px) */
+@media screen and (min-width: 769px) {
+    .gallery-item:hover .location-caption {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+/* Hidden by default on desktop */
+    .gallery-item .location-caption {
+        transform: translateY(100%);
+        opacity: 0;
+    }
 }
 
 /* Fade-in animation on page load */
@@ -1371,13 +1372,16 @@ backdrop-filter: blur(5px); /* Add blur effect */
     50% { opacity: 1; transform: translateY(0); }
     100% { opacity: 0; transform: translateY(100%); }
 }
+/* Responsive adjustments */
 
-/* Apply animation when image is loaded */
-.gallery-item.loaded .location-caption {
-    animation: fadeIn 2s ease forwards 0.5s;
+
+@media screen and (max-width: 768px) {
+    .gallery-item .location-caption.mobile-visible {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 1200px) {
     .gallery-grid {
         padding: 0 4rem;
@@ -1602,7 +1606,7 @@ footer {
             </div>
             <!-- Image 2 (Landscape) -->
             <div class="gallery-item landscape">
-                <img src="toni-square-image1.jpg" alt="Travel landscape" class="gallery-image">
+                <img src="toni-square-image2.jpg" alt="Travel landscape" class="gallery-image">
                 <div class="location-caption">
                     <svg class="location-icon" viewBox="0 0 24 24" width="16" height="16">
                         <path fill="#F0F4F8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -1891,6 +1895,7 @@ function attachLanguageOptionListeners() {
 // Gallery loading animation with improved caption handling
 window.addEventListener('DOMContentLoaded', () => {
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const isMobile = window.innerWidth <= 768;
     
     function checkIfInView() {
         galleryItems.forEach((item, index) => {
@@ -1899,10 +1904,23 @@ window.addEventListener('DOMContentLoaded', () => {
                 bounding.top <= (window.innerHeight || document.documentElement.clientHeight) &&
                 bounding.bottom >= 0
             ) {
-                // Add staggered delay for more interesting animation
-                setTimeout(() => {
+                // Add the loaded class for the fade-in effect
+                if (!item.classList.contains('loaded')) {
                     item.classList.add('loaded');
-                }, 150 * index);
+                    
+                    // For mobile: show caption temporarily when scrolled into view
+                    if (isMobile) {
+                        const caption = item.querySelector('.location-caption');
+                        if (caption) {
+                            caption.classList.add('mobile-visible');
+                            
+                            // Remove visibility after 3 seconds
+                            setTimeout(() => {
+                                caption.classList.remove('mobile-visible');
+                            }, 3000);
+                        }
+                    }
+                }
             }
         });
     }
@@ -1911,7 +1929,20 @@ window.addEventListener('DOMContentLoaded', () => {
     checkIfInView();
     
     // Check on scroll
-    window.addEventListener('scroll', checkIfInView);
+    window.addEventListener('scroll', () => {
+        checkIfInView();
+    });
+    
+    // Recalculate when scrolling stops (for mobile)
+    if (isMobile) {
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                checkIfInView();
+            }, 200);
+        });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
