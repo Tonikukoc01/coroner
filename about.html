@@ -1320,37 +1320,62 @@ backdrop-filter: blur(5px); /* Add blur effect */
     min-height: 250px;
 }
 
+/* Location caption styles */
 .location-caption {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(26, 43, 60, 0.75);
+    background: rgba(26, 43, 60, 0.75); /* Semi-transparent version of your background */
     color: #F0F4F8;
-    padding: 8px 12px;
-    font-size: 0.85rem;
+    padding: 8px 0;
+    font-size: 0.8rem;
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 300; /* Light font weight */
+    letter-spacing: 0.5px;
+    text-align: center;
     transform: translateY(100%);
-    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, opacity 0.3s ease;
     display: flex;
     align-items: center;
+    justify-content: center; /* Center the content */
     gap: 6px;
     border-radius: 0 0 8px 8px;
+    opacity: 0;
 }
 
 .location-icon {
-    font-size: 1rem;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-/* Show the location caption on hover */
+/* Alternative style on hover */
 .gallery-item:hover .location-caption {
     transform: translateY(0);
-}
-
-/* When the item is loaded, prepare the caption for hover effect */
-.gallery-item.loaded .location-caption {
     opacity: 1;
+    background: rgba(26, 43, 60, 0.9); /* Slightly darker on hover */
 }
 
+/* When the item is loaded, prepare the caption */
+.gallery-item.loaded .location-caption {
+    /* Initial state when loaded but not hovered */
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+/* Fade-in animation on page load */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(100%); }
+    50% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(100%); }
+}
+
+/* Apply animation when image is loaded */
+.gallery-item.loaded .location-caption {
+    animation: fadeIn 2s ease forwards 0.5s;
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 1200px) {
@@ -1561,38 +1586,48 @@ footer {
     </div>
 </section>
 
+<!-- Image Gallery Section -->
 <section id="gallery" class="section content-section">
     <div class="about-content">
         <div class="gallery-grid">
             <!-- Image 1 (Portrait) -->
             <div class="gallery-item portrait">
-                <img src="assets/Vertical-image1.jpg" alt="Travel portrait" class="gallery-image">
+                <img src="assets/toni-vertical-image1.jpg" alt="Travel portrait" class="gallery-image">
                 <div class="location-caption">
-                    <i class="location-icon">📍</i>
+                    <svg class="location-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="#F0F4F8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
                     <span>Azores</span>
                 </div>
             </div>
             <!-- Image 2 (Landscape) -->
             <div class="gallery-item landscape">
-                <img src="assets/Square-image1.jpg" alt="Travel landscape" class="gallery-image">
+                <img src="toni-square-image1.jpg" alt="Travel landscape" class="gallery-image">
                 <div class="location-caption">
-                    <i class="location-icon">📍</i>
+                    <svg class="location-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="#F0F4F8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
                     <span>Granada</span>
                 </div>
             </div>
+            <!-- Remaining items with similar structure -->
             <!-- Image 3 (Square) -->
             <div class="gallery-item square">
-                <img src="assets/regular-image1.jpg" alt="Travel square" class="gallery-image">
+                <img src="assets/toni-regular-image1.jpg" alt="Travel square" class="gallery-image">
                 <div class="location-caption">
-                    <i class="location-icon">📍</i>
+                    <svg class="location-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="#F0F4F8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
                     <span>Vannes</span>
                 </div>
             </div>
             <!-- Image 4 (Portrait) -->
             <div class="gallery-item portrait">
-                <img src="assets/Vertical-image2.jpg" alt="Travel portrait" class="gallery-image">
+                <img src="assets/toni-vertical-image2.jpg" alt="Travel portrait" class="gallery-image">
                 <div class="location-caption">
-                    <i class="location-icon">📍</i>
+                    <svg class="location-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="#F0F4F8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
                     <span>London</span>
                 </div>
             </div>
@@ -1600,8 +1635,10 @@ footer {
             <div class="gallery-item landscape">
                 <img src="assets/regular-image2.jpg" alt="Travel landscape" class="gallery-image">
                 <div class="location-caption">
-                    <i class="location-icon">📍</i>
-                    <span>Les Menuires</span>
+                    <svg class="location-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="#F0F4F8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Val Thorens</span>
                 </div>
             </div>
         </div>
@@ -1851,7 +1888,7 @@ function attachLanguageOptionListeners() {
             });
         });
 
-// Gallery loading animation with caption handling
+// Gallery loading animation with improved caption handling
 window.addEventListener('DOMContentLoaded', () => {
     const galleryItems = document.querySelectorAll('.gallery-item');
     
@@ -1865,15 +1902,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 // Add staggered delay for more interesting animation
                 setTimeout(() => {
                     item.classList.add('loaded');
-                    
-                    // Briefly show and then hide the location caption when first loaded
-                    const caption = item.querySelector('.location-caption');
-                    if (caption) {
-                        caption.style.transform = 'translateY(0)';
-                        setTimeout(() => {
-                            caption.style.transform = '';
-                        }, 1500);
-                    }
                 }, 150 * index);
             }
         });
@@ -1885,6 +1913,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Check on scroll
     window.addEventListener('scroll', checkIfInView);
 });
+
 document.addEventListener('DOMContentLoaded', () => {
     const scrollText = document.querySelector('.scroll-text');
     const text = scrollText.textContent;
