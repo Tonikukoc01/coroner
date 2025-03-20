@@ -1331,7 +1331,7 @@ backdrop-filter: blur(5px); /* Add blur effect */
     padding: 8px 0;
     font-size: 0.8rem;
     font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 300; /* Light font weight */
+    font-weight: 100; /* Light font weight */
     letter-spacing: 0.5px;
     text-align: center;
     transform: translateY(100%);
@@ -1351,19 +1351,26 @@ backdrop-filter: blur(5px); /* Add blur effect */
     vertical-align: middle;
 }
 
-/* Alternative style on hover */
-.gallery-item:hover .location-caption {
-    transform: translateY(0);
-    opacity: 1;
-    background: rgba(26, 43, 60, 0.9); /* Slightly darker on hover */
+@media screen and (min-width: 769px) {
+    .gallery-item:hover .location-caption {
+        transform: translateY(0);
+        opacity: 1;
+        background: rgba(26, 43, 60, 0.9); /* Slightly darker on hover */
+    }
+    
+    /* When item is loaded on desktop, keep caption hidden until hover */
+    .gallery-item.loaded .location-caption {
+        transform: translateY(100%);
+        opacity: 0;
+    }
 }
 
-/* When the item is loaded, prepare the caption */
-.gallery-item.loaded .location-caption {
-    /* Initial state when loaded but not hovered */
-    transform: translateY(100%);
-    opacity: 0;
+@media screen and (min-width: 769px) {
+    .gallery-item.loaded .location-caption {
+        animation: initialFadeIn 2s ease forwards 0.5s;
+    }
 }
+
 
 /* Fade-in animation on page load */
 @keyframes fadeIn {
@@ -1372,9 +1379,12 @@ backdrop-filter: blur(5px); /* Add blur effect */
     100% { opacity: 0; transform: translateY(100%); }
 }
 
-/* Apply animation when image is loaded */
-.gallery-item.loaded .location-caption {
-    animation: fadeIn 2s ease forwards 0.5s;
+@media screen and (max-width: 768px) {
+    /* For mobile, show caption when image is loaded */
+    .gallery-item.loaded .location-caption {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* Responsive adjustments */
