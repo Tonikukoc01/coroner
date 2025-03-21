@@ -5,6 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Future of AI in Creative Industries - Toni's Blog</title>
     <style>
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 100;
+    font-style: normal;
+    src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+         url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 100;
+    font-style: italic;
+    src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
+         url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 200;
+    font-style: normal;
+    src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+         url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 200;
+    font-style: italic;
+    src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
+         url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 300;
+    font-style: normal;
+    src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
+         url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'SkemaProDisplay';
+    font-weight: 300;
+    font-style: italic;
+    src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
+         url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
+}
+
         /* Base styles */
         html, body {
             margin: 0;
@@ -22,7 +71,7 @@
             position: relative;
         }
         
-        /* Article date - moved to upper left */
+        /* Article date - positioned at upper left */
         .article-date {
             font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 300;
@@ -111,6 +160,7 @@
             opacity: 0.7;
             margin-top: 0.5rem;
             text-align: center;
+            padding: 0 1rem;
         }
         
         /* Back link */
@@ -127,6 +177,68 @@
         
         .back-link:hover {
             opacity: 1;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .article-container {
+                padding: 4rem 1.5rem;
+            }
+            
+            .article-date {
+                position: static;
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+            
+            .article-header {
+                margin-top: 0;
+                margin-bottom: 2.5rem;
+            }
+            
+            .article-title {
+                font-size: 2.5rem;
+            }
+            
+            .article-subheader {
+                font-size: 1.3rem;
+                padding: 0 0.5rem;
+            }
+            
+            .wide-image-container {
+                width: 100%;
+                margin-left: 0;
+                transform: none;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .wide-image {
+                max-height: 400px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .article-container {
+                padding: 3rem 1rem;
+            }
+            
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-subheader {
+                font-size: 1.1rem;
+            }
+            
+            .article-content {
+                font-size: 1rem;
+            }
+            
+            .wide-image {
+                max-height: 300px;
+            }
         }
     </style>
 </head>
