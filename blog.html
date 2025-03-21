@@ -698,46 +698,75 @@ body {
     width: 95%;
 }
 
-/* Collaborate Section Layout */
-.about-layout {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
-    max-width: 1250px;
-    margin: 0 auto;
-    padding: 8rem 2rem;
-}
+    /* Article List Styles */
+    #articles {
+        padding: 8rem 0 4rem 0;
+        position: relative;
+        width: 100%;
+    }
+    
+    .article-container {
+        width: 80%;
+        margin-left: 10%; /* Aligns with your header's left: 10% */
+    }
+    
+    .article-item {
+        display: flex;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+    
+    .article-date {
+        width: 20%;
+        padding-right: 2rem;
+    }
+    
+    .article-date p {
+        font-family: 'SkemaProDisplay', sans-serif;
+        font-weight: 300;
+        font-size: 1rem;
+        color: #F0F4F8;
+        opacity: 0.8;
+        margin: 0;
+    }
+    
+    .article-content {
+        width: 80%;
+    }
+    
+    .article-title {
+        font-family: 'SkemaProDisplay', sans-serif;
+        font-weight: 300;
+        font-size: 2.5rem;
+        letter-spacing: -0.02em;
+        color: #F0F4F8;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.2;
+    }
+    
+    .article-title a {
+        color: #F0F4F8;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .article-title a:hover {
+        color: #FFFFFF;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        text-decoration: underline;
+    }
+    
+    .article-subtitle {
+        font-family: 'SkemaProDisplay', sans-serif;
+        font-weight: 100;
+        font-size: 1.2rem;
+        color: #F0F4F8;
+        opacity: 0.9;
+        margin: 0;
+        line-height: 1.4;
+    }
 
-.about-text-column {
-    flex: 1;
-    max-width: 50%;
-}
 
-.about-image-column {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-collaboration-image {
-    max-width: 600%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: none;
-    opacity: 0;
-    transform: translateX(100px); /* Increased distance */
-    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-
-.about-collaboration-image.visible {
-    opacity: 1;
-    transform: translateX(0);
-}      
-   
 .horizontal-line {
     width: 3.5cm; 
     height: 2px;
@@ -751,72 +780,6 @@ body {
 
 .horizontal-line.visible {
     transform: scaleX(1);
-}
-
-.about-header {
-    font-family: SkemaProDisplay;
-    color: #F0F4F8;
-    font-size: 3.7rem;
-    font-weight: normal;
-    text-align: left;
-    margin-bottom: 3.5rem;
-    padding: 0;
-}
-
-.about-subheader {
-    font-family: SkemaProDisplay;
-    font-size: 1.2rem;
-    font-weight: 100;
-    font-style: normal;
-    color: #B0B8C1;
-    margin-bottom: 1rem;
-    max-width: 600px;
-    text-align: left;
-    padding: 0;
-}
-
-.about-subheader1 {
-    font-family: SkemaProDisplay;
-    font-size: 1.2rem;
-    font-weight: 100;
-    font-style: normal;
-    color: #B0B8C1;
-    margin-bottom: 3rem;
-    max-width: 600px;
-    text-align: left;
-    padding: 0;
-    animation-delay: 0.6s;
-}
-
-.about-subheader, .about-subheader1, .collaboration-btn {
-    opacity: 0;
-    transform: translateY(50px); /* Increased distance */
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.about-subheader.visible,
-.about-subheader1.visible,
-.collaboration-btn.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Button Styling */
-.collaboration-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
-    color: #F0F4F8;
-    font-family: SkemaproDisplay;
-    font-size: 1.2rem;
-    font-weight: 200;
-    text-decoration: none;
-    border-radius: 3px; /* Rounded corners */
-    margin-top: 25px;
-    transition: background 0.3s ease, transform 0.3s ease;
-    text-align: center;
-    align-self: flex-start;
-    animation-delay: 1s;
 }
 
 /* Hover Effect */
@@ -1209,43 +1172,34 @@ footer {
     <!-- Header -->
   <header id="header">
         <h1>
-            Hi, my<br class="remove-br">
-            name is <span class="bold-toni">Toni.</span><br>
-            my <span class="bold-toni">writing.</span>
+            My <span class="bold-toni">writing.</span>
         </h1>
         
         <!-- Horizontal line -->
         <hr style="width: 3cm; height: 2px; background-color: #F0F4F8; border: none; margin: 1rem 0;">
         
         <p>
-            I write about variety of topics. Is it AI, networking events, new technology trends or anything else, you will find my creative outlet here.
+            I write about variety of topics. Is it AI, networking events, 
+           <br>new technology trends or anything else, you will find my creative outlet here.
         </p>
   </header>
 </section>
 
-<!-- About Section -->
-<section id="about" class="section content-section">
-    <div class="section-content about-layout">
-        <div class="about-text-column">
-            <h1 class="about-header">let's collaborate</h1>
-        <div class="horizontal-line"></div>
-
-            <p class="about-subheader">
-  From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.
-</p>
-<p class="about-subheader1">
-  The greater the challenge, the more rewarding the solution!
-</p>
-
-            <!-- Button -->
-                        <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Approach to work</a>
-
-        </div>
-        <div class="about-image-column">
-            <img src="assets/output-onlinepngtools.png"" alt="Collaboration" class="about-collaboration-image">
-        </div>
+<section id="articles">
+    <div class="article-container">
+        <article class="article-item">
+            <div class="article-date">
+                <p>28th February 25</p>
+            </div>
+            <div class="article-content">
+                <h2 class="article-title"><a href="toni.kukoc.me/blog/first-post">The Future of AI in Creative Industries</a></h2>
+                <p class="article-subtitle">Exploring how artificial intelligence is reshaping content creation, design, and artistic expression in 2025.</p>
+            </div>
+        </article>
     </div>
 </section>
+
+
 <footer>
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
