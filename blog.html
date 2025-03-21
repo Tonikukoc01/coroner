@@ -191,7 +191,7 @@ html {
 }
 
 body {
-    min-height:100vh;
+    min-height:85vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column; 
@@ -277,17 +277,16 @@ body {
     animation: shake 2s ease-in-out infinite;
 }
 
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
+@keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
-    25% {
-        transform: translateX(-2px) rotate(-2deg);
-    }
-    75% {
-        transform: translateX(2px) rotate(2deg);
-    }
-}
 
 #header nav ul {
     display: flex;
@@ -704,6 +703,7 @@ body {
         position: relative;
         width: 100%;
         background-color: #1A2B3C; /* Added background color */
+        animation: fadeIn 1.5s ease-in-out;
     }
     
     .article-container {
