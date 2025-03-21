@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Future of AI in Creative Industries - Toni's Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* Base styles */
         html, body {
@@ -12,7 +11,7 @@
             padding: 0;
             background-color: #1A2B3C;
             color: #F0F4F8;
-            font-family: 'SkemaProDisplay', 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
         }
         
         /* Article container */
@@ -20,12 +19,26 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        /* Article date - moved to upper left */
+        .article-date {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #F0F4F8;
+            opacity: 0.8;
+            position: absolute;
+            top: 6rem;
+            left: 2rem;
         }
         
         /* Article header */
         .article-header {
             text-align: center;
             margin-bottom: 4rem;
+            margin-top: 2rem; /* Added space for the date above */
         }
         
         .article-title {
@@ -36,15 +49,6 @@
             color: #F0F4F8;
             margin: 0 0 1.5rem 0;
             line-height: 1.2;
-        }
-        
-        .article-date {
-            font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 300;
-            font-size: 1.2rem;
-            color: #F0F4F8;
-            opacity: 0.8;
-            margin: 0 0 2rem 0;
         }
         
         /* Divider line */
@@ -80,6 +84,35 @@
             margin-bottom: 2rem;
         }
         
+        /* Wide image container */
+        .wide-image-container {
+            width: 100vw;
+            max-width: 1200px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .wide-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 0.9rem;
+            color: #F0F4F8;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        
         /* Back link */
         .back-link {
             display: inline-block;
@@ -89,6 +122,7 @@
             font-size: 1rem;
             opacity: 0.8;
             transition: opacity 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
         }
         
         .back-link:hover {
@@ -98,9 +132,10 @@
 </head>
 <body>
     <div class="article-container">
+        <p class="article-date">28th February 2025</p>
+        
         <div class="article-header">
             <h1 class="article-title">The Future of AI in Creative Industries</h1>
-            <p class="article-date">28th February 2025</p>
             <div class="divider"></div>
             <p class="article-subheader">
                 Exploring how artificial intelligence is reshaping content creation, design, and artistic expression in 2025.
@@ -113,19 +148,25 @@
             </p>
             
             <p>
-                Praesent dignissim tortor at nisi dictum, a faucibus velit lacinia. Vestibulum nec dui euismod, interdum eros vitae, tincidunt justo. Aliquam sed pretium urna. Phasellus imperdiet est vitae magna elementum, ac ultricies tortor condimentum. Fusce non semper magna. Etiam finibus leo nec risus iaculis, at pharetra neque efficitur. Donec id elit ac lorem hendrerit vulputate. Praesent dignissim luctus sem vitae vehicula. Cras at tempus orci. 
+                Praesent dignissim tortor at nisi dictum, a faucibus velit lacinia. Vestibulum nec dui euismod, interdum eros vitae, tincidunt justo. Aliquam sed pretium urna. Phasellus imperdiet est vitae magna elementum, ac ultricies tortor condimentum. Fusce non semper magna. Etiam finibus leo nec risus iaculis, at pharetra neque efficitur.
             </p>
+            
+            <!-- Wide image section -->
+            <div class="wide-image-container">
+                <img src="/api/placeholder/1200/600" alt="AI Generated Art Example" class="wide-image">
+                <p class="image-caption">AI-generated artwork showcasing the fusion of technology and human creativity.</p>
+            </div>
             
             <p>
                 Quisque finibus, felis nec fringilla maximus, purus ante consectetur dui, at eleifend metus sapien eu arcu. Mauris interdum facilisis elit, eget faucibus enim rutrum sed. Mauris at neque libero. Integer commodo lacus at nulla condimentum, at egestas elit consectetur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur blandit sollicitudin pulvinar. Aliquam aliquam purus nibh, et tempus lacus molestie mollis. 
             </p>
             
             <p>
-                Sed ultrices sem ac sagittis ultrices. Ut vitae tortor a metus ultricies varius. Integer blandit purus at justo posuere consectetur. Nulla auctor dui a mi sagittis dapibus. Aenean nec orci pellentesque, mollis magna at, vulputate quam. Cras quis hendrerit mi. Duis ornare enim blandit euismod tincidunt. Duis eget dui fringilla, egestas dolor eu, tempus dolor. Nulla dignissim lectus eget ex consectetur, at porttitor odio scelerisque. Quisque consectetur lacinia mattis.
+                Sed ultrices sem ac sagittis ultrices. Ut vitae tortor a metus ultricies varius. Integer blandit purus at justo posuere consectetur. Nulla auctor dui a mi sagittis dapibus. Aenean nec orci pellentesque, mollis magna at, vulputate quam. Cras quis hendrerit mi. Duis ornare enim blandit euismod tincidunt. Duis eget dui fringilla, egestas dolor eu, tempus dolor.
             </p>
             
             <p>
-                Donec malesuada nulla vel risus gravida pharetra. Vestibulum in mi nibh. Integer finibus enim vehicula ipsum euismod ultrices. Nulla facilisi. Nulla facilisi. Cras lobortis, justo at varius interdum, nisi dui luctus eros, eu finibus justo ligula sed mauris. Aliquam erat volutpat. Curabitur finibus tortor nec justo facilisis, quis elementum dui lobortis. Donec dignissim ante vitae magna malesuada, in semper metus faucibus.
+                Donec malesuada nulla vel risus gravida pharetra. Vestibulum in mi nibh. Integer finibus enim vehicula ipsum euismod ultrices. Nulla facilisi. Nulla facilisi. Cras lobortis, justo at varius interdum, nisi dui luctus eros, eu finibus justo ligula sed mauris. Aliquam erat volutpat. Curabitur finibus tortor nec justo facilisis, quis elementum dui lobortis.
             </p>
             
             <a href="/" class="back-link">← Back to blog</a>
