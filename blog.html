@@ -277,10 +277,14 @@ body {
     animation: shake 2s ease-in-out infinite;
 }
 
-@keyframes fadeIn {
+ @keyframes fadeInText {
         0% {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
+        }
+        30% { /* Slows down the start of the animation */
+            opacity: 0;
+            transform: translateY(10px);
         }
         100% {
             opacity: 1;
@@ -702,8 +706,7 @@ body {
         padding: 4rem 0 4rem 0; /* Reduced top padding */
         position: relative;
         width: 100%;
-        background-color: #1A2B3C; /* Added background color */
-        animation: fadeIn 1.5s ease-in-out;
+        background-color: #1A2B3C; /* Added background color *
     }
     
     .article-container {
@@ -773,6 +776,11 @@ body {
         margin: 0;
         line-height: 1.4;
     }
+
+.article-date p, .article-title, .article-subtitle {
+        animation: fadeInText 2.5s ease-in-out; /* Increased to 2.5 seconds */
+    }
+
 
 .horizontal-line {
     width: 3.5cm; 
