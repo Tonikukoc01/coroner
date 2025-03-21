@@ -698,11 +698,12 @@ body {
     width: 95%;
 }
 
-    /* Article List Styles */
+   /* Article List Styles */
     #articles {
-        padding: 8rem 0 4rem 0;
+        padding: 4rem 0 4rem 0; /* Reduced top padding */
         position: relative;
         width: 100%;
+        background-color: #1A2B3C; /* Added background color */
     }
     
     .article-container {
@@ -724,14 +725,21 @@ body {
     .article-date p {
         font-family: 'SkemaProDisplay', sans-serif;
         font-weight: 300;
-        font-size: 1rem;
+        font-size: 1.4rem; /* Increased font size */
         color: #F0F4F8;
         opacity: 0.8;
         margin: 0;
     }
     
+    .date-arrow {
+        font-size: 1.2rem;
+        margin-left: 0.5rem;
+        font-weight: 100;
+    }
+    
     .article-content {
         width: 80%;
+        padding-left: 2rem; /* Added left padding to move content right */
     }
     
     .article-title {
@@ -765,7 +773,6 @@ body {
         margin: 0;
         line-height: 1.4;
     }
-
 
 .horizontal-line {
     width: 3.5cm; 
@@ -1184,12 +1191,12 @@ footer {
         </p>
   </header>
 </section>
-
+<!-- Article List Section -->
 <section id="articles">
     <div class="article-container">
         <article class="article-item">
             <div class="article-date">
-                <p>28th February 25</p>
+                <p>28th February 25 <span class="date-arrow">→</span></p>
             </div>
             <div class="article-content">
                 <h2 class="article-title"><a href="toni.kukoc.me/blog/first-post">The Future of AI in Creative Industries</a></h2>
