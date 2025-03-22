@@ -5,62 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Future of AI in Creative Industries - Toni's Blog</title>
     <style>
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+        }
 
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 100;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
-}
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
+        }
 
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 100;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
-}
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+        }
 
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
-}
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
+        }
 
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
-}
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
+        }
 
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 300;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 300;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
-}
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
+        }
 
         /* Base styles */
+        :root {
+            --bg-color: #1A2B3C;
+            --text-color: #F0F4F8;
+            --dark-text-color: #0A1A2A;
+        }
+        
         html, body {
             margin: 0;
             padding: 0;
-            background-color: #1A2B3C;
-            color: #F0F4F8;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'SkemaProDisplay', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
         }
         
         /* Article container */
@@ -71,15 +78,45 @@
             position: relative;
         }
         
-        /* Article date - positioned at upper left */
+        /* Back to blog arrow */
+        .back-to-blog {
+            position: absolute;
+            top: 3rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+        }
+        
+        .back-to-blog:hover {
+            opacity: 1;
+        }
+        
+        .back-to-blog svg {
+            margin-right: 0.5rem;
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Article date - positioned at upper left with increased margin */
         .article-date {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 300;
+            font-weight: 200; /* Reduced weight */
             font-size: 1.2rem;
-            color: #F0F4F8;
+            color: var(--text-color);
             opacity: 0.8;
             position: absolute;
-            top: 6rem;
+            top: 8rem; /* Increased margin from top */
             left: 2rem;
         }
         
@@ -87,15 +124,15 @@
         .article-header {
             text-align: center;
             margin-bottom: 4rem;
-            margin-top: 2rem; /* Added space for the date above */
+            margin-top: 5rem; /* Increased margin-top to accommodate the date */
         }
         
         .article-title {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 300;
+            font-weight: 200; /* Reduced weight */
             font-size: 3.5rem;
             letter-spacing: -0.02em;
-            color: #F0F4F8;
+            color: var(--text-color);
             margin: 0 0 1.5rem 0;
             line-height: 1.2;
         }
@@ -104,14 +141,14 @@
         .divider {
             width: 50px;
             height: 2px;
-            background-color: #F0F4F8;
+            background-color: var(--text-color);
             margin: 0 auto 2rem auto;
         }
         
         /* Article subheader */
         .article-subheader {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 200;
+            font-weight: 100; /* Reduced weight */
             font-size: 1.5rem;
             line-height: 1.5;
             margin-bottom: 3rem;
@@ -121,10 +158,10 @@
         /* Article content */
         .article-content {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 300;
+            font-weight: 200; /* Reduced weight */
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #F0F4F8;
+            color: var(--text-color);
             opacity: 0.9;
         }
         
@@ -154,41 +191,173 @@
         .image-caption {
             font-family: 'SkemaProDisplay', sans-serif;
             font-style: italic;
-            font-weight: 300;
+            font-weight: 200; /* Reduced weight */
             font-size: 0.9rem;
-            color: #F0F4F8;
+            color: var(--text-color);
             opacity: 0.7;
             margin-top: 0.5rem;
             text-align: center;
             padding: 0 1rem;
         }
         
-        /* Back link */
+        /* Back link - improved styling */
         .back-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             margin-top: 4rem;
-            color: #F0F4F8;
+            color: var(--text-color);
             text-decoration: none;
             font-size: 1rem;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            transition: all 0.3s;
             font-family: 'SkemaProDisplay', sans-serif;
         }
         
         .back-link:hover {
+            background-color: rgba(240, 244, 248, 0.1);
+        }
+        
+        .back-link svg {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Reading mode switch */
+        .switch-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(26, 43, 60, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+        
+        .switch-label {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            font-weight: 200;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2c3e50;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #F0F4F8;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(18px);
+            background-color: #1A2B3C;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(26, 43, 60, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            visibility: hidden;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
             opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: rgba(26, 43, 60, 1);
+        }
+        
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: var(--text-color);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Easy reading mode */
+        body.easy-reading {
+            --bg-color: #F0F4F8;
+            --text-color: #0A1A2A;
         }
         
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
             .article-container {
-                padding: 4rem 1.5rem;
+                padding: 5rem 1.5rem 4rem;
+            }
+            
+            .back-to-blog {
+                top: 1.5rem;
+                left: 1.5rem;
             }
             
             .article-date {
                 position: static;
                 text-align: center;
                 margin-bottom: 1.5rem;
+                margin-top: 2rem;
             }
             
             .article-header {
@@ -216,12 +385,29 @@
             .wide-image {
                 max-height: 400px;
             }
+            
+            .switch-container {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
         }
         
         /* Small mobile adjustments */
         @media (max-width: 480px) {
             .article-container {
-                padding: 3rem 1rem;
+                padding: 4rem 1rem 3rem;
+            }
+            
+            .back-to-blog {
+                top: 1rem;
+                left: 1rem;
             }
             
             .article-title {
@@ -243,7 +429,32 @@
     </style>
 </head>
 <body>
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+    
+    <!-- Reading mode switch -->
+    <div class="switch-container">
+        <span class="switch-label">Easy Reading</span>
+        <label class="switch">
+            <input type="checkbox" id="readingModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
     <div class="article-container">
+        <!-- Back to blog arrow link -->
+        <a href="/blog" class="back-to-blog">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Blog
+        </a>
+        
         <p class="article-date">28th February 2025</p>
         
         <div class="article-header">
@@ -281,8 +492,51 @@
                 Donec malesuada nulla vel risus gravida pharetra. Vestibulum in mi nibh. Integer finibus enim vehicula ipsum euismod ultrices. Nulla facilisi. Nulla facilisi. Cras lobortis, justo at varius interdum, nisi dui luctus eros, eu finibus justo ligula sed mauris. Aliquam erat volutpat. Curabitur finibus tortor nec justo facilisis, quis elementum dui lobortis.
             </p>
             
-            <a href="/" class="back-link">← Back to blog</a>
+            <a href="/blog" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back to blog
+            </a>
         </div>
     </div>
+
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('backToTop');
+        
+        // Show button when user scrolls down 30% of the page
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const pageHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollThreshold = pageHeight * 0.3; // 30% of scrollable content
+            
+            if (scrollPosition > scrollThreshold) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to top when button is clicked
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Reading mode toggle
+        const readingModeToggle = document.getElementById('readingModeToggle');
+        
+        readingModeToggle.addEventListener('change', () => {
+            if (readingModeToggle.checked) {
+                document.body.classList.add('easy-reading');
+            } else {
+                document.body.classList.remove('easy-reading');
+            }
+        });
+    </script>
 </body>
 </html>
