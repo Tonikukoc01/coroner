@@ -162,7 +162,7 @@ body {
             font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
             font-size: 1.5rem; /* Increase size of subheader text */
-            margin: 0 0 2rem; /* Increase margin below subheader */
+            margin: 0 0 rem; /* Increase margin below subheader */
             color: #F0F4F8;
         }
 
@@ -520,17 +520,6 @@ body {
     background: #1A2B3C;
 }
             
-@keyframes subtleFloat {
-    0% {
-        transform: scale(1.1) translate(0, 0);
-    }
-    50% {
-        transform: scale(1.15) translate(-1%, -1%);
-    }
-    100% {
-        transform: scale(1.1) translate(0, 0);
-    }
-}
 
 /* About Section Styles */
 #about {
@@ -552,11 +541,11 @@ body {
 
    /* Article List Styles */
     #articles {
-        padding: 4rem 0 4rem 0; /* Reduced top padding */
+        padding: rem 0 4rem 0; /* Reduced top padding */
         position: relative;
         width: 100%;
         background-color: #1A2B3C; /* Added background color */
-        animation: fadeIn 1.5s ease-in-out;
+        animation: fadeIn 2s ease-in-out;
     }
     
     .article-container {
@@ -573,6 +562,7 @@ body {
     .article-date {
         width: 20%;
         padding-right: 2rem;
+        margin-top: 0.5rem;
     }
     
     .article-date p {
