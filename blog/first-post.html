@@ -98,35 +98,34 @@
             opacity: 1;
         }
         
-       .back-to-blog svg {
-       margin-right: 0.7rem;
-        width: 36px; /* Increased from 24px */
-        height: 30px; /* Increased from 20px */
-       fill: none;
-        stroke: currentColor;
-       stroke-width: 3; /* Increased from 2 for better visibility */
-       stroke-linecap: round;
-       stroke-linejoin: round;
-}
+        .back-to-blog svg {
+            margin-right: 0.7rem;
+            width: 24px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
         
         /* Article date - positioned at upper left with increased margin */
-        ..article-date {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-size: 1.2rem;
-    color: var(--text-color);
-    opacity: 0.8;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    display: block;
-    width: 100%;
-}
+        .article-date {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200; /* Reduced weight */
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            position: absolute;
+            top: 8rem; /* Increased margin from top */
+            left: 2rem;
+        }
         
         /* Article header */
         .article-header {
             text-align: center;
             margin-bottom: 4rem;
-            margin-top: 7rem; /* Increased margin-top to accommodate the date */
+            margin-top: 5rem; /* Increased margin-top to accommodate the date */
         }
         
         .article-title {
@@ -448,24 +447,24 @@
         </label>
     </div>
     
-   <div class="article-container">
-    <!-- Back to blog arrow link with larger arrow -->
-    <a href="/blog" class="back-to-blog">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <div class="article-container">
+        <!-- Back to blog arrow link -->
+       <a href="/blog" class="back-to-blog">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="95" y1="5" x2="5" y2="5"></line>
             <polyline points="15 1 5 5 15 9"></polyline>
         </svg>
-    </a>
-    
-    <div class="article-header">
+  </a>
+        
         <p class="article-date">28th February 2025</p>
-        <h1 class="article-title">The Future of AI in Creative Industries</h1>
-        <div class="divider"></div>
-        <p class="article-subheader">
-            Exploring how artificial intelligence is reshaping content creation, design, and artistic expression in 2025.
-        </p>
-    </div>
-</div>
+        
+        <div class="article-header">
+            <h1 class="article-title">The Future of AI in Creative Industries</h1>
+            <div class="divider"></div>
+            <p class="article-subheader">
+                Exploring how artificial intelligence is reshaping content creation, design, and artistic expression in 2025.
+            </p>
+        </div>
         
         <div class="article-content">
             <p>
