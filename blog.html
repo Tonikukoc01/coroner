@@ -168,15 +168,16 @@ body {
 
 
 @keyframes fadeIn {
-        0% {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
     }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 #header nav ul {
     display: flex;
@@ -616,8 +617,19 @@ body {
         line-height: 1.4;
     }
 
-.article-date p, .article-title, .article-subtitle {
-    animation: fadeIn 3.5s ease-in-out;
+.article-date p {
+    animation: fadeIn 1s 0.5s forwards;
+    opacity: 0;
+}
+
+.article-title {
+    animation: fadeIn 1s 1s forwards;
+    opacity: 0;
+}
+
+.article-subtitle {
+    animation: fadeIn 1s 1.5s forwards;
+    opacity: 0;
 }
 
 .coming-soon-container {
