@@ -98,34 +98,35 @@
             opacity: 1;
         }
         
-        .back-to-blog svg {
-            margin-right: 0.7rem;
-            width: 24px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+        ..back-to-blog svg {
+    margin-right: 0.7rem;
+    width: 48px; /* Further increased from 36px */
+    height: 40px; /* Further increased from 30px */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 4; /* Further increased from 3 for maximum visibility */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
         
         /* Article date - positioned at upper left with increased margin */
-        .article-date {
-            font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 200; /* Reduced weight */
-            font-size: 1.2rem;
-            color: var(--text-color);
-            opacity: 0.8;
-            position: absolute;
-            top: 8rem; /* Increased margin from top */
-            left: 2rem;
-        }
+       .article-date {
+             font-family: 'SkemaProDisplay', sans-serif;
+             font-weight: 200;
+             font-size: 1.2rem;
+             color: var(--text-color);
+             opacity: 0.8;
+             text-align: center;
+             margin-bottom: 1.5rem;
+             display: block;
+             width: 100%;
+}
         
         /* Article header */
         .article-header {
             text-align: center;
             margin-bottom: 4rem;
-            margin-top: 5rem; /* Increased margin-top to accommodate the date */
+            margin-top: 7rem; /* Increased margin-top to accommodate the date */
         }
         
         .article-title {
@@ -449,12 +450,12 @@
     
     <div class="article-container">
         <!-- Back to blog arrow link -->
-       <a href="/blog" class="back-to-blog">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="95" y1="5" x2="5" y2="5"></line>
-            <polyline points="15 1 5 5 15 9"></polyline>
-        </svg>
-  </a>
+     <a href="/blog" class="back-to-blog">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="95" y1="5" x2="5" y2="5"></line>
+        <polyline points="15 1 5 5 15 9"></polyline>
+    </svg>
+</a>
         
         <p class="article-date">28th February 2025</p>
         
