@@ -99,15 +99,15 @@
         }
         
         .back-to-blog svg {
-            margin-right: 0.7rem;
-            width: 24px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+    margin-right: 0.7rem;
+    width: 48px;
+    height: 40px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5; /* Adjusted to ensure visibility */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
         
         /* Article date - positioned at upper left with increased margin */
         .article-date {
@@ -116,7 +116,7 @@
             font-size: 1.2rem;
             color: var(--text-color);
             opacity: 0.8;
-            position: absolute;
+            position: center;
             top: 8rem; /* Increased margin from top */
             left: 2rem;
         }
@@ -125,7 +125,7 @@
         .article-header {
             text-align: center;
             margin-bottom: 4rem;
-            margin-top: 5rem; /* Increased margin-top to accommodate the date */
+            margin-top: 3rem; /* Increased margin-top to accommodate the date */
         }
         
         .article-title {
@@ -449,12 +449,12 @@
     
     <div class="article-container">
         <!-- Back to blog arrow link -->
-       <a href="/blog" class="back-to-blog">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="95" y1="5" x2="5" y2="5"></line>
-            <polyline points="15 1 5 5 15 9"></polyline>
-        </svg>
-  </a>
+      <a href="/blog" class="back-to-blog">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="95" y1="10" x2="15" y2="10"></line>
+        <polyline points="25 2 15 10 25 18"></polyline>
+    </svg>
+</a>
         
         <p class="article-date">28th February 2025</p>
         
