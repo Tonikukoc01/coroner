@@ -458,6 +458,14 @@ body {
 
 }
 
+.contact-icon {
+    display: none; /* Hide icon on desktop */
+    height: 24px; /* Adjust height as needed */
+    width: auto;
+    vertical-align: middle;
+}
+
+
 .menu-text:hover {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -1213,8 +1221,13 @@ backdrop-filter: blur(5px); /* Add blur effect */
 }
 
 .menu-text {
-    margin-left: 0.5rem;
+    display: none;
 }
+
+.contact-icon {
+        display: inline-block; /* Show icon on mobile */
+        margin-left: 0.5rem;
+    }
 
     /* Language dropdown adjustments */
     .language-dropdown {
@@ -1396,7 +1409,10 @@ footer {
         <!-- Vertical Line -->
         <div class="logo-line"></div>
         <!-- "MENU" Text as Placeholder for Hamburger Menu -->
-        <div class="menu-text">contact</div>
+        <a href="mailto:toni.kukoc01@gmail.com" class="contact-link">
+        <span class="menu-text">contact</span>
+        <img src="assets/contact.png" alt="Contact" class="contact-icon">
+    </a>
     </div>
 
 
