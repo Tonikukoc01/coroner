@@ -910,15 +910,15 @@ body {
  } 
 
     .scroll-indicator {
-        margin-left: 0;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        align-self: center;
-    }
-
-    .scroll-indicator .scroll-line {
-        height: 7cm; /* Reduced height for mobile */
-    }
+    margin-left: 0;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    align-self: center;
+  }
+  .scroll-indicator .scroll-line {
+    height: auto; /* Let the JavaScript control the height */
+    max-height: 30vh; /* Optional: set a maximum height */
+  }
 
     /* About section adjustments */
  
@@ -1884,6 +1884,26 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
+
+// Get the scroll indicator line element
+const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+
+window.addEventListener('scroll', () => {
+  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  
+  // Calculate the percentage of scroll
+  const scrollPercentage = (scrollTop / scrollHeight) * 100;
+  
+  // Adjust the height of the scroll line dynamically
+  const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
+  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+  
+  // Ensure the line height never goes below 0
+  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+});
+
         </script>
     </body>
 </html>
