@@ -1250,27 +1250,46 @@ footer {
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
-// Get the scroll indicator line element
-const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
-window.addEventListener('scroll', () => {
-  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  
-  // Calculate the percentage of scroll
-  const scrollPercentage = (scrollTop / scrollHeight) * 100;
-  
-  // Adjust the height of the scroll line
-  // As you scroll down, the line will get shorter
-  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
-  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
-  
-  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+// Optimized Scroll Indicator Script
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+    
+    if (!scrollLine) return; // Exit if no scroll line found
+
+    function updateScrollLine() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        
+        // Calculate scroll percentage
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        
+        // Adjust line height based on screen size
+        const isMobile = window.innerWidth <= 768;
+        const maxLineHeight = isMobile 
+            ? Math.min(100, window.innerHeight * 0.3)  // Max 100px or 30% of viewport for mobile
+            : window.innerHeight * 0.7;  // 70% of viewport for desktop
+        
+        // Calculate current line height
+        const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+        
+        // Update line height
+        scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+    }
+
+    // Add scroll event listener
+    window.addEventListener('scroll', updateScrollLine);
+    
+    // Initial setup and resize handling
+    function handleResize() {
+        updateScrollLine();
+    }
+
+    window.addEventListener('resize', handleResize);
+    
+    // Remove preload class
+    document.body.classList.remove('is-preload');
 });
-
-window.onload = function() {
-  document.body.classList.remove('is-preload');
 
 // Navigation menu toggle
   const menuToggle = document.querySelector('.menu-toggle');
@@ -1540,18 +1559,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('mobile-view');
         }
     }
-    
-    // Initial check and add resize listener
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    // Fix for scroll indicator on mobile
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (window.innerWidth <= 768) {
-        scrollIndicator.style.marginLeft = '0';
-    }
-});
-
 // Enhance side menu for mobile
 function enhanceSideMenuForMobile() {
     const sideMenu = document.querySelector('.side-menu');
