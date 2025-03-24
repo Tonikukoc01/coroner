@@ -1261,11 +1261,11 @@ window.addEventListener('scroll', () => {
   // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
-  // Adjust the height of the scroll line
-  // As you scroll down, the line will get shorter
-  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
+  // Adjust the height of the scroll line dynamically
+  const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
   const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
   
+  // Ensure the line height never goes below 0
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
 
