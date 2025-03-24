@@ -909,15 +909,18 @@ body {
        color: inherit;
  } 
 
-    .scroll-indicator {
+     .scroll-indicator {
         margin-left: 0;
-        margin-top: 2rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
         align-self: center;
+        position: relative; /* Adjust positioning */
     }
 
     .scroll-indicator .scroll-line {
-        height: 7cm; /* Reduced height for mobile */
+        height: 3rem; /* Significantly shorter line for mobile */
+        min-height: 50px; /* Ensure a minimum height */
+        max-height: 100px; /* Prevent it from getting too long */
     }
 
     /* About section adjustments */
@@ -1253,11 +1256,31 @@ footer {
 // Get the scroll indicator line element
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
+function handleResize() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    if (window.innerWidth <= 768) {
+        scrollIndicator.style.marginLeft = '0';
+        scrollLine.style.height = '3rem'; // Shortened line for mobile
+    } else {
+        scrollIndicator.style.marginLeft = '250px'; // Original desktop positioning
+        scrollLine.style.height = '7cm'; // Original desktop height
+    }
+}
+
+// Add scroll progress functionality
 window.addEventListener('scroll', () => {
-  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    
+    // Optional: Add scroll progress tracking if needed
+    // const scrollProgress = (scrollTop / scrollHeight) * 100;
+});
+
+// Initial check and add resize listener
+handleResize();
+window.addEventListener('resize', handleResize);
+
   // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
@@ -1539,16 +1562,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Desktop layout adjustments
             document.body.classList.remove('mobile-view');
         }
-    }
-    
-    // Initial check and add resize listener
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    // Fix for scroll indicator on mobile
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (window.innerWidth <= 768) {
-        scrollIndicator.style.marginLeft = '0';
     }
 });
 
