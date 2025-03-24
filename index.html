@@ -1273,26 +1273,25 @@ window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     
-    // Optional: Add scroll progress tracking if needed
-    // const scrollProgress = (scrollTop / scrollHeight) * 100;
+    // Calculate the percentage of scroll
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+    
+    // Adjust the height of the scroll line
+    // As you scroll down, the line will get shorter
+    const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
+    const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+    
+    scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
 
 // Initial check and add resize listener
 handleResize();
 window.addEventListener('resize', handleResize);
 
-  // Calculate the percentage of scroll
-  const scrollPercentage = (scrollTop / scrollHeight) * 100;
-  
-  // Adjust the height of the scroll line
-  // As you scroll down, the line will get shorter
-  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
-  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
-  
-  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
-});
-
 window.onload = function() {
+    document.body.classList.remove('is-preload');
+    // Navigation menu toggle can be added here if needed
+};
   document.body.classList.remove('is-preload');
 
 // Navigation menu toggle
