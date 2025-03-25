@@ -921,7 +921,7 @@ body {
    }
    .scroll-indicator .scroll-line {
      height: auto; /* Let the JavaScript control the height */
-     max-height: 30vh; /* Optional: set a maximum height */
+     max-height: 50vh; /* Optional: set a maximum height */
    }
 
     /* About section adjustments */
@@ -1673,6 +1673,7 @@ footer {
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
+// Get the scroll indicator line element
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
 window.addEventListener('scroll', () => {
@@ -1685,16 +1686,17 @@ window.addEventListener('scroll', () => {
   // Adjust the height of the scroll line dynamically
   const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
   const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+ ? window.innerHeight * 0.3 // 30% of viewport height for mobile
+    : window.innerHeight * 0.7; // 70% of viewport height for desktop
   
+// Adjust the height of the scroll line
+  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+
   // Ensure the line height never goes below 0
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
 
 window.addEventListener('load', () => {
-  // Set initial scroll line height to full height
-  const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
-  scrollLine.style.height = `${maxLineHeight}px`;
-});
 
 // Intersection Observer for content blocks
 const observerOptions = {
