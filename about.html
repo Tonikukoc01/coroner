@@ -1717,15 +1717,6 @@ document.querySelectorAll('.content-block').forEach(block => {
     contentObserver.observe(block);
 });
 
-
-// Navigation menu toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
 // Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!navMenu.contains(e.target)) {
