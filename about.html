@@ -914,15 +914,15 @@ body {
  } 
 
     .scroll-indicator {
-    margin-left: 0;
-     margin-top: 2rem;
-     margin-bottom: 1rem;
-     align-self: center;
-   }
-   .scroll-indicator .scroll-line {
-     height: auto; /* Let the JavaScript control the height */
-     max-height: 50vh; /* Optional: set a maximum height */
-   }
+        margin-left: 0;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        align-self: center;
+    }
+
+    .scroll-indicator .scroll-line {
+        height: 6cm; /* Reduced height for mobile */
+    }
 
     /* About section adjustments */
  
@@ -1677,26 +1677,23 @@ footer {
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
 window.addEventListener('scroll', () => {
+  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   
   // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
-  // Adjust the height of the scroll line dynamically
-  const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
+  // Adjust the height of the scroll line
+  // As you scroll down, the line will get shorter
+  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
   const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
- ? window.innerHeight * 0.3 // 30% of viewport height for mobile
-    : window.innerHeight * 0.7; // 70% of viewport height for desktop
   
-// Adjust the height of the scroll line
-  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
-
-  // Ensure the line height never goes below 0
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
 
-window.addEventListener('load', () => {
+window.onload = function() {
+  document.body.classList.remove('is-preload');
 
 // Intersection Observer for content blocks
 const observerOptions = {
@@ -1718,6 +1715,15 @@ const contentObserver = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.content-block').forEach(block => {
     contentObserver.observe(block);
 });
+
+
+// Navigation menu toggle
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
 
 // Close menu when clicking outside
   document.addEventListener('click', (e) => {
@@ -1748,6 +1754,7 @@ document.querySelectorAll('.content-block').forEach(block => {
       }
     });
   });
+}
 
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
@@ -1986,9 +1993,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 window.addEventListener('scroll', function() {
-    const backToTopButton = document.getElementById('backToTop');
     const isMobile = window.innerWidth < 768;
     if (window.scrollY > 300 && isMobile) {
         backToTopButton.classList.add('visible');
@@ -1999,7 +2004,6 @@ window.addEventListener('scroll', function() {
 
 // Also check on resize to handle orientation changes
 window.addEventListener('resize', function() {
-    const backToTopButton = document.getElementById('backToTop');
     const isMobile = window.innerWidth < 768;
     if (window.scrollY > 300 && isMobile) {
         backToTopButton.classList.add('visible');
