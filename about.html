@@ -1984,7 +1984,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 window.addEventListener('scroll', function() {
+    const backToTopButton = document.getElementById('backToTop');
     const isMobile = window.innerWidth < 768;
     if (window.scrollY > 300 && isMobile) {
         backToTopButton.classList.add('visible');
@@ -1995,6 +1997,7 @@ window.addEventListener('scroll', function() {
 
 // Also check on resize to handle orientation changes
 window.addEventListener('resize', function() {
+    const backToTopButton = document.getElementById('backToTop');
     const isMobile = window.innerWidth < 768;
     if (window.scrollY > 300 && isMobile) {
         backToTopButton.classList.add('visible');
