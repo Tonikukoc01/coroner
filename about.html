@@ -1676,24 +1676,33 @@ footer {
 // Get the scroll indicator line element
 const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
 
-window.addEventListener('scroll', () => {
-  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+function updateScrollIndicator() {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   
   // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
-  // Adjust the height of the scroll line dynamically
+  // Calculate max line height based on screen size
   const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
-  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+  
+  // Set initial state to full height when page loads
+  const currentLineHeight = scrollTop === 0 
+    ? maxLineHeight 
+    : maxLineHeight * (1 - scrollPercentage / 100);
   
   // Ensure the line height never goes below 0
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+}
+
+// Initial setup when page loads
+window.addEventListener('load', () => {
+  updateScrollIndicator();
 });
 
-window.onload = function() {
-  document.body.classList.remove('is-preload');
+// Update on scroll
+window.addEventListener('scroll', updateScrollIndicator);
+
 
 // Intersection Observer for content blocks
 const observerOptions = {
