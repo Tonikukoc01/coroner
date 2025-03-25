@@ -1673,9 +1673,6 @@ footer {
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
-// Get the scroll indicator line element
-const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-
 window.addEventListener('scroll', () => {
   const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1684,14 +1681,17 @@ window.addEventListener('scroll', () => {
   // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
+  // Determine max line height based on screen size
+  const isMobile = window.innerWidth <= 768;
+  const maxLineHeight = isMobile 
+    ? window.innerHeight * 0.3 // 30% of viewport height for mobile
+    : window.innerHeight * 0.7; // 70% of viewport height for desktop
+  
   // Adjust the height of the scroll line
-  // As you scroll down, the line will get shorter
-  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
   const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
   
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
-
 window.onload = function() {
   document.body.classList.remove('is-preload');
 
