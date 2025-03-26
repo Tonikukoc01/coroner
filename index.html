@@ -519,7 +519,6 @@ body {
 .menu-toggle:hover span {
     background-color: #ffffff;
 }
-
 /* Side Menu Styles */
 .side-menu {
   position: fixed;
@@ -528,6 +527,8 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(26, 43, 60, 0.75); /* #1A2B3C with 75% opacity */
+backdrop-filter: blur(5px); /* Add blur effect for desktop */
+  -webkit-backdrop-filter: blur(5px); /* For Safari support on desktop */
   z-index: 1000;
   display: flex;
   justify-content: flex-end;
