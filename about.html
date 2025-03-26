@@ -1726,43 +1726,55 @@ document.querySelectorAll('.content-block').forEach(block => {
      }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Wait for the DOM to be fully loaded
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenu = document.querySelector('.side-menu');
-    const sideMenuContent = document.querySelector('.side-menu-content');
-    const menuItems = sideMenu.querySelectorAll('.side-menu-nav a');
-
-    // Ensure all elements are present
-    if (!menuToggle || !sideMenu || !sideMenuContent || !menuItems.length) {
-        console.error('Side menu elements not fully initialized');
+    
+    // Check if these essential elements exist
+    if (!menuToggle || !sideMenu) {
+        console.error('Menu toggle or side menu not found');
         return;
     }
 
-    // Add click event listeners to menu items immediately
+    // Find side menu content and menu items
+    const sideMenuContent = sideMenu.querySelector('.side-menu-content');
+    const menuItems = sideMenu.querySelectorAll('.side-menu-nav a');
+
+    // Toggle menu when menu toggle is clicked
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sideMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            sideMenu.classList.remove('active');
+        }
+    });
+
+    // Prevent propagation within side menu content
+    if (sideMenuContent) {
+        sideMenuContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
+    // Add click handlers to menu items
     menuItems.forEach(item => {
         item.addEventListener('click', (e) => {
-            // Explicitly prevent event propagation
             e.stopPropagation();
-            
-            // Close the menu if needed
             sideMenu.classList.remove('active');
         });
     });
 
-    // Modify side menu content click handler
-    sideMenuContent.addEventListener('click', (e) => {
-        // Prevent the click from being interpreted as an "outside" click
-        e.stopPropagation();
-    });
-
-    // Ensure menu items are immediately clickable when menu opens
-    sideMenu.addEventListener('click', (e) => {
-        // If the click is on a direct child of side-menu (which should be side-menu-content)
-        if (e.target === sideMenu) {
+    // Optional: Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sideMenu.classList.contains('active')) {
             sideMenu.classList.remove('active');
         }
     });
 });
-
 
 // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
