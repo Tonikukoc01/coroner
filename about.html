@@ -1764,42 +1764,45 @@ document.querySelectorAll('.content-block').forEach(block => {
   });
 }
 
-// Mobile Side Menu Interaction
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenu = document.querySelector('.side-menu');
     const sideMenuLinks = sideMenu.querySelectorAll('.side-menu-nav a, .side-menu-social a');
 
-     // Prevent initial click from closing menu immediately
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Stop the click from immediately triggering document-level close
+    // Toggle menu function
+    function toggleMenu() {
         sideMenu.classList.toggle('active');
+    }
+
+    // Menu toggle event
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
     });
 
-     // Add a small delay to event listeners to prevent immediate closure
+    // Ensure links are fully functional
     sideMenuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Prevent menu from closing on first interaction
-            e.stopPropagation();
-            
-            // Optional: close menu after navigation
-            setTimeout(() => {
-                sideMenu.classList.remove('active');
-            }, 100);
+            // Ensure the link works normally
+            // No need to stop propagation
+            toggleMenu(); // Close menu after link click
         });
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        // Check if the click is outside the side menu and menu toggle
         if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            closeSideMenu();
+            sideMenu.classList.remove('active');
         }
     });
 
-   // Prevent propagation within side menu to allow interactions
+    // Prevent side menu clicks from closing the menu
     sideMenu.addEventListener('click', (e) => {
-        e.stopPropagation();
+        // Important: do not stop propagation completely
+        // Allow links to work while still preventing document-level click
+        if (!e.target.closest('a')) {
+            e.stopPropagation();
+        }
     });
 });
 
