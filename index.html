@@ -1346,18 +1346,11 @@ menuToggle.addEventListener('click', (e) => {
   e.stopPropagation(); // Prevent the event from propagating to document click handler
 });
 
-
-  // Check if the click is outside the side menu and menu toggle
-  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-    sideMenu.classList.remove('active');
-  }
-
 document.addEventListener('click', (e) => {
   // Check if the click is outside the side menu and menu toggle
   if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
     sideMenu.classList.remove('active');
   }
-}); // This is the correct closing brace for the event listener
 
 
 // Language Dropdown Functionality
@@ -1581,17 +1574,39 @@ document.addEventListener('DOMContentLoaded', function() {
 function enhanceSideMenuForMobile() {
     const sideMenu = document.querySelector('.side-menu');
     const menuToggle = document.querySelector('.menu-toggle');
-    
-    // Make sure menu toggle is visible and functional on mobile
-    menuToggle.style.display = 'flex';
-    
-    // Ensure the menu closes when a navigation item is clicked
     const navLinks = document.querySelectorAll('.side-menu-nav a');
+
+
+     // Modify the click event handling for mobile
+    if ('ontouchstart' in window) {
+        // Add touch event listeners
+        sideMenu.addEventListener('touchstart', (e) => {
+            // Prevent the touch event from being blocked
+            e.stopPropagation();
+        }, { passive: false });
+
+        navLinks.forEach(link => {
+            link.addEventListener('touchstart', (e) => {
+                // Prevent event from blocking interactions
+                e.stopPropagation();
+            }, { passive: false });
+        });
+    }
+
+    // Ensure menu items are clickable
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            // Prevent the click from being caught by the document click handler
+            e.stopPropagation();
+            
+            // Close the menu
             sideMenu.classList.remove('active');
         });
     });
+}
+
+// Call the enhancement function
+enhanceSideMenuForMobile();
     
     // Handle the language option clicks in side menu
     const languageOptions = document.querySelectorAll('.side-menu .language-option');
