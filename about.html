@@ -1770,22 +1770,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const sideMenu = document.querySelector('.side-menu');
     const sideMenuLinks = sideMenu.querySelectorAll('.side-menu-nav a, .side-menu-social a');
 
-    // Function to close the side menu
-    function closeSideMenu() {
-        sideMenu.classList.remove('active');
-    }
-
-    // Menu toggle event
+     // Prevent initial click from closing menu immediately
     menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Stop the click from immediately triggering document-level close
         sideMenu.classList.toggle('active');
-        e.stopPropagation();
     });
 
-    // Handle link clicks within side menu
+     // Add a small delay to event listeners to prevent immediate closure
     sideMenuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Allow navigation
-            closeSideMenu();
+            // Prevent menu from closing on first interaction
+            e.stopPropagation();
+            
+            // Optional: close menu after navigation
+            setTimeout(() => {
+                sideMenu.classList.remove('active');
+            }, 100);
         });
     });
 
@@ -1797,7 +1797,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Prevent propagation on side menu content to allow interactions
+   // Prevent propagation within side menu to allow interactions
     sideMenu.addEventListener('click', (e) => {
         e.stopPropagation();
     });
