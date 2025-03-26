@@ -1716,6 +1716,15 @@ document.querySelectorAll('.content-block').forEach(block => {
     contentObserver.observe(block);
 });
 
+// Navigation menu toggle
+   const menuToggle = document.querySelector('.menu-toggle');
+   const navMenu = document.querySelector('.nav-menu');
+     // Ensure all elements are present
+     if (!menuToggle || !sideMenu || !sideMenuContent || !menuItems.length) {
+         console.error('Side menu elements not fully initialized');
+         return;
+     }
+
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenu = document.querySelector('.side-menu');
@@ -1778,8 +1787,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 }
-
-// Toggle side menu
 
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
