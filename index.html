@@ -1346,9 +1346,6 @@ menuToggle.addEventListener('click', (e) => {
   e.stopPropagation(); // Prevent the event from propagating to document click handler
 });
 
-// Close side menu when clicking outside
-document.addEventListener('click', (e) => {
-  console.log('Document click detected:', e.target);
 
   // Check if the click is outside the side menu and menu toggle
   if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
@@ -1360,6 +1357,8 @@ document.addEventListener('click', (e) => {
     sideMenu.classList.remove('active');
   }
 });
+
+
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
