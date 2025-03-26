@@ -1716,21 +1716,44 @@ document.querySelectorAll('.content-block').forEach(block => {
     contentObserver.observe(block);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.querySelector('.side-menu');
+    const sideMenuContent = document.querySelector('.side-menu-content');
+    const menuItems = sideMenu.querySelectorAll('.side-menu-nav a');
 
-// Navigation menu toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-// Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!navMenu.contains(e.target)) {
-      navMenu.classList.remove('active');
+    // Ensure all elements are present
+    if (!menuToggle || !sideMenu || !sideMenuContent || !menuItems.length) {
+        console.error('Side menu elements not fully initialized');
+        return;
     }
-  });
+
+    // Add click event listeners to menu items immediately
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            // Explicitly prevent event propagation
+            e.stopPropagation();
+            
+            // Close the menu if needed
+            sideMenu.classList.remove('active');
+        });
+    });
+
+    // Modify side menu content click handler
+    sideMenuContent.addEventListener('click', (e) => {
+        // Prevent the click from being interpreted as an "outside" click
+        e.stopPropagation();
+    });
+
+    // Ensure menu items are immediately clickable when menu opens
+    sideMenu.addEventListener('click', (e) => {
+        // If the click is on a direct child of side-menu (which should be side-menu-content)
+        if (e.target === sideMenu) {
+            sideMenu.classList.remove('active');
+        }
+    });
+});
+
 
 // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1757,28 +1780,7 @@ document.querySelectorAll('.content-block').forEach(block => {
 }
 
 // Toggle side menu
-const menuToggle = document.querySelector('.menu-toggle');
-const sideMenu = document.querySelector('.side-menu');
 
-// Toggle menu when clicking the menu button
-menuToggle.addEventListener('click', (e) => {
-  sideMenu.classList.toggle('active');
-  e.stopPropagation(); // Prevent the event from propagating to document click handler
-});
-
-// Close side menu when clicking outside, but allow interactions inside the menu
-document.addEventListener('click', (e) => {
-  // If the click is outside the side menu and menu toggle, close the menu
-  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-    sideMenu.classList.remove('active');
-  }
-});
-
-// Ensure menu items are clickable when menu is open
-sideMenu.addEventListener('click', (e) => {
-  // Prevent the click from being interpreted as an "outside" click
-  e.stopPropagation();
-});
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
