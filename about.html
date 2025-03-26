@@ -1726,22 +1726,30 @@ document.querySelectorAll('.content-block').forEach(block => {
      }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait for the DOM to be fully loaded
+    console.log('DOM fully loaded. Initializing side menu...');
+
+    // Select elements
     const menuToggle = document.querySelector('.menu-toggle');
     const sideMenu = document.querySelector('.side-menu');
-    
-    // Check if these essential elements exist
-    if (!menuToggle || !sideMenu) {
-        console.error('Menu toggle or side menu not found');
+
+    // Log elements for debugging
+    console.log('Menu Toggle:', menuToggle);
+    console.log('Side Menu:', sideMenu);
+
+    // Verify elements exist
+    if (!menuToggle) {
+        console.error('Menu toggle not found');
         return;
     }
 
-    // Find side menu content and menu items
-    const sideMenuContent = sideMenu.querySelector('.side-menu-content');
-    const menuItems = sideMenu.querySelectorAll('.side-menu-nav a');
+    if (!sideMenu) {
+        console.error('Side menu not found');
+        return;
+    }
 
-    // Toggle menu when menu toggle is clicked
+    // Basic menu toggle functionality
     menuToggle.addEventListener('click', (e) => {
+        console.log('Menu toggle clicked');
         e.stopPropagation();
         sideMenu.classList.toggle('active');
     });
@@ -1753,26 +1761,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Prevent propagation within side menu content
-    if (sideMenuContent) {
-        sideMenuContent.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-    }
+    // Find and add click listeners to menu items
+    const menuItems = sideMenu.querySelectorAll('.side-menu-nav a');
+    console.log('Menu Items:', menuItems);
 
-    // Add click handlers to menu items
     menuItems.forEach(item => {
         item.addEventListener('click', (e) => {
+            console.log('Menu item clicked:', item.textContent);
             e.stopPropagation();
             sideMenu.classList.remove('active');
         });
-    });
-
-    // Optional: Close menu with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && sideMenu.classList.contains('active')) {
-            sideMenu.classList.remove('active');
-        }
     });
 });
 
