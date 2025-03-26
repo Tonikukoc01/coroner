@@ -1716,63 +1716,21 @@ document.querySelectorAll('.content-block').forEach(block => {
     contentObserver.observe(block);
 });
 
+
 // Navigation menu toggle
-   const menuToggle = document.querySelector('.menu-toggle');
-   const navMenu = document.querySelector('.nav-menu');
-     // Ensure all elements are present
-     if (!menuToggle || !sideMenu || !sideMenuContent || !menuItems.length) {
-         console.error('Side menu elements not fully initialized');
-         return;
-     }
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded. Initializing side menu...');
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
 
-    // Select elements
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sideMenu = document.querySelector('.side-menu');
-
-    // Log elements for debugging
-    console.log('Menu Toggle:', menuToggle);
-    console.log('Side Menu:', sideMenu);
-
-    // Verify elements exist
-    if (!menuToggle) {
-        console.error('Menu toggle not found');
-        return;
+// Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navMenu.contains(e.target)) {
+      navMenu.classList.remove('active');
     }
-
-    if (!sideMenu) {
-        console.error('Side menu not found');
-        return;
-    }
-
-    // Basic menu toggle functionality
-    menuToggle.addEventListener('click', (e) => {
-        console.log('Menu toggle clicked');
-        e.stopPropagation();
-        sideMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            sideMenu.classList.remove('active');
-        }
-    });
-
-    // Find and add click listeners to menu items
-    const menuItems = sideMenu.querySelectorAll('.side-menu-nav a');
-    console.log('Menu Items:', menuItems);
-
-    menuItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-            console.log('Menu item clicked:', item.textContent);
-            e.stopPropagation();
-            sideMenu.classList.remove('active');
-        });
-    });
-});
+  });
 
 // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1798,6 +1756,29 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 }
 
+// Toggle side menu
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.querySelector('.side-menu');
+
+// Toggle menu when clicking the menu button
+menuToggle.addEventListener('click', (e) => {
+  sideMenu.classList.toggle('active');
+  e.stopPropagation(); // Prevent the event from propagating to document click handler
+});
+
+// Close side menu when clicking outside, but allow interactions inside the menu
+document.addEventListener('click', (e) => {
+  // If the click is outside the side menu and menu toggle, close the menu
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+});
+
+// Ensure menu items are clickable when menu is open
+sideMenu.addEventListener('click', (e) => {
+  // Prevent the click from being interpreted as an "outside" click
+  e.stopPropagation();
+});
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
