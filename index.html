@@ -1352,11 +1352,12 @@ menuToggle.addEventListener('click', (e) => {
     sideMenu.classList.remove('active');
   }
 
-  // If the click is inside the side menu (anywhere in the active side menu), close the menu
-  if (sideMenu.classList.contains('active') && sideMenu.contains(e.target)) {
+document.addEventListener('click', (e) => {
+  // Check if the click is outside the side menu and menu toggle
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
     sideMenu.classList.remove('active');
   }
-});
+}); // This is the correct closing brace for the event listener
 
 
 // Language Dropdown Functionality
