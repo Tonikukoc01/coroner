@@ -1764,29 +1764,46 @@ document.querySelectorAll('.content-block').forEach(block => {
   });
 }
 
-// Toggle side menu
-const menuToggle = document.querySelector('.menu-toggle');
-const sideMenu = document.querySelector('.side-menu');
+// Mobile Side Menu Interaction
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sideMenu = document.querySelector('.side-menu');
+    const sideMenuLinks = sideMenu.querySelectorAll('.side-menu-nav a, .side-menu-social a');
 
-// Toggle menu when clicking the menu button
-menuToggle.addEventListener('click', (e) => {
-  sideMenu.classList.toggle('active');
-  e.stopPropagation(); // Prevent the event from propagating to document click handler
+    // Function to close the side menu
+    function closeSideMenu() {
+        sideMenu.classList.remove('active');
+    }
+
+    // Menu toggle event
+    menuToggle.addEventListener('click', (e) => {
+        sideMenu.classList.toggle('active');
+        e.stopPropagation();
+    });
+
+    // Handle link clicks within side menu
+    sideMenuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Allow navigation
+            closeSideMenu();
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        // Check if the click is outside the side menu and menu toggle
+        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            closeSideMenu();
+        }
+    });
+
+    // Prevent propagation on side menu content to allow interactions
+    sideMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 });
 
-// Close side menu when clicking outside, but allow interactions inside the menu
-document.addEventListener('click', (e) => {
-  // If the click is outside the side menu and menu toggle, close the menu
-  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-    sideMenu.classList.remove('active');
-  }
-});
 
-// Ensure menu items are clickable when menu is open
-sideMenu.addEventListener('click', (e) => {
-  // Prevent the click from being interpreted as an "outside" click
-  e.stopPropagation();
-});
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
