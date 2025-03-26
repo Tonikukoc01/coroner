@@ -574,6 +574,17 @@ body {
   gap: 3.5rem; /* Increased margin between menu items */
 }
 
+
+
+.side-menu-nav a::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -20px;
+  right: -20px;
+}
+
 .side-menu-nav a {
   color: #F0F4F8;
   font-size: 1.8rem;
@@ -583,8 +594,11 @@ body {
   display: inline-block;
   padding: 0.5rem 1rem;
   text-align: right;
+  position: relative
+
 }
 
+            
 .side-menu-nav a:hover {
   color: #ffffff;
 }
