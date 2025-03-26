@@ -1722,21 +1722,6 @@ document.querySelectorAll('.content-block').forEach(block => {
 });
 
 
-// Navigation menu toggle
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-// Close menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!navMenu.contains(e.target)) {
-      navMenu.classList.remove('active');
-    }
-  });
-
 // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
