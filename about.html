@@ -515,6 +515,7 @@ body {
   justify-content: flex-end;
   align-items: flex-start;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s ease;
 }
 
@@ -1406,9 +1407,6 @@ backdrop-filter: blur(5px); /* Add blur effect */
 }
 
 @media screen and (max-width: 768px) {
-    #gallery {
-     overflow-x: hidden;
- }
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         padding: 0 2rem;
@@ -1763,49 +1761,29 @@ document.querySelectorAll('.content-block').forEach(block => {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sideMenu = document.querySelector('.side-menu');
-    const sideMenuLinks = sideMenu.querySelectorAll('.side-menu-nav a, .side-menu-social a');
+// Toggle side menu
+const menuToggle = document.querySelector('.menu-toggle');
+const sideMenu = document.querySelector('.side-menu');
 
-    // Toggle menu function
-    function toggleMenu() {
-        sideMenu.classList.toggle('active');
-    }
-
-    // Menu toggle event
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleMenu();
-    });
-
-    // Ensure links are fully functional
-    sideMenuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Ensure the link works normally
-            // No need to stop propagation
-            toggleMenu(); // Close menu after link click
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            sideMenu.classList.remove('active');
-        }
-    });
-
-    // Prevent side menu clicks from closing the menu
-    sideMenu.addEventListener('click', (e) => {
-        // Important: do not stop propagation completely
-        // Allow links to work while still preventing document-level click
-        if (!e.target.closest('a')) {
-            e.stopPropagation();
-        }
-    });
+// Toggle menu when clicking the menu button
+menuToggle.addEventListener('click', (e) => {
+  sideMenu.classList.toggle('active');
+  e.stopPropagation(); // Prevent the event from propagating to document click handler
 });
 
+// Close side menu when clicking outside, but allow interactions inside the menu
+document.addEventListener('click', (e) => {
+  // If the click is outside the side menu and menu toggle, close the menu
+  if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    sideMenu.classList.remove('active');
+  }
+});
 
+// Ensure menu items are clickable when menu is open
+sideMenu.addEventListener('click', (e) => {
+  // Prevent the click from being interpreted as an "outside" click
+  e.stopPropagation();
+});
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
@@ -2128,7 +2106,12 @@ function updateLanguage(langCode) {
   travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
 }
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    // Your existing code
+    
+    // Initialize with default language (English)
+    updateLanguage('en');
+});
         </script>
     </body>
 </html>
