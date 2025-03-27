@@ -1879,86 +1879,22 @@ function attachLanguageOptionListeners() {
         languageDropdown.classList.remove('active');
     });
 });
-    // Modify the language selection logic to use localStorage
-document.addEventListener('DOMContentLoaded', () => {
-    const languageDropdown = document.querySelector('.language-dropdown');
-    const languageSelector = languageDropdown.querySelector('.language-selector');
-    const languageOptions = languageDropdown.querySelector('.language-options');
+    // Initial setup
+            updateLanguageOptions('en');
 
-    // Function to save selected language to localStorage
-    function saveLanguagePreference(langCode) {
-        localStorage.setItem('selectedLanguage', langCode);
-    }
-
-    // Function to get saved language from localStorage
-    function getSavedLanguage() {
-        return localStorage.getItem('selectedLanguage') || 'en'; // Default to English if no saved language
-    }
-
-    // Modify the language selection event listener to save language
-    function attachLanguageOptionListeners() {
-        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-        
-        languageOptionEls.forEach(option => {
-            option.addEventListener('click', (e) => {
+    // Toggle dropdown
+            languageSelector.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const selectedLang = option.dataset.lang;
-                
-                // Update selector
-                const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-                const selectedCode = option.querySelector('.language-code').textContent;
+                languageDropdown.classList.toggle('active');
+            });
 
-                languageSelector.innerHTML = '';
-                languageSelector.appendChild(selectedFlag);
-                languageSelector.dataset.currentLang = selectedLang;
-                
-                const codeSpan = document.createElement('span');
-                codeSpan.className = 'language-code';
-                codeSpan.textContent = selectedCode;
-                languageSelector.appendChild(codeSpan);
-
-                // Update available options
-                updateLanguageOptions(selectedLang);
-
-                // Update the page content with the selected language
-                updateLanguage(selectedLang);
-
-                // Save the selected language
-                saveLanguagePreference(selectedLang);
-
-                // Close dropdown
-                languageDropdown.classList.remove('active');
+    // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('active');
+                }
             });
         });
-    }
-
-    // On page load, check for saved language and apply it
-    function initializeLanguage() {
-        const savedLang = getSavedLanguage();
-        updateLanguageOptions(savedLang);
-        updateLanguage(savedLang);
-
-        // Update the language selector to show the saved language
-        const savedLanguageInfo = languages[savedLang];
-        const flagImg = document.createElement('img');
-        flagImg.src = savedLanguageInfo.flag;
-        flagImg.alt = `${savedLanguageInfo.name} Flag`;
-        flagImg.className = 'language-flag';
-
-        const codeSpan = document.createElement('span');
-        codeSpan.className = 'language-code';
-        codeSpan.textContent = savedLanguageInfo.code;
-
-        languageSelector.innerHTML = '';
-        languageSelector.appendChild(flagImg);
-        languageSelector.appendChild(codeSpan);
-        languageSelector.dataset.currentLang = savedLang;
-    }
-
-    // Call initialization on page load
-    initializeLanguage();
-
-});
 
 // Gallery loading animation with improved caption handling
 window.addEventListener('DOMContentLoaded', () => {
@@ -2131,49 +2067,33 @@ const translations = {
 
 // Function to update page content based on selected language
 function updateLanguage(langCode) {
-  // Safely check if elements exist before updating
-  const headerTitle = document.querySelector('#header h1');
-  const headerDescription = document.querySelector('#header p');
-  const scrollText = document.querySelector('.scroll-text');
-
-  if (headerTitle) headerTitle.innerHTML = translations[langCode]['about-me-title'];
-  if (headerDescription) headerDescription.innerHTML = translations[langCode]['about-me-description'];
-  if (scrollText) scrollText.textContent = translations[langCode]['scroll-text'];
+  // Get all elements that need to be translated
+  document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
+  document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
+  document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
   
   // About section
   const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
-  if (aboutParagraphs.length >= 4) {
-    aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
-    aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
-    aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
-  }
+  aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
+  aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
+  aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
   
   // Fitness section
   const fitnessBlock = document.querySelector('.about-content .content-block.right-aligned');
-  if (fitnessBlock) {
-    const fitnessHeader = fitnessBlock.querySelector('.about-header');
-    const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
-    
-    if (fitnessHeader) fitnessHeader.textContent = translations[langCode]['fitness-title'];
-    if (fitnessParagraphs.length >= 2) {
-      fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
-      fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
-    }
-  }
+  fitnessBlock.querySelector('.about-header').textContent = translations[langCode]['fitness-title'];
+  const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
+  fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
+  fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
   
   // Travel section
   const travelBlock = document.querySelector('.about-content .content-block:last-child');
-  if (travelBlock) {
-    const travelHeader = travelBlock.querySelector('.about-header');
-    const travelParagraph = travelBlock.querySelector('.content-text p');
-    
-    if (travelHeader) travelHeader.textContent = translations[langCode]['travel-title'];
-    if (travelParagraph) travelParagraph.textContent = translations[langCode]['travel-paragraph'];
-  }
+  travelBlock.querySelector('.about-header').textContent = translations[langCode]['travel-title'];
+  travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
 }
 
-// Ensure the function is called after DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Your existing code
+    
     // Initialize with default language (English)
     updateLanguage('en');
 });
