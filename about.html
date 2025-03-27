@@ -1838,9 +1838,6 @@ function attachLanguageOptionListeners() {
         option.addEventListener('click', (e) => {
             e.stopPropagation();
             const selectedLang = option.dataset.lang;
-
-           localStorage.setItem('selectedLanguage', selectedLang);
-
             
             // Update selector
             const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
@@ -2094,75 +2091,12 @@ function updateLanguage(langCode) {
   travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
 }
 
-// Check for saved language preference and initialize
 document.addEventListener('DOMContentLoaded', () => {
-    // Get saved language or default to English
-    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    // Your existing code
     
-    // Set initial language
-    updateLanguage(savedLanguage);
-    
-    // Update language selector UI to match saved language
-    const languageDropdowns = document.querySelectorAll('.language-dropdown');
-    
-    languageDropdowns.forEach(dropdown => {
-        const selector = dropdown.querySelector('.language-selector');
-        const selectedFlag = selector.querySelector('.language-flag');
-        const selectedCode = selector.querySelector('.language-code');
-        
-        // Update flag and code
-        selectedFlag.src = languages[savedLanguage].flag;
-        selectedFlag.alt = `${languages[savedLanguage].name} Flag`;
-        selectedFlag.dataset.lang = savedLanguage;
-        selectedCode.textContent = languages[savedLanguage].code;
-        
-        // Update current language
-        selector.dataset.currentLang = savedLanguage;
-        
-        // Update available options
-        updateLanguageOptions(dropdown, savedLanguage);
-    });
+    // Initialize with default language (English)
+    updateLanguage('en');
 });
-  
-    // Get stored language or default to 'fr'
-    const storedLang = localStorage.getItem('selectedLanguage') || 'fr';
-    console.log("Initial language (from storage or default):", storedLang);
-    
-    // Set initial selector based on stored/default language
-    const initialFlag = document.createElement('img');
-    initialFlag.src = languages[storedLang].flag;
-    initialFlag.alt = `${languages[storedLang].name} Flag`;
-    initialFlag.className = 'language-flag';
-    
-    languageSelector.innerHTML = '';
-    languageSelector.appendChild(initialFlag);
-    languageSelector.dataset.currentLang = storedLang;
-    
-    const codeSpan = document.createElement('span');
-    codeSpan.className = 'language-code';
-    codeSpan.textContent = languages[storedLang].code;
-    languageSelector.appendChild(codeSpan);
-    
-    // Apply initial translations
-    applyTranslation(storedLang);
-    
-    // Initialize the options for first-time display
-    updateLanguageOptions(storedLang);
-}
-
-// Initialize our custom language selector on page load
-document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM loaded, initializing language functionality");
-    initializeCustomLanguageSelector();
-    
-    // Watch for window resize to handle responsive content
-    window.addEventListener('resize', () => {
-        const currentLang = document.querySelector('.language-selector').dataset.currentLang || 'fr';
-        applyTranslation(currentLang);
-    });
-});
-
-
         </script>
     </body>
 </html>
