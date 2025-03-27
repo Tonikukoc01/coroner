@@ -530,10 +530,10 @@ input, select, textarea {
 	}
 
 	#header {
-		-moz-animation: header 1s 1.25s forwards;
-		-webkit-animation: header 1s 1.25s forwards;
-		-ms-animation: header 1s 1.25s forwards;
-		animation: header 1s 1.25s forwards;
+		-moz-animation: header 0.5s 0.75s forwards;
+		-webkit-animation: header 0.5s 0.75s forwards;
+		-ms-animation: header 0.5s 0.75s forwards;
+		animation: header 0.5s 0.75s forwards;
 		-moz-backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
 		-ms-backface-visibility: hidden;
@@ -550,7 +550,7 @@ input, select, textarea {
 		top: -1em;
 		vertical-align: middle;
 		width: 90%;
-	}
+}
 
 		#header h1 {
 			font-size: 4.35em;
