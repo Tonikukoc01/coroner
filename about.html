@@ -2094,13 +2094,6 @@ function updateLanguage(langCode) {
   travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Your existing code
-    
-    // Initialize with default language (English)
-    updateLanguage('en');
-});
-
 // Check for saved language preference and initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Get saved language or default to English
