@@ -1838,6 +1838,9 @@ function attachLanguageOptionListeners() {
         option.addEventListener('click', (e) => {
             e.stopPropagation();
             const selectedLang = option.dataset.lang;
+
+           localStorage.setItem('selectedLanguage', selectedLang);
+
             
             // Update selector
             const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
