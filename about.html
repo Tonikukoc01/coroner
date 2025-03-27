@@ -2131,25 +2131,37 @@ const translations = {
 
 // Function to update page content based on selected language
 function updateLanguage(langCode) {
-  // Get all elements that need to be translated
-  document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
-  document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
-  document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
+  // Safely check if elements exist before updating
+  const headerTitle = document.querySelector('#header h1');
+  const headerDescription = document.querySelector('#header p');
+  const scrollText = document.querySelector('.scroll-text');
+
+  if (headerTitle) headerTitle.innerHTML = translations[langCode]['about-me-title'];
+  if (headerDescription) headerDescription.innerHTML = translations[langCode]['about-me-description'];
+  if (scrollText) scrollText.textContent = translations[langCode]['scroll-text'];
   
   // About section
   const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
-  aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
-  aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
-  aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
+  if (aboutParagraphs.length >= 4) {
+    aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
+    aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
+    aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
+  }
   
   // Fitness section
   const fitnessBlock = document.querySelector('.about-content .content-block.right-aligned');
-  fitnessBlock.querySelector('.about-header').textContent = translations[langCode]['fitness-title'];
-  const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
-  fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
-  fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
+  if (fitnessBlock) {
+    const fitnessHeader = fitnessBlock.querySelector('.about-header');
+    const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
+    
+    if (fitnessHeader) fitnessHeader.textContent = translations[langCode]['fitness-title'];
+    if (fitnessParagraphs.length >= 2) {
+      fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
+      fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
+    }
+  }
   
-    // Travel section
+  // Travel section
   const travelBlock = document.querySelector('.about-content .content-block:last-child');
   if (travelBlock) {
     const travelHeader = travelBlock.querySelector('.about-header');
