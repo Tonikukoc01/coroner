@@ -2149,15 +2149,19 @@ function updateLanguage(langCode) {
   fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
   fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
   
-  // Travel section
+    // Travel section
   const travelBlock = document.querySelector('.about-content .content-block:last-child');
-  travelBlock.querySelector('.about-header').textContent = translations[langCode]['travel-title'];
-  travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
+  if (travelBlock) {
+    const travelHeader = travelBlock.querySelector('.about-header');
+    const travelParagraph = travelBlock.querySelector('.content-text p');
+    
+    if (travelHeader) travelHeader.textContent = translations[langCode]['travel-title'];
+    if (travelParagraph) travelParagraph.textContent = translations[langCode]['travel-paragraph'];
+  }
 }
 
+// Ensure the function is called after DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Your existing code
-    
     // Initialize with default language (English)
     updateLanguage('en');
 });
