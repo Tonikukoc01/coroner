@@ -1879,22 +1879,86 @@ function attachLanguageOptionListeners() {
         languageDropdown.classList.remove('active');
     });
 });
-    // Initial setup
-            updateLanguageOptions('en');
+    // Modify the language selection logic to use localStorage
+document.addEventListener('DOMContentLoaded', () => {
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    const languageOptions = languageDropdown.querySelector('.language-options');
 
-    // Toggle dropdown
-            languageSelector.addEventListener('click', (e) => {
+    // Function to save selected language to localStorage
+    function saveLanguagePreference(langCode) {
+        localStorage.setItem('selectedLanguage', langCode);
+    }
+
+    // Function to get saved language from localStorage
+    function getSavedLanguage() {
+        return localStorage.getItem('selectedLanguage') || 'en'; // Default to English if no saved language
+    }
+
+    // Modify the language selection event listener to save language
+    function attachLanguageOptionListeners() {
+        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+        
+        languageOptionEls.forEach(option => {
+            option.addEventListener('click', (e) => {
                 e.stopPropagation();
-                languageDropdown.classList.toggle('active');
-            });
+                const selectedLang = option.dataset.lang;
+                
+                // Update selector
+                const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+                const selectedCode = option.querySelector('.language-code').textContent;
 
-    // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!languageDropdown.contains(e.target)) {
-                    languageDropdown.classList.remove('active');
-                }
+                languageSelector.innerHTML = '';
+                languageSelector.appendChild(selectedFlag);
+                languageSelector.dataset.currentLang = selectedLang;
+                
+                const codeSpan = document.createElement('span');
+                codeSpan.className = 'language-code';
+                codeSpan.textContent = selectedCode;
+                languageSelector.appendChild(codeSpan);
+
+                // Update available options
+                updateLanguageOptions(selectedLang);
+
+                // Update the page content with the selected language
+                updateLanguage(selectedLang);
+
+                // Save the selected language
+                saveLanguagePreference(selectedLang);
+
+                // Close dropdown
+                languageDropdown.classList.remove('active');
             });
         });
+    }
+
+    // On page load, check for saved language and apply it
+    function initializeLanguage() {
+        const savedLang = getSavedLanguage();
+        updateLanguageOptions(savedLang);
+        updateLanguage(savedLang);
+
+        // Update the language selector to show the saved language
+        const savedLanguageInfo = languages[savedLang];
+        const flagImg = document.createElement('img');
+        flagImg.src = savedLanguageInfo.flag;
+        flagImg.alt = `${savedLanguageInfo.name} Flag`;
+        flagImg.className = 'language-flag';
+
+        const codeSpan = document.createElement('span');
+        codeSpan.className = 'language-code';
+        codeSpan.textContent = savedLanguageInfo.code;
+
+        languageSelector.innerHTML = '';
+        languageSelector.appendChild(flagImg);
+        languageSelector.appendChild(codeSpan);
+        languageSelector.dataset.currentLang = savedLang;
+    }
+
+    // Call initialization on page load
+    initializeLanguage();
+
+});
 
 // Gallery loading animation with improved caption handling
 window.addEventListener('DOMContentLoaded', () => {
