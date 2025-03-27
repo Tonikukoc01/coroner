@@ -2123,6 +2123,45 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
+  
+    // Get stored language or default to 'fr'
+    const storedLang = localStorage.getItem('selectedLanguage') || 'fr';
+    console.log("Initial language (from storage or default):", storedLang);
+    
+    // Set initial selector based on stored/default language
+    const initialFlag = document.createElement('img');
+    initialFlag.src = languages[storedLang].flag;
+    initialFlag.alt = `${languages[storedLang].name} Flag`;
+    initialFlag.className = 'language-flag';
+    
+    languageSelector.innerHTML = '';
+    languageSelector.appendChild(initialFlag);
+    languageSelector.dataset.currentLang = storedLang;
+    
+    const codeSpan = document.createElement('span');
+    codeSpan.className = 'language-code';
+    codeSpan.textContent = languages[storedLang].code;
+    languageSelector.appendChild(codeSpan);
+    
+    // Apply initial translations
+    applyTranslation(storedLang);
+    
+    // Initialize the options for first-time display
+    updateLanguageOptions(storedLang);
+}
+
+// Initialize our custom language selector on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, initializing language functionality");
+    initializeCustomLanguageSelector();
+    
+    // Watch for window resize to handle responsive content
+    window.addEventListener('resize', () => {
+        const currentLang = document.querySelector('.language-selector').dataset.currentLang || 'fr';
+        applyTranslation(currentLang);
+    });
+});
+
 
         </script>
     </body>
