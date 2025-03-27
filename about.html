@@ -2097,6 +2097,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize with default language (English)
     updateLanguage('en');
 });
+
+// Check for saved language preference and initialize
+document.addEventListener('DOMContentLoaded', () => {
+    // Get saved language or default to English
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    
+    // Set initial language
+    updateLanguage(savedLanguage);
+    
+    // Update language selector UI to match saved language
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+    
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const selectedFlag = selector.querySelector('.language-flag');
+        const selectedCode = selector.querySelector('.language-code');
+        
+        // Update flag and code
+        selectedFlag.src = languages[savedLanguage].flag;
+        selectedFlag.alt = `${languages[savedLanguage].name} Flag`;
+        selectedFlag.dataset.lang = savedLanguage;
+        selectedCode.textContent = languages[savedLanguage].code;
+        
+        // Update current language
+        selector.dataset.currentLang = savedLanguage;
+        
+        // Update available options
+        updateLanguageOptions(dropdown, savedLanguage);
+    });
+});
+
         </script>
     </body>
 </html>
