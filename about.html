@@ -1886,36 +1886,37 @@ function attachLanguageOptionListeners() {
             const languageDropdown = document.querySelector('.language-dropdown');
             const languageOptions = languageDropdown.querySelector('.language-options');
 
-    // Function to update language options
-            function updateLanguageOptions(currentLang) {
+function updateLanguageOptions(currentLang) {
+    const languageOptions = document.querySelector('.language-dropdown .language-options');
+    languageOptions.innerHTML = ''; // Clear existing options
 
     // Get alternative languages
-                const alternativeLangs = languages[currentLang].alternatives;
+    const alternativeLangs = languages[currentLang].alternatives;
 
     // Create new language options
-                alternativeLangs.forEach(langCode => {
-                    const option = document.createElement('div');
-                    option.className = 'language-option';
-                    option.dataset.lang = langCode;
+    alternativeLangs.forEach(langCode => {
+        const option = document.createElement('div');
+        option.className = 'language-option';
+        option.dataset.lang = langCode;
 
-                    const flag = document.createElement('img');
-                    flag.src = languages[langCode].flag;
-                    flag.alt = `${languages[langCode].name} Flag`;
-                    flag.className = 'language-flag';
-                    flag.dataset.lang = langCode;
+        const flag = document.createElement('img');
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.className = 'language-flag';
+        flag.dataset.lang = langCode;
 
-                    const code = document.createElement('span');
-                    code.className = 'language-code';
-                    code.textContent = languages[langCode].code;
+        const code = document.createElement('span');
+        code.className = 'language-code';
+        code.textContent = languages[langCode].code;
 
-                    option.appendChild(flag);
-                    option.appendChild(code);
-                    languageOptions.appendChild(option);
-                });
+        option.appendChild(flag);
+        option.appendChild(code);
+        languageOptions.appendChild(option);
+    });
 
     // Re-attach event listeners
-                attachLanguageOptionListeners();
-            }
+    attachLanguageOptionListeners();
+}
 
 // Attach event listeners to language options
 function attachLanguageOptionListeners() {
