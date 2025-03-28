@@ -1871,31 +1871,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // TODO: Implement this function to update page content
-function updateLanguage(langCode) {
-  // Get all elements that need to be translated
-  document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
-  document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
-  document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
-  
-  // About section
-  const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
-  aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
-  aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
-  aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
-  
-  // Fitness section
-  const fitnessBlock = document.querySelector('.about-content .content-block.right-aligned');
-  fitnessBlock.querySelector('.about-header').textContent = translations[langCode]['fitness-title'];
-  const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
-  fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
-  fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
-  
-  // Travel section
-  const travelBlock = document.querySelector('.about-content .content-block:last-child');
-  travelBlock.querySelector('.about-header').textContent = translations[langCode]['travel-title'];
-  travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
-}
+    function updateLanguage(langCode) {
+        console.log(`Updating page to language: ${langCode}`);
+        // Implement your language translation logic here
     }
+
+    // Attach event listeners to language options
+    function attachLanguageOptionListeners() {
+        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+        
+        languageOptionEls.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const selectedLang = option.dataset.lang;
+                
+                // Update selector and options
+                updateLanguageSelector(selectedLang);
+                updateLanguageOptions(selectedLang);
+
+                // Update the page content with the selected language
+                updateLanguage(selectedLang);
+
+                // Save the language preference
+                saveLanguagePreference(selectedLang);
+
+                // Close dropdown
+                languageDropdown.classList.remove('active');
+            });
+        });
+    }
+
+    // Retrieve the saved language preference
+    const savedLang = getSavedLanguagePreference();
+    const validLang = languages[savedLang] ? savedLang : 'en';
+
+    // Initial setup
+    updateLanguageSelector(validLang);
+    updateLanguageOptions(validLang);
+    updateLanguage(validLang);
+
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
+    });
+
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
+        languageDropdown.classList.remove('active');
+    });
+
+    // Toggle dropdown
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!languageDropdown.contains(e.target)) {
+            languageDropdown.classList.remove('active');
+        }
+    });
+});
+// Language translations
 const translations = {
   'en': {
     // Home section
@@ -1958,63 +1996,32 @@ const translations = {
     'travel-paragraph': "Posjetio sam 20 zemalja, istražio stotine europskih gradova i živio u četiri različite zemlje tijekom svog puta. Iskustvo novih kultura, susreti s ljudima različitih pozadina i stalno prilagođavanje novim okruženjima čini život uzbudljivim."
   }
 };
-    // Attach event listeners to language options
-    function attachLanguageOptionListeners() {
-        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-        
-        languageOptionEls.forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const selectedLang = option.dataset.lang;
-                
-                // Update selector and options
-                updateLanguageSelector(selectedLang);
-                updateLanguageOptions(selectedLang);
 
-                // Update the page content with the selected language
-                updateLanguage(selectedLang);
-
-                // Save the language preference
-                saveLanguagePreference(selectedLang);
-
-                // Close dropdown
-                languageDropdown.classList.remove('active');
-            });
-        });
-    }
-
-    // Retrieve the saved language preference
-    const savedLang = getSavedLanguagePreference();
-    const validLang = languages[savedLang] ? savedLang : 'en';
-
-    // Initial setup
-    updateLanguageSelector(validLang);
-    updateLanguageOptions(validLang);
-    updateLanguage(validLang);
-
-    // Hover event to open dropdown
-    languageSelector.addEventListener('mouseenter', () => {
-        languageDropdown.classList.add('active');
-    });
-
-    // Leave event to close dropdown
-    languageDropdown.addEventListener('mouseleave', () => {
-        languageDropdown.classList.remove('active');
-    });
-
-    // Toggle dropdown
-    languageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        languageDropdown.classList.toggle('active');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!languageDropdown.contains(e.target)) {
-            languageDropdown.classList.remove('active');
-        }
-    });
-});
+// Function to update page content based on selected language
+function updateLanguage(langCode) {
+  // Get all elements that need to be translated
+  document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
+  document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
+  document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
+  
+  // About section
+  const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
+  aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
+  aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
+  aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
+  
+  // Fitness section
+  const fitnessBlock = document.querySelector('.about-content .content-block.right-aligned');
+  fitnessBlock.querySelector('.about-header').textContent = translations[langCode]['fitness-title'];
+  const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
+  fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
+  fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
+  
+  // Travel section
+  const travelBlock = document.querySelector('.about-content .content-block:last-child');
+  travelBlock.querySelector('.about-header').textContent = translations[langCode]['travel-title'];
+  travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
+}
 
 
 // Gallery loading animation with improved caption handling
