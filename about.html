@@ -1782,6 +1782,87 @@ sideMenu.addEventListener('click', (e) => {
   // Prevent the click from being interpreted as an "outside" click
   e.stopPropagation();
 });
+
+// Add this code near the top of your existing script, before the language dropdown initialization
+
+// Function to save selected language to localStorage
+function saveLanguagePreference(langCode) {
+    localStorage.setItem('selectedLanguage', langCode);
+}
+
+// Function to get saved language preference
+function getSavedLanguagePreference() {
+    return localStorage.getItem('selectedLanguage') || 'en';
+}
+
+// Modify the DOMContentLoaded event listener for language initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve the saved language preference
+    const savedLang = getSavedLanguagePreference();
+    
+    // Update language dropdown to show saved language
+    const languageSelector = document.querySelector('.language-selector');
+    const currentLangObj = languages[savedLang];
+    
+    // Update language selector with saved language flag and code
+    languageSelector.innerHTML = '';
+    const flagImg = document.createElement('img');
+    flagImg.src = currentLangObj.flag;
+    flagImg.alt = `${currentLangObj.name} Flag`;
+    flagImg.className = 'language-flag';
+    
+    const codeSpan = document.createElement('span');
+    codeSpan.className = 'language-code';
+    codeSpan.textContent = currentLangObj.code;
+    
+    languageSelector.appendChild(flagImg);
+    languageSelector.appendChild(codeSpan);
+    languageSelector.dataset.currentLang = savedLang;
+    
+    // Update language options based on saved language
+    updateLanguageOptions(savedLang);
+    
+    // Update page content with saved language
+    updateLanguage(savedLang);
+});
+
+// Modify the language selection event listener to save preference
+function attachLanguageOptionListeners() {
+    const languageOptionEls = document.querySelectorAll('.language-option');
+    
+    languageOptionEls.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const selectedLang = option.dataset.lang;
+            
+            // Update selector
+            const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
+            const selectedCode = option.querySelector('.language-code').textContent;
+
+            languageSelector.innerHTML = '';
+            languageSelector.appendChild(selectedFlag);
+            languageSelector.dataset.currentLang = selectedLang;
+            
+            const codeSpan = document.createElement('span');
+            codeSpan.className = 'language-code';
+            codeSpan.textContent = selectedCode;
+            languageSelector.appendChild(codeSpan);
+
+            // Update available options
+            updateLanguageOptions(selectedLang);
+
+            // Update the page content with the selected language
+            updateLanguage(selectedLang);
+
+            // Save the language preference
+            saveLanguagePreference(selectedLang);
+
+            // Close dropdown
+            languageDropdown.classList.remove('active');
+        });
+    });
+}
+
 // Language Dropdown Functionality
         document.addEventListener('DOMContentLoaded', () => {
             // Language configuration
