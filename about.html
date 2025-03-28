@@ -2117,28 +2117,30 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set initial language
     updateLanguage(savedLanguage);
-    
-    // Update language selector UI to match saved language
+
+
+    // Update all language selectors with the selected language
+function updateLanguageSelectors(langCode) {
     const languageDropdowns = document.querySelectorAll('.language-dropdown');
     
     languageDropdowns.forEach(dropdown => {
         const selector = dropdown.querySelector('.language-selector');
-        const selectedFlag = selector.querySelector('.language-flag');
-        const selectedCode = selector.querySelector('.language-code');
+        const flag = selector.querySelector('.language-flag');
+        const code = selector.querySelector('.language-code');
         
-        // Update flag and code
-        selectedFlag.src = languages[savedLanguage].flag;
-        selectedFlag.alt = `${languages[savedLanguage].name} Flag`;
-        selectedFlag.dataset.lang = savedLanguage;
-        selectedCode.textContent = languages[savedLanguage].code;
+        // Update the flag and code
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.dataset.lang = langCode;
+        code.textContent = languages[langCode].code;
         
-        // Update current language
-        selector.dataset.currentLang = savedLanguage;
+        // Update data attribute
+        selector.dataset.currentLang = langCode;
         
         // Update available options
-        updateLanguageOptions(dropdown, savedLanguage);
+        updateLanguageOptions(dropdown, langCode);
     });
-});
+}
 
   // Function to update language options
             function updateLanguageOptions(currentLang) {
