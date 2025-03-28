@@ -2078,12 +2078,6 @@ const translations = {
   }
 };
 
-// Function to update text content based on selected language
-function updateLanguage(lang) {
-    // Store the current language in localStorage
-    localStorage.setItem('selectedLanguage', lang);
-
-
 // Function to update page content based on selected language
 function updateLanguage(langCode) {
   // Get all elements that need to be translated
@@ -2110,110 +2104,12 @@ function updateLanguage(langCode) {
   travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
 }
 
-// Check for saved language preference and initialize
 document.addEventListener('DOMContentLoaded', () => {
-    // Get saved language or default to English
-    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    // Your existing code
     
-    // Set initial language
-    updateLanguage(savedLanguage);
-
-
-    // Update all language selectors with the selected language
-function updateLanguageSelectors(langCode) {
-    const languageDropdowns = document.querySelectorAll('.language-dropdown');
-    
-    languageDropdowns.forEach(dropdown => {
-        const selector = dropdown.querySelector('.language-selector');
-        const flag = selector.querySelector('.language-flag');
-        const code = selector.querySelector('.language-code');
-        
-        // Update the flag and code
-        flag.src = languages[langCode].flag;
-        flag.alt = `${languages[langCode].name} Flag`;
-        flag.dataset.lang = langCode;
-        code.textContent = languages[langCode].code;
-        
-        // Update data attribute
-        selector.dataset.currentLang = langCode;
-        
-        // Update available options
-        updateLanguageOptions(dropdown, langCode);
-    });
-}
-
-  // Function to update language options
-            function updateLanguageOptions(currentLang) {
-    // Clear existing options
-                languageOptions.innerHTML = '';
-
-    // Get alternative languages
-                const alternativeLangs = languages[currentLang].alternatives;
-
-    // Create new language options
-                alternativeLangs.forEach(langCode => {
-                    const option = document.createElement('div');
-                    option.className = 'language-option';
-                    option.dataset.lang = langCode;
-
-                    const flag = document.createElement('img');
-                    flag.src = languages[langCode].flag;
-                    flag.alt = `${languages[langCode].name} Flag`;
-                    flag.className = 'language-flag';
-                    flag.dataset.lang = langCode;
-
-                    const code = document.createElement('span');
-                    code.className = 'language-code';
-                    code.textContent = languages[langCode].code;
-
-                    option.appendChild(flag);
-                    option.appendChild(code);
-                    languageOptions.appendChild(option);
-                });
-
-    // Re-attach event listeners
-                attachLanguageOptionListeners();
-            }
-
-
-// Language selection event handler
-function attachLanguageSelectionHandlers() {
-    const languageOptions = document.querySelectorAll('.language-option');
-    
-    languageOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const selectedLang = option.dataset.lang;
-            
-            // Update the language
-            updateLanguage(selectedLang);
-            
-            // Update the language dropdown UI
-            const languageDropdowns = document.querySelectorAll('.language-dropdown');
-            
-            languageDropdowns.forEach(dropdown => {
-                const selector = dropdown.querySelector('.language-selector');
-                const selectedFlag = selector.querySelector('.language-flag');
-                const selectedCode = selector.querySelector('.language-code');
-                
-                // Update flag and code
-                selectedFlag.src = languages[selectedLang].flag;
-                selectedFlag.alt = `${languages[selectedLang].name} Flag`;
-                selectedFlag.dataset.lang = selectedLang;
-                selectedCode.textContent = languages[selectedLang].code;
-                
-                // Update current language
-                selector.dataset.currentLang = selectedLang;
-                
-                // Update available options
-                updateLanguageOptions(dropdown, selectedLang);
-                
-                // Close dropdown
-                dropdown.classList.remove('active');
-            });
-        });
-    });
-}
+    // Initialize with default language (English)
+    updateLanguage('en');
+});
         </script>
     </body>
 </html>
