@@ -2166,16 +2166,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Re-attach event listeners
                 attachLanguageOptionListeners();
             }
-
-    // Attach event listeners to language options
-            function attachLanguageOptionListeners() {
-                const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-                
-                languageOptionEls.forEach(option => {
-                    option.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const selectedLang = option.dataset.lang;
-
         </script>
     </body>
 </html>
