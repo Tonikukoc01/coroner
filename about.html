@@ -1848,6 +1848,7 @@ function getSavedLanguagePreference() {
 
 // Modify the language selection event listener to save preference
 function attachLanguageOptionListeners() {
+    const languageSelector = document.querySelector('.language-selector');
     const languageOptionEls = document.querySelectorAll('.language-option');
     
     languageOptionEls.forEach(option => {
@@ -1858,9 +1859,9 @@ function attachLanguageOptionListeners() {
             // Update selector
             const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
             const selectedCode = option.querySelector('.language-code').textContent;
-           const languageDropdown = document.querySelector('.language-dropdown');
-
-
+            const languageDropdown = document.querySelector('.language-dropdown');
+            const languageOptions = languageDropdown.querySelector('.language-options');
+            
             languageSelector.innerHTML = '';
             languageSelector.appendChild(selectedFlag);
             languageSelector.dataset.currentLang = selectedLang;
@@ -1872,19 +1873,16 @@ function attachLanguageOptionListeners() {
 
             // Update available options
             updateLanguageOptions(selectedLang);
-
             // Update the page content with the selected language
             updateLanguage(selectedLang);
-
             // Save the language preference
             saveLanguagePreference(selectedLang);
-
             // Close dropdown
             languageDropdown.classList.remove('active');
         });
     });
 }
-            const languageOptions = languageDropdown.querySelector('.language-options');
+           
 
 function updateLanguageOptions(currentLang) {
     const languageOptions = document.querySelector('.language-dropdown .language-options');
