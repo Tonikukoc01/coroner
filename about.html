@@ -2078,6 +2078,12 @@ const translations = {
   }
 };
 
+// Function to update text content based on selected language
+function updateLanguage(lang) {
+    // Store the current language in localStorage
+    localStorage.setItem('selectedLanguage', lang);
+
+
 // Function to update page content based on selected language
 function updateLanguage(langCode) {
   // Get all elements that need to be translated
