@@ -1978,6 +1978,96 @@ function attachLanguageOptionListeners() {
                     languageDropdown.classList.remove('active');
                 }
             });
+// Language translations
+const translations = {
+  'en': {
+    // Home section
+    'about-me-title': 'About <span class="bold-toni">me.</span>',
+    'about-me-description': "I'm an IT manager with a background in business economics and analytics.<br> I am passionate about startups and traveling, <br> and navigating the ever-changing challenges of the tech world.",
+    'scroll-text': 'SCROLL',
+    
+    // About section
+    'about-paragraph-1': "I grew up in a small village on the Dalmatian coast, surrounded by the remnants of a quiet, agricultural life. It is a place where tradition rans deep, but my curiosity always pulled me toward something different. When I wasn't playing basketball, I was glued to my computer, fascinated by the world of technology.",
+    'about-paragraph-2': "University in Split introduced me to Croatia's startup scene—a world of bold risk-takers and fast-moving builders. That energy stuck with me. After finishing my master's across Portugal and Spain, I came back to Split to wrap up my studies before heading to Lisbon, one of Europe's startup hotspots, to see what I could make of it.",
+    'about-paragraph-3': "These days, I'm still based in Lisbon, working in the ever-changing world of IT always looking for new challenges in a field that never sits still.",
+    
+    // Fitness section
+    'fitness-title': "fitness & nutrition enthusiast",
+    'fitness-paragraph-1': "With over a decade spent in the gym and hundreds of hours researching body mechanics and nutrition, fitness has always been more than just a hobby for me. I'm fascinated by how small adjustments in movement, diet, and recovery can make a huge difference in performance and well-being.",
+    'fitness-paragraph-2': "These days, I'm especially interested in how technology can enhance fitness and nutrition. With countless apps and trackers flooding the market, I'm exploring ways tech can cut through the noise—offering real insights that help people build sustainable, science-backed habits instead of chasing trends.",
+    
+    // Travel section
+    'travel-title': "On the move",
+    'travel-paragraph': "I've visited 20 countries, explored hundreds of European cities, and lived in four different countries along the way. Experiencing new cultures, meeting people from different backgrounds, and constantly adapting to new environments keeps life exciting."
+  },
+  'fr': {
+    // Home section
+    'about-me-title': 'À propos de <span class="bold-toni">moi.</span>',
+    'about-me-description': "Je suis un gestionnaire informatique avec une formation en économie d'entreprise et en analyse.<br> Je suis passionné par les startups et les voyages, <br> et je navigue dans les défis en constante évolution du monde technologique.",
+    'scroll-text': 'DÉFILER',
+    
+    // About section
+    'about-paragraph-1': "J'ai grandi dans un petit village de la côte dalmate, entouré des vestiges d'une vie agricole tranquille. C'est un endroit où la tradition est profondément ancrée, mais ma curiosité m'a toujours poussé vers quelque chose de différent. Quand je ne jouais pas au basket, j'étais collé à mon ordinateur, fasciné par le monde de la technologie.",
+    'about-paragraph-2': "L'université de Split m'a fait découvrir la scène des startups croates—un monde de preneurs de risques audacieux et de bâtisseurs rapides. Cette énergie m'est restée. Après avoir terminé mon master au Portugal et en Espagne, je suis retourné à Split pour terminer mes études avant de me diriger vers Lisbonne, l'un des points chauds des startups européennes, pour voir ce que je pouvais en faire.",
+    'about-paragraph-3': "De nos jours, je suis toujours basé à Lisbonne, travaillant dans le monde en constante évolution de l'informatique, toujours à la recherche de nouveaux défis dans un domaine qui ne reste jamais immobile.",
+    
+    // Fitness section
+    'fitness-title': "passionné de fitness et de nutrition",
+    'fitness-paragraph-1': "Avec plus d'une décennie passée en salle de sport et des centaines d'heures consacrées à la recherche sur la mécanique corporelle et la nutrition, le fitness a toujours été plus qu'un simple passe-temps pour moi. Je suis fasciné par la façon dont de petits ajustements dans le mouvement, l'alimentation et la récupération peuvent faire une énorme différence dans la performance et le bien-être.",
+    'fitness-paragraph-2': "Ces jours-ci, je m'intéresse particulièrement à la façon dont la technologie peut améliorer le fitness et la nutrition. Avec d'innombrables applications et trackers qui inondent le marché, j'explore des moyens par lesquels la technologie peut couper à travers le bruit—offrant de véritables idées qui aident les gens à construire des habitudes durables, fondées sur la science, au lieu de poursuivre des tendances.",
+    
+    // Travel section
+    'travel-title': "En mouvement",
+    'travel-paragraph': "J'ai visité 20 pays, exploré des centaines de villes européennes et vécu dans quatre pays différents au cours de mon parcours. Faire l'expérience de nouvelles cultures, rencontrer des personnes d'horizons différents et s'adapter constamment à de nouveaux environnements rend la vie passionnante."
+  },
+  'hr': {
+    // Home section
+    'about-me-title': 'O <span class="bold-toni">meni.</span>',
+    'about-me-description': "Ja sam IT menadžer s iskustvom u poslovnoj ekonomiji i analitici.<br> Strastveni sam zaljubljenik u startupove i putovanja, <br> i snalaženje u promjenjivim izazovima tehnološkog svijeta.",
+    'scroll-text': 'POMAKNI',
+    
+    // About section
+    'about-paragraph-1': "Odrastao sam u malom selu na dalmatinskoj obali, okružen ostacima tihog, poljoprivrednog života. To je mjesto gdje tradicija duboko teče, ali moja znatiželja me uvijek vukla prema nečem drugačijem. Kad nisam igrao košarku, bio sam zalijepljen za računalo, fasciniran svijetom tehnologije.",
+    'about-paragraph-2': "Sveučilište u Splitu me upoznalo s hrvatskom startup scenom—svijetom hrabrih preuzimatelja rizika i brzih graditelja. Ta energija me držala. Nakon završetka magistarskog studija u Portugalu i Španjolskoj, vratio sam se u Split da završim studij prije nego što sam se uputio u Lisabon, jednu od europskih startup žarišta, da vidim što mogu napraviti od toga.",
+    'about-paragraph-3': "Ovih dana, još uvijek sam baziran u Lisabonu, radim u svijetu IT-a koji se stalno mijenja, uvijek tražeći nove izazove u području koje nikad ne miruje.",
+    
+    // Fitness section
+    'fitness-title': "entuzijast fitnessa i prehrane",
+    'fitness-paragraph-1': "S više od desetljeća provedenog u teretani i stotinama sati istraživanja mehanike tijela i prehrane, fitness je uvijek bio više od samo hobija za mene. Fasciniran sam kako male prilagodbe u kretanju, prehrani i oporavku mogu napraviti ogromnu razliku u performansama i dobrobiti.",
+    'fitness-paragraph-2': "Ovih dana, posebno me zanima kako tehnologija može poboljšati fitness i prehranu. S bezbroj aplikacija i praćenja koji preplavljuju tržište, istražujem načine na koje tehnologija može probiti kroz buku—nudeći stvarne uvide koji pomažu ljudima da izgrade održive, znanstveno utemeljene navike umjesto da slijede trendove.",
+    
+    // Travel section
+    'travel-title': "U pokretu",
+    'travel-paragraph': "Posjetio sam 20 zemalja, istražio stotine europskih gradova i živio u četiri različite zemlje tijekom svog puta. Iskustvo novih kultura, susreti s ljudima različitih pozadina i stalno prilagođavanje novim okruženjima čini život uzbudljivim."
+  }
+};
+
+// Function to update page content based on selected language
+function updateLanguage(langCode) {
+  // Get all elements that need to be translated
+  document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
+  document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
+  document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
+  
+  // About section
+  const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
+  aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
+  aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
+  aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
+  
+  // Fitness section
+  const fitnessBlock = document.querySelector('.about-content .content-block.right-aligned');
+  fitnessBlock.querySelector('.about-header').textContent = translations[langCode]['fitness-title'];
+  const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
+  fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
+  fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
+  
+  // Travel section
+  const travelBlock = document.querySelector('.about-content .content-block:last-child');
+  travelBlock.querySelector('.about-header').textContent = translations[langCode]['travel-title'];
+  travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
+}
+
 
 // Gallery loading animation with improved caption handling
 window.addEventListener('DOMContentLoaded', () => {
@@ -2083,96 +2173,6 @@ window.addEventListener('resize', function() {
         backToTopButton.classList.remove('visible');
     }
 });
-
-// Language translations
-const translations = {
-  'en': {
-    // Home section
-    'about-me-title': 'About <span class="bold-toni">me.</span>',
-    'about-me-description': "I'm an IT manager with a background in business economics and analytics.<br> I am passionate about startups and traveling, <br> and navigating the ever-changing challenges of the tech world.",
-    'scroll-text': 'SCROLL',
-    
-    // About section
-    'about-paragraph-1': "I grew up in a small village on the Dalmatian coast, surrounded by the remnants of a quiet, agricultural life. It is a place where tradition rans deep, but my curiosity always pulled me toward something different. When I wasn't playing basketball, I was glued to my computer, fascinated by the world of technology.",
-    'about-paragraph-2': "University in Split introduced me to Croatia's startup scene—a world of bold risk-takers and fast-moving builders. That energy stuck with me. After finishing my master's across Portugal and Spain, I came back to Split to wrap up my studies before heading to Lisbon, one of Europe's startup hotspots, to see what I could make of it.",
-    'about-paragraph-3': "These days, I'm still based in Lisbon, working in the ever-changing world of IT always looking for new challenges in a field that never sits still.",
-    
-    // Fitness section
-    'fitness-title': "fitness & nutrition enthusiast",
-    'fitness-paragraph-1': "With over a decade spent in the gym and hundreds of hours researching body mechanics and nutrition, fitness has always been more than just a hobby for me. I'm fascinated by how small adjustments in movement, diet, and recovery can make a huge difference in performance and well-being.",
-    'fitness-paragraph-2': "These days, I'm especially interested in how technology can enhance fitness and nutrition. With countless apps and trackers flooding the market, I'm exploring ways tech can cut through the noise—offering real insights that help people build sustainable, science-backed habits instead of chasing trends.",
-    
-    // Travel section
-    'travel-title': "On the move",
-    'travel-paragraph': "I've visited 20 countries, explored hundreds of European cities, and lived in four different countries along the way. Experiencing new cultures, meeting people from different backgrounds, and constantly adapting to new environments keeps life exciting."
-  },
-  'fr': {
-    // Home section
-    'about-me-title': 'À propos de <span class="bold-toni">moi.</span>',
-    'about-me-description': "Je suis un gestionnaire informatique avec une formation en économie d'entreprise et en analyse.<br> Je suis passionné par les startups et les voyages, <br> et je navigue dans les défis en constante évolution du monde technologique.",
-    'scroll-text': 'DÉFILER',
-    
-    // About section
-    'about-paragraph-1': "J'ai grandi dans un petit village de la côte dalmate, entouré des vestiges d'une vie agricole tranquille. C'est un endroit où la tradition est profondément ancrée, mais ma curiosité m'a toujours poussé vers quelque chose de différent. Quand je ne jouais pas au basket, j'étais collé à mon ordinateur, fasciné par le monde de la technologie.",
-    'about-paragraph-2': "L'université de Split m'a fait découvrir la scène des startups croates—un monde de preneurs de risques audacieux et de bâtisseurs rapides. Cette énergie m'est restée. Après avoir terminé mon master au Portugal et en Espagne, je suis retourné à Split pour terminer mes études avant de me diriger vers Lisbonne, l'un des points chauds des startups européennes, pour voir ce que je pouvais en faire.",
-    'about-paragraph-3': "De nos jours, je suis toujours basé à Lisbonne, travaillant dans le monde en constante évolution de l'informatique, toujours à la recherche de nouveaux défis dans un domaine qui ne reste jamais immobile.",
-    
-    // Fitness section
-    'fitness-title': "passionné de fitness et de nutrition",
-    'fitness-paragraph-1': "Avec plus d'une décennie passée en salle de sport et des centaines d'heures consacrées à la recherche sur la mécanique corporelle et la nutrition, le fitness a toujours été plus qu'un simple passe-temps pour moi. Je suis fasciné par la façon dont de petits ajustements dans le mouvement, l'alimentation et la récupération peuvent faire une énorme différence dans la performance et le bien-être.",
-    'fitness-paragraph-2': "Ces jours-ci, je m'intéresse particulièrement à la façon dont la technologie peut améliorer le fitness et la nutrition. Avec d'innombrables applications et trackers qui inondent le marché, j'explore des moyens par lesquels la technologie peut couper à travers le bruit—offrant de véritables idées qui aident les gens à construire des habitudes durables, fondées sur la science, au lieu de poursuivre des tendances.",
-    
-    // Travel section
-    'travel-title': "En mouvement",
-    'travel-paragraph': "J'ai visité 20 pays, exploré des centaines de villes européennes et vécu dans quatre pays différents au cours de mon parcours. Faire l'expérience de nouvelles cultures, rencontrer des personnes d'horizons différents et s'adapter constamment à de nouveaux environnements rend la vie passionnante."
-  },
-  'hr': {
-    // Home section
-    'about-me-title': 'O <span class="bold-toni">meni.</span>',
-    'about-me-description': "Ja sam IT menadžer s iskustvom u poslovnoj ekonomiji i analitici.<br> Strastveni sam zaljubljenik u startupove i putovanja, <br> i snalaženje u promjenjivim izazovima tehnološkog svijeta.",
-    'scroll-text': 'POMAKNI',
-    
-    // About section
-    'about-paragraph-1': "Odrastao sam u malom selu na dalmatinskoj obali, okružen ostacima tihog, poljoprivrednog života. To je mjesto gdje tradicija duboko teče, ali moja znatiželja me uvijek vukla prema nečem drugačijem. Kad nisam igrao košarku, bio sam zalijepljen za računalo, fasciniran svijetom tehnologije.",
-    'about-paragraph-2': "Sveučilište u Splitu me upoznalo s hrvatskom startup scenom—svijetom hrabrih preuzimatelja rizika i brzih graditelja. Ta energija me držala. Nakon završetka magistarskog studija u Portugalu i Španjolskoj, vratio sam se u Split da završim studij prije nego što sam se uputio u Lisabon, jednu od europskih startup žarišta, da vidim što mogu napraviti od toga.",
-    'about-paragraph-3': "Ovih dana, još uvijek sam baziran u Lisabonu, radim u svijetu IT-a koji se stalno mijenja, uvijek tražeći nove izazove u području koje nikad ne miruje.",
-    
-    // Fitness section
-    'fitness-title': "entuzijast fitnessa i prehrane",
-    'fitness-paragraph-1': "S više od desetljeća provedenog u teretani i stotinama sati istraživanja mehanike tijela i prehrane, fitness je uvijek bio više od samo hobija za mene. Fasciniran sam kako male prilagodbe u kretanju, prehrani i oporavku mogu napraviti ogromnu razliku u performansama i dobrobiti.",
-    'fitness-paragraph-2': "Ovih dana, posebno me zanima kako tehnologija može poboljšati fitness i prehranu. S bezbroj aplikacija i praćenja koji preplavljuju tržište, istražujem načine na koje tehnologija može probiti kroz buku—nudeći stvarne uvide koji pomažu ljudima da izgrade održive, znanstveno utemeljene navike umjesto da slijede trendove.",
-    
-    // Travel section
-    'travel-title': "U pokretu",
-    'travel-paragraph': "Posjetio sam 20 zemalja, istražio stotine europskih gradova i živio u četiri različite zemlje tijekom svog puta. Iskustvo novih kultura, susreti s ljudima različitih pozadina i stalno prilagođavanje novim okruženjima čini život uzbudljivim."
-  }
-};
-
-// Function to update page content based on selected language
-function updateLanguage(langCode) {
-  // Get all elements that need to be translated
-  document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
-  document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
-  document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
-  
-  // About section
-  const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
-  aboutParagraphs[0].textContent = translations[langCode]['about-paragraph-1'];
-  aboutParagraphs[1].textContent = translations[langCode]['about-paragraph-2'];
-  aboutParagraphs[3].textContent = translations[langCode]['about-paragraph-3'];
-  
-  // Fitness section
-  const fitnessBlock = document.querySelector('.about-content .content-block.right-aligned');
-  fitnessBlock.querySelector('.about-header').textContent = translations[langCode]['fitness-title'];
-  const fitnessParagraphs = fitnessBlock.querySelectorAll('.content-text p');
-  fitnessParagraphs[0].textContent = translations[langCode]['fitness-paragraph-1'];
-  fitnessParagraphs[1].textContent = translations[langCode]['fitness-paragraph-2'];
-  
-  // Travel section
-  const travelBlock = document.querySelector('.about-content .content-block:last-child');
-  travelBlock.querySelector('.about-header').textContent = translations[langCode]['travel-title'];
-  travelBlock.querySelector('.content-text p').textContent = translations[langCode]['travel-paragraph'];
-}
         </script>
     </body>
 </html>
