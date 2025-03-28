@@ -2133,6 +2133,49 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
+
+  // Function to update language options
+            function updateLanguageOptions(currentLang) {
+    // Clear existing options
+                languageOptions.innerHTML = '';
+
+    // Get alternative languages
+                const alternativeLangs = languages[currentLang].alternatives;
+
+    // Create new language options
+                alternativeLangs.forEach(langCode => {
+                    const option = document.createElement('div');
+                    option.className = 'language-option';
+                    option.dataset.lang = langCode;
+
+                    const flag = document.createElement('img');
+                    flag.src = languages[langCode].flag;
+                    flag.alt = `${languages[langCode].name} Flag`;
+                    flag.className = 'language-flag';
+                    flag.dataset.lang = langCode;
+
+                    const code = document.createElement('span');
+                    code.className = 'language-code';
+                    code.textContent = languages[langCode].code;
+
+                    option.appendChild(flag);
+                    option.appendChild(code);
+                    languageOptions.appendChild(option);
+                });
+
+    // Re-attach event listeners
+                attachLanguageOptionListeners();
+            }
+
+    // Attach event listeners to language options
+            function attachLanguageOptionListeners() {
+                const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+                
+                languageOptionEls.forEach(option => {
+                    option.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const selectedLang = option.dataset.lang;
+
         </script>
     </body>
 </html>
