@@ -1784,175 +1784,131 @@ sideMenu.addEventListener('click', (e) => {
 });
 // language functionality
 document.addEventListener('DOMContentLoaded', () => {
-const languages = {
-    'en': { 
-        code: 'EN', 
-        name: 'English', 
-        flag: './assets/UK.png', 
-        alternatives: ['fr', 'hr'] 
-    },
-    'fr': { 
-        code: 'FR', 
-        name: 'French', 
-        flag: './assets/FR.png', 
-        alternatives: ['en', 'hr'] 
-    },
-    'hr': { 
-        code: 'HR', 
-        name: 'Croatian', 
-        flag: './assets/HR.png', 
-        alternatives: ['en', 'fr'] 
+    const languages = {
+        'en': { 
+            code: 'EN', 
+            name: 'English', 
+            flag: './assets/UK.png', 
+            alternatives: ['fr', 'hr'] 
+        },
+        'fr': { 
+            code: 'FR', 
+            name: 'French', 
+            flag: './assets/FR.png', 
+            alternatives: ['en', 'hr'] 
+        },
+        'hr': { 
+            code: 'HR', 
+            name: 'Croatian', 
+            flag: './assets/HR.png', 
+            alternatives: ['en', 'fr'] 
+        }
+    };
+
+    const languageDropdown = document.querySelector('.language-dropdown');
+    const languageSelector = languageDropdown.querySelector('.language-selector');
+    const languageOptions = languageDropdown.querySelector('.language-options');
+
+    // Function to update language selector UI
+    function updateLanguageSelector(langCode) {
+        const currentLangObj = languages[langCode];
+        languageSelector.innerHTML = '';
+        
+        const flagImg = document.createElement('img');
+        flagImg.src = currentLangObj.flag;
+        flagImg.alt = `${currentLangObj.name} Flag`;
+        flagImg.className = 'language-flag';
+        
+        const codeSpan = document.createElement('span');
+        codeSpan.className = 'language-code';
+        codeSpan.textContent = currentLangObj.code;
+        
+        languageSelector.appendChild(flagImg);
+        languageSelector.appendChild(codeSpan);
+        languageSelector.dataset.currentLang = langCode;
     }
-};
 
- const languageDropdown = document.querySelector('.language-dropdown');
-            const languageSelector = languageDropdown.querySelector('.language-selector');
-            const languageOptions = languageDropdown.querySelector('.language-options');
+    function updateLanguageOptions(currentLang) {
+        const languageOptions = document.querySelector('.language-dropdown .language-options');
+        languageOptions.innerHTML = ''; // Clear existing options
 
+        // Get alternative languages
+        const alternativeLangs = languages[currentLang].alternatives;
 
-// Function to save selected language to localStorage
-function saveLanguagePreference(langCode) {
-    localStorage.setItem('selectedLanguage', langCode);
-}
+        // Create new language options
+        alternativeLangs.forEach(langCode => {
+            const option = document.createElement('div');
+            option.className = 'language-option';
+            option.dataset.lang = langCode;
 
-// Function to get saved language preference
-function getSavedLanguagePreference() {
-    return localStorage.getItem('selectedLanguage') || 'en';
-}
+            const flag = document.createElement('img');
+            flag.src = languages[langCode].flag;
+            flag.alt = `${languages[langCode].name} Flag`;
+            flag.className = 'language-flag';
+            flag.dataset.lang = langCode;
+
+            const code = document.createElement('span');
+            code.className = 'language-code';
+            code.textContent = languages[langCode].code;
+
+            option.appendChild(flag);
+            option.appendChild(code);
+            languageOptions.appendChild(option);
+        });
+
+        // Re-attach event listeners
+        attachLanguageOptionListeners();
+    }
+
+    // Function to save selected language to localStorage
+    function saveLanguagePreference(langCode) {
+        localStorage.setItem('selectedLanguage', langCode);
+    }
+
+    // Function to get saved language preference
+    function getSavedLanguagePreference() {
+        return localStorage.getItem('selectedLanguage') || 'en';
+    }
+
+    // TODO: Implement this function to update page content
+    function updateLanguage(langCode) {
+        console.log(`Updating page to language: ${langCode}`);
+        // Implement your language translation logic here
+    }
+
+    // Attach event listeners to language options
+    function attachLanguageOptionListeners() {
+        const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
+        
+        languageOptionEls.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const selectedLang = option.dataset.lang;
+                
+                // Update selector and options
+                updateLanguageSelector(selectedLang);
+                updateLanguageOptions(selectedLang);
+
+                // Update the page content with the selected language
+                updateLanguage(selectedLang);
+
+                // Save the language preference
+                saveLanguagePreference(selectedLang);
+
+                // Close dropdown
+                languageDropdown.classList.remove('active');
+            });
+        });
+    }
 
     // Retrieve the saved language preference
     const savedLang = getSavedLanguagePreference();
-
- // Ensure the saved language is valid
     const validLang = languages[savedLang] ? savedLang : 'en';
 
-    
-    // Update language dropdown to show saved language
-    const currentLangObj = languages[savedLang];
-    
-    // Update language selector with saved language flag and code
-    languageSelector.innerHTML = '';
-    const flagImg = document.createElement('img');
-    flagImg.src = currentLangObj.flag;
-    flagImg.alt = `${currentLangObj.name} Flag`;
-    flagImg.className = 'language-flag';
-    
-    const codeSpan = document.createElement('span');
-    codeSpan.className = 'language-code';
-    codeSpan.textContent = currentLangObj.code;
-    
-    languageSelector.appendChild(flagImg);
-    languageSelector.appendChild(codeSpan);
-    languageSelector.dataset.currentLang = savedLang;
-    
-    // Update language options based on saved language
-    updateLanguageOptions(savedLang);
-    
-    // Update page content with saved language
-    updateLanguage(savedLang);
-
-// Modify the language selection event listener to save preference
-function attachLanguageOptionListeners() {
-    const languageSelector = document.querySelector('.language-selector');
-    const languageOptionEls = document.querySelectorAll('.language-option');
-    
-    languageOptionEls.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const selectedLang = option.dataset.lang;
-            
-            // Update selector
-            const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-            const selectedCode = option.querySelector('.language-code').textContent;
-           
-            
-            languageSelector.innerHTML = '';
-            languageSelector.appendChild(selectedFlag);
-            languageSelector.dataset.currentLang = selectedLang;
-            
-            const codeSpan = document.createElement('span');
-            codeSpan.className = 'language-code';
-            codeSpan.textContent = selectedCode;
-            languageSelector.appendChild(codeSpan);
-
-            // Update available options
-            updateLanguageOptions(selectedLang);
-            // Update the page content with the selected language
-            updateLanguage(selectedLang);
-            // Save the language preference
-            saveLanguagePreference(selectedLang);
-            // Close dropdown
-            languageDropdown.classList.remove('active');
-        });
-    });
-}
-           
-
-function updateLanguageOptions(currentLang) {
-    const languageOptions = document.querySelector('.language-dropdown .language-options');
-    languageOptions.innerHTML = ''; // Clear existing options
-
-    // Get alternative languages
-    const alternativeLangs = languages[currentLang].alternatives;
-
-    // Create new language options
-    alternativeLangs.forEach(langCode => {
-        const option = document.createElement('div');
-        option.className = 'language-option';
-        option.dataset.lang = langCode;
-
-        const flag = document.createElement('img');
-        flag.src = languages[langCode].flag;
-        flag.alt = `${languages[langCode].name} Flag`;
-        flag.className = 'language-flag';
-        flag.dataset.lang = langCode;
-
-        const code = document.createElement('span');
-        code.className = 'language-code';
-        code.textContent = languages[langCode].code;
-
-        option.appendChild(flag);
-        option.appendChild(code);
-        languageOptions.appendChild(option);
-    });
-
-    // Re-attach event listeners
-    attachLanguageOptionListeners();
-}
-
-// Attach event listeners to language options
-function attachLanguageOptionListeners() {
-    const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-    
-    languageOptionEls.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const selectedLang = option.dataset.lang;
-            
-            // Update selector
-            const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-            const selectedCode = option.querySelector('.language-code').textContent;
-
-            languageSelector.innerHTML = '';
-            languageSelector.appendChild(selectedFlag);
-            languageSelector.dataset.currentLang = selectedLang;
-            
-            const codeSpan = document.createElement('span');
-            codeSpan.className = 'language-code';
-            codeSpan.textContent = selectedCode;
-            languageSelector.appendChild(codeSpan);
-
-            // Update available options
-            updateLanguageOptions(selectedLang);
-
-            // Update the page content with the selected language
-            updateLanguage(selectedLang);
-
-            // Close dropdown
-            languageDropdown.classList.remove('active');
-        });
-    });
-}
+    // Initial setup
+    updateLanguageSelector(validLang);
+    updateLanguageOptions(validLang);
+    updateLanguage(validLang);
 
     // Hover event to open dropdown
     languageSelector.addEventListener('mouseenter', () => {
@@ -1963,21 +1919,20 @@ function attachLanguageOptionListeners() {
     languageDropdown.addEventListener('mouseleave', () => {
         languageDropdown.classList.remove('active');
     });
-    // Initial setup
-            updateLanguageOptions('en');
 
     // Toggle dropdown
-            languageSelector.addEventListener('click', (e) => {
-                e.stopPropagation();
-                languageDropdown.classList.toggle('active');
-            });
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('active');
+    });
 
     // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!languageDropdown.contains(e.target)) {
-                    languageDropdown.classList.remove('active');
-                }
-            });
+    document.addEventListener('click', (e) => {
+        if (!languageDropdown.contains(e.target)) {
+            languageDropdown.classList.remove('active');
+        }
+    });
+});
 // Language translations
 const translations = {
   'en': {
