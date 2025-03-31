@@ -1269,8 +1269,6 @@ footer {
 </footer>
         <script>
 // Get the scroll indicator line element
-const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-
 window.addEventListener('scroll', () => {
   const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1279,11 +1277,15 @@ window.addEventListener('scroll', () => {
   // Calculate the percentage of scroll
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   
-  // Adjust the height of the scroll line dynamically
-  const maxLineHeight = window.innerWidth <= 768 ? window.innerHeight * 0.3 : window.innerHeight * 0.7;
+  // Determine max line height based on screen size
+  const isMobile = window.innerWidth <= 768;
+  const maxLineHeight = isMobile 
+    ? window.innerHeight * 0.3 // 30% of viewport height for mobile
+    : window.innerHeight * 0.7; // 70% of viewport height for desktop
+  
+  // Adjust the height of the scroll line
   const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
   
-  // Ensure the line height never goes below 0
   scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
 });
 
