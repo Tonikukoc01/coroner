@@ -1879,6 +1879,16 @@ function updateLanguage(langCode) {
   document.querySelector('#header h1').innerHTML = translations[langCode]['about-me-title'];
   document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
   document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
+
+// About section
+const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+      if (navItems.length >= 4) {
+    navItems[0].textContent = content.navHome;
+    navItems[1].textContent = content.navApproach;
+    navItems[2].textContent = content.navAbout;
+    navItems[3].textContent = content.navBlog;
+    }
+
   
   // About section
   const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
@@ -1953,6 +1963,13 @@ const translations = {
     'about-me-title': 'About <span class="bold-toni">me.</span>',
     'about-me-description': "I'm an IT manager with a background in business economics and analytics.<br> I am passionate about startups and traveling, <br> and navigating the ever-changing challenges of the tech world.",
     'scroll-text': 'SCROLL',
+
+    // nav menu
+            'navHome': 'home',
+            'navApproach': 'approach to collaboration',
+            'navAbout': 'about my life',
+            'navBlog': 'writing outlet'
+
     
     // About section
     'about-paragraph-1': "I grew up in a small village on the Dalmatian coast, surrounded by the remnants of a quiet, agricultural life. It is a place where tradition rans deep, but my curiosity always pulled me toward something different. When I wasn't playing basketball, I was glued to my computer, fascinated by the world of technology.",
@@ -1973,6 +1990,13 @@ const translations = {
     'about-me-title': 'À propos de <span class="bold-toni">moi.</span>',
     'about-me-description': "Je suis un gestionnaire informatique avec une formation en économie d'entreprise et en analyse.<br> Je suis passionné par les startups et les voyages, <br> et je navigue dans les défis en constante évolution du monde technologique.",
     'scroll-text': 'DÉFILER',
+
+    // Navigation items
+        'navHome': 'accueil',
+        'navApproach': 'approche de collaboration',
+        'navAbout': 'à propos de ma vie',
+        'navBlog': 'espace d\'écriture',
+
     
     // About section
     'about-paragraph-1': "J'ai grandi dans un petit village de la côte dalmate, entouré des vestiges d'une vie agricole tranquille. C'est un endroit où la tradition est profondément ancrée, mais ma curiosité m'a toujours poussé vers quelque chose de différent. Quand je ne jouais pas au basket, j'étais collé à mon ordinateur, fasciné par le monde de la technologie.",
@@ -1989,6 +2013,13 @@ const translations = {
     'travel-paragraph': "J'ai visité 20 pays, exploré des centaines de villes européennes et vécu dans quatre pays différents au cours de mon parcours. Faire l'expérience de nouvelles cultures, rencontrer des personnes d'horizons différents et s'adapter constamment à de nouveaux environnements rend la vie passionnante."
   },
   'hr': {
+
+    // nav
+         'navHome': 'početna',
+       'navApproach': 'pristup suradnji',
+        'navAbout': 'o mom životu',
+       'navBlog': 'kutak za pisanje',
+
     // Home section
     'about-me-title': 'O <span class="bold-toni">meni.</span>',
     'about-me-description': "Ja sam IT menadžer s iskustvom u poslovnoj ekonomiji i analitici.<br> Strastveni sam zaljubljenik u startupove i putovanja, <br> i snalaženje u promjenjivim izazovima tehnološkog svijeta.",
