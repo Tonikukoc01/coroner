@@ -1453,129 +1453,96 @@ function updateTextForMobile() {
     }
 }
 
-// Run on page load
-document.addEventListener("DOMContentLoaded", updateTextForMobile);
-
-// Run on window resize (so it updates dynamically)
-window.addEventListener("resize", updateTextForMobile);
-// Language configuration
-const languages = {
-    'en': { 
-        code: 'EN', 
-        name: 'English', 
-        flag: './assets/UK.png',
-        alternatives: ['fr', 'hr'] 
-    },
-    'fr': { 
-        code: 'FR', 
-        name: 'French', 
-        flag: './assets/FR.png',
-        alternatives: ['en', 'hr'] 
-    },
-    'hr': { 
-        code: 'HR', 
-        name: 'Croatian', 
-        flag: './assets/HR.png',
-        alternatives: ['en', 'fr'] 
+            document.addEventListener('DOMContentLoaded', function() {
+    // Get language selector and options
+    const languageSelector = document.querySelector('.language-selector');
+    const languageOptions = document.querySelector('.language-options');
+    const languageOptionElements = document.querySelectorAll('.language-option');
+    
+    // Toggle language dropdown when selector is clicked
+    languageSelector.addEventListener('click', function(e) {
+        e.stopPropagation();
+        languageOptions.classList.toggle('show');
+    });
+    
+    // Handle language selection
+    languageOptionElements.forEach(option => {
+        option.addEventListener('click', function() {
+            const selectedLang = this.getAttribute('data-lang');
+            const currentLang = languageSelector.getAttribute('data-current-lang');
+            
+            if (selectedLang !== currentLang) {
+                // Update language selector
+                const flagImg = this.querySelector('.language-flag').getAttribute('src');
+                const langCode = this.querySelector('.language-code').textContent;
+                
+                languageSelector.querySelector('.language-flag').setAttribute('src', flagImg);
+                languageSelector.querySelector('.language-code').textContent = langCode;
+                languageSelector.setAttribute('data-current-lang', selectedLang);
+                
+                // Update translatable content
+                updateLanguage(selectedLang);
+            }
+            
+            languageOptions.classList.remove('show');
+        });
+    });
+    
+    // Close dropdown when clicking elsewhere
+    document.addEventListener('click', function() {
+        languageOptions.classList.remove('show');
+    });
+    
+    // Function to update language
+    function updateLanguage(lang) {
+        const translations = {
+            'en': {
+                'home': 'home',
+                'approach': 'approach to collaboration',
+                'about': 'about my life',
+                'writing': 'writing outlet',
+                'my_writing': 'My <span class="bold-toni">writing.</span>',
+                'writing_description': 'I write about variety of topics. Is it AI, networking events, <br>new technology trends or anything else, you will find my creative outlet here.',
+                'more_articles': 'More articles coming soon...'
+            },
+            'hr': {
+                'home': 'početna',
+                'approach': 'pristup suradnji',
+                'about': 'o mom životu',
+                'writing': 'moji članci',
+                'my_writing': 'Moji <span class="bold-toni">članci.</span>',
+                'writing_description': 'Pišem o raznim temama. Bilo da je riječ o AI-u, networking događanjima, <br>novim tehnološkim trendovima ili bilo čemu drugom, ovdje ćete pronaći moj kreativni izričaj.',
+                'more_articles': 'Uskoro više članaka...'
+            },
+            'fr': {
+                'home': 'accueil',
+                'approach': 'approche de collaboration',
+                'about': 'à propos de ma vie',
+                'writing': 'mes articles',
+                'my_writing': 'Mes <span class="bold-toni">écrits.</span>',
+                'writing_description': 'J\'écris sur une variété de sujets. Que ce soit l\'IA, les événements de réseautage, <br>les nouvelles tendances technologiques ou tout autre sujet, vous trouverez ici mon expression créative.',
+                'more_articles': 'Plus d\'articles à venir bientôt...'
+            }
+        };
+        
+        // Update menu items
+        document.querySelectorAll('.side-menu-nav ul li a').forEach(item => {
+            const key = item.getAttribute('href').replace('.html', '');
+            if (key === 'index') {
+                item.textContent = translations[lang]['home'];
+            } else if (translations[lang][key]) {
+                item.textContent = translations[lang][key];
+            }
+        });
+        
+        // Update header content
+        document.querySelector('#header h1').innerHTML = translations[lang]['my_writing'];
+        document.querySelector('#header p').innerHTML = translations[lang]['writing_description'];
+        
+        // Update "coming soon" text
+        document.querySelector('.coming-soon-text').textContent = translations[lang]['more_articles'];
     }
-};
-
-// Translations object for all text content
-const translations = {
-    'en': {
-        'header_hi': 'Hi, my',
-        'header_name': 'name is',
-        'header_toni': 'Toni.',
-        'job_title': 'IT operations manager',
-        'location': 'from Split, Croatia.',
-        'scroll_text': 'SCROLL',
-        'about_header': 'let\'s collaborate',
-        'about_subheader': 'From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.',
-        'about_subheader1': 'The greater the challenge, the more rewarding the solution!',
-        'collaboration_btn': 'Approach to work',
-        'menu_text': 'contact',
-        'nav_home': 'home',
-        'nav_approach': 'approach to collaboration',
-        'nav_about': 'about my life',
-        'footer_text': 'Toni Kukoc © MMXXV'
-    },
-    'fr': {
-        'header_hi': 'Bonjour, je',
-        'header_name': 'm\'appelle',
-        'header_toni': 'Toni.',
-        'job_title': 'Responsable des opérations IT',
-        'location': 'de Split, Croatie.',
-        'scroll_text': 'DÉFILER',
-        'about_header': 'collaborons',
-        'about_subheader': 'De la maintenance des performances de l\'infrastructure à la gestion des ressources cloud; du support informatique quotidien à l\'évolutivité pour la croissance - j\'aide les entreprises à maintenir leur infrastructure informatique sécurisée, efficace et adaptable.',
-        'about_subheader1': 'Plus le défi est grand, plus la solution est gratifiante!',
-        'collaboration_btn': 'Approche du travail',
-        'menu_text': 'contact',
-        'nav_home': 'accueil',
-        'nav_approach': 'approche de collaboration',
-        'nav_about': 'à propos de ma vie',
-        'footer_text': 'Toni Kukoc © MMXXV'
-    },
-    'hr': {
-        'header_hi': 'Bok, moje',
-        'header_name': 'ime je',
-        'header_toni': 'Toni.',
-        'job_title': 'IT operativni menadžer',
-        'location': 'iz Splita, Hrvatska.',
-        'scroll_text': 'SKROLAJ',
-        'about_header': 'surađujmo',
-        'about_subheader': 'Od održavanja performansi infrastrukture do upravljanja cloud resursima; od svakodnevne IT podrške do skaliranja za rast - pomažem tvrtkama da održe svoju IT infrastrukturu sigurnom, učinkovitom i prilagodljivom.',
-        'about_subheader1': 'Što je veći izazov, to je rješenje nagrađujuće!',
-        'collaboration_btn': 'Pristup radu',
-        'menu_text': 'kontakt',
-        'nav_home': 'početna',
-        'nav_approach': 'pristup suradnji',
-        'nav_about': 'o mom životu',
-        'footer_text': 'Toni Kukoc © MMXXV'
-    }
-};
-
-// Function to update text content based on selected language
-function updateLanguage(lang) {
-    // Store the current language in localStorage
-    localStorage.setItem('selectedLanguage', lang);
-    
-    // Update all text elements
-    document.querySelector('h1').innerHTML = 
-        `${translations[lang].header_hi}<br class="remove-br"> 
-        ${translations[lang].header_name} <span class="bold-toni">${translations[lang].header_toni}</span>`;
-    
-    document.querySelector('.bold-split').textContent = translations[lang].job_title;
-    
-    // Update the location text while preserving structure
-    const locationParagraph = document.querySelector('p:has(.bold-split)');
-    if (locationParagraph) {
-        // For modern browsers supporting :has()
-        const boldSplit = locationParagraph.querySelector('.bold-split');
-        locationParagraph.innerHTML = '';
-        locationParagraph.appendChild(document.createTextNode('I am independent '));
-        locationParagraph.appendChild(boldSplit);
-        locationParagraph.appendChild(document.createElement('br')).className = 'remove-br';
-        locationParagraph.appendChild(document.createTextNode(` ${translations[lang].location}`));
-    } else {
-        // Fallback for browsers not supporting :has()
-        const locationParagraph = document.querySelector('p');
-        if (locationParagraph && locationParagraph.querySelector('.bold-split')) {
-            const boldSplit = locationParagraph.querySelector('.bold-split');
-            locationParagraph.innerHTML = '';
-            locationParagraph.appendChild(document.createTextNode('I am independent '));
-            locationParagraph.appendChild(boldSplit);
-            locationParagraph.appendChild(document.createElement('br')).className = 'remove-br';
-            locationParagraph.appendChild(document.createTextNode(` ${translations[lang].location}`));
-        }
-    }
-    
-    document.querySelector('.scroll-text').textContent = translations[lang].scroll_text;
-    document.querySelector('.about-header').textContent = translations[lang].about_header;
-    document.querySelector('.about-subheader').textContent = translations[lang].about_subheader;
-    document.querySelector('.about-subheader1').textContent = translations[lang].about_subheader1;
-    document.querySelector('.collaboration-btn').textContent = translations[lang].collaboration_btn;
-    document.querySelector('.menu-text').textContent = translations[lang].menu_text;
+});
     
     // Update navigation
     const navItems = document.querySelectorAll('.side-menu-nav ul li a');
