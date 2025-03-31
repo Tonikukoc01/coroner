@@ -1285,177 +1285,6 @@ document.addEventListener('click', (e) => {
                 }
             });
         });
-
-const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.visibility = 'visible';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-// Observe the about section
-document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
-    observer.observe(element);
-});
-
-// Scroll-based animation handler
-function handleScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
-    
-    animatedElements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const triggerPoint = window.innerHeight * 0.8; // Trigger when element is 80% into view
-        
-        if (elementTop < triggerPoint) {
-            element.classList.add('visible');
-        }
-    });
-}
-
-// Add scroll event listener
-window.addEventListener('scroll', handleScrollAnimations);
-// Initial check for elements already in view
-window.addEventListener('load', handleScrollAnimations);
-
-document.addEventListener('DOMContentLoaded', () => {
-    const scrollText = document.querySelector('.scroll-text');
-    const text = scrollText.textContent;
-    scrollText.textContent = ''; // Clear the current text
-    
-    // Create spans for each letter
-    [...text].forEach((letter, i) => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
-        scrollText.appendChild(span);
-    });
-});
-
-// Mobile adjustments for side menu
-document.addEventListener('DOMContentLoaded', function() {
-    // Clone language dropdown for side menu
-    const originalDropdown = document.querySelector('.language-dropdown');
-    const clonedDropdown = originalDropdown.cloneNode(true);
-    
-    // Add it to the side menu content
-    const sideMenuContent = document.querySelector('.side-menu-content');
-    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
-    
-    // Reinitialize language dropdown functionality for the cloned dropdown
-    const languageSelector = clonedDropdown.querySelector('.language-selector');
-    const languageOptions = clonedDropdown.querySelector('.language-options');
-    
-    languageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        clonedDropdown.classList.toggle('active');
-    });
-    
-    // Handle window resize to adjust layouts
-    function handleResize() {
-        if (window.innerWidth <= 768) {
-            // Mobile layout adjustments
-            document.body.classList.add('mobile-view');
-        } else {
-            // Desktop layout adjustments
-            document.body.classList.remove('mobile-view');
-        }
-    }
-    
-    // Initial check and add resize listener
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    // Fix for scroll indicator on mobile
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (window.innerWidth <= 768) {
-        scrollIndicator.style.marginLeft = '0';
-    }
-});
-
-// Enhance side menu for mobile
-function enhanceSideMenuForMobile() {
-    const sideMenu = document.querySelector('.side-menu');
-    const menuToggle = document.querySelector('.menu-toggle');
-    
-    // Make sure menu toggle is visible and functional on mobile
-    menuToggle.style.display = 'flex';
-    
-    // Ensure the menu closes when a navigation item is clicked
-    const navLinks = document.querySelectorAll('.side-menu-nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
-    });
-    
-    // Handle the language option clicks in side menu
-    const languageOptions = document.querySelectorAll('.side-menu .language-option');
-    languageOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            // Get the selected language
-            const selectedLang = option.dataset.lang;
-            
-            // Update both the original and cloned selectors
-            updateLanguageSelectors(selectedLang);
-            
-            // Close dropdown and side menu
-            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-            
-            sideMenu.classList.remove('active');
-        });
-    });
-}
-
-// Update all language selectors with the selected language
-function updateLanguageSelectors(langCode) {
-    const languageDropdowns = document.querySelectorAll('.language-dropdown');
-    
-    languageDropdowns.forEach(dropdown => {
-        const selector = dropdown.querySelector('.language-selector');
-        const flag = selector.querySelector('.language-flag');
-        const code = selector.querySelector('.language-code');
-        
-        // Update the flag and code
-        flag.src = languages[langCode].flag;
-        flag.alt = `${languages[langCode].name} Flag`;
-        flag.dataset.lang = langCode;
-        code.textContent = languages[langCode].code;
-        
-        // Update data attribute
-        selector.dataset.currentLang = langCode;
-        
-        // Update available options
-        updateLanguageOptions(dropdown, langCode);
-    });
-}
-
-// Initialize mobile enhancements
-document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
-
-function updateTextForMobile() {
-    const boldSplit = document.querySelector(".bold-split");
-
-    if (window.innerWidth <= 768) {
-        boldSplit.textContent = "IT Manager"; // Change for mobile
-    } else {
-        boldSplit.textContent = "IT operations manager"; // Restore for desktop
-    }
-}
-
-// Run on page load
-document.addEventListener("DOMContentLoaded", updateTextForMobile);
-
 // Run on window resize (so it updates dynamically)
 window.addEventListener("resize", updateTextForMobile);
 // Language configuration
@@ -1593,20 +1422,6 @@ function updateLanguage(lang) {
     initializeTextAnimations();
 }
 
-// Function to initialize text animations
-function initializeTextAnimations() {
-    const scrollText = document.querySelector('.scroll-text');
-    const text = scrollText.textContent;
-    scrollText.textContent = ''; // Clear the current text
-    
-    // Create spans for each letter
-    [...text].forEach((letter, i) => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
-        scrollText.appendChild(span);
-    });
-}
 
 // Function to update language options in dropdowns
 function updateLanguageOptions(dropdown, currentLang) {
@@ -1711,6 +1526,290 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
+
+
+const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.visibility = 'visible';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+
+// Add scroll event listener
+window.addEventListener('scroll', handleScrollAnimations);
+// Initial check for elements already in view
+window.addEventListener('load', handleScrollAnimations);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollText = document.querySelector('.scroll-text');
+    const text = scrollText.textContent;
+    scrollText.textContent = ''; // Clear the current text
+    
+    // Create spans for each letter
+    [...text].forEach((letter, i) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
+        scrollText.appendChild(span);
+    });
+});
+
+    // Handle the language option clicks in side menu
+    const languageOptions = document.querySelectorAll('.side-menu .language-option');
+    languageOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Get the selected language
+            const selectedLang = option.dataset.lang;
+            
+            // Update both the original and cloned selectors
+            updateLanguageSelectors(selectedLang);
+            
+            // Close dropdown and side menu
+            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            sideMenu.classList.remove('active');
+        });
+    });
+}
+
+// Update all language selectors with the selected language
+function updateLanguageSelectors(langCode) {
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+    
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const flag = selector.querySelector('.language-flag');
+        const code = selector.querySelector('.language-code');
+        
+        // Update the flag and code
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.dataset.lang = langCode;
+        code.textContent = languages[langCode].code;
+        
+        // Update data attribute
+        selector.dataset.currentLang = langCode;
+        
+        // Update available options
+        updateLanguageOptions(dropdown, langCode);
+    });
+}
+
+// Blog page translations
+const blogTranslations = {
+    'en': {
+        'page_title': 'My writing.',
+        'page_description': 'I write about variety of topics. Is it AI, networking events, new technology trends or anything else, you will find my creative outlet here.',
+        'menu_text': 'contact',
+        'nav_home': 'home',
+        'nav_approach': 'approach to collaboration',
+        'nav_about': 'about my life',
+        'nav_blog': 'writing outlet',
+        'more_coming_soon': 'More articles coming soon...',
+        'footer_text': 'Toni Kukoc © MMXXV'
+    },
+    'fr': {
+        'page_title': 'Mes écrits.',
+        'page_description': 'J\'écris sur une variété de sujets. Qu\'il s\'agisse d\'IA, d\'événements de réseautage, de nouvelles tendances technologiques ou autre chose, vous trouverez ici mon exutoire créatif.',
+        'menu_text': 'contact',
+        'nav_home': 'accueil',
+        'nav_approach': 'approche de collaboration',
+        'nav_about': 'à propos de ma vie',
+        'nav_blog': 'espace d\'écriture',
+        'more_coming_soon': 'Plus d\'articles à venir...',
+        'footer_text': 'Toni Kukoc © MMXXV'
+    },
+    'hr': {
+        'page_title': 'Moji tekstovi.',
+        'page_description': 'Pišem o raznim temama. Bilo da se radi o UI, mrežnim događajima, novim tehnološkim trendovima ili bilo čemu drugom, ovdje ćete pronaći moj kreativni izlaz.',
+        'menu_text': 'kontakt',
+        'nav_home': 'početna',
+        'nav_approach': 'pristup suradnji',
+        'nav_about': 'o mom životu',
+        'nav_blog': 'prostor za pisanje',
+        'more_coming_soon': 'Više članaka uskoro...',
+        'footer_text': 'Toni Kukoc © MMXXV'
+    }
+};
+
+// Function to update blog page content based on selected language
+function updateBlogLanguage(lang) {
+    // Store the current language in localStorage
+    localStorage.setItem('selectedLanguage', lang);
+    
+    // Update the page title
+    const pageTitle = document.querySelector('#header h1');
+    if (pageTitle) {
+        pageTitle.innerHTML = `${blogTranslations[lang].page_title.split(' ')[0]} <span class="bold-toni">${blogTranslations[lang].page_title.split(' ')[1]}</span>`;
+    }
+    
+    // Update the page description
+    const pageDescription = document.querySelector('#header p');
+    if (pageDescription) {
+        pageDescription.innerHTML = blogTranslations[lang].page_description;
+    }
+    
+    // Update contact text
+    const contactText = document.querySelector('.menu-text');
+    if (contactText) {
+        contactText.textContent = blogTranslations[lang].menu_text;
+    }
+    
+    // Update navigation items
+    const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+    if (navItems.length >= 4) {
+        navItems[0].textContent = blogTranslations[lang].nav_home;
+        navItems[1].textContent = blogTranslations[lang].nav_approach;
+        navItems[2].textContent = blogTranslations[lang].nav_about;
+        navItems[3].textContent = blogTranslations[lang].nav_blog;
+    }
+    
+    // Update "more articles coming soon" text
+    const comingSoonText = document.querySelector('.coming-soon-text');
+    if (comingSoonText) {
+        comingSoonText.textContent = blogTranslations[lang].more_coming_soon;
+    }
+    
+    // Update footer if it exists
+    const footerContent = document.querySelector('.footer-content');
+    if (footerContent) {
+        footerContent.textContent = blogTranslations[lang].footer_text;
+    }
+    
+    // Update document language attribute
+    document.documentElement.lang = lang;
+}
+
+// Modify the existing updateLanguage function to call updateBlogLanguage on blog pages
+const originalUpdateLanguage = window.updateLanguage || function() {};
+
+window.updateLanguage = function(lang) {
+    // Check if we're on the blog page
+    const isBlogPage = window.location.pathname.includes('blog') || 
+                      document.querySelector('#articles') !== null;
+    
+    if (isBlogPage) {
+        // We're on the blog page, use blog-specific translations
+        updateBlogLanguage(lang);
+    } else {
+        // We're on another page, use the original function
+        originalUpdateLanguage(lang);
+    }
+    
+    // Update the language selectors UI regardless of page
+    updateLanguageSelectors(lang);
+};
+
+// Check for saved language preference and initialize on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Get saved language or default to English
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    
+    // Set initial language
+    updateLanguage(savedLanguage);
+    
+    // Set up language dropdown functionality
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+    
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const options = dropdown.querySelector('.language-options');
+        
+        // Toggle dropdown on click
+        selector.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        });
+        
+        // Hover events
+        selector.addEventListener('mouseenter', () => {
+            dropdown.classList.add('active');
+        });
+        
+        dropdown.addEventListener('mouseleave', () => {
+            dropdown.classList.remove('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('active');
+        });
+    });
+    
+    // Initialize language options
+    updateLanguageOptions(languageDropdowns[0], savedLanguage);
+    attachLanguageSelectionHandlers();
+});
+
+// Mobile adjustments for side menu
+document.addEventListener('DOMContentLoaded', function() {
+    // Clone language dropdown for side menu
+    const originalDropdown = document.querySelector('.language-dropdown');
+    const clonedDropdown = originalDropdown.cloneNode(true);
+    
+    // Add it to the side menu content
+    const sideMenuContent = document.querySelector('.side-menu-content');
+    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
+    
+    // Reinitialize language dropdown functionality for the cloned dropdown
+    const languageSelector = clonedDropdown.querySelector('.language-selector');
+    const languageOptions = clonedDropdown.querySelector('.language-options');
+    
+    languageSelector.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clonedDropdown.classList.toggle('active');
+    });
+    
+    // Handle window resize to adjust layouts
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            // Mobile layout adjustments
+            document.body.classList.add('mobile-view');
+        } else {
+            // Desktop layout adjustments
+            document.body.classList.remove('mobile-view');
+        }
+    }
+    
+    // Initial check and add resize listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    // Fix for scroll indicator on mobile
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (window.innerWidth <= 768) {
+        scrollIndicator.style.marginLeft = '0';
+    }
+});
+
+// Enhance side menu for mobile
+function enhanceSideMenuForMobile() {
+    const sideMenu = document.querySelector('.side-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // Make sure menu toggle is visible and functional on mobile
+    menuToggle.style.display = 'flex';
+    
+    // Ensure the menu closes when a navigation item is clicked
+    const navLinks = document.querySelectorAll('.side-menu-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            sideMenu.classList.remove('active');
+        });
+    });
+    
         </script>
     </body>
 </html>
