@@ -1482,37 +1482,24 @@ document.querySelector('#about').querySelectorAll('.about-collaboration-image, .
     observer.observe(element);
 });
 
-// Scroll-based animation handler
+// Single, combined scroll-based animation handler that works for both desktop and mobile
 function handleScrollAnimations() {
+    const isMobile = window.innerWidth <= 768;
     const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
+    
+    // Set trigger point higher up the screen for mobile devices
+    const triggerPoint = isMobile ? 
+                         window.innerHeight * 0.95 : // Almost at the top of viewport for mobile
+                         window.innerHeight * 0.8;   // Standard 80% for desktop
     
     animatedElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
-        const triggerPoint = window.innerHeight * 0.8; // Trigger when element is 80% into view
         
         if (elementTop < triggerPoint) {
             element.classList.add('visible');
         }
     });
 }
-
-// Check if it's a mobile device
-const isMobile = window.innerWidth <= 768;
-
-// For mobile, set different thresholds or use a simpler approach
-if (isMobile) {
-  // Add visible class immediately on load for critical elements
-  document.querySelectorAll('.about-subheader1, .collaboration-btn').forEach(el => {
-    el.classList.add('visible');
-  });
-} else {
-  // Regular observer for desktop
-  document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
-    observer.observe(element);
-  });
-}
-
-
 // Add scroll event listener
 window.addEventListener('scroll', handleScrollAnimations);
 // Initial check for elements already in view
