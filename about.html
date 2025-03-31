@@ -1931,16 +1931,6 @@ function updateLanguage(langCode) {
     updateLanguageOptions(validLang);
     updateLanguage(validLang);
 
-    // Hover event to open dropdown
-    languageSelector.addEventListener('mouseenter', () => {
-        languageDropdown.classList.add('active');
-    });
-
-    // Leave event to close dropdown
-    languageDropdown.addEventListener('mouseleave', () => {
-        languageDropdown.classList.remove('active');
-    });
-
     // Toggle dropdown
     languageSelector.addEventListener('click', (e) => {
         e.stopPropagation();
