@@ -1882,12 +1882,12 @@ function updateLanguage(langCode) {
 
 // About section
 const navItems = document.querySelectorAll('.side-menu-nav ul li a');
-      if (navItems.length >= 4) {
-    navItems[0].textContent = content.navHome;
-    navItems[1].textContent = content.navApproach;
-    navItems[2].textContent = content.navAbout;
-    navItems[3].textContent = content.navBlog;
-    }
+if (navItems.length >= 4) {
+    navItems[0].textContent = content['nav-home'];
+    navItems[1].textContent = content['nav-approach'];
+    navItems[2].textContent = content['nav-about'];
+    navItems[3].textContent = content['nav-blog'];
+}
 
   
   // About section
