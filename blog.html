@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+f<!DOCTYPE HTML>
 <html lang="en">
     <head>
         <title>Toni Kukoc</title>
@@ -1092,25 +1092,6 @@ footer {
     <div class="footer-content">Toni Kukoc © MMXXV</div>
 </footer>
         <script>
-// Get the scroll indicator line element
-const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-
-window.addEventListener('scroll', () => {
-  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  
-  // Calculate the percentage of scroll
-  const scrollPercentage = (scrollTop / scrollHeight) * 100;
-  
-  // Adjust the height of the scroll line
-  // As you scroll down, the line will get shorter
-  const maxLineHeight = window.innerHeight * 0.7; // 70% of viewport height
-  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
-  
-  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
-});
-
 window.onload = function() {
   document.body.classList.remove('is-preload');
 
@@ -1124,19 +1105,6 @@ window.onload = function() {
       });
     });
   });
-
-// Section visibility animations based on scroll position
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    document.querySelectorAll('.section-content').forEach(section => {
-      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
-        section.classList.add('visible');
-      } else {
-        section.classList.remove('visible');
-      }
-    });
-  });
-}
 
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
@@ -1285,29 +1253,6 @@ document.addEventListener('click', (e) => {
                 }
             });
         });
-// Run on window resize (so it updates dynamically)
-window.addEventListener("resize", updateTextForMobile);
-// Language configuration
-const languages = {
-    'en': { 
-        code: 'EN', 
-        name: 'English', 
-        flag: './assets/UK.png',
-        alternatives: ['fr', 'hr'] 
-    },
-    'fr': { 
-        code: 'FR', 
-        name: 'French', 
-        flag: './assets/FR.png',
-        alternatives: ['en', 'hr'] 
-    },
-    'hr': { 
-        code: 'HR', 
-        name: 'Croatian', 
-        flag: './assets/HR.png',
-        alternatives: ['en', 'fr'] 
-    }
-};
 
 // Translations object for all text content
 const translations = {
