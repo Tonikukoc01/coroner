@@ -2190,24 +2190,33 @@ function applyTranslation(langCode) {
         }
     }
 
-// Update navigation
-const navItems = document.querySelectorAll('.side-menu-nav ul li a');
-navItems[0].textContent = translations[lang].nav_home;
-navItems[1].textContent = translations[lang].nav_approach;
-navItems[2].textContent = translations[lang].nav_about;
-navItems[3].textContent = translations[lang].nav_writing; // Added new navigation item
+  // Update navigation
+    const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+    if (navItems.length >= 4) {
+        navItems[0].textContent = content.nav_home;
+        navItems[1].textContent = content.nav_approach;
+        navItems[2].textContent = content.nav_about;
+        navItems[3].textContent = content.nav_writing;
+    } else {
+        console.warn("Not enough navigation items found in the DOM.");
+    }
 
-// Update footer
-document.querySelector('.footer-content').textContent = translations[lang].footer_text;
+    // Update footer
+    const footerContent = document.querySelector('.footer-content');
+    if (footerContent) {
+        footerContent.textContent = content.footer_text;
+    }
 
-// Update document language attribute
-document.documentElement.lang = lang;
+    // Update document language attribute
+    document.documentElement.lang = langCode;
 
-// Re-initialize any animations that depend on text content
-initializeTextAnimations();
-
-
-    
+    // Re-initialize animations if the function exists
+    if (typeof initializeTextAnimations === "function") {
+        initializeTextAnimations();
+    } else {
+        console.warn("initializeTextAnimations() is not defined.");
+    }
+}
     // Store the current language in localStorage for persistence
     localStorage.setItem('selectedLanguage', langCode);
 }
