@@ -1880,15 +1880,15 @@ function updateLanguage(langCode) {
   document.querySelector('#header p').innerHTML = translations[langCode]['about-me-description'];
   document.querySelector('.scroll-text').textContent = translations[langCode]['scroll-text'];
 
-// About section
+
+// About section - Navigation
 const navItems = document.querySelectorAll('.side-menu-nav ul li a');
 if (navItems.length >= 4) {
-    navItems[0].textContent = content['nav-home'];
-    navItems[1].textContent = content['nav-approach'];
-    navItems[2].textContent = content['nav-about'];
-    navItems[3].textContent = content['nav-blog'];
+    navItems[0].textContent = translations[langCode]['nav-home'];
+    navItems[1].textContent = translations[langCode]['nav-approach'];
+    navItems[2].textContent = translations[langCode]['nav-about'];
+    navItems[3].textContent = translations[langCode]['nav-blog'];
 }
-
   
   // About section
   const aboutParagraphs = document.querySelectorAll('.about-content .content-block:first-child .content-text p');
