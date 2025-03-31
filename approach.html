@@ -1988,6 +1988,14 @@ window.addEventListener("resize", function() {
 // Language content translations
 const translations = {
     'en': {
+          // Navigation
+        'menu_text': 'contact',
+        'nav_home': 'home',
+        'nav_approach': 'approach to collaboration',
+        'nav_about': 'about my life',
+        'nav_writing': 'writing outlet',
+        'footer_text': 'Toni Kukoc © MMXXV',
+
         // Home section
         'homeSectionTitle': 'Approach to <span class="bold-toni">work</span>.',
         'homeSectionText': 'I believe it\'s all about keeping things clear, practical, and adaptable.<br> Whether it\'s improving daily operations or tackling bigger challenges,  <br> I focus on understanding <span class="bold-split"> real needs </span> of your teams.<br> By breaking down complex ideas into manageable steps, I ensure that<br> your company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.',
@@ -2019,6 +2027,14 @@ const translations = {
     },
     
     'fr': {
+        // Navigation
+        'menu_text': 'contact',
+        'nav_home': 'accueil',
+        'nav_approach': 'approche de collaboration',
+        'nav_about': 'à propos de ma vie',
+        'nav_writing': 'espace d’écriture',
+        'footer_text': 'Toni Kukoc © MMXXV',
+
         // Home section
         'homeSectionTitle': 'Approche du <span class="bold-toni">travail</span>.',
         'homeSectionText': 'Je crois qu\'il s\'agit de garder les choses claires, pratiques et adaptables.<br> Qu\'il s\'agisse d\'améliorer les opérations quotidiennes ou de relever des défis plus importants,<br> je me concentre sur la compréhension des <span class="bold-split">besoins réels</span> de vos équipes.<br> En décomposant les idées complexes en étapes gérables, je m\'assure que<br> votre entreprise dispose des bons outils et du soutien nécessaire pour <span class="bold-split">réussir</span> et <span class="bold-split">grandir</span>.',
@@ -2050,6 +2066,14 @@ const translations = {
     },
     
     'hr': {
+        // Navigation
+        'menu_text': 'kontakt',
+        'nav_home': 'početna',
+        'nav_approach': 'pristup suradnji',
+        'nav_about': 'o mom životu',
+        'nav_writing': 'pisano izražavanje',
+        'footer_text': 'Toni Kukoc © MMXXV',
+
         // Home section
         'homeSectionTitle': 'Pristup <span class="bold-toni">radu</span>.',
         'homeSectionText': 'Vjerujem da je sve u tome da stvari budu jasne, praktične i prilagodljive.<br> Bilo da se radi o poboljšanju svakodnevnih operacija ili rješavanju većih izazova,<br> fokusiram se na razumijevanje <span class="bold-split">stvarnih potreba</span> vaših timova.<br> Raščlanjujući složene ideje na lakše korake, osiguravam da<br> vaša tvrtka ima prave alate i podršku za <span class="bold-split">uspjeh</span> i <span class="bold-split">rast</span>.',
@@ -2165,6 +2189,26 @@ function applyTranslation(langCode) {
             buttons[1].textContent = content.ctaButton2;
         }
     }
+
+document.querySelector('.menu-text').textContent = translations[lang].menu_text;
+
+// Update navigation
+const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+navItems[0].textContent = translations[lang].nav_home;
+navItems[1].textContent = translations[lang].nav_approach;
+navItems[2].textContent = translations[lang].nav_about;
+navItems[3].textContent = translations[lang].nav_writing; // Added new navigation item
+
+// Update footer
+document.querySelector('.footer-content').textContent = translations[lang].footer_text;
+
+// Update document language attribute
+document.documentElement.lang = lang;
+
+// Re-initialize any animations that depend on text content
+initializeTextAnimations();
+
+
     
     // Store the current language in localStorage for persistence
     localStorage.setItem('selectedLanguage', langCode);
