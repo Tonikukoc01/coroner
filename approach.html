@@ -2016,6 +2016,12 @@ const translations = {
         'ctaText': 'I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let\'s build something that works—get in touch.',
         'ctaButton1': 'View my CV',
         'ctaButton2': 'About me'
+         // Add these entries to each language in your translations object
+            'navHome': 'home',
+            'navApproach': 'approach to collaboration',
+            'navAbout': 'about my life',
+            'navBlog': 'writing outlet'
+
     },
     
     'fr': {
@@ -2047,6 +2053,13 @@ const translations = {
         'ctaText': 'Je simplifie les projets complexes, optimise les flux de travail et mets en œuvre la bonne technologie pour que votre entreprise fonctionne sans problème. Construisons quelque chose qui fonctionne—contactez-moi.',
         'ctaButton1': 'Voir mon CV',
         'ctaButton2': 'À propos de moi'
+
+       // Navigation items
+        'navHome': 'accueil',
+        'navApproach': 'approche de collaboration',
+        'navAbout': 'à propos de ma vie',
+        'navBlog': 'espace d\'écriture',
+
     },
     
     'hr': {
@@ -2078,6 +2091,13 @@ const translations = {
         'ctaText': 'Pojednostavljujem složene projekte, optimiziram radne tokove i implementiram pravu tehnologiju kako bi vaše poslovanje teklo glatko. Izgradimo nešto što funkcionira—javite mi se.',
         'ctaButton1': 'Pogledaj moj CV',
         'ctaButton2': 'O meni'
+
+        // Add these entries to each language in your translations object
+         'navHome': 'home',
+       'navApproach': 'approach to collaboration',
+        'navAbout': 'about my life',
+       'navBlog': 'writing outlet',
+
     }
 };
 
@@ -2116,6 +2136,15 @@ function applyTranslation(langCode) {
             scrollTextContainer.appendChild(span);
         });
     }
+
+     const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+      if (navItems.length >= 4) {
+    navItems[0].textContent = content.navHome;
+    navItems[1].textContent = content.navApproach;
+    navItems[2].textContent = content.navAbout;
+    navItems[3].textContent = content.navBlog;
+    }
+
     
     // Update Block 1
     const block1 = document.querySelector('.block-1');
