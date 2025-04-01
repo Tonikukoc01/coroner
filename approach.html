@@ -1914,7 +1914,8 @@ function updateHeaderForMobile() {
     if (window.innerWidth <= 768) {
         headerParagraph.innerHTML = 'By breaking down complex ideas into manageable steps, I ensure that your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.';
     } else {
-        headerParagraph.innerHTML = 'I believe it\'s all about keeping things clear, practical, and adaptable.<br> Whether it\'s improving daily operations or tackling bigger challenges,<br> I focus on understanding <span class="bold-split">real needs</span> of your teams.<div style="margin-bottom: 15px;"></div>By breaking down complex ideas into manageable steps, I ensure that<br> your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.';
+        // Instead of using a div with margin, use a <br> with a custom style attribute
+        headerParagraph.innerHTML = 'I believe it\'s all about keeping things clear, practical, and adaptable.<br> Whether it\'s improving daily operations or tackling bigger challenges,<br> I focus on understanding <span class="bold-split">real needs</span> of your teams.<br style="margin-bottom: 8px; display: block;"> By breaking down complex ideas into manageable steps, I ensure that<br> your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.';
     }
 }
 // Ensure it runs on load and resize
