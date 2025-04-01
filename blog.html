@@ -1342,25 +1342,6 @@ function attachLanguageSelectionHandlers() {
     });
 }
 
-// Add scroll event listener
-window.addEventListener('scroll', handleScrollAnimations);
-// Initial check for elements already in view
-window.addEventListener('load', handleScrollAnimations);
-
-document.addEventListener('DOMContentLoaded', () => {
-    const scrollText = document.querySelector('.scroll-text');
-    const text = scrollText.textContent;
-    scrollText.textContent = ''; // Clear the current text
-    
-    // Create spans for each letter
-    [...text].forEach((letter, i) => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
-        scrollText.appendChild(span);
-    });
-});
-
     // Handle the language option clicks in side menu
     const languageOptions = document.querySelectorAll('.side-menu .language-option');
     languageOptions.forEach(option => {
