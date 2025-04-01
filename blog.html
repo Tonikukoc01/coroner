@@ -1144,129 +1144,66 @@ document.addEventListener('click', (e) => {
     sideMenu.classList.remove('active');
   }
 });
+
+
 // Language Dropdown Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            // Language configuration
-         const languages = {
+const languages = {
     'en': { 
         code: 'EN', 
         name: 'English', 
-        flag: './assets/UK.png', // Update with the actual path to your UK flag
+        flag: './assets/UK.png', 
         alternatives: ['fr', 'hr'] 
     },
     'fr': { 
         code: 'FR', 
         name: 'French', 
-        flag: './assets/FR.png', // Update with the actual path to your French flag
+        flag: './assets/FR.png', 
         alternatives: ['en', 'hr'] 
     },
     'hr': { 
         code: 'HR', 
         name: 'Croatian', 
-        flag: './assets/HR.png', // Update with the actual path to your Croatian flag
+        flag: './assets/HR.png', 
         alternatives: ['en', 'fr'] 
     }
 };
 
-            const languageDropdown = document.querySelector('.language-dropdown');
-            const languageSelector = languageDropdown.querySelector('.language-selector');
-            const languageOptions = languageDropdown.querySelector('.language-options');
-
-    // Function to update language options
-            function updateLanguageOptions(currentLang) {
-    // Clear existing options
-                languageOptions.innerHTML = '';
-
-    // Get alternative languages
-                const alternativeLangs = languages[currentLang].alternatives;
-
-    // Create new language options
-                alternativeLangs.forEach(langCode => {
-                    const option = document.createElement('div');
-                    option.className = 'language-option';
-                    option.dataset.lang = langCode;
-
-                    const flag = document.createElement('img');
-                    flag.src = languages[langCode].flag;
-                    flag.alt = `${languages[langCode].name} Flag`;
-                    flag.className = 'language-flag';
-                    flag.dataset.lang = langCode;
-
-                    const code = document.createElement('span');
-                    code.className = 'language-code';
-                    code.textContent = languages[langCode].code;
-
-                    option.appendChild(flag);
-                    option.appendChild(code);
-                    languageOptions.appendChild(option);
-                });
-
-    // Re-attach event listeners
-                attachLanguageOptionListeners();
-            }
-
-    // Attach event listeners to language options
-            function attachLanguageOptionListeners() {
-                const languageOptionEls = languageDropdown.querySelectorAll('.language-option');
-                
-                languageOptionEls.forEach(option => {
-                    option.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const selectedLang = option.dataset.lang;
-                        
-    // Update selector
-                        const selectedFlag = option.querySelector('.language-flag').cloneNode(true);
-                        const selectedCode = option.querySelector('.language-code').textContent;
-
-                        languageSelector.innerHTML = '';
-                        languageSelector.appendChild(selectedFlag);
-                        languageSelector.dataset.currentLang = selectedLang;
-                        
-                        const codeSpan = document.createElement('span');
-                        codeSpan.className = 'language-code';
-                        codeSpan.textContent = selectedCode;
-                        languageSelector.appendChild(codeSpan);
-
-    // Update available options
-                        updateLanguageOptions(selectedLang);
-
-    // Close dropdown
-                        languageDropdown.classList.remove('active');
-                    });
-                });
-            }
-
-            document.addEventListener('DOMContentLoaded', () => {
-    const languageDropdown = document.querySelector('.language-dropdown');
-    const languageSelector = languageDropdown.querySelector('.language-selector');
-    const languageOptions = languageDropdown.querySelector('.language-options');
-
-    // Hover event to open dropdown
-    languageSelector.addEventListener('mouseenter', () => {
-        languageDropdown.classList.add('active');
-    });
-
-    // Leave event to close dropdown
-    languageDropdown.addEventListener('mouseleave', () => {
-        languageDropdown.classList.remove('active');
-    });
-});
-    // Initial setup
-            updateLanguageOptions('en');
-
-    // Toggle dropdown
-            languageSelector.addEventListener('click', (e) => {
-                e.stopPropagation();
-                languageDropdown.classList.toggle('active');
-            });
-
-    // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!languageDropdown.contains(e.target)) {
-                    languageDropdown.classList.remove('active');
-                }
-            });
-        });
+// Blog translations
+const blogTranslations = {
+    'en': {
+        'page_title': 'My writing.',
+        'page_description': 'I write about variety of topics. Is it AI, networking events, new technology trends or anything else, you will find my creative outlet here.',
+        'menu_text': 'contact',
+        'nav_home': 'home',
+        'nav_approach': 'approach to collaboration',
+        'nav_about': 'about my life',
+        'nav_blog': 'writing outlet',
+        'more_coming_soon': 'More articles coming soon...',
+        'footer_text': 'Toni Kukoc © MMXXV'
+    },
+    'fr': {
+        'page_title': 'Mes écrits.',
+        'page_description': 'J\'écris sur une variété de sujets. Qu\'il s\'agisse d\'IA, d\'événements de réseautage, de nouvelles tendances technologiques ou autre chose, vous trouverez ici mon exutoire créatif.',
+        'menu_text': 'contact',
+        'nav_home': 'accueil',
+        'nav_approach': 'approche de collaboration',
+        'nav_about': 'à propos de ma vie',
+        'nav_blog': 'espace d\'écriture',
+        'more_coming_soon': 'Plus d\'articles à venir...',
+        'footer_text': 'Toni Kukoc © MMXXV'
+    },
+    'hr': {
+        'page_title': 'Moji tekstovi.',
+        'page_description': 'Pišem o raznim temama. Bilo da se radi o UI, mrežnim događajima, novim tehnološkim trendovima ili bilo čemu drugom, ovdje ćete pronaći moj kreativni izlaz.',
+        'menu_text': 'kontakt',
+        'nav_home': 'početna',
+        'nav_approach': 'pristup suradnji',
+        'nav_about': 'o mom životu',
+        'nav_blog': 'prostor za pisanje',
+        'more_coming_soon': 'Više članaka uskoro...',
+        'footer_text': 'Toni Kukoc © MMXXV'
+    }
+};
 
 // Function to update language options in dropdowns
 function updateLanguageOptions(dropdown, currentLang) {
@@ -1314,54 +1251,9 @@ function attachLanguageSelectionHandlers() {
             
             // Update the language
             updateLanguage(selectedLang);
-            
-            // Update the language dropdown UI
-            const languageDropdowns = document.querySelectorAll('.language-dropdown');
-            
-            languageDropdowns.forEach(dropdown => {
-                const selector = dropdown.querySelector('.language-selector');
-                const selectedFlag = selector.querySelector('.language-flag');
-                const selectedCode = selector.querySelector('.language-code');
-                
-                // Update flag and code
-                selectedFlag.src = languages[selectedLang].flag;
-                selectedFlag.alt = `${languages[selectedLang].name} Flag`;
-                selectedFlag.dataset.lang = selectedLang;
-                selectedCode.textContent = languages[selectedLang].code;
-                
-                // Update current language
-                selector.dataset.currentLang = selectedLang;
-                
-                // Update available options
-                updateLanguageOptions(dropdown, selectedLang);
-                
-                // Close dropdown
-                dropdown.classList.remove('active');
-            });
         });
     });
 }
-
-    // Handle the language option clicks in side menu
-    const languageOptions = document.querySelectorAll('.side-menu .language-option');
-    languageOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            // Get the selected language
-            const selectedLang = option.dataset.lang;
-            
-            // Update both the original and cloned selectors
-            updateLanguageSelectors(selectedLang);
-            
-            // Close dropdown and side menu
-            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-            
-            sideMenu.classList.remove('active');
-        });
-    });
 
 // Update all language selectors with the selected language
 function updateLanguageSelectors(langCode) {
@@ -1386,43 +1278,6 @@ function updateLanguageSelectors(langCode) {
     });
 }
 
-// Blog page translations
-const blogTranslations = {
-    'en': {
-        'page_title': 'My writing.',
-        'page_description': 'I write about variety of topics. Is it AI, networking events, new technology trends or anything else, you will find my creative outlet here.',
-        'menu_text': 'contact',
-        'nav_home': 'home',
-        'nav_approach': 'approach to collaboration',
-        'nav_about': 'about my life',
-        'nav_blog': 'writing outlet',
-        'more_coming_soon': 'More articles coming soon...',
-        'footer_text': 'Toni Kukoc © MMXXV'
-    },
-    'fr': {
-        'page_title': 'Mes écrits.',
-        'page_description': 'J\'écris sur une variété de sujets. Qu\'il s\'agisse d\'IA, d\'événements de réseautage, de nouvelles tendances technologiques ou autre chose, vous trouverez ici mon exutoire créatif.',
-        'menu_text': 'contact',
-        'nav_home': 'accueil',
-        'nav_approach': 'approche de collaboration',
-        'nav_about': 'à propos de ma vie',
-        'nav_blog': 'espace d\'écriture',
-        'more_coming_soon': 'Plus d\'articles à venir...',
-        'footer_text': 'Toni Kukoc © MMXXV'
-    },
-    'hr': {
-        'page_title': 'Moji tekstovi.',
-        'page_description': 'Pišem o raznim temama. Bilo da se radi o UI, mrežnim događajima, novim tehnološkim trendovima ili bilo čemu drugom, ovdje ćete pronaći moj kreativni izlaz.',
-        'menu_text': 'kontakt',
-        'nav_home': 'početna',
-        'nav_approach': 'pristup suradnji',
-        'nav_about': 'o mom životu',
-        'nav_blog': 'prostor za pisanje',
-        'more_coming_soon': 'Više članaka uskoro...',
-        'footer_text': 'Toni Kukoc © MMXXV'
-    }
-};
-
 // Function to update blog page content based on selected language
 function updateBlogLanguage(lang) {
     // Store the current language in localStorage
@@ -1431,7 +1286,8 @@ function updateBlogLanguage(lang) {
     // Update the page title
     const pageTitle = document.querySelector('#header h1');
     if (pageTitle) {
-        pageTitle.innerHTML = `${blogTranslations[lang].page_title.split(' ')[0]} <span class="bold-toni">${blogTranslations[lang].page_title.split(' ')[1]}</span>`;
+        const titleParts = blogTranslations[lang].page_title.split(' ');
+        pageTitle.innerHTML = `${titleParts[0]} <span class="bold-toni">${titleParts[1] || ''}</span>`;
     }
     
     // Update the page description
@@ -1471,10 +1327,8 @@ function updateBlogLanguage(lang) {
     document.documentElement.lang = lang;
 }
 
-// Modify the existing updateLanguage function to call updateBlogLanguage on blog pages
-const originalUpdateLanguage = window.updateLanguage || function() {};
-
-window.updateLanguage = function(lang) {
+// Main updateLanguage function that dispatches to page-specific functions
+function updateLanguage(lang) {
     // Check if we're on the blog page
     const isBlogPage = window.location.pathname.includes('blog') || 
                       document.querySelector('#articles') !== null;
@@ -1483,15 +1337,35 @@ window.updateLanguage = function(lang) {
         // We're on the blog page, use blog-specific translations
         updateBlogLanguage(lang);
     } else {
-        // We're on another page, use the original function
-        originalUpdateLanguage(lang);
+        // For other pages, you would implement page-specific language updates here
     }
     
     // Update the language selectors UI regardless of page
     updateLanguageSelectors(lang);
-};
+}
 
-// Check for saved language preference and initialize on DOMContentLoaded
+// Enhance side menu for mobile
+function enhanceSideMenuForMobile() {
+    const sideMenu = document.querySelector('.side-menu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
+    // Make sure menu toggle is visible and functional on mobile
+    if (menuToggle) {
+        menuToggle.style.display = 'flex';
+    }
+    
+    // Ensure the menu closes when a navigation item is clicked
+    const navLinks = document.querySelectorAll('.side-menu-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (sideMenu) {
+                sideMenu.classList.remove('active');
+            }
+        });
+    });
+}
+
+// Main initialization function
 document.addEventListener('DOMContentLoaded', () => {
     // Get saved language or default to English
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
@@ -1504,7 +1378,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     languageDropdowns.forEach(dropdown => {
         const selector = dropdown.querySelector('.language-selector');
-        const options = dropdown.querySelector('.language-options');
         
         // Toggle dropdown on click
         selector.addEventListener('click', (e) => {
@@ -1520,35 +1393,64 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdown.addEventListener('mouseleave', () => {
             dropdown.classList.remove('active');
         });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
+    });
+    
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.language-dropdown').forEach(dropdown => {
             dropdown.classList.remove('active');
         });
     });
     
-    // Initialize language options
-    updateLanguageOptions(languageDropdowns[0], savedLanguage);
-    attachLanguageSelectionHandlers();
-});
-
-// Mobile adjustments for side menu
-document.addEventListener('DOMContentLoaded', function() {
+    // Initialize language options for all dropdowns
+    if (languageDropdowns.length > 0) {
+        languageDropdowns.forEach(dropdown => {
+            updateLanguageOptions(dropdown, savedLanguage);
+        });
+        
+        attachLanguageSelectionHandlers();
+    }
+    
     // Clone language dropdown for side menu
     const originalDropdown = document.querySelector('.language-dropdown');
-    const clonedDropdown = originalDropdown.cloneNode(true);
-    
-    // Add it to the side menu content
     const sideMenuContent = document.querySelector('.side-menu-content');
-    sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
     
-    // Reinitialize language dropdown functionality for the cloned dropdown
-    const languageSelector = clonedDropdown.querySelector('.language-selector');
-    const languageOptions = clonedDropdown.querySelector('.language-options');
+    if (originalDropdown && sideMenuContent) {
+        const clonedDropdown = originalDropdown.cloneNode(true);
+        sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
+        
+        // Reinitialize language dropdown functionality for the cloned dropdown
+        const languageSelector = clonedDropdown.querySelector('.language-selector');
+        
+        languageSelector.addEventListener('click', (e) => {
+            e.stopPropagation();
+            clonedDropdown.classList.toggle('active');
+        });
+    }
     
-    languageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        clonedDropdown.classList.toggle('active');
+    // Handle language option clicks in side menu
+    const sideMenu = document.querySelector('.side-menu');
+    const languageOptions = document.querySelectorAll('.side-menu .language-option');
+    
+    languageOptions.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Get the selected language
+            const selectedLang = option.dataset.lang;
+            
+            // Update language
+            updateLanguage(selectedLang);
+            
+            // Close dropdown and side menu
+            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            if (sideMenu) {
+                sideMenu.classList.remove('active');
+            }
+        });
     });
     
     // Handle window resize to adjust layouts
@@ -1568,30 +1470,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fix for scroll indicator on mobile
     const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (window.innerWidth <= 768) {
+    if (scrollIndicator && window.innerWidth <= 768) {
         scrollIndicator.style.marginLeft = '0';
     }
+    
+    // Set up mobile menu enhancements
+    enhanceSideMenuForMobile();
 });
-
-// Enhance side menu for mobile
-function enhanceSideMenuForMobile() {
-    const sideMenu = document.querySelector('.side-menu');
-    const menuToggle = document.querySelector('.menu-toggle');
-    
-    // Make sure menu toggle is visible and functional on mobile
-    menuToggle.style.display = 'flex';
-    
-    // Ensure the menu closes when a navigation item is clicked
-    const navLinks = document.querySelectorAll('.side-menu-nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
-    });
-} // Add this closing brace
-
-// Call the function when the DOM is loaded
-document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
         </script>
     </body>
 </html>
