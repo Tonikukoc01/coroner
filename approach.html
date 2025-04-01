@@ -1759,6 +1759,16 @@ document.addEventListener('click', (e) => {
     const languageSelector = languageDropdown.querySelector('.language-selector');
     const languageOptions = languageDropdown.querySelector('.language-options');
 
+    // Hover event to open dropdown
+    languageSelector.addEventListener('mouseenter', () => {
+        languageDropdown.classList.add('active');
+    });
+
+    // Leave event to close dropdown
+    languageDropdown.addEventListener('mouseleave', () => {
+        languageDropdown.classList.remove('active');
+    });
+});
     // Initial setup
             updateLanguageOptions('en');
 
