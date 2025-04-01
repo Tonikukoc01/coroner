@@ -1669,6 +1669,7 @@ const translations = {
         'header_hi': 'Hi, my',
         'header_name': 'name is',
         'header_toni': 'Toni.',
+        'independent': 'I am independent',
         'job_title': 'IT operations manager',
         'location': 'from Split, Croatia.',
         'scroll_text': 'SCROLL',
@@ -1687,6 +1688,7 @@ const translations = {
         'header_hi': 'Bonjour, je',
         'header_name': 'm\'appelle',
         'header_toni': 'Toni.',
+        'independent': 'Je suis indépendant',
         'job_title': 'Responsable des opérations IT',
         'location': 'de Split, Croatie.',
         'scroll_text': 'DÉFILER',
@@ -1705,6 +1707,7 @@ const translations = {
         'header_hi': 'Bok, moje',
         'header_name': 'ime je',
         'header_toni': 'Toni.',
+        'independent': 'Ja sam samostalni',
         'job_title': 'IT operativni menadžer',
         'location': 'iz Splita, Hrvatska.',
         'scroll_text': 'SKROLAJ',
@@ -1739,7 +1742,7 @@ function updateLanguage(lang) {
         // For modern browsers supporting :has()
         const boldSplit = locationParagraph.querySelector('.bold-split');
         locationParagraph.innerHTML = '';
-        locationParagraph.appendChild(document.createTextNode('I am independent '));
+        locationParagraph.appendChild(document.createTextNode(`${translations[lang].independent} `));
         locationParagraph.appendChild(boldSplit);
         locationParagraph.appendChild(document.createElement('br')).className = 'remove-br';
         locationParagraph.appendChild(document.createTextNode(` ${translations[lang].location}`));
