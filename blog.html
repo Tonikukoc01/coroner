@@ -1342,21 +1342,6 @@ function attachLanguageSelectionHandlers() {
     });
 }
 
-const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.visibility = 'visible';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-
 // Add scroll event listener
 window.addEventListener('scroll', handleScrollAnimations);
 // Initial check for elements already in view
