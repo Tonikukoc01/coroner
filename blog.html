@@ -1420,31 +1420,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-    
-    // Handle language option clicks in side menu
-    const sideMenu = document.querySelector('.side-menu');
-    const languageOptions = document.querySelectorAll('.side-menu .language-option');
-    
-    languageOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            // Get the selected language
-            const selectedLang = option.dataset.lang;
-            
-            // Update language
-            updateLanguage(selectedLang);
-            
-            // Close dropdown and side menu
-            document.querySelectorAll('.language-dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-            
-            if (sideMenu) {
-                sideMenu.classList.remove('active');
-            }
-        });
-    });
+
     
     // Handle window resize to adjust layouts
     function handleResize() {
