@@ -2308,6 +2308,16 @@ function initializeCustomLanguageSelector() {
         console.log("Language selector clicked");
         languageDropdown.classList.toggle('active');
     });
+
+// Add hover events for better user experience
+     languageSelector.addEventListener('mouseenter', () => {
+         languageDropdown.classList.add('active');
+     });
+     
+     languageDropdown.addEventListener('mouseleave', () => {
+         languageDropdown.classList.remove('active');
+     });
+
     
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
