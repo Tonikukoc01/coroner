@@ -232,13 +232,12 @@ body {
             font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
             font-size: 1.5rem; /* Increase size of subheader text */
-            margin: 0 0 2rem; /* Increase margin below subheader */
+            margin: 0;
             color: #F0F4F8;
         }
 
-#header p br:nth-of-type(3) {
-    display: block;
-    margin-bottom: 0.8rem;
+#header p.extra-margin {
+    margin-top: 1rem; /* Add extra space above this paragraph */
 }
 
 .scroll-indicator {
@@ -1500,22 +1499,21 @@ footer {
 <section id="home">
     <!-- Header -->
     <header id="header">
-        <h1>
+    <h1>
         Approach to <span class="bold-toni">work</span>. 
-  </h1>
-<div class="horizontal-line-header"></div>
-       <p> I believe it’s all about keeping things clear, practical, and adaptable.
-<br> Whether it’s improving daily operations or tackling bigger challenges,  
-<br> I focus on understanding <span class="bold-split"> real needs </span> of your teams.
-<br> By breaking down complex ideas into manageable steps, I ensure that
-<br> your company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.
-</p>
- <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <div class="scroll-text">SCROLL</div>
-                <div class="scroll-line"></div>
-</div>
-    </header>
+    </h1>
+    <!-- We'll keep a hidden horizontal line for selector purposes -->
+    <div class="horizontal-line-header" style="display:none;"></div>
+    <div id="header-text-container">
+        <!-- Text will be inserted here by the translation function -->
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-text">SCROLL</div>
+        <div class="scroll-line"></div>
+    </div>
+</header>
 </section>
 <section id="about" class="section content-section">
     <div class="about-content">
@@ -2118,7 +2116,6 @@ const translations = {
     }
 };
 
-// Function to apply translations based on selected language
 function applyTranslation(langCode) {
     console.log("Applying translation for:", langCode);
     const content = translations[langCode];
@@ -2133,13 +2130,31 @@ function applyTranslation(langCode) {
     // Update Home section
     document.querySelector('#header h1').innerHTML = content.homeSectionTitle;
     
-    // Update paragraph based on device size
-    const headerParagraph = document.querySelector('#header h1 + .horizontal-line-header + p');
-    if (headerParagraph) {
-        headerParagraph.innerHTML = isMobile ? content.homeSectionTextMobile : content.homeSectionText;
+    // Get the text container
+    const textContainer = document.getElementById('header-text-container');
+    if (textContainer) {
+        // Clear any existing content
+        textContainer.innerHTML = '';
+        
+        // Split the text by <br> tags
+        const textContent = isMobile ? content.homeSectionTextMobile : content.homeSectionText;
+        const textParts = textContent.split('<br>');
+        
+        // Create paragraph elements
+        textParts.forEach((part, index) => {
+            const p = document.createElement('p');
+            p.innerHTML = part;
+            
+            // Add extra margin to the paragraph after "real needs of your teams"
+            if (index === 3) {
+                p.classList.add('extra-margin');
+            }
+            
+            textContainer.appendChild(p);
+        });
     }
     
-    // Update scroll text
+    // Update scroll text (unchanged)
     const scrollTextContainer = document.querySelector('.scroll-text');
     if (scrollTextContainer) {
         // Clear existing content
@@ -2153,6 +2168,7 @@ function applyTranslation(langCode) {
             scrollTextContainer.appendChild(span);
         });
     }
+}
 
      const navItems = document.querySelectorAll('.side-menu-nav ul li a');
       if (navItems.length >= 4) {
