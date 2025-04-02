@@ -199,7 +199,7 @@ body {
     font-weight: 200;
     font-style: normal;
     font-size: 5.5rem;
-    margin: 0 0 1rem;
+    margin: 0 0 2.5rem;
     letter-spacing: -0.02em;
     color: #F0F4F8; /* Light gold color */
     line-height: 1.2;
@@ -232,14 +232,12 @@ body {
             font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
             font-size: 1.5rem; /* Increase size of subheader text */
-            margin: 0 0 2rem; /* Increase margin below subheader */
+           margin: 0; /* Reset margins */
             color: #F0F4F8;
         }
 
-#header p br:nth-of-type(3) {
-    display: block;
-    content: "";
-    margin-bottom: 3rem;
+#header p.extra-margin {
+    margin-top: 1rem; /* Add extra space above this paragraph */
 }
 
 .scroll-indicator {
@@ -1504,12 +1502,11 @@ footer {
         <h1>
         Approach to <span class="bold-toni">work</span>. 
   </h1>
-       <p> I believe it’s all about keeping things clear, practical, and adaptable.
-<br> Whether it’s improving daily operations or tackling bigger challenges,  
-<br> I focus on understanding <span class="bold-split"> real needs </span> of your teams.
-<br> By breaking down complex ideas into manageable steps, I ensure that
-<br> your company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.
-</p>
+       <p> I believe it's all about keeping things clear, practical, and adaptable.</p>
+    <p> Whether it's improving daily operations or tackling bigger challenges,</p>  
+    <p> I focus on understanding <span class="bold-split"> real needs </span> of your teams.</p>
+    <p class="extra-margin"> By breaking down complex ideas into manageable steps, I ensure that</p>
+    <p> your company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.</p>
  <!-- Scroll Indicator -->
             <div class="scroll-indicator">
                 <div class="scroll-text">SCROLL</div>
