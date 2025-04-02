@@ -1393,7 +1393,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdown.classList.remove('active');
         });
     });
-});
+    
     // Initialize language options for all dropdowns
     if (languageDropdowns.length > 0) {
         languageDropdowns.forEach(dropdown => {
@@ -1419,6 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clonedDropdown.classList.toggle('active');
         });
     }
+});
     
     // Handle language option clicks in side menu
     const sideMenu = document.querySelector('.side-menu');
