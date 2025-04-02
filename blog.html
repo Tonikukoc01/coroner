@@ -1096,7 +1096,6 @@ footer {
 
 window.onload = function() {
   document.body.classList.remove('is-preload');
-
 // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -1107,7 +1106,6 @@ window.onload = function() {
       });
     });
   });
-
 // Section visibility animations based on scroll position
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1120,33 +1118,26 @@ window.onload = function() {
     });
   });
 }
-
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
-
 // Toggle menu when clicking the menu button
 menuToggle.addEventListener('click', (e) => {
   sideMenu.classList.toggle('active');
   e.stopPropagation(); // Prevent the event from propagating to document click handler
 });
-
 // Close side menu when clicking outside
 document.addEventListener('click', (e) => {
   console.log('Document click detected:', e.target);
-
   // Check if the click is outside the side menu and menu toggle
   if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
     sideMenu.classList.remove('active');
   }
-
   // If the click is inside the side menu (anywhere in the active side menu), close the menu
   if (sideMenu.classList.contains('active') && sideMenu.contains(e.target)) {
     sideMenu.classList.remove('active');
   }
 });
-
-
 // Language Dropdown Functionality
 const languages = {
     'en': { 
@@ -1168,7 +1159,6 @@ const languages = {
         alternatives: ['en', 'fr'] 
     }
 };
-
 // Blog translations
 const blogTranslations = {
     'en': {
@@ -1203,7 +1193,6 @@ const blogTranslations = {
         'footer_text': 'Toni Kukoč © MMXXV'
     }
 };
-
 // Function to update language options in dropdowns
 function updateLanguageOptions(dropdown, currentLang) {
     const languageOptions = dropdown.querySelector('.language-options');
@@ -1238,7 +1227,6 @@ function updateLanguageOptions(dropdown, currentLang) {
     // Re-attach event listeners
     attachLanguageSelectionHandlers();
 }
-
 // Language selection event handler
 function attachLanguageSelectionHandlers() {
     const languageOptions = document.querySelectorAll('.language-option');
@@ -1253,7 +1241,6 @@ function attachLanguageSelectionHandlers() {
         });
     });
 }
-
 // Update all language selectors with the selected language
 function updateLanguageSelectors(langCode) {
     const languageDropdowns = document.querySelectorAll('.language-dropdown');
@@ -1276,7 +1263,6 @@ function updateLanguageSelectors(langCode) {
         updateLanguageOptions(dropdown, langCode);
     });
 }
-
 // Function to update blog page content based on selected language
 function updateBlogLanguage(lang) {
     // Store the current language in localStorage
@@ -1325,7 +1311,6 @@ function updateBlogLanguage(lang) {
     // Update document language attribute
     document.documentElement.lang = lang;
 }
-
 // Main updateLanguage function that dispatches to page-specific functions
 function updateLanguage(lang) {
     // Check if we're on the blog page
@@ -1342,7 +1327,6 @@ function updateLanguage(lang) {
     // Update the language selectors UI regardless of page
     updateLanguageSelectors(lang);
 }
-
 // Enhance side menu for mobile
 function enhanceSideMenuForMobile() {
     const sideMenu = document.querySelector('.side-menu');
@@ -1363,7 +1347,6 @@ function enhanceSideMenuForMobile() {
         });
     });
 }
-
 // Main initialization function
 document.addEventListener('DOMContentLoaded', () => {
     // Get saved language or default to English
@@ -1419,8 +1402,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clonedDropdown.classList.toggle('active');
         });
     }
-});
-
     
     // Handle window resize to adjust layouts
     function handleResize() {
