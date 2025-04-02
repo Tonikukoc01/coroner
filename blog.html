@@ -1384,14 +1384,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdown.classList.toggle('active');
         });
         
-        // Hover events
-        selector.addEventListener('mouseenter', () => {
-            dropdown.classList.add('active');
-        });
-        
-        dropdown.addEventListener('mouseleave', () => {
-            dropdown.classList.remove('active');
-        });
+        // Hover events have been removed
     });
     
     // Close all dropdowns when clicking outside
@@ -1400,7 +1393,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dropdown.classList.remove('active');
         });
     });
-    
+});
     // Initialize language options for all dropdowns
     if (languageDropdowns.length > 0) {
         languageDropdowns.forEach(dropdown => {
