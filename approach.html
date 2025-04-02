@@ -819,10 +819,10 @@ body {
 .about-header {
     font-family: SkemaProDisplay;
     color: #F0F4F8;
-    font-size: 2.7rem;
+    font-size: 2.3rem;
     font-weight: normal;
     text-align: left;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.8rem;
     padding: 0;
 }
 
@@ -965,11 +965,16 @@ body {
     opacity: 1;
     will-change: transform, opacity;
     margin-left: 2rem;
+    margin-top: 1.5rem; /* Added to push the image down a bit */
+    position: relative;
+    left: 1rem; /* Added to push the image right a bit */
 }
 
  .content-block.right-aligned .content-image {
     margin-right: 0;
     margin-left: 6rem; /* Maintain the gap between text and image */
+    left: -1rem; /* Added to push the image left a bit */
+    margin-top: 1.5rem; /* Added to push the image down a bit */
 }
 
 .content-image.visible {
