@@ -2203,6 +2203,7 @@ function applyTranslation(langCode) {
           newText = newText.replace(/votre équipe\./i, `<span style="white-space: nowrap; margin-right: 12px;">votre équipe.</span>`);
         // Make "Cela implique" go to the next line and add spacing below it
           newText = newText.replace("Cela implique",  `<span style="display:block; margin-bottom: 12px;">Cela implique</span>`);
+          newText = newText.replace("de choisir la bonne infrastructure",`<p>de choisir la bonne infrastructure, d'intégrer des outils tiers, d'automatiser les tâches et d'améliorer les performances du système.</p>`);
           newText = newText.replace("performances du système.", `<span style="display:block; margin-bottom:10px;">performances du système.</span>`);
         
             // Croatian variations
