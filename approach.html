@@ -1944,36 +1944,81 @@ function updateContentForMobile() {
     console.log("Is mobile:", isMobile);
     
     // 1. Change "Tailored Technology Solutions" to "Tailored Solutions" on mobile
-    const solutionsHeader = document.querySelector(".right-aligned.block-2 .about-header");
-    console.log("Solutions header found:", !!solutionsHeader);
+  const solutionsHeader = document.querySelector(".right-aligned.block-2 .about-header");
     if (solutionsHeader) {
-        console.log("Current solutions header text:", solutionsHeader.textContent);
-        solutionsHeader.textContent = isMobile ? "Tailored Solutions" : "Tailored Technology Solutions";
-        console.log("New solutions header text:", solutionsHeader.textContent);
+        solutionsHeader.textContent = isMobile ? 
+            translations[currentLanguage]['block2TitleMobile'] : 
+            translations[currentLanguage]['block2Title'];
     }
     
     // 2. Add break after "specific needs." and "system performance..."
-    const solutionsParagraph = document.querySelector(".right-aligned.block-2 .about-subheader1:first-of-type");
-    console.log("Solutions paragraph found:", !!solutionsParagraph);
-    if (solutionsParagraph) {
-        console.log("Current paragraph text:", solutionsParagraph.innerHTML);
+    const firstParagraph = document.querySelector(".right-aligned.block-2 .about-subheader1:first-of-type");
+    if (firstParagraph) {
+        // Instead of manipulating innerHTML with <br> tags, split the content into real paragraphs
         if (isMobile) {
-            // Store the original text content if not already stored
-            if (!solutionsParagraph.dataset.originalText) {
-                solutionsParagraph.dataset.originalText = solutionsParagraph.innerHTML;
+            // Save original paragraph if not already saved
+            if (!firstParagraph.dataset.originalHtml) {
+                firstParagraph.dataset.originalHtml = firstParagraph.innerHTML;
             }
             
-            // Apply the mobile formatting
-            let newText = solutionsParagraph.dataset.originalText;
-            newText = newText.replace("specific needs.", "specific needs.<br><br>");
-            newText = newText.replace("system performance.", "system performance.<br><br>");
-            solutionsParagraph.innerHTML = newText;
-        } else if (solutionsParagraph.dataset.originalText) {
-            // Restore original text for desktop
-            solutionsParagraph.innerHTML = solutionsParagraph.dataset.originalText;
-        }
-        console.log("New paragraph text:", solutionsParagraph.innerHTML);
+         // Get the text based on current language
+            const paragraphText = translations[currentLanguage]['block2Text1'] || "";
+
+          // For English
+            if (currentLanguage === 'en') {
+                // Split into appropriate sentences and create real paragraphs
+                const sentences = paragraphText.split('specific needs.');
+                if (sentences.length > 1) {
+                    const part1 = sentences[0] + 'specific needs.';
+                    const part2 = sentences[1];
+                    
+                    // Replace with multiple paragraphs
+                    firstParagraph.innerHTML = part1;
+                    
+                    // Create new paragraph elements instead of using <br><br>
+                    const newParagraph = document.createElement('p');
+                    newParagraph.className = 'about-subheader1';
+                    newParagraph.innerHTML = part2;
+                    firstParagraph.after(newParagraph);
+                }
+            }
+// For French
+else if (currentLanguage === 'fr') {
+    // Use the appropriate French sentence break point
+    const sentences = paragraphText.split('besoins spécifiques.');
+    if (sentences.length > 1) {
+        const part1 = sentences[0] + 'besoins spécifiques.';
+        const part2 = sentences[1];
+        
+        // Replace with multiple paragraphs
+        firstParagraph.innerHTML = part1;
+        
+        // Create new paragraph elements
+        const newParagraph = document.createElement('p');
+        newParagraph.className = 'about-subheader1';
+        newParagraph.innerHTML = part2;
+        firstParagraph.after(newParagraph);
     }
+}
+// For Croatian
+else if (currentLanguage === 'hr') {
+    // Use the appropriate Croatian sentence break point
+    const sentences = paragraphText.split('specifične potrebe.');
+    if (sentences.length > 1) {
+        const part1 = sentences[0] + 'specifične potrebe.';
+        const part2 = sentences[1];
+        
+        // Replace with multiple paragraphs
+        firstParagraph.innerHTML = part1;
+        
+        // Create new paragraph elements
+        const newParagraph = document.createElement('p');
+        newParagraph.className = 'about-subheader1';
+        newParagraph.innerHTML = part2;
+        firstParagraph.after(newParagraph);
+    }
+}
+
     
     // 3. Change "Let's Build Something Together" to "Let's build together" on mobile
     const ctaHeader = document.querySelector("section[style*='text-align: center'] .about-header");
