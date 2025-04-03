@@ -2172,8 +2172,8 @@ function applyTranslation(langCode) {
             // Apply mobile-specific formatting if needed
             if (isMobile) {
                 let newText = content.block2Text1;
-                newText = newText.replace("specific needs.", "specific needs.<br><br>");
-                newText = newText.replace("system performance.", "system performance.<br><br>");
+                newText = newText.replace("specific needs.", "specific needs.<br>");
+                newText = newText.replace("system performance.", "system performance.<br>");
                 block2Paragraphs[0].innerHTML = newText;
             }
         }
