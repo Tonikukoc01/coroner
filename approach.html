@@ -2197,12 +2197,12 @@ function applyTranslation(langCode) {
             if (isMobile) {
                 let newText = content.block2Text1;
                 // Dynamically add spacing for multiple languages
+            newText = newText.replace("specific needs.", `<span style="display:block; margin-bottom:10px;">specific needs.</span>`);
             newText = newText.replace("system performance.", `<span style="display:block; margin-bottom:10px;">system performance.</span>`);
 
             // French variations
-       newText = newText.replace(/votre équipe\./i,  `<span style="white-space: nowrap; margin-right: 12px; margin-bottom: 12px;">votre équipe.</span>`);
-    // After "performances du système." add spacing and a break to the next line
-        newText = newText.replace("performances du système.",  `<span style="display:block; margin-bottom: 10px;">performances du système.</span>`);
+            newText = newText.replace("votre équipe.", `<span style="display:block; margin-bottom:10px;">votre équipe.</span>`);
+            newText = newText.replace("performances du système.", `<span style="display:block; margin-bottom:10px;">performances du système.</span>`);
 
             // Croatian variations
             newText = newText.replace("vašeg tima.", `<span style="display:block; margin-bottom:10px;">vašeg tima.</span>`);
