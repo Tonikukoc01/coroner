@@ -2197,8 +2197,8 @@ function applyTranslation(langCode) {
             if (isMobile) {
                 let newText = content.block2Text1;
                 // Dynamically add spacing for multiple languages
-            newText = newText.replace("specific needs.", `<span style="display:block; margin-bottom:10px;">specific needs.</span>`);
-            newText = newText.replace("system performance.", `<span style="display:block; margin-bottom:10px;">system performance.</span>`);
+          newText = newText.replace("specific needs.", `<span style="display:inline-block; margin-bottom:10px;">specific needs.</span>`);
+            newText = newText.replace("system performance.", `<span style="display:inline-block; margin-bottom:10px;">system performance.</span>`);
 
             // French variations
             newText = newText.replace("votre équipe.", `<span style="display:block; margin-bottom:10px;">votre équipe.</span>`);
