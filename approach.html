@@ -1114,6 +1114,11 @@ body {
         margin: 0 auto;
     }
 
+.paragraph-break {
+    display: block;
+    height: 0.6rem;
+}
+
 .content-block {
         flex-direction: column;
         gap: 2rem;
@@ -1941,39 +1946,47 @@ window.addEventListener("resize", function () {
 function updateContentForMobile() {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 768;
-    console.log("Is mobile:", isMobile);
     
     // 1. Change "Tailored Technology Solutions" to "Tailored Solutions" on mobile
     const solutionsHeader = document.querySelector(".right-aligned.block-2 .about-header");
-    console.log("Solutions header found:", !!solutionsHeader);
     if (solutionsHeader) {
-        console.log("Current solutions header text:", solutionsHeader.textContent);
-        solutionsHeader.textContent = isMobile ? "Tailored Solutions" : "Tailored Technology Solutions";
-        console.log("New solutions header text:", solutionsHeader.textContent);
+        const key = isMobile ? 'block2TitleMobile' : 'block2Title';
+        solutionsHeader.textContent = translations[currentLanguage][key] || "";
     }
     
-    // 2. Add break after "specific needs." and "system performance..."
+    // 2. Handle paragraph breaks consistently across languages
     const solutionsParagraph = document.querySelector(".right-aligned.block-2 .about-subheader1:first-of-type");
-    console.log("Solutions paragraph found:", !!solutionsParagraph);
     if (solutionsParagraph) {
-        console.log("Current paragraph text:", solutionsParagraph.innerHTML);
         if (isMobile) {
             // Store the original text content if not already stored
             if (!solutionsParagraph.dataset.originalText) {
                 solutionsParagraph.dataset.originalText = solutionsParagraph.innerHTML;
             }
             
-            // Apply the mobile formatting
-            let newText = solutionsParagraph.dataset.originalText;
-            newText = newText.replace("specific needs.", "specific needs.<br><br>");
-            newText = newText.replace("system performance.", "system performance.<br><br>");
-            solutionsParagraph.innerHTML = newText;
+            // Get text from translations
+            let paragraphText = translations[currentLanguage]['block2Text1'] || "";
+            
+            // Apply consistent paragraph breaks for all languages
+            paragraphText = paragraphText.replace("specific needs.", "specific needs.<span class='paragraph-break'></span>");
+            paragraphText = paragraphText.replace("system performance.", "system performance.<span class='paragraph-break'></span>");
+            
+            // For Croatian and French equivalents (you'll need to identify these phrases)
+            // Example if you know the Croatian/French equivalents:
+            if (currentLanguage === 'hr') {
+                paragraphText = paragraphText.replace("specifične potrebe.", "specifične potrebe.<span class='paragraph-break'></span>");
+                // Add other Croatian phrases
+            } else if (currentLanguage === 'fr') {
+                paragraphText = paragraphText.replace("besoins spécifiques.", "besoins spécifiques.<span class='paragraph-break'></span>");
+                // Add other French phrases
+            }
+            
+            solutionsParagraph.innerHTML = paragraphText;
         } else if (solutionsParagraph.dataset.originalText) {
             // Restore original text for desktop
             solutionsParagraph.innerHTML = solutionsParagraph.dataset.originalText;
         }
-        console.log("New paragraph text:", solutionsParagraph.innerHTML);
     }
+
     
     // 3. Change "Let's Build Something Together" to "Let's build together" on mobile
     const ctaHeader = document.querySelector("section[style*='text-align: center'] .about-header");
