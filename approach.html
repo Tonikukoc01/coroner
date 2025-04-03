@@ -2330,19 +2330,6 @@ function initializeCustomLanguageSelector() {
         });
     }
     
-    // Toggle dropdown behavior
-languageSelector.addEventListener('click', (e) => {
-    e.stopPropagation();
-    console.log("Language selector clicked");
-    languageDropdown.classList.toggle('active');
-});
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (!languageDropdown.contains(e.target)) {
-        languageDropdown.classList.remove('active');
-    }
-});
 
 // Get stored language or default to 'fr'
 const storedLang = localStorage.getItem('selectedLanguage') || 'fr';
