@@ -2331,53 +2331,43 @@ function initializeCustomLanguageSelector() {
     }
     
     // Toggle dropdown behavior
-    languageSelector.addEventListener('click', (e) => {
-        e.stopPropagation();
-        console.log("Language selector clicked");
-        languageDropdown.classList.toggle('active');
-    });
+languageSelector.addEventListener('click', (e) => {
+    e.stopPropagation();
+    console.log("Language selector clicked");
+    languageDropdown.classList.toggle('active');
+});
 
-// Add hover events for better user experience
-     languageSelector.addEventListener('mouseenter', () => {
-         languageDropdown.classList.add('active');
-     });
-     
-     languageDropdown.addEventListener('mouseleave', () => {
-         languageDropdown.classList.remove('active');
-     });
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    if (!languageDropdown.contains(e.target)) {
+        languageDropdown.classList.remove('active');
+    }
+});
 
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!languageDropdown.contains(e.target)) {
-            languageDropdown.classList.remove('active');
-        }
-    });
-    
-    // Get stored language or default to 'fr'
-    const storedLang = localStorage.getItem('selectedLanguage') || 'fr';
-    console.log("Initial language (from storage or default):", storedLang);
-    
-    // Set initial selector based on stored/default language
-    const initialFlag = document.createElement('img');
-    initialFlag.src = languages[storedLang].flag;
-    initialFlag.alt = `${languages[storedLang].name} Flag`;
-    initialFlag.className = 'language-flag';
-    
-    languageSelector.innerHTML = '';
-    languageSelector.appendChild(initialFlag);
-    languageSelector.dataset.currentLang = storedLang;
-    
-    const codeSpan = document.createElement('span');
-    codeSpan.className = 'language-code';
-    codeSpan.textContent = languages[storedLang].code;
-    languageSelector.appendChild(codeSpan);
-    
-    // Apply initial translations
-    applyTranslation(storedLang);
-    
-    // Initialize the options for first-time display
-    updateLanguageOptions(storedLang);
+// Get stored language or default to 'fr'
+const storedLang = localStorage.getItem('selectedLanguage') || 'fr';
+console.log("Initial language (from storage or default):", storedLang);
+
+// Set initial selector based on stored/default language
+const initialFlag = document.createElement('img');
+initialFlag.src = languages[storedLang].flag;
+initialFlag.alt = `${languages[storedLang].name} Flag`;
+initialFlag.className = 'language-flag';
+
+languageSelector.innerHTML = '';
+languageSelector.appendChild(initialFlag);
+languageSelector.dataset.currentLang = storedLang;
+
+const codeSpan = document.createElement('span');
+codeSpan.className = 'language-code';
+codeSpan.textContent = languages[storedLang].code;
+languageSelector.appendChild(codeSpan);
+
+// Apply initial translations
+applyTranslation(storedLang);
+
+// Initialize the options for first-time display
+updateLanguageOptions(storedLang);
 }
 
 // Initialize our custom language selector on page load
