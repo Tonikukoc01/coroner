@@ -2196,8 +2196,17 @@ function applyTranslation(langCode) {
             // Apply mobile-specific formatting if needed
             if (isMobile) {
                 let newText = content.block2Text1;
-                newText = newText.replace("specific needs.", "specific needs.<br>");
-                newText = newText.replace("system performance.", "system performance.<br>");
+                // Dynamically add spacing for multiple languages
+            newText = newText.replace("specific needs.", `<span style="display:block; margin-bottom:10px;">specific needs.</span>`);
+            newText = newText.replace("system performance.", `<span style="display:block; margin-bottom:10px;">system performance.</span>`);
+
+            // French variations
+            newText = newText.replace("votre équipe.", `<span style="display:block; margin-bottom:10px;">besoins spécifiques.</span>`);
+            newText = newText.replace("performance du système.", `<span style="display:block; margin-bottom:10px;">performance du système.</span>`);
+
+            // Croatian variations
+            newText = newText.replace("vašeg tima.", `<span style="display:block; margin-bottom:10px;">specifične potrebe.</span>`);
+            newText = newText.replace("performansi sustava.", `<span style="display:block; margin-bottom:10px;">sustava performansi.</span>`);
                 block2Paragraphs[0].innerHTML = newText;
             }
         }
