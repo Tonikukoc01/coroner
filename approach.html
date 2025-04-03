@@ -2200,20 +2200,9 @@ function applyTranslation(langCode) {
             newText = newText.replace("system performance.", `<span style="display:block; margin-bottom:10px;">system performance.</span>`);
 
             // French variations
-newText = newText.replace(/votre équipe\./i, 
-    `<span style="white-space: nowrap;">votre équipe.</span><span style="display:block; margin-bottom: 12px;"></span>`);
-
-// Move "Cela implique" to the next line and add spacing
-newText = newText.replace("Cela implique",  
-    `<span style="display:block; margin-bottom: 12px;">Cela implique</span>`);
-
-// The rest of the paragraph stays in the same structure
-newText = newText.replace("de choisir la bonne infrastructure", 
-    `<p>de choisir la bonne infrastructure, d'intégrer des outils tiers, d'automatiser les tâches et d'améliorer les performances du système.</p>`);
-
-// After "performances du système." add spacing and a break to the next line
-newText = newText.replace("performances du système.", 
-    `<span style="display:block; margin-bottom: 10px;">performances du système.</span>`);
+       newText = newText.replace(/votre équipe\./i,  `<span style="white-space: nowrap; margin-right: 12px; margin-bottom: 12px;">votre équipe.</span>`);
+    // After "performances du système." add spacing and a break to the next line
+        newText = newText.replace("performances du système.",  `<span style="display:block; margin-bottom: 10px;">performances du système.</span>`);
 
             // Croatian variations
             newText = newText.replace("vašeg tima.", `<span style="display:block; margin-bottom:10px;">vašeg tima.</span>`);
