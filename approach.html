@@ -1944,11 +1944,12 @@ function updateContentForMobile() {
     console.log("Is mobile:", isMobile);
     
     // 1. Change "Tailored Technology Solutions" to "Tailored Solutions" on mobile
-  const solutionsHeader = document.querySelector(".right-aligned.block-2 .about-header");
+    const solutionsHeader = document.querySelector(".right-aligned.block-2 .about-header");
+    console.log("Solutions header found:", !!solutionsHeader);
     if (solutionsHeader) {
-        solutionsHeader.textContent = isMobile ? 
-            translations[currentLanguage]['block2TitleMobile'] : 
-            translations[currentLanguage]['block2Title'];
+        console.log("Current solutions header text:", solutionsHeader.textContent);
+        solutionsHeader.textContent = isMobile ? "Tailored Solutions" : "Tailored Technology Solutions";
+        console.log("New solutions header text:", solutionsHeader.textContent);
     }
     
     // 2. Add break after "specific needs." and "system performance..."
