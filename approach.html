@@ -1964,8 +1964,8 @@ function updateContentForMobile() {
             
             // Apply the mobile formatting
             let newText = solutionsParagraph.dataset.originalText;
-            newText = newText.replace("specific needs.", "specific needs.<br><br>");
-            newText = newText.replace("system performance.", "system performance.<br><br>");
+          newText = newText.replace("specific needs.", "specific needs.<br>");
+         newText = newText.replace("system performance.", "system performance.<br>");
             solutionsParagraph.innerHTML = newText;
         } else if (solutionsParagraph.dataset.originalText) {
             // Restore original text for desktop
