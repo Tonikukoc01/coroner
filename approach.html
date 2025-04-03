@@ -1951,29 +1951,6 @@ function updateContentForMobile() {
         console.log("New solutions header text:", solutionsHeader.textContent);
     }
     
-    // 2. Add break after "specific needs." and "system performance..."
-    const solutionsParagraph = document.querySelector(".right-aligned.block-2 .about-subheader1:first-of-type");
-    console.log("Solutions paragraph found:", !!solutionsParagraph);
-    if (solutionsParagraph) {
-        console.log("Current paragraph text:", solutionsParagraph.innerHTML);
-        if (isMobile) {
-            // Store the original text content if not already stored
-            if (!solutionsParagraph.dataset.originalText) {
-                solutionsParagraph.dataset.originalText = solutionsParagraph.innerHTML;
-            }
-            
-            // Apply the mobile formatting
-            let newText = solutionsParagraph.dataset.originalText;
-          newText = newText.replace("specific needs.", "specific needs.<br>");
-         newText = newText.replace("system performance.", "system performance.<br>");
-            solutionsParagraph.innerHTML = newText;
-        } else if (solutionsParagraph.dataset.originalText) {
-            // Restore original text for desktop
-            solutionsParagraph.innerHTML = solutionsParagraph.dataset.originalText;
-        }
-        console.log("New paragraph text:", solutionsParagraph.innerHTML);
-    }
-    
     // 3. Change "Let's Build Something Together" to "Let's build together" on mobile
     const ctaHeader = document.querySelector("section[style*='text-align: center'] .about-header");
     console.log("CTA header found:", !!ctaHeader);
