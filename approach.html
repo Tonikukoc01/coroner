@@ -2201,8 +2201,10 @@ function applyTranslation(langCode) {
 
             // French variations
           newText = newText.replace(/votre équipe\./i, `<span style="white-space: nowrap; margin-right: 12px;">votre équipe.</span>`);
+        // Make "Cela implique" go to the next line and add spacing below it
+          newText = newText.replace("Cela implique",  `<span style="display:block; margin-bottom: 12px;">Cela implique</span>`);
           newText = newText.replace("performances du système.", `<span style="display:block; margin-bottom:10px;">performances du système.</span>`);
-
+        
             // Croatian variations
             newText = newText.replace("vašeg tima.", `<span style="display:block; margin-bottom:10px;">vašeg tima.</span>`);
             newText = newText.replace("performansi sustava.", `<span style="display:block; margin-bottom:10px;">performansi sustava.</span>`);
