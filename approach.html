@@ -2018,6 +2018,15 @@ else if (currentLanguage === 'hr') {
         firstParagraph.after(newParagraph);
     }
 }
+        else if (firstParagraph.dataset.originalHtml) {
+            // Restore original structure for desktop
+            // This needs a more complex approach to also remove added paragraphs
+            const addedParagraphs = document.querySelectorAll(".right-aligned.block-2 .about-subheader1:not(:first-of-type)");
+            addedParagraphs.forEach(p => p.remove());
+            
+            firstParagraph.innerHTML = firstParagraph.dataset.originalHtml;
+        }
+    }
 
     
     // 3. Change "Let's Build Something Together" to "Let's build together" on mobile
