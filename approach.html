@@ -2196,17 +2196,17 @@ function applyTranslation(langCode) {
             // Apply mobile-specific formatting if needed
             if (isMobile) {
                 let newText = content.block2Text1;
-             // For English
-newText = newText.replace("your team's workflow", `<span style="display:block; margin-bottom:10px;">your team's workflow</span>`);
-newText = newText.replace("system performance improvement.", `<span style="display:block; margin-bottom:10px;">system performance improvement.</span>`);
+             // English breakpoints
+newText = newText.replace("all the difference.", `<span style="display:block; margin-bottom:10px;">all the difference.</span>`);
+newText = newText.replace("performance improvement.", `<span style="display:block; margin-bottom:10px;">performance improvement.</span>`);
 
-// For French
-newText = newText.replace("de votre équipe", `<span style="display:block; margin-bottom:10px;">de votre équipe</span>`);
-newText = newText.replace("des performances du système.", `<span style="display:block; margin-bottom:10px;">des performances du système.</span>`);
+// French breakpoints
+newText = newText.replace("toute la différence.", `<span style="display:block; margin-bottom:10px;">toute la différence.</span>`);
+newText = newText.replace("performances du système.", `<span style="display:block; margin-bottom:10px;">performances du système.</span>`);
 
-// For Croatian
-newText = newText.replace("vašeg tima", `<span style="display:block; margin-bottom:10px;">vašeg tima</span>`);
-newText = newText.replace("performansi sustava.", `<span style="display:block; margin-bottom:10px;">performansi sustava.</span>`);
+// Croatian breakpoints
+newText = newText.replace("činiti veliku razliku.", `<span style="display:block; margin-bottom:10px;">činiti veliku razliku.</span>`);
+newText = newText.replace("poboljšanja performansi sustava.", `<span style="display:block; margin-bottom:10px;">poboljšanja performansi sustava.</span>`);
             }
         }
     }
