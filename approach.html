@@ -2012,12 +2012,12 @@ const translations = {
         'block1Text': 'By reviewing workflows and implementing the right solutions, I\'ll ensure that your operations run more smoothly, allowing your team to focus on what matters most—delivering the product and creating value.',
         
         // About section - Block 2
-        'block2Title': 'Tailored Technology Solutions',
-        'block2TitleMobile': 'Tailored Solutions',
-        'block2Text1': 'I focus on selecting, implementing, and maintaining technology solutions that fit your team\'s specific needs. This involves choosing the right infrastructure, integrating third-party tools, automating tasks, and improving system performance.',
-        'block2Text2': 'With a focus on security, scalability, and alignment with business goals, I ensure that your technology works for you, not the other way around.',
-        
-        // About section - Block 3
+'block2Title': 'Tailored Technology Solutions',
+'block2TitleMobile': 'Tailored Solutions',
+'block2Text1': 'Every company has unique needs, and the right tech stack can make all the difference. I help with selecting, implementing, and maintaining solutions that optimize your team\'s workflow – from infrastructure and software integration to process automation and system performance improvement.',
+'block2Text2': 'With a focus on security, scalability, and alignment with business goals, I ensure that your technology works for you, not the other way around.',
+       
+ // About section - Block 3
         'block3Title': 'Support & Scalability',
         'block3Subtitle': 'As your company grows and things get intense, I\'ll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure.',
         'block3Text': 'Whether it\'s expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.',
@@ -2197,8 +2197,8 @@ function applyTranslation(langCode) {
             if (isMobile) {
                 let newText = content.block2Text1;
                 // Dynamically add spacing for multiple languages
-          newText = newText.replace("your team's specific needs.", `<span style="display:block; margin-bottom:10px;">your team's specific needs.</span>`);
-            newText = newText.replace("system performance.", `<span style="display:block; margin-bottom:10px;">system performance.</span>`);
+          newText = newText.replace("team's workflow", `<span style="display:block; margin-bottom:10px;">team's workflow</span>`);
+            newText = newText.replace("performance improvement.", `<span style="display:block; margin-bottom:10px;">performance improvement.</span>`);
 
             // French variations
             newText = newText.replace("spécifiques de votre équipe.", `<span style="display:block; margin-bottom:10px;">spécifiques de votre équipe.</span>`);
