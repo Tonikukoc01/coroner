@@ -633,43 +633,177 @@ body {
   text-decoration: none;
 }
 
-/* Sections */
-.content-section::before {
-    content: '';
-    position: absolute;
-    top: 0; /* Position at the top of the section */
-    left: 0;
-    right: 0;
-    height: 2px; /* Height of the golden border */
-    background: linear-gradient(to right, transparent, goldenrod 20%, goldenrod 80%, transparent); /* Golden gradient */
-}
+  /* Features Section */
+        #features {
+            background: #1A2B3C;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
 
-.content-section {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 2rem;
-    position: relative;
-    color: white;
-}
+        .features-header {
+            text-align: center;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
 
-.section-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-out;
-    align-items: flex-start;
-}
+        .features-title {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 300;
+            font-size: 2.5rem;
+            color: #F0F4F8;
+            margin-bottom: 1rem;
+            transform: translateX(-100px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+        }
 
-.section-content.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .horizontal-line {
+            width: 200px;
+            height: 2px;
+            background-color: #F0F4F8;
+            margin: 1rem auto;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
+        .features-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8rem; /* Increased gap between features */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10%;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .feature-content {
+            flex: 1;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+            transition-delay: 0.3s;
+        }
+
+        .feature-title {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 300;
+            font-size: 2rem;
+            color: #F0F4F8;
+            margin: 0 0 1rem 0;
+        }
+
+        .feature-line {
+            width: 3rem;
+            height: 2px;
+            background-color: #F0F4F8;
+            margin: 1rem 0;
+            opacity: 0.7;
+        }
+
+        .feature-description {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+            font-size: 1.2rem;
+            color: #F0F4F8;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .feature-image {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+            transition-delay: 0.5s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-image img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 43, 60, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .view-more {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            color: #F0F4F8;
+            border: 1px solid #F0F4F8;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .feature-image:hover .feature-image-overlay {
+            opacity: 1;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Animation classes */
+        .features-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-header.visible .features-title {
+            transform: translateX(0);
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+
+        .features-header.visible .horizontal-line {
+            transform: scaleX(1);
+            transition-delay: 0.4s;
+        }
+
+        .feature-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-item.visible .feature-content {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .feature-item.visible .feature-image {
+            transform: translateX(0);
+            opacity: 1;
+        }
 /* Section-specific styles */
 #home {
   min-height: 100vh; /* Remove the fixed height */
@@ -816,71 +950,6 @@ body {
     transform: translateY(0);
 }
 
-/* Button Styling */
-.collaboration-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
-    color: #F0F4F8;
-    font-family: SkemaproDisplay;
-    font-size: 1.2rem;
-    font-weight: 200;
-    text-decoration: none;
-    border-radius: 3px; /* Rounded corners */
-    margin-top: 25px;
-    transition: background 0.3s ease, transform 0.3s ease;
-    text-align: center;
-    align-self: flex-start;
-    animation-delay: 1s;
-}
-
-/* Hover Effect */
-.collaboration-btn:hover {
-    background: linear-gradient(45deg, #5B7E9D, #3E607C); /* Lighter version of the original colors */
-    transform: translateY(-2px);
-}
-
-.collaboration-btn:focus {
-    outline: none;
-}
-
-.about-content {
-    font-family: SkemaProDisplay;
-    font-size: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 6rem;
-    padding-right: 10%
-}
-
-.content-block {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    justify-content: flex-start;
-    padding: 0;
-}
-
-.content-block.right-aligned {
-    flex-direction: row-reverse;
-}
-
-.content-text {
-    flex: 1;
-    padding: 1rem 0; /* Remove horizontal padding */
-    text-align: left; /* Ensure text is left-aligned */
-}
-
-.right-aligned .content-text {
-    text-align: right;
-}
-
-.content-image {
-    width: 400px;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 8px;
-}
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
