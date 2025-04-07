@@ -200,59 +200,40 @@ body {
 
 /* Typography */
 #header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: left;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-    transform: translateY(-50%);
-    color: white;
--moz-animation: header 0.75s 1s forwards;
-    -webkit-animation: header 0.75s 1s forwards;
-    -ms-animation: header 0.75s 1s forwards;
-    animation: header 0.75s 1s forwards;
-    -moz-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -moz-transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-    cursor: default
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: left;
+            position: absolute;
+            top: 35%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+        }
 
-}
+        #header h1 {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size: 5.5rem;
+            margin: 0;
+            letter-spacing: -0.02em;
+            color: #F0F4F8;
+            line-height: 1.2;
+            text-align: left;
+        }
 
-#header h1 {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 5.5rem;
-    margin: 0 0 1rem;
-    letter-spacing: -0.02em;
-    color: #F0F4F8; /* Light gold color */
-    line-height: 1.2;
-    text-align: left;
-}
+        #header p {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+            font-size: 1.5rem;
+            margin: 0.5rem 0 2rem; /* Reduced margin below header, increased before scroll */
+            color: #F0F4F8;
+            max-width: 80%;
+        }
 
-#header h1 br {
-    margin-bottom: 0.6rem; /* Add space between the lines */
-}
-
-.bold-toni {
-    font-weight: 500;
-    font-size: 5.5rem;
-    font-style: normal;
-}
-.bold-split {
-    font-weight: 300;
-    font-style: normal;
-    font-size: 1.8rem;
-}
- /* Scroll Indicator */
+        /* Scroll Indicator */
         .scroll-indicator {
             display: flex;
             flex-direction: column;
@@ -260,19 +241,18 @@ body {
             text-align: center;
             gap: 0.5rem;
             margin-left: 250px;
-            margin-top: 20px;
-            position: fixed;
-            bottom: 50px;
+            position: relative;
         }
         .scroll-indicator .scroll-text {
             font-size: 0.8rem;
             font-weight: 400;
             color: #F0F4F8; 
             letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
         }
         .scroll-indicator .scroll-line {
             width: 1px;
-            height: 7cm;
+            height: 120px; /* Adjusted to match 7cm more precisely */
             background: #F0F4F8; 
         }
         .scroll-text span {
@@ -296,16 +276,28 @@ body {
             }
         }
 
- /* Features Section */
+        /* Home Section */
+        #home {
+            height: 100vh;
+            position: relative;
+            background: #1A2B3C;
+            overflow: hidden;
+        }
+
+        /* Features Section */
         #features {
             background: #1A2B3C;
-            padding: 6rem 0;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
         }
 
         .features-header {
             text-align: center;
-            margin-bottom: 4rem;
-            overflow: hidden;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         .features-title {
@@ -314,8 +306,9 @@ body {
             font-size: 2.5rem;
             color: #F0F4F8;
             margin-bottom: 1rem;
-            transform: translateX(-100%);
-            transition: transform 1s ease;
+            transform: translateX(-100px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
         }
 
         .horizontal-line {
@@ -331,7 +324,7 @@ body {
         .features-container {
             display: flex;
             flex-direction: column;
-            gap: 6rem;
+            gap: 8rem; /* Increased gap between features */
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 10%;
@@ -351,6 +344,7 @@ body {
             transform: translateX(-50px);
             opacity: 0;
             transition: transform 1s ease, opacity 1s ease;
+            transition-delay: 0.3s;
         }
 
         .feature-title {
@@ -386,6 +380,8 @@ body {
             transform: translateX(50px);
             opacity: 0;
             transition: transform 1s ease, opacity 1s ease;
+            transition-delay: 0.5s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .feature-image img {
@@ -429,40 +425,42 @@ body {
         }
 
         /* Animation classes */
-        .visible .features-title {
-            transform: translateX(0);
-        }
-
-        .visible .horizontal-line {
-            transform: scaleX(1);
-        }
-
-        .visible .feature-item {
+        .features-header.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .visible .feature-content {
+        .features-header.visible .features-title {
+            transform: translateX(0);
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+
+        .features-header.visible .horizontal-line {
+            transform: scaleX(1);
+            transition-delay: 0.4s;
+        }
+
+        .feature-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-item.visible .feature-content {
             transform: translateX(0);
             opacity: 1;
         }
 
-        .visible .feature-image {
+        .feature-item.visible .feature-image {
             transform: translateX(0);
             opacity: 1;
         }
     </style>
-  </style>
 </head>
 <body>
-<!-- Home Section -->
-    <section id="home">
+section id="home">
         <div id="header">
-            <h1>
-                <span class="bold-toni">Proving Your Value</span>
-                <br>
-                <span class="bold-split">Through Digital Excellence</span>
-            </h1>
+            <h1>Proving Your Value</h1>
             <p>Creating impactful digital experiences that elevate your brand and engage your audience</p>
             
             <div class="scroll-indicator">
@@ -479,9 +477,9 @@ body {
             <div class="horizontal-line"></div>
         </div>
 
-        <div class="features-container" id="features-container">
+        <div class="features-container">
             <!-- Feature 1 -->
-            <div class="feature-item">
+            <div class="feature-item" id="feature-1">
                 <div class="feature-content">
                     <h3 class="feature-title">Strategic Web Development</h3>
                     <div class="feature-line"></div>
@@ -496,7 +494,7 @@ body {
             </div>
 
             <!-- Feature 2 -->
-            <div class="feature-item">
+            <div class="feature-item" id="feature-2">
                 <div class="feature-content">
                     <h3 class="feature-title">Intuitive UI/UX Design</h3>
                     <div class="feature-line"></div>
@@ -511,7 +509,7 @@ body {
             </div>
 
             <!-- Feature 3 -->
-            <div class="feature-item">
+            <div class="feature-item" id="feature-3">
                 <div class="feature-content">
                     <h3 class="feature-title">Digital Growth Strategy</h3>
                     <div class="feature-line"></div>
@@ -532,31 +530,41 @@ body {
         <p>© 2025 John Doe. All rights reserved.</p>
     </footer>
     <script>
- // Animation on scroll
+<script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Animation for features header when scrolled to
             const featuresHeader = document.getElementById('features-header');
-            const featuresContainer = document.getElementById('features-container');
             const featureItems = document.querySelectorAll('.feature-item');
             
-            const observer = new IntersectionObserver((entries) => {
+            // Create separate observers for different elements to control timing
+            const headerObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        
-                        // If observing features container, add delay to individual items
-                        if (entry.target === featuresContainer) {
-                            featureItems.forEach((item, index) => {
-                                setTimeout(() => {
-                                    item.classList.add('visible');
-                                }, 300 * (index + 1));
-                            });
-                        }
+                        headerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            // Observer for feature items to animate them as they come into view
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, 200);
+                        featureObserver.unobserve(entry.target);
                     }
                 });
             }, { threshold: 0.2 });
             
-            observer.observe(featuresHeader);
-            observer.observe(featuresContainer);
+            // Start observing
+            headerObserver.observe(featuresHeader);
+            
+            // Observe each feature item separately to trigger animations one by one as user scrolls
+            featureItems.forEach(item => {
+                featureObserver.observe(item);
+            });
         });
     </script>
 </body>
