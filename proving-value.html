@@ -519,39 +519,41 @@ body {
 #about {
     background: #1A2B3C;
 }
-            
-
-#  /* Features Section Styles */
-        #features {
+   #features {
             background: #1A2B3C;
             padding: 6rem 0;
         }
 
         .features-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
+            overflow: hidden;
         }
 
         .features-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 300;
             font-size: 2.5rem;
             color: #F0F4F8;
             margin-bottom: 1rem;
+            transform: translateX(-100%);
+            transition: transform 1s ease;
         }
 
-        .vertical-line {
-            width: 2px;
-            height: 4rem;
+        .horizontal-line {
+            width: 200px;
+            height: 2px;
             background-color: #F0F4F8;
-            margin: 0 auto;
-            opacity: 0.7;
+            margin: 1rem auto;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .features-container {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 6rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 10%;
@@ -561,14 +563,20 @@ body {
             display: flex;
             align-items: flex-start;
             gap: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         .feature-content {
             flex: 1;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
         }
 
         .feature-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 300;
             font-size: 2rem;
             color: #F0F4F8;
@@ -584,7 +592,7 @@ body {
         }
 
         .feature-description {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
             font-size: 1.2rem;
             color: #F0F4F8;
@@ -594,52 +602,78 @@ body {
 
         .feature-image {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
         }
 
         .feature-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
         }
 
+        .feature-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 43, 60, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
 
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .portfolio-header {
-        font-size: 2.3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
+        .view-more {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            color: #F0F4F8;
+            border: 1px solid #F0F4F8;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-    .feature-item, .feature-item.reverse {
-        flex-direction: column;
-        gap: 2rem;
-    }
+        .feature-image:hover .feature-image-overlay {
+            opacity: 1;
+        }
 
-    .feature-text, .feature-image-container {
-        max-width: 100%;
-    }
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
 
-    .feature-title {
-        font-size: 1.8rem;
-        text-align: center;
-    }
+        /* Animation classes */
+        .visible .features-title {
+            transform: translateX(0);
+        }
 
-    .feature-line {
-        margin: 0 auto 1.5rem;
-    }
+        .visible .horizontal-line {
+            transform: scaleX(1);
+        }
 
-    .feature-description {
-        text-align: center;
-    }
+        .visible .feature-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .feature-image {
-        height: 220px;
-    }
-}
+        .visible .feature-content {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .visible .feature-image {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
  
 
 /* Mobile Responsive */
