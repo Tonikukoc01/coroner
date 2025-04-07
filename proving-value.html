@@ -521,138 +521,90 @@ body {
 }
             
 
-#portfolio {
-    background: #1A2B3C;
-    position: relative;
-    padding-top: 5rem;
-}
+#  /* Features Section Styles */
+        #features {
+            background: #1A2B3C;
+            padding: 6rem 0;
+        }
 
-.portfolio-header {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-style: normal;
-    color: #F0F4F8;
-    font-size: 3.7rem;
-    text-align: left;
-    margin-bottom: 3.5rem;
-    padding: 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        .features-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-.portfolio-header.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .features-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 2.5rem;
+            color: #F0F4F8;
+            margin-bottom: 1rem;
+        }
 
-.feature-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8rem;
-    padding: 2rem 0;
-}
+        .vertical-line {
+            width: 2px;
+            height: 4rem;
+            background-color: #F0F4F8;
+            margin: 0 auto;
+            opacity: 0.7;
+        }
 
-.feature-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
-}
+        .features-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10%;
+        }
 
-.feature-item.reverse {
-    flex-direction: row-reverse;
-}
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 4rem;
+        }
 
-.feature-text {
-    flex: 1;
-    max-width: 50%;
-}
+        .feature-content {
+            flex: 1;
+        }
 
-.feature-title {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-style: normal;
-    color: #F0F4F8;
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        .feature-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 2rem;
+            color: #F0F4F8;
+            margin: 0 0 1rem 0;
+        }
 
-.feature-title.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .feature-line {
+            width: 3rem;
+            height: 2px;
+            background-color: #F0F4F8;
+            margin: 1rem 0;
+            opacity: 0.7;
+        }
 
-.feature-line {
-    width: 2.5cm;
-    height: 2px;
-    background-color: #F0F4F8; 
-    border: none; 
-    margin-bottom: 2rem;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
+        .feature-description {
+            font-family: 'Inter', sans-serif;
+            font-weight: 100;
+            font-size: 1.2rem;
+            color: #F0F4F8;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
 
-.feature-line.visible {
-    transform: scaleX(1);
-}
+        .feature-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.reverse .feature-line {
-    transform-origin: right;
-}
+        .feature-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
 
-.feature-description {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-style: normal;
-    color: #B0B8C1;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: 0.2s;
-}
-
-.feature-description.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.feature-image-container {
-    flex: 1;
-    max-width: 50%;
-    overflow: hidden;
-    border-radius: 8px;
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reverse .feature-image-container {
-    transform: translateX(-50px);
-}
-
-.feature-image-container.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.feature-image {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.6s ease;
-}
-
-.feature-image:hover {
-    transform: scale(1.05);
-}
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -1001,62 +953,51 @@ footer {
         </p>
   </header>
 </section>
-<!-- Portfolio Features Section -->
-<section id="portfolio" class="section content-section">
-    <div class="section-content">
-        <h1 class="portfolio-header">proving value</h1>
-        <div class="horizontal-line"></div>
+<!-- Features Section -->
+    <section id="features">
+        <div class="features-header">
+            <h2 class="features-title animate-on-scroll">Important Features</h2>
+            <div class="vertical-line animate-on-scroll"></div>
+        </div>
 
-        <div class="feature-container">
+        <div class="features-container">
             <!-- Feature 1 -->
-            <div class="feature-item">
-                <div class="feature-text">
-                    <h2 class="feature-title">Cloud Infrastructure</h2>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title">Web Development</h3>
                     <div class="feature-line"></div>
-                    <p class="feature-description">
-                        Designing and implementing scalable cloud solutions that ensure business continuity 
-                        and operational efficiency. Specializing in AWS and Azure environments with focus on 
-                        security, performance optimization and cost management.
-                    </p>
+                    <p class="feature-description">Creating responsive, user-friendly websites that provide exceptional user experiences. Focusing on clean code, optimal performance, and modern design principles to deliver websites that stand out.</p>
                 </div>
-                <div class="feature-image-container">
-                    <img src="/api/placeholder/600/320" alt="Cloud Infrastructure" class="feature-image">
+                <div class="feature-image">
+                    <img src="/api/placeholder/400/320" alt="Web Development">
                 </div>
             </div>
 
             <!-- Feature 2 -->
-            <div class="feature-item reverse">
-                <div class="feature-text">
-                    <h2 class="feature-title">Network Security</h2>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title">UI/UX Design</h3>
                     <div class="feature-line"></div>
-                    <p class="feature-description">
-                        Implementing comprehensive security solutions to protect critical business assets 
-                        against evolving threats. From firewall configuration to intrusion prevention systems 
-                        and zero-trust architecture - ensuring your data remains secure.
-                    </p>
+                    <p class="feature-description">Crafting intuitive, visually appealing interfaces that engage users and enhance their interactions. Balancing aesthetics with functionality to create designs that are both beautiful and practical.</p>
                 </div>
-                <div class="feature-image-container">
-                    <img src="/api/placeholder/600/320" alt="Network Security" class="feature-image">
+                <div class="feature-image">
+                    <img src="/api/placeholder/400/320" alt="UI/UX Design">
                 </div>
             </div>
 
             <!-- Feature 3 -->
-            <div class="feature-item">
-                <div class="feature-text">
-                    <h2 class="feature-title">IT Consulting</h2>
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title">Digital Strategy</h3>
                     <div class="feature-line"></div>
-                    <p class="feature-description">
-                        Strategic IT planning and consultation for businesses looking to optimize their 
-                        technology infrastructure. Expert guidance on digital transformation, system integration, 
-                        and technology roadmaps tailored to your business objectives.
-                    </p>
+                    <p class="feature-description">Developing comprehensive digital strategies that align with business goals and user needs. Creating roadmaps for digital success that incorporate the latest technologies and best practices.</p>
                 </div>
-                <div class="feature-image-container">
-                    <img src="/api/placeholder/600/320" alt="IT Consulting" class="feature-image">
+                <div class="feature-image">
+                    <img src="/api/placeholder/400/320" alt="Digital Strategy">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </section>
 <footer>
     <div class="footer-content">Toni Kukoč © MMXXV</div>
