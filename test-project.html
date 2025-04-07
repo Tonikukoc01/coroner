@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Platform Optimization - Toni's Portfolio</title>
+    <style>
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
+        }
+
+        /* Base styles */
+        :root {
+            --bg-color: #1A2B3C;
+            --text-color: #F0F4F8;
+            --dark-text-color: #0A1A2A;
+            --accent-color: #4E92DF;
+            --success-color: #3EB489;
+            --section-padding: 3rem 0;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'SkemaProDisplay', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Case study container */
+        .case-study-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        /* Back to projects arrow */
+        .back-to-projects {
+            position: absolute;
+            top: 3.4rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+        }
+        
+        .back-to-projects:hover {
+            opacity: 1;
+        }
+        
+        .back-to-projects svg {
+            margin-right: 0.7rem;
+            width: 24px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Project timeframe - positioned at upper left with increased margin */
+        .project-timeframe {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            position: absolute;
+            top: 8rem;
+            left: 2rem;
+        }
+        
+        /* Case study header */
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            margin-top: 5rem;
+        }
+        
+        .case-study-title {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            color: var(--text-color);
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+        }
+        
+        /* Divider line */
+        .divider {
+            width: 50px;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 0 auto 2rem auto;
+        }
+        
+        /* Case study subheader */
+        .case-study-subheader {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Case study content */
+        .case-study-content {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        
+        /* Section heading */
+        .section-heading {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        /* Paragraphs in case study */
+        .case-study-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Wide image container */
+        .wide-image-container {
+            width: 100vw;
+            max-width: 1200px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .wide-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-style: italic;
+            font-weight: 200;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        
+        /* Project metrics */
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1.5rem;
+        }
+        
+        .metric-card {
+            flex: 1 1 calc(33% - 1.5rem);
+            min-width: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: var(--success-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 1rem;
+            font-weight: 100;
+            opacity: 0.8;
+        }
+        
+        /* Tech stack list */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 100;
+        }
+        
+        /* Quote section */
+        .quote-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent-color);
+            font-style: italic;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 200;
+            opacity: 0.8;
+            text-align: right;
+        }
+        
+        /* Project timeline */
+        .timeline {
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-event {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            font-weight: 100;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 200;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Challenges and solutions */
+        .challenge-solution {
+            margin: 2rem 0;
+        }
+        
+        .challenge-title {
+            font-size: 1.2rem;
+            font-weight: 200;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Back link - improved styling */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 4rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+        }
+        
+        .back-link:hover {
+            background-color: rgba(240, 244, 248, 0.1);
+        }
+        
+        .back-link svg {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Reading mode switch */
+        .switch-container {
+            position: fixed;
+            top: 3rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            background-color: rgba(26, 43, 60, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+        
+        .switch-label {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            font-weight: 100;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2c3e50;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #F0F4F8;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(18px);
+            background-color: #1A2B3C;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(70, 90, 110, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            visibility: hidden;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: rgba(90, 110, 130, 0.9);
+        }
+        
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: var(--text-color);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Easy reading mode */
+        body.easy-reading {
+            --bg-color: #F0F4F8;
+            --text-color: #0A1A2A;
+            --accent-color: #1A65C0;
+            --success-color: #1E8A60;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .case-study-container {
+                padding: 5rem 1.5rem 4rem;
+            }
+            
+            .back-to-projects {
+                top: 1.3rem;
+                left: 1.5rem;
+            }
+            
+            .project-timeframe {
+                position: static;
+                text-align: center;
+                margin-bottom: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .case-study-header {
+                margin-top: 0;
+                margin-bottom: 2.5rem;
+            }
+            
+            .case-study-title {
+                font-size: 2.5rem;
+            }
+            
+            .case-study-subheader {
+                font-size: 1.3rem;
+                padding: 0 0.5rem;
+            }
+            
+            .metric-card {
+                flex: 1 1 100%;
+            }
+            
+            .wide-image-container {
+                width: 100%;
+                margin-left: 0;
+                transform: none;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .wide-image {
+                max-height: 400px;
+            }
+            
+            .switch-container {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .case-study-container {
+                padding: 4rem 1rem 3rem;
+            }
+            
+            .back-to-projects {
+                top: 1rem;
+                left: 1rem;
+            }
+            
+            .case-study-title {
+                font-size: 2rem;
+            }
+            
+            .case-study-subheader {
+                font-size: 1.1rem;
+            }
+            
+            .case-study-content {
+                font-size: 1rem;
+            }
+            
+            .wide-image {
+                max-height: 300px;
+            }
+            
+            .section-heading {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+    
+    <!-- Reading mode switch -->
+    <div class="switch-container">
+        <span class="switch-label">Easy Reading</span>
+        <label class="switch">
+            <input type="checkbox" id="readingModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <div class="case-study-container">
+        <!-- Back to projects arrow link -->
+        <a href="/projects" class="back-to-projects">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Projects
+        </a>
+        
+        <p class="project-timeframe">January 2024 - July 2024</p>
+        
+        <div class="case-study-header">
+            <h1 class="case-study-title">E-Commerce Platform Optimization</h1>
+            <div class="divider"></div>
+            <p class="case-study-subheader">
+                How we reduced operational costs by 32% while increasing platform reliability and scaling to handle 3x more traffic.
+            </p>
+        </div>
+        
+        <div class="case-study-content">
+            <h2 class="section-heading">Overview</h2>
+            <p>
+                As the IT Operations Manager for SocialBuy, a rapidly growing social media e-commerce platform, I was tasked with optimizing infrastructure costs while improving system reliability and scalability. The platform was experiencing explosive growth, with user acquisition increasing 15% month-over-month, putting significant strain on our existing systems.
+            </p>
+            
+            <p>
+                The challenge: maintain 99.99% uptime while reducing operational costs and preparing infrastructure to handle projected growth for the next 12 months. This case study outlines our approach, implementation, and results.
+            </p>
+            
+            <!-- Wide image section -->
+            <div class="wide-image-container">
+                <img src="/api/placeholder/1200/600" alt="Infrastructure Dashboard" class="wide-image">
+                <p class="image-caption">Custom infrastructure monitoring dashboard showing load distribution across regional services.</p>
+            </div>
+            
+            <!-- Project metrics -->
+            <div class="metrics-container">
+                <div class="metric-card">
+                    <div class="metric-value">32%</div>
+                    <div class="metric-label">Reduction in Operational Costs</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.99%</div>
+                    <div class="metric-label">Platform Uptime</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3x</div>
+                    <div class="metric-label">Traffic Capacity Increase</div>
+                </div>
+            </div>
+            
+            <h2 class="section-heading">The Challenge</h2>
+            <p>
+                SocialBuy's infrastructure was originally built for rapid market entry, prioritizing speed over optimization. As the platform gained traction, several issues became apparent:
+            </p>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Rising Infrastructure Costs</h3>
+                <p>
+                    Monthly cloud expenses were increasing at an unsustainable rate, with inefficient resource allocation across services. We were over-provisioning in some areas while experiencing bottlenecks in others.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Scaling Limitations</h3>
+                <p>
+                    The existing architecture couldn't efficiently handle traffic spikes during promotional events, leading to degraded performance and occasional service disruptions.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Operational Inefficiencies</h3>
+                <p>
+                    The operations team was spending excessive time on manual interventions and firefighting, with limited automated monitoring and self-healing systems.
+                </p>
+            </div>
+            
+            <h2 class="section-heading">Technology Stack</h2>
+            <div class="tech-stack">
+                <span class="tech-item">AWS</span>
+                <span class="tech-item">Kubernetes</span>
+                <span class="tech-item">Terraform</span>
+                <span class="tech-item">Prometheus</span>
+                <span class="tech-item">Grafana</span>
+                <span class="tech-item">Redis</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">Python</span>
+            </div>
+            
+            <h2 class="section-heading">Our Approach</h2>
+            
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">January 2024</div>
+                    <div class="timeline-title">Infrastructure Audit & Analysis</div>
+                    <div class="timeline-description">
+                        Conducted comprehensive infrastructure audit to identify optimization opportunities. Created detailed resource utilization maps and spending analysis by service.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">February 2024</div>
+                    <div class="timeline-title">Architecture Redesign</div>
+                    <div class="timeline-description">
+                        Developed new architecture with microservices approach, right-sized instances, and regional distribution to improve fault tolerance and enable more efficient auto-scaling.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">March-April 2024</div>
+                    <div class="timeline-title">Implementation & Migration</div>
+                    <div class="timeline-description">
+                        Deployed infrastructure-as-code using Terraform. Implemented phased migration strategy with zero downtime. Enhanced monitoring with Prometheus and Grafana dashboards.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May 2024</div>
+                    <div class="timeline-title">Automation Rollout</div>
+                    <div class="timeline-description">
+                        Developed custom auto-scaling policies based on multiple metrics. Implemented automated incident response procedures and self-healing capabilities.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">June-July 2024</div>
+                    <div class="timeline-title">Optimization & Fine-tuning</div>
+                    <div class="timeline-description">
+                        Continuously optimized based on real-world performance data. Implemented cost allocation tagging strategy for better expense tracking and accountability.
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-heading">Key Implementations</h2>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Containerization & Orchestration</h3>
+                <p>
+                    Migrated monolithic application components to containerized microservices managed by Kubernetes, improving resource utilization and enabling more granular scaling.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Custom Auto-scaling Solution</h3>
+                <p>
+                    Developed intelligent auto-scaling logic that considers multiple metrics (CPU, memory, queue length, response times) rather than simple threshold-based scaling.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Global Content Delivery Strategy</h3>
+                <p>
+                    Implemented multi-region deployments with intelligent routing to reduce latency for international users and improve resilience against regional outages.
+                </p>
+            </div>
+            
+            <!-- Wide image section -->
+            <div class="wide-image-container">
+                <img src="/api/placeholder/1200/600" alt="Cost Reduction Chart" class="wide-image">
+                <p class="image-caption">Monthly infrastructure costs before and after optimization, showing 32% reduction while handling increasing traffic volumes.</p>
+            </div>
+            
+            <h2 class="section-heading">Results & Impact</h2>
+            
+            <p>
+                The project delivered significant measurable improvements across all target metrics:
+            </p>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Cost Reduction</h3>
+                <p>
+                    Reduced monthly cloud infrastructure costs by 32% while simultaneously increasing capacity. Implementation of spot instances for non-critical workloads and reserved instances for predictable loads contributed significantly to savings.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Improved Reliability</h3>
+                <p>
+                    Achieved and maintained 99.99% platform uptime, with automated recovery from common failure scenarios. Mean time to recovery (MTTR) for incidents decreased from hours to minutes.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Enhanced Scalability</h3>
+                <p>
+                    Successfully handled a major promotional event with 3x normal traffic volume without performance degradation. System now automatically scales to accommodate traffic patterns with minimal manual intervention.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Operational Efficiency</h3>
+                <p>
+                    Reduced operations team alert volume by 78% through better monitoring and self-healing systems. Team now spends more time on proactive improvements rather than reactive troubleshooting.
+                </p>
+            </div>
+            
+            <!-- Quote section -->
+            <div class="quote-section">
+                <p class="quote-text">
+                    "The infrastructure optimization project transformed our platform's reliability while significantly reducing our operational costs. The team's strategic approach to architecture and automation has positioned us for sustainable growth."
+                </p>
+                <p class="quote-author">— Sarah Chen, CTO at SocialBuy</p>
+            </div>
+            
+            <h2 class="section-heading">Lessons Learned</h2>
+            
+            <p>
+                While the project was ultimately successful, we encountered several challenges that provided valuable insights:
+            </p>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Data Migration Complexity</h3>
+                <p>
+                    The transition to new database systems required more careful planning than initially estimated. In future projects, I would allocate additional time for data migration testing and validation.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Team Knowledge Transfer</h3>
+                <p>
+                    We underestimated the learning curve for some team members adapting to the new containerized environment. More comprehensive training earlier in the project would have accelerated adoption.
+                </p>
+            </div>
+            
+            <h2 class="section-heading">Conclusion</h2>
+            
+            <p>
+                This infrastructure optimization project demonstrates how strategic technical leadership can transform operational efficiency while reducing costs. By implementing modern cloud-native architecture patterns and automation, we created a platform that not only meets current demands but is positioned for sustainable future growth.
+            </p>
+            
+            <p>
+                The success of this project has become a template for infrastructure optimization across other products in the company's portfolio, with similar initiatives now planned for additional platforms.
+            </p>
+            
+            <a href="/projects" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline
