@@ -252,291 +252,86 @@ body {
     font-style: normal;
     font-size: 1.8rem;
 }
+ /* Scroll Indicator */
+        .scroll-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 0.5rem;
+            margin-left: 250px;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 50px;
+        }
+        .scroll-indicator .scroll-text {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #F0F4F8; 
+            letter-spacing: 0.1em;
+        }
+        .scroll-indicator .scroll-line {
+            width: 1px;
+            height: 7cm;
+            background: #F0F4F8; 
+        }
+        .scroll-text span {
+            display: inline-block;
+            animation: shake 2s ease-in-out infinite;
+        }
 
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <title>Toni Kukoc</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Toni Kukoc - IT Project Manager specializing in value optimization" />
-        
-        <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-        
-       <!-- Favicon for general use -->
-        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
-        
-        <!-- Apple Touch Icon -->
-        <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+        @keyframes shake {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
 
-        <!-- Android Chrome Icons -->
-        <link rel="icon" type="image/png" sizes="192x192" href="../assets/android-chrome-192x192.png">
-        <link rel="icon" type="image/png" sizes="512x512" href="../assets/android-chrome-512x512.png">
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        <!-- Favicon ICO for older browsers -->
-        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-
-        <!-- Stylesheets -->
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-        
-        <style>
-          /* Global Styles */
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 100;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 100;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 300;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 300;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 400;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Regular.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 400;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-Italic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Italic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 500;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-SemiBold.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 500;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-SemiBoldItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-SemiBoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 600;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Bold.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 600;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-BoldItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 700;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-XBold.woff2') format('woff2'),
-         url('..//assets/webfonts/SkemaProDisplay-XBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 700;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-XBoldItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XBoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200; /* Adjust weight based on preference */
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
-}
-
-@keyframes slideFromRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes expandFromLeft {
-    from {
-        transform: scaleX(0);
-    }
-    to {
-        transform: scaleX(1);
-    }
-}
-
-@keyframes slideFromBottom {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
-html {
-    scroll-behavior: smooth;
-    height: 100%;
-    overflow-x: hidden;
-}
-
-body {
-    min-height:100vh;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column; 
-}
-
-/* Typography */
-#header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: left;
-    position: absolute;
-    top: 35%;
-    left: 10%;
-    transform: translateY(-50%);
-    color: white;
--moz-animation: header 0.75s 1s forwards;
-    -webkit-animation: header 0.75s 1s forwards;
-    -ms-animation: header 0.75s 1s forwards;
-    animation: header 0.75s 1s forwards;
-    -moz-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -moz-transform: translate3d(0,0,0);
-    -webkit-transform: translate3d(0,0,0);
-    -ms-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-    cursor: default
-
-}
-
-#header h1 {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 5.5rem;
-    margin: 0 0 1rem;
-    letter-spacing: -0.02em;
-    color: #F0F4F8; /* Light gold color */
-    line-height: 1.2;
-    text-align: left;
-}
-
-#header h1 br {
-    margin-bottom: 0.6rem; /* Add space between the lines */
-}
-
-.bold-toni {
-    font-weight: 500;
-    font-size: 5.5rem;
-    font-style: normal;
-}
-.bold-split {
-    font-weight: 300;
-    font-style: normal;
-    font-size: 1.8rem;
-}
-
-#features {
+ /* Features Section */
+        #features {
             background: #1A2B3C;
             padding: 6rem 0;
         }
 
         .features-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
+            overflow: hidden;
         }
 
         .features-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 300;
             font-size: 2.5rem;
             color: #F0F4F8;
             margin-bottom: 1rem;
+            transform: translateX(-100%);
+            transition: transform 1s ease;
         }
 
-        .vertical-line {
-            width: 2px;
-            height: 4rem;
+        .horizontal-line {
+            width: 200px;
+            height: 2px;
             background-color: #F0F4F8;
-            margin: 0 auto;
-            opacity: 0.7;
+            margin: 1rem auto;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .features-container {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 6rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 10%;
@@ -546,14 +341,20 @@ body {
             display: flex;
             align-items: flex-start;
             gap: 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
         .feature-content {
             flex: 1;
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
         }
 
         .feature-title {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 300;
             font-size: 2rem;
             color: #F0F4F8;
@@ -569,7 +370,7 @@ body {
         }
 
         .feature-description {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
             font-size: 1.2rem;
             color: #F0F4F8;
@@ -579,105 +380,184 @@ body {
 
         .feature-image {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
         }
 
         .feature-image img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
         }
 
+        .feature-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 43, 60, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .view-more {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            color: #F0F4F8;
+            border: 1px solid #F0F4F8;
+            padding: 0.5rem 1.5rem;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .feature-image:hover .feature-image-overlay {
+            opacity: 1;
+        }
+
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Animation classes */
+        .visible .features-title {
+            transform: translateX(0);
+        }
+
+        .visible .horizontal-line {
+            transform: scaleX(1);
+        }
+
+        .visible .feature-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visible .feature-content {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .visible .feature-image {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
   </style>
 </head>
 <body>
-<section id="home">
+<!-- Home Section -->
+    <section id="home">
         <div id="header">
             <h1>
-                <span class="bold-toni">John Doe</span>
+                <span class="bold-toni">Proving Your Value</span>
                 <br>
-                <span class="bold-split">Developer & Designer</span>
+                <span class="bold-split">Through Digital Excellence</span>
             </h1>
-            <p>Creating meaningful digital experiences</p>
-            <nav>
-                <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#articles">Articles</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <p>Creating impactful digital experiences that elevate your brand and engage your audience</p>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-text">SCROLL<span>↓</span></div>
+                <div class="scroll-line"></div>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section id="features">
-        <div class="features-header">
-            <h2 class="features-title animate-on-scroll">Important Features</h2>
-            <div class="vertical-line animate-on-scroll"></div>
+        <div class="features-header" id="features-header">
+            <h2 class="features-title">Core Capabilities</h2>
+            <div class="horizontal-line"></div>
         </div>
 
-        <div class="features-container">
+        <div class="features-container" id="features-container">
             <!-- Feature 1 -->
-            <div class="feature-item animate-on-scroll">
+            <div class="feature-item">
                 <div class="feature-content">
-                    <h3 class="feature-title">Web Development</h3>
+                    <h3 class="feature-title">Strategic Web Development</h3>
                     <div class="feature-line"></div>
-                    <p class="feature-description">Creating responsive, user-friendly websites that provide exceptional user experiences. Focusing on clean code, optimal performance, and modern design principles to deliver websites that stand out.</p>
+                    <p class="feature-description">Creating responsive, performance-optimized websites that deliver exceptional user experiences. Combining clean code with modern design principles to produce digital products that stand out.</p>
                 </div>
                 <div class="feature-image">
-                    <img src="/api/placeholder/400/320" alt="Web Development">
+                    <img src="/api/placeholder/500/300" alt="Web Development">
+                    <div class="feature-image-overlay">
+                        <a href="#" class="view-more">VIEW MORE</a>
+                    </div>
                 </div>
             </div>
 
             <!-- Feature 2 -->
-            <div class="feature-item animate-on-scroll">
+            <div class="feature-item">
                 <div class="feature-content">
-                    <h3 class="feature-title">UI/UX Design</h3>
+                    <h3 class="feature-title">Intuitive UI/UX Design</h3>
                     <div class="feature-line"></div>
-                    <p class="feature-description">Crafting intuitive, visually appealing interfaces that engage users and enhance their interactions. Balancing aesthetics with functionality to create designs that are both beautiful and practical.</p>
+                    <p class="feature-description">Crafting seamless user interfaces that engage visitors and enhance interactions. Balancing aesthetic appeal with functional design to create experiences that are both beautiful and intuitive.</p>
                 </div>
                 <div class="feature-image">
-                    <img src="/api/placeholder/400/320" alt="UI/UX Design">
+                    <img src="/api/placeholder/500/300" alt="UI/UX Design">
+                    <div class="feature-image-overlay">
+                        <a href="#" class="view-more">VIEW MORE</a>
+                    </div>
                 </div>
             </div>
 
             <!-- Feature 3 -->
-            <div class="feature-item animate-on-scroll">
+            <div class="feature-item">
                 <div class="feature-content">
-                    <h3 class="feature-title">Digital Strategy</h3>
+                    <h3 class="feature-title">Digital Growth Strategy</h3>
                     <div class="feature-line"></div>
-                    <p class="feature-description">Developing comprehensive digital strategies that align with business goals and user needs. Creating roadmaps for digital success that incorporate the latest technologies and best practices.</p>
+                    <p class="feature-description">Developing comprehensive digital strategies that align with business objectives and user needs. Creating roadmaps for sustainable growth that incorporate cutting-edge technologies and industry best practices.</p>
                 </div>
                 <div class="feature-image">
-                    <img src="/api/placeholder/400/320" alt="Digital Strategy">
+                    <img src="/api/placeholder/500/300" alt="Digital Strategy">
+                    <div class="feature-image-overlay">
+                        <a href="#" class="view-more">VIEW MORE</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
  <!-- Footer -->
     <footer>
         <p>© 2025 John Doe. All rights reserved.</p>
     </footer>
-
     <script>
-
  // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
+            const featuresHeader = document.getElementById('features-header');
+            const featuresContainer = document.getElementById('features-container');
+            const featureItems = document.querySelectorAll('.feature-item');
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
+                        
+                        // If observing features container, add delay to individual items
+                        if (entry.target === featuresContainer) {
+                            featureItems.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, 300 * (index + 1));
+                            });
+                        }
                     }
                 });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.animate-on-scroll, .horizontal-line').forEach(element => {
-                observer.observe(element);
-            });
+            }, { threshold: 0.2 });
+            
+            observer.observe(featuresHeader);
+            observer.observe(featuresContainer);
         });
-</script>
+    </script>
 </body>
 </html>
