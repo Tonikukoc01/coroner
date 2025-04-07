@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTMO Masterclass Implementation - Toni's Portfolio</title>
+    <style>
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
+        }
+
+        /* Base styles */
+        :root {
+            --bg-color: #1A2B3C;
+            --text-color: #F0F4F8;
+            --dark-text-color: #0A1A2A;
+            --accent-color: #4E92DF;
+            --success-color: #3EB489;
+            --section-padding: 3rem 0;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'SkemaProDisplay', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Case study container */
+        .case-study-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        /* Back to projects arrow */
+        .back-to-projects {
+            position: absolute;
+            top: 3.4rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+        }
+        
+        .back-to-projects:hover {
+            opacity: 1;
+        }
+        
+        .back-to-projects svg {
+            margin-right: 0.7rem;
+            width: 24px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Project timeframe - positioned at upper left with increased margin */
+        .project-timeframe {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            position: absolute;
+            top: 8rem;
+            left: 2rem;
+        }
+        
+        /* Case study header */
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            margin-top: 5rem;
+        }
+        
+        .case-study-title {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            color: var(--text-color);
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+        }
+        
+        /* Divider line */
+        .divider {
+            width: 50px;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 0 auto 2rem auto;
+        }
+        
+        /* Case study subheader */
+        .case-study-subheader {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Case study content */
+        .case-study-content {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        
+        /* Section heading */
+        .section-heading {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        /* Paragraphs in case study */
+        .case-study-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Wide image container */
+        .wide-image-container {
+            width: 100vw;
+            max-width: 1200px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .wide-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-style: italic;
+            font-weight: 200;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        
+        /* Project metrics */
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1.5rem;
+        }
+        
+        .metric-card {
+            flex: 1 1 calc(33% - 1.5rem);
+            min-width: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: var(--success-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 1rem;
+            font-weight: 100;
+            opacity: 0.8;
+        }
+        
+        /* Tech stack list */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 100;
+        }
+        
+        /* Quote section */
+        .quote-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent-color);
+            font-style: italic;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 200;
+            opacity: 0.8;
+            text-align: right;
+        }
+        
+        /* Project timeline */
+        .timeline {
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-event {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            font-weight: 100;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 200;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Challenges and solutions */
+        .challenge-solution {
+            margin: 2rem 0;
+        }
+        
+        .challenge-title {
+            font-size: 1.2rem;
+            font-weight: 200;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Back link - improved styling */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 4rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+        }
+        
+        .back-link:hover {
+            background-color: rgba(240, 244, 248, 0.1);
+        }
+        
+        .back-link svg {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Reading mode switch */
+        .switch-container {
+            position: fixed;
+            top: 3rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            background-color: rgba(26, 43, 60, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+        }
+        
+        .switch-label {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            font-weight: 100;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2c3e50;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #F0F4F8;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(18px);
+            background-color: #1A2B3C;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(70, 90, 110, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            visibility: hidden;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: rgba(90, 110, 130, 0.9);
+        }
+        
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: var(--text-color);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Easy reading mode */
+        body.easy-reading {
+            --bg-color: #F0F4F8;
+            --text-color: #0A1A2A;
+            --accent-color: #1A65C0;
+            --success-color: #1E8A60;
+        }
+        
+        /* Video container */
+        .video-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background-color: rgba(255, 255, 255, 0.05);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-placeholder img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .case-study-container {
+                padding: 5rem 1.5rem 4rem;
+            }
+            
+            .back-to-projects {
+                top: 1.3rem;
+                left: 1.5rem;
+            }
+            
+            .project-timeframe {
+                position: static;
+                text-align: center;
+                margin-bottom: 1.5rem;
+                margin-top: 2rem;
+            }
+            
+            .case-study-header {
+                margin-top: 0;
+                margin-bottom: 2.5rem;
+            }
+            
+            .case-study-title {
+                font-size: 2.5rem;
+            }
+            
+            .case-study-subheader {
+                font-size: 1.3rem;
+                padding: 0 0.5rem;
+            }
+            
+            .metric-card {
+                flex: 1 1 100%;
+            }
+            
+            .wide-image-container {
+                width: 100%;
+                margin-left: 0;
+                transform: none;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .wide-image {
+                max-height: 400px;
+            }
+            
+            .switch-container {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .case-study-container {
+                padding: 4rem 1rem 3rem;
+            }
+            
+            .back-to-projects {
+                top: 1rem;
+                left: 1rem;
+            }
+            
+            .case-study-title {
+                font-size: 2rem;
+            }
+            
+            .case-study-subheader {
+                font-size: 1.1rem;
+            }
+            
+            .case-study-content {
+                font-size: 1rem;
+            }
+            
+            .wide-image {
+                max-height: 300px;
+            }
+            
+            .section-heading {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+    
+    <!-- Reading mode switch -->
+    <div class="switch-container">
+        <span class="switch-label">Easy Reading</span>
+        <label class="switch">
+            <input type="checkbox" id="readingModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <div class="case-study-container">
+        <!-- Back to projects arrow link -->
+        <a href="/projects" class="back-to-projects">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Projects
+        </a>
+        
+        <p class="project-timeframe">March 2023 - December 2023</p>
+        
+        <div class="case-study-header">
+            <h1 class="case-study-title">ARTMO Masterclass Implementation</h1>
+            <div class="divider"></div>
+            <p class="case-study-subheader">
+                Transforming artist education through high-quality streaming masterclasses that reached 10,000+ viewers and increased platform revenue by 25%.
+            </p>
+        </div>
+        
+        <!-- Video placeholder for GIF/video demonstration -->
+        <div class="video-container">
+            <div class="video-placeholder">
+                <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
+            </div>
+        </div>
+        
+        <div class="case-study-content">
+            <h2 class="section-heading">Overview</h2>
+            <p>
+                As the Technical Lead for ARTMO, a growing social e-commerce platform for artists and art enthusiasts, I was tasked with designing and implementing a new masterclass feature that would provide high-quality educational content while creating a new revenue stream. The platform needed to support live streaming, interactive elements, and seamless integration with existing e-commerce functionality.
+            </p>
+            
+            <p>
+                The challenge: create an engaging, scalable, and reliable streaming solution that could handle thousands of concurrent viewers while maintaining excellent video quality and low latency. This case study outlines our approach, implementation, and the significant results achieved.
+            </p>
+            
+            <!-- Wide image section -->
+            <div class="wide-image-container">
+                <img src="/api/placeholder/1200/600" alt="ARTMO Masterclass Dashboard" class="wide-image">
+                <p class="image-caption">Custom masterclass dashboard showing viewer engagement metrics and real-time analytics.</p>
+            </div>
+            
+            <!-- Project metrics -->
+            <div class="metrics-container">
+                <div class="metric-card">
+                    <div class="metric-value">10K+</div>
+                    <div class="metric-label">Active Viewers</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">25%</div>
+                    <div class="metric-label">Revenue Increase</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">98%</div>
+                    <div class="metric-label">Stream Reliability</div>
+                </div>
+            </div>
+            
+            <h2 class="section-heading">The Challenge</h2>
+            <p>
+                ARTMO identified a significant opportunity to expand their platform by offering high-quality educational content from established artists. However, implementing this feature presented several technical challenges:
+            </p>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Scalable Streaming Infrastructure</h3>
+                <p>
+                    We needed to build a streaming solution capable of handling thousands of concurrent viewers without compromising video quality or experiencing buffering issues.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Interactive Learning Experience</h3>
+                <p>
+                    Simply streaming video wasn't enough. The platform needed to support real-time Q&A, polls, and other interactive elements to create an engaging learning environment.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">E-commerce Integration</h3>
+                <p>
+                    Masterclasses needed to seamlessly integrate with the existing e-commerce system, allowing for easy purchase of materials, artworks, and additional courses mentioned during sessions.
+                </p>
+            </div>
+            
+            <h2 class="section-heading">Technology Stack</h2>
+            <div class="tech-stack">
+                <span class="tech-item">AWS IVS</span>
+                <span class="tech-item">S3</span>
+                <span class="tech-item">CloudFront</span>
+                <span class="tech-item">Lambda</span>
+                <span class="tech-item">DynamoDB</span>
+                <span class="tech-item">React</span>
+                <span class="tech-item">Node.js</span>
+                <span class="tech-item">WebSockets</span>
+                <span class="tech-item">Redis</span>
+                <span class="tech-item">Elasticsearch</span>
+            </div>
+            
+            <h2 class="section-heading">Our Approach</h2>
+            
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">March 2023</div>
+                    <div class="timeline-title">Market Research & Requirements Gathering</div>
+                    <div class="timeline-description">
+                        Analyzed competitor offerings and conducted user interviews to identify key features and pain points in existing art education platforms. Developed comprehensive technical requirements based on findings.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">April-May 2023</div>
+                    <div class="timeline-title">Architecture Design & Prototyping</div>
+                    <div class="timeline-description">
+                        Created cloud-based streaming architecture utilizing AWS IVS for low-latency streaming. Developed interactive feature prototypes and integration plans for e-commerce functionality.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">June-August 2023</div>
+                    <div class="timeline-title">Development & Testing</div>
+                    <div class="timeline-description">
+                        Built the streaming backend, interactive features, and analytics dashboard. Conducted load testing to ensure system could handle 15,000+ concurrent viewers. Implemented automated scaling policies.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">September 2023</div>
+                    <div class="timeline-title">Beta Launch & Artist Onboarding</div>
+                    <div class="timeline-description">
+                        Launched beta version with selected artists and 500 invited users. Collected feedback and made UX improvements. Created comprehensive documentation for artist instructors.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">October-December 2023</div>
+                    <div class="timeline-title">Full Launch & Scaling</div>
+                    <div class="timeline-description">
+                        Officially launched the masterclass platform to all ARTMO users. Implemented marketing automation and analytics integration. Continuously optimized performance and added new features based on user feedback.
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-heading">Key Implementations</h2>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Low-Latency Streaming Architecture</h3>
+                <p>
+                    Implemented AWS Interactive Video Service (IVS) with multi-region distribution to ensure low-latency, high-quality streaming for users worldwide. This was complemented by dynamic quality adaptation based on viewer bandwidth capabilities.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Real-Time Interaction Engine</h3>
+                <p>
+                    Developed a WebSocket-based interaction system that allowed for real-time polls, Q&A, and highlighted comments, creating an engaging classroom environment. This system included prioritization algorithms to surface the most relevant questions.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Integrated E-commerce Experience</h3>
+                <p>
+                    Created a seamless integration between masterclass content and the e-commerce platform, allowing viewers to purchase related products with a single click without leaving the stream. This included a smart recommendation system based on class content.
+                </p>
+            </div>
+            
+            <!-- Wide image section -->
+            <div class="wide-image-container">
+                <img src="/api/placeholder/1200/600" alt="User Engagement Metrics" class="wide-image">
+                <p class="image-caption">User engagement metrics showing increased interaction rates and time spent on platform after masterclass implementation.</p>
+            </div>
+            
+            <h2 class="section-heading">Results & Impact</h2>
+            
+            <p>
+                The masterclass implementation delivered exceptional results across key metrics:
+            </p>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Platform Growth</h3>
+                <p>
+                    Attracted over 10,000 active viewers within the first three months of launch. Masterclass content became the most engaging feature on the platform, with average session lengths of 45+ minutes compared to 12 minutes on regular content.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Revenue Impact</h3>
+                <p>
+                    Increased platform revenue by 25% through a combination of subscription fees, pay-per-view access, and increased e-commerce conversions. Sales of products featured in masterclasses saw a 340% increase compared to standard listings.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Technical Excellence</h3>
+                <p>
+                    Achieved 98% stream reliability with less than 1% of viewers experiencing buffering issues. The system successfully handled peak loads of 8,000 concurrent viewers without performance degradation.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Community Building</h3>
+                <p>
+                    Masterclass participants showed 4x higher engagement with other platform features following class participation. This created a more vibrant community and increased user retention by 35%.
+                </p>
+            </div>
+            
+            <!-- Quote section -->
+            <div class="quote-section">
+                <p class="quote-text">
+                    "The masterclass implementation transformed ARTMO from a marketplace into a true artist community. The technical excellence of the streaming solution and thoughtful integration with our e-commerce platform created a seamless experience that our users love."
+                </p>
+                <p class="quote-author">— Elena Vasquez, CEO of ARTMO</p
