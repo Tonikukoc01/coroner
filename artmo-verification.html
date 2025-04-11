@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTMO Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+        .product-card {
+            background-color: #111;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 5px 0px;
+        }
+        .badge {
+            width: 80px;
+            height: 80px;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 40px;
+            font-weight: 700;
+        }
+        .product-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .price-tag {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 20px 0;
+            color: #4a90e2;
+        }
+        .price-details {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+        .buy-button {
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 60px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .buy-button:hover {
+            background-color: #f0f0f0;
+        }
+        .features {
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        .features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        .feature-icon {
+            color: #4a90e2;
+            font-size: 24px;
+            margin-right: 15px;
+            min-width: 24px;
+        }
+        .feature-text h3 {
+            margin: 0 0 10px;
+            font-weight: 600;
+        }
+        .feature-text p {
+            margin: 0;
+            color: #aaa;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        .testimonials {
+            background-color: #111;
+            padding: 60px 0;
+            margin: 60px 0;
+        }
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        .testimonial-card {
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 5px 0px;
+        }
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-weight: 600;
+        }
+        .faq {
+            max-width: 800px;
+            margin: 60px auto;
+        }
+        .faq h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .faq-answer {
+            color: #aaa;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #4a90e2;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="logo">ARTMO</div>
+                <nav>
+                    <a href="#" style="color: white; text-decoration: none; margin-left: 20px;">Home</a>
+                    <a href="#" style="color: white; text-decoration: none; margin-left: 20px;">Dashboard</a>
+                    <a href="#" style="color: white; text-decoration: none; margin-left: 20px;">Profile</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Verify Your Artist Profile</h1>
+            <p>Stand out from the crowd and build trust with potential buyers with our official verification badge.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-card">
+            <div class="badge">✓</div>
+            <h2 class="product-title">ARTMO Verification Badge</h2>
+            <p>Join thousands of verified artists and galleries on the platform</p>
+            <div class="price-tag">€3</div>
+            <div class="price-details">One-time payment • Lifetime verification</div>
+            <button class="buy-button">Get Verified Now</button>
+        </div>
+
+        <div class="features">
+            <h2>Why Get Verified?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-text">
+                        <h3>Enhanced Credibility</h3>
+                        <p>The verification badge signals authenticity and trustworthiness to potential buyers.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-text">
+                        <h3>Stand Out in Searches</h3>
+                        <p>Verified profiles receive higher visibility in ARTMO search results.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-text">
+                        <h3>Build Trust</h3>
+                        <p>Buyers are more likely to purchase from verified artists they can trust.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-text">
+                        <h3>Lifetime Badge</h3>
+                        <p>Pay once and enjoy the benefits of verification forever.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonials">
+        <div class="container">
+            <h2>What Verified Artists Say</h2>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "After getting verified on ARTMO, I noticed an immediate increase in inquiries about my work. The badge definitely helps establish trust with new collectors."
+                </div>
+                <div class="testimonial-author">— Sofia M., Painter</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Best €3 I've spent on my art career. The verification badge has helped me stand out among other artists, and buyers seem to trust me more readily."
+                </div>
+                <div class="testimonial-author">— Thomas K., Photographer</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What exactly is ARTMO verification?</div>
+                <div class="faq-answer">
+                    ARTMO verification adds an official verification badge to your profile that indicates you are a legitimate and trustworthy member of our art community. This helps potential buyers feel more confident when considering your artwork.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How soon will I receive my verification badge?</div>
+                <div class="faq-answer">
+                    Your profile will be verified immediately after your payment is processed. The badge will appear on your profile right away.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is verification required to sell art on ARTMO?</div>
+                <div class="faq-answer">
+                    No, verification is entirely optional. However, verified artists typically experience higher engagement and more sales due to the increased trust and visibility the badge provides.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I get a refund if I change my mind?</div>
+                <div class="faq-answer">
+                    Verification is a non-refundable digital service that is applied immediately to your account. Once processed, we cannot offer refunds.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Help</a>
+            </div>
+            <div>ARTMO™ | © 2025 | Served in Germany | Art Enthusiasts, Artists, Galleries and Art Universities from +200 countries ... and counting.</div>
+        </div>
+    </footer>
+</body>
+</html>
