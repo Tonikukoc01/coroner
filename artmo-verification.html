@@ -38,30 +38,30 @@
             overflow: hidden;
         }
         .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-            z-index: -1;
-        }
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(circle at 10% 20%, rgba(74, 144, 226, 0.05) 0%, rgba(0, 0, 0, 0) 50%),
-                           radial-gradient(circle at 90% 80%, rgba(74, 144, 226, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
-            z-index: -1;
-        }
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: -1;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 10% 20%, rgba(80, 80, 80, 0.05) 0%, rgba(0, 0, 0, 0) 50%),
+                   radial-gradient(circle at 90% 80%, rgba(80, 80, 80, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
+    z-index: -1;
+}
         .hero h1 {
             font-size: 42px;
             margin-bottom: 20px;
-            font-weight: 700;
+            font-weight: 400;
         }
         .hero p {
             font-size: 18px;
@@ -70,7 +70,7 @@
             font-weight: 300;
         }
         .product-card {
-            background-color: #111;
+             background-color: rgba(17, 17, 17, 0.7);
             border-radius: 10px;
             padding: 40px;
             max-width: 700px;
@@ -105,7 +105,7 @@
         .price-tag {
             font-size: 36px;
             font-weight: 700;
-            color: #4a90e2;
+            color: white;
         }
         .currency-selector {
             margin-left: 15px;
@@ -147,10 +147,10 @@
             font-weight: 600;
         }
         .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
         .feature-item {
             display: flex;
             flex-direction: column;
@@ -160,13 +160,13 @@
         .feature-icon {
             width: 60px;
             height: 60px;
-            background-color: #1a1a1a;
+            background-color: transparent;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            color: #4a90e2;
+            color: white;
             font-size: 28px;
         }
         .feature-title {
@@ -180,13 +180,14 @@
             font-weight: 300;
         }
         .faq {
-            max-width: 700px;
+            max-width: 950px;
             margin: 60px auto;
         }
         .faq h2 {
-            text-align: center;
+            text-align: left;
             margin-bottom: 40px;
-            font-weight: 600;
+            font-weight: 400;
+             text-transform: uppercase;
         }
         .accordion__item {
             margin-bottom: 15px;
@@ -200,7 +201,7 @@
             border: none;
             outline: none;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            font-weight: 300;
             font-size: 16px;
             cursor: pointer;
             border-radius: 4px 4px 0 0;
