@@ -191,6 +191,101 @@
             line-height: 1.6;
             font-weight: 300;
         }
+
+.verification-steps {
+        max-width: 1250px;
+        margin: 0 auto 120px;
+    }
+    
+    .verification-steps h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: 600;
+    }
+    
+    .steps-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .step {
+        flex: 1;
+        min-width: 220px;
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        padding: 20px;
+        background-color: rgba(17, 17, 17, 0.4);
+        border-radius: 8px;
+    }
+    
+    .step-number {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #4a90e2;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+    
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        background-color: transparent;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: white;
+        font-size: 28px;
+        margin-top: 10px;
+    }
+    
+    .step-title {
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    
+    .step-desc {
+        color: #aaa;
+        line-height: 1.6;
+        font-weight: 300;
+    }
+    
+    .step-arrow {
+        margin: 0 15px;
+        color: #4a90e2;
+        display: flex;
+        align-items: center;
+    }
+    
+    .mini-badge {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: #4a90e2;
+        border-radius: 50%;
+        color: white;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        margin-left: 4px;
+    }
+
         .faq {
             max-width: 1250px;
             margin: 60px auto;
@@ -256,6 +351,23 @@
             margin: 0 10px;
             text-decoration: none;
         }
+
+ @media (max-width: 768px) {
+        .steps-container {
+            flex-direction: column;
+        }
+        
+        .step {
+            margin-bottom: 40px;
+            min-width: 100%;
+        }
+        
+        .step-arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -339,6 +451,66 @@
             </div>
         </div>
     </div>
+
+<div class="container">
+    <div class="verification-steps">
+        <h2>How Verification Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+                </div>
+                <div class="step-number">1</div>
+                <div class="step-title">Payment</div>
+                <div class="step-desc">Complete a one-time payment of €3 through our secure payment system.</div>
+            </div>
+            
+            <div class="step-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+                        <circle cx="9" cy="12" r="2"></circle>
+                        <path d="M15 8h.01M15 12h.01M15 16h.01"></path>
+                    </svg>
+                </div>
+                <div class="step-number">2</div>
+                <div class="step-title">Identity Verification</div>
+                <div class="step-desc">Provide your ID and required information through our secure partner, Stripe.</div>
+            </div>
+            
+            <div class="step-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </div>
+            
+            <div class="step">
+                <div class="step-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <div class="step-number">3</div>
+                <div class="step-title">Confirmation</div>
+                <div class="step-desc">That's it! Your profile is now verified <span class="mini-badge">✓</span> and you can enjoy all verification benefits.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
     <div class="container">
         <div class="faq">
