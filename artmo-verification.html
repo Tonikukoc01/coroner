@@ -33,7 +33,7 @@
         }
         .hero {
             text-align: center;
-            padding: 80px 0;
+            padding: 50px 0;
             position: relative;
             overflow: hidden;
         }
@@ -78,18 +78,30 @@
             text-align: center;
             box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 5px 0px;
         }
-        .badge {
+       .badge {
             width: 80px;
             height: 80px;
             background-color: #4a90e2;
             color: white;
-            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 30px;
-            font-size: 40px;
+            font-size: 50px; /* Increased checkmark size */
             font-weight: 700;
+            position: relative;
+        }
+        /* Custom checkmark made of straight lines */
+        .badge::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            border-left: 5px solid white;
+            border-bottom: 5px solid white;
+            transform: rotate(-45deg);
+            top: 27px;
+            left: 24px;
         }
         .product-title {
             font-size: 28px;
@@ -147,9 +159,9 @@
             font-weight: 600;
         }
         .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Changed from 3 to 4 columns */
+        gap: 20px; /* Reduced gap slightly to fit 4 items better */
 }
         .feature-item {
             display: flex;
@@ -180,7 +192,7 @@
             font-weight: 300;
         }
         .faq {
-            max-width: 950px;
+            max-width: 1250px;
             margin: 60px auto;
         }
         .faq h2 {
@@ -188,13 +200,14 @@
             margin-bottom: 40px;
             font-weight: 400;
              text-transform: uppercase;
+            font-size: 1.8rem;
         }
         .accordion__item {
             margin-bottom: 15px;
         }
         .accordion__button {
             width: 100%;
-            background-color: #1a1a1a;
+            background-color: linear-gradient(210deg , #222, #121212);
             color: white;
             padding: 15px 20px;
             text-align: left;
@@ -270,7 +283,6 @@
         <div class="product-card">
             <div class="badge">✓</div>
             <h2 class="product-title">ARTMO Verification Badge</h2>
-            <p>Join thousands of verified artists and galleries on the platform</p>
             <div class="price-container">
                 <div class="price-tag">€3</div>
                 <select class="currency-selector">
@@ -280,7 +292,7 @@
                 </select>
             </div>
             <div class="price-details">One-time payment • Lifetime verification</div>
-            <button class="buy-button">Get Verified Now</button>
+            <button class="buy-button">Get Verified</button>
         </div>
 
         <div class="features">
