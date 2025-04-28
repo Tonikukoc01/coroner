@@ -38,26 +38,26 @@
             overflow: hidden;
         }
         .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(50, 50, 50, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-            z-index: -1;
-        }
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(circle at 10% 20%, rgba(80, 80, 80, 0.05) 0%, rgba(0, 0, 0, 0) 50%),
-                           radial-gradient(circle at 90% 80%, rgba(80, 80, 80, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
-            z-index: -1;
-        }
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: -1;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 10% 20%, rgba(80, 80, 80, 0.05) 0%, rgba(0, 0, 0, 0) 50%),
+                   radial-gradient(circle at 90% 80%, rgba(80, 80, 80, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
+    z-index: -1;
+}
         .hero h1 {
             font-size: 42px;
             margin-bottom: 20px;
@@ -70,7 +70,7 @@
             font-weight: 300;
         }
         .product-card {
-            background-color: rgba(17, 17, 17, 0.7);
+             background-color: rgba(17, 17, 17, 0.7);
             border-radius: 10px;
             padding: 40px;
             max-width: 700px;
@@ -137,116 +137,111 @@
         .buy-button:hover {
             background-color: #f0f0f0;
         }
-        
-        /* Payment Popup Styles */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+        .features {
+            max-width: 800px;
+            margin: 0 auto 60px;
         }
-        
-        .payment-popup {
-            background-color: #FFFFFF;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: popupFadeIn 0.3s ease-out;
-        }
-        
-        @keyframes popupFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .popup-header {
-            background-color: #000;
-            color: #fff;
-            padding: 20px;
+        .features h2 {
             text-align: center;
-            position: relative;
+            margin-bottom: 40px;
+            font-weight: 600;
         }
-        
-        .popup-header h3 {
-            margin: 0;
-            font-weight: 500;
-            font-size: 20px;
-        }
-        
-        .close-popup {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-        
-        .popup-content {
-            padding: 30px;
-            color: #000;
-        }
-        
-        .payment-options {
+        .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+        .feature-item {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-        }
-        
-        .option-label {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .payment-option {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .payment-button {
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-        
-        .or-divider {
-            display: flex;
             align-items: center;
             text-align: center;
-            color: #777;
-            margin: 20px 0;
         }
-        
-        .or-divider::before,
-        .or-divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #ddd;
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 28px;
         }
-        
-        .or-divider::before {
-            margin-right: 10px;
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 18px;
         }
-        
-        .or-divider::after {
-            margin-left: 10px;
+        .feature-desc {
+            color: #aaa;
+            line-height: 1.6;
+            font-weight: 300;
         }
-        
-        #stripe-container, #paypal-container-GATZ2Y56MVLJE {
+        .faq {
+            max-width: 950px;
+            margin: 60px auto;
+        }
+        .faq h2 {
+            text-align: left;
+            margin-bottom: 40px;
+            font-weight: 400;
+             text-transform: uppercase;
+        }
+        .accordion__item {
+            margin-bottom: 15px;
+        }
+        .accordion__button {
             width: 100%;
-            min-height: 40px;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            border: 2px solid #333;
+        }
+        .accordion__panel {
+            padding: 20px;
+            animation: fadein .35s ease-in;
+            border: 2px solid #333;
+            box-sizing: border-box;
+            box-shadow: 1px 1px 5px rgba(0,0,0,.1);
+            border-top: 0;
+            margin: 0 0 15px;
+            color: #aaa;
+            background: #111;
+            font-size: 16px;
+            line-height: 22px;
+        }
+        @keyframes fadein {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #4a90e2;
+            margin: 0 10px;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -285,68 +280,124 @@
                 </select>
             </div>
             <div class="price-details">One-time payment • Lifetime verification</div>
-            <button class="buy-button" id="openPopup">Get Verified Now</button>
+            <button class="buy-button">Get Verified Now</button>
         </div>
-    </div>
-    
-    <!-- Payment Popup -->
-    <div class="popup-overlay" id="paymentPopup">
-        <div class="payment-popup">
-            <div class="popup-header">
-                <h3>Choose Payment Method</h3>
-                <button class="close-popup" id="closePopup">&times;</button>
-            </div>
-            <div class="popup-content">
-                <div class="payment-options">
-                    <div class="payment-option">
-                        <div class="option-label">Credit Card</div>
-                        <div class="payment-button" id="stripe-container">
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                              buy-button-id="buy_btn_1RDkr3CAhw9DwWblLj1NSz2g"
-                              publishable-key="pk_live_MveVemIdfMlHR2fg7t7bqTEc">
-                            </stripe-buy-button>
-                        </div>
+
+        <div class="features">
+            <h2>Why Get Verified?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
                     </div>
-                    
-                    <div class="or-divider">or</div>
-                    
-                    <div class="payment-option">
-                        <div class="option-label">PayPal</div>
-                        <div class="payment-button">
-                            <script src="https://www.paypal.com/sdk/js?client-id=BAAjR0b_dlBJPvMOulJMvsl1DqviwS0zzEDP_LqqoPu_JiB_3gpI2ywyqIVdkGMsJGFcH6da5XA8aR-04g&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
-                            <div id="paypal-container-GATZ2Y56MVLJE"></div>
-                            <script>
-                                paypal.HostedButtons({
-                                    hostedButtonId: "GATZ2Y56MVLJE",
-                                }).render("#paypal-container-GATZ2Y56MVLJE")
-                            </script>
-                        </div>
+                    <div class="feature-title">Enhanced Credibility</div>
+                    <div class="feature-desc">The verification badge signals authenticity and trustworthiness to potential buyers.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
                     </div>
+                    <div class="feature-title">Stand Out in Searches</div>
+                    <div class="feature-desc">Verified profiles receive higher visibility in ARTMO search results.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </div>
+                    <div class="feature-title">Build Trust</div>
+                    <div class="feature-desc">Buyers are more likely to purchase from verified artists they can trust.</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20"></path>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <div class="feature-title">One-Time Payment</div>
+                    <div class="feature-desc">Pay once and enjoy the benefits of verification forever.</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="container">
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="accordion__item">
+                <button class="accordion__button">What exactly is ARTMO verification?</button>
+                <div class="accordion__panel">
+                    ARTMO verification adds an official verification badge to your profile that indicates you are a legitimate and trustworthy member of our art community. This helps potential buyers feel more confident when considering your artwork.
+                </div>
+            </div>
+            
+            <div class="accordion__item">
+                <button class="accordion__button">How soon will I receive my verification badge?</button>
+                <div class="accordion__panel">
+                    Your profile will be verified immediately after your payment is processed. The badge will appear on your profile right away.
+                </div>
+            </div>
+            
+            <div class="accordion__item">
+                <button class="accordion__button">Is verification required to sell art on ARTMO?</button>
+                <div class="accordion__panel">
+                    No, verification is entirely optional. However, verified artists typically experience higher engagement and more sales due to the increased trust and visibility the badge provides.
+                </div>
+            </div>
+            
+            <div class="accordion__item">
+                <button class="accordion__button">Can I get a refund if I change my mind?</button>
+                <div class="accordion__panel">
+                    Verification is a non-refundable digital service that is applied immediately to your account. Once processed, we cannot offer refunds.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Help</a>
+            </div>
+            <div>ARTMO™ | © 2025 | Served in Germany | Art Enthusiasts, Artists, Galleries and Art Universities from +200 countries ... and counting.</div>
+        </div>
+    </div>
+
     <script>
-        // Open popup functionality
-        document.getElementById('openPopup').addEventListener('click', function() {
-            document.getElementById('paymentPopup').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+        // Simple accordion functionality
+        document.querySelectorAll('.accordion__button').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionPanel = button.nextElementSibling;
+                
+                // Toggle the display of the panel
+                if (accordionPanel.style.display === "block") {
+                    accordionPanel.style.display = "none";
+                } else {
+                    // Close all panels first
+                    document.querySelectorAll('.accordion__panel').forEach(panel => {
+                        panel.style.display = "none";
+                    });
+                    
+                    accordionPanel.style.display = "block";
+                }
+            });
         });
         
-        // Close popup functionality
-        document.getElementById('closePopup').addEventListener('click', function() {
-            document.getElementById('paymentPopup').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
-        });
-        
-        // Close popup if clicked outside of content
-        document.getElementById('paymentPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Re-enable scrolling
-            }
+        // Hide all panels initially
+        document.querySelectorAll('.accordion__panel').forEach(panel => {
+            panel.style.display = "none";
         });
     </script>
 </body>
