@@ -33,7 +33,7 @@
         }
         .hero {
             text-align: center;
-            padding: 50px 0; /* Reduced margin between header and hero */
+            padding: 80px 0;
             position: relative;
             overflow: hidden;
         }
@@ -83,25 +83,13 @@
             height: 80px;
             background-color: #4a90e2;
             color: white;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 30px;
-            font-size: 50px; /* Increased checkmark size */
+            font-size: 40px;
             font-weight: 700;
-            position: relative;
-        }
-        /* Custom checkmark made of straight lines */
-        .badge::after {
-            content: "";
-            position: absolute;
-            width: 30px;
-            height: 15px;
-            border-left: 5px solid white;
-            border-bottom: 5px solid white;
-            transform: rotate(-45deg);
-            top: 27px;
-            left: 24px;
         }
         .product-title {
             font-size: 28px;
@@ -133,22 +121,6 @@
             color: #aaa;
             margin-bottom: 30px;
         }
-        .benefits {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            flex-wrap: nowrap; /* Ensure items stay in one row */
-        }
-        .benefit-item {
-            text-align: center;
-            flex: 1;
-            padding: 0 10px;
-            font-size: 14px;
-        }
-        .benefit-icon {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
         .buy-button {
             background-color: white;
             color: black;
@@ -164,52 +136,6 @@
         }
         .buy-button:hover {
             background-color: #f0f0f0;
-        }
-        
-        /* FAQ Section */
-        .faq-section {
-            max-width: 900px; /* Increased width */
-            margin: 0 auto 80px;
-        }
-        .faq-title {
-            text-align: center;
-            font-size: 36px; /* Increased font size by 50% */
-            margin-bottom: 40px;
-            font-weight: 500;
-        }
-        .faq-item {
-            margin-bottom: 20px;
-        }
-        .faq-question {
-            background: linear-gradient(210deg, #222, #121212) !important; /* Updated color */
-            padding: 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            position: relative;
-        }
-        .faq-question::after {
-            content: "+";
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-        }
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
-            background-color: rgba(30, 30, 30, 0.5);
-            border-radius: 0 0 8px 8px;
-        }
-        .faq-item.active .faq-question::after {
-            content: "-";
-        }
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            padding: 20px;
         }
         
         /* Payment Popup Styles */
@@ -347,29 +273,9 @@
 
     <div class="container">
         <div class="product-card">
-            <div class="badge"></div> <!-- Custom checkmark via CSS -->
+            <div class="badge">✓</div>
             <h2 class="product-title">ARTMO Verification Badge</h2>
-            
-            <!-- Benefits section in a single row -->
-            <div class="benefits">
-                <div class="benefit-item">
-                    <div class="benefit-icon">🛡️</div>
-                    <div>Enhanced Credibility</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">👁️</div>
-                    <div>Increased Visibility</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">⭐</div>
-                    <div>Featured Priority</div>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">€</div> <!-- Euro sign instead of dollar -->
-                    <div>Higher Conversion</div>
-                </div>
-            </div>
-            
+            <p>Join thousands of verified artists and galleries on the platform</p>
             <div class="price-container">
                 <div class="price-tag">€3</div>
                 <select class="currency-selector">
@@ -380,37 +286,6 @@
             </div>
             <div class="price-details">One-time payment • Lifetime verification</div>
             <button class="buy-button" id="openPopup">Get Verified Now</button>
-        </div>
-    </div>
-    
-    <!-- FAQ Section -->
-    <div class="container">
-        <div class="faq-section">
-            <h2 class="faq-title">FREQUENTLY ASKED QUESTIONS</h2>
-            <div class="faq-item">
-                <div class="faq-question">What is the ARTMO verification badge?</div>
-                <div class="faq-answer">
-                    <p>The ARTMO verification badge is a mark of authenticity that appears on your profile. It helps build trust with potential buyers by showing that your identity has been verified.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How long does verification last?</div>
-                <div class="faq-answer">
-                    <p>Once you've been verified, your verification badge will remain on your profile indefinitely. It's a one-time payment for lifetime verification.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">How does the verification process work?</div>
-                <div class="faq-answer">
-                    <p>After payment, our team will review your profile within 24-48 hours. Once approved, the verification badge will automatically appear on your profile.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Is the verification fee refundable?</div>
-                <div class="faq-answer">
-                    <p>If your verification is not approved, we'll issue a full refund. Otherwise, the verification fee is non-refundable.</p>
-                </div>
-            </div>
         </div>
     </div>
     
@@ -472,14 +347,6 @@
                 this.style.display = 'none';
                 document.body.style.overflow = 'auto'; // Re-enable scrolling
             }
-        });
-
-        // FAQ toggle functionality
-        document.querySelectorAll('.faq-question').forEach(function(question) {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                faqItem.classList.toggle('active');
-            });
         });
     </script>
 </body>
