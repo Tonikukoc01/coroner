@@ -147,6 +147,117 @@
         .buy-button:hover {
             background-color: #f0f0f0;
         }
+
+.popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .payment-popup {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: popupFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .popup-header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .popup-header h3 {
+            margin: 0;
+            font-weight: 500;
+            font-size: 20px;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        .popup-content {
+            padding: 30px;
+            color: #000;
+        }
+        
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .option-label {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .payment-option {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        
+        .payment-button {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .or-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #777;
+            margin: 20px 0;
+        }
+        
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .or-divider::before {
+            margin-right: 10px;
+        }
+        
+        .or-divider::after {
+            margin-left: 10px;
+        }
+        
+        #stripe-container, #paypal-container-GATZ2Y56MVLJE {
+            width: 100%;
+            min-height: 40px;
+        }
+
         .features {
             max-width: 1250px;
             margin: 0 auto 180px;
@@ -454,6 +565,38 @@
             <button class="buy-button">Get Verified</button>
         </div>
 
+ <div class="popup-overlay" id="paymentPopup">
+        <div class="payment-popup">
+            <div class="popup-header">
+                <h3>Choose Payment Method</h3>
+                <button class="close-popup" id="closePopup">&times;</button>
+            </div>
+            <div class="popup-content">
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <div class="option-label">Credit Card</div>
+                        <div class="payment-button" id="stripe-container">
+                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                            <stripe-buy-button
+                              buy-button-id="buy_btn_1RDkr3CAhw9DwWblLj1NSz2g"
+                              publishable-key="pk_live_MveVemIdfMlHR2fg7t7bqTEc">
+                            </stripe-buy-button>
+                        </div>
+                    </div>
+<div class="or-divider">or</div>
+<div class="payment-option">
+                        <div class="option-label">PayPal</div>
+                        <div class="payment-button">
+                            <script src="https://www.paypal.com/sdk/js?client-id=BAAjR0b_dlBJPvMOulJMvsl1DqviwS0zzEDP_LqqoPu_JiB_3gpI2ywyqIVdkGMsJGFcH6da5XA8aR-04g&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+                            <div id="paypal-container-GATZ2Y56MVLJE"></div>
+                            <script>
+                                paypal.HostedButtons({
+                                    hostedButtonId: "GATZ2Y56MVLJE",
+                                }).render("#paypal-container-GATZ2Y56MVLJE")
+                            </script>
+                        </div>
+                    </div>
+
         <div class="features">
             <h2>Why Get Verified?</h2>
             <div class="feature-grid">
@@ -617,6 +760,26 @@ If you are unable to provide the required information, your profile will not dis
     </div>
 
     <script>
+        // Open popup functionality
+        document.getElementById('openPopup').addEventListener('click', function() {
+            document.getElementById('paymentPopup').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+        });
+        
+        // Close popup functionality
+        document.getElementById('closePopup').addEventListener('click', function() {
+            document.getElementById('paymentPopup').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        });
+        
+        // Close popup if clicked outside of content
+        document.getElementById('paymentPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }
+        });
+
         // Simple accordion functionality
         document.querySelectorAll('.accordion__button').forEach(button => {
             button.addEventListener('click', () => {
