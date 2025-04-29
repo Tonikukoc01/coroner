@@ -565,39 +565,41 @@
             <button class="buy-button" id="openPopup">Get Verified Now</button>
         </div>
 
- <div class="popup-overlay" id="paymentPopup">
-        <div class="payment-popup">
-            <div class="popup-header">
-                <h3>Choose Payment Method</h3>
-                <button class="close-popup" id="closePopup">&times;</button>
+  <div class="popup-overlay" id="paymentPopup">
+            <div class="payment-popup">
+                <div class="popup-header">
+                    <h3>Choose Payment Method</h3>
+                    <button class="close-popup" id="closePopup">&times;</button>
+                </div>
+                <div class="popup-content">
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <div class="option-label">Credit Card</div>
+                            <div class="payment-button" id="stripe-container">
+                                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                                <stripe-buy-button
+                                  buy-button-id="buy_btn_1RJ9mPCAhw9DwWblBpJh6hEr"
+                                  publishable-key="pk_live_MveVemIdfMlHR2fg7t7bqTEc">
+                                </stripe-buy-button>
+                            </div>
+                        </div>
+                        <div class="or-divider">or</div>
+                        <div class="payment-option">
+                            <div class="option-label">PayPal</div>
+                            <div class="payment-button">
+                                <script src="https://www.paypal.com/sdk/js?client-id=BAAjR0b_dlBJPvMOulJMvsl1DqviwS0zzEDP_LqqoPu_JiB_3gpI2ywyqIVdkGMsJGFcH6da5XA8aR-04g&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+                                <div id="paypal-container-GATZ2Y56MVLJE"></div>
+                                <script>
+                                    paypal.HostedButtons({
+                                        hostedButtonId: "GATZ2Y56MVLJE",
+                                    }).render("#paypal-container-GATZ2Y56MVLJE")
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="popup-content">
-                <div class="payment-options">
-                    <div class="payment-option">
-                        <div class="option-label">Credit Card</div>
-                        <div class="payment-button" id="stripe-container">
-                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                            <stripe-buy-button
-                              buy-button-id="buy_btn_1RJ9mPCAhw9DwWblBpJh6hEr"
-                              publishable-key="pk_live_MveVemIdfMlHR2fg7t7bqTEc">
-                            </stripe-buy-button>
-                        </div>
-                    </div>
-                    </div>
-<div class="or-divider">or</div>
-<div class="payment-option">
-                        <div class="option-label">PayPal</div>
-                        <div class="payment-button">
-                            <script src="https://www.paypal.com/sdk/js?client-id=BAAjR0b_dlBJPvMOulJMvsl1DqviwS0zzEDP_LqqoPu_JiB_3gpI2ywyqIVdkGMsJGFcH6da5XA8aR-04g&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
-                            <div id="paypal-container-GATZ2Y56MVLJE"></div>
-                            <script>
-                                paypal.HostedButtons({
-                                    hostedButtonId: "GATZ2Y56MVLJE",
-                                }).render("#paypal-container-GATZ2Y56MVLJE")
-                            </script>
-                        </div>
-                    </div>
-                    </div>
+        </div>
 
         <div class="features">
             <h2>Why Get Verified?</h2>
@@ -748,7 +750,7 @@ If you are unable to provide the required information, your profile will not dis
         </div>
     </div>
 
-    <footer>
+     <footer>
         <div class="container">
             <div class="footer-links">
                 <a href="#">About</a>
@@ -759,8 +761,7 @@ If you are unable to provide the required information, your profile will not dis
             </div>
             <div>ARTMO™ | © 2025 | Served in Germany | Art Enthusiasts, Artists, Galleries and Art Universities from +200 countries ... and counting.</div>
         </div>
-    </div>
-
+    </footer>
     <script>
         // Open popup functionality
         document.getElementById('openPopup').addEventListener('click', function() {
