@@ -565,41 +565,62 @@
             <button class="buy-button" id="openPopup">Get Verified Now</button>
         </div>
 
-  <div class="popup-overlay" id="paymentPopup">
-            <div class="payment-popup">
-                <div class="popup-header">
-                    <h3>Choose Payment Method</h3>
-                    <button class="close-popup" id="closePopup">&times;</button>
-                </div>
-                <div class="popup-content">
-                    <div class="payment-options">
-                        <div class="payment-option">
-                            <div class="option-label">Credit Card</div>
-                            <div class="payment-button" id="stripe-container">
-                                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                                <stripe-buy-button
-                                  buy-button-id="buy_btn_1RJ9mPCAhw9DwWblBpJh6hEr"
-                                  publishable-key="pk_live_MveVemIdfMlHR2fg7t7bqTEc">
-                                </stripe-buy-button>
-                            </div>
+ <div class="popup-overlay" id="paymentPopup">
+        <div class="payment-popup">
+            <div class="popup-header">
+                <h3>Choose Payment Method</h3>
+                <button class="close-popup" id="closePopup">&times;</button>
+            </div>
+            <div class="popup-content">
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <div class="option-label">Credit Card</div>
+                        <div class="payment-button stripe-button-container">
+                            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                            <stripe-buy-button
+                              buy-button-id="buy_btn_1RJ9mPCAhw9DwWblBpJh6hEr"
+                              publishable-key="pk_live_MveVemIdfMlHR2fg7t7bqTEc">
+                            </stripe-buy-button>
                         </div>
-                        <div class="or-divider">or</div>
-                        <div class="payment-option">
-                            <div class="option-label">PayPal</div>
-                            <div class="payment-button">
-                                <script src="https://www.paypal.com/sdk/js?client-id=BAAjR0b_dlBJPvMOulJMvsl1DqviwS0zzEDP_LqqoPu_JiB_3gpI2ywyqIVdkGMsJGFcH6da5XA8aR-04g&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
-                                <div id="paypal-container-GATZ2Y56MVLJE"></div>
-                                <script>
-                                    paypal.HostedButtons({
-                                        hostedButtonId: "GATZ2Y56MVLJE",
-                                    }).render("#paypal-container-GATZ2Y56MVLJE")
-                                </script>
-                            </div>
+                    </div>
+                    <div class="or-divider">or</div>
+                    <div class="payment-option">
+                        <div class="option-label">PayPal</div>
+                        <div class="payment-button paypal-button-container">
+                            <style>
+                                .pp-GATZ2Y56MVLJE {
+                                    text-align: center;
+                                    border: none;
+                                    border-radius: 0.25rem;
+                                    min-width: 11.625rem;
+                                    padding: 0 2rem;
+                                    height: 2.625rem;
+                                    font-weight: bold;
+                                    background-color: #0070ba;
+                                    color: #ffffff;
+                                    font-family: "Helvetica Neue", Arial, sans-serif;
+                                    font-size: 1rem;
+                                    line-height: 1.25rem;
+                                    cursor: pointer;
+                                    transition: background-color 0.3s ease;
+                                }
+                                .pp-GATZ2Y56MVLJE:hover {
+                                    background-color: #005ea6;
+                                }
+                            </style>
+                            <form action="https://www.paypal.com/ncp/payment/GATZ2Y56MVLJE" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+                                <input class="pp-GATZ2Y56MVLJE" type="submit" value="Pay with PayPal" />
+                                <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+                                <section style="font-size: 0.75rem;">
+                                    Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/>
+                                </section>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="features">
             <h2>Why Get Verified?</h2>
