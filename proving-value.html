@@ -606,6 +606,18 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 /* Add the fadeIn animation keyframes */
 @keyframes fadeIn {
     from {
@@ -1012,24 +1024,41 @@ footer {
 
 window.onload = function() {
   document.body.classList.remove('is-preload');
-// Smooth scroll for navigation
+  
+  // Smooth scroll for navigation
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-      navMenu.classList.remove('active');
+      if (typeof navMenu !== 'undefined') {
+        navMenu.classList.remove('active');
+      }
       document.querySelector(this.getAttribute('href')).scrollIntoView({
         behavior: 'smooth'
       });
     });
   });
-// Section visibility animations based on scroll position
+
+  // Function to check if element is in viewport
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+      rect.bottom >= 0
+    );
+  }
+
+  // Initial check for elements in viewport
+  document.querySelectorAll('.animate-on-scroll').forEach(element => {
+    if (isInViewport(element)) {
+      element.classList.add('visible');
+    }
+  });
+
+  // Section visibility animations based on scroll position
   window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    document.querySelectorAll('.section-content').forEach(section => {
-      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
-        section.classList.add('visible');
-      } else {
-        section.classList.remove('visible');
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+      if (isInViewport(element)) {
+        element.classList.add('visible');
       }
     });
   });
