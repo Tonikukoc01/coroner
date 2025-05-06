@@ -575,14 +575,17 @@ body {
     opacity: 0;
 }
 .feature-line {
-    width: 3rem;
-    height: 2px;
-    background-color: #F0F4F8;
-    margin: 1rem 0;
-    opacity: 0.7;
-    animation: fadeIn 1s 1.6s forwards;
-    opacity: 0;
+  width: 0; /* Start with 0 width */
+  height: 2px;
+  background-color: #F0F4F8;
+  margin: 1rem 0;
+  opacity: 0.7;
+  transition: width 0.8s ease-out;
 }
+.feature-line.visible {
+  width: 3rem; /* Expand to full width */
+}
+
 .feature-description {
     font-family: 'SkemaProDisplay', sans-serif;
     font-weight: 100;
@@ -593,12 +596,13 @@ body {
     animation: fadeIn 1s 1.7s forwards;
 }
 .feature-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 1s 1.8s forwards;
-    opacity: 0;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .feature-image img {
     max-width: 100%;
@@ -606,10 +610,15 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
+.feature-image.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .animate-on-scroll.visible {
@@ -1022,7 +1031,7 @@ footer {
 </footer>
         <script>
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
   document.body.classList.remove('is-preload');
   
   // Smooth scroll for navigation
@@ -1042,27 +1051,30 @@ window.onload = function() {
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
       rect.bottom >= 0
     );
   }
 
-  // Initial check for elements in viewport
-  document.querySelectorAll('.animate-on-scroll').forEach(element => {
-    if (isInViewport(element)) {
-      element.classList.add('visible');
-    }
-  });
-
-  // Section visibility animations based on scroll position
-  window.addEventListener('scroll', () => {
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+  // Initial check and scroll handler
+  function handleScrollAnimations() {
+    document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image').forEach(element => {
       if (isInViewport(element)) {
         element.classList.add('visible');
+      } else {
+        element.classList.remove('visible'); // Remove visible class if not in viewport
       }
     });
-  });
-}
+  }
+
+  // Don't run initial animation - wait for scroll
+  setTimeout(() => {
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScrollAnimations);
+    // Initial check after a small delay to ensure proper calculation
+    handleScrollAnimations();
+  }, 100);
+});
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
