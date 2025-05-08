@@ -630,6 +630,71 @@ body {
   transform: translateY(0);
 }
 
+ /* Hover effect styles */
+        .view-more-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 43, 60, 0.75);
+            color: #F0F4F8;
+            padding: 12px 0;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.4s ease, opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 0 0 8px 8px;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .view-more-icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        /* Desktop hover effect (screens larger than 768px) */
+        @media screen and (min-width: 769px) {
+            .feature-image:hover .view-more-caption {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .feature-image:hover img {
+                transform: scale(1.05);
+            }
+            
+            .feature-image .view-more-caption {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .feature-item {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .feature-image {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .view-more-caption.mobile-visible {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
 
 /* Add the fadeIn animation keyframes */
 @keyframes fadeIn {
@@ -985,56 +1050,72 @@ footer {
   </header>
 </section>
 <!-- Features Section -->
-<section id="features">
-    <div class="features-header">
-        <h2 class="features-title animate-on-scroll">results that mattered</h2>
-        <div class="vertical-line animate-on-scroll"></div>
-    </div>
-
-    <div class="features-container">
-        <!-- Feature 1 -->
-        <div class="feature-item animate-on-scroll">
-            <div class="feature-content">
-                <h3 class="feature-title"><a href="https://tonikukoc.me/test-project2">Masterclass Platform</h3>
-                <div class="feature-line"></div>
-                <p class="feature-description">
-                    Led the full development lifecycle of a scalable live-streaming education platform. Integrated AI for real-time enhancements, managed multilingual content delivery, and built a seamless payment flow. Supported 5,000+ live viewers and over 100 successful transactions, leveraging AWS for performance, storage, and video-on-demand capabilities.
-                </p>
+ <!-- Features Section -->
+    <section id="features">
+        <div class="features-header">
+            <h2 class="features-title animate-on-scroll">results that mattered</h2>
+            <div class="vertical-line animate-on-scroll"></div>
+        </div>
+        <div class="features-container">
+            <!-- Feature 1 -->
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title"><a href="https://tonikukoc.me/test-project2">Masterclass Platform</a></h3>
+                    <div class="feature-line"></div>
+                    <p class="feature-description">
+                        Led the full development lifecycle of a scalable live-streaming education platform. Integrated AI for real-time enhancements, managed multilingual content delivery, and built a seamless payment flow. Supported 5,000+ live viewers and over 100 successful transactions, leveraging AWS for performance, storage, and video-on-demand capabilities.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="assets/feature1-4.jpg" alt="Masterclass Platform">
+                    <div class="view-more-caption">
+                        <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                        </svg>
+                        <span>View more</span>
+                    </div>
+                </div>
             </div>
-            <div class="feature-image">
-                <img src="assets/feature1-4.jpg" alt="Masterclass Platform">
+            <!-- Feature 2 -->
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title">Cloud Recomposition</h3>
+                    <div class="feature-line"></div>
+                    <p class="feature-description">
+                        Re-architected a legacy cloud infrastructure into a modern, efficient AWS-based environment. Improved scalability, reduced operational costs, and established best practices for deployment pipelines, monitoring, and security — ensuring future-proof reliability for high-demand applications.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="assets/placeholder.jpg" alt="Cloud Recomposition">
+                    <div class="view-more-caption">
+                        <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                        </svg>
+                        <span>View more</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title">Freelance System Enablement</h3>
+                    <div class="feature-line"></div>
+                    <p class="feature-description">
+                        Designed and implemented a flexible development ecosystem supporting freelance collaboration. Built transparent workflows and performance-tracking systems to oversee contributions, ensure code quality, and scale development efforts across distributed teams efficiently.
+                    </p>
+                </div>
+                <div class="feature-image">
+                    <img src="assets/placeholder.jpg" alt="Freelance System Enablement">
+                    <div class="view-more-caption">
+                        <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                        </svg>
+                        <span>View more</span>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Feature 2 -->
-        <div class="feature-item animate-on-scroll">
-            <div class="feature-content">
-                <h3 class="feature-title">Cloud Recomposition</h3>
-                <div class="feature-line"></div>
-                <p class="feature-description">
-                    Re-architected a legacy cloud infrastructure into a modern, efficient AWS-based environment. Improved scalability, reduced operational costs, and established best practices for deployment pipelines, monitoring, and security — ensuring future-proof reliability for high-demand applications.
-                </p>
-            </div>
-            <div class="feature-image">
-                <img src="/api/placeholder/400/320" alt="Cloud Recomposition">
-            </div>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="feature-item animate-on-scroll">
-            <div class="feature-content">
-                <h3 class="feature-title">Freelance System Enablement</h3>
-                <div class="feature-line"></div>
-                <p class="feature-description">
-                    Designed and implemented a flexible development ecosystem supporting freelance collaboration. Built transparent workflows and performance-tracking systems to oversee contributions, ensure code quality, and scale development efforts across distributed teams efficiently.
-                </p>
-            </div>
-            <div class="feature-image">
-                <img src="/api/placeholder/400/320" alt="Freelance System Enablement">
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 <footer>
     <div class="footer-content">Toni Kukoč © MMXXV</div>
 </footer>
@@ -1393,6 +1474,71 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set up mobile menu enhancements
     enhanceSideMenuForMobile();
 });
+
+// Handle mobile captions similar to your gallery implementation
+        window.addEventListener('DOMContentLoaded', () => {
+            const featureImages = document.querySelectorAll('.feature-image');
+            const isMobile = window.innerWidth <= 768;
+            
+            function checkIfInView() {
+                featureImages.forEach((item, index) => {
+                    const bounding = item.getBoundingClientRect();
+                    if (
+                        bounding.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        bounding.bottom >= 0
+                    ) {
+                        // Add the loaded class for the fade-in effect
+                        if (!item.classList.contains('loaded')) {
+                            item.classList.add('loaded');
+                            
+                            // For mobile: show caption temporarily when scrolled into view
+                            if (isMobile) {
+                                const caption = item.querySelector('.view-more-caption');
+                                if (caption) {
+                                    caption.classList.add('mobile-visible');
+                                    
+                                    // Remove visibility after 3 seconds
+                                    setTimeout(() => {
+                                        caption.classList.remove('mobile-visible');
+                                    }, 3000);
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Make captions clickable to navigate to project pages
+            featureImages.forEach((image) => {
+                const caption = image.querySelector('.view-more-caption');
+                const title = image.parentElement.querySelector('.feature-title a');
+                
+                if (caption && title && title.href) {
+                    caption.addEventListener('click', () => {
+                        window.location.href = title.href;
+                    });
+                }
+            });
+            
+            // Check on initial load
+            checkIfInView();
+            
+            // Check on scroll
+            window.addEventListener('scroll', () => {
+                checkIfInView();
+            });
+            
+            // Recalculate when scrolling stops (for mobile)
+            if (isMobile) {
+                let scrollTimeout;
+                window.addEventListener('scroll', () => {
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        checkIfInView();
+                    }, 200);
+                });
+            }
+        });
         </script>
     </body>
 </html>
