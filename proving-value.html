@@ -604,14 +604,16 @@ body {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   opacity: 0;
   transform: translateX(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+  margin-top: -20px;
+
 }
 .feature-image img {
-    max-width: 100%;
-    border-radius: 8px;
+    max-width: 85%;
+    border-radius: 5px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -635,8 +637,8 @@ body {
         .view-more-caption {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 7.5%;
+    width: 85%;
     background: rgba(26, 43, 60, 0.75); /* Semi-transparent version of your background */
     color: #F0F4F8;
     padding: 8px 0;
