@@ -1684,6 +1684,7 @@ const translations = {
         'nav_approach': 'approach to collaboration',
         'nav_about': 'about my life',
         'nav_blog': 'writing outlet',
+        'nav_value': 'value delivery,
         'footer_text': 'Toni Kukoč © MMXXV'
     },
     'fr': {
@@ -1703,6 +1704,7 @@ const translations = {
         'nav_approach': 'approche de collaboration',
         'nav_about': 'à propos de ma vie',
          'nav_blog': 'espace d\'écriture',
+     'nav_value': 'value delivery', 
         'footer_text': 'Toni Kukoč © MMXXV'
     },
     'hr': {
@@ -1722,6 +1724,7 @@ const translations = {
         'nav_approach': 'pristup suradnji',
         'nav_about': 'o mom životu',
          'nav_blog': 'kutak za pisanje',
+        'nav_value': 'dodavanje vrijednosti',
         'footer_text': 'Toni Kukoč © MMXXV'
     }
 };
@@ -1774,7 +1777,7 @@ function updateLanguage(lang) {
     navItems[1].textContent = translations[lang].nav_approach;
     navItems[2].textContent = translations[lang].nav_about;
     navItems[3].textContent = translations[lang].nav_blog; 
-
+    navItems[4].textContent = translations[lang].nav_value; 
     
     // Update footer
     document.querySelector('.footer-content').textContent = translations[lang].footer_text;
