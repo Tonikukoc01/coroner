@@ -683,8 +683,20 @@ body {
             }
         }
         
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  /* General styles */
+  html, body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  /* Header adjustments */
+  #home {
+    padding-top: 4rem; /* Reduced padding */
+    padding-bottom: 4rem;
+    min-height: 60vh; /* Reduced height */
+  }
+
             .feature-item {
                 flex-direction: column;
                 gap: 2rem;
@@ -745,13 +757,11 @@ body {
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
-    /* Header section adjustments */
-
-    #home {
-     padding-bottom: 0rem;
-     min-height: 75vh;
-        overflow-x: hidden;
- }
+   #home {
+    padding-top: 4rem; /* Reduced padding */
+    padding-bottom: 4rem;
+    min-height: 60vh; /* Reduced height */
+  }
 html, body {
 overflow-x: hidden;
 }
@@ -767,23 +777,24 @@ overflow-x: hidden;
     }
 
     #header h1 {
-        font-size: 3.5rem;
-        text-align: center;
-    }
+    font-size: 2.8rem; /* Further reduced for smaller screens */
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 
-    #header p {
-        text-align: center;
-        font-size: 1.2rem;
-    }
+     #header p {
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
 
 .remove-br {
         display: none;
     }
 
-
-    .bold-toni {
-        font-size: 3.5rem;
-    } 
+     .bold-toni {
+    font-size: 2.8rem; /* Match the h1 size */
+  }
 
     .bold-split {
        font-size: 1.4rem;
@@ -801,6 +812,95 @@ overflow-x: hidden;
         height: 7cm; /* Reduced height for mobile */
     }
 
+/* Features section adjustments for mobile*/
+  #features {
+    padding: 4rem 0; /* Less padding on mobile */
+  }
+  
+  .features-header {
+    margin-bottom: 5rem; /* Reduced spacing */
+  }
+  
+  .features-title {
+    font-size: 2.2rem; /* Smaller title */
+  }
+  
+  .vertical-line {
+    height: 3rem; /* Shorter line */
+  }
+  
+  .features-container {
+    gap: 6rem; /* Less space between features */
+    margin-left: 0; /* Remove extra margin for mobile */
+    padding: 0 1.5rem; /* Smaller padding */
+  }
+  
+  .feature-item {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem; /* Less space */
+  }
+  
+  .feature-content {
+    width: 100%;
+  }
+  
+  .feature-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .feature-line {
+    margin: 0.5rem auto; /* Center the line */
+  }
+  
+  .feature-description {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  
+  .feature-image {
+    width: 100%;
+    margin-top: 0;
+    transform: translateX(0); /* Reset positioning */
+  }
+  
+  .feature-image img {
+    max-width: 100%;
+    width: 100%; /* Full width on mobile */
+  }
+  
+ .view-more-caption {
+    transform: translateY(0);
+    opacity: 0.9;
+    font-size: 0.75rem; /* Slightly smaller */
+  }
+
+ /* AI Button adjustments */
+  .explore-ai-btn {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+  }
+  
+/* Adjust AI exploration button */
+  .ai-exploration-link {
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .tbd-tag {
+    font-size: 0.7rem;
+  }
+}
+
+  /* Footer adjustments */
+  footer {
+    padding: 1.5rem;
+  }
+  
+  .footer-content {
+    font-size: 0.9rem;
+  }
 
     /* Menu toggle fixes */
     .menu-toggle {
