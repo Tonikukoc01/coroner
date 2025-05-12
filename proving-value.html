@@ -665,6 +665,72 @@ body {
             display: inline-block;
             vertical-align: middle;
         }
+
+ .ai-exploration-link {
+        text-align: center;
+        margin-top: 4rem;
+        animation: fadeIn 1s forwards;
+    }
+
+ .ai-button-container {
+        position: relative;
+        display: inline-block; /* Contains the button and the TBD tag */
+    }
+
+    .explore-ai-btn {
+        display: inline-flex;
+        align-items: center;
+        color: #F0F4F8;
+        font-family: 'SkemaProDisplay', sans-serif;
+        font-weight: 100;
+        font-size: 1.4rem;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border: 0.5px solid #F0F4F8;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+    
+    .explore-ai-btn:hover {
+        background-color: rgba(240, 244, 248, 0.1);
+    }
+    
+    .explore-ai-btn .view-more-icon {
+        margin-left: 0.5rem;
+    }
+
+  .tbd-tag {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: #E63946;
+        color: #F0F4F8;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.2rem 0.6rem;
+        border-radius: 2px;
+        letter-spacing: 0.05rem;
+ z-index: 1;
+    }
+
+
+/* Footer Styles */
+footer {
+    padding: 2rem 4rem;
+    background: #1A2B3C;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 200;
+    font-size: 1.1rem;
+    color: #6B7280;
+}
+
         
         /* Desktop hover effect (screens larger than 768px) */
         @media screen and (min-width: 769px) {
