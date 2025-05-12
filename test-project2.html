@@ -900,10 +900,10 @@
             
             readingModeToggle.addEventListener('change', function() {
                 if (this.checked) {
-                    bodyElement.classList.add('reading-mode');
+                    bodyElement.classList.add('easy-reading');
                     localStorage.setItem('readingMode', 'enabled');
                 } else {
-                    bodyElement.classList.remove('reading-mode');
+                    bodyElement.classList.remove('easy-reading');
                     localStorage.setItem('readingMode', 'disabled');
                 }
             });
