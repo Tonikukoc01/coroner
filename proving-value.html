@@ -685,160 +685,93 @@ body {
         
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
-  /* General styles */
-  html, body {
-    overflow-x: hidden; /* Prevent horizontal scroll */
-  }
-  
-  /* Header adjustments */
-  #home {
-    padding-top: 4rem; /* Reduced padding */
-    padding-bottom: 4rem;
-    min-height: 60vh; /* Reduced height */
-  }
-
-            .feature-item {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .feature-image {
-                width: 100%;
-                max-width: 100%;
-            }
-            
-            .view-more-caption.mobile-visible {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-/* Add the fadeIn animation keyframes */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-    .portfolio-header {
-        font-size: 2.3rem;
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-    .feature-item, .feature-item.reverse {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .feature-text, .feature-image-container {
-        max-width: 100%;
-    }
-    .feature-title {
-        font-size: 1.8rem;
-        text-align: center;
-    }
-    .feature-line {
-        margin: 0 auto 1.5rem;
-    }
-    .feature-description {
-        text-align: center;
-    }
-    .feature-image {
-        height: 220px;
-    }
-}
- 
-
-/* Mobile Responsive */
-@media screen and (max-width: 768px) {
-   #home {
-    padding-top: 4rem; /* Reduced padding */
-    padding-bottom: 4rem;
-    min-height: 75vh; /* Reduced height */
-  }
+/* Global styles that should apply to all screen sizes */
 html, body {
-overflow-x: hidden;
+  overflow-x: hidden;
 }
-    #header {
-        position: relative;
-        top: 7rem;
-        left: 0;
-        transform: none;
-        padding: 2rem;
-        text-align: center;
-        align-items: center;
-        width: 100%;
-    }
 
-    #header h1 {
-    font-size: 2.8rem; /* Further reduced for smaller screens */
+/* All mobile-specific styles should be inside this media query */
+@media screen and (max-width: 768px) {
+  #home {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    min-height: 75vh;
+  }
+
+  #header {
+    position: relative;
+    top: 7rem;
+    left: 0;
+    transform: none;
+    padding: 2rem;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  #header h1 {
+    font-size: 2.8rem;
     text-align: center;
     margin-bottom: 1rem;
   }
 
-     #header p {
+  #header p {
     text-align: center;
     font-size: 1.1rem;
     padding: 0 1rem;
   }
 
-.remove-br {
-        display: none;
-    }
-
-     .bold-toni {
-    font-size: 2.8rem; /* Match the h1 size */
+  .remove-br {
+    display: none;
   }
 
-    .bold-split {
-       font-size: 1.4rem;
-       color: inherit;
- } 
+  .bold-toni {
+    font-size: 2.8rem;
+  }
 
-    .scroll-indicator {
-        margin-left: 0;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        align-self: center;
-    }
+  .bold-split {
+    font-size: 1.4rem;
+    color: inherit;
+  } 
 
-    .scroll-indicator .scroll-line {
-        height: 7cm; /* Reduced height for mobile */
-    }
+  .scroll-indicator {
+    margin-left: 0;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    align-self: center;
+  }
 
-/* Features section adjustments for mobile*/
+  .scroll-indicator .scroll-line {
+    height: 7cm;
+  }
+
+  /* Features section adjustments for mobile */
   #features {
-    padding: 4rem 0; /* Less padding on mobile */
+    padding: 4rem 0;
   }
   
   .features-header {
-    margin-bottom: 5rem; /* Reduced spacing */
+    margin-bottom: 5rem;
   }
   
   .features-title {
-    font-size: 1.9rem; /* Smaller title */
+    font-size: 1.9rem;
   }
   
   .vertical-line {
-    height: 3rem; /* Shorter line */
+    height: 3rem;
   }
   
   .features-container {
-    gap: 6rem; /* Less space between features */
-    margin-left: 0; /* Remove extra margin for mobile */
-    padding: 0 1.5rem; /* Smaller padding */
+    gap: 6rem;
+    margin-left: 0;
+    padding: 0 1.5rem;
   }
   
   .feature-item {
     flex-direction: column;
     gap: 2rem;
-    margin-bottom: 4rem; /* Less space */
+    margin-bottom: 4rem;
   }
   
   .feature-content {
@@ -851,7 +784,7 @@ overflow-x: hidden;
   }
   
   .feature-line {
-    margin: 0.5rem auto; /* Center the line */
+    margin: 0.5rem auto;
   }
   
   .feature-description {
@@ -862,27 +795,27 @@ overflow-x: hidden;
   .feature-image {
     width: 100%;
     margin-top: 0;
-    transform: translateX(0); /* Reset positioning */
+    transform: translateX(0);
   }
   
   .feature-image img {
     max-width: 100%;
-    width: 100%; /* Full width on mobile */
+    width: 100%;
   }
   
- .view-more-caption {
+  .view-more-caption {
     transform: translateY(0);
     opacity: 0.9;
-    font-size: 0.75rem; /* Slightly smaller */
+    font-size: 0.75rem;
   }
 
- /* AI Button adjustments */
+  /* AI Button adjustments */
   .explore-ai-btn {
     font-size: 1.2rem;
     padding: 0.8rem 1.5rem;
   }
   
-/* Adjust AI exploration button */
+  /* Adjust AI exploration button */
   .ai-exploration-link {
     margin-top: 2rem;
     padding: 0 1rem;
@@ -891,8 +824,7 @@ overflow-x: hidden;
   .tbd-tag {
     font-size: 0.7rem;
   }
-}
-
+  
   /* Footer adjustments */
   footer {
     padding: 1.5rem;
@@ -902,121 +834,123 @@ overflow-x: hidden;
     font-size: 0.9rem;
   }
 
-    /* Menu toggle fixes */
-    .menu-toggle {
-        display: flex !important;
-        position: fixed;
-        top: 3.7rem;
-        right: 4rem;
-        z-index: 1001;
-        margin-left: 0;
-        margin-top: 0;
-    }
-
-    .side-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(26, 43, 60, 0.75); /* Same as desktop */
-backdrop-filter: blur(5px); /* Add blur effect */
-        -webkit-backdrop-filter: blur(5px); /* For Safari support */
-        z-index: 1000;
-        opacity: 0; /* Start with transparency */
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-    }
-     .side-menu-nav {
-        margin-top: 1rem; /* Slightly reduced margin for mobile */
-    }
-    .side-menu-content {
-        padding-top: 6rem;
-        padding-right: 2rem;
-        align-items: flex-end;
-        width: 100%;
-        text-align: right;
-    }
-
-    .side-menu-nav ul {
-        align-items: right;
-        gap: 2.5rem;
-    }
-
-    .side-menu-nav a {
-        font-size: 1.5rem;
-    }
-
-    .side-menu-social {
-        gap: 1.5rem;
-        justify-content: center; /* Center social icons */
-        margin-top: 2rem;
-        margin-bottom: 1.5rem;
-    }
-
- .horizontal-line-side-menu {
-        width: 60%; /* Use percentage instead of cm for responsiveness */
-        margin-bottom: 1.5rem;
-        margin-top: 1.5rem;
-    }
-
-@media screen and (max-width: 768px) {
-    .nav-menu ul li:not(:last-child) {
-        display: none;
-    }
-
-    .nav-menu.active ul {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: 0;
-        padding: 5rem 2rem 2rem;
-        height: 100vh;
-        width: 250px;
-    }
-
-    .nav-menu.active ul li {
-        display: block;
-    }
-
-    .content-section {
-        padding: 3rem 1rem;
-        
-    }
-
-    /* Navigation adjustments */
-    .nav-menu {
-        right: 4rem;
-    }
-
-    /* Logo adjustments */
-    .logo {
-        left: 2rem;
-        top: 2.3rem;
-    }
-
-   .logo-link span {
-        display: none; /* Hide the text logo on mobile */
-    }
-    
-    .logo-image {
-        display: block; /* Show the image logo on mobile */
-        height: 39px;
-    }
-
-.logo-line {
+  /* Menu toggle - Mobile specific! */
+  .menu-toggle {
+    display: flex !important;
+    position: fixed;
+    top: 3.7rem;
+    right: 4rem;
+    z-index: 1001;
     margin-left: 0;
-}
+    margin-top: 0;
+  }
 
-.menu-text {
+  /* Side menu - Mobile specific! */
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 43, 60, 0.75);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .side-menu-nav {
+    margin-top: 1rem;
+  }
+  
+  .side-menu-content {
+    padding-top: 6rem;
+    padding-right: 2rem;
+    align-items: flex-end;
+    width: 100%;
+    text-align: right;
+  }
+
+  .side-menu-nav ul {
+    align-items: right;
+    gap: 2.5rem;
+  }
+
+  .side-menu-nav a {
+    font-size: 1.5rem;
+  }
+
+  .side-menu-social {
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .horizontal-line-side-menu {
+    width: 60%;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Navigation mobile styles */
+  .nav-menu ul li:not(:last-child) {
     display: none;
-}
+  }
 
-.contact-icon {
-        display: inline-block; /* Show icon on mobile */
-        margin-left: 0.5rem;
-    }
+  .nav-menu.active ul {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 5rem 2rem 2rem;
+    height: 100vh;
+    width: 250px;
+  }
+
+  .nav-menu.active ul li {
+    display: block;
+  }
+
+  .content-section {
+    padding: 3rem 1rem;
+  }
+
+  /* Navigation adjustments */
+  .nav-menu {
+    right: 4rem;
+  }
+
+  /* Logo adjustments */
+  .logo {
+    left: 2rem;
+    top: 2.3rem;
+  }
+
+  .logo-link span {
+    display: none;
+  }
+    
+  .logo-image {
+    display: block;
+    height: 39px;
+  }
+
+  .logo-line {
+    margin-left: 0;
+  }
+
+  .menu-text {
+    display: none;
+  }
+
+  .contact-icon {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
 
     /* Language dropdown adjustments */
     .language-dropdown {
@@ -1029,7 +963,6 @@ backdrop-filter: blur(5px); /* Add blur effect */
         padding: 1.5rem;
         box-sizing: border-box;
     }
-}
 
 /* Ensure menu toggle stays visible */
 .menu-toggle {
