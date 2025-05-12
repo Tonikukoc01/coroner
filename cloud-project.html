@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Recomposition - Infrastructure Transformation</title>
+    <style>
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+        }
+
+        /* Rest of the font-face and base styles remain the same as in the previous artifact */
+
+        :root {
+            --bg-color: #1A2B3C;
+            --text-color: #F0F4F8;
+            --dark-text-color: #0A1A2A;
+            --accent-color: #4E92DF;
+            --success-color: #3EB489;
+            --section-padding: 3rem 0;
+        }
+        
+        /* Existing styles from previous artifact */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'SkemaProDisplay', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Existing styles continue... */
+    </style>
+</head>
+<body>
+    <!-- Back to top button -->
+    <div class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+    
+    <!-- Reading mode switch -->
+    <div class="switch-container">
+        <span class="switch-label">Easy Reading</span>
+        <label class="switch">
+            <input type="checkbox" id="readingModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    
+    <div class="case-study-container">
+        <!-- Back to projects arrow link -->
+        <a href="/proving-value" class="back-to-projects">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Projects
+        </a>
+        
+        <p class="project-timeframe">September 2023 - January 2024</p>
+        
+        <div class="case-study-header">
+            <h1 class="case-study-title">Cloud Recomposition</h1>
+            <div class="divider"></div>
+            <p class="case-study-subheader">
+                Re-architected legacy cloud infrastructure to improve scalability, reduce operational expenses, and establish robust deployment and monitoring practices.
+            </p>
+        </div>
+        
+        <!-- Wide image section for cost comparison -->
+        <div class="wide-image-container">
+            <img src="/api/placeholder/1200/600" alt="Cost Optimization Comparison" class="wide-image">
+            <p class="image-caption">Comparative analysis of infrastructure costs before and after cloud recomposition.</p>
+        </div>
+        
+        <!-- Project metrics -->
+        <div class="metrics-container">
+            <div class="metric-card">
+                <div class="metric-value">62%</div>
+                <div class="metric-label">OPEX Reduction</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">99.98%</div>
+                <div class="metric-label">System Uptime</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">3x</div>
+                <div class="metric-label">Scalability Improvement</div>
+            </div>
+        </div>
+        
+        <div class="case-study-content">
+            <h2 class="section-heading">Overview</h2>
+            <p>
+                In September 2023, our platform experienced a significant user influx that exposed critical limitations in our existing cloud infrastructure. The sudden traffic surge revealed performance bottlenecks, inconsistent scaling, and escalating operational costs. This project aimed to fundamentally restructure our cloud architecture to create a more resilient, cost-effective, and scalable solution.
+            </p>
+            
+            <h2 class="section-heading">The Challenge</h2>
+            <p>
+                The legacy infrastructure presented multiple critical challenges:
+            </p>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Cost Inefficiency</h3>
+                <p>
+                    Our existing cloud setup was overprovisioned and lacked cost optimization strategies. We were spending significantly more than necessary on compute and storage resources, with poor utilization rates.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Scalability Limitations</h3>
+                <p>
+                    The infrastructure couldn't efficiently handle sudden traffic spikes. During the September 2023 user influx, multiple service disruptions occurred, leading to poor user experience and potential revenue loss.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Deployment Complexity</h3>
+                <p>
+                    Manual deployment processes and lack of comprehensive monitoring made it difficult to quickly identify and resolve infrastructure issues. This increased our mean time to resolution (MTTR) significantly.
+                </p>
+            </div>
+            
+            <h2 class="section-heading">Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-item">Kubernetes</span>
+                <span class="tech-item">Terraform</span>
+                <span class="tech-item">AWS EKS</span>
+                <span class="tech-item">Prometheus</span>
+                <span class="tech-item">Grafana</span>
+                <span class="tech-item">ArgoCD</span>
+                <span class="tech-item">CloudWatch</span>
+                <span class="tech-item">Datadog</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Istio</span>
+            </div>
+            
+            <h2 class="section-heading">Approach</h2>
+            
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">September 2023</div>
+                    <div class="timeline-title">Initial Assessment</div>
+                    <div class="timeline-description">
+                        Conducted a comprehensive audit of existing infrastructure, identifying performance bottlenecks, cost inefficiencies, and scalability limitations revealed by the user traffic surge.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">October 2023</div>
+                    <div class="timeline-title">Architecture Redesign</div>
+                    <div class="timeline-description">
+                        Developed a new cloud architecture using Kubernetes and AWS EKS, focusing on microservices architecture, auto-scaling, and improved resource allocation strategies.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">November 2023</div>
+                    <div class="timeline-title">Infrastructure as Code</div>
+                    <div class="timeline-description">
+                        Implemented Infrastructure as Code (IaC) using Terraform, creating reproducible and version-controlled infrastructure deployments. Established GitOps workflows with ArgoCD for continuous deployment.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">December 2023</div>
+                    <div class="timeline-title">Monitoring & Observability</div>
+                    <div class="timeline-description">
+                        Integrated advanced monitoring solutions using Prometheus, Grafana, and Datadog. Implemented comprehensive logging, tracing, and alerting mechanisms to improve system visibility.
+                    </div>
+                </div>
+                
+                <div class="timeline-event">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">January 2024</div>
+                    <div class="timeline-title">Final Migration & Optimization</div>
+                    <div class="timeline-description">
+                        Completed full migration to the new infrastructure, conducted extensive performance testing, and fine-tuned resource allocation and scaling policies.
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-heading">Key Implementations</h2>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Kubernetes-Based Microservices</h3>
+                <p>
+                    Redesigned the entire infrastructure using a microservices architecture on Kubernetes, enabling granular scaling, improved isolation, and more efficient resource utilization. Implemented Istio for advanced service mesh capabilities.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Advanced Auto-Scaling</h3>
+                <p>
+                    Developed sophisticated auto-scaling strategies using Kubernetes Horizontal Pod Autoscaler (HPA) and Cluster Autoscaler. This allowed dynamic resource allocation based on real-time traffic patterns, reducing costs and improving performance.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Comprehensive Monitoring Framework</h3>
+                <p>
+                    Implemented a multi-layered monitoring solution combining Prometheus for metrics, Grafana for visualization, and Datadog for advanced observability. Created custom dashboards and alerting mechanisms to proactively identify and address potential issues.
+                </p>
+            </div>
+            
+            <h2 class="section-heading">Results & Impact</h2>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Cost Optimization</h3>
+                <p>
+                    Achieved a 62% reduction in operational expenses through intelligent resource allocation, reserved instances, and precise auto-scaling mechanisms. Eliminated over-provisioning and implemented more granular cost management.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Performance & Reliability</h3>
+                <p>
+                    Improved system uptime to 99.98%, with the ability to handle 3x more concurrent users compared to the previous infrastructure. Reduced mean time to recovery (MTTR) by implementing advanced monitoring and automated recovery mechanisms.
+                </p>
+            </div>
+            
+            <div class="challenge-solution">
+                <h3 class="challenge-title">Deployment Efficiency</h3>
+                <p>
+                    Established a robust GitOps workflow that reduced deployment times by 75% and eliminated manual intervention. Implemented comprehensive CI/CD pipelines with built-in security and compliance checks.
+                </p>
+            </div>
+            
+            <h2 class="section-heading">Conclusion</h2>
+            <p>
+                The cloud recomposition project transformed our infrastructure from a liability to a strategic asset. By embracing modern cloud-native technologies and best practices, we created a more resilient, cost-effective, and scalable platform that can adapt to changing business needs.
+            </p>
+            
+            <p>
+                This project demonstrates how strategic technical investments can drive significant business value, reducing costs while improving overall system performance and reliability.
+            </p>
+            
+            <!-- Contact section -->
+            <div class="contact-section">
+                <h2 class="section-heading">Want to discuss this project?</h2>
+                <p>
+                    I'm always happy to share more details about the cloud transformation or discuss how similar approaches could benefit your organization.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts section - same as previous artifact -->
+    <script>
+        // Script content remains the same as in the previous artifact
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            const readingModeToggle = document.getElementById('readingModeToggle');
+            const bodyElement = document.body;
+            
+            readingModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    bodyElement.classList.add('easy-reading');
+                    localStorage.setItem('readingMode', 'enabled');
+                } else {
+                    bodyElement.classList.remove('easy-reading');
+                    localStorage.setItem('readingMode', 'disabled');
+                }
+            });
+            
+            if (localStorage.getItem('readingMode') === 'enabled') {
+                readingModeToggle.checked = true;
+                bodyElement.classList.add('reading-mode');
+            }
+            
+            const timelineEvents = document.querySelectorAll('.timeline-event');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+            
+            timelineEvents.forEach(event => {
+                observer.observe(event);
+            });
+        });
+    </script>
+</body>
+</html>
