@@ -493,8 +493,8 @@ body {
     height: 2px;
     background-color: #F0F4F8; 
     border: none; 
-    margin-bottom: 2.5rem;
-    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 .social-icon:hover {
   color: #ffffff;
@@ -1017,6 +1017,7 @@ footer {
         <li><a href="approach.html">approach to collaboration</a></li>
         <li><a href="about.html">about my life</a></li>
         <li><a href="blog.html">writing outlet</a></li>
+        <li><a href="proving-value.html">delivering value</a></li>
       </ul>
     </nav>
   </div>
@@ -1169,6 +1170,7 @@ const blogTranslations = {
         'nav_approach': 'approach to collaboration',
         'nav_about': 'about my life',
         'nav_blog': 'writing outlet',
+        'nav_value': 'delivering value',
         'more_coming_soon': 'More articles coming soon...',
         'footer_text': 'Toni Kukoč © MMXXV'
     },
@@ -1179,6 +1181,7 @@ const blogTranslations = {
         'nav_approach': 'approche de collaboration',
         'nav_about': 'à propos de ma vie',
         'nav_blog': 'espace d\'écriture',
+        'nav_value': 'apporter de la valeur'
         'more_coming_soon': 'Plus d\'articles à venir...',
         'footer_text': 'Toni Kukoč © MMXXV'
     },
@@ -1189,6 +1192,7 @@ const blogTranslations = {
         'nav_approach': 'pristup suradnji',
         'nav_about': 'o mom životu',
         'nav_blog': 'prostor za pisanje',
+        'nav_value': 'dodavanje vrijednosti' 
         'more_coming_soon': 'Više članaka uskoro...',
         'footer_text': 'Toni Kukoč © MMXXV'
     }
@@ -1294,6 +1298,8 @@ function updateBlogLanguage(lang) {
         navItems[1].textContent = blogTranslations[lang].nav_approach;
         navItems[2].textContent = blogTranslations[lang].nav_about;
         navItems[3].textContent = blogTranslations[lang].nav_blog;
+        navItems[4].textContent = blogTranslations[lang].nav_value;
+
     }
     
     // Update "more articles coming soon" text
