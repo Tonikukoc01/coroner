@@ -1474,37 +1474,18 @@ function attachLanguageSelectionHandlers() {
             e.stopPropagation();
             const selectedLang = option.dataset.lang;
             
-            // Update the language
-            updateLanguage(selectedLang);
+            // Close dropdown after selection
             const dropdown = option.closest('.language-dropdown');
             if (dropdown) {
                 dropdown.classList.remove('active');
             }
+            
+            // Update the language
+            updateLanguage(selectedLang);
         });
     });
 }
-// Update all language selectors with the selected language
-function updateLanguageSelectors(langCode) {
-    const languageDropdowns = document.querySelectorAll('.language-dropdown');
-    
-    languageDropdowns.forEach(dropdown => {
-        const selector = dropdown.querySelector('.language-selector');
-        const flag = selector.querySelector('.language-flag');
-        const code = selector.querySelector('.language-code');
-        
-        // Update the flag and code
-        flag.src = languages[langCode].flag;
-        flag.alt = `${languages[langCode].name} Flag`;
-        flag.dataset.lang = langCode;
-        code.textContent = languages[langCode].code;
-        
-        // Update data attribute
-        selector.dataset.currentLang = langCode;
-        
-        // Update available options
-        updateLanguageOptions(dropdown, langCode);
-    });
-}
+
 // Update all language selectors with the selected language
 function updateLanguageSelectors(langCode) {
     const languageDropdowns = document.querySelectorAll('.language-dropdown');
