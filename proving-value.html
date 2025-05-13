@@ -1363,37 +1363,72 @@ const languages = {
     }
 };
 // Blog translations
-const blogTranslations = {
+const translations = {
     'en': {
-        'page_title': 'My writing.',
-        'page_description': 'I write about variety of topics. Is it AI, networking events, <br>new technology trends or anything else, you will find my creative outlet here.',
-        'menu_text': 'contact',
-        'nav_home': 'home',
-        'nav_approach': 'approach to collaboration',
-        'nav_about': 'about my life',
-        'nav_blog': 'writing outlet',
-        'more_coming_soon': 'More articles coming soon...',
-        'footer_text': 'Toni Kukoč © MMXXV'
+        'common': {
+            'menu_text': 'contact',
+            'nav_home': 'home',
+            'nav_approach': 'approach to collaboration',
+            'nav_about': 'about my life',
+            'nav_blog': 'writing outlet',
+            'nav_value': 'value delivery',
+            'footer_text': 'Toni Kukoč © MMXXV'
+        },
+        'blog': {
+            'page_title': 'My writing.',
+            'page_description': 'I write about variety of topics. Is it AI, networking events, <br>new technology trends or anything else, you will find my creative outlet here.',
+            'more_coming_soon': 'More articles coming soon...'
+        },
+        'proving-value': {
+            'page_title': 'Value delivered.',
+            'page_description': 'From quiet wins to major changes — here's how I proved my value.',
+            'section_title': 'results that mattered',
+            'explore_ai': 'View my AI exploration related projects'
+        }
     },
     'fr': {
-        'page_title': 'Mes écrits.',
-         'page_description': 'J\'écris sur une variété de sujets. Qu\'il s\'agisse d\'IA, d\'événements de réseautage, <br>de nouvelles tendances technologiques ou de tout autre sujet, vous trouverez ici mon expression créative.',        'menu_text': 'contact',
-        'nav_home': 'accueil',
-        'nav_approach': 'approche de collaboration',
-        'nav_about': 'à propos de ma vie',
-        'nav_blog': 'espace d\'écriture',
-        'more_coming_soon': 'Plus d\'articles à venir...',
-        'footer_text': 'Toni Kukoč © MMXXV'
+        'common': {
+            'menu_text': 'contact',
+            'nav_home': 'accueil',
+            'nav_approach': 'approche de collaboration',
+            'nav_about': 'à propos de ma vie',
+            'nav_blog': 'espace d\'écriture',
+            'nav_value': 'prestation de valeur',
+            'footer_text': 'Toni Kukoč © MMXXV'
+        },
+        'blog': {
+            'page_title': 'Mes écrits.',
+            'page_description': 'J\'écris sur une variété de sujets. Qu\'il s\'agisse d\'IA, d\'événements de réseautage, <br>de nouvelles tendances technologiques ou de tout autre sujet, vous trouverez ici mon expression créative.',
+            'more_coming_soon': 'Plus d\'articles à venir...'
+        },
+        'proving-value': {
+            'page_title': 'Valeur livrée.',
+            'page_description': 'Des victoires discrètes aux changements majeurs — voici comment j\'ai prouvé ma valeur.',
+            'section_title': 'résultats qui comptent',
+            'explore_ai': 'Voir mes projets d\'exploration d\'IA'
+        }
     },
     'hr': {
-        'page_title': 'Moji tekstovi.',
-        'page_description': 'Pišem o raznim temama. Bilo da se radi o umjetnoj inteligenciji, networkingu, <br>novim tehnološkim trendovima ili bilo čemu drugom, ovdje ćete pronaći moj kreativni izričaj.',        'menu_text': 'kontakt',
-        'nav_home': 'početna',
-        'nav_approach': 'pristup suradnji',
-        'nav_about': 'o mom životu',
-        'nav_blog': 'prostor za pisanje',
-        'more_coming_soon': 'Više članaka uskoro...',
-        'footer_text': 'Toni Kukoč © MMXXV'
+        'common': {
+            'menu_text': 'kontakt',
+            'nav_home': 'početna',
+            'nav_approach': 'pristup suradnji',
+            'nav_about': 'o mom životu',
+            'nav_blog': 'prostor za pisanje',
+            'nav_value': 'isporuka vrijednosti',
+            'footer_text': 'Toni Kukoč © MMXXV'
+        },
+        'blog': {
+            'page_title': 'Moji tekstovi.',
+            'page_description': 'Pišem o raznim temama. Bilo da se radi o umjetnoj inteligenciji, networkingu, <br>novim tehnološkim trendovima ili bilo čemu drugom, ovdje ćete pronaći moj kreativni izričaj.',
+            'more_coming_soon': 'Više članaka uskoro...'
+        },
+        'proving-value': {
+            'page_title': 'Isporučena vrijednost.',
+            'page_description': 'Od tihih pobjeda do velikih promjena — evo kako sam dokazao svoju vrijednost.',
+            'section_title': 'rezultati koji su važni',
+            'explore_ai': 'Pogledajte moje projekte istraživanja umjetne inteligencije'
+        }
     }
 };
 // Function to update language options in dropdowns
@@ -1441,6 +1476,10 @@ function attachLanguageSelectionHandlers() {
             
             // Update the language
             updateLanguage(selectedLang);
+            const dropdown = option.closest('.language-dropdown');
+            if (dropdown) {
+                dropdown.classList.remove('active');
+            }
         });
     });
 }
@@ -1466,70 +1505,149 @@ function updateLanguageSelectors(langCode) {
         updateLanguageOptions(dropdown, langCode);
     });
 }
+// Update all language selectors with the selected language
+function updateLanguageSelectors(langCode) {
+    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+    
+    languageDropdowns.forEach(dropdown => {
+        const selector = dropdown.querySelector('.language-selector');
+        const flag = selector.querySelector('.language-flag');
+        const code = selector.querySelector('.language-code');
+        
+        // Update the flag and code
+        flag.src = languages[langCode].flag;
+        flag.alt = `${languages[langCode].name} Flag`;
+        flag.dataset.lang = langCode;
+        code.textContent = languages[langCode].code;
+        
+        // Update data attribute
+        selector.dataset.currentLang = langCode;
+        
+        // Update available options
+        updateLanguageOptions(dropdown, langCode);
+    });
+}
+
+// Function to detect current page
+function getCurrentPage() {
+    const path = window.location.pathname;
+    
+    if (path.includes('blog') || document.querySelector('#articles') !== null) {
+        return 'blog';
+    } else if (path.includes('proving-value') || document.querySelector('#features') !== null) {
+        return 'proving-value';
+    }
+    
+    // Default to a generic page type
+    return 'generic';
+}
+
+// Function to update common elements across all pages
+function updateCommonElements(lang) {
+    // Update contact text
+    const contactText = document.querySelector('.menu-text');
+    if (contactText) {
+        contactText.textContent = translations[lang].common.menu_text;
+    }
+    
+    // Update navigation items
+    const navItems = document.querySelectorAll('.side-menu-nav ul li a');
+    if (navItems.length >= 5) {
+        navItems[0].textContent = translations[lang].common.nav_home;
+        navItems[1].textContent = translations[lang].common.nav_approach;
+        navItems[2].textContent = translations[lang].common.nav_about;
+        navItems[3].textContent = translations[lang].common.nav_blog;
+        navItems[4].textContent = translations[lang].common.nav_value;
+    }
+    
+    // Update footer if it exists
+    const footerContent = document.querySelector('.footer-content');
+    if (footerContent) {
+        footerContent.textContent = translations[lang].common.footer_text;
+    }
+}
+
 // Function to update blog page content based on selected language
 function updateBlogLanguage(lang) {
-    // Store the current language in localStorage
-    localStorage.setItem('selectedLanguage', lang);
-    
     // Update the page title
     const pageTitle = document.querySelector('#header h1');
     if (pageTitle) {
-        const titleParts = blogTranslations[lang].page_title.split(' ');
+        const titleParts = translations[lang].blog.page_title.split(' ');
         pageTitle.innerHTML = `${titleParts[0]} <span class="bold-toni">${titleParts[1] || ''}</span>`;
     }
     
     // Update the page description
     const pageDescription = document.querySelector('#header p');
     if (pageDescription) {
-        pageDescription.innerHTML = blogTranslations[lang].page_description;
-    }
-    
-    // Update contact text
-    const contactText = document.querySelector('.menu-text');
-    if (contactText) {
-        contactText.textContent = blogTranslations[lang].menu_text;
-    }
-    
-    // Update navigation items
-    const navItems = document.querySelectorAll('.side-menu-nav ul li a');
-    if (navItems.length >= 4) {
-        navItems[0].textContent = blogTranslations[lang].nav_home;
-        navItems[1].textContent = blogTranslations[lang].nav_approach;
-        navItems[2].textContent = blogTranslations[lang].nav_about;
-        navItems[3].textContent = blogTranslations[lang].nav_blog;
+        pageDescription.innerHTML = translations[lang].blog.page_description;
     }
     
     // Update "more articles coming soon" text
     const comingSoonText = document.querySelector('.coming-soon-text');
     if (comingSoonText) {
-        comingSoonText.textContent = blogTranslations[lang].more_coming_soon;
+        comingSoonText.textContent = translations[lang].blog.more_coming_soon;
+    }
+}
+
+// Function to update proving-value page content
+function updateProvingValueLanguage(lang) {
+    // Update the page title
+    const pageTitle = document.querySelector('#header h1');
+    if (pageTitle) {
+        const titleParts = translations[lang].proving-value.page_title.split(' ');
+        pageTitle.innerHTML = `${titleParts[0]} <span class="bold-toni">${titleParts[1] || ''}</span>`;
     }
     
-    // Update footer if it exists
-    const footerContent = document.querySelector('.footer-content');
-    if (footerContent) {
-        footerContent.textContent = blogTranslations[lang].footer_text;
+    // Update the page description
+    const pageDescription = document.querySelector('#header p');
+    if (pageDescription) {
+        pageDescription.textContent = translations[lang]['proving-value'].page_description;
     }
+    
+    // Update the "results that mattered" section title
+    const sectionTitle = document.querySelector('.features-title');
+    if (sectionTitle) {
+        sectionTitle.textContent = translations[lang]['proving-value'].section_title;
+    }
+    
+    // Update AI exploration button text
+    const exploreAiBtn = document.querySelector('.explore-ai-btn');
+    if (exploreAiBtn) {
+        // Keep the SVG icon by storing it
+        const svgIcon = exploreAiBtn.querySelector('svg');
+        exploreAiBtn.textContent = translations[lang]['proving-value'].explore_ai + ' ';
+        if (svgIcon) {
+            exploreAiBtn.appendChild(svgIcon);
+        }
+    }
+}
+
+// Main updateLanguage function that dispatches to page-specific functions
+function updateLanguage(lang) {
+    // Store the current language in localStorage
+    localStorage.setItem('selectedLanguage', lang);
     
     // Update document language attribute
     document.documentElement.lang = lang;
-}
-// Main updateLanguage function that dispatches to page-specific functions
-function updateLanguage(lang) {
-    // Check if we're on the blog page
-    const isBlogPage = window.location.pathname.includes('blog') || 
-                      document.querySelector('#articles') !== null;
     
-    if (isBlogPage) {
-        // We're on the blog page, use blog-specific translations
+    // Update common elements for all pages
+    updateCommonElements(lang);
+    
+    // Determine which page we're on and update page-specific content
+    const currentPage = getCurrentPage();
+    
+    if (currentPage === 'blog') {
         updateBlogLanguage(lang);
-    } else {
-        // For other pages, you would implement page-specific language updates here
+    } else if (currentPage === 'proving-value') {
+        updateProvingValueLanguage(lang);
     }
+    // Add more page-specific update functions as needed
     
     // Update the language selectors UI regardless of page
     updateLanguageSelectors(lang);
 }
+
+
 // Enhance side menu for mobile
 function enhanceSideMenuForMobile() {
     const sideMenu = document.querySelector('.side-menu');
@@ -1569,8 +1687,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             dropdown.classList.toggle('active');
         });
-        
-        // Hover events have been removed
     });
     
     // Close all dropdowns when clicking outside
@@ -1589,11 +1705,11 @@ document.addEventListener('DOMContentLoaded', () => {
         attachLanguageSelectionHandlers();
     }
     
-    // Clone language dropdown for side menu
+    // Clone language dropdown for side menu if needed
     const originalDropdown = document.querySelector('.language-dropdown');
     const sideMenuContent = document.querySelector('.side-menu-content');
     
-    if (originalDropdown && sideMenuContent) {
+    if (originalDropdown && sideMenuContent && !sideMenuContent.querySelector('.language-dropdown')) {
         const clonedDropdown = originalDropdown.cloneNode(true);
         sideMenuContent.insertBefore(clonedDropdown, sideMenuContent.firstChild);
         
@@ -1604,30 +1720,24 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             clonedDropdown.classList.toggle('active');
         });
+        
+        // Re-attach event listeners to the cloned dropdown
+        const clonedOptions = clonedDropdown.querySelectorAll('.language-option');
+        clonedOptions.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const selectedLang = option.dataset.lang;
+                
+                // Update the language
+                updateLanguage(selectedLang);
+                
+                // Close dropdown
+                clonedDropdown.classList.remove('active');
+            });
+        });
     }
     
-    // Handle window resize to adjust layouts
-    function handleResize() {
-        if (window.innerWidth <= 768) {
-            // Mobile layout adjustments
-            document.body.classList.add('mobile-view');
-        } else {
-            // Desktop layout adjustments
-            document.body.classList.remove('mobile-view');
-        }
-    }
-    
-    // Initial check and add resize listener
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    
-    // Fix for scroll indicator on mobile
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator && window.innerWidth <= 768) {
-        scrollIndicator.style.marginLeft = '0';
-    }
-    
-    // Set up mobile menu enhancements
+    // Enhance side menu for mobile
     enhanceSideMenuForMobile();
 });
 
