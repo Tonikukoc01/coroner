@@ -1594,7 +1594,7 @@ function updateProvingValueLanguage(lang) {
     // Update the page title
     const pageTitle = document.querySelector('#header h1');
     if (pageTitle) {
-        const titleParts = translations[lang].proving-value.page_title.split(' ');
+        const titleParts = translations[lang]['proving-value'].page_title.split(' ');
         pageTitle.innerHTML = `${titleParts[0]} <span class="bold-toni">${titleParts[1] || ''}</span>`;
     }
     
