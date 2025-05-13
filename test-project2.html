@@ -721,14 +721,26 @@ Delivered live, self-hosted masterclasses to 5,000+ global viewers, making artis
     
     
     <!-- Custom video controls -->
-    <div class="video-controls">
+      <div class="video-controls">
         <button id="play-pause-btn" aria-label="Play/Pause">
-            <span class="pause-icon">❚❚</span>
-            <span class="play-icon hidden">▶</span>
+            <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+            <svg class="play-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
         </button>
         <button id="mute-btn" aria-label="Mute/Unmute">
-            <span class="unmute-icon">🔊</span>
-            <span class="mute-icon hidden">🔇</span>
+            <svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg class="mute-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
         </button>
     </div>
     
@@ -1002,17 +1014,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const muteIcon = document.querySelector('.mute-icon');
     const unmuteIcon = document.querySelector('.unmute-icon');
     
-    // Hide loading spinner when video is ready to play
-    video.addEventListener('canplay', function() {
+    // Force hide loading spinner after 2 seconds as a fallback
+    setTimeout(function() {
         loadingSpinner.style.display = 'none';
-    });
+    }, 2000);
+    
+    // Better event handling for video loading
+    function hideSpinner() {
+        loadingSpinner.style.display = 'none';
+    }
+    
+    // Multiple events to ensure spinner hides properly
+    video.addEventListener('canplay', hideSpinner);
+    video.addEventListener('playing', hideSpinner);
+    video.addEventListener('loadeddata', hideSpinner);
+    
+    // If video is already loaded/cached
+    if (video.readyState >= 3) {
+        hideSpinner();
+    }
     
     // Handle play/pause button
     playPauseBtn.addEventListener('click', function() {
-        if (video.paused) {
-            video.play();
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
+        if (video.paused || video.ended) {
+            video.play()
+                .then(() => {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                })
+                .catch(err => {
+                    console.error('Error playing video:', err);
+                });
         } else {
             video.pause();
             playIcon.classList.remove('hidden');
@@ -1032,14 +1064,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Update UI based on video state
+    video.addEventListener('pause', function() {
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+    });
+    
+    video.addEventListener('play', function() {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        hideSpinner();
+    });
+    
     // Show loading spinner if video stalls
     video.addEventListener('waiting', function() {
         loadingSpinner.style.display = 'flex';
     });
-    
-    video.addEventListener('playing', function() {
-        loadingSpinner.style.display = 'none';
-    });
+});
 
     </script>
 </body>
