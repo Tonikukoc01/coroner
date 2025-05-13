@@ -1362,7 +1362,7 @@ const languages = {
         alternatives: ['en', 'fr'] 
     }
 };
-// Blog translations
+// Page translations
 const translations = {
     'en': {
         'common': {
@@ -1383,7 +1383,14 @@ const translations = {
             'page_title': 'Value delivered.',
             'page_description': 'From quiet wins to major changes — here\'s how I proved my value.',
             'section_title': 'results that mattered',
-            'explore_ai': 'View my AI exploration related projects'
+            'explore_ai': 'View my AI exploration related projects',
+            'feature1_title': 'Masterclass Platform',
+            'feature1_desc': 'Built a scalable live-streaming education platform end-to-end. Integrated AI for real-time features, enabled multilingual delivery, and streamlined payments. Supported 5,000+ live viewers and 100+ transactions using AWS for performance, storage, and VOD.',
+            'feature2_title': 'Cloud Recomposition',
+            'feature2_desc': 'Re-architected a legacy cloud infrastructure. Improved scalability, reduced OPEX, and established best practices for deployment pipelines, monitoring, and security.',
+            'feature3_title': 'Project Ops Leadership',
+            'feature3_desc': 'Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating task management, reducing development costs, and improving stakeholder alignment through structured invoicing and logistics systems.',
+            'view_more': 'View more'
         }
     },
     'fr': {
@@ -1405,7 +1412,14 @@ const translations = {
             'page_title': 'Valeur livrée.',
             'page_description': 'Des victoires discrètes aux changements majeurs — voici comment j\'ai prouvé ma valeur.',
             'section_title': 'résultats qui comptent',
-            'explore_ai': 'Voir mes projets d\'exploration d\'IA'
+            'explore_ai': 'Voir mes projets d\'exploration d\'IA',
+            'feature1_title': 'Plateforme Masterclass',
+            'feature1_desc': 'Construction d\'une plateforme éducative de streaming en direct, de bout en bout. Intégration de l\'IA pour des fonctionnalités en temps réel, diffusion multilingue et paiements simplifiés. Support pour plus de 5 000 spectateurs en direct et plus de 100 transactions, utilisant AWS pour les performances, le stockage et la VOD.',
+            'feature2_title': 'Recomposition Cloud',
+            'feature2_desc': 'Réarchitecture d\'une infrastructure cloud héritée. Amélioration de l\'évolutivité, réduction des OPEX et établissement de meilleures pratiques pour les pipelines de déploiement, la surveillance et la sécurité.',
+            'feature3_title': 'Leadership des Opérations de Projet',
+            'feature3_desc': 'Direction des opérations pour une équipe hybride de plus de 10 développeurs et 3 agences, coordination de la gestion des tâches, réduction des coûts de développement et amélioration de l\'alignement des parties prenantes grâce à des systèmes structurés de facturation et de logistique.',
+            'view_more': 'Voir plus'
         }
     },
     'hr': {
@@ -1427,7 +1441,14 @@ const translations = {
             'page_title': 'Isporučena vrijednost.',
             'page_description': 'Od tihih pobjeda do velikih promjena — evo kako sam dokazao svoju vrijednost.',
             'section_title': 'rezultati koji su važni',
-            'explore_ai': 'Pogledajte moje projekte istraživanja umjetne inteligencije'
+            'explore_ai': 'Pogledajte moje projekte istraživanja umjetne inteligencije',
+            'feature1_title': 'Masterclass Platforma',
+            'feature1_desc': 'Izgradio sam skalabilnu platformu za obrazovanje putem live streaminga od početka do kraja. Integrirao sam umjetnu inteligenciju za značajke u stvarnom vremenu, omogućio višejezičnu isporuku i pojednostavio plaćanja. Podržava više od 5.000 gledatelja uživo i više od 100 transakcija koristeći AWS za performanse, pohranu i VOD.',
+            'feature2_title': 'Restrukturiranje Clouda',
+            'feature2_desc': 'Ponovno arhitekturirano naslijeđeno cloud infrastrukturu. Poboljšana skalabilnost, smanjeni OPEX i uspostavljene najbolje prakse za pipeline-ove implementacije, nadzor i sigurnost.',
+            'feature3_title': 'Vođenje Projektnih Operacija',
+            'feature3_desc': 'Vodio operacije za hibridni tim od 10+ developera i 3 agencije, koordinirajući upravljanje zadacima, smanjujući troškove razvoja i poboljšavajući usklađenost dionika kroz strukturirane sustave fakturiranja i logistike.',
+            'view_more': 'Pogledaj više'
         }
     }
 };
@@ -1590,7 +1611,42 @@ function updateProvingValueLanguage(lang) {
     if (sectionTitle) {
         sectionTitle.textContent = translations[lang]['proving-value'].section_title;
     }
+       // Update feature titles and descriptions
+    const featureTitles = document.querySelectorAll('.feature-title a');
+    const featureDescriptions = document.querySelectorAll('.feature-description');
+    const viewMoreCaptions = document.querySelectorAll('.view-more-caption span');
     
+    // Update Feature 1
+    if (featureTitles.length > 0 && featureDescriptions.length > 0) {
+        featureTitles[0].textContent = translations[lang]['proving-value'].feature1_title;
+        featureDescriptions[0].textContent = translations[lang]['proving-value'].feature1_desc;
+    }
+    
+    // Update Feature 2
+    if (featureTitles.length > 1 && featureDescriptions.length > 1) {
+        featureTitles[1].textContent = translations[lang]['proving-value'].feature2_title;
+        featureDescriptions[1].textContent = translations[lang]['proving-value'].feature2_desc;
+    }
+    
+    // Update Feature 3
+    if (featureTitles.length > 2 && featureDescriptions.length > 2) {
+        // The third feature might not have an anchor tag
+        const feature3Title = document.querySelectorAll('.feature-title')[2];
+        if (feature3Title) {
+            if (feature3Title.querySelector('a')) {
+                feature3Title.querySelector('a').textContent = translations[lang]['proving-value'].feature3_title;
+            } else {
+                feature3Title.textContent = translations[lang]['proving-value'].feature3_title;
+            }
+        }
+        featureDescriptions[2].textContent = translations[lang]['proving-value'].feature3_desc;
+    }
+    
+    // Update "View more" text
+    viewMoreCaptions.forEach(caption => {
+        caption.textContent = translations[lang]['proving-value'].view_more;
+    });
+
     // Update AI exploration button text
     const exploreAiBtn = document.querySelector('.explore-ai-btn');
     if (exploreAiBtn) {
