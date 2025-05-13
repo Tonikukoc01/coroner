@@ -502,33 +502,85 @@
     
         /* Video container */
         .video-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 2rem auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .video-placeholder {
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            background-color: rgba(255, 255, 255, 0.05);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .video-placeholder img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        width: 100%;
+        max-width: 1000px;
+        margin: 2rem auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+    
+    .feature-video {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+    
+    /* Custom video controls */
+    .video-controls {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        display: flex;
+        gap: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px;
+        border-radius: 20px;
+    }
+    
+    .video-container:hover .video-controls {
+        opacity: 1;
+    }
+    
+    .video-controls button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+    }
+    
+    .video-controls button:hover {
+        transform: scale(1.2);
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    /* Loading spinner */
+    .loading-spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
         
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
@@ -660,12 +712,30 @@
 Delivered live, self-hosted masterclasses to 5,000+ global viewers, making artist education accessible and boosting platform revenue by 25%.            </p>
         </div>
         
-        <!-- Video placeholder for GIF/video demonstration -->
-        <div class="video-container">
-            <div class="video-placeholder">
-                <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
-            </div>
-        </div>
+     <div class="video-container">
+    <video id="demo-video" autoplay muted loop playsinline class="feature-video">
+        <source src="path/to/your-video.mp4" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+        <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
+    </video>
+    
+    <!-- Custom video controls -->
+    <div class="video-controls">
+        <button id="play-pause-btn" aria-label="Play/Pause">
+            <span class="pause-icon">❚❚</span>
+            <span class="play-icon hidden">▶</span>
+        </button>
+        <button id="mute-btn" aria-label="Mute/Unmute">
+            <span class="unmute-icon">🔊</span>
+            <span class="mute-icon hidden">🔇</span>
+        </button>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+</div>
         
         <div class="case-study-content">
             <h2 class="section-heading">Overview</h2>
@@ -920,5 +990,55 @@ This project shows how solid tech can really boost business results, creating a 
                 observer.observe(event);
             });
         });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('demo-video');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+    const playIcon = document.querySelector('.play-icon');
+    const pauseIcon = document.querySelector('.pause-icon');
+    const muteIcon = document.querySelector('.mute-icon');
+    const unmuteIcon = document.querySelector('.unmute-icon');
+    
+    // Hide loading spinner when video is ready to play
+    video.addEventListener('canplay', function() {
+        loadingSpinner.style.display = 'none';
+    });
+    
+    // Handle play/pause button
+    playPauseBtn.addEventListener('click', function() {
+        if (video.paused) {
+            video.play();
+            playIcon.classList.add('hidden');
+            pauseIcon.classList.remove('hidden');
+        } else {
+            video.pause();
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        }
+    });
+    
+    // Handle mute button
+    muteBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        if (video.muted) {
+            unmuteIcon.classList.add('hidden');
+            muteIcon.classList.remove('hidden');
+        } else {
+            unmuteIcon.classList.remove('hidden');
+            muteIcon.classList.add('hidden');
+        }
+    });
+    
+    // Show loading spinner if video stalls
+    video.addEventListener('waiting', function() {
+        loadingSpinner.style.display = 'flex';
+    });
+    
+    video.addEventListener('playing', function() {
+        loadingSpinner.style.display = 'none';
+    });
+
     </script>
 </body>
