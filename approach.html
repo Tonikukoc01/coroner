@@ -908,17 +908,6 @@ body {
     background: linear-gradient(45deg, #1A2B3C, #2D4F6B); /* Darker shade that matches the background */
     transform: translateY(-2px);
 }
-
-.accent-btn {
-    background: linear-gradient(45deg, #d4af37, #b08a1a); /* Gold gradient */
-    font-weight: 400; /* Slightly bolder to emphasize importance */
-}
-
-.accent-btn:hover {
-    background: linear-gradient(45deg, #e5c149, #c19a2c); /* Slightly lighter gold on hover */
-    transform: translateY(-2px);
-}
-
 .about-content {
     font-family: SkemaProDisplay;
     font-size: 0.5rem;
@@ -1585,16 +1574,13 @@ footer {
         </p>
 
         <div style="display: flex; justify-content: center; gap: 2rem;">
-    <a href="https://tonikukoc.me/proving-value" class="collaboration-btn accent-btn" style="opacity: 0;">
-        View My Portfolio
-    </a>
-    <a href="#" class="collaboration-btn gradient-btn" style="opacity: 0;">
-        View my CV
-    </a>
-    <a href="https://tonikukoc01.github.io/coroner/about.html" class="collaboration-btn outline-btn" style="opacity: 0;">
-        About me
-    </a>
-</div>
+            <a href="#" class="collaboration-btn gradient-btn" style="opacity: 0;">
+                View my CV
+            </a>
+            <a href="https://tonikukoc01.github.io/coroner/about.html" class="collaboration-btn outline-btn" style="opacity: 0;">
+                About me
+            </a>
+        </div>
     </div>
 </section>
 <div class="cv-popup-overlay" id="cvPopup">
@@ -1907,10 +1893,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.querySelector('.about-subheader').classList.add('slide-from-left');
                 
                 // Animate buttons from bottom with delays
-const buttons = entry.target.querySelectorAll('.collaboration-btn');
-buttons[0].classList.add('slide-from-bottom', 'delay-200'); // Portfolio button (main)
-buttons[1].classList.add('slide-from-bottom', 'delay-400'); // CV button
-buttons[2].classList.add('slide-from-bottom', 'delay-600'); // About me button
+                const buttons = entry.target.querySelectorAll('.collaboration-btn');
+                buttons[0].classList.add('slide-from-bottom', 'delay-400');
+                buttons[1].classList.add('slide-from-bottom', 'delay-600');
                 
                 observer.unobserve(entry.target);
             }
@@ -2247,10 +2232,9 @@ function applyTranslation(langCode) {
         ctaSection.querySelector('.about-subheader').textContent = content.ctaText;
         
         const buttons = ctaSection.querySelectorAll('.collaboration-btn');
-        if (buttons.length >= 3) {
-            buttons[0].textContent = content.ctaButton0; // Portfolio button
-        buttons[1].textContent = content.ctaButton1; // CV button
-        buttons[2].textContent = content.ctaButton2; // About me button
+        if (buttons.length >= 2) {
+            buttons[0].textContent = content.ctaButton1;
+            buttons[1].textContent = content.ctaButton2;
         }
     }
     
