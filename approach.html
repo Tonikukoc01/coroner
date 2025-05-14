@@ -1580,7 +1580,6 @@ footer {
         </div>
     </div>
 </section>
-</section>
 
 <footer>
     <div class="footer-content">Toni Kukoč © MMXXV</div>
@@ -1817,24 +1816,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Observe each block
     blocks.forEach(block => observer.observe(block));
-});
-function showPopup() {
-    const popup = document.getElementById('cvPopup');
-    popup.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-}
-
-function closePopup() {
-    const popup = document.getElementById('cvPopup');
-    popup.classList.remove('active');
-    document.body.style.overflow = ''; // Restore scrolling
-}
-
-// Close popup when clicking outside
-document.getElementById('cvPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closePopup();
-    }
 });
 
 // Close popup with Escape key
