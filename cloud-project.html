@@ -636,8 +636,7 @@
             <h1 class="case-study-title">Cloud Recomposition</h1>
             <div class="divider"></div>
             <p class="case-study-subheader">
-                Re-architected legacy cloud infrastructure to improve scalability, reduce operational expenses, and establish robust deployment and monitoring practices.
-            </p>
+Re-architected legacy cloud infrastructure for a fast-growing social ecommerce startup to improve scalability, reduce operational expenses, and enhance system reliability.            </p>
         </div>
         
         <!-- Wide image section for cost comparison -->
@@ -650,7 +649,7 @@
         <div class="metrics-container">
             <div class="metric-card">
                 <div class="metric-value">62%</div>
-                <div class="metric-label">OPEX Reduction</div>
+                <div class="metric-label">30% lower cloud storage costs</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">99.98%</div>
@@ -665,8 +664,7 @@
         <div class="case-study-content">
             <h2 class="section-heading">Overview</h2>
             <p>
-                In September 2023, our platform experienced a significant user influx that exposed critical limitations in our existing cloud infrastructure. The sudden traffic surge revealed performance bottlenecks, inconsistent scaling, and escalating operational costs. This project aimed to fundamentally restructure our cloud architecture to create a more resilient, cost-effective, and scalable solution.
-            </p>
+Back in September 2023, a sudden spike in user activity pushed our platform to its limits and surfaced some long-standing issues in our cloud setup. We started seeing huge performance bottlenecks, unpredictable scaling behavior and rising costs. On top of that, our infrastructure had grown a bit too heavy over time, with cloud expenses creeping higher than they needed to be. This project was all about rethinking and rebuilding our architecture to make it more efficient, scalable, and resilient moving forward.            </p>
             
             <h2 class="section-heading">The Challenge</h2>
             <p>
@@ -688,24 +686,24 @@
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Deployment Complexity</h3>
+                <h3 class="challenge-title">Reliability Gaps</h3>
                 <p>
-                    Manual deployment processes and lack of comprehensive monitoring made it difficult to quickly identify and resolve infrastructure issues. This increased our mean time to resolution (MTTR) significantly.
+Without proper fault tolerance and health checks across services, the system was prone to cascading failures under load. Limited observability made it harder to proactively detect issues, increasing downtime risk and reducing overall system reliability.
                 </p>
             </div>
             
             <h2 class="section-heading">Technologies Used</h2>
             <div class="tech-stack">
-                <span class="tech-item">Kubernetes</span>
-                <span class="tech-item">Terraform</span>
-                <span class="tech-item">AWS EKS</span>
-                <span class="tech-item">Prometheus</span>
-                <span class="tech-item">Grafana</span>
-                <span class="tech-item">ArgoCD</span>
-                <span class="tech-item">CloudWatch</span>
-                <span class="tech-item">Datadog</span>
+                <span class="tech-item">ECS</span>
+                <span class="tech-item">EC2</span>
+                <span class="tech-item">MongoDB</span>
+                <span class="tech-item">Cloudwatch</span>
+                <span class="tech-item">DataDdog</span>
+                <span class="tech-item">s3</span>
                 <span class="tech-item">Docker</span>
-                <span class="tech-item">Istio</span>
+                <span class="tech-item">Lambda</span>
+                <span class="tech-item">WAF</span>
+                <span class="tech-item">Redis/Elasticache</span>
             </div>
             
             <h2 class="section-heading">Approach</h2>
@@ -725,36 +723,33 @@
                 <div class="timeline-event">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">October 2023</div>
-                    <div class="timeline-title">Architecture Redesign</div>
+                    <div class="timeline-title">Initial Optimization</div>
                     <div class="timeline-description">
-                        Developed a new cloud architecture using Kubernetes and AWS EKS, focusing on microservices architecture, auto-scaling, and improved resource allocation strategies.
-                    </div>
+We began by addressing the most critical issues in the existing infrastructure. The main challenges were related to the EC2 instances and MongoDB setup, which were underperforming under load. We optimized the EC2 instance configurations and adjusted scaling capabilities to reduce bottlenecks. Additionally, we identified slow database queries that caused significant performance issues and forwarded them to the backend team for improvement.                    </div>
                 </div>
                 
                 <div class="timeline-event">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">November 2023</div>
-                    <div class="timeline-title">Infrastructure as Code</div>
+                    <div class="timeline-title">Architecture Redesign & Scaling Adjustments</div>
                     <div class="timeline-description">
-                        Implemented Infrastructure as Code (IaC) using Terraform, creating reproducible and version-controlled infrastructure deployments. Established GitOps workflows with ArgoCD for continuous deployment.
-                    </div>
+We focused on fine tuning the cloud architecture, retaining the existing ECS setup while improving its scalability. Adjustments were made to the auto-scaling capabilities to better handle traffic spikes and resource allocation.                    </div>
                 </div>
                 
                 <div class="timeline-event">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">December 2023</div>
-                    <div class="timeline-title">Monitoring & Observability</div>
+                    <div class="timeline-title">Cost Optimization & OPEX Reduction</div>
                     <div class="timeline-description">
-                        Integrated advanced monitoring solutions using Prometheus, Grafana, and Datadog. Implemented comprehensive logging, tracing, and alerting mechanisms to improve system visibility.
-                    </div>
+A significant portion of our work focused on optimizing operational expenses. We conducted a thorough review of ALL cloud services in use, identifying areas where provisioning could be reduced or better optimized. This included reconfiguring services to lower costs without compromising performance, leading to significant cost savings.                    </div>
                 </div>
                 
                 <div class="timeline-event">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">January 2024</div>
-                    <div class="timeline-title">Final Migration & Optimization</div>
+                    <div class="timeline-title">Monitoring & Observability with CloudWatch</div>
                     <div class="timeline-description">
-                        Completed full migration to the new infrastructure, conducted extensive performance testing, and fine-tuned resource allocation and scaling policies.
+We fine tuned Amazon CloudWatch as our primary monitoring and observability tool, enabling real-time insights into system health, resource usage, and performance. This allowed for quicker identification of potential issues and helped ensure system reliability through proactive monitoring.
                     </div>
                 </div>
             </div>
@@ -762,23 +757,27 @@
             <h2 class="section-heading">Key Implementations</h2>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Kubernetes-Based Microservices</h3>
+                <h3 class="challenge-title">ECS Optimization & Auto-Scaling Adjustments</h3>
                 <p>
-                    Redesigned the entire infrastructure using a microservices architecture on Kubernetes, enabling granular scaling, improved isolation, and more efficient resource utilization. Implemented Istio for advanced service mesh capabilities.
+We began by optimizing our existing AWS ECS setup to handle traffic surges more effectively. We fine-tuned the auto-scaling configurations to better allocate resources based on real-time traffic patterns. This allowed us to scale efficiently during high demand while reducing costs during off-peak times, ensuring better resource utilization and improved performance.
+
+
                 </p>
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Advanced Auto-Scaling</h3>
+                <h3 class="challenge-title">Database Performance & Query Optimization</h3>
                 <p>
-                    Developed sophisticated auto-scaling strategies using Kubernetes Horizontal Pod Autoscaler (HPA) and Cluster Autoscaler. This allowed dynamic resource allocation based on real-time traffic patterns, reducing costs and improving performance.
+Critical performance issues were identified with our MongoDB setup, especially with certain slow queries that were negatively impacting system performance. These queries were flagged and handed over to the backend team for optimization. This collaboration significantly improved database efficiency and reduced latency across the platform.
+
                 </p>
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Comprehensive Monitoring Framework</h3>
+                <h3 class="challenge-title">Cost Optimization & OPEX Reduction</h3>
                 <p>
-                    Implemented a multi-layered monitoring solution combining Prometheus for metrics, Grafana for visualization, and Datadog for advanced observability. Created custom dashboards and alerting mechanisms to proactively identify and address potential issues.
+A major focus was on reducing operational expenses (OPEX). We conducted a detailed audit of all cloud services, identifying overprovisioned resources and reconfiguring them for better cost efficiency. This included adjusting EC2 instance sizes, optimizing S3 usage, and fine-tuning CloudFront settings, resulting in significant savings without compromising performance.
+
                 </p>
             </div>
             
@@ -787,31 +786,31 @@
             <div class="challenge-solution">
                 <h3 class="challenge-title">Cost Optimization</h3>
                 <p>
-                    Achieved a 62% reduction in operational expenses through intelligent resource allocation, reserved instances, and precise auto-scaling mechanisms. Eliminated over-provisioning and implemented more granular cost management.
-                </p>
+Achieved a 62% reduction in operational expenses by optimizing resource allocation, adjusting EC2 instance sizes, and fine-tuning auto-scaling strategies. Eliminated over-provisioning and introduced a more efficient cloud resource management approach, resulting in substantial cost savings.                </p>
             </div>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Performance & Reliability</h3>
                 <p>
-                    Improved system uptime to 99.98%, with the ability to handle 3x more concurrent users compared to the previous infrastructure. Reduced mean time to recovery (MTTR) by implementing advanced monitoring and automated recovery mechanisms.
+Increased system uptime to 99.98%, while enabling the infrastructure to handle 3x more concurrent users compared to the previous setup. By optimizing database performance and improving auto-scaling, we ensured greater system responsiveness and stability during peak traffic periods.
+
                 </p>
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Deployment Efficiency</h3>
+                <h3 class="challenge-title">Operational Efficiency</h3>
                 <p>
-                    Established a robust GitOps workflow that reduced deployment times by 75% and eliminated manual intervention. Implemented comprehensive CI/CD pipelines with built-in security and compliance checks.
+Streamlined operations by integrating Amazon CloudWatch for centralized monitoring and proactive issue detection. This improved our ability to quickly identify and resolve potential issues, reducing downtime and ensuring better overall system performance. 
                 </p>
             </div>
             
             <h2 class="section-heading">Conclusion</h2>
             <p>
-                The cloud recomposition project transformed our infrastructure from a liability to a strategic asset. By embracing modern cloud-native technologies and best practices, we created a more resilient, cost-effective, and scalable platform that can adapt to changing business needs.
-            </p>
+The cloud optimization project transformed our infrastructure into a more efficient and scalable solution. By refining our existing ECS setup, optimizing auto-scaling, and implementing cost-effective resource management, we built a more resilient platform that adapts to evolving business needs.
             
             <p>
-                This project demonstrates how strategic technical investments can drive significant business value, reducing costs while improving overall system performance and reliability.
+This project showcases how targeted technical improvements, such as fine-tuning cloud resources and enhancing monitoring, can drive significant business value by reducing costs while boosting performance and system reliability.
+
             </p>
             
             <!-- Contact section -->
