@@ -1294,26 +1294,35 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Function to check if element is in viewport
-  function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.75 &&
-      rect.bottom >= 0
-    );
-  }
+  // Function to check if element is in viewport - with different thresholds for mobile and desktop
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  
+  // Different threshold for mobile vs desktop
+  // On mobile, trigger at 75% of viewport height (earlier)
+  // On desktop, trigger at 60% of viewport height (later)
+  const threshold = window.innerWidth <= 768 ? 0.75 : 0.6;
+  
+  return (
+    rect.top <= windowHeight * threshold &&
+    rect.bottom >= 0
+  );
+}
 
-  // Initial check and scroll handler
-  function handleScrollAnimations() {
-    document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image').forEach(element => {
-      if (isInViewport(element)) {
-        element.classList.add('visible');
-      } else {
-        element.classList.remove('visible'); // Remove visible class if not in viewport
-      }
-    });
-  }
+// Initial check and scroll handler
+function handleScrollAnimations() {
+  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image').forEach(element => {
+    if (isInViewport(element)) {
+      element.classList.add('visible');
+    } else {
+      element.classList.remove('visible'); // Remove visible class if not in viewport
+    }
+  });
+}
 
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
   // Don't run initial animation - wait for scroll
   setTimeout(() => {
     // Add scroll event listener
@@ -1322,6 +1331,8 @@ document.addEventListener('DOMContentLoaded', function() {
     handleScrollAnimations();
   }, 100);
 });
+
+
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
