@@ -478,11 +478,17 @@
 }
 
  /* Blur effect for background when video is expanded */
+         body.video-expanded .demo-content,
         body.video-expanded > *:not(.video-expanded-overlay) {
             filter: blur(3px);
             pointer-events: none;
         }
 
+ body.video-expanded .video-expanded-overlay,
+        body.video-expanded .video-expanded-overlay * {
+            filter: none !important;
+            pointer-events: auto;
+        }
 
         /* Video container */
         .video-container {
@@ -690,7 +696,7 @@
                 max-width: calc(100vw - 2rem);
                 /* Make video larger on mobile */
                 width: calc(100vw - 2rem);
-                min-height: 40vh;
+                min-height: 60vh;
             }
 
             .video-container.expanded {
