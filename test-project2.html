@@ -478,10 +478,12 @@
 }
 
  /* Blur effect for background when video is expanded */
-        body.video-expanded {
+        body.video-expanded > *:not(.video-expanded-overlay) {
             filter: blur(3px);
             pointer-events: none;
         }
+
+
         /* Video container */
         .video-container {
         width: 100%;
@@ -623,22 +625,6 @@
         .close-expanded:hover {
             background: white;
         }
-/* Demo content */
-        .demo-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .demo-content h1 {
-            margin-bottom: 1rem;
-        }
-
-        .demo-content p {
-            margin-bottom: 2rem;
-            color: #666;
-        }
         
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
@@ -702,6 +688,9 @@
          .video-container {
                 margin: 1rem;
                 max-width: calc(100vw - 2rem);
+                /* Make video larger on mobile */
+                width: calc(100vw - 2rem);
+                min-height: 40vh;
             }
 
             .video-container.expanded {
@@ -804,11 +793,6 @@
 Delivered live, self-hosted masterclasses to 5,000+ global viewers, making artist education accessible and boosting platform revenue by 25%.            </p>
         </div>
         
-   <div class="demo-content">
-        <h1>Expandable Video Player Demo</h1>
-        <p>Click on the video to expand it. Click outside the expanded video to close it.</p>
-    </div>
-
     <div class="video-container" id="video-container">
         <video id="demo-video" autoplay muted loop playsinline class="feature-video">
             <source src="https://public-access-images.s3.eu-central-1.amazonaws.com/compressed-5x-better-quality.mp4" type="video/mp4">
@@ -849,11 +833,6 @@ Delivered live, self-hosted masterclasses to 5,000+ global viewers, making artis
     <!-- Expanded video overlay -->
     <div class="video-expanded-overlay" id="video-overlay">
         <button class="close-expanded" id="close-expanded" aria-label="Close expanded view">&times;</button>
-    </div>
-
-    <div class="demo-content">
-        <p>More content below the video to demonstrate the blur effect when expanded.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
         
         <div class="case-study-content">
