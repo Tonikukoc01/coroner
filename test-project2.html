@@ -261,6 +261,28 @@
             font-weight: 100;
         }
         
+        /* Quote section */
+        .quote-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent-color);
+            font-style: italic;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 200;
+            opacity: 0.8;
+            text-align: right;
+        }
+        
         /* Project timeline */
         .timeline {
             margin: 3rem 0;
@@ -477,19 +499,7 @@
        background-color: rgba(10, 26, 42, 0.3);    
 }
 
- /* Blur effect for background when video is expanded */
-         body.video-expanded .demo-content,
-        body.video-expanded > *:not(.video-expanded-overlay) {
-            filter: blur(3px);
-            pointer-events: none;
-        }
-
- body.video-expanded .video-expanded-overlay,
-        body.video-expanded .video-expanded-overlay * {
-            filter: none !important;
-            pointer-events: auto;
-        }
-
+    
         /* Video container */
         .video-container {
         width: 100%;
@@ -500,42 +510,7 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         position: relative;
     }
-
-.video-expanded-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .video-expanded-overlay.active {
-            display: flex;
-        }
-
-        .video-container.expanded {
-            position: relative;
-            z-index: 1001;
-            max-width: none;
-            width: 80vw;
-            max-height: 80vh;
-            margin: 0;
-            cursor: default;
-            transform: scale(1);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .video-container.expanded .feature-video {
-            max-height: 80vh;
-            object-fit: contain;
-        }
-
+    
     .feature-video {
         width: 100%;
         height: auto;
@@ -606,31 +581,6 @@
     
     @keyframes spin {
         to { transform: rotate(360deg); }
-
-/* Close button for expanded view */
-        .close-expanded {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            transition: background 0.2s;
-            z-index: 1002;
-        }
-
-        .close-expanded:hover {
-            background: white;
-        }
         
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
@@ -690,43 +640,6 @@
                 right: 20px;
                 width: 40px;
                 height: 40px;
-            }
-         .video-container {
-                margin: 1rem;
-                max-width: calc(100vw - 2rem);
-                /* Make video larger on mobile */
-                width: calc(100vw - 2rem);
-                min-height: 60vh;
-            }
-
-            .video-container.expanded {
-                width: 95vw;
-                max-height: 70vh;
-            }
-
-            .close-expanded {
-                top: -60px;
-                right: 10px;
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-
-            /* Make video more prominent on mobile */
-            .video-container {
-                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-            }
-
-            .video-controls {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px;
-            }
-
-            .video-controls button {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
             }
         }
         
@@ -799,47 +712,43 @@
 Delivered live, self-hosted masterclasses to 5,000+ global viewers, making artist education accessible and boosting platform revenue by 25%.            </p>
         </div>
         
-    <div class="video-container" id="video-container">
-        <video id="demo-video" autoplay muted loop playsinline class="feature-video">
-            <source src="https://public-access-images.s3.eu-central-1.amazonaws.com/compressed-5x-better-quality.mp4" type="video/mp4">
-            <!-- Fallback for browsers that don't support video -->
-            <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
-        </video>
-        
-        <!-- Custom video controls -->
-        <div class="video-controls">
-            <button id="play-pause-btn" aria-label="Play/Pause">
-                <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="6" y="4" width="4" height="16"></rect>
-                    <rect x="14" y="4" width="4" height="16"></rect>
-                </svg>
-                <svg class="play-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-            </button>
-            <button id="mute-btn" aria-label="Mute/Unmute">
-                <svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                </svg>
-                <svg class="mute-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                </svg>
-            </button>
-        </div>
-        
-        <!-- Loading indicator -->
-        <div class="loading-spinner">
-            <div class="spinner"></div>
-        </div>
+    <div class="video-container">
+    <video id="demo-video" autoplay muted loop playsinline class="feature-video">
+        <source src="https://public-access-images.s3.eu-central-1.amazonaws.com/compressed-5x-better-quality.mp4" type="video/mp4">
+        <!-- Fallback for browsers that don't support video -->
+        <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
+    </video>
+    
+    
+    <!-- Custom video controls -->
+      <div class="video-controls">
+        <button id="play-pause-btn" aria-label="Play/Pause">
+            <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+            <svg class="play-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+        </button>
+        <button id="mute-btn" aria-label="Mute/Unmute">
+            <svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg class="mute-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
     </div>
-
-    <!-- Expanded video overlay -->
-    <div class="video-expanded-overlay" id="video-overlay">
-        <button class="close-expanded" id="close-expanded" aria-label="Close expanded view">&times;</button>
+    
+    <!-- Loading indicator -->
+    <div class="loading-spinner">
+        <div class="spinner"></div>
     </div>
+</div>
         
         <div class="case-study-content">
             <h2 class="section-heading">Overview</h2>
@@ -1095,166 +1004,83 @@ This project shows how solid tech can really boost business results, creating a 
             });
         });
 
-   document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('demo-video');
-            const videoContainer = document.getElementById('video-container');
-            const playPauseBtn = document.getElementById('play-pause-btn');
-            const muteBtn = document.getElementById('mute-btn');
-            const loadingSpinner = document.querySelector('.loading-spinner');
-            const playIcon = document.querySelector('.play-icon');
-            const pauseIcon = document.querySelector('.pause-icon');
-            const muteIcon = document.querySelector('.mute-icon');
-            const unmuteIcon = document.querySelector('.unmute-icon');
-            const videoOverlay = document.getElementById('video-overlay');
-            const closeExpandedBtn = document.getElementById('close-expanded');
-            const body = document.body;
-            
-            let isExpanded = false;
-            let isMobile = window.innerWidth <= 768;
-            
-            // Update mobile detection on resize
-            window.addEventListener('resize', function() {
-                isMobile = window.innerWidth <= 768;
-            });
-            
-            // Force hide loading spinner after 2 seconds as a fallback
-            setTimeout(function() {
-                loadingSpinner.style.display = 'none';
-            }, 2000);
-            
-            // Better event handling for video loading
-            function hideSpinner() {
-                loadingSpinner.style.display = 'none';
-            }
-            
-            // Multiple events to ensure spinner hides properly
-            video.addEventListener('canplay', hideSpinner);
-            video.addEventListener('playing', hideSpinner);
-            video.addEventListener('loadeddata', hideSpinner);
-            
-            // If video is already loaded/cached
-            if (video.readyState >= 3) {
-                hideSpinner();
-            }
-            
-            // Expand video functionality
-            function expandVideo() {
-                if (isExpanded) return;
-                
-                isExpanded = true;
-                
-                // Move video container to overlay
-                videoOverlay.appendChild(videoContainer);
-                videoContainer.classList.add('expanded');
-                videoOverlay.classList.add('active');
-                
-                // Blur background (except the overlay)
-                body.classList.add('video-expanded');
-                
-                // Prevent body scrolling
-                body.style.overflow = 'hidden';
-            }
-            
-            function closeExpandedVideo() {
-                if (!isExpanded) return;
-                
-                isExpanded = false;
-                
-                // Move video container back to its original position
-                const originalParent = document.querySelector('.demo-content').nextElementSibling || document.body;
-                document.body.insertBefore(videoContainer, originalParent);
-                
-                videoContainer.classList.remove('expanded');
-                videoOverlay.classList.remove('active');
-                body.classList.remove('video-expanded');
-                body.style.overflow = '';
-            }
-            
-            // Video container click handler
-            videoContainer.addEventListener('click', function(e) {
-                // Don't expand if clicking on controls
-                if (e.target.closest('.video-controls')) {
-                    return;
-                }
-                
-                // Only expand on desktop
-                if (!isMobile && !isExpanded) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    expandVideo();
-                }
-            });
-            
-            // Close expanded video when clicking outside
-            videoOverlay.addEventListener('click', function(e) {
-                if (e.target === videoOverlay) {
-                    closeExpandedVideo();
-                }
-            });
-            
-            // Close button
-            closeExpandedBtn.addEventListener('click', function() {
-                closeExpandedVideo();
-            });
-            
-            // Close with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && isExpanded) {
-                    closeExpandedVideo();
-                }
-            });
-            
-            // Handle play/pause button
-            playPauseBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent video expansion
-                
-                if (video.paused || video.ended) {
-                    video.play()
-                        .then(() => {
-                            playIcon.classList.add('hidden');
-                            pauseIcon.classList.remove('hidden');
-                        })
-                        .catch(err => {
-                            console.error('Error playing video:', err);
-                        });
-                } else {
-                    video.pause();
-                    playIcon.classList.remove('hidden');
-                    pauseIcon.classList.add('hidden');
-                }
-            });
-            
-            // Handle mute button
-            muteBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Prevent video expansion
-                
-                video.muted = !video.muted;
-                if (video.muted) {
-                    unmuteIcon.classList.add('hidden');
-                    muteIcon.classList.remove('hidden');
-                } else {
-                    unmuteIcon.classList.remove('hidden');
-                    muteIcon.classList.add('hidden');
-                }
-            });
-            
-            // Update UI based on video state
-            video.addEventListener('pause', function() {
-                playIcon.classList.remove('hidden');
-                pauseIcon.classList.add('hidden');
-            });
-            
-            video.addEventListener('play', function() {
-                playIcon.classList.add('hidden');
-                pauseIcon.classList.remove('hidden');
-                hideSpinner();
-            });
-            
-            // Show loading spinner if video stalls
-            video.addEventListener('waiting', function() {
-                loadingSpinner.style.display = 'flex';
-            });
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('demo-video');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+    const playIcon = document.querySelector('.play-icon');
+    const pauseIcon = document.querySelector('.pause-icon');
+    const muteIcon = document.querySelector('.mute-icon');
+    const unmuteIcon = document.querySelector('.unmute-icon');
+    
+    // Force hide loading spinner after 2 seconds as a fallback
+    setTimeout(function() {
+        loadingSpinner.style.display = 'none';
+    }, 2000);
+    
+    // Better event handling for video loading
+    function hideSpinner() {
+        loadingSpinner.style.display = 'none';
+    }
+    
+    // Multiple events to ensure spinner hides properly
+    video.addEventListener('canplay', hideSpinner);
+    video.addEventListener('playing', hideSpinner);
+    video.addEventListener('loadeddata', hideSpinner);
+    
+    // If video is already loaded/cached
+    if (video.readyState >= 3) {
+        hideSpinner();
+    }
+    
+    // Handle play/pause button
+    playPauseBtn.addEventListener('click', function() {
+        if (video.paused || video.ended) {
+            video.play()
+                .then(() => {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                })
+                .catch(err => {
+                    console.error('Error playing video:', err);
+                });
+        } else {
+            video.pause();
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        }
+    });
+    
+    // Handle mute button
+    muteBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        if (video.muted) {
+            unmuteIcon.classList.add('hidden');
+            muteIcon.classList.remove('hidden');
+        } else {
+            unmuteIcon.classList.remove('hidden');
+            muteIcon.classList.add('hidden');
+        }
+    });
+    
+    // Update UI based on video state
+    video.addEventListener('pause', function() {
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+    });
+    
+    video.addEventListener('play', function() {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        hideSpinner();
+    });
+    
+    // Show loading spinner if video stalls
+    video.addEventListener('waiting', function() {
+        loadingSpinner.style.display = 'flex';
+    });
+});
 
     </script>
 </body>
