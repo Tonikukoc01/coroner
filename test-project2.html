@@ -198,7 +198,7 @@
         .wide-image {
             width: 100%;
             height: auto;
-            max-height: 600px;
+            max-height: 700px;
             object-fit: cover;
         }
         
@@ -584,11 +584,17 @@
         
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
-
- .project-timeframe {
-            font-family: 'SkemaProDisplay', sans-serif;
-            left: 4rem;
-        }
+            .project-timeframe {
+        font-family: 'SkemaProDisplay', sans-serif;
+        font-weight: 200;
+        font-size: 1rem; /* Reduced from 1.2rem */
+        position: static; /* Changed from absolute */
+        text-align: center;
+        margin-bottom: 1.5rem;
+        margin-top: 2rem;
+        left: auto; /* Reset absolute positioning */
+        top: auto; /* Reset absolute positioning */
+    }
 
             .case-study-container {
                 padding: 5rem 1.5rem 4rem;
@@ -599,25 +605,19 @@
                 left: 1.5rem;
             }
             
-            .project-timeframe {
-                position: static;
-                text-align: center;
-                margin-bottom: 1.5rem;
-                margin-top: 2rem;
-            }
-            
             .case-study-header {
                 margin-top: 0;
                 margin-bottom: 2.5rem;
             }
             
             .case-study-title {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             
             .case-study-subheader {
-                font-size: 1.3rem;
-                padding: 0 0.5rem;
+                font-size: 1.2rem;
+                padding: 0 1rem;
+                line-height: 1.4; 
             }
             
             .metric-card {
@@ -636,11 +636,33 @@
                 max-height: 400px;
             }
             
-            .switch-container {
-                top: 10px;
-                right: 10px;
-            }
-            
+           .switch-container {
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px; /* Slightly smaller padding */
+        border-radius: 16px; /* Smaller border radius */
+    }
+    
+    .switch-label {
+        margin-right: 8px;
+        font-size: 0.8rem; /* Smaller text */
+    }
+    
+    .switch {
+        width: 36px; /* Smaller switch */
+        height: 20px;
+    }
+    
+    .slider:before {
+        height: 14px; /* Smaller slider dot */
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(16px); /* Adjusted for smaller switch */
+    }
             .back-to-top {
                 bottom: 20px;
                 right: 20px;
@@ -649,37 +671,71 @@
             }
         }
         
-        /* Small mobile adjustments */
-        @media (max-width: 480px) {
-            .case-study-container {
-                padding: 4rem 1rem 3rem;
-            }
-            
-            .back-to-projects {
-                top: 1rem;
-                left: 1rem;
-            }
-            
-            .case-study-title {
-                font-size: 2rem;
-            }
-            
-            .case-study-subheader {
-                font-size: 1.1rem;
-            }
-            
-            .case-study-content {
-                font-size: 1rem;
-            }
-            
-            .wide-image {
-                max-height: 300px;
-            }
-            
-            .section-heading {
-                font-size: 1.5rem;
-            }
-        }
+      @media (max-width: 480px) {
+    .case-study-container {
+        padding: 4rem 1rem 3rem;
+    }
+    
+    .back-to-projects {
+        top: 1rem;
+        left: 1rem;
+    }
+    
+    .project-timeframe {
+        font-size: 0.9rem; /* Even smaller for very small screens */
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .case-study-title {
+        font-size: 1.8rem; /* Smaller for very small screens */
+        padding: 0 0.25rem; /* Reduced padding */
+    }
+    
+    .case-study-subheader {
+        font-size: 1.1rem;
+        padding: 0 0.5rem; /* Reduced padding */
+    }
+    
+    .case-study-content {
+        font-size: 1rem;
+    }
+    
+    .wide-image {
+        max-height: 300px;
+    }
+    
+    .section-heading {
+        font-size: 1.5rem;
+    }
+    
+    /* Extra small switch for very small screens */
+    .switch-container {
+        padding: 4px 8px;
+        border-radius: 14px;
+    }
+    
+    .switch-label {
+        font-size: 0.75rem;
+        margin-right: 6px;
+    }
+    
+    .switch {
+        width: 32px;
+        height: 18px;
+    }
+    
+    .slider:before {
+        height: 12px;
+        width: 12px;
+        left: 3px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(14px);
+    }
+}
     </style>
 </head>
 <body>
