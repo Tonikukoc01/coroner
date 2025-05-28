@@ -1094,66 +1094,65 @@ This project shows how solid tech can really boost business results, creating a 
     
     <!-- Scripts section -->
     <script>
-        // Back to top functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const backToTopButton = document.getElementById('backToTop');
-            
-            // Show/hide back to top button based on scroll position
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-            
-            // Scroll to top when button is clicked
-            backToTopButton.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Reading mode toggle
-            const readingModeToggle = document.getElementById('readingModeToggle');
-            const bodyElement = document.body;
-            
-            readingModeToggle.addEventListener('change', function() {
-                if (this.checked) {
-                    bodyElement.classList.add('easy-reading');
-                    localStorage.setItem('readingMode', 'enabled');
-                } else {
-                    bodyElement.classList.remove('easy-reading');
-                    localStorage.setItem('readingMode', 'disabled');
-                }
-            });
-            
-            // Check if reading mode was previously enabled
-            if (localStorage.getItem('readingMode') === 'enabled') {
-                readingModeToggle.checked = true;
-                bodyElement.classList.add('reading-mode');
-            }
-            
-            // Timeline animation on scroll
-            const timelineEvents = document.querySelectorAll('.timeline-event');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.2
-            });
-            
-            timelineEvents.forEach(event => {
-                observer.observe(event);
-            });
-        });
-
+       // Back to top functionality
 document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop');
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Reading mode toggle
+    const readingModeToggle = document.getElementById('readingModeToggle');
+    const bodyElement = document.body;
+    
+    readingModeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            bodyElement.classList.add('easy-reading');
+            localStorage.setItem('readingMode', 'enabled');
+        } else {
+            bodyElement.classList.remove('easy-reading');
+            localStorage.setItem('readingMode', 'disabled');
+        }
+    });
+    
+    // Check if reading mode was previously enabled
+    if (localStorage.getItem('readingMode') === 'enabled') {
+        readingModeToggle.checked = true;
+        bodyElement.classList.add('reading-mode');
+    }
+    
+    // Timeline animation on scroll
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    timelineEvents.forEach(event => {
+        observer.observe(event);
+    });
+
+    // VIDEO FUNCTIONALITY - All video-related code in one place
     const video = document.getElementById('demo-video');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const muteBtn = document.getElementById('mute-btn');
@@ -1162,6 +1161,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const pauseIcon = document.querySelector('.pause-icon');
     const muteIcon = document.querySelector('.mute-icon');
     const unmuteIcon = document.querySelector('.unmute-icon');
+    
+    // Device toggle elements
+    const deviceOptions = document.querySelectorAll('.device-option');
+    let currentDevice = 'desktop';
     
     // Force hide loading spinner after 2 seconds as a fallback
     setTimeout(function() {
@@ -1229,46 +1232,64 @@ document.addEventListener('DOMContentLoaded', function() {
     video.addEventListener('waiting', function() {
         loadingSpinner.style.display = 'flex';
     });
-});
 
-const deviceOptions = document.querySelectorAll('.device-option');
-let currentDevice = 'desktop';
-
-// Device toggle functionality
-deviceOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        const selectedDevice = option.dataset.device;
-        const videoUrl = option.dataset.videoUrl;
-        
-        if (selectedDevice !== currentDevice) {
-            switchVideo(videoUrl, selectedDevice);
-            updateActiveOption(option);
-        }
-    });
-});
-
-function switchVideo(videoUrl, device) {
-    const wasPlaying = !video.paused;
-    const currentTime = video.currentTime;
-    
-    // Show loading spinner
-    loadingSpinner.style.display = 'flex';
-    video.classList.add('video-switching');
-    
-    // Change video source
-    video.src = videoUrl;
-    currentDevice = device;
-    
-    // Your existing loading logic will handle hiding the spinner
-}
-
-function updateActiveOption(selectedOption) {
+    // DEVICE TOGGLE FUNCTIONALITY
     deviceOptions.forEach(option => {
-        option.classList.remove('active');
+        option.addEventListener('click', () => {
+            const selectedDevice = option.dataset.device;
+            const videoUrl = option.dataset.videoUrl;
+            
+            if (selectedDevice !== currentDevice) {
+                switchVideo(videoUrl, selectedDevice);
+                updateActiveOption(option);
+            }
+        });
     });
-    selectedOption.classList.add('active');
-}
 
+    function switchVideo(videoUrl, device) {
+        const wasPlaying = !video.paused;
+        const currentTime = video.currentTime;
+        
+        // Show loading spinner
+        loadingSpinner.style.display = 'flex';
+        video.classList.add('video-switching');
+        
+        // Change video source
+        video.src = videoUrl;
+        currentDevice = device;
+        
+        // Handle video loading
+        video.addEventListener('loadeddata', function onLoad() {
+            video.removeEventListener('loadeddata', onLoad);
+            
+            // Hide loading spinner
+            hideSpinner();
+            video.classList.remove('video-switching');
+            
+            // Try to maintain playback position (approximate)
+            video.currentTime = Math.min(currentTime, video.duration);
+            
+            // Resume playback if it was playing
+            if (wasPlaying) {
+                video.play().catch(e => console.log('Autoplay prevented'));
+            }
+        });
+        
+        // Handle loading errors
+        video.addEventListener('error', function onError() {
+            video.removeEventListener('error', onError);
+            hideSpinner();
+            video.classList.remove('video-switching');
+            console.error('Error loading video for', device);
+        });
+    }
 
+    function updateActiveOption(selectedOption) {
+        deviceOptions.forEach(option => {
+            option.classList.remove('active');
+        });
+        selectedOption.classList.add('active');
+    }
+});
     </script>
 </body>
