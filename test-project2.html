@@ -204,7 +204,66 @@
             object-fit: cover;
             border-radius: 5px;
         }
-        
+
+.image-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            animation: modalZoom 0.3s ease-out;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-button {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .close-button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        @keyframes modalZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         .image-caption {
             font-family: 'SkemaProDisplay', sans-serif;
             font-style: italic;
@@ -787,7 +846,20 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
             .wide-image {
                 max-height: 400px;
             }
-            
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 90%;
+            }
+
+            .close-button {
+                top: -10px;
+                right: -10px;
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
           .switch-container {
              top: 13.5px;
              right: 10px;
@@ -1053,10 +1125,33 @@ Delivered live, self-hosted masterclasses to 5,000+ global viewers, making artis
             <p>
 At ARTMO, a social e-commerce platform for artists and art lovers, I took the lead on both the technical and operational sides of launching a new live masterclass feature. The goal was to provide high-quality, accessible education while creating a new revenue stream. We needed a reliable, scalable streaming setup that integrated smoothly with the platform and could support thousands of viewers without lag. This is the story of how we built it and what it achieved.            </p>
             
-            <!-- Wide image section -->
-            <div class="wide-image-container">
-                <img src="/assets/frame-afterwards.png" alt="ARTMO Masterclass Dashboard" class="wide-image">
-            </div>
+            <div style="padding: 2rem;">
+        <h1>Sample Content</h1>
+        <p>This is some sample content to demonstrate the image modal functionality. Click on the image below to open it in full view.</p>
+    </div>
+
+    <!-- Wide image section -->
+    <div class="wide-image-container">
+        <img src="https://via.placeholder.com/1200x600/4a90e2/ffffff?text=ARTMO+Masterclass+Dashboard" 
+             alt="ARTMO Masterclass Dashboard" 
+             class="wide-image"
+             id="modalTrigger">
+        <div class="image-caption">
+            Click on the image to view it in full size
+        </div>
+    </div>
+
+    <div style="padding: 2rem;">
+        <p>More content below the image to show the blurred background effect when modal is open.</p>
+    </div>
+
+    <!-- Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="modal-content">
+            <button class="close-button" id="closeModal">&times;</button>
+            <img src="" alt="" class="modal-image" id="modalImage">
+        </div>
+    </div>
             
             <h2 class="section-heading">The Challenge</h2>
             <p>
@@ -1427,5 +1522,46 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedOption.classList.add('active');
     }
 });
+
+ const modalTrigger = document.getElementById('modalTrigger');
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+        const body = document.body;
+
+        // Open modal when image is clicked
+        modalTrigger.addEventListener('click', function() {
+            modalImage.src = this.src;
+            modalImage.alt = this.alt;
+            imageModal.classList.add('active');
+            body.classList.add('modal-open');
+        });
+
+        // Close modal when close button is clicked
+        closeModal.addEventListener('click', function() {
+            imageModal.classList.remove('active');
+            body.classList.remove('modal-open');
+        });
+
+        // Close modal when clicking outside the image
+        imageModal.addEventListener('click', function(e) {
+            if (e.target === imageModal) {
+                imageModal.classList.remove('active');
+                body.classList.remove('modal-open');
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+                imageModal.classList.remove('active');
+                body.classList.remove('modal-open');
+            }
+        });
+
+        // Prevent context menu on long press (mobile)
+        modalImage.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
