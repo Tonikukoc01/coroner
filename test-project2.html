@@ -512,7 +512,21 @@
         overflow: hidden;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         position: relative;
+        transition: all 0.5s ease;
     }
+
+/* Mobile video specific adjustments */
+.video-container.mobile-video {
+    max-width: 400px;
+    max-height: 70vh; /* Limit height to viewport */
+    aspect-ratio: 9/16; /* Maintain mobile aspect ratio */
+}
+
+/* Desktop video (default) */
+.video-container.desktop-video {
+    max-width: 1000px;
+    aspect-ratio: 16/9; /* Standard desktop aspect ratio */
+}
 
  /* Mobile device frame */
         .video-container.mobile-frame {
@@ -560,15 +574,25 @@
             overflow: hidden;
         }
 
-    
-    .feature-video {
-        width: 100%;
-        height: auto;
-        display: block;
-       transition: opacity 0.3s ease;
+      /* Video element adjustments */
+        .feature-video {
+         width: 100%;
+         height: auto;
+         display: block;
+         transition: opacity 0.3s ease;
+         object-fit: cover; /* Ensure proper video fitting */
+}
 
-    }
-    
+     /* Desktop video styling */
+       .feature-video.desktop-video {
+       object-fit: cover;
+}
+
+/* Mobile video specific styling */
+.feature-video.mobile-video {
+    object-fit: contain; /* Maintain aspect ratio for mobile videos */
+    max-height: 70vh;
+}
     /* Custom video controls */
     .video-controls {
         position: absolute;
@@ -699,8 +723,7 @@
         
 @media (max-width: 768px) {
             
-
-.project-timeframe {
+       .project-timeframe {
         font-family: 'SkemaProDisplay', sans-serif;
         font-weight: 200;
         font-size: 1rem; /* Reduced from 1.2rem */
@@ -712,35 +735,35 @@
         top: auto; /* Reset absolute positioning */
     }
 
-           .case-study-container {
+     .case-study-container {
                 padding: 5rem 1.5rem 4rem;
             }
             
-            .back-to-projects {
+     .back-to-projects {
                 top: 1.3rem;
                 left: 1.5rem;
             }
             
-            .case-study-header {
+     .case-study-header {
                 margin-top: 0;
                 margin-bottom: 2.5rem;
             }
             
-            .case-study-title {
+      .case-study-title {
                 font-size: 2.2rem;
             }
             
-            .case-study-subheader {
+      .case-study-subheader {
                 font-size: 1.2rem;
                 padding: 0 1rem;
                 line-height: 1.4; 
             }
             
-            .metric-card {
+      .metric-card {
                 flex: 1 1 100%;
             }
             
-            .wide-image-container {
+      .wide-image-container {
                 width: 100%;
                 margin-left: 0;
                 transform: none;
@@ -748,12 +771,12 @@
                 margin-bottom: 2rem;
             }
             
-            .wide-image {
+      .wide-image {
                 max-height: 400px;
             }
             
-          .switch-container {
-             top: 13.5px;
+      .switch-container {
+              top: 13.5px;
              right: 10px;
              padding: 6px 10px; /* Slightly smaller padding */
             border-radius: 16px; /* Smaller border radius */
@@ -779,27 +802,41 @@
     input:checked + .slider:before {
         transform: translateX(16px); /* Adjusted for smaller switch */
     }
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
+    .back-to-top {
+       bottom: 20px;
+       right: 20px;
+       width: 40px;
+       height: 40px;
             }
 
-.device-toggle-container {
-                margin: 1rem auto;
+   .device-toggle-container {
+       margin: 1rem auto;
             }
             
-            .device-option {
-                padding: 8px 16px;
-                font-size: 0.8rem;
-            }
+   .device-option {
+       padding: 8px 16px;
+       font-size: 0.8rem;
+    }
             
-            .device-icon {
-                width: 16px;
-                height: 16px;
+    .device-icon {
+      width: 16px;
+      height: 16px;
             }
-        }
+
+.video-container.mobile-video {
+        max-width: 90vw;
+        max-height: 60vh;
+    }
+    
+    .video-container.desktop-video {
+        max-width: 95vw;
+    }
+    
+    .feature-video.mobile-video {
+        max-height: 60vh;
+    }
+
+ }
         
       @media (max-width: 480px) {
     .case-study-container {
@@ -864,6 +901,15 @@
     
     input:checked + .slider:before {
         transform: translateX(14px);
+    }
+
+ .video-container.mobile-video {
+        max-width: 95vw;
+        max-height: 50vh;
+    }
+    
+    .feature-video.mobile-video {
+        max-height: 50vh;
     }
 }
     </style>
