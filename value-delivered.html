@@ -1195,25 +1195,22 @@ footer {
         </p>
   </header>
 </section>
-
 <!-- Features Section -->
-<section id="features">
-    <div class="features-header">
-        <h2 class="features-title animate-on-scroll">results that mattered</h2>
-        <div class="vertical-line animate-on-scroll"></div>
-    </div>
-    <div class="features-container">
-        <!-- Feature 1 -->
-        <div class="feature-item animate-on-scroll">
-            <div class="feature-content">
-                <h3 class="feature-title"><a href="https://tonikukoc.me/masterclass-project">Masterclass Platform</a></h3>
-                <div class="feature-line"></div>
-                <p class="feature-description">
-                    Built a scalable live-streaming education platform end-to-end. Integrated AI for real-time features, enabled multilingual delivery, and streamlined payments. Supported 5,000+ live viewers and 100+ transactions using AWS for performance, storage, and VOD.
-                </p>
-            </div>
-            <div class="feature-image">
-                <a href="https://tonikukoc.me/masterclass-project">
+ <!-- Features Section -->
+    <section id="features">
+        <div class="features-header">
+            <h2 class="features-title animate-on-scroll">results that mattered</h2>
+            <div class="vertical-line animate-on-scroll"></div>
+        </div>
+        <div class="features-container">
+            <!-- Feature 1 -->
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title"><a href="https://tonikukoc.me/test-project2">Masterclass Platform</a></h3>
+                    <div class="feature-line"></div>
+                    <p class="feature-description">
+Built a scalable live-streaming education platform end-to-end. Integrated AI for real-time features, enabled multilingual delivery, and streamlined payments. Supported 5,000+ live viewers and 100+ transactions using AWS for performance, storage, and VOD.                </div>
+                <div class="feature-image">
                     <img src="assets/masterclass-platform.jpg" alt="Masterclass Platform">
                     <div class="view-more-caption">
                         <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
@@ -1221,21 +1218,17 @@ footer {
                         </svg>
                         <span>View more</span>
                     </div>
-                </a>
+                </div>
             </div>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="feature-item animate-on-scroll">
-            <div class="feature-content">
-                <h3 class="feature-title"><a href="https://tonikukoc.me/cloud-project">Cloud Recomposition</a></h3>
-                <div class="feature-line"></div>
-                <p class="feature-description">
-                    Re-architected a legacy cloud infrastructure. Cut OPEX by 62%, tripled user capacity, and improved uptime to 99.98%. Improved monitoring, scaling, and issue resolution for greater performance and efficiency.
-                </p>
-            </div>
-            <div class="feature-image">
-                <a href="https://tonikukoc.me/cloud-project">
+            <!-- Feature 2 -->
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title"><a href="https://tonikukoc.me/cloud-project">Cloud Recomposition</a></h3>
+                    <div class="feature-line"></div>
+                    <p class="feature-description">
+Re-architected a legacy cloud infrastructure. Cut OPEX by 62%, tripled user capacity, and improved uptime to 99.98%. Improved monitoring, scaling, and issue resolution for greater performance and efficiency.                    </p>
+                </div>
+                <div class="feature-image">
                     <img src="assets/cloud-recomposition.jpg" alt="Cloud Recomposition">
                     <div class="view-more-caption">
                         <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
@@ -1243,32 +1236,26 @@ footer {
                         </svg>
                         <span>View more</span>
                     </div>
-                </a>
+                </div>
             </div>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="feature-item animate-on-scroll">
-            <div class="feature-content">
-                <h3 class="feature-title"><a href="https://tonikukoc.me/project-ops">Project Ops Leadership</a></h3>
-                <div class="feature-line"></div>
-                <p class="feature-description">
-                    Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating task management, reducing DEV costs, and saving key stakeholders significant time—enabling them to fully focus on securing seed funding.
-                </p>
-            </div>
-            <div class="feature-image">
-                <a href="https://tonikukoc.me/project-ops">
-                    <img src="assets/project-leadership.jpg" alt="Project Ops Leadership">
+            <!-- Feature 3 -->
+            <div class="feature-item animate-on-scroll">
+                <div class="feature-content">
+                    <h3 class="feature-title"><a href="https://tonikukoc.me/project-ops">Project Ops Leadership</a></h3>
+                    <div class="feature-line"></div>
+                    <p class="feature-description">
+Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating task management, reducing DEV costs, and saving key stakeholders significant time—enabling them to fully focus on securing seed funding.                </div>
+                <div class="feature-image">
+                    <img src="assets/project-leadership.jpg" alt="Freelance System Enablement">
                     <div class="view-more-caption">
                         <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
                             <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                         </svg>
                         <span>View more</span>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
-    </div>
 
 <!-- AI Exploration Link -->
 <div class="ai-exploration-link animate-on-scroll">
@@ -1306,16 +1293,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Function to check if element is in viewport
 function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    // Different threshold for mobile vs desktop
-    // On mobile, trigger at 75% of viewport height (earlier)
-    // On desktop, trigger at 40% of viewport height (more in viewport)
-    const threshold = window.innerWidth <= 768 ? 0.75 : 0.75;
-    
-    return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * threshold &&
-        rect.bottom >= 0
-    );
+  const rect = element.getBoundingClientRect();
+  
+  // Different threshold for mobile vs desktop
+  // On mobile, trigger at 75% of viewport height (earlier)
+  // On desktop, trigger at 60% of viewport height (later)
+  const threshold = window.innerWidth <= 768 ? 0.75 : 0.6;
+  
+  return (
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * threshold &&
+    rect.bottom >= 0
+  );
 }
 
   // Initial check and scroll handler
