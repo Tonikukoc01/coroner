@@ -514,7 +514,7 @@
         position: relative;
     }
 
- /* Mobile device frame */
+       /* Mobile device frame */
         .video-container.mobile-frame {
             max-width: 400px;
             background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
@@ -695,6 +695,39 @@
             opacity: 0.7;
         }
 
+/* Mobile video container adjustments - triggered by data attribute or class */
+.video-container[data-current-device="mobile"],
+.video-container.showing-mobile {
+    max-width: 350px !important;
+    max-height: 70vh;
+    aspect-ratio: 9/16;
+    margin: 1rem auto;
+}
+
+/* Mobile video element adjustments */
+.video-container[data-current-device="mobile"] .feature-video,
+.video-container.showing-mobile .feature-video {
+    object-fit: contain;
+    max-height: 70vh;
+    width: 100%;
+    height: auto;
+}
+
+/* Enhanced mobile frame for mobile videos */
+.video-container[data-current-device="mobile"].mobile-frame,
+.video-container.showing-mobile.mobile-frame {
+    max-width: 380px !important;
+    max-height: 75vh;
+    padding: 20px 12px 30px 12px;
+}
+
+.video-container[data-current-device="mobile"].mobile-frame .feature-video,
+.video-container.showing-mobile.mobile-frame .feature-video {
+    max-height: 65vh;
+    border-radius: 15px;
+}
+
+
 /* Mobile responsive adjustments */
         
 @media (max-width: 768px) {
@@ -799,6 +832,28 @@
                 width: 16px;
                 height: 16px;
             }
+.video-container[data-current-device="mobile"],
+    .video-container.showing-mobile {
+        max-width: 85vw !important;
+        max-height: 60vh;
+    }
+    
+    .video-container[data-current-device="mobile"] .feature-video,
+    .video-container.showing-mobile .feature-video {
+        max-height: 60vh;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame,
+    .video-container.showing-mobile.mobile-frame {
+        max-width: 90vw !important;
+        max-height: 65vh;
+        padding: 15px 10px 25px 10px;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame .feature-video,
+    .video-container.showing-mobile.mobile-frame .feature-video {
+        max-height: 55vh;
+    }
         }
         
       @media (max-width: 480px) {
@@ -865,6 +920,29 @@
     input:checked + .slider:before {
         transform: translateX(14px);
     }
+
+.video-container[data-current-device="mobile"],
+    .video-container.showing-mobile {
+        max-width: 90vw !important;
+        max-height: 50vh;
+    }
+    
+    .video-container[data-current-device="mobile"] .feature-video,
+    .video-container.showing-mobile .feature-video {
+        max-height: 50vh;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame,
+    .video-container.showing-mobile.mobile-frame {
+        max-width: 95vw !important;
+        max-height: 55vh;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame .feature-video,
+    .video-container.showing-mobile .feature-video {
+        max-height: 45vh;
+    }
+
 }
     </style>
 </head>
@@ -1302,6 +1380,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Change video source
         video.src = videoUrl;
         currentDevice = device;
+
+    const videoContainer = document.querySelector('.video-container');
+    if (device === 'mobile') {
+        videoContainer.classList.add('showing-mobile');
+        videoContainer.classList.add('mobile-frame'); // Optional: add mobile frame styling
+    } else {
+        videoContainer.classList.remove('showing-mobile');
+        videoContainer.classList.remove('mobile-frame'); // Remove mobile frame for desktop
+    }
         
         // Handle video loading
         video.addEventListener('loadeddata', function onLoad() {
