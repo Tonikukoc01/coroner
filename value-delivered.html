@@ -1310,7 +1310,7 @@ function isInViewport(element) {
     // Different threshold for mobile vs desktop
     // On mobile, trigger at 75% of viewport height (earlier)
     // On desktop, trigger at 40% of viewport height (more in viewport)
-    const threshold = window.innerWidth <= 768 ? 0.75 : 0.4;
+    const threshold = window.innerWidth <= 768 ? 0.75 : 0.55;
     
     return (
         rect.top <= (window.innerHeight || document.documentElement.clientHeight) * threshold &&
