@@ -1195,19 +1195,6 @@ footer {
         </p>
   </header>
 </section>
-// Function to check if element is in viewport
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    // Different threshold for mobile vs desktop
-    // On mobile, trigger at 75% of viewport height (earlier)
-    // On desktop, trigger at 40% of viewport height (more in viewport)
-    const threshold = window.innerWidth <= 768 ? 0.75 : 0.4;
-    
-    return (
-        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * threshold &&
-        rect.bottom >= 0
-    );
-}
 
 <!-- Features Section -->
 <section id="features">
