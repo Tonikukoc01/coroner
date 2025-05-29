@@ -216,7 +216,39 @@
             text-align: center;
             padding: 0 1rem;
         }
-        
+
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.image-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.wide-image {
+    cursor: pointer; /* Add this to your existing .wide-image style */
+}
+
+body.modal-open {
+    overflow: hidden;
+}    
         /* Project metrics */
         .metrics-container {
             display: flex;
@@ -1057,7 +1089,10 @@ At ARTMO, a social e-commerce platform for artists and art lovers, I took the le
             <div class="wide-image-container">
                 <img src="/assets/frame-afterwards.png" alt="ARTMO Masterclass Dashboard" class="wide-image">
             </div>
-            
+
+<div class="image-modal" id="imageModal" onclick="closeModal()">
+    <img src="" alt="" class="modal-image" onclick="event.stopPropagation()">
+</div>    
             <h2 class="section-heading">The Challenge</h2>
             <p>
                 We identified a significant opportunity to expand our platform's reach by offering high quality educational content from our established artists & art educators. However, implementing this feature presented several technical challenges:
@@ -1427,5 +1462,22 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedOption.classList.add('active');
     }
 });
+
+function openModal(img) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = modal.querySelector('.modal-image');
+    
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+}
+
     </script>
 </body>
