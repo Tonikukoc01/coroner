@@ -534,7 +534,26 @@ body.modal-open {
        background-color: rgba(10, 26, 42, 0.3);    
 }
 
-    
+body.easy-reading .device-toggle {
+    background: rgba(26, 101, 192, 0.1);
+    border: 1px solid rgba(26, 101, 192, 0.3);
+}
+
+body.easy-reading .device-option {
+    color: rgba(10, 26, 42, 0.7);
+}
+
+body.easy-reading .device-option.active {
+    background: linear-gradient(135deg, #1A65C0 0%, #2c5aa0 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(26, 101, 192, 0.3);
+}
+
+body.easy-reading .device-option:not(.active):hover {
+    color: rgba(10, 26, 42, 0.9);
+    background: rgba(26, 101, 192, 0.08);
+}
+
         /* Video container */
         .video-container {
         width: 100%;
