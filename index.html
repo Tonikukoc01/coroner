@@ -916,6 +916,49 @@ body {
     object-fit: cover;
     border-radius: 8px;
 }
+.slide-from-left {
+    opacity: 0;
+    animation: slideFromLeft 1s ease forwards;
+}
+
+.slide-from-right {
+    opacity: 0;
+    animation: slideFromRight 1s ease forwards;
+}
+
+.content-block .content-text {
+    opacity: 0;
+}
+
+.content-block .content-image {
+    opacity: 0;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-400 {
+    animation-delay: 400ms;
+}
+
+.slide-from-bottom {
+    opacity: 0;
+    animation: fadeUpFromBottom 0.8s ease forwards;
+}
+
+.grow-line {
+    animation: growLine 0.8s ease-out forwards;
+}
+
+/* Update the timing for the buttons */
+.slide-from-bottom.delay-400 {
+    animation-delay: 400ms;
+}
+
+.slide-from-bottom.delay-600 {
+    animation-delay: 600ms;
+}
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
@@ -1526,6 +1569,30 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const collaborationBtn = document.querySelector('.collaboration-btn');
+    const portfolioBtn = document.querySelector('.portfolio-btn');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('collaboration-btn')) {
+                    entry.target.classList.add('slide-from-bottom', 'delay-400');
+                } else if (entry.target.classList.contains('portfolio-btn')) {
+                    entry.target.classList.add('slide-from-bottom', 'delay-600');
+                }
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    if (collaborationBtn) observer.observe(collaborationBtn);
+    if (portfolioBtn) observer.observe(portfolioBtn);
+});
 
 // Observe the about section - updated to include portfolio button
 document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn').forEach(element => {
