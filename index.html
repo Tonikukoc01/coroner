@@ -803,18 +803,28 @@ body {
     animation-delay: 0.6s;
 }
 
-.about-subheader, .about-subheader1, .collaboration-btn {
+.about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn {
     opacity: 0;
-    transform: translateY(50px); /* Increased distance */
+    transform: translateY(50px);
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .about-subheader.visible,
 .about-subheader1.visible,
-.collaboration-btn.visible {
+.collaboration-btn.visible,
+.portfolio-btn.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Buttons Container */
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 25px;
+    align-items: flex-start;
+}
+
 
 /* Button Styling */
 .collaboration-btn {
@@ -834,11 +844,36 @@ body {
     animation-delay: 1s;
 }
 
+/* Secondary Button Styling */
+.portfolio-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: #4A6D8C;
+    border: 2px solid #4A6D8C;
+    font-family: SkemaproDisplay;
+    font-size: 1.2rem;
+    font-weight: 200;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    text-align: center;
+    animation-delay: 1.2s;
+}
+
+
 /* Hover Effect */
 .collaboration-btn:hover {
     background: linear-gradient(45deg, #5B7E9D, #3E607C); /* Lighter version of the original colors */
     transform: translateY(-2px);
 }
+
+.portfolio-btn:hover {
+    background: #4A6D8C;
+    color: #F0F4F8;
+    transform: translateY(-2px);
+}
+
 
 .collaboration-btn:focus {
     outline: none;
@@ -976,8 +1011,13 @@ overflow-x: hidden;
         max-width: 100%;
     }
 
-    .collaboration-btn {
-        align-self: center;
+.buttons-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .collaboration-btn,
+    .portfolio-btn {
         width: 100%;
         max-width: 350px;
     }
@@ -1244,29 +1284,31 @@ footer {
     </header>
 </section>
 
+
 <!-- About Section -->
 <section id="about" class="section content-section">
     <div class="section-content about-layout">
         <div class="about-text-column">
             <h1 class="about-header">let's collaborate</h1>
         <div class="horizontal-line"></div>
-
             <p class="about-subheader">
   From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.
 </p>
 <p class="about-subheader1">
   The greater the challenge, the more rewarding the solution!
 </p>
-
-            <!-- Button -->
-                        <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Approach to work</a>
-
+            <!-- Buttons Container -->
+            <div class="buttons-container">
+                <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Approach to work</a>
+                <a href="https://tonikukoc.me/value-delivered" class="portfolio-btn">Portfolio</a>
+            </div>
         </div>
         <div class="about-image-column">
-            <img src="assets/output-onlinepngtools.png"" alt="Collaboration" class="about-collaboration-image">
+            <img src="assets/output-onlinepngtools.png" alt="Collaboration" class="about-collaboration-image">
         </div>
     </div>
 </section>
+
 <footer>
     <div class="footer-content">Toni Kukoč © MMXXV</div>
 </footer>
@@ -1482,15 +1524,15 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe the about section
-document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn').forEach(element => {
+// Observe the about section - updated to include portfolio button
+document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn').forEach(element => {
     observer.observe(element);
 });
 
 // Single, combined scroll-based animation handler that works for both desktop and mobile
 function handleScrollAnimations() {
     const isMobile = window.innerWidth <= 768;
-    const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn');
+    const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn');
     
     // Set trigger point higher up the screen for mobile devices
     const triggerPoint = isMobile ? 
