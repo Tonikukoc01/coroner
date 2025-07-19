@@ -798,6 +798,58 @@ body {
     transition: transform 0.6s ease-in-out;
 }
 
+/* Tech Stack Logos */
+.tech-stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+.tech-stack-text {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: #F0F4F8;
+    opacity: 0.7;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.tech-logos {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.tech-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.tech-logo:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.tech-logo svg {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.tech-logo:hover svg {
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+}
+
+
+
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1015,6 +1067,28 @@ html, body {
     max-width: 100%;
     width: 100%;
   }
+
+
+    .tech-stack {
+        flex-direction: column;
+        gap: 0.8rem;
+        margin-bottom: 3rem;
+    }
+    
+    .tech-logos {
+        gap: 1.5rem;
+    }
+    
+    .tech-logo {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .tech-stack-text {
+        font-size: 0.85rem;
+    }
+}
+
 
   /* AI Button adjustments */
   .explore-ai-btn {
@@ -1395,6 +1469,32 @@ Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating 
 <!-- Coding Projects Section -->
 <section id="coding-projects">
     <div class="coding-projects-container">
+        
+        <!-- Tech Stack Logos -->
+        <div class="tech-stack">
+            <p class="tech-stack-text">built w/</p>
+            <div class="tech-logos">
+                <div class="tech-logo">
+                    <!-- Vercel Logo -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L22 20H2L12 2Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="tech-logo">
+                    <!-- Llama Logo (Meta AI) -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C13.1 2 14 2.9 14 4C14 4.74 13.6 5.39 13 5.73V7C13 8.1 13.9 9 15 9H16C17.1 9 18 9.9 18 11V13C18 14.1 17.1 15 16 15H15C13.9 15 13 15.9 13 17V18.27C13.6 18.61 14 19.26 14 20C14 21.1 13.1 22 12 22C10.9 22 10 21.1 10 20C10 19.26 10.4 18.61 11 18.27V17C11 15.9 10.1 15 9 15H8C6.9 15 6 14.1 6 13V11C6 9.9 6.9 9 8 9H9C10.1 9 11 8.1 11 7V5.73C10.4 5.39 10 4.74 10 4C10 2.9 10.9 2 12 2Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="tech-logo">
+                    <!-- Bolt Logo (Lightning bolt) -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L8.5 14H12V22L16.5 10H13V2Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
         <!-- Placeholder Feature -->
         <div class="coding-feature-item">
             <div class="coding-feature-content">
