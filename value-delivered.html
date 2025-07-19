@@ -537,6 +537,7 @@ body {
     animation: fadeIn 1s 1.4s forwards;
     opacity: 0;
 }
+
 .vertical-line {
     width: 2px;
     height: 4rem;
@@ -545,6 +546,8 @@ body {
     opacity: 0.7;
     animation: fadeIn 1s 1.5s forwards;
     opacity: 0;
+    transition: transform 0.1s ease-out; /* Smooth scaling transition */
+    transform-origin: center; /* Scale from center */
 }
 .features-container {
     display: flex;
@@ -1549,7 +1552,6 @@ function isInViewport(element) {
   // On mobile, trigger at 75% of viewport height (earlier)
   // On desktop, trigger at 60% of viewport height (later)
   const threshold = window.innerWidth <= 768 ? 0.75 : 0.8;
-
   
   return (
     rect.top <= (window.innerHeight || document.documentElement.clientHeight) * threshold &&
@@ -1557,24 +1559,57 @@ function isInViewport(element) {
   );
 }
 
-  // Initial check and scroll handler
-  function handleScrollAnimations() {
-    document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image').forEach(element => {
-      if (isInViewport(element)) {
-        element.classList.add('visible');
-      } else {
-        element.classList.remove('visible'); // Remove visible class if not in viewport
-      }
-    });
-  }
+// Function to handle vertical line shrinking animation
+function handleVerticalLineAnimation() {
+  const verticalLine = document.querySelector('.vertical-line');
+  if (!verticalLine) return;
+  
+  const rect = verticalLine.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const windowCenter = windowHeight / 2;
+  
+  // Calculate distance from center of screen
+  const elementCenter = rect.top + (rect.height / 2);
+  const distanceFromCenter = Math.abs(elementCenter - windowCenter);
+  
+  // Calculate scale based on distance from center
+  // When at center (distance = 0), scale = 0.2 (20% of original size)
+  // When far from center, scale = 1 (100% of original size)
+  const maxDistance = windowHeight / 2; // Maximum distance is half screen height
+  const minScale = 0.2; // Minimum scale (20%)
+  const maxScale = 1.0; // Maximum scale (100%)
+  
+  // Linear interpolation between minScale and maxScale
+  let scale = minScale + (distanceFromCenter / maxDistance) * (maxScale - minScale);
+  scale = Math.min(maxScale, Math.max(minScale, scale)); // Clamp between min and max
+  
+  // Apply the scale transformation
+  verticalLine.style.transform = `scaleY(${scale})`;
+  verticalLine.style.transformOrigin = 'center';
+}
 
-  // Don't run initial animation - wait for scroll
-  setTimeout(() => {
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScrollAnimations);
-    // Initial check after a small delay to ensure proper calculation
-    handleScrollAnimations();
-  }, 100);
+// Initial check and scroll handler
+function handleScrollAnimations() {
+  // Your existing animation logic
+  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image').forEach(element => {
+    if (isInViewport(element)) {
+      element.classList.add('visible');
+    } else {
+      element.classList.remove('visible'); // Remove visible class if not in viewport
+    }
+  });
+  
+  // Handle vertical line animation
+  handleVerticalLineAnimation();
+}
+
+// Don't run initial animation - wait for scroll
+setTimeout(() => {
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScrollAnimations);
+  // Initial check after a small delay to ensure proper calculation
+  handleScrollAnimations();
+}, 100);
 });
 
 // Function to show coding projects section
