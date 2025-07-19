@@ -659,50 +659,144 @@ body {
  .ai-exploration-link {
         text-align: center;
         margin-top: 4rem;
+        margin-bottom: 0; /* Remove bottom margin to prevent spacing issues */
         animation: fadeIn 1s forwards;
     }
 
  .ai-button-container {
         position: relative;
-        display: inline-block; /* Contains the button and the TBD tag */
+        display: inline-block;
     }
 
     .explore-ai-btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         color: #F0F4F8;
         font-family: 'SkemaProDisplay', sans-serif;
         font-weight: 100;
         font-size: 1.2rem;
         text-decoration: none;
         padding: 1rem 2rem;
-        border: 0.5px solid #F0F4F8;
+        background: #1A2B3C; /* Same as page background */
+        border: none;
         border-radius: 4px;
         transition: all 0.3s ease;
+        cursor: pointer;
+        gap: 0.5rem;
     }
     
     .explore-ai-btn:hover {
-        background-color: rgba(240, 244, 248, 0.1);
-    }
-    
-    .explore-ai-btn .view-more-icon {
-        margin-left: 0.5rem;
+        background-color: rgba(240, 244, 248, 0.05);
+        transform: translateY(-2px);
     }
 
-  .tbd-tag {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        background-color: #E63946;
-        color: #F0F4F8;
-        font-size: 0.8rem;
-        font-weight: 500;
-        padding: 0.2rem 0.6rem;
-        border-radius: 2px;
-        letter-spacing: 0.05rem;
- z-index: 1;
+    /* Dropdown indicator icon */
+    .dropdown-icon {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
     }
 
+    .explore-ai-btn.expanded .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+/* Coding Projects Section */
+#coding-projects {
+    background: #1A2B3C;
+    padding: 0; /* Start with no padding */
+    width: 100%;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.8s ease, max-height 0.8s ease, padding 0.8s ease;
+}
+
+#coding-projects.visible {
+    opacity: 1;
+    max-height: 2000px; /* Adjust based on content */
+    padding: 6rem 0; /* Add padding when visible */
+}
+
+.coding-projects-header {
+    text-align: center;
+    margin-bottom: 8rem;
+}
+
+.coding-projects-title {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 300;
+    font-size: 2.7rem;
+    color: #F0F4F8;
+    margin-bottom: 1rem;
+}
+
+.coding-projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    margin-left: 5rem;
+}
+
+.coding-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+.coding-feature-content {
+    flex: 1;
+}
+
+.coding-feature-title {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    color: #F0F4F8;
+    margin: 0 0 1rem 0;
+}
+
+.coding-feature-title:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.coding-feature-line {
+    width: 5rem;
+    height: 2px;
+    background-color: #F0F4F8;
+    margin: 1rem 0;
+}
+
+.coding-feature-description {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    font-size: 1.2rem;
+    color: #B5B8BD;
+    opacity: 0.65;
+    line-height: 1.6;
+}
+
+.coding-feature-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: -2.5rem;
+    position: relative;
+}
+
+.coding-feature-image img {
+    max-width: 85%;
+    border-radius: 5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.6s ease-in-out;
+}
 
 /* Footer Styles */
 footer {
@@ -736,6 +830,10 @@ footer {
             .feature-image .view-more-caption {
                 transform: translateY(100%);
                 opacity: 0;
+            }
+
+            .coding-feature-image:hover img {
+                transform: scale(1.05);
             }
         }
         
@@ -865,6 +963,59 @@ html, body {
     font-size: 0.75rem;
   }
 
+  /* Coding Projects Mobile Styles */
+  #coding-projects.visible {
+    padding: 4rem 0;
+  }
+
+  .coding-projects-header {
+    margin-bottom: 5rem;
+  }
+
+  .coding-projects-title {
+    font-size: 1.9rem;
+  }
+
+  .coding-projects-container {
+    gap: 6rem;
+    margin-left: 0;
+    padding: 0 1.5rem;
+  }
+
+  .coding-feature-item {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .coding-feature-content {
+    width: 100%;
+  }
+
+  .coding-feature-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .coding-feature-line {
+    margin: 0.5rem auto;
+  }
+
+  .coding-feature-description {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .coding-feature-image {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .coding-feature-image img {
+    max-width: 100%;
+    width: 100%;
+  }
+
   /* AI Button adjustments */
   .explore-ai-btn {
     font-size: 1.1rem;
@@ -875,10 +1026,6 @@ html, body {
   .ai-exploration-link {
     margin-top: 2rem;
     padding: 0 1rem;
-  }
-  
-  .tbd-tag {
-    font-size: 0.7rem;
   }
   
   /* Footer adjustments */
@@ -1069,19 +1216,6 @@ html, body {
         margin-left: 0.5rem;
     }
 
-  .tbd-tag {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        background-color: #E63946;
-        color: #F0F4F8;
-        font-size: 0.8rem;
-        font-weight: 500;
-        padding: 0.2rem 0.6rem;
-        border-radius: 2px;
-        letter-spacing: 0.05rem;
- z-index: 1;
-    }
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1250,16 +1384,39 @@ Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating 
 <!-- AI Exploration Link -->
 <div class="ai-exploration-link animate-on-scroll">
     <div class="ai-button-container">
-        <div class="tbd-tag">TBD</div>
-        <a href="https://tonikukoc.me/ai" class="explore-ai-btn">
-            View my vibe coding related projects
-            <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
-                <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        <button class="explore-ai-btn" onclick="showCodingProjects()">
+            <span class="explore-text">View my vibe coding exploration projects</span>
+            <svg class="dropdown-icon" viewBox="0 0 24 24" width="16" height="16">
+                <path fill="#F0F4F8" d="M7 10l5 5 5-5z"/>
             </svg>
-        </a>
+        </button>
     </div>
 </div>
     </section>
+
+<!-- Coding Projects Section -->
+<section id="coding-projects">
+    <div class="coding-projects-header">
+        <h2 class="coding-projects-title">vibe coding exploration</h2>
+        <div class="vertical-line"></div>
+    </div>
+    <div class="coding-projects-container">
+        <!-- Placeholder Feature -->
+        <div class="coding-feature-item">
+            <div class="coding-feature-content">
+                <h3 class="coding-feature-title">AI-Powered Task Automation</h3>
+                <div class="coding-feature-line"></div>
+                <p class="coding-feature-description">
+                    A personal exploration into building intelligent automation tools using modern AI frameworks. This project combines machine learning with practical workflow optimization, featuring natural language processing for task interpretation and automated execution pipelines.
+                </p>
+            </div>
+            <div class="coding-feature-image">
+                <img src="/placeholder.svg?height=300&width=400" alt="AI Task Automation Project">
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer>
     <div class="footer-content">Toni Kukoč © MMXXV</div>
 </footer>
@@ -1316,6 +1473,42 @@ function isInViewport(element) {
     handleScrollAnimations();
   }, 100);
 });
+
+// Function to show coding projects section
+function showCodingProjects() {
+    const codingSection = document.getElementById('coding-projects');
+    const exploreBtn = document.querySelector('.explore-ai-btn');
+    const exploreText = document.querySelector('.explore-text');
+    const dropdownIcon = document.querySelector('.dropdown-icon');
+    
+    // Toggle the section visibility
+    if (codingSection.classList.contains('visible')) {
+        // Hide the section
+        codingSection.classList.remove('visible');
+        exploreBtn.classList.remove('expanded');
+        
+        // Get current language for button text
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        exploreText.textContent = translations[currentLang]['proving-value'].explore_ai;
+    } else {
+        // Show the section
+        codingSection.classList.add('visible');
+        exploreBtn.classList.add('expanded');
+        
+        // Smooth scroll to the coding projects section
+        setTimeout(() => {
+            codingSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }, 100);
+        
+        // Get current language for button text
+        const currentLang = localStorage.getItem('selectedLanguage') || 'en';
+        exploreText.textContent = translations[currentLang]['proving-value'].explore_ai_expanded || 'Explore more coding projects';
+    }
+}
+
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
@@ -1379,12 +1572,16 @@ const translations = {
             'page_description': 'From quiet wins to major changes — here\'s how I proved my value.',
             'section_title': 'results that mattered',
             'explore_ai': 'View my vibe coding exploration projects',
+            'explore_ai_expanded': 'Hide coding exploration projects',
+            'coding_section_title': 'vibe coding exploration',
             'feature1_title': 'Masterclass Platform',
             'feature1_desc': 'Built a scalable live-streaming education platform end-to-end. Integrated AI for real-time features, enabled multilingual delivery, and streamlined payments. Supported 5,000+ live viewers and 100+ transactions using AWS for performance, storage, and VOD.',
             'feature2_title': 'Cloud Recomposition',
             'feature2_desc': 'Re-architected a legacy cloud infrastructure. Cut OPEX by 62%, tripled user capacity, and improved uptime to 99.98%. Improved monitoring, scaling, and issue resolution for greater performance and efficiency.',
             'feature3_title': 'Project Ops Leadership',
             'feature3_desc': 'Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating task management, reducing DEV costs, and saving key stakeholders significant time—enabling them to fully focus on securing seed funding.',
+            'coding_feature1_title': 'AI-Powered Task Automation',
+            'coding_feature1_desc': 'A personal exploration into building intelligent automation tools using modern AI frameworks. This project combines machine learning with practical workflow optimization, featuring natural language processing for task interpretation and automated execution pipelines.',
             'view_more': 'View more'
         }
     },
@@ -1404,17 +1601,21 @@ const translations = {
             'more_coming_soon': 'Plus d\'articles à venir...'
         },
         'proving-value': {
-    'page_title': 'Valeur livrée.',
-    'page_description': 'Des victoires discrètes aux changements majeurs — voici comment j\'ai prouvé ma valeur.',
-    'section_title': 'résultats qui comptent',
-    'explore_ai': 'Voir mes projets d\'exploration de codage Vibe',
-    'feature1_title': 'Plateforme Masterclass',
-    'feature1_desc': 'Conception complète d\'une plateforme éducative de streaming en direct évolutive. Intégration de l\'IA pour des fonctionnalités en temps réel, diffusion multilingue activée et paiements simplifiés. Support de plus de 5 000 spectateurs en direct et plus de 100 transactions en utilisant AWS pour les performances, le stockage et la VOD.',
-    'feature2_title': 'Recomposition Cloud',
-    'feature2_desc': 'Réarchitecture d\'une infrastructure cloud héritée. Réduction des OPEX de 62%, triplement de la capacité utilisateur et amélioration de la disponibilité à 99,98%. Amélioration de la surveillance, de la mise à l\'échelle et de la résolution des problèmes pour de meilleures performances et efficacité.',
-    'feature3_title': 'Leadership des Opérations de Projet',
-    'feature3_desc': 'Direction des opérations pour une équipe hybride de plus de 10 développeurs et 3 agences, coordination de la gestion des tâches, réduction des coûts de DEV et économie de temps significatif pour les parties prenantes clés—leur permettant de se concentrer entièrement sur l\'obtention de financement d\'amorçage.',
-    'view_more': 'Voir plus'
+            'page_title': 'Valeur livrée.',
+            'page_description': 'Des victoires discrètes aux changements majeurs — voici comment j\'ai prouvé ma valeur.',
+            'section_title': 'résultats qui comptent',
+            'explore_ai': 'Voir mes projets d\'exploration de codage vibe',
+            'explore_ai_expanded': 'Masquer les projets d\'exploration de codage',
+            'coding_section_title': 'exploration de codage vibe',
+            'feature1_title': 'Plateforme Masterclass',
+            'feature1_desc': 'Conception complète d\'une plateforme éducative de streaming en direct évolutive. Intégration de l\'IA pour des fonctionnalités en temps réel, diffusion multilingue activée et paiements simplifiés. Support de plus de 5 000 spectateurs en direct et plus de 100 transactions en utilisant AWS pour les performances, le stockage et la VOD.',
+            'feature2_title': 'Recomposition Cloud',
+            'feature2_desc': 'Réarchitecture d\'une infrastructure cloud héritée. Réduction des OPEX de 62%, triplement de la capacité utilisateur et amélioration de la disponibilité à 99,98%. Amélioration de la surveillance, de la mise à l\'échelle et de la résolution des problèmes pour de meilleures performances et efficacité.',
+            'feature3_title': 'Leadership des Opérations de Projet',
+            'feature3_desc': 'Direction des opérations pour une équipe hybride de plus de 10 développeurs et 3 agences, coordination de la gestion des tâches, réduction des coûts de DEV et économie de temps significatif pour les parties prenantes clés—leur permettant de se concentrer entièrement sur l\'obtention de financement d\'amorçage.',
+            'coding_feature1_title': 'Automatisation de Tâches Alimentée par l\'IA',
+            'coding_feature1_desc': 'Une exploration personnelle dans la construction d\'outils d\'automatisation intelligents utilisant des frameworks d\'IA modernes. Ce projet combine l\'apprentissage automatique avec l\'optimisation pratique des flux de travail, présentant le traitement du langage naturel pour l\'interprétation des tâches et les pipelines d\'exécution automatisés.',
+            'view_more': 'Voir plus'
         }
     },
     'hr': {
@@ -1436,13 +1637,17 @@ const translations = {
             'page_title': 'Isporučena vrijednost.',
             'page_description': 'Od tihih pobjeda do značajnih promjena — evo kako sam dokazao svoju vrijednost.',
             'section_title': 'bitni rezultati',
-            'explore_ai': 'Pogledajte moje vibe coding projekte ',
+            'explore_ai': 'Pogledajte moje vibe coding projekte',
+            'explore_ai_expanded': 'Sakrij vibe coding projekte',
+            'coding_section_title': 'vibe coding istraživanje',
             'feature1_title': 'Masterclass Platforma',
             'feature1_desc': 'Skalabilna, sveobuhvatna platforma za učenje i razvoj umjetnika i entuzijasta. Platforma je podržala više od 5.000 gledatelja uživo, uz povećanje prihoda od 25%, koristeći AWS kao centralno rješenje za streaming, pohranu i video-on-demand.',
             'feature2_title': 'Restrukturiranje Clouda',
             'feature2_desc': 'Rearhitekturirana legacy cloud infrastruktura. Poboljšana skalabilnost, smanjen OPEX za 62%, a dostupnost sustava povećana na 99,98%. Poboljšano je nadgledanje i upravljanje sustavom kako bi se omogućila brža identifikacija problema i kontinuirano unaprjeđenje performansi.',
             'feature3_title': 'Vođenje IT Ops-a',
             'feature3_desc': 'Vodio sam operacije hibridnog tima od preko 10 developera i 3 agencije, koordinirao upravljanje zadacima, optimizirao DEV troškove i uštedio ključnom stakeholderu značajno vrijeme, omogućivši im da se u potpunosti usredotoče na traženje series A investicije',
+            'coding_feature1_title': 'AI-Powered Automatizacija Zadataka',
+            'coding_feature1_desc': 'Osobno istraživanje u izgradnji inteligentnih alata za automatizaciju koristeći moderne AI okvire. Ovaj projekt kombinira strojno učenje s praktičnom optimizacijom tijeka rada, uključujući obradu prirodnog jezika za interpretaciju zadataka i automatizirane izvršne cjevovode.',
             'view_more': 'Pogledaj više'
         }
     }
@@ -1504,7 +1709,7 @@ function attachLanguageSelectionHandlers() {
 
 // Update all language selectors with the selected language
 function updateLanguageSelectors(langCode) {
-    const languageDropdowns = document.querySelectorAll('.language-dropdown');
+        const languageDropdowns = document.querySelectorAll('.language-dropdown');
     
     languageDropdowns.forEach(dropdown => {
         const selector = dropdown.querySelector('.language-selector');
@@ -1606,6 +1811,12 @@ function updateProvingValueLanguage(lang) {
     if (sectionTitle) {
         sectionTitle.textContent = translations[lang]['proving-value'].section_title;
     }
+
+    // Update the coding projects section title
+    const codingSectionTitle = document.querySelector('.coding-projects-title');
+    if (codingSectionTitle) {
+        codingSectionTitle.textContent = translations[lang]['proving-value'].coding_section_title;
+    }
        // Update feature titles and descriptions
     const featureTitles = document.querySelectorAll('.feature-title a');
     const featureDescriptions = document.querySelectorAll('.feature-description');
@@ -1636,6 +1847,18 @@ function updateProvingValueLanguage(lang) {
         }
         featureDescriptions[2].textContent = translations[lang]['proving-value'].feature3_desc;
     }
+
+    // Update coding feature content
+    const codingFeatureTitle = document.querySelector('.coding-feature-title');
+    const codingFeatureDescription = document.querySelector('.coding-feature-description');
+    
+    if (codingFeatureTitle) {
+        codingFeatureTitle.textContent = translations[lang]['proving-value'].coding_feature1_title;
+    }
+    
+    if (codingFeatureDescription) {
+        codingFeatureDescription.textContent = translations[lang]['proving-value'].coding_feature1_desc;
+    }
     
     // Update "View more" text
     viewMoreCaptions.forEach(caption => {
@@ -1644,13 +1867,9 @@ function updateProvingValueLanguage(lang) {
 
     // Update AI exploration button text
     const exploreAiBtn = document.querySelector('.explore-ai-btn');
-    if (exploreAiBtn) {
-        // Keep the SVG icon by storing it
-        const svgIcon = exploreAiBtn.querySelector('svg');
-        exploreAiBtn.textContent = translations[lang]['proving-value'].explore_ai + ' ';
-        if (svgIcon) {
-            exploreAiBtn.appendChild(svgIcon);
-        }
+    const exploreText = document.querySelector('.explore-text');
+    if (exploreText) {
+        exploreText.textContent = translations[lang]['proving-value'].explore_ai;
     }
 }
 
