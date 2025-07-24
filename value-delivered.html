@@ -516,57 +516,7 @@ body {
   background: #1A2B3C;
 }
 
-
-.floating-vibe-button {
-    position: fixed;
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 999; /* Below nav menu but above content */
     
-    /* Typography - clean text styling */
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-size: 0.7rem;
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    
-    /* Transitions */
-    transition: all 0.3s ease;
-    cursor: pointer;
-    
-    /* Constant pulsing animation */
-    animation: textPulse 2s ease-in-out infinite;
-}
-
-/* Text pulsing animation - scale based */
-@keyframes textPulse {
-    0%, 100% { 
-        transform: translateY(-50%) scale(1);
-        opacity: 0.9;
-    }
-    50% { 
-        transform: translateY(-50%) scale(1.05);
-        opacity: 1;
-    }
-}
-
-/* Hover effects */
-.floating-vibe-button:hover {
-    color: #F0F4F8;
-    transform: translateY(-50%) translateX(-3px);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Focus styles for accessibility */
-.floating-vibe-button:focus {
-    outline: 2px solid rgba(240, 244, 248, 0.5);
-    outline-offset: 2px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
  #features {
     background: #1A2B3C;
     padding: 6rem 0;
@@ -1011,28 +961,6 @@ html, body {
     height: 7cm;
   }
 
-.floating-vibe-button {
-        right: 1rem;
-        top: 65%;
-        transform: translateY(-50%);
-        font-size: 0.8rem;
-    }
-    
-    @keyframes textPulse {
-        0%, 100% { 
-            transform: translateY(-50%) scale(1);
-            opacity: 0.9;
-        }
-        50% { 
-            transform: translateY(-50%) scale(1.05);
-            opacity: 1;
-        }
-    }
-    
-    .floating-vibe-button:hover {
-        transform: translateY(-50%) translateX(-2px);
-    }
-
   /* Features section adjustments for mobile */
   #features {
     padding: 4rem 0;
@@ -1475,13 +1403,6 @@ footer {
         </p>
   </header>
 </section>
-
-<a href="#coding-projects" 
-   class="floating-vibe-button" 
-   aria-label="Scroll to Vibe Coding Exploration Projects section">
-    View Vibe Code
-</a>
-
 <!-- Features Section -->
  <!-- Features Section -->
     <section id="features">
@@ -2259,39 +2180,6 @@ document.querySelectorAll('.feature-item').forEach(item => {
     });
   }
 });
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Floating button smooth scroll functionality
-    const floatingButton = document.querySelector('.floating-vibe-button');
-    
-    if (floatingButton) {
-        floatingButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetSection = document.querySelector('#coding-projects');
-            if (targetSection) {
-                // First show the coding projects section if it's hidden
-                if (!targetSection.classList.contains('visible')) {
-                    showCodingProjects();
-                    
-                    // Wait a moment for the section to expand, then scroll
-                    setTimeout(() => {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }, 300);
-                } else {
-                    // Section is already visible, just scroll to it
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    }
-});
-   </script>
+        </script>
     </body>
 </html>
