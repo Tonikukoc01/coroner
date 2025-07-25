@@ -536,24 +536,22 @@ body {
 
 .scroll-button {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 8px;
+    gap: 8px;
+    padding: 10px 14px;
     background: rgba(240, 244, 248, 0.08);
     border: 1px solid rgba(240, 244, 248, 0.15);
     border-radius: 4px;
     color: #F0F4F8;
     text-decoration: none;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 100;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
+    white-space: nowrap;
 }
 
 .scroll-button:hover {
@@ -562,15 +560,14 @@ body {
     transform: translateX(-2px);
 }
 
-.arrow-down {
-    font-size: 10px;
+.arrow-diagonal {
+    font-size: 16px;
     transition: transform 0.3s ease;
-    writing-mode: horizontal-tb;
-    text-orientation: upright;
+    line-height: 1;
 }
 
-.scroll-button:hover .arrow-down {
-    transform: translateY(2px);
+.scroll-button:hover .arrow-diagonal {
+    transform: translate(-1px, 1px);
 }
     
  #features {
@@ -1025,13 +1022,13 @@ html, body {
     }
     
     .scroll-button {
-        padding: 6px;
-        font-size: 10px;
-        gap: 3px;
+        padding: 8px 12px;
+        font-size: 11px;
+        gap: 6px;
     }
     
-    .arrow-down {
-        font-size: 9px;
+    .arrow-diagonal {
+        font-size: 14px;
     }
 
   /* Features section adjustments for mobile */
@@ -2262,12 +2259,11 @@ document.querySelectorAll('.feature-item').forEach(item => {
     });
   }
 });
-
 // ===== SIDE SCROLL INDICATOR =====
 document.addEventListener('DOMContentLoaded', function() {
     const indicator = document.getElementById('sideScrollIndicator');
     const scrollButton = indicator.querySelector('.scroll-button');
-    const SCROLL_THRESHOLD = 0.35;
+    const SCROLL_THRESHOLD = 0.15; // Earlier threshold - 15% instead of 35%
     
     // Handle scroll events to show/hide indicator
     function handleScrollIndicator() {
@@ -2275,11 +2271,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercentage = scrollTop / documentHeight;
         
-        if (scrollPercentage >= SCROLL_THRESHOLD) {
+        // Check if user has reached the coding projects section
+        const codingSection = document.getElementById('coding-projects');
+        const codingSectionRect = codingSection.getBoundingClientRect();
+        const isInCodingSection = codingSectionRect.top <= window.innerHeight * 0.8;
+        
+        // Show indicator if scrolled past threshold but not yet in coding section
+        if (scrollPercentage >= SCROLL_THRESHOLD && !isInCodingSection) {
             indicator.classList.add('visible');
         } else {
             indicator.classList.remove('visible');
         }
+    }
+    
+    // Hide indicator permanently
+    function hideIndicatorPermanently() {
+        indicator.classList.remove('visible');
+        indicator.style.display = 'none';
     }
     
     // Smooth scroll to coding projects section
@@ -2301,19 +2309,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }, 100);
             
-            // Brief opacity change on click
-            indicator.style.opacity = '0.3';
-            setTimeout(() => {
-                indicator.style.opacity = '';
-            }, 1000);
+            // Hide indicator after clicking
+            hideIndicatorPermanently();
         }
     }
     
-    // Throttled scroll listener for performance
+    // Enhanced scroll listener that also checks for coding section visibility
     let scrollTimeout;
     window.addEventListener('scroll', function() {
         if (scrollTimeout) clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(handleScrollIndicator, 10);
+        scrollTimeout = setTimeout(() => {
+            handleScrollIndicator();
+            
+            // Additional check: hide if user discovers coding section by scrolling
+            const codingSection = document.getElementById('coding-projects');
+            if (codingSection && codingSection.classList.contains('visible')) {
+                const codingSectionRect = codingSection.getBoundingClientRect();
+                if (codingSectionRect.top <= window.innerHeight * 0.5) {
+                    hideIndicatorPermanently();
+                }
+            }
+        }, 10);
     });
     
     // Click handler
