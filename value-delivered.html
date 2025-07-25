@@ -2271,13 +2271,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercentage = scrollTop / documentHeight;
         
-        // Check if user has reached the coding projects section
-        const codingSection = document.getElementById('coding-projects');
-        const codingSectionRect = codingSection.getBoundingClientRect();
-        const isInCodingSection = codingSectionRect.top <= window.innerHeight * 0.8;
+        // Check if user has reached the "View my vibe coding exploration projects" button
+        const exploreButton = document.querySelector('.explore-ai-btn');
+        let isExploreButtonVisible = false;
         
-        // Show indicator if scrolled past threshold but not yet in coding section
-        if (scrollPercentage >= SCROLL_THRESHOLD && !isInCodingSection) {
+        if (exploreButton) {
+            const buttonRect = exploreButton.getBoundingClientRect();
+            // Hide when 70% of the button is visible on screen
+            isExploreButtonVisible = buttonRect.top <= window.innerHeight * 0.7 && buttonRect.bottom >= 0;
+        }
+        
+        // Also check if coding section is open and visible
+        const codingSection = document.getElementById('coding-projects');
+        let isInCodingSection = false;
+        
+        if (codingSection && codingSection.classList.contains('visible')) {
+            const codingSectionRect = codingSection.getBoundingClientRect();
+            isInCodingSection = codingSectionRect.top <= window.innerHeight * 0.8;
+        }
+        
+        // Show indicator if scrolled past threshold but explore button not visible and not in coding section
+        if (scrollPercentage >= SCROLL_THRESHOLD && !isExploreButtonVisible && !isInCodingSection) {
             indicator.classList.add('visible');
         } else {
             indicator.classList.remove('visible');
@@ -2314,21 +2328,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Enhanced scroll listener that also checks for coding section visibility
+    // Enhanced scroll listener
     let scrollTimeout;
     window.addEventListener('scroll', function() {
         if (scrollTimeout) clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
             handleScrollIndicator();
-            
-            // Additional check: hide if user discovers coding section by scrolling
-            const codingSection = document.getElementById('coding-projects');
-            if (codingSection && codingSection.classList.contains('visible')) {
-                const codingSectionRect = codingSection.getBoundingClientRect();
-                if (codingSectionRect.top <= window.innerHeight * 0.5) {
-                    hideIndicatorPermanently();
-                }
-            }
         }, 10);
     });
     
@@ -2338,7 +2343,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial check
     handleScrollIndicator();
 });
-
         </script>
     </body>
 </html>
