@@ -516,6 +516,62 @@ body {
   background: #1A2B3C;
 }
 
+/* ===== SIDE SCROLL INDICATOR STYLES ===== */
+.side-scroll-indicator {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-family: 'SkemaProDisplay', sans-serif;
+}
+
+.side-scroll-indicator.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px;
+    background: rgba(240, 244, 248, 0.08);
+    border: 1px solid rgba(240, 244, 248, 0.15);
+    border-radius: 4px;
+    color: #F0F4F8;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.scroll-button:hover {
+    background: rgba(240, 244, 248, 0.12);
+    border-color: rgba(240, 244, 248, 0.25);
+    transform: translateX(-2px);
+}
+
+.arrow-down {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+    writing-mode: horizontal-tb;
+    text-orientation: upright;
+}
+
+.scroll-button:hover .arrow-down {
+    transform: translateY(2px);
+}
     
  #features {
     background: #1A2B3C;
@@ -961,6 +1017,23 @@ html, body {
     height: 7cm;
   }
 
+.side-scroll-indicator {
+        right: 15px;
+        top: auto;
+        bottom: 120px;
+        transform: none;
+    }
+    
+    .scroll-button {
+        padding: 6px;
+        font-size: 10px;
+        gap: 3px;
+    }
+    
+    .arrow-down {
+        font-size: 9px;
+    }
+
   /* Features section adjustments for mobile */
   #features {
     padding: 4rem 0;
@@ -1403,6 +1476,15 @@ footer {
         </p>
   </header>
 </section>
+
+<!-- Side Scroll Indicator -->
+<div class="side-scroll-indicator" id="sideScrollIndicator">
+    <a href="#coding-projects" class="scroll-button">
+        <span class="button-text">Vibe Coding</span>
+        <span class="arrow-down">↓</span>
+    </a>
+</div>
+
 <!-- Features Section -->
  <!-- Features Section -->
     <section id="features">
@@ -2180,6 +2262,67 @@ document.querySelectorAll('.feature-item').forEach(item => {
     });
   }
 });
+
+// ===== SIDE SCROLL INDICATOR =====
+document.addEventListener('DOMContentLoaded', function() {
+    const indicator = document.getElementById('sideScrollIndicator');
+    const scrollButton = indicator.querySelector('.scroll-button');
+    const SCROLL_THRESHOLD = 0.35;
+    
+    // Handle scroll events to show/hide indicator
+    function handleScrollIndicator() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercentage = scrollTop / documentHeight;
+        
+        if (scrollPercentage >= SCROLL_THRESHOLD) {
+            indicator.classList.add('visible');
+        } else {
+            indicator.classList.remove('visible');
+        }
+    }
+    
+    // Smooth scroll to coding projects section
+    function scrollToCodingProjects(e) {
+        e.preventDefault();
+        
+        const targetSection = document.getElementById('coding-projects');
+        if (targetSection) {
+            // Make sure the section is visible first
+            if (!targetSection.classList.contains('visible')) {
+                showCodingProjects();
+            }
+            
+            // Then scroll to it
+            setTimeout(() => {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 100);
+            
+            // Brief opacity change on click
+            indicator.style.opacity = '0.3';
+            setTimeout(() => {
+                indicator.style.opacity = '';
+            }, 1000);
+        }
+    }
+    
+    // Throttled scroll listener for performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(handleScrollIndicator, 10);
+    });
+    
+    // Click handler
+    scrollButton.addEventListener('click', scrollToCodingProjects);
+    
+    // Initial check
+    handleScrollIndicator();
+});
+
         </script>
     </body>
 </html>
