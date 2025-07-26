@@ -2263,7 +2263,7 @@ document.querySelectorAll('.feature-item').forEach(item => {
 document.addEventListener('DOMContentLoaded', function() {
     const indicator = document.getElementById('sideScrollIndicator');
     const scrollButton = indicator.querySelector('.scroll-button');
-    const SCROLL_THRESHOLD = 0.15; // Earlier threshold - 15% instead of 35%
+    const SCROLL_THRESHOLD = 0.25; // Threshold when the button appears
     
     // Handle scroll events to show/hide indicator
     function handleScrollIndicator() {
@@ -2272,7 +2272,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollPercentage = scrollTop / documentHeight;
         
         // Check if user has reached the "View my vibe coding exploration projects" button
-        const exploreButton = document.querySelector('.explore-ai-btn');
+        const exploreButton = document.querySelector('..ai-exploration-link');
         let isExploreButtonVisible = false;
         
         if (exploreButton) {
