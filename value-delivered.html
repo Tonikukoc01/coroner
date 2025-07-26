@@ -2263,7 +2263,7 @@ document.querySelectorAll('.feature-item').forEach(item => {
 document.addEventListener('DOMContentLoaded', function() {
     const indicator = document.getElementById('sideScrollIndicator');
     const scrollButton = indicator.querySelector('.scroll-button');
-    const SCROLL_THRESHOLD = 0.25; // Threshold when the button appears
+    const SCROLL_THRESHOLD = 0.15; // Earlier threshold - 15% instead of 35%
     
     // Handle scroll events to show/hide indicator
     function handleScrollIndicator() {
@@ -2271,14 +2271,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercentage = scrollTop / documentHeight;
         
-        // Check if user has reached the "View my vibe coding exploration projects" button
-        const exploreButton = document.querySelector('.ai-button-container');
+        // Check if user can see the "View my vibe coding exploration projects" button
+        const exploreButton = document.querySelector('.ai-exploration-link');
         let isExploreButtonVisible = false;
         
         if (exploreButton) {
             const buttonRect = exploreButton.getBoundingClientRect();
-            // Hide when 70% of the button is visible on screen
-            isExploreButtonVisible = buttonRect.top <= window.innerHeight * 0.7 && buttonRect.bottom >= 0;
+            // Hide when any part of the button section is visible on screen
+            isExploreButtonVisible = buttonRect.bottom > 0 && buttonRect.top < window.innerHeight;
         }
         
         // Also check if coding section is open and visible
@@ -2287,10 +2287,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (codingSection && codingSection.classList.contains('visible')) {
             const codingSectionRect = codingSection.getBoundingClientRect();
-            isInCodingSection = codingSectionRect.top <= window.innerHeight * 0.8;
+            isInCodingSection = codingSectionRect.top < window.innerHeight;
         }
         
-        // Show indicator if scrolled past threshold but explore button not visible and not in coding section
+        // Show indicator ONLY if:
+        // 1. Scrolled past threshold AND
+        // 2. Explore button is NOT visible AND
+        // 3. Coding section is NOT open/visible
         if (scrollPercentage >= SCROLL_THRESHOLD && !isExploreButtonVisible && !isInCodingSection) {
             indicator.classList.add('visible');
         } else {
