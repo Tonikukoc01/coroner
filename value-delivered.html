@@ -2102,23 +2102,32 @@ function updateProvingValueLanguage(lang) {
         featureDescriptions[2].textContent = translations[lang]['proving-value'].feature3_desc;
     }
 
-    // Update coding feature content
-    const codingFeatureTitle = document.querySelector('.coding-feature-title');
-    const codingFeatureDescription = document.querySelector('.coding-feature-description');
-    
-    if (codingFeatureTitle) {
-        codingFeatureTitle.textContent = translations[lang]['proving-value'].coding_feature1_title;
-    }
-    
-    if (codingFeatureDescription) {
-        codingFeatureDescription.textContent = translations[lang]['proving-value'].coding_feature1_desc;
-    }
-    
-    // Update "View more" text
-    viewMoreCaptions.forEach(caption => {
-        caption.textContent = translations[lang]['proving-value'].view_more;
-    });
+    // Update coding feature content - UPDATED VERSION
+const codingFeatureTitles = document.querySelectorAll('.coding-feature-title');
+const codingFeatureDescriptions = document.querySelectorAll('.coding-feature-description');
 
+// Update first coding feature (City Snap)
+if (codingFeatureTitles[0]) {
+    codingFeatureTitles[0].textContent = translations[lang]['proving-value'].coding_feature1_title;
+}
+
+if (codingFeatureDescriptions[0]) {
+    codingFeatureDescriptions[0].textContent = translations[lang]['proving-value'].coding_feature1_desc;
+}
+
+// Update second coding feature (Kukica Crochet)
+if (codingFeatureTitles[1]) {
+    codingFeatureTitles[1].textContent = translations[lang]['proving-value'].coding_feature2_title;
+}
+
+if (codingFeatureDescriptions[1]) {
+    codingFeatureDescriptions[1].textContent = translations[lang]['proving-value'].coding_feature2_desc;
+}
+
+// Update "View more" text
+viewMoreCaptions.forEach(caption => {
+    caption.textContent = translations[lang]['proving-value'].view_more;
+});
     // Update AI exploration button text
     const exploreAiBtn = document.querySelector('.explore-ai-btn');
     const exploreText = document.querySelector('.explore-text');
