@@ -172,7 +172,18 @@ body {
         transform: translateY(20px);
     }
     100% {
-        opacity: 0.4;/
+        opacity: 1;/
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInSubtle {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 0.4; /* Your desired lower opacity for subtitle */
         transform: translateY(0);
     }
 }
@@ -607,15 +618,15 @@ body {
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
     
-    .article-subtitle {
+ .article-subtitle {
     font-family: 'SkemaProDisplay', sans-serif;
     font-weight: 100;
     font-size: 1.2rem;
     color: #F0F4F8;
     margin: 0;
     line-height: 1.4;
-    animation: fadeIn 1s 1.7s forwards;
-    opacity: 0; 
+    animation: fadeInSubtle 1s 1.7s forwards; 
+    opacity: 0;
 }
 
 .article-date p {
