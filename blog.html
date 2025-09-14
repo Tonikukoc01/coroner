@@ -172,7 +172,7 @@ body {
         transform: translateY(20px);
     }
     100% {
-        opacity: 1;
+        opacity: 0.4;/
         transform: translateY(0);
     }
 }
@@ -608,13 +608,15 @@ body {
     }
     
     .article-subtitle {
-        font-family: 'SkemaProDisplay', sans-serif;
-        font-weight: 100;
-        font-size: 1.2rem;
-        color: #F0F4F8;
-        margin: 0;
-        line-height: 1.4;
-    }
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    font-size: 1.2rem;
+    color: #F0F4F8;
+    margin: 0;
+    line-height: 1.4;
+    animation: fadeIn 1s 1.7s forwards;
+    opacity: 0; 
+}
 
 .article-date p {
     animation: fadeIn 1s 1.5s forwards;
@@ -624,11 +626,6 @@ body {
 .article-title {
     animation: fadeIn 1s 1.6s forwards;
     opacity: 0;
-}
-
-.article-subtitle {
-    animation: fadeIn 1s 1.7s forwards;
-    opacity: 0.4;
 }
 
 .coming-soon-container {
