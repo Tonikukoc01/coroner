@@ -691,19 +691,24 @@ body {
     padding-right: 10%
 }
 
- .tbd-tag {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background-color: #E63946;
-            color: #F0F4F8;
-            font-size: 0.8rem;
-            font-weight: 500;
-            padding: 0.2rem 0.6rem;
-            border-radius: 2px;
-            letter-spacing: 0.05rem;
-            z-index: 1;
-        }
+.tbd-target {
+    position: relative;
+    display: inline-block;
+}
+.tbd-tag {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: #E63946;
+    color: #F0F4F8;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.05rem;
+    z-index: 10;
+    white-space: nowrap;
+}
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
@@ -795,6 +800,12 @@ overflow-x: hidden;
         font-size: 1.1rem;
     }
 
+.tbd-tag {
+        top: -12px;
+        right: -12px;
+        font-size: 0.6rem;
+        padding: 0.1rem 0.3rem;
+    }
  .coming-soon-container {
         width: 90%;
         margin-left: 5%;
@@ -833,6 +844,13 @@ overflow-x: hidden;
     
     .coming-soon-text {
         font-size: 1.1rem;
+    }
+
+.tbd-tag {
+        top: -10px;
+        right: -10px;
+        font-size: 0.55rem;
+        padding: 0.08rem 0.25rem;
     }
 }
 
@@ -1098,30 +1116,26 @@ footer {
     </div>
     <div class="article-content">
         <h2 class="article-title">
-            VIBE CODE: Building a Webshop Without Being a Developer
-            <span class="tbd-tag">TBD</span>
+            VIBE CODE: Building a Webshop Without Being a <span class="tbd-target">Developer<span class="tbd-tag">TBD</span></span>
         </h2>
         <p class="article-subtitle">
             A personal experiment: creating a tailored crochet webshop with modern tools, no heavy coding, and a touch of family creativity.
         </p>
     </div>
 </article>
-
 <article class="article-item">
     <div class="article-date">
         <p>21st April 25 <span class="date-arrow">→</span></p>
     </div>
     <div class="article-content">
         <h2 class="article-title">
-            Speaking the Language of Money
-            <span class="tbd-tag">TBD</span>
+            Speaking the Language of <span class="tbd-target">Money<span class="tbd-tag">TBD</span></span>
         </h2>
         <p class="article-subtitle">
             Demystifying financial literacy and how understanding the fundamentals of finance can transform your personal and professional decisions.
         </p>
     </div>
 </article>
-
       <div class="coming-soon-container">
     <div class="coming-soon-line"></div>
     <p class="coming-soon-text">More articles coming soon...</p>
