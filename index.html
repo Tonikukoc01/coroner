@@ -222,7 +222,7 @@ body {
     text-align: center; /* Changed from left to center */
     position: absolute;
     top: 35%; /* Kept your original value */
-    left: 10%; /* Kept your original value */
+    left: 5%; /* Kept your original value */
     transform: translateY(-50%); /* Kept your original transform */
     color: white;
     -moz-animation: header 0.75s 1s forwards;
@@ -1632,8 +1632,10 @@ function handleScrollAnimations() {
     animatedElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         
-        if (elementTop < triggerPoint) {
+         if (elementTop < triggerPoint) {
             element.classList.add('visible');
+        } else {
+            element.classList.remove('visible'); // Add this line to remove class when out of viewport
         }
     });
 }
