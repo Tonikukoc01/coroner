@@ -268,19 +268,17 @@ body {
 .features-header {
     text-align: center;
     animation: fadeIn 1s 1.3s forwards;
+    opacity: 0;
 }
 .vertical-line {
     width: 2px;
-    height: 4rem; /* Start with full height */
+    height: 4rem;
     background-color: #F0F4F8;
     margin: 0 auto;
-    transition: height 0.8s ease-out; /* Smooth height transition */
-    transform-origin: center;
-    opacity: 1;
-    transform: scaleY(1);
-    transform-origin: top; /* Or 'bottom' if you want it to shrink from bottom */
-    transition: all 0.8s ease-out;
-
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 1s 1.3s forwards; /* Same timing as parent */
+    transition: height 0.8s ease-out, transform 0.8s ease-out, opacity 0.8s ease-out;
+    transform-origin: top;
 }
 
 .vertical-line.visible {
