@@ -1928,9 +1928,15 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const buildSection = document.querySelector('section:last-of-type');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+   const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Check if it's the vertical-line element
+            if (entry.target.classList.contains('vertical-line')) {
+                entry.target.classList.add('visible');
+            }
+            // Check if it's a section with the build content
+            else if (entry.target.querySelector('.about-header')) {
                 // Animate header from right
                 entry.target.querySelector('.about-header').classList.add('slide-from-right');
                 
@@ -1944,20 +1950,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const buttons = entry.target.querySelectorAll('.collaboration-btn');
                 buttons[0].classList.add('slide-from-bottom', 'delay-400');
                 buttons[1].classList.add('slide-from-bottom', 'delay-600');
-
-   // Add this new section for vertical-line
-            else if (entry.target.classList.contains('vertical-line')) {
-                entry.target.classList.add('visible');
             }
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2
+            
+            observer.unobserve(entry.target);
+        }
     });
-
-    observer.observe(buildSection);
+}, {
+    threshold: 0.2
 });
+
+observer.observe(buildSection);
+// Also observe the vertical-line element
+const verticalLine = document.querySelector('.vertical-line');
+if (verticalLine) observer.observe(verticalLine);
 
 function updateHeaderForMobile() {
     const headerParagraph = document.querySelector("h1 + .horizontal-line-header + p"); // Adjusted selector
