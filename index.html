@@ -743,8 +743,8 @@ body {
 }
 
 .about-collaboration-image {
-    max-width: 600%;
-    max-height: 300px;
+    max-width: 100%;
+    max-height: 200px;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: none;
@@ -2033,14 +2033,34 @@ document.addEventListener('DOMContentLoaded', () => {
         container: document.getElementById('handshake-animation'),
         renderer: 'svg',
         loop: true,
-        autoplay: true,
+        autoplay: false, // Don't autoplay
         path: 'assets/handshake.json'
     });
 
-    // Add the visible class when animation is ready
-    handshakeAnimation.addEventListener('config_ready', () => {
-        document.getElementById('handshake-animation').classList.add('visible');
-    });
+    // Create intersection observer to trigger animation when in viewport
+    const observerOptions = {
+        threshold: 0.3, // Trigger when 30% visible
+        rootMargin: '0px'
+    };
+
+    const lottieObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add visible class for CSS animation AND play Lottie
+                entry.target.classList.add('visible');
+                handshakeAnimation.play();
+                
+                // Stop observing once it's played
+                lottieObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Start observing the animation container
+    const animationContainer = document.getElementById('handshake-animation');
+    if (animationContainer) {
+        lottieObserver.observe(animationContainer);
+    }
 });
 
         </script>
