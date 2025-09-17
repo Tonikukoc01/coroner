@@ -28,8 +28,8 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-        <!-- Lottie Player Script -->
-        <script src="https://cdn.lottielab.com/s/lottie-player@1.x/player-web.min.js"></script>
+        <!-- Lottie Web Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
         
         <style>
@@ -1354,8 +1354,8 @@ footer {
             </div>
         </div>
         <div class="about-image-column">
-                    <lottie-player src="https://cdn.lottielab.com/l/BPJeMBbWXjatLd.json" loop autoplay class="about-collaboration-image"></lottie-player>
-                </div>
+    <lottie-player src="assets/handshake-1.json" loop autoplay class="about-collaboration-image"></lottie-player>
+</div>
     </div>
 </section>
 
@@ -1598,15 +1598,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (portfolioBtn) observer.observe(portfolioBtn);
 });
 
-// Observe the about section - updated to include portfolio button
-document.querySelector('#about').querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn').forEach(element => {
+// Observe the about section - exclude about-collaboration-image since it's a Lottie animation
+document.querySelector('#about').querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn').forEach(element => {
     observer.observe(element);
 });
 
 // Single, combined scroll-based animation handler that works for both desktop and mobile
 function handleScrollAnimations() {
+    
     const isMobile = window.innerWidth <= 768;
-    const animatedElements = document.querySelectorAll('.about-collaboration-image, .horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn');
+    const animatedElements = document.querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn');
     
     // Set trigger point higher up the screen for mobile devices
     const triggerPoint = isMobile ? 
