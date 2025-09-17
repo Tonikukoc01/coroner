@@ -274,11 +274,10 @@ body {
     height: 4rem; /* Start with full height */
     background-color: #F0F4F8;
     margin: 0 auto;
-    opacity: 0.7;
     transition: height 0.8s ease-out; /* Smooth height transition */
     transform-origin: center;
-    opacity: 0;
-    transform: scaleY(0);
+    opacity: 1;
+    transform: scaleY(1);
     transform-origin: top; /* Or 'bottom' if you want it to shrink from bottom */
     transition: all 0.8s ease-out;
 
@@ -286,8 +285,8 @@ body {
 
 .vertical-line.visible {
     height: 1rem; /* Shrink to smaller height when visible */
-    opacity: 1;
-    transform: scaleY(1);
+    transform: scaleY(0.5); /* Shrink to half size */
+    opacity: 0.7; /* Fade slightly */
 }
 
 .scroll-text {
