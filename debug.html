@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Lottie Animation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .animation-container {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ccc;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .debug-info {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lottie Animation Debug Page</h1>
+    
+    <div class="test-container">
+        <h2>Test 1: Library Check</h2>
+        <div class="debug-info" id="library-check">Checking if Lottie library is loaded...</div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 2: Known Working Animation (from CDN)</h2>
+        <div class="animation-container" id="test-animation-1"></div>
+        <div class="debug-info" id="test1-status">Loading test animation...</div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 3: Your Handshake Animation</h2>
+        <div class="animation-container" id="handshake-animation"></div>
+        <div class="debug-info" id="test2-status">Loading your animation...</div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test 4: File Path Check</h2>
+        <div class="debug-info" id="file-check">Checking file accessibility...</div>
+        <button onclick="testFilePath()">Test File Path</button>
+    </div>
+
+    <script>
+        // Test 1: Check if Lottie library is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const libraryCheck = document.getElementById('library-check');
+            
+            if (typeof lottie !== 'undefined') {
+                libraryCheck.innerHTML = '<span class="success">✓ Lottie library loaded successfully</span>';
+                runTests();
+            } else {
+                libraryCheck.innerHTML = '<span class="error">✗ Lottie library NOT loaded</span>';
+            }
+        });
+
+        function runTests() {
+            // Test 2: Load a known working animation
+            try {
+                const testAnimation1 = lottie.loadAnimation({
+                    container: document.getElementById('test-animation-1'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'https://assets3.lottiefiles.com/packages/lf20_puciaact.json'
+                });
+
+                testAnimation1.addEventListener('config_ready', () => {
+                    document.getElementById('test1-status').innerHTML = '<span class="success">✓ Test animation loaded successfully</span>';
+                });
+
+                testAnimation1.addEventListener('data_failed', () => {
+                    document.getElementById('test1-status').innerHTML = '<span class="error">✗ Test animation failed to load</span>';
+                });
+            } catch (error) {
+                document.getElementById('test1-status').innerHTML = `<span class="error">✗ Error: ${error.message}</span>`;
+            }
+
+            // Test 3: Try to load your handshake animation
+            try {
+                const handshakeAnimation = lottie.loadAnimation({
+                    container: document.getElementById('handshake-animation'),
+                    renderer: 'svg',
+                    loop: true,
+                    autoplay: true,
+                    path: 'assets/handshake 1.json'
+                });
+
+                handshakeAnimation.addEventListener('config_ready', () => {
+                    document.getElementById('test2-status').innerHTML = '<span class="success">✓ Handshake animation loaded successfully</span>';
+                });
+
+                handshakeAnimation.addEventListener('data_failed', () => {
+                    document.getElementById('test2-status').innerHTML = '<span class="error">✗ Handshake animation failed to load - File not found or invalid JSON</span>';
+                });
+
+                handshakeAnimation.addEventListener('data_ready', () => {
+                    document.getElementById('test2-status').innerHTML = '<span class="success">✓ Handshake animation data loaded</span>';
+                });
+
+            } catch (error) {
+                document.getElementById('test2-status').innerHTML = `<span class="error">✗ Error loading handshake: ${error.message}</span>`;
+            }
+        }
+
+        // Test 4: Check if file is accessible
+        function testFilePath() {
+            const fileCheck = document.getElementById('file-check');
+            
+            fetch('assets/handshake 1.json')
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error(`File not found (${response.status})`);
+                    }
+                })
+                .then(data => {
+                    fileCheck.innerHTML = '<span class="success">✓ File found and accessible</span>';
+                    console.log('File content preview:', data);
+                })
+                .catch(error => {
+                    fileCheck.innerHTML = `<span class="error">✗ File access failed: ${error.message}</span><br>
+                        <small>Common causes:<br>
+                        • File doesn't exist in assets/ folder<br>
+                        • Filename has spaces (try renaming)<br>
+                        • Wrong file path<br>
+                        • Need to run on local server (not file://)</small>`;
+                });
+        }
+    </script>
+</body>
+</html>
