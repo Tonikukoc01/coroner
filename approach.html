@@ -30,6 +30,12 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
+    <!-- Lottie Web Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+
+
         <style>
           /* Global Styles */
 
@@ -955,6 +961,25 @@ body {
     flex: 1;
 }
 
+* Lottie animation containers */
+#optimization-animation,
+#tailored-animation,
+#scaling-animation {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+#optimization-animation svg,
+#tailored-animation svg,
+#scaling-animation svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
 .content-image {
     width: 350px;
     height: 250px;
@@ -1130,6 +1155,13 @@ body {
         margin-bottom: 1.5rem;
         padding: 2rem;
     }
+
+ #optimization-animation,
+    #tailored-animation,
+    #scaling-animation {
+        max-width: 300px;
+        max-height: 300px;
+    }  
 
 .content-image {
         margin-top: 1.5rem; /* Push image down a bit */
@@ -1527,9 +1559,8 @@ footer {
                    By reviewing workflows and implementing the right solutions, I'll ensure that your operations run more smoothly, allowing your team to focus on what matters most—delivering the product and creating value.
                 </p>
             </div>
-            <img src="assets/optimizing-operations.png" alt="Collaboration" class="content-image">
+            <div id="optimization-animation" class="content-image"></div>
         </div>
-
         <!-- Second Block -->
         <div class="content-block right-aligned block-2">
             <div class="content-text">
@@ -1541,9 +1572,8 @@ footer {
                     Whether it's upgrading existing systems or setting up new platforms, I ensure solutions are scalable, secure, and aligned with both technical and business goals.
                 </p>
             </div>
-            <img src="assets/tailored-solutions.png" alt="Value" class="content-image">
+            <div id="tailored-animation" class="content-image"></div>
         </div>
-
         <!-- Third Block -->
         <div class="content-block block-3">
             <div class="content-text">
@@ -1555,7 +1585,7 @@ footer {
                     Whether it's expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.
                 </p>
             </div>
-            <img src="assets/Scaling1.png" alt="Leadership" class="content-image">
+            <div id="scaling-animation" class="content-image"></div>
         </div>
     </div>
 </section>
@@ -1782,33 +1812,38 @@ const observerOptions = {
 };
 
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // First block
-            if (entry.target.classList.contains('block-1')) {
-                entry.target.querySelector('.content-text').classList.add('slide-from-left');
-                entry.target.querySelector('.content-image').classList.add('slide-from-right', 'delay-200');
-            }
-            // Second block
-            else if (entry.target.classList.contains('block-2')) {
-                entry.target.querySelector('.content-text').classList.add('slide-from-right');
-                entry.target.querySelector('.content-image').classList.add('slide-from-left', 'delay-200');
-            }
-            // Third block
-            else if (entry.target.classList.contains('block-3')) {
-                entry.target.querySelector('.content-text').classList.add('slide-from-left');
-                entry.target.querySelector('.content-image').classList.add('slide-from-right', 'delay-200');
-            }
-            
-            // Stop observing after animation
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
+// Animation objects to store Lottie animations
+let optimizationAnim, tailoredAnim, scalingAnim;
 
-// Start observing blocks when the page loads
+// Load all Lottie animations
 document.addEventListener('DOMContentLoaded', () => {
+    // Load optimization animation
+    optimizationAnim = lottie.loadAnimation({
+        container: document.getElementById('optimization-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        path: 'assets/optimization.json'
+    });
+
+    // Load tailored animation  
+    tailoredAnim = lottie.loadAnimation({
+        container: document.getElementById('tailored-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        path: 'assets/tailored.json'
+    });
+
+    // Load scaling animation
+    scalingAnim = lottie.loadAnimation({
+        container: document.getElementById('scaling-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        path: 'assets/scaling.json'
+    });
+
     // Add classes to blocks for identification
     const blocks = document.querySelectorAll('.content-block');
     blocks[0].classList.add('block-1');
@@ -1818,6 +1853,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Observe each block
     blocks.forEach(block => observer.observe(block));
 });
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // First block
+            if (entry.target.classList.contains('block-1')) {
+                entry.target.querySelector('.content-text').classList.add('slide-from-left');
+                entry.target.querySelector('.content-image').classList.add('slide-from-right', 'delay-200');
+                // Play optimization animation
+                setTimeout(() => {
+                    if (optimizationAnim) optimizationAnim.play();
+                }, 200); // Match the delay-200
+            }
+            // Second block
+            else if (entry.target.classList.contains('block-2')) {
+                entry.target.querySelector('.content-text').classList.add('slide-from-right');
+                entry.target.querySelector('.content-image').classList.add('slide-from-left', 'delay-200');
+                // Play tailored animation
+                setTimeout(() => {
+                    if (tailoredAnim) tailoredAnim.play();
+                }, 200); // Match the delay-200
+            }
+            // Third block
+            else if (entry.target.classList.contains('block-3')) {
+                entry.target.querySelector('.content-text').classList.add('slide-from-left');
+                entry.target.querySelector('.content-image').classList.add('slide-from-right', 'delay-200');
+                // Play scaling animation
+                setTimeout(() => {
+                    if (scalingAnim) scalingAnim.play();
+                }, 200); // Match the delay-200
+            }
+            
+            // Stop observing after animation
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
 
 // Close popup with Escape key
 document.addEventListener('keydown', function(e) {
