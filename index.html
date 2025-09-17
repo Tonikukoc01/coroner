@@ -266,7 +266,6 @@ body {
             color: #F0F4F8;
         }
 
-
 .scroll-indicator {
     display: flex;
     flex-direction: column;
@@ -274,11 +273,20 @@ body {
     text-align: center;
     gap: 0.5rem;
     position: fixed;
-    bottom: 2rem;           /* 2rem from bottom of screen */
-    left: 50%;             /* Center horizontally */
-    transform: translateX(-50%); /* Perfect centering */
-    z-index: 10;           /* Ensure it stays on top */
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+}
+
 
 .scroll-indicator .scroll-text {
     font-size: 0.8rem;
@@ -1048,7 +1056,7 @@ overflow-x: hidden;
         margin-top: 2rem;
         margin-bottom: 1rem;
         align-self: center;
-         bottom: 1.5rem;
+        bottom: 1.5rem;
     }
 
     .vertical-line {
@@ -1357,7 +1365,7 @@ footer {
     </ul>
 </nav>
 
- <!-- Home Section -->
+<!-- Home Section -->
 <section id="home">
     <!-- Header -->
     <header id="header">
@@ -1369,12 +1377,11 @@ footer {
             I am independent <span class="bold-split">IT operations manager</span>
             <br class="remove-br"> from Split, Croatia.
         </p>
-        <!-- Updated Scroll Indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-text">SCROLL</div>
-            <div class="vertical-line animate-on-scroll"></div>
-        </div>
     </header>
+    <div class="scroll-indicator">
+        <div class="scroll-text">SCROLL</div>
+        <div class="vertical-line animate-on-scroll"></div>
+    </div>
 </section>
 
 <!-- About Section -->
@@ -1405,18 +1412,25 @@ footer {
     <div class="footer-content">Toni Kukoč © MMXXV</div>
 </footer>
         <script>
-function isInViewport(element) {
+/ ADD this function (modify your existing handleScrollAnimations):
+function isNearElement(element, threshold = 200) {
     const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    return rect.top <= threshold;
 }
 
-// Updated scroll handler for the animated line
+// REPLACE your existing handleScrollAnimations function with this:
 function handleScrollAnimations() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    const aboutSection = document.querySelector('#about');
+    
+    // Handle scroll indicator visibility
+    if (aboutSection && isNearElement(aboutSection, 300)) {
+        scrollIndicator.classList.add('hidden');
+    } else {
+        scrollIndicator.classList.remove('hidden');
+    }
+
+ // Handle vertical line animation
     document.querySelectorAll('.animate-on-scroll').forEach(element => {
         if (isInViewport(element)) {
             element.classList.add('visible');
