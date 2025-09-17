@@ -1355,8 +1355,8 @@ footer {
                 <a href="https://tonikukoc.me/value-delivered" class="portfolio-btn">Portfolio</a>
             </div>
         </div>
-        <div class="about-image-column">
-    <lottie-player src="./assets/handshake-1.json" loop autoplay class="about-collaboration-image"></lottie-player>
+        <<div class="about-image-column">
+    <div id="handshake-animation" class="about-collaboration-image"></div>
 </div>
     </div>
 </section>
@@ -2027,6 +2027,18 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguageOptions(dropdown, savedLanguage);
     });
 });
+
+// Add this after your existing JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+    const animation = lottie.loadAnimation({
+        container: document.getElementById('handshake-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'assets/handshake.json' // or whatever your correct path is
+    });
+});
+
         </script>
     </body>
 </html>
