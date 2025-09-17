@@ -1858,14 +1858,7 @@ document.addEventListener('DOMContentLoaded', () => {
     blocks[1].classList.add('block-2');
     blocks[2].classList.add('block-3');
     
-    // Observe each block
-blocks.forEach(block => observer.observe(block));
-
-// Also observe the vertical-line element using the same observer
-const verticalLine = document.querySelector('.vertical-line');
-if (verticalLine) observer.observe(verticalLine);
-});
-
+  // Define the observer first
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1896,6 +1889,10 @@ const observer = new IntersectionObserver((entries) => {
                     if (scalingAnim) scalingAnim.play();
                 }, 200); // Match the delay-200
             }
+            // Vertical line
+            else if (entry.target.classList.contains('vertical-line')) {
+                entry.target.classList.add('visible');
+            }
             
             // Stop observing after animation
             observer.unobserve(entry.target);
@@ -1903,6 +1900,12 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Now observe the elements (after observer is defined)
+// Observe each block
+blocks.forEach(block => observer.observe(block));
+// Also observe the vertical-line element using the same observer
+const verticalLine = document.querySelector('.vertical-line');
+if (verticalLine) observer.observe(verticalLine);
 
 // Close popup with Escape key
 document.addEventListener('keydown', function(e) {
