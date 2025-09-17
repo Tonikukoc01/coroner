@@ -273,9 +273,11 @@ body {
     align-items: center;
     text-align: center;
     gap: 0.5rem;
-    margin-left: 250px;
-    margin-top: 20px;
     position: fixed;
+    bottom: 2rem;           /* 2rem from bottom of screen */
+    left: 50%;             /* Center horizontally */
+    transform: translateX(-50%); /* Perfect centering */
+    z-index: 10;           /* Ensure it stays on top */
 }
 
 .scroll-indicator .scroll-text {
@@ -1046,6 +1048,7 @@ overflow-x: hidden;
         margin-top: 2rem;
         margin-bottom: 1rem;
         align-self: center;
+         bottom: 1.5rem;
     }
 
     .vertical-line {
