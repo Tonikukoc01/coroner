@@ -277,10 +277,17 @@ body {
     opacity: 0.7;
     transition: height 0.8s ease-out; /* Smooth height transition */
     transform-origin: center;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top; /* Or 'bottom' if you want it to shrink from bottom */
+    transition: all 0.8s ease-out;
+
 }
 
 .vertical-line.visible {
     height: 1rem; /* Shrink to smaller height when visible */
+    opacity: 1;
+    transform: scaleY(1);
 }
 
 .scroll-text {
@@ -1030,15 +1037,12 @@ overflow-x: hidden;
        color: inherit;
  } 
 
-    .scroll-indicator {
-        margin-left: 0;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        align-self: center;
+.vertical-line {
+        height: 3rem; /* Start with full height on mobile */
     }
-
-    .scroll-indicator .scroll-line {
-        height: 8cm; /* Reduced height for mobile */
+    
+    .vertical-line.visible {
+        height: 0.8rem; /* Shrink to smaller height on mobile */
     }
 
     /* About section adjustments */
@@ -1603,21 +1607,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (portfolioBtn) observer.observe(portfolioBtn);
 });
 
-// Observe the about section - exclude about-collaboration-image since it's a Lottie animation
-document.querySelector('#about').querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn').forEach(element => {
+// Observe the about section - include vertical line
+document.querySelector('#about').querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn, .vertical-line').forEach(element => {
     observer.observe(element);
 });
 
-// Single, combined scroll-based animation handler that works for both desktop and mobile
+// Update your scroll handler to include vertical-line
 function handleScrollAnimations() {
-    
     const isMobile = window.innerWidth <= 768;
-    const animatedElements = document.querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn');
+    const animatedElements = document.querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn, .vertical-line');
     
-    // Set trigger point higher up the screen for mobile devices
     const triggerPoint = isMobile ? 
-                         window.innerHeight * 0.95 : // Almost at the top of viewport for mobile
-                         window.innerHeight * 0.8;   // Standard 80% for desktop
+                         window.innerHeight * 0.95 : 
+                         window.innerHeight * 0.8;   
     
     animatedElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
