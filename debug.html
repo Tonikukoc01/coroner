@@ -114,7 +114,7 @@
                     renderer: 'svg',
                     loop: true,
                     autoplay: true,
-                    path: 'assets/handshake 1.json'
+                    path: 'assets/handshake.json'
                 });
 
                 handshakeAnimation.addEventListener('config_ready', () => {
@@ -138,7 +138,7 @@
         function testFilePath() {
             const fileCheck = document.getElementById('file-check');
             
-            fetch('assets/handshake 1.json')
+            fetch('assets/handshake.json')
                 .then(response => {
                     if (response.ok) {
                         return response.json();
