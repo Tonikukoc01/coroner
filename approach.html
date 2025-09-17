@@ -455,6 +455,10 @@ body {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+.logo-link span {
+        display: none; /* Hide the text logo on mobile */
+    }
+
 .logo-image {
     height: 75px;
     width: auto;
@@ -1855,7 +1859,11 @@ document.addEventListener('DOMContentLoaded', () => {
     blocks[2].classList.add('block-3');
     
     // Observe each block
-    blocks.forEach(block => observer.observe(block));
+blocks.forEach(block => observer.observe(block));
+
+// Also observe the vertical-line element using the same observer
+const verticalLine = document.querySelector('.vertical-line');
+if (verticalLine) observer.observe(verticalLine);
 });
 
 const observer = new IntersectionObserver((entries) => {
@@ -1936,7 +1944,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const buttons = entry.target.querySelectorAll('.collaboration-btn');
                 buttons[0].classList.add('slide-from-bottom', 'delay-400');
                 buttons[1].classList.add('slide-from-bottom', 'delay-600');
-                
+
+   // Add this new section for vertical-line
+            else if (entry.target.classList.contains('vertical-line')) {
+                entry.target.classList.add('visible');
+            }
                 observer.unobserve(entry.target);
             }
         });
