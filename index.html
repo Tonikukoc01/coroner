@@ -2028,14 +2028,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Add this after your existing JavaScript
 document.addEventListener('DOMContentLoaded', () => {
-    const animation = lottie.loadAnimation({
+    const handshakeAnimation = lottie.loadAnimation({
         container: document.getElementById('handshake-animation'),
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        path: 'assets/handshake.json' // or whatever your correct path is
+        path: 'assets/handshake.json'
+    });
+
+    // Add the visible class when animation is ready
+    handshakeAnimation.addEventListener('config_ready', () => {
+        document.getElementById('handshake-animation').classList.add('visible');
     });
 });
 
