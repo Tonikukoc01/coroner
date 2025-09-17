@@ -1038,7 +1038,7 @@ body {
 @media screen and (max-width: 768px) {
     #home {
      padding-bottom: 0rem;
-        min-height: 85vh;
+        min-height: 90vh;
  }
     #header {
         position: relative;
@@ -2429,6 +2429,26 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTranslation(currentLang);
     });
 });
+
+// Simple scroll animation for vertical-line only
+function animateVerticalLine() {
+    const verticalLine = document.querySelector('.vertical-line');
+    if (!verticalLine) return;
+    
+    const elementTop = verticalLine.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight * 0.8;
+    
+    if (elementTop < triggerPoint) {
+        verticalLine.classList.add('visible');
+    } else {
+        verticalLine.classList.remove('visible');
+    }
+}
+
+// Add the event listeners
+window.addEventListener('scroll', animateVerticalLine);
+window.addEventListener('load', animateVerticalLine);
+
 
         </script>
     </body>
