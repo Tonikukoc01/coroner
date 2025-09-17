@@ -455,10 +455,6 @@ body {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.logo-link span {
-        display: none; /* Hide the text logo on mobile */
-    }
-
 .logo-image {
     height: 75px;
     width: auto;
@@ -1858,7 +1854,10 @@ document.addEventListener('DOMContentLoaded', () => {
     blocks[1].classList.add('block-2');
     blocks[2].classList.add('block-3');
     
-  // Define the observer first
+    // Observe each block
+    blocks.forEach(block => observer.observe(block));
+});
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1889,10 +1888,6 @@ const observer = new IntersectionObserver((entries) => {
                     if (scalingAnim) scalingAnim.play();
                 }, 200); // Match the delay-200
             }
-            // Vertical line
-            else if (entry.target.classList.contains('vertical-line')) {
-                entry.target.classList.add('visible');
-            }
             
             // Stop observing after animation
             observer.unobserve(entry.target);
@@ -1900,12 +1895,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Now observe the elements (after observer is defined)
-// Observe each block
-blocks.forEach(block => observer.observe(block));
-// Also observe the vertical-line element using the same observer
-const verticalLine = document.querySelector('.vertical-line');
-if (verticalLine) observer.observe(verticalLine);
 
 // Close popup with Escape key
 document.addEventListener('keydown', function(e) {
@@ -1931,15 +1920,9 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const buildSection = document.querySelector('section:last-of-type');
     
-   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Check if it's the vertical-line element
-            if (entry.target.classList.contains('vertical-line')) {
-                entry.target.classList.add('visible');
-            }
-            // Check if it's a section with the build content
-            else if (entry.target.querySelector('.about-header')) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
                 // Animate header from right
                 entry.target.querySelector('.about-header').classList.add('slide-from-right');
                 
@@ -1953,19 +1936,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const buttons = entry.target.querySelectorAll('.collaboration-btn');
                 buttons[0].classList.add('slide-from-bottom', 'delay-400');
                 buttons[1].classList.add('slide-from-bottom', 'delay-600');
+                
+                observer.unobserve(entry.target);
             }
-            
-            observer.unobserve(entry.target);
-        }
+        });
+    }, {
+        threshold: 0.2
     });
-}, {
-    threshold: 0.2
-});
 
-observer.observe(buildSection);
-// Also observe the vertical-line element
-const verticalLine = document.querySelector('.vertical-line');
-if (verticalLine) observer.observe(verticalLine);
+    observer.observe(buildSection);
+});
 
 function updateHeaderForMobile() {
     const headerParagraph = document.querySelector("h1 + .horizontal-line-header + p"); // Adjusted selector
