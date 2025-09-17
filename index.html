@@ -269,24 +269,14 @@ body {
 .scroll-indicator {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Centers the line and text within the scroll indicator */
     text-align: center;
     gap: 0.5rem;
+    margin-left: 250px;  /* Move the whole scroll indicator further to the right */
+    margin-top: 20px
     position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    opacity: 1;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
 
-.scroll-indicator.hidden {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-    pointer-events: none;
 }
-
 
 .scroll-indicator .scroll-text {
     font-size: 0.8rem;
@@ -295,26 +285,17 @@ body {
     letter-spacing: 0.1em;
 }
 
+.scroll-indicator .scroll-line {
+    height: 100vh;
+    width: 1px;
+    height: 7cm; /* Line height */
+    background: #F0F4F8; 
+}
+
 .scroll-text span {
     display: inline-block;
     animation: shake 2s ease-in-out infinite;
 }
-
-.vertical-line {
-    width: 2px;
-    height: 4rem; /* Start with full height */
-    background-color: #F0F4F8;
-    margin: 0 auto;
-    opacity: 0.7;
-    transition: height 0.8s ease-out; /* Smooth height transition */
-    transform-origin: center;
-}
-
-.vertical-line.visible {
-    height: 1rem; /* Shrink to smaller height when visible */
-}
-
-
 
 @keyframes shake {
     0%, 100% {
@@ -1056,15 +1037,10 @@ overflow-x: hidden;
         margin-top: 2rem;
         margin-bottom: 1rem;
         align-self: center;
-        bottom: 1.5rem;
     }
 
-    .vertical-line {
-        height: 3rem; /* Start with full height on mobile */
-    }
-    
-    .vertical-line.visible {
-        height: 0.8rem; /* Shrink to smaller height on mobile */
+    .scroll-indicator .scroll-line {
+        height: 8cm; /* Reduced height for mobile */
     }
 
     /* About section adjustments */
@@ -1365,24 +1341,25 @@ footer {
     </ul>
 </nav>
 
-<!-- Home Section -->
+   <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-    <header id="header">
+  <header id="header">
         <h1>
             Hi, my<br class="remove-br">
             name is <span class="bold-toni">Toni.</span>
         </h1>
-        <p>
-            I am independent <span class="bold-split">IT operations manager</span>
-            <br class="remove-br"> from Split, Croatia.
-        </p>
+  <p>
+    I am independent <span class="bold-split">IT operations manager</span>
+    <br class="remove-br"> from Split, Croatia.
+</p>
+ <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-text">SCROLL</div>
+                <div class="scroll-line"></div>
     </header>
-    <div class="scroll-indicator">
-        <div class="scroll-text">SCROLL</div>
-        <div class="vertical-line animate-on-scroll"></div>
-    </div>
 </section>
+
 
 <!-- About Section -->
 <section id="about" class="section content-section">
@@ -1412,38 +1389,26 @@ footer {
     <div class="footer-content">Toni Kukoč © MMXXV</div>
 </footer>
         <script>
-// ADD this function (modify your existing handleScrollAnimations):
-function isNearElement(element, threshold = 200) {
-    const rect = element.getBoundingClientRect();
-    return rect.top <= threshold;
-}
-
-// REPLACE your existing handleScrollAnimations function with this:
-function handleScrollAnimations() {
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    const aboutSection = document.querySelector('#about');
-    
-    // Handle scroll indicator visibility
-    if (aboutSection && isNearElement(aboutSection, 300)) {
-        scrollIndicator.classList.add('hidden');
-    } else {
-        scrollIndicator.classList.remove('hidden');
-    }
-
- // Handle vertical line animation
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        if (isInViewport(element)) {
-            element.classList.add('visible');
-        } else {
-            element.classList.remove('visible');
-        }
-    });
-}
-
-// Initial check and scroll handler
-window.addEventListener('scroll', handleScrollAnimations);
-window.addEventListener('resize', handleScrollAnimations);
-document.addEventListener('DOMContentLoaded', handleScrollAnimations);
+// Get the scroll indicator line element
+window.addEventListener('scroll', () => {
+  const scrollLine = document.querySelector('.scroll-indicator .scroll-line');
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  
+  // Calculate the percentage of scroll
+  const scrollPercentage = (scrollTop / scrollHeight) * 100;
+  
+  // Determine max line height based on screen size
+  const isMobile = window.innerWidth <= 768;
+  const maxLineHeight = isMobile 
+    ? window.innerHeight * 0.3 // 30% of viewport height for mobile
+    : window.innerHeight * 0.7; // 70% of viewport height for desktop
+  
+  // Adjust the height of the scroll line
+  const currentLineHeight = maxLineHeight * (1 - scrollPercentage / 100);
+  
+  scrollLine.style.height = `${Math.max(currentLineHeight, 0)}px`;
+});
 
 window.onload = function() {
   document.body.classList.remove('is-preload');
