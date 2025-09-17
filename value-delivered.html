@@ -121,15 +121,14 @@ body {
 #header {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Changed from flex-start to center */
     justify-content: center;
-    text-align: left;
+    text-align: center; /* Changed from left to center */
     position: absolute;
-    top: 35%;
-    left: 10%;
-    transform: translateY(-50%);
+    top: 35%; /* Kept your original value */
+    left: 5%; /* Kept your original value */
+    transform: translateY(-50%); /* Kept your original transform */
     color: white;
-}
 
 #header h1 {
     font-family: 'SkemaProDisplay', sans-serif;
@@ -138,9 +137,9 @@ body {
     font-size: 5.5rem;
     margin: 0 0 1rem;
     letter-spacing: -0.02em;
-    color: #F0F4F8; /* Light gold color */
+    color: #F0F4F8;
     line-height: 1.2;
-    text-align: left;
+    text-align: center; /* Changed from left to center */
 }
 
 #header h1 br {
@@ -314,7 +313,7 @@ body {
 /* Logo */
 .logo {
     position: fixed;
-    top: 3.7rem;
+    top: 3rem;
     left: 4rem;
     z-index: 1000;
     display: flex;
@@ -343,10 +342,14 @@ body {
     outline: none;
 }
 
+.logo-link span {
+display: none; 
+}
+
 .logo-image {
     height: 25px;
     width: auto;
-    display: none; /* Hidden on desktop */
+    display: block;
 }
 
 /* Vertical Line Styling */
@@ -1393,7 +1396,7 @@ footer {
           <div class="logo">
     <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
         <span>tonikukoc.me</span>
-        <img src="assets/TK-new.png" alt="Logo" class="logo-image">
+        <img src="assets/KT.png" alt="Logo" class="logo-image">
     </a>
     <!-- Vertical Line -->
     <div class="logo-line"></div>
