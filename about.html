@@ -457,7 +457,6 @@ body {
 .logo-image {
     height: 70px;
     width: auto;
-    display: none; /* Hidden on desktop */
 }
 
 
@@ -1406,10 +1405,14 @@ backdrop-filter: blur(5px); /* Add blur effect */
 
 /* Fade-in animation on page load */
 @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(100%); }
-    50% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(100%); }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
+
 /* Responsive adjustments */
 
 
