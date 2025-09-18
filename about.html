@@ -30,6 +30,9 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
+     <!-- Lottie Web Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
         <style>
           /* Global Styles */
@@ -881,6 +884,24 @@ body {
     justify-content: center;
 }
 
+/* Lottie animation containers */
+#stars-animation,
+#gym-animation {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+#stars-animation svg,
+#gym-animation svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+
 .content-image {
     width: 450px;
     height: 320px;
@@ -1143,8 +1164,12 @@ backdrop-filter: blur(5px); /* Add blur effect */
         order: -1; /* This ensures images appear above text */
         display: block;
         margin: 0;
-     
+    }
 
+ #stars-animation,
+    #gym-animation {
+        max-width: 300px;
+        max-height: 300px;
     }
 
 .section {
@@ -1567,7 +1592,7 @@ footer {
     </ul>
 </nav>
 
-   <!-- Home Section -->
+  <!-- Home Section -->
 <section id="home">
     <!-- Header -->
     <header id="header">
@@ -1581,56 +1606,50 @@ footer {
 </p>  
     </header>
 </section>
-
 <!-- Features Header - Between Sections -->
 <div class="features-header">
     <h2 class="scroll-text animate-on-scroll">SCROLL</h2>
     <div class="vertical-line animate-on-scroll"></div>
 </div>
-
 <section id="about" class="section content-section">
     <div class="about-content">
         <!-- First Block -->
         <div class="content-block">
             <div class="content-text">
                 <p class="about-subheader">
-                    I grew up in a small village on the Dalmatian coast, surrounded by the remnants of a quiet, agricultural life. It is a place where tradition rans deep, but my curiosity always pulled me toward something different. When I wasn’t playing basketball,  I was glued to my computer, fascinated by the world of technology.
+                    I grew up in a small village on the Dalmatian coast, surrounded by the remnants of a quiet, agricultural life. It is a place where tradition rans deep, but my curiosity always pulled me toward something different. When I wasn't playing basketball,  I was glued to my computer, fascinated by the world of technology.
                 </p>
                 <p class="about-subheader1">
-     University in Split introduced me to Croatia’s startup scene—a world of bold risk-takers and fast-moving builders. That energy stuck with me. After finishing my master’s across Portugal and Spain, I came back to Split to wrap up my studies before heading to Lisbon, one of Europe’s startup hotspots, to see what I could make of it.
+     University in Split introduced me to Croatia's startup scene—a world of bold risk-takers and fast-moving builders. That energy stuck with me. After finishing my master's across Portugal and Spain, I came back to Split to wrap up my studies before heading to Lisbon, one of Europe's startup hotspots, to see what I could make of it.
                 </p>
 <p class="about-subheader1">
                   
                 </p>
 <p class="about-subheader1">
-                    These days, I’m still based in Lisbon, working in the ever-changing world of IT always looking for new challenges in a field that never sits still.
+                    These days, I'm still based in Lisbon, working in the ever-changing world of IT always looking for new challenges in a field that never sits still.
                 </p>
-
-
             </div>
-            <img src="assets/reaching-stars.png" alt="Collaboration" class="content-image">
+            <div id="stars-animation" class="content-image"></div>
         </div>
-
         <!-- Second Block (Right-aligned) -->
         <div class="content-block right-aligned">
             <div class="content-text">
                 <h1 class="about-header">fitness & nutrition enthusiast</h1>
                 <p class="about-subheader">
-                   With over a decade spent in the gym and hundreds of hours researching body mechanics and nutrition, fitness has always been more than just a hobby for me. I’m fascinated by how small adjustments in movement, diet and recovery <br> can make a huge difference in performance and well-being.
+                   With over a decade spent in the gym and hundreds of hours researching body mechanics and nutrition, fitness has always been more than just a hobby for me. I'm fascinated by how small adjustments in movement, diet and recovery <br> can make a huge difference in performance and well-being.
                 </p>
                 <p class="about-subheader1">
-                 These days, I’m especially interested in how technology can enhance fitness and nutrition. With countless apps and trackers flooding the market, I’m exploring ways tech can cut through the noise—offering real insights that help people build sustainable, science-backed habits instead of chasing trends.
+                 These days, I'm especially interested in how technology can enhance fitness and nutrition. With countless apps and trackers flooding the market, I'm exploring ways tech can cut through the noise—offering real insights that help people build sustainable, science-backed habits instead of chasing trends.
                 </p>
             </div>
-            <img src="assets/fitness1.png" alt="Value" class="content-image">
+            <div id="gym-animation" class="content-image"></div>
         </div>
-
         <!-- Third Block -->
         <div class="content-block">
             <div class="content-text">
                 <h1 class="about-header">On the move</h1>
                 <p class="about-subheader">
-                    I’ve visited 20 countries, explored hundreds of European cities, and lived in four different countries along the way. Experiencing new cultures, meeting people from different backgrounds, and constantly adapting to new environments keeps life exciting.
+                    I've visited 20 countries, explored hundreds of European cities, and lived in four different countries along the way. Experiencing new cultures, meeting people from different backgrounds, and constantly adapting to new environments keeps life exciting.
                 </p>
             </div>
         </div>
@@ -2184,6 +2203,29 @@ function animateVerticalLine() {
 window.addEventListener('scroll', animateVerticalLine);
 window.addEventListener('load', animateVerticalLine);
 
+// Animation objects to store Lottie animations
+let starsAnim, gymAnim;
+
+// Load all Lottie animations
+document.addEventListener('DOMContentLoaded', () => {
+    // Load stars animation
+    starsAnim = lottie.loadAnimation({
+        container: document.getElementById('stars-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        path: 'assets/stars.json'
+    });
+
+    // Load gym animation
+    gymAnim = lottie.loadAnimation({
+        container: document.getElementById('gym-animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        path: 'assets/gym.json'
+    });
+});
         </script>
     </body>
 </html>
