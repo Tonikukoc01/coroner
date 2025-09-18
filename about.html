@@ -901,7 +901,6 @@ body {
     max-height: 100% !important;
 }
 
-
 .content-image {
     width: 450px;
     height: 320px;
@@ -1139,15 +1138,11 @@ backdrop-filter: blur(5px); /* Add blur effect */
         padding: 2rem 1 rem;
         width: 100%;
         max-width: 100%;
-
-
-
     }
 
    .content-block.right-aligned .content-image {
        margin-left: 1rem;
 }
-
 
 .content-text, 
     .right-aligned .content-text {
@@ -2213,7 +2208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container: document.getElementById('stars-animation'),
         renderer: 'svg',
         loop: true,
-        autoplay: false,
+        autoplay: false, // Keep false - we'll trigger manually
         path: 'assets/stars.json'
     });
 
@@ -2222,9 +2217,44 @@ document.addEventListener('DOMContentLoaded', () => {
         container: document.getElementById('gym-animation'),
         renderer: 'svg',
         loop: true,
-        autoplay: false,
+        autoplay: false, // Keep false - we'll trigger manually
         path: 'assets/gym.json'
     });
+
+    // Create intersection observer to trigger animations when in viewport
+    const observerOptions = {
+        threshold: 0.3, // Trigger when 30% visible
+        rootMargin: '0px'
+    };
+
+    const lottieObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Check which animation container is in view and play corresponding animation
+                if (entry.target.id === 'stars-animation' && starsAnim) {
+                    starsAnim.play();
+                    // Stop observing once it's played
+                    lottieObserver.unobserve(entry.target);
+                } else if (entry.target.id === 'gym-animation' && gymAnim) {
+                    gymAnim.play();
+                    // Stop observing once it's played
+                    lottieObserver.unobserve(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Start observing both animation containers
+    const starsContainer = document.getElementById('stars-animation');
+    const gymContainer = document.getElementById('gym-animation');
+    
+    if (starsContainer) {
+        lottieObserver.observe(starsContainer);
+    }
+    
+    if (gymContainer) {
+        lottieObserver.observe(gymContainer);
+    }
 });
         </script>
     </body>
