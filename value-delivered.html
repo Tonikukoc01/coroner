@@ -1793,7 +1793,7 @@ function isInViewport(element) {
 }
 
 
-// Fixed handleScrollAnimations function - replace your existing one
+// Fixed handleScrollAnimations function
 function handleScrollAnimations() {
   // Handle all elements EXCEPT vertical lines that should reset when out of viewport
   document.querySelectorAll('.animate-on-scroll:not(.vertical-line), .feature-line, .feature-image, .coding-feature-line, .coding-feature-image').forEach(element => {
@@ -1804,12 +1804,18 @@ function handleScrollAnimations() {
     }
   });
   
-  // Handle vertical lines separately - once visible, always visible
+  // Handle vertical lines with special logic
   document.querySelectorAll('.vertical-line').forEach(element => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
     if (isInViewport(element)) {
+      // When in viewport, make it small
       element.classList.add('visible');
+    } else if (scrollTop < 100) {
+      // When scrolled back to very top of page, reset to full size
+      element.classList.remove('visible');
     }
-    // Never remove 'visible' class from vertical lines
+    // When scrolled past but not at top, keep it small (do nothing)
   });
 }
   // Don't run initial animation - wait for scroll
