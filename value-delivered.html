@@ -177,6 +177,16 @@ body {
     }
 }
 
+@keyframes slideUpFadeIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 0.9;
+    }
+}
 #header nav ul {
     display: flex;
     gap: 1rem;
@@ -710,12 +720,18 @@ display: none;
     opacity: 0;
 }
         
-        .view-more-icon {
-            width: 14px;
-            height: 14px;
-            display: inline-block;
-            vertical-align: middle;
+   .view-more-icon {
+     width: 14px;
+     height: 14px;
+     display: inline-block;
+     vertical-align: middle;
         }
+
+.view-more-caption.desktop-visible {
+    transform: translateY(0);
+    opacity: 0.9;
+}
+
 
  .ai-exploration-link {
         text-align: center;
@@ -935,26 +951,23 @@ footer {
 }
 
         
-        /* Desktop hover effect (screens larger than 768px) */
+        /* Desktop slideupfade (screens larger than 768px) */
         @media screen and (min-width: 769px) {
-            .feature-image:hover .view-more-caption {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            
-            .feature-image:hover img {
-                transform: scale(1.05);
-            }
-            
-            .feature-image .view-more-caption {
-                transform: translateY(100%);
-                opacity: 0;
-            }
+            .feature-image:hover .view-more-caption:not(.desktop-visible) {
+        /* Only apply hover effect if desktop-visible class is not present */
+        transform: translateY(0);
+        opacity: 0.9;
+    }
+    
+    .feature-image .view-more-caption.desktop-visible {
+        /* Ensure desktop-visible captions stay visible regardless of hover state */
+        transform: translateY(0) !important;
+        opacity: 0.9 !important;
 
-            .coding-feature-image:hover img {
-                transform: scale(1.05);
-            }
-        }
+  }
+ }
+
+
         
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
@@ -2259,70 +2272,84 @@ document.addEventListener('DOMContentLoaded', () => {
     enhanceSideMenuForMobile();
 });
 
-// Handle mobile captions similar to your gallery implementation
-        window.addEventListener('DOMContentLoaded', () => {
-            const featureImages = document.querySelectorAll('.feature-image');
-            const isMobile = window.innerWidth <= 768;
+// Handle desktop and mobile captions with viewport detection
+window.addEventListener('DOMContentLoaded', () => {
+    const featureImages = document.querySelectorAll('.feature-image');
+    const isMobile = window.innerWidth <= 768;
+    
+    function checkIfInView() {
+        featureImages.forEach((item, index) => {
+            const bounding = item.getBoundingClientRect();
+            const isInViewport = (
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                bounding.bottom >= 0
+            );
             
-            function checkIfInView() {
-                featureImages.forEach((item, index) => {
-                    const bounding = item.getBoundingClientRect();
-                    if (
-                        bounding.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-                        bounding.bottom >= 0
-                    ) {
-                        // Add the loaded class for the fade-in effect
-                        if (!item.classList.contains('loaded')) {
-                            item.classList.add('loaded');
+            if (isInViewport) {
+                // Add the loaded class for the fade-in effect
+                if (!item.classList.contains('loaded')) {
+                    item.classList.add('loaded');
+                    
+                    const caption = item.querySelector('.view-more-caption');
+                    if (caption) {
+                        if (isMobile) {
+                            // Mobile: show caption temporarily when scrolled into view
+                            caption.classList.add('mobile-visible');
                             
-                            // For mobile: show caption temporarily when scrolled into view
-                            if (isMobile) {
-                                const caption = item.querySelector('.view-more-caption');
-                                if (caption) {
-                                    caption.classList.add('mobile-visible');
-                                    
-                                    // Remove visibility after 3 seconds
-                                    setTimeout(() => {
-                                        caption.classList.remove('mobile-visible');
-                                    }, 8000);
-                                }
-                            }
+                            // Remove visibility after 8 seconds
+                            setTimeout(() => {
+                                caption.classList.remove('mobile-visible');
+                            }, 8000);
+                        } else {
+                            // Desktop: show caption permanently when in viewport
+                            caption.classList.add('desktop-visible');
                         }
                     }
-                });
-            }
-            
-            // Make captions clickable to navigate to project pages
-            featureImages.forEach((image) => {
-                const caption = image.querySelector('.view-more-caption');
-                const title = image.parentElement.querySelector('.feature-title a');
-                
-                if (caption && title && title.href) {
-                    caption.addEventListener('click', () => {
-                        window.location.href = title.href;
-                    });
                 }
-            });
-            
-            // Check on initial load
-            checkIfInView();
-            
-            // Check on scroll
-            window.addEventListener('scroll', () => {
-                checkIfInView();
-            });
-            
-            // Recalculate when scrolling stops (for mobile)
-            if (isMobile) {
-                let scrollTimeout;
-                window.addEventListener('scroll', () => {
-                    clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(() => {
-                        checkIfInView();
-                    }, 200);
-                });
             }
         });
+    }
+    
+    // Make captions clickable to navigate to project pages
+    featureImages.forEach((image) => {
+        const caption = image.querySelector('.view-more-caption');
+        const title = image.parentElement.querySelector('.feature-title a');
+        
+        if (caption && title && title.href) {
+            caption.addEventListener('click', () => {
+                window.location.href = title.href;
+            });
+        }
+    });
+    
+    // Check on initial load
+    checkIfInView();
+    
+    // Check on scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            checkIfInView();
+        }, 50);
+    });
+    
+    // Handle window resize to recalculate mobile/desktop behavior
+    window.addEventListener('resize', () => {
+        const newIsMobile = window.innerWidth <= 768;
+        if (newIsMobile !== isMobile) {
+            // Reset all captions and reload the page logic if device type changed
+            featureImages.forEach(item => {
+                const caption = item.querySelector('.view-more-caption');
+                if (caption) {
+                    caption.classList.remove('mobile-visible', 'desktop-visible');
+                }
+                item.classList.remove('loaded');
+            });
+            // Re-run the check with new device type
+            setTimeout(checkIfInView, 100);
+        }
+    });
 
 document.querySelectorAll('.feature-item').forEach(item => {
   const link = item.querySelector('.feature-title a');
