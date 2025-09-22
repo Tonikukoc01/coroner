@@ -609,21 +609,15 @@ display: none;
     height: 4rem; /* Full height */
     background-color: #F0F4F8;
     margin: 0 auto;
-    opacity: 0.7;
     transform-origin: top;
     transition: height 0.8s ease-out, transform 0.8s ease-out, opacity 0.8s ease-out;
 }
 
-.vertical-line.small {
-  height: 1rem;
-  transform: scaleY(0.5);
+.vertical-line.visible {
+    height: 1rem;          /* Shrink when in viewport */
+    transform: scaleY(0.5);/* Smooth shrink */
+    opacity: 0.7;           /* Fade in */
 }
-
-.vertical-line.full {
-  height: 4rem;
-  transform: scaleY(1);
-}
-
 .features-container {
     display: flex;
     flex-direction: column;
@@ -1113,13 +1107,13 @@ html, body {
     font-size: 1.9rem;
   }
   
-   .vertical-line.full {
+   .vertical-line {
         height: 3rem; /* Start with full height on mobile */
     }
     
-   .vertical-line.small {
-    height: 0.8rem;
-  }
+    .vertical-line.visible {
+        height: 0.8rem; /* Shrink to smaller height on mobile */
+    }
   
   .features-container {
     gap: 6rem;
@@ -1800,26 +1794,11 @@ function isInViewport(element) {
 
   // Initial check and scroll handler
 function handleScrollAnimations() {
-  // Handle all other animated elements
-  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .coding-feature-line, .coding-feature-image').forEach(element => {
+  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .vertical-line, .coding-feature-line, .coding-feature-image').forEach(element => {
     if (isInViewport(element)) {
       element.classList.add('visible');
     } else {
       element.classList.remove('visible');
-    }
-  });
-
-  // Handle vertical lines separately
-  document.querySelectorAll('.vertical-line').forEach(el => {
-    const rect = el.getBoundingClientRect();
-
-    // Check if fully visible
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-      el.classList.add('full');
-      el.classList.remove('small');
-    } else {
-      el.classList.add('small');
-      el.classList.remove('full');
     }
   });
 }
