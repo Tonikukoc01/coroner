@@ -2466,17 +2466,17 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.querySelectorAll('.feature-item').forEach(item => {
-  const link = item.querySelector('.feature-title a');
-  const image = item.querySelector('.feature-image');
-  
-  if (link && image) {
-    image.style.cursor = 'pointer';
-    image.addEventListener('click', () => {
-      window.open(link.href, '_blank');
-    });
-  }
+document.querySelectorAll('.coding-feature-item, .feature-item').forEach(item => {
+    const link = item.querySelector('.coding-feature-title a, .feature-title a');
+    const image = item.querySelector('.coding-feature-image img, .feature-image img');
+    if (link?.href && image) {
+        image.style.cursor = 'pointer';
+        image.tabIndex = 0;
+        image.onclick = () => window.open(link.href, '_blank');
+        image.onkeydown = e => (e.key === 'Enter' || e.key === ' ') && window.open(link.href, '_blank');
+    }
 });
+
 // ===== SIDE SCROLL INDICATOR =====
 document.addEventListener('DOMContentLoaded', function() {
     const indicator = document.getElementById('sideScrollIndicator');
