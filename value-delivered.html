@@ -2281,7 +2281,7 @@ window.addEventListener('DOMContentLoaded', () => {
         featureImages.forEach((item, index) => {
             const bounding = item.getBoundingClientRect();
             const isInViewport = (
-                bounding.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.65 &&
                 bounding.bottom >= 0
             );
             
