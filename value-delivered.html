@@ -812,7 +812,7 @@ display: none;
 .coding-projects-container {
     display: flex;
     flex-direction: column;
-    gap: 8rem;
+    gap: 12rem;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 5%;
@@ -860,7 +860,6 @@ display: none;
     font-weight: 100;
     font-size: 1.2rem;
     color: #B5B8BD;
-    opacity: 0.65;
     line-height: 1.6;
 }
 
@@ -2388,6 +2387,32 @@ window.addEventListener('DOMContentLoaded', () => {
                             }, 8000);
                         } else {
                             // Desktop: show caption permanently when in viewport
+                            caption.classList.add('desktop-visible');
+                        }
+                    }
+                }
+            }
+        });
+ // Handle coding feature images with same logic
+        codingFeatureImages.forEach((item, index) => {
+            const bounding = item.getBoundingClientRect();
+            const isInViewport = (
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.6 &&
+                bounding.bottom >= 0
+            );
+            
+            if (isInViewport) {
+                if (!item.classList.contains('loaded')) {
+                    item.classList.add('loaded');
+                    
+                    const caption = item.querySelector('.view-more-caption');
+                    if (caption) {
+                        if (isMobile) {
+                            caption.classList.add('mobile-visible');
+                            setTimeout(() => {
+                                caption.classList.remove('mobile-visible');
+                            }, 8000);
+                        } else {
                             caption.classList.add('desktop-visible');
                         }
                     }
