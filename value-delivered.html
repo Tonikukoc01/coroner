@@ -2424,16 +2424,20 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     
      // Make all captions clickable to navigate to project pages
-    [...featureImages, ...codingFeatureImages].forEach((image) => {
-        const caption = image.querySelector('.view-more-caption');
-        const title = image.parentElement.querySelector('.feature-title a, .coding-feature-title a');
-        
-        if (caption && title && title.href) {
-            caption.addEventListener('click', () => {
-                window.open(title.href, '_blank');
-            });
-        }
-    });
+  [...featureImages, ...codingFeatureImages].forEach((image) => {
+    const caption = image.querySelector('.view-more-caption');
+
+    // Use closest item container
+    const itemContainer = image.closest('.feature-item, .coding-feature-item');
+    const title = itemContainer?.querySelector('.feature-title a, .coding-feature-title a');
+
+    if (caption && title && title.href) {
+        caption.addEventListener('click', () => {
+            window.open(title.href, '_blank');
+        });
+    }
+});
+
     
     // Check on initial load
     checkIfInView();
