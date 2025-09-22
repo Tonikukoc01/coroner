@@ -615,6 +615,10 @@ display: none;
 }
 
 .vertical-line.visible {
+    height: 4rem; /* Shrink to smaller height when visible */
+}
+
+.vertical-line.shrinking {
     height: 1rem; /* Shrink to smaller height when visible */
 }
 .features-container {
@@ -1775,41 +1779,63 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-// Function to check if element is in viewport
+// Function to check if element is in viewport (your existing logic)
 function isInViewport(element) {
   const rect = element.getBoundingClientRect();
   
   // Different threshold for mobile vs desktop
-  // On mobile, trigger at 75% of viewport height (earlier)
-  // On desktop, trigger at 60% of viewport height (later)
   const threshold = window.innerWidth <= 768 ? 0.75 : 0.8;
 
-  
   return (
     rect.top <= (window.innerHeight || document.documentElement.clientHeight) * threshold &&
     rect.bottom >= 0
   );
 }
 
-  // Initial check and scroll handler
+// Function to check if element is fully visible (used for vertical-line)
+function isFullyVisibleAtTop(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.top >= 0 && rect.bottom <= window.innerHeight;
+}
+
+// Scroll handler
 function handleScrollAnimations() {
-  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .vertical-line, .coding-feature-line, .coding-feature-image').forEach(element => {
+  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .coding-feature-line, .coding-feature-image').forEach(element => {
     if (isInViewport(element)) {
       element.classList.add('visible');
     } else {
       element.classList.remove('visible');
     }
   });
+
+  // Special handling for vertical-line
+  document.querySelectorAll('.vertical-line').forEach(el => {
+    const rect = el.getBoundingClientRect();
+
+    // Shrink while partially visible
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      el.classList.add('shrinking');
+      el.classList.remove('visible');
+    } else {
+      el.classList.remove('shrinking');
+    }
+
+    // Restore full height only when fully visible
+    if (isFullyVisibleAtTop(el)) {
+      el.classList.add('visible');
+      el.classList.remove('shrinking');
+    }
+  });
 }
 
-  // Don't run initial animation - wait for scroll
-  setTimeout(() => {
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScrollAnimations);
-    // Initial check after a small delay to ensure proper calculation
-    handleScrollAnimations();
-  }, 100);
-});
+// Wait a short delay before adding scroll listener
+setTimeout(() => {
+  // Add scroll event listener
+  window.addEventListener('scroll', handleScrollAnimations);
+  // Initial check
+  handleScrollAnimations();
+}, 100);
+
 
 // Function to show coding projects section
 function showCodingProjects() {
