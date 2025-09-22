@@ -844,7 +844,7 @@ display: none;
 }
 
 .coding-feature-line {
-    width: 0; /* Start with 0 width */
+    width: 0; /* Start with 0 width *
     height: 2px;
     background-color: #F0F4F8;
     margin: 1rem 0;
@@ -1209,7 +1209,6 @@ html, body {
         width: 100%;
         margin-top: 0;
         transform: translateX(0); /* No slide animation on mobile */
-        opacity: 1; /* Always visible on mobile */
     }
 
   .coding-feature-image img {
@@ -1222,10 +1221,14 @@ html, body {
         opacity: 0.9;
         font-size: 0.75rem;
     }
-    
+
+.coding-feature-image .view-more-caption.mobile-visible {
+    transform: translateY(0);
+    opacity: 0.9;
+}
+
     .coding-feature-line {
         margin: 0.5rem auto;
-        width: 5rem; /* Always visible on mobile */
     }
     .tech-stack {
         justify-content: center;
