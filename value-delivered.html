@@ -844,10 +844,15 @@ display: none;
 }
 
 .coding-feature-line {
-    width: 5rem;
+    width: 0; /* Start with 0 width */
     height: 2px;
     background-color: #F0F4F8;
     margin: 1rem 0;
+    transition: width 0.8s ease-out;
+}
+
+.coding-feature-line.visible {
+    width: 5rem; /* Expand to full width when visible */
 }
 
 .coding-feature-description {
@@ -866,6 +871,14 @@ display: none;
     align-items: flex-start;
     margin-top: -2.5rem;
     position: relative;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.coding-feature-image.visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .coding-feature-image img {
@@ -875,6 +888,40 @@ display: none;
     transition: transform 0.6s ease-in-out;
 }
 
+.coding-feature-image .view-more-caption {
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 43, 60, 0.75);
+    color: #F0F4F8;
+    padding: 8px 0;
+    font-size: 0.8rem;
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.coding-feature-image .view-more-caption svg {
+    width: 14px;
+    height: 14px;
+}
+
+.coding-feature-image .view-more-caption.desktop-visible {
+    transform: translateY(0);
+    opacity: 0.9;
+    animation: slideUpFadeIn 0.6s ease-out forwards;
+}
 /* Tech Stack Logos */
 .tech-stack {
     display: flex;
@@ -1159,16 +1206,28 @@ html, body {
     font-size: 1.1rem;
   }
 
-  .coding-feature-image {
-    width: 100%;
-    margin-top: 0;
-  }
+ .coding-feature-image {
+        width: 100%;
+        margin-top: 0;
+        transform: translateX(0); /* No slide animation on mobile */
+        opacity: 1; /* Always visible on mobile */
+    }
 
   .coding-feature-image img {
-    max-width: 100%;
-    width: 100%;
-  }
+        max-width: 100%;
+        width: 100%;
+    }
 
+ .coding-feature-image .view-more-caption {
+        transform: translateY(0);
+        opacity: 0.9;
+        font-size: 0.75rem;
+    }
+    
+    .coding-feature-line {
+        margin: 0.5rem auto;
+        width: 5rem; /* Always visible on mobile */
+    }
     .tech-stack {
         justify-content: center;
         flex-direction: column;
@@ -1619,9 +1678,16 @@ Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating 
                     Create a downloadable itinerary based on user segmentation in under 30 seconds. This is an initial attempt at setting up a basic deployment stack using Bolt, free hosting, GitHub repo integration via Vercel, and connecting with LLaMA's API.
                 </p>
             </div>
-            <div class="coding-feature-image">
-                <img src="/assets/Citysnap-image.png" alt="City Snap Project">
-            </div>
+           <!-- For City Snap -->
+<div class="coding-feature-image">
+    <img src="/assets/Citysnap-image.png" alt="City Snap Project">
+    <div class="view-more-caption">
+        <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
+            <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+        <span data-translate="proving-value.test_it_out">Test it out</span>
+    </div>
+</div>
         </div>
 
         <!-- Kukica Crochet Feature -->
@@ -1674,10 +1740,15 @@ Led operations for a hybrid team of 10+ developers and 3 agencies, coordinating 
                     Full-stack e-commerce webshop for my sister's handcrafted crochet business. Features complete payment processing with Stripe integration, custom admin dashboard for seamless product and order management, and responsive design optimized for mobile shoppers. Built with modern stack focusing on user experience and business scalability.
                 </p>
             </div>
-            <div class="coding-feature-image">
-                <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/kukica-crochet-media/Screenshot%202025-09-12%20at%2018.50.55.png" alt="Kukica Crochet Project">
-            </div>
-        </div>
+           <div class="coding-feature-image">
+    <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/kukica-crochet-media/Screenshot%202025-09-12%20at%2018.50.55.png" alt="Kukica Crochet Project">
+    <div class="view-more-caption">
+        <svg class="view-more-icon" viewBox="0 0 24 24" width="16" height="16">
+            <path fill="#F0F4F8" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+        </svg>
+        <span data-translate="proving-value.test_it_out">Test it out</span>
+    </div>
+</div>
         
     </div>
 </section>
@@ -1721,11 +1792,11 @@ function isInViewport(element) {
 
   // Initial check and scroll handler
 function handleScrollAnimations() {
-  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .vertical-line').forEach(element => {
+  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .vertical-line, .coding-feature-line, .coding-feature-image').forEach(element => {
     if (isInViewport(element)) {
       element.classList.add('visible');
     } else {
-      element.classList.remove('visible'); // Remove visible class if not in viewport
+      element.classList.remove('visible');
     }
   });
 }
@@ -1850,6 +1921,8 @@ const translations = {
             'coding_feature2_title': 'Kukica Crochet',
             'coding_feature2_desc': 'Full nodejS app - a little webshop for my sister\'s handcrafted crochet business. Features include complete payment processing with Stripe integration, custom admin dashboard for product and order management connected with Supabase for auth, DB & storage and Resend for e-mail cronjobs & communication w/ users. Also, a responsive design optimized for mobile shoppers.',
             'view_more': 'Read more about this'
+            'test_it_out': 'Test it out'
+
         }
     },
     'fr': {
@@ -1885,6 +1958,8 @@ const translations = {
             'coding_feature2_title': 'Kukica Crochet',
             'coding_feature2_desc': 'Boutique en ligne e-commerce complète pour l\'entreprise artisanale de crochet de ma sœur. Dispose du traitement complet des paiements avec intégration Stripe, tableau de bord administrateur personnalisé pour une gestion transparente des produits et commandes, et design responsive optimisé pour les acheteurs mobiles. Construit avec une pile moderne axée sur l\'expérience utilisateur et l\'évolutivité commerciale.',
             'view_more': 'En savoir plus'
+           'test_it_out': 'Testez-le'
+
         }
     },
     'hr': {
@@ -1920,6 +1995,8 @@ const translations = {
             'coding_feature2_title': 'Kukica Crochet',
             'coding_feature2_desc': 'Full stack nodejs aplikacija. Mali web shop crochet business za moju sestru. Uključuje Stripe integraciju, prilagođeni admin dashboard za jednostavno upravljanje proizvodima i narudžbama povezan sa Supabase-om za auth, DB i storage, te responsivni dizajn prema željama vlasnika biznisa. :)',
             'view_more': 'Pročitaj više'
+           'test_it_out': 'Testiraj aplikaciju' // Add this new line
+
         }
     }
 };
@@ -2122,6 +2199,8 @@ function updateProvingValueLanguage(lang) {
     // Update coding feature content - UPDATED VERSION
 const codingFeatureTitles = document.querySelectorAll('.coding-feature-title');
 const codingFeatureDescriptions = document.querySelectorAll('.coding-feature-description');
+const codingViewMoreCaptions = document.querySelectorAll('.coding-feature-image .view-more-caption span');
+
 
 // Update first coding feature (City Snap)
 if (codingFeatureTitles[0]) {
@@ -2145,6 +2224,12 @@ if (codingFeatureDescriptions[1]) {
 viewMoreCaptions.forEach(caption => {
     caption.textContent = translations[lang]['proving-value'].view_more;
 });
+
+codingViewMoreCaptions.forEach(caption => {
+    caption.textContent = translations[lang]['proving-value'].test_it_out;
+});
+
+
     // Update AI exploration button text
     const exploreAiBtn = document.querySelector('.explore-ai-btn');
     const exploreText = document.querySelector('.explore-text');
@@ -2275,6 +2360,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Handle desktop and mobile captions with viewport detection
 window.addEventListener('DOMContentLoaded', () => {
     const featureImages = document.querySelectorAll('.feature-image');
+    const codingFeatureImages = document.querySelectorAll('.coding-feature-image');
     const isMobile = window.innerWidth <= 768;
     
     function checkIfInView() {
@@ -2310,14 +2396,14 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Make captions clickable to navigate to project pages
-    featureImages.forEach((image) => {
+     // Make all captions clickable to navigate to project pages
+    [...featureImages, ...codingFeatureImages].forEach((image) => {
         const caption = image.querySelector('.view-more-caption');
-        const title = image.parentElement.querySelector('.feature-title a');
+        const title = image.parentElement.querySelector('.feature-title a, .coding-feature-title a');
         
         if (caption && title && title.href) {
             caption.addEventListener('click', () => {
-                window.location.href = title.href;
+                window.open(title.href, '_blank');
             });
         }
     });
