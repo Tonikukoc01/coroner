@@ -606,16 +606,18 @@ display: none;
 }
 .vertical-line {
     width: 2px;
-    height: 4rem; /* Start with full height */
+    height: 4rem; /* Full height */
     background-color: #F0F4F8;
     margin: 0 auto;
-    opacity: 0.7;
-    transition: height 0.8s ease-out; /* Smooth height transition */
-    transform-origin: center;
+    opacity: 0; /* Start invisible */
+    transform-origin: top;
+    transition: height 0.8s ease-out, transform 0.8s ease-out, opacity 0.8s ease-out;
 }
 
 .vertical-line.visible {
-    height: 1rem; /* Shrink to smaller height when visible */
+    height: 1rem;          /* Shrink when in viewport */
+    transform: scaleY(0.5);/* Smooth shrink */
+    opacity: 0.7;           /* Fade in */
 }
 .features-container {
     display: flex;
