@@ -1792,17 +1792,25 @@ function isInViewport(element) {
   );
 }
 
-  // Initial check and scroll handler
+// Complete handleScrollAnimations function
 function handleScrollAnimations() {
-  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .vertical-line, .coding-feature-line, .coding-feature-image').forEach(element => {
+  // Handle regular elements that should reset when out of viewport
+  document.querySelectorAll('.animate-on-scroll, .feature-line, .feature-image, .coding-feature-line, .coding-feature-image').forEach(element => {
     if (isInViewport(element)) {
       element.classList.add('visible');
     } else {
       element.classList.remove('visible');
     }
   });
+  
+  // Handle vertical lines separately - once visible, always visible (prevents layout shift)
+  document.querySelectorAll('.vertical-line').forEach(element => {
+    if (isInViewport(element) && !element.classList.contains('visible')) {
+      element.classList.add('visible');
+      // Once added, never remove the 'visible' class to prevent layout shifts
+    }
+  });
 }
-
   // Don't run initial animation - wait for scroll
   setTimeout(() => {
     // Add scroll event listener
