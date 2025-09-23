@@ -966,54 +966,50 @@ body.easy-reading .metric-card {
             <h1 class="case-study-title">Cloud Recomposition</h1>
             <div class="divider"></div>
             <p class="case-study-subheader">
-Re-architected legacy cloud infrastructure for a fast-growing social ecommerce startup to improve scalability, reduce operational expenses, and enhance system reliability.            </p>
-        </div>
+From fragile and costly to resilient and high-performing, cloud architecture built for rapid growth.        </div>
         
         <!-- Project metrics -->
         <div class="metrics-container">
             <div class="metric-card">
-                <div class="metric-value">62%</div>
-                <div class="metric-label">62% lower cloud storage costs</div>
+                <div class="metric-value">-62%</div>
+                <div class="metric-label">cost savings on cloud operations</div>
             </div>
             <div class="metric-card">
                 <div class="metric-value">99.98%</div>
                 <div class="metric-label">System Uptime</div>
             </div>
             <div class="metric-card">
-                <div class="metric-value">3x</div>
-                <div class="metric-label">Scalability Improvement</div>
+                <div class="metric-value">3x scalability</div>
+                <div class="metric-label">with auto-scaling improvements</div>
             </div>
         </div>
         
         <div class="case-study-content">
             <h2 class="section-heading" id="overview">Overview</h2>
             <p>
-Back in September 2023, a sudden spike in user activity pushed our platform to its limits and surfaced some long-standing issues in our cloud setup. We started seeing huge performance bottlenecks, unpredictable scaling behavior and rising costs. On top of that, our infrastructure had grown a bit too heavy over time, with cloud expenses creeping higher than they needed to be. This project was all about rethinking and rebuilding our architecture to make it more efficient, scalable, and resilient moving forward.            </p>
-            
+In September 2023, a sudden surge in user activity pushed our platform to its limits and exposed long-standing weaknesses in our cloud setup. Performance bottlenecks, unpredictable scaling, and soaring costs quickly became major challenges. Over time, the infrastructure had also grown bloated, driving expenses higher than necessary. This project set out to re-architect the system by making it leaner, more scalable, and resilient enough to power the next phase of growth            
             <h2 class="section-heading" id="the-challenge">The Challenge</h2>
             <p>
-                The legacy infrastructure presented multiple critical challenges:
+The legacy cloud setup struggled on three fronts:
             </p>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Cost Inefficiency</h3>
                 <p>
-                    Our existing cloud setup was overprovisioned and lacked cost optimization strategies. We were spending significantly more than necessary on compute and storage resources, with poor utilization rates.
+Overprovisioned resources and lack of optimization led to inflated compute and storage costs with poor utilization.
                 </p>
             </div>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Scalability Limitations</h3>
                 <p>
-                    The infrastructure couldn't efficiently handle sudden traffic spikes. During the September 2023 user influx, multiple service disruptions occurred, leading to poor user experience and potential revenue loss.
-                </p>
+The system faltered under sudden traffic spikes, causing huge disruptions during the surge and risking both user experience and revenue.                </p>
             </div>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Reliability Gaps</h3>
                 <p>
-Without proper fault tolerance and health checks across services, the system was prone to cascading failures under load. Limited observability made it harder to proactively detect issues, increasing downtime risk and reducing overall system reliability.
-                </p>
+Weak fault tolerance and limited observability left the platform vulnerable to cascading failures and downtime under load.                </p>
             </div>
             
             <h2 class="section-heading" id="technologies-used">Technologies Used</h2>
@@ -1040,8 +1036,7 @@ Without proper fault tolerance and health checks across services, the system was
                     <div class="timeline-date">September 2023</div>
                     <div class="timeline-title">Initial Assessment</div>
                     <div class="timeline-description">
-                        Conducted a comprehensive audit of existing infrastructure, identifying performance bottlenecks, cost inefficiencies, and scalability limitations revealed by the user traffic surge.
-                    </div>
+Emergency audited the existing infrastructure to uncover performance bottlenecks, cost inefficiencies, and scalability gaps exposed during the traffic surge.                    </div>
                 </div>
                 
                 <div class="timeline-event">
@@ -1049,7 +1044,7 @@ Without proper fault tolerance and health checks across services, the system was
                     <div class="timeline-date">October 2023</div>
                     <div class="timeline-title">Initial Optimization</div>
                     <div class="timeline-description">
-We began by addressing the most critical issues in the existing infrastructure. The main challenges were related to the EC2 instances and MongoDB setup, which were underperforming under load. We optimized the EC2 instance configurations and adjusted scaling capabilities to reduce bottlenecks. Additionally, we identified slow database queries that caused significant performance issues and forwarded them to the backend team for improvement.                    </div>
+Optimized EC2 configurations and scaling policies, while collaborating with the backend team to fix slow MongoDB queries that had been dragging performance.
                 </div>
                 
                 <div class="timeline-event">
@@ -1057,7 +1052,7 @@ We began by addressing the most critical issues in the existing infrastructure. 
                     <div class="timeline-date">November 2023</div>
                     <div class="timeline-title">Architecture Redesign & Scaling Adjustments</div>
                     <div class="timeline-description">
-We focused on fine tuning the cloud architecture, retaining the existing ECS setup while improving its scalability. Adjustments were made to the auto-scaling capabilities to better handle traffic spikes and resource allocation.                    </div>
+Retained ECS as the core but overhauled its auto-scaling strategy, ensuring resources scaled smoothly with demand instead of failing under spikes.
                 </div>
                 
                 <div class="timeline-event">
@@ -1065,7 +1060,7 @@ We focused on fine tuning the cloud architecture, retaining the existing ECS set
                     <div class="timeline-date">December 2023</div>
                     <div class="timeline-title">Cost Optimization & OPEX Reduction</div>
                     <div class="timeline-description">
-A significant portion of our work focused on optimizing operational expenses. We conducted a thorough review of ALL cloud services in use, identifying areas where provisioning could be reduced or better optimized. This included reconfiguring services to lower costs without compromising performance, leading to significant cost savings.                    </div>
+Conducted a service-by-service audit, reconfiguring overprovisioned resources, optimizing S3 and CloudFront usage, and rightsizing EC2 instances. Attempting to cut costs without sacrificing performance.
                 </div>
                 
                 <div class="timeline-event">
@@ -1073,7 +1068,7 @@ A significant portion of our work focused on optimizing operational expenses. We
                     <div class="timeline-date">January 2024</div>
                     <div class="timeline-title">Monitoring & Observability with CloudWatch</div>
                     <div class="timeline-description">
-We fine tuned Amazon CloudWatch as our primary monitoring and observability tool, enabling real-time insights into system health, resource usage, and performance. This allowed for quicker identification of potential issues and helped ensure system reliability through proactive monitoring.
+Enhanced monitoring with CloudWatch dashboards, alerts, and metrics, giving the team real-time visibility into system health and enabling proactive incident response.
                     </div>
                 </div>
             </div>
@@ -1083,25 +1078,23 @@ We fine tuned Amazon CloudWatch as our primary monitoring and observability tool
             <div class="challenge-solution">
                 <h3 class="challenge-title">ECS Optimization & Auto-Scaling Adjustments</h3>
                 <p>
-We began by optimizing our existing AWS ECS setup to handle traffic surges more effectively. We fine-tuned the auto-scaling configurations to better allocate resources based on real-time traffic patterns. This allowed us to scale efficiently during high demand while reducing costs during off-peak times, ensuring better resource utilization and improved performance.
+Fine-tuned ECS auto-scaling to respond dynamically to real-time traffic. The system now scales up smoothly during surges and contracts during off-peak hours, improving performance while cutting unnecessary costs.
 
 
                 </p>
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Database Performance & Query Optimization</h3>
+                <h3 class="challenge-title">Mongo DB Performance Tuning</h3>
                 <p>
-Critical performance issues were identified with our MongoDB setup, especially with certain slow queries that were negatively impacting system performance. These queries were flagged and handed over to the backend team for optimization. This collaboration significantly improved database efficiency and reduced latency across the platform.
-
+Identified and flagged inefficient queries that were slowing down the platform. Partnered with the backend team to optimize them, reducing latency and boosting overall database efficiency.
                 </p>
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Cost Optimization & OPEX Reduction</h3>
+                <h3 class="challenge-title">Cost Optimization</h3>
                 <p>
-A major focus was on reducing operational expenses (OPEX). We conducted a detailed audit of all cloud services, identifying overprovisioned resources and reconfiguring them for better cost efficiency. This included adjusting EC2 instance sizes, optimizing S3 usage, and fine-tuning CloudFront settings, resulting in significant savings without compromising performance.
-
+Audited all active cloud services, eliminating overprovisioned resources and rightsizing EC2 instances. Optimized S3 storage and CloudFront delivery, achieving major cost savings without trade-offs in performance.
                 </p>
             </div>
 
@@ -1114,32 +1107,37 @@ A major focus was on reducing operational expenses (OPEX). We conducted a detail
             <h2 class="section-heading" id="results-impact">Results & Impact</h2>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Cost Optimization</h3>
+                <h3 class="challenge-title">62% Lower Cloud Costs</h3>
                 <p>
-Achieved a 62% reduction in operational expenses by optimizing resource allocation, adjusting EC2 instance sizes, and fine-tuning auto-scaling strategies. Eliminated over-provisioning and introduced a more efficient cloud resource management approach, resulting in substantial cost savings.                </p>
+ Rightsized EC2, optimized storage, and fine-tuned auto-scaling to eliminate waste and cut operational expenses by more than half.
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Performance & Reliability</h3>
+                <h3 class="challenge-title">99.98% Uptime </h3>
                 <p>
-Increased system uptime to 99.98%, while enabling the infrastructure to handle 3x more concurrent users compared to the previous setup. By optimizing database performance and improving auto-scaling, we ensured greater system responsiveness and stability during peak traffic periods.
-
+ Strengthened fault tolerance and query performance, ensuring near-zero downtime and a smoother user experience.
                 </p>
             </div>
             
             <div class="challenge-solution">
-                <h3 class="challenge-title">Operational Efficiency</h3>
+                <h3 class="challenge-title">3x scalability</h3>
                 <p>
-Streamlined operations by integrating Amazon CloudWatch for centralized monitoring and proactive issue detection. This improved our ability to quickly identify and resolve potential issues, reducing downtime and ensuring better overall system performance. 
+ Infrastructure now supports three times more concurrent users without disruption, unlocking room for rapid growth.
+                </p>
+            </div>
+
+                         <div class="challenge-solution">
+                <h3 class="challenge-title">Operational Agility </h3>
+                <p>
+With CloudWatch monitoring in place, the team gained real-time visibility and proactive alerts, reducing downtime and enabling faster incident response.
                 </p>
             </div>
             
             <h2 class="section-heading" id="conclusion">Conclusion</h2>
             <p>
-The cloud optimization project transformed our infrastructure into a more efficient and scalable solution. By refining our existing ECS setup, optimizing auto-scaling, and implementing cost-effective resource management, we built a more resilient platform that adapts to evolving business needs.
-            
+This cloud transformation project turned a fragile, costly setup into a lean, resilient, and growth-ready platform. By optimizing ECS, auto-scaling, and cost management, we built infrastructure that not only adapts to business needs but also drives them forward.            
             <p>
-This project showcases how targeted technical improvements, such as fine-tuning cloud resources and enhancing monitoring, can drive significant business value by reducing costs while boosting performance and system reliability.
+It’s proof that targeted technical improvements, smarter scaling, better monitoring, and sharper cost control, deliver outsized business impact: lower costs, higher reliability, and the ability to scale without friction.
 
             </p>
             
