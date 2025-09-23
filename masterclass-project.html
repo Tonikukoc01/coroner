@@ -890,24 +890,25 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
 
-   .section-heading {
+   @media (max-width: 768px) {
+    .section-heading {
         font-size: 1.2rem;
         margin: 2rem 0 1rem 0;
-        /* No sticky positioning by default */
+        /* Keep natural left alignment */
     }
     
     .section-heading.sticky-active {
-        position: fixed; /* Use fixed instead of sticky */
+        position: fixed;
         top: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 20px; /* Keep same left margin as content */
+        right: 20px; /* Respect right margin too */
         z-index: 100;
         background: rgba(28, 38, 52, 0.9);
         backdrop-filter: blur(6px);
         padding: 0.3rem 1rem;
         border-radius: 12px;
-        white-space: nowrap;
         transition: opacity 0.3s ease;
+        /* No transform - keep left aligned */
     }
     
     .section-heading.sticky-active.fade-out {
@@ -1754,24 +1755,26 @@ if (window.innerWidth <= 768) {
         // Find which section we're currently in
         for (let i = 0; i < headings.length; i++) {
             const heading = headings[i];
-            const headingTop = heading.offsetTop - 100; // 100px buffer
-            const nextHeading = headings[i + 1];
-            const nextTop = nextHeading ? nextHeading.offsetTop - 100 : Infinity;
+            const headingTop = heading.offsetTop - 50; // Reduced buffer
             
-            if (scrollY >= headingTop && scrollY < nextTop) {
-                targetHeading = heading;
-                break;
+            // Only show sticky if we've scrolled past the heading's natural position
+            if (scrollY > headingTop) {
+                // Check if we're still in this section (before next heading)
+                const nextHeading = headings[i + 1];
+                if (!nextHeading || scrollY < nextHeading.offsetTop - 50) {
+                    targetHeading = heading;
+                }
             }
         }
         
-        // Handle transition between headings
+        // Handle transition
         if (targetHeading !== currentSticky) {
-            // Remove sticky from current
+            // Remove from current
             if (currentSticky) {
                 currentSticky.classList.remove('sticky-active', 'fade-out');
             }
             
-            // Add sticky to new heading
+            // Add to new (only if we found one)
             if (targetHeading) {
                 targetHeading.classList.add('sticky-active');
             }
@@ -1781,10 +1784,12 @@ if (window.innerWidth <= 768) {
         
         // Handle fade out when approaching next section
         if (currentSticky) {
-            const nextHeading = headings[Array.indexOf.call(headings, currentSticky) + 1];
+            const currentIndex = Array.from(headings).indexOf(currentSticky);
+            const nextHeading = headings[currentIndex + 1];
+            
             if (nextHeading) {
                 const distanceToNext = nextHeading.offsetTop - scrollY;
-                if (distanceToNext < 150) { // Start fading 150px before
+                if (distanceToNext < 100) {
                     currentSticky.classList.add('fade-out');
                 } else {
                     currentSticky.classList.remove('fade-out');
@@ -1794,7 +1799,7 @@ if (window.innerWidth <= 768) {
     }
     
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Run once on load
+    // Don't run on initial load - let user scroll first
 }
     </script>
 </body>
