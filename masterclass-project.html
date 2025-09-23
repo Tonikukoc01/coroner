@@ -891,31 +891,26 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
 @media (max-width: 768px) {
 
    .section-heading {
-                position: sticky;
-                top: 1rem;
-                z-index: 10;
-                font-size: 1.2rem;
-                margin: 2rem 0 1rem 0;
-            }
+        position: static; /* NOT sticky by default */
+        font-size: 1.2rem;
+        margin: 2rem 0 1rem 0;
+    }
             
-            /* Only apply sticky styling when actually stuck */
-            .section-heading.stuck {
-                display: inline-block;
-                text-align: center;
-                background: rgba(28, 38, 52, 0.9);
-                backdrop-filter: blur(6px);
-                padding: 0.3rem 1rem;
-                border-radius: 12px;
-                margin-left: 50%;
-                transform: translateX(-50%);
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            }
-            
-            .section-heading.stuck.fading {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-10px);
-            }
-
+             /* ONLY when active, make it sticky */
+    .section-heading.active-sticky {
+        position: sticky;
+        top: 1rem;
+        z-index: 10;
+        display: inline-block;
+        text-align: center;
+        background: rgba(28, 38, 52, 0.9);
+        backdrop-filter: blur(6px);
+        padding: 0.3rem 1rem;
+        border-radius: 12px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    
     .toc-container {
         display: none;
     }
@@ -1745,83 +1740,35 @@ window.addEventListener('scroll', function() {
 // Initialize on page load
 updateActiveSection();
 
- // Only run on mobile
-        if (window.innerWidth <= 768) {
-            const headings = document.querySelectorAll('.section-heading');
-            
-            // Track which heading is currently stuck
-            let currentStuckHeading = null;
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const heading = entry.target;
-                    const rect = heading.getBoundingClientRect();
-                    
-                    // Check if heading is stuck at the top (within sticky threshold)
-                    const isStuck = rect.top <= 16 && rect.top >= 0; // 16px = 1rem top offset
-                    
-                    if (isStuck && currentStuckHeading !== heading) {
-                        // Remove stuck class from previous heading
-                        if (currentStuckHeading) {
-                            currentStuckHeading.classList.remove('stuck', 'fading');
-                        }
-                        
-                        // Add stuck class to current heading
-                        heading.classList.add('stuck');
-                        currentStuckHeading = heading;
-                        
-                        // Check if next heading is approaching
-                        checkForNextHeading(heading);
-                    } else if (!isStuck && currentStuckHeading === heading) {
-                        // Heading is no longer stuck
-                        heading.classList.remove('stuck', 'fading');
-                        currentStuckHeading = null;
-                    }
-                });
-            }, { 
-                rootMargin: '-16px 0px -50% 0px', // Account for sticky top offset
-                threshold: [0, 0.1, 1] 
-            });
-            
-            function checkForNextHeading(currentHeading) {
-                // Find the next h2 heading
-                let nextSibling = currentHeading.nextElementSibling;
-                
-                while (nextSibling) {
-                    if (nextSibling.tagName === 'H2' && nextSibling.classList.contains('section-heading')) {
-                        const nextRect = nextSibling.getBoundingClientRect();
-                        
-                        // If next heading is close to the top (within 60px), start fading current
-                        if (nextRect.top <= 60 && nextRect.top > 16) {
-                            currentHeading.classList.add('fading');
-                        } else {
-                            currentHeading.classList.remove('fading');
-                        }
-                        break;
-                    }
-                    nextSibling = nextSibling.nextElementSibling;
-                }
+if (window.innerWidth <= 768) {
+    const headings = document.querySelectorAll('.section-heading');
+    let currentStickyHeading = null;
+
+    function updateStickyHeading() {
+        let activeHeading = null;
+        
+        // Find which heading should be sticky
+        headings.forEach(heading => {
+            const rect = heading.getBoundingClientRect();
+            if (rect.top <= 16 && !activeHeading) {
+                activeHeading = heading;
             }
-            
-            // Observe all headings
-            headings.forEach(heading => observer.observe(heading));
-            
-            // Additional scroll listener for smooth fading transitions
-            let ticking = false;
-            
-            function updateStuckHeading() {
-                if (currentStuckHeading) {
-                    checkForNextHeading(currentStuckHeading);
-                }
-                ticking = false;
-            }
-            
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(updateStuckHeading);
-                    ticking = true;
-                }
-            });
+        });
+        
+        // Remove sticky from current if different
+        if (currentStickyHeading && currentStickyHeading !== activeHeading) {
+            currentStickyHeading.classList.remove('active-sticky', 'fading');
         }
+        
+        // Add sticky to new heading
+        if (activeHeading && activeHeading !== currentStickyHeading) {
+            activeHeading.classList.add('active-sticky');
+            currentStickyHeading = activeHeading;
+        }
+    }
+    
+    window.addEventListener('scroll', updateStickyHeading);
+    updateStickyHeading(); // Initial call
+}
     </script>
 </body>
