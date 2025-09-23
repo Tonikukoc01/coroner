@@ -59,6 +59,84 @@
             padding: 6rem 2rem;
             position: relative;
         }
+
+.other-projects-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    margin-bottom: 4rem;
+    border-top: 1px solid rgba(240, 244, 248, 0.2);
+    max-width: 800px;       /* align with case-study-container */
+    margin-left: auto;      /* center align */
+    margin-right: auto;
+    padding-left: 1.5rem;   /* match internal padding */
+    padding-right: 1.5rem;
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image-container {
+    width: 100%;
+    height: 140px; /* slightly taller for consistency */
+    overflow: hidden;
+    position: relative;
+}
+.project-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-card-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5; /* thinner so it feels balanced */
+}
+
+        .project-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-card-title {
+    font-size: 1.3rem;
+    font-weight: 200;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.project-card-description {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+    flex-grow: 1; /* pushes arrow down on desktop */
+}
+
+.project-card-arrow {
+    margin-top: 1rem;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
  /* ToC smooth scroll */
  .toc-container {
     position: fixed;
@@ -623,6 +701,34 @@ body.easy-reading .metric-card {
             .case-study-container {
                 padding: 5rem 1.5rem 4rem;
             }
+
+   .other-projects-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+                margin-top: 1.5rem;
+                margin-bottom: 3rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    .project-image-container {
+        height: 180px; /* Even smaller on mobile */
+    }
+    
+    .project-card-content {
+        padding: 1rem;
+        min-height: auto;
+    }
+    
+    .project-card-title {
+        font-size: 1rem; /* Smaller text on mobile */
+    }
+    
+    .project-card-description {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
             
             .back-to-projects {
                 top: 1.3rem;
@@ -722,6 +828,34 @@ body.easy-reading .metric-card {
             }
             
               .theme-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+               .projects-grid {
+        gap: 0.75rem;
+    }
+    
+    .project-image-container {
+        height: 140px; /* Very compact on small screens */
+    }
+    
+    .project-card-content {
+        padding: 0.75rem;
+    }
+    
+    .project-card-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .project-card-description {
+        font-size: 0.75rem;
+    }
+    
+    .project-card-arrow {
+        top: 0.75rem;
+        right: 0.75rem;
         width: 14px;
         height: 14px;
     }
