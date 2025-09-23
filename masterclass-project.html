@@ -889,37 +889,29 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
+
+    @media (max-width: 768px) {
     .section-heading {
-        display: block; /* normal state */
-        font-size: 1rem; /* smaller font */
-        margin: 1.5rem auto 1rem auto;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 1rem; /* space from top */
+        z-index: 10;
+
+        display: inline-block; /* shrink to text width */
         text-align: center;
-        padding: 0; /* no capsule in normal state */
-        border-radius: 0;
-        background: transparent;
-        backdrop-filter: none;
-        transition: all 0.3s ease;
-    }
-
-    /* Sticky capsule style */
-    .section-heading.sticky {
-        position: fixed;
-        top: 1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        display: inline-block;
-        background: rgba(28, 38, 52, 0.6);
-        backdrop-filter: blur(6px);
-        padding: 0.25rem 0.8rem;
+        background: rgba(28, 38, 52, 0.6); /* semi-transparent */
+        backdrop-filter: blur(6px); /* blur behind */
+        padding: 0.3rem 1rem; /* capsule shape */
         border-radius: 12px;
-        font-size: 0.9rem;
-        z-index: 100;
+        margin: 0 auto 1rem auto; /* center horizontally */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        font-size: 1.2rem; /* smaller font size on mobile */
     }
 
-    /* Optional fade when next section is approaching */
-    .section-heading.sticky.fading {
+    .section-heading.fading {
         opacity: 0.5;
-        transform: translateX(-50%) translateY(-2px);
+        transform: translateY(-2px);
     }
 
     .toc-container {
@@ -1750,43 +1742,32 @@ window.addEventListener('scroll', function() {
 
 // Initialize on page load
 updateActiveSection();
-        
-//Sticky header
+
+        // Run only on mobile
 if (window.innerWidth <= 768) {
     const headings = document.querySelectorAll('.section-heading');
-    let currentSticky = null;
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            const h = entry.target;
-
-            if (entry.boundingClientRect.top <= 1 && entry.boundingClientRect.bottom > 0) {
-                // header is at the top, make it sticky
-                if (currentSticky && currentSticky !== h) {
-                    currentSticky.classList.remove('sticky', 'fading');
+            const current = entry.target;
+            if (entry.intersectionRatio < 1 && entry.boundingClientRect.top < 0) {
+                // header is sticky at top
+                const next = current.nextElementSibling;
+                if (next && next.tagName === 'H2') {
+                    const nextTop = next.getBoundingClientRect().top;
+                    if (nextTop <= current.offsetHeight) {
+                        current.classList.add('fading'); // fade when next header approaches
+                    } else {
+                        current.classList.remove('fading');
+                    }
                 }
-                h.classList.add('sticky');
-                currentSticky = h;
-            } else if (currentSticky === h) {
-                h.classList.remove('sticky', 'fading');
-                currentSticky = null;
-            }
-
-            // Fade effect when next header approaches
-            const next = h.nextElementSibling;
-            if (next && next.tagName === 'H2' && h.classList.contains('sticky')) {
-                const nextTop = next.getBoundingClientRect().top;
-                if (nextTop <= h.offsetHeight + 2) { // small buffer
-                    h.classList.add('fading');
-                } else {
-                    h.classList.remove('fading');
-                }
+            } else {
+                current.classList.remove('fading');
             }
         });
     }, { threshold: [0, 1] });
 
     headings.forEach(h => observer.observe(h));
 }
-
     </script>
 </body>
