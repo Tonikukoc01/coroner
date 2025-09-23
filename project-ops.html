@@ -94,6 +94,36 @@
     height: 20px;
     stroke-width: 1.5; /* thinner so it feels balanced */
 }
+
+        .project-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-card-title {
+    font-size: 1.3rem;
+    font-weight: 200;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.project-card-description {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+    flex-grow: 1; /* pushes arrow down on desktop */
+}
+
+.project-card-arrow {
+    margin-top: 1rem;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
         
         /* Case study container */
         .case-study-container {
