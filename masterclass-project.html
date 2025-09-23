@@ -907,7 +907,7 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
         backdrop-filter: blur(6px);
         padding: 0.3rem 1rem;
         border-radius: 12px;
-        margin-left: 50%;
+        left: 50%;
         transform: translateX(-50%);
     }
     
@@ -1742,28 +1742,39 @@ updateActiveSection();
 
 if (window.innerWidth <= 768) {
     const headings = document.querySelectorAll('.section-heading');
-    let currentStickyHeading = null;
-
+    
     function updateStickyHeading() {
+        const scrollTop = window.pageYOffset;
         let activeHeading = null;
         
-        // Find which heading should be sticky
-        headings.forEach(heading => {
-            const rect = heading.getBoundingClientRect();
-            if (rect.top <= 16 && !activeHeading) {
+        // Find the heading that should be sticky based on scroll position
+        for (let i = headings.length - 1; i >= 0; i--) {
+            const heading = headings[i];
+            const headingTop = heading.offsetTop;
+            
+            if (scrollTop >= headingTop - 20) { // 20px buffer
                 activeHeading = heading;
+                break;
             }
-        });
-        
-        // Remove sticky from current if different
-        if (currentStickyHeading && currentStickyHeading !== activeHeading) {
-            currentStickyHeading.classList.remove('active-sticky', 'fading');
         }
         
-        // Add sticky to new heading
-        if (activeHeading && activeHeading !== currentStickyHeading) {
+        // Remove sticky from all headings
+        headings.forEach(h => h.classList.remove('active-sticky', 'fading'));
+        
+        // Add sticky to the active one
+        if (activeHeading) {
             activeHeading.classList.add('active-sticky');
-            currentStickyHeading = activeHeading;
+            
+            // Check if next heading is approaching for fading
+            const currentIndex = Array.from(headings).indexOf(activeHeading);
+            const nextHeading = headings[currentIndex + 1];
+            
+            if (nextHeading) {
+                const nextTop = nextHeading.offsetTop;
+                if (scrollTop >= nextTop - 60) { // Start fading 60px before
+                    activeHeading.classList.add('fading');
+                }
+            }
         }
     }
     
