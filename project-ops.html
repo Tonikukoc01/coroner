@@ -125,6 +125,85 @@ margin-bottom: 4rem;
     display: flex;
     justify-content: flex-end;
 }
+
+.toc-container {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    background-color: rgba(26, 43, 60, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    z-index: 99;
+    max-width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.toc-container:hover {
+    opacity: 1;
+}
+
+.toc-header {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.5rem;
+}
+
+.toc-link {
+    display: block;
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    position: relative;
+    border-left: 2px solid transparent;
+}
+
+.toc-link:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(2px);
+}
+
+.toc-link.active {
+    opacity: 1;
+    color: var(--accent-color);
+    background-color: rgba(78, 146, 223, 0.1);
+    border-left-color: var(--accent-color);
+}
+
+/* Easy reading mode styles for TOC */
+body.easy-reading .toc-container {
+    background-color: rgba(240, 244, 248, 0.95);
+    border-color: rgba(10, 26, 42, 0.1);
+}
+
+body.easy-reading .toc-link.active {
+    color: var(--accent-color);
+    background-color: rgba(26, 101, 192, 0.1);
+}
         
         /* Case study container */
         .case-study-container {
@@ -440,7 +519,34 @@ margin-bottom: 4rem;
             border-radius: 20px;
             z-index: 100;
             backdrop-filter: blur(4px);
+            gap: 8px;
         }
+
+        /* Theme icons */
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--text-color);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.theme-icon.sun-icon {
+    opacity: 0.4;
+}
+
+.theme-icon.moon-icon {
+    opacity: 0.8;
+}
+
+/* Update icon opacity based on theme */
+body.easy-reading .theme-icon.sun-icon {
+    opacity: 0.8;
+}
+
+body.easy-reading .theme-icon.moon-icon {
+    opacity: 0.4;
+}
         
         .switch-label {
             margin-right: 10px;
@@ -681,6 +787,39 @@ body.easy-reading .team-category {
                 width: 40px;
                 height: 40px;
             }
+
+                     .switch-container {
+             top: 13.5px;
+             right: 10px;
+             padding: 6px 10px; /* Slightly smaller padding */
+            border-radius: 16px; /* Smaller border radius */
+               gap: 6px;
+    }
+
+    .theme-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .switch-label {
+        margin-right: 8px;
+    }
+    
+    .switch {
+        width: 36px; /* Smaller switch */
+        height: 20px;
+    }
+    
+    .slider:before {
+        height: 14px; /* Smaller slider dot */
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(16px); /* Adjusted for smaller switch */
+    }
         }
         
         /* Small mobile adjustments */
@@ -740,6 +879,26 @@ body.easy-reading .team-category {
             .section-heading {
                 font-size: 1.5rem;
             }
+             .switch-container {
+        padding: 4px 8px;
+        border-radius: 14px;
+        gap: 4px;
+    }
+
+       .theme-icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .switch-label {
+        font-size: 0.8rem;
+        margin-right: 6px;
+    }
+    
+    .switch {
+        width: 32px;
+        height: 18px;
+    }
         }
     </style>
 </head>
@@ -751,13 +910,56 @@ body.easy-reading .team-category {
         </svg>
     </div>
     
-    <!-- Reading mode switch -->
+    <!-- Theme toggle switch -->
     <div class="switch-container">
-        <span class="switch-label">Easy Reading</span>
+        <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
         <label class="switch">
-            <input type="checkbox" id="readingModeToggle">
+            <input type="checkbox" id="themeToggle">
             <span class="slider"></span>
         </label>
+        <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+
+     <!-- Table of Contents - Desktop -->
+    <div class="toc-container">
+        <div class="toc-header">Contents</div>
+        <nav class="toc-nav">
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#overview" class="toc-link">Overview</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#the-challenge" class="toc-link">The Challenge</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#technologies-used" class="toc-link">Technologies Used</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#approach" class="toc-link">Approach</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#key-implementations" class="toc-link">Key Implementations</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#results-impact" class="toc-link">Results & Impact</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#conclusion" class="toc-link">Conclusion</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     
     <div class="case-study-container">
@@ -815,10 +1017,10 @@ Led operations for a hybrid team of 10+ developers and 3 agencies, streamlining 
         </div>
         
         <div class="case-study-content">
-            <h2 class="section-heading">Overview</h2>
+            <h2 class="section-heading" id="overview">Overview</h2>
             <p>
 In September 2022, after completing a 3 month internship, I was tasked with bridging the gap between stakeholder and the development team at a rapidly scaling startup. Drawing from my understanding of the development pain points, I took on a key role in optimizing communication and aligning development efforts with business goals during a crucial growth phase between seed funding rounds.             
-            <h2 class="section-heading">The Challenge</h2>
+            <h2 class="section-heading" id=the-challenge>The Challenge</h2>
             <p>
                 The seed startup faced several critical operational challenges:
             </p>
@@ -841,7 +1043,7 @@ With 10+ developers spread across four continents, internal teams, and 3 externa
 The main stakeholder was not technically savvy and was already overwhelmed with investment pursuits, leaving a crucial gap in leadership. The company desperately lacked someone to step in and bridge the gap between business goals and development efforts.              </p>
             </div>
             
-            <h2 class="section-heading">Tools & Methodologies Used</h2>
+            <h2 class="section-heading" id="technologies-used">Tools & Methodologies Used</h2>
             <div class="tech-stack">
                 <span class="tech-item">Asana</span>
                 <span class="tech-item">Slack</span>
@@ -855,7 +1057,7 @@ The main stakeholder was not technically savvy and was already overwhelmed with 
                     
             </div>
             
-            <h2 class="section-heading">Key Initiatives</h2>
+            <h2 class="section-heading" id="key-initiatives">Key Initiatives</h2>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Resource Optimization</h3>
@@ -876,7 +1078,7 @@ Set up clear project scopes for all external agencies, defining the tasks, deadl
 Acted as the bridge between the core development team, marketing, and business departments, ensuring everyone was aligned and informed. Created awareness around the development process and any challenges the team was facing, helping non-technical stakeholders understand the situation. Coordinated efforts across departments to ensure proactive collaboration, timely feedback, and that business goals were always in sync with development priorities.                </p>
             </div>
             
-            <h2 class="section-heading">Results & Impact</h2>
+            <h2 class="section-heading" id=results-impact">Results & Impact</h2>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Cost Optimization</h3>
@@ -900,7 +1102,7 @@ Stronger collaboration between development, marketing, and business teams, ensur
             </div>
             
             
-            <h2 class="section-heading">Conclusion</h2>
+            <h2 class="section-heading" id=conclusion">Conclusion</h2>
             <p>
 The company had solid momentum but was held back by scattered processes and misaligned teams. By putting some structure in place, improving how teams worked together, and making communication actually work, we saved serious time and money. The main stakeholder got back 200+ hours a month, which they used to focus on growth—leading to a 500K € funding round. At the same time, smarter resource use helped cut 50K–75K € in dev costs annually. A few key shifts made a big difference.            </p>
             
@@ -972,27 +1174,27 @@ Happy to chat more about how we made things run smoother and freed up time and b
             });
         });
         
-        // Reading mode toggle functionality
-        const readingModeToggle = document.getElementById('readingModeToggle');
-        const body = document.body;
-        
-        // Check for saved reading mode preference
-        const savedMode = localStorage.getItem('readingMode');
-        if (savedMode === 'easy') {
-            body.classList.add('easy-reading');
-            readingModeToggle.checked = true;
-        }
-        
-        // Toggle reading mode
-        readingModeToggle.addEventListener('change', function() {
-            if (this.checked) {
-                body.classList.add('easy-reading');
-                localStorage.setItem('readingMode', 'easy');
-            } else {
-                body.classList.remove('easy-reading');
-                localStorage.setItem('readingMode', 'normal');
+        // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const bodyElement = document.body;
+            
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    // Checked = Day mode (light theme)
+                    bodyElement.classList.add('easy-reading');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // Unchecked = Night mode (dark theme) 
+                    bodyElement.classList.remove('easy-reading');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Check if light theme was previously enabled
+            if (localStorage.getItem('theme') === 'light') {
+                themeToggle.checked = true;
+                bodyElement.classList.add('easy-reading');
             }
-        });
         
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1007,6 +1209,69 @@ Happy to chat more about how we made things run smoother and freed up time and b
                 }
             });
         });
+
+    // TABLE OF CONTENTS SCROLLSPY FUNCTIONALITY
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = document.querySelectorAll('h2[id]');
+
+// Smooth scrolling for TOC links
+tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 100;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Scrollspy functionality
+function updateActiveSection() {
+    const scrollPosition = window.scrollY + 200;
+    let currentSection = '';
+    
+    // Find the last section that we've scrolled past
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const sectionTop = section.offsetTop;
+        
+        if (scrollPosition >= sectionTop) {
+            currentSection = section.id;
+            break;
+        }
+    }
+    
+    // If we haven't reached any section yet, use the first one
+    if (!currentSection && sections.length > 0) {
+        currentSection = sections[0].id;
+    }
+    
+    // Update active TOC link
+    tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Throttled scroll handler
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(updateActiveSection, 10);
+});
+
+// Initialize on page load
+updateActiveSection();
         
     </script>
 </body>
