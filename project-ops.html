@@ -48,6 +48,52 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
+        .other-projects-section {
+    margin-top: 2.5rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(240, 244, 248, 0.2);
+    max-width: 800px;       /* align with case-study-container */
+    margin-left: auto;      /* center align */
+    margin-right: auto;
+    padding-left: 1.5rem;   /* match internal padding */
+    padding-right: 1.5rem;
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image-container {
+    width: 100%;
+    height: 160px; /* slightly taller for consistency */
+    overflow: hidden;
+    position: relative;
+}
+.project-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-card-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5; /* thinner so it feels balanced */
+}
         
         /* Case study container */
         .case-study-container {
@@ -519,6 +565,31 @@ body.easy-reading .team-category {
         
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {
+          
+            .other-projects-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    .project-image-container {
+        height: 100px; /* Even smaller on mobile */
+    }
+    
+    .project-card-content {
+        padding: 1rem;
+    }
+    
+    .project-card-title {
+        font-size: 1rem; /* Smaller text on mobile */
+    }
+    
+    .project-card-description {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
             .case-study-container {
                 padding: 5rem 1.5rem 4rem;
             }
@@ -580,6 +651,33 @@ body.easy-reading .team-category {
         
         /* Small mobile adjustments */
         @media (max-width: 480px) {
+            projects-grid {
+        gap: 0.75rem;
+    }
+    
+    .project-image-container {
+        height: 80px; /* Very compact on small screens */
+    }
+    
+    .project-card-content {
+        padding: 0.75rem;
+    }
+    
+    .project-card-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .project-card-description {
+        font-size: 0.75rem;
+    }
+    
+    .project-card-arrow {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 14px;
+        height: 14px;
+    }
             .case-study-container {
                 padding: 4rem 1rem 3rem;
             }
@@ -782,6 +880,43 @@ Happy to chat more about how we made things run smoother and freed up time and b
         </div>
     </div>
 
+    <!-- Other Projects Navigation Section -->
+<div class="other-projects-section">
+    <h2 class="section-heading">Explore Other Projects</h2>
+    <div class="projects-grid">
+        <a href="https://tonikukoc.me/cloud-project" class="project-card">
+            <div class="project-image-container">
+                <img src="assets/cloud-recomposition.jpg" alt="Cloud Recomposition" class="project-image">
+            </div>
+            <div class="project-card-content">
+                <h3 class="project-card-title">Cloud Recomposition</h3>
+                <p class="project-card-description">Architected cloud infrastructure reducing operational costs by 60%</p>
+                <div class="project-card-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </a>
+        
+        <a href="https://tonikukoc.me/masterclass-project" class="project-card">
+            <div class="project-image-container">
+                <img src="assets/masterclass-platform.jpg" alt="Masterclass Platform" class="project-image">
+            </div>
+            <div class="project-card-content">
+                <h3 class="project-card-title">Masterclass Platform</h3>
+                <p class="project-card-description">Built scalable learning platform serving 1000+ active users</p>
+                <div class="project-card-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
 <script>
         // Back to top functionality
         const backToTopButton = document.getElementById('backToTop');
