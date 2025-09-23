@@ -1674,246 +1674,67 @@ function closeModal() {
     modal.classList.remove('active');
     document.body.classList.remove('modal-open');
 }
-// TABLE OF CONTENTS AND RESPONSIVE FUNCTIONALITY
-document.addEventListener('DOMContentLoaded', function() {
-    // Responsive breakpoints
-    const MOBILE_BREAKPOINT = 768;
-    const TABLET_BREAKPOINT = 1024;
-    
-    // Get viewport width
-    function getViewportWidth() {
-        return window.innerWidth || document.documentElement.clientWidth;
-    }
-    
-    // Check if device is mobile
-    function isMobile() {
-        return getViewportWidth() <= MOBILE_BREAKPOINT;
-    }
-    
-    // Check if device is tablet
-    function isTablet() {
-        const width = getViewportWidth();
-        return width > MOBILE_BREAKPOINT && width <= TABLET_BREAKPOINT;
-    }
-    
-    // TABLE OF CONTENTS ELEMENTS
-    const tocContainer = document.querySelector('.toc-container');
-    const tocLinks = document.querySelectorAll('.toc-link');
-    const sections = document.querySelectorAll('h2[id]');
-    const tocToggle = document.querySelector('.toc-toggle');
-    const tocModal = document.querySelector('.toc-modal');
-    const tocClose = document.querySelector('.toc-close');
-    
-    // RESPONSIVE TOC VISIBILITY
-    function updateTocVisibility() {
-        if (!tocContainer) return;
+// TABLE OF CONTENTS SCROLLSPY FUNCTIONALITY
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = document.querySelectorAll('h2[id]');
+
+// Smooth scrolling for TOC links
+tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
         
-        if (isMobile()) {
-            // Hide desktop TOC on mobile
-            tocContainer.style.display = 'none';
-            
-            // Show mobile TOC toggle if it exists
-            if (tocToggle) {
-                tocToggle.style.display = 'flex';
-            }
-        } else {
-            // Show desktop TOC on larger screens
-            tocContainer.style.display = 'block';
-            
-            // Hide mobile TOC toggle
-            if (tocToggle) {
-                tocToggle.style.display = 'none';
-            }
-            
-            // Close mobile modal if open
-            if (tocModal) {
-                tocModal.classList.remove('active');
-            }
-        }
-    }
-    
-    // SMOOTH SCROLLING FOR TOC LINKS
-    function setupSmoothScrolling() {
-        tocLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    const headerOffset = isMobile() ? 80 : 100; // Different offset for mobile
-                    const offsetTop = targetSection.offsetTop - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile modal after navigation
-                    if (tocModal && tocModal.classList.contains('active')) {
-                        tocModal.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                }
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 100;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
             });
-        });
-    }
-    
-    // SCROLLSPY FUNCTIONALITY
-    function updateActiveSection() {
-        if (!sections.length || !tocLinks.length) return;
-        
-        const scrollPosition = window.scrollY + (isMobile() ? 120 : 150);
-        let currentSection = '';
-        
-        // Find current section
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionBottom = sectionTop + sectionHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom + 200) {
-                currentSection = section.id;
-            }
-        });
-        
-        // If no section is found, use the first one if we're at the top
-        if (!currentSection && window.scrollY < 200 && sections.length > 0) {
-            currentSection = sections[0].id;
-        }
-        
-        // Update active TOC link
-        tocLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
-    }
-    
-    // MOBILE TOC MODAL FUNCTIONALITY
-    function setupMobileToc() {
-        if (tocToggle && tocModal) {
-            tocToggle.addEventListener('click', function() {
-                tocModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        }
-        
-        if (tocClose) {
-            tocClose.addEventListener('click', function() {
-                tocModal.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-        
-        if (tocModal) {
-            // Close modal when clicking outside content
-            tocModal.addEventListener('click', function(e) {
-                if (e.target === tocModal) {
-                    tocModal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        }
-    }
-    
-    // RESPONSIVE SCROLL THROTTLING
-    let scrollTimeout;
-    let resizeTimeout;
-    
-    function throttledScrollHandler() {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(() => {
-            updateActiveSection();
-        }, isMobile() ? 20 : 10); // Less frequent updates on mobile for performance
-    }
-    
-    function throttledResizeHandler() {
-        if (resizeTimeout) {
-            clearTimeout(resizeTimeout);
-        }
-        resizeTimeout = setTimeout(() => {
-            updateTocVisibility();
-            updateActiveSection();
-        }, 150);
-    }
-    
-    // EVENT LISTENERS
-    window.addEventListener('scroll', throttledScrollHandler, { passive: true });
-    window.addEventListener('resize', throttledResizeHandler, { passive: true });
-    
-    // INITIALIZATION
-    function initializeToc() {
-        updateTocVisibility();
-        setupSmoothScrolling();
-        setupMobileToc();
-        updateActiveSection();
-        
-        // Add intersection observer for better performance on mobile
-        if ('IntersectionObserver' in window && isMobile()) {
-            const observerOptions = {
-                root: null,
-                rootMargin: '-20% 0px -70% 0px',
-                threshold: 0
-            };
-            
-            const sectionObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const sectionId = entry.target.id;
-                        tocLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${sectionId}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-            
-            sections.forEach(section => {
-                sectionObserver.observe(section);
-            });
-        }
-    }
-    
-    // TOUCH DEVICE OPTIMIZATION
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-        // Optimize for touch devices
-        tocLinks.forEach(link => {
-            link.style.minHeight = '44px'; // Better touch target
-            link.style.display = 'flex';
-            link.style.alignItems = 'center';
-        });
-    }
-    
-    // START INITIALIZATION
-    initializeToc();
-    
-    // ORIENTATION CHANGE HANDLING
-    window.addEventListener('orientationchange', function() {
-        setTimeout(() => {
-            updateTocVisibility();
-            updateActiveSection();
-        }, 200);
-    });
-    
-    // KEYBOARD ACCESSIBILITY
-    document.addEventListener('keydown', function(e) {
-        // Close mobile TOC modal with Escape key
-        if (e.key === 'Escape' && tocModal && tocModal.classList.contains('active')) {
-            tocModal.classList.remove('active');
-            document.body.style.overflow = '';
         }
     });
-    
-    // PERFORMANCE MONITORING (optional)
-    if (window.performance && window.performance.mark) {
-        performance.mark('toc-initialization-complete');
-    }
 });
+
+// Scrollspy functionality
+function updateActiveSection() {
+    const scrollPosition = window.scrollY + 200;
+    let currentSection = '';
+    
+    // Find the last section that we've scrolled past
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const sectionTop = section.offsetTop;
+        
+        if (scrollPosition >= sectionTop) {
+            currentSection = section.id;
+            break;
+        }
+    }
+    
+    // If we haven't reached any section yet, use the first one
+    if (!currentSection && sections.length > 0) {
+        currentSection = sections[0].id;
+    }
+    
+    // Update active TOC link
+    tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Throttled scroll handler
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(updateActiveSection, 10);
+});
+
+// Initialize on page load
+updateActiveSection();
     </script>
 </body>
