@@ -889,32 +889,6 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
 
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
-
-   @media (max-width: 768px) {
-    .section-heading {
-        font-size: 1.2rem;
-        margin: 2rem 0 1rem 0;
-        /* Keep natural left alignment */
-    }
-    
-    .section-heading.sticky-active {
-        position: fixed;
-        top: 1rem;
-        left: 20px; /* Keep same left margin as content */
-        right: 20px; /* Respect right margin too */
-        z-index: 100;
-        background: rgba(28, 38, 52, 0.9);
-        backdrop-filter: blur(6px);
-        padding: 0.3rem 1rem;
-        border-radius: 12px;
-        transition: opacity 0.3s ease;
-        /* No transform - keep left aligned */
-    }
-    
-    .section-heading.sticky-active.fade-out {
-        opacity: 0;
-    }
-    
     .toc-container {
         display: none;
     }
@@ -1743,63 +1717,5 @@ window.addEventListener('scroll', function() {
 
 // Initialize on page load
 updateActiveSection();
-
-if (window.innerWidth <= 768) {
-    const headings = document.querySelectorAll('.section-heading');
-    let currentSticky = null;
-    
-    function handleScroll() {
-        const scrollY = window.scrollY;
-        let targetHeading = null;
-        
-        // Find which section we're currently in
-        for (let i = 0; i < headings.length; i++) {
-            const heading = headings[i];
-            const headingTop = heading.offsetTop - 50; // Reduced buffer
-            
-            // Only show sticky if we've scrolled past the heading's natural position
-            if (scrollY > headingTop) {
-                // Check if we're still in this section (before next heading)
-                const nextHeading = headings[i + 1];
-                if (!nextHeading || scrollY < nextHeading.offsetTop - 50) {
-                    targetHeading = heading;
-                }
-            }
-        }
-        
-        // Handle transition
-        if (targetHeading !== currentSticky) {
-            // Remove from current
-            if (currentSticky) {
-                currentSticky.classList.remove('sticky-active', 'fade-out');
-            }
-            
-            // Add to new (only if we found one)
-            if (targetHeading) {
-                targetHeading.classList.add('sticky-active');
-            }
-            
-            currentSticky = targetHeading;
-        }
-        
-        // Handle fade out when approaching next section
-        if (currentSticky) {
-            const currentIndex = Array.from(headings).indexOf(currentSticky);
-            const nextHeading = headings[currentIndex + 1];
-            
-            if (nextHeading) {
-                const distanceToNext = nextHeading.offsetTop - scrollY;
-                if (distanceToNext < 100) {
-                    currentSticky.classList.add('fade-out');
-                } else {
-                    currentSticky.classList.remove('fade-out');
-                }
-            }
-        }
-    }
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Don't run on initial load - let user scroll first
-}
     </script>
 </body>
