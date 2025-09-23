@@ -52,13 +52,92 @@
         }
 
         
-        /* Case study container */
-        .case-study-container {
+ /* Case study container */
+ .case-study-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 6rem 2rem;
             position: relative;
         }
+ /* ToC smooth scroll */
+ .toc-container {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    background-color: rgba(26, 43, 60, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    z-index: 99;
+    max-width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.toc-container:hover {
+    opacity: 1;
+}
+
+.toc-header {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.5rem;
+}
+
+.toc-link {
+    display: block;
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    position: relative;
+    border-left: 2px solid transparent;
+}
+
+.toc-link:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(2px);
+}
+
+.toc-link.active {
+    opacity: 1;
+    color: var(--accent-color);
+    background-color: rgba(78, 146, 223, 0.1);
+    border-left-color: var(--accent-color);
+}
+
+/* Easy reading mode styles for TOC */
+body.easy-reading .toc-container {
+    background-color: rgba(240, 244, 248, 0.95);
+    border-color: rgba(10, 26, 42, 0.1);
+}
+
+body.easy-reading .toc-link.active {
+    color: var(--accent-color);
+    background-color: rgba(26, 101, 192, 0.1);
+}
         
         /* Back to projects arrow */
         .back-to-projects {
@@ -631,6 +710,9 @@ body.easy-reading .metric-card {
                 width: 40px;
                 height: 40px;
             }
+              .toc-container {
+             display: none;
+    }    
         }
         
         /* Small mobile adjustments */
@@ -663,7 +745,10 @@ body.easy-reading .metric-card {
             .wide-image {
                 max-height: 300px;
             }
-            
+
+        .toc-container {
+             display: none;
+    }          
             .section-heading {
                 font-size: 1.5rem;
             }
@@ -698,6 +783,36 @@ body.easy-reading .metric-card {
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
+    </div>
+
+      <!-- Table of Contents - Desktop -->
+    <div class="toc-container">
+        <div class="toc-header">Contents</div>
+        <nav class="toc-nav">
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#overview" class="toc-link">Overview</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#the-challenge" class="toc-link">The Challenge</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#technologies-used" class="toc-link">Technologies Used</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#approach" class="toc-link">Approach</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#key-implementations" class="toc-link">Key Implementations</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#results-impact" class="toc-link">Results & Impact</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#conclusion" class="toc-link">Conclusion</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     
     
@@ -737,11 +852,11 @@ Re-architected legacy cloud infrastructure for a fast-growing social ecommerce s
         </div>
         
         <div class="case-study-content">
-            <h2 class="section-heading">Overview</h2>
+            <h2 class="section-heading" id=overview">Overview</h2>
             <p>
 Back in September 2023, a sudden spike in user activity pushed our platform to its limits and surfaced some long-standing issues in our cloud setup. We started seeing huge performance bottlenecks, unpredictable scaling behavior and rising costs. On top of that, our infrastructure had grown a bit too heavy over time, with cloud expenses creeping higher than they needed to be. This project was all about rethinking and rebuilding our architecture to make it more efficient, scalable, and resilient moving forward.            </p>
             
-            <h2 class="section-heading">The Challenge</h2>
+            <h2 class="section-heading"id=the-challenge">The Challenge</h2>
             <p>
                 The legacy infrastructure presented multiple critical challenges:
             </p>
@@ -767,7 +882,7 @@ Without proper fault tolerance and health checks across services, the system was
                 </p>
             </div>
             
-            <h2 class="section-heading">Technologies Used</h2>
+            <h2 class="section-heading id=technologies-used">Technologies Used</h2>
             <div class="tech-stack">
                 <span class="tech-item">ECS</span>
                 <span class="tech-item">EC2</span>
@@ -781,7 +896,7 @@ Without proper fault tolerance and health checks across services, the system was
                 <span class="tech-item">Redis/Elasticache</span>
             </div>
             
-            <h2 class="section-heading">Approach</h2>
+            <h2 class="section-heading id=approach">Approach</h2>
             
             <div class="timeline">
                 <div class="timeline-line"></div>
@@ -829,7 +944,7 @@ We fine tuned Amazon CloudWatch as our primary monitoring and observability tool
                 </div>
             </div>
             
-            <h2 class="section-heading">Key Implementations</h2>
+            <h2 class="section-heading id=key-implementation">Key Implementations</h2>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">ECS Optimization & Auto-Scaling Adjustments</h3>
@@ -862,7 +977,7 @@ A major focus was on reducing operational expenses (OPEX). We conducted a detail
             </div>
 
             
-            <h2 class="section-heading">Results & Impact</h2>
+            <h2 class="section-heading id=results-impact">Results & Impact</h2>
             
             <div class="challenge-solution">
                 <h3 class="challenge-title">Cost Optimization</h3>
@@ -885,7 +1000,7 @@ Streamlined operations by integrating Amazon CloudWatch for centralized monitori
                 </p>
             </div>
             
-            <h2 class="section-heading">Conclusion</h2>
+            <h2 class="section-heading id=conclusion">Conclusion</h2>
             <p>
 The cloud optimization project transformed our infrastructure into a more efficient and scalable solution. By refining our existing ECS setup, optimizing auto-scaling, and implementing cost-effective resource management, we built a more resilient platform that adapts to evolving business needs.
             
@@ -964,6 +1079,70 @@ This project showcases how targeted technical improvements, such as fine-tuning 
                 observer.observe(event);
             });
         });
+
+        // TABLE OF CONTENTS SCROLLSPY FUNCTIONALITY
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = document.querySelectorAll('h2[id]');
+
+// Smooth scrolling for TOC links
+tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 100;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Scrollspy functionality
+function updateActiveSection() {
+    const scrollPosition = window.scrollY + 200;
+    let currentSection = '';
+    
+    // Find the last section that we've scrolled past
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const sectionTop = section.offsetTop;
+        
+        if (scrollPosition >= sectionTop) {
+            currentSection = section.id;
+            break;
+        }
+    }
+    
+    // If we haven't reached any section yet, use the first one
+    if (!currentSection && sections.length > 0) {
+        currentSection = sections[0].id;
+    }
+    
+    // Update active TOC link
+    tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Throttled scroll handler
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(updateActiveSection, 10);
+});
+
+// Initialize on page load
+updateActiveSection();
+
     </script>
 </body>
 </html>
