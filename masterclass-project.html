@@ -500,7 +500,34 @@ body.modal-open {
             border-radius: 20px;
             z-index: 100;
             backdrop-filter: blur(4px);
+            gap: 8px;
         }
+
+        * Theme icons */
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--text-color);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.theme-icon.sun-icon {
+    opacity: 0.4;
+}
+
+.theme-icon.moon-icon {
+    opacity: 0.8;
+}
+
+/* Update icon opacity based on theme */
+body.easy-reading .theme-icon.sun-icon {
+    opacity: 0.8;
+}
+
+body.easy-reading .theme-icon.moon-icon {
+    opacity: 0.4;
+}
         
         .switch-label {
             margin-right: 10px;
@@ -924,6 +951,12 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
              right: 10px;
              padding: 6px 10px; /* Slightly smaller padding */
             border-radius: 16px; /* Smaller border radius */
+               gap: 6px;
+    }
+
+    .theme-icon {
+        width: 16px;
+        height: 16px;
     }
     
     .switch-label {
@@ -1031,6 +1064,12 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
     .switch-container {
         padding: 4px 8px;
         border-radius: 14px;
+        gap: 4px;
+    }
+
+       .theme-icon {
+        width: 14px;
+        height: 14px;
     }
     
     .switch-label {
@@ -1088,13 +1127,26 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
         </svg>
     </div>
     
-    <!-- Reading mode switch -->
+  <!-- Theme toggle switch -->
     <div class="switch-container">
-        <span class="switch-label">Easy Reading</span>
+        <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
         <label class="switch">
-            <input type="checkbox" id="readingModeToggle">
+            <input type="checkbox" id="themeToggle">
             <span class="slider"></span>
         </label>
+        <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
     </div>
     
     <!-- Table of Contents - Desktop -->
@@ -1419,25 +1471,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Reading mode toggle
-    const readingModeToggle = document.getElementById('readingModeToggle');
-    const bodyElement = document.body;
-    
-    readingModeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            bodyElement.classList.add('easy-reading');
-            localStorage.setItem('readingMode', 'enabled');
-        } else {
-            bodyElement.classList.remove('easy-reading');
-            localStorage.setItem('readingMode', 'disabled');
-        }
-    });
-    
-    // Check if reading mode was previously enabled
-    if (localStorage.getItem('readingMode') === 'enabled') {
-        readingModeToggle.checked = true;
-        bodyElement.classList.add('reading-mode');
-    }
+    // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const bodyElement = document.body;
+            
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    // Checked = Day mode (light theme)
+                    bodyElement.classList.add('easy-reading');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // Unchecked = Night mode (dark theme) 
+                    bodyElement.classList.remove('easy-reading');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Check if light theme was previously enabled
+            if (localStorage.getItem('theme') === 'light') {
+                themeToggle.checked = true;
+                bodyElement.classList.add('easy-reading');
+            }
     
     // Timeline animation on scroll
     const timelineEvents = document.querySelectorAll('.timeline-event');
