@@ -49,7 +49,6 @@
         }
 
         .other-projects-section {
-    margin-top: 2rem;
     padding-top: 2rem;
 margin-bottom: 4rem;
     border-top: 1px solid rgba(240, 244, 248, 0.2);
@@ -255,7 +254,7 @@ body.easy-reading .toc-link.active {
             top: 8rem;
             left: 2rem;
         }
-        
+
         /* Case study header */
         .case-study-header {
             text-align: center;
@@ -393,76 +392,50 @@ body.easy-reading .toc-link.active {
             font-weight: 100;
         }
         
-        /* Quote section */
-        .quote-section {
-            margin: 3rem 0;
-            padding: 2rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-left: 3px solid var(--accent-color);
-            font-style: italic;
-        }
-        
-        .quote-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-        
-        .quote-author {
-            font-size: 1rem;
-            font-weight: 200;
-            opacity: 0.8;
-            text-align: right;
-        }
-        
-        /* Project timeline */
-        .timeline {
-            margin: 3rem 0;
-            position: relative;
-        }
-        
-        .timeline-line {
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .timeline-event {
-            position: relative;
-            padding-left: 50px;
-            margin-bottom: 2rem;
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: 8px;
-            top: 0.5rem;
-            width: 16px;
-            height: 16px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-        }
-        
-        .timeline-date {
-            font-size: 0.9rem;
-            font-weight: 100;
-            opacity: 0.7;
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-title {
+      
+        /* Initiatives Text Edit */
+        .initiative-title,
+        .result-title {
             font-size: 1.2rem;
             font-weight: 200;
+            color: var(--accent-color);
             margin-bottom: 0.5rem;
-        }
-        
-        .timeline-description {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
+}
+
+        .initiative-list,
+        .result-list {
+          list-style: none;
+          padding-left: 0;
+          position: relative;
+}
+
+        .initiative-list li,
+.result-list li {
+    position: relative;
+    padding-left: 32px; /* Space for the custom dot */
+    margin-bottom: 0.5rem;
+}
+
+.initiative-list li::before,
+.result-list li::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0.5rem;
+    width: 16px;
+    height: 16px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+}
+
+    
+        .highlight {
+    color: var(--accent-color);
+    font-weight: 600;
+    background-color: rgba(var(--accent-color-rgb), 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
         
         /* Challenges and solutions */
         .challenge-solution {
@@ -1101,7 +1074,7 @@ The main stakeholder was non-technical and focused on securing funding, leaving 
     <div class="result-item">
         <h3 class="result-title">Stakeholder Time</h3>
         <ul class="result-list">
-            <li>Freed <span class="highlight">200+ hours per month</span> for the main stakeholder, enabling focus on business growth.</li>
+            <li>Freed <span class="highlight">100+ hours per month</span> for the main stakeholder, enabling focus on business growth.</li>
             <li>This directly contributed to securing <span class="highlight">€500K in Series A funding</span>, strengthening the company's financial position.</li>
         </ul>
     </div>
@@ -1118,7 +1091,7 @@ The main stakeholder was non-technical and focused on securing funding, leaving 
             <h2 class="section-heading" id="conclusion">Conclusion</h2>
             <p>
 The startup had strong momentum but was held back by scattered processes and misaligned teams. By introducing structure, improving communication, and aligning development with business goals, we saved significant time and costs.   </p>
-            <p> The main stakeholder regained 200+ hours per month, enabling focus on growth and securing a €500K funding round, while smarter resource use cut €50K–75K in annual development costs. Small, strategic shifts made a measurable difference—turning operational chaos into scalable, efficient workflows.
+            <p> The main stakeholder regained 100+ hours per month, enabling focus on growth and securing a €500K funding round, while smarter resource use cut €50K–75K in annual development costs. Small, strategic shifts made a measurable difference—turning operational chaos into scalable, efficient workflows.
         
     </p>
              <!-- Contact section -->
