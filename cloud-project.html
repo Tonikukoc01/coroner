@@ -1028,50 +1028,54 @@ Weak fault tolerance and limited observability left the platform vulnerable to c
             
             <h2 class="section-heading" id="approach">Approach</h2>
             
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">September 2023</div>
-                    <div class="timeline-title">Initial Assessment</div>
-                    <div class="timeline-description">
-Emergency audited the existing infrastructure to uncover performance bottlenecks, cost inefficiencies, and scalability gaps exposed during the traffic surge.                    </div>
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">October 2023</div>
-                    <div class="timeline-title">Initial Optimization</div>
-                    <div class="timeline-description">
-Optimized EC2 configurations and scaling policies, while collaborating with the backend team to fix slow MongoDB queries that had been dragging performance.
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">November 2023</div>
-                    <div class="timeline-title">Architecture Redesign & Scaling Adjustments</div>
-                    <div class="timeline-description">
-Retained ECS as the core but overhauled its auto-scaling strategy, ensuring resources scaled smoothly with demand instead of failing under spikes.
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">December 2023</div>
-                    <div class="timeline-title">Cost Optimization & OPEX Reduction</div>
-                    <div class="timeline-description">
-Conducted a service-by-service audit, reconfiguring overprovisioned resources, optimizing S3 and CloudFront usage, and rightsizing EC2 instances. Attempting to cut costs without sacrificing performance.
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">January 2024</div>
-                    <div class="timeline-title">Monitoring & Observability with CloudWatch</div>
-                    <div class="timeline-description">
-Enhanced monitoring with CloudWatch dashboards, alerts, and metrics, giving the team real-time visibility into system health and enabling proactive incident response.
-                    </div>
-                </div>
-            </div>
+          <div class="timeline">
+    <div class="timeline-line"></div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">September 2023</div>
+        <div class="timeline-title">Initial Assessment</div>
+        <div class="timeline-description">
+            Emergency audited the existing infrastructure to uncover performance bottlenecks, cost inefficiencies, and scalability gaps exposed during the traffic surge.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">October 2023</div>
+        <div class="timeline-title">Initial Optimization</div>
+        <div class="timeline-description">
+            Optimized EC2 configurations and scaling policies, while collaborating with the backend team to fix slow MongoDB queries that had been dragging performance.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">November 2023</div>
+        <div class="timeline-title">Architecture Redesign & Scaling Adjustments</div>
+        <div class="timeline-description">
+            Retained ECS as the core but overhauled its auto-scaling strategy, ensuring resources scaled smoothly with demand instead of failing under spikes.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">December 2023</div>
+        <div class="timeline-title">Cost Optimization & OPEX Reduction</div>
+        <div class="timeline-description">
+            Conducted a service-by-service audit, reconfiguring overprovisioned resources, optimizing S3 and CloudFront usage, and rightsizing EC2 instances. Attempting to cut costs without sacrificing performance.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">January 2024</div>
+        <div class="timeline-title">Monitoring & Observability with CloudWatch</div>
+        <div class="timeline-description">
+            Enhanced monitoring with CloudWatch dashboards, alerts, and metrics, giving the team real-time visibility into system health and enabling proactive incident response.
+        </div>
+    </div>
+</div>
             
             <h2 class="section-heading" id="key-implementation">Key Implementations</h2>
             
