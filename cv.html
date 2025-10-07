@@ -1,0 +1,614 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>CV & Cover Letter - Toni Kukoc</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Toni Kukoc - CV and Cover Letter" />
+        
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+        <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+        
+        <style>
+            @font-face {
+                font-family: 'SkemaProDisplay';
+                font-weight: 100;
+                font-style: normal;
+                src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                     url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'SkemaProDisplay';
+                font-weight: 200;
+                font-style: normal;
+                src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                     url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'SkemaProDisplay';
+                font-weight: 300;
+                font-style: normal;
+                src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
+                     url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'SkemaProDisplay';
+                font-weight: 400;
+                font-style: normal;
+                src: url('../assets/webfonts/SkemaProDisplay-Regular.woff2') format('woff2'),
+                     url('../assets/webfonts/SkemaProDisplay-Regular.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'SkemaProDisplay';
+                font-weight: 500;
+                font-style: normal;
+                src: url('../assets/webfonts/SkemaProDisplay-SemiBold.woff2') format('woff2'),
+                     url('../assets/webfonts/SkemaProDisplay-SemiBold.woff') format('woff');
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+                height: 100%;
+                overflow-x: hidden;
+            }
+
+            body {
+                min-height: 100vh;
+                overflow-x: hidden;
+                display: flex;
+                flex-direction: column;
+                font-family: 'SkemaProDisplay', sans-serif;
+            }
+
+            /* Logo */
+            .logo {
+                position: fixed;
+                top: 3rem;
+                left: 4rem;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+            }
+
+            .logo-link {
+                font-family: 'SkemaProDisplay';
+                font-weight: 200;
+                color: #F0F4F8;
+                text-decoration: none;
+                font-size: 1.3rem;
+                margin-right: 0.5rem;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .logo-link:hover {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            .logo-image {
+                height: 70px;
+                width: auto;
+                display: block;
+            }
+
+            .logo-line {
+                width: 1px;
+                height: 0.9rem;
+                background-color: #F0F4F8;
+                margin-left: 0.5rem;
+                margin-bottom: 1px;
+            }
+
+            .menu-text {
+                font-family: 'SkemaProDisplay';
+                font-weight: 200;
+                color: #F0F4F8;
+                font-size: 1.1rem;
+                margin-left: 1rem;
+                cursor: pointer;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            .menu-text:hover {
+                color: #ffffff;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+
+            /* Menu Toggle */
+            .menu-toggle {
+                position: fixed;
+                top: 3.7rem;
+                right: 4rem;
+                z-index: 1001;
+                width: 24px;
+                height: 24px;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: #F0F4F8;
+                transition: all 0.3s ease;
+            }
+
+            .menu-toggle:hover span {
+                background-color: #ffffff;
+            }
+
+            /* Side Menu */
+            .side-menu {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(26, 43, 60, 0.75);
+                backdrop-filter: blur(5px);
+                z-index: 1000;
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-start;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+
+            .side-menu.active {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .side-menu-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                justify-content: flex-start;
+                font-family: 'SkemaProDisplay', sans-serif;
+                font-weight: 100;
+                color: #F0F4F8;
+                text-align: right;
+                padding-right: 3.8rem;
+                padding-top: 9rem;
+            }
+
+            .side-menu-nav {
+                margin-top: 2rem;
+            }
+
+            .side-menu-nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 3.5rem;
+            }
+
+            .side-menu-nav a {
+                color: #F0F4F8;
+                font-size: 1.8rem;
+                font-weight: 150;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .side-menu-nav a:hover {
+                color: #ffffff;
+            }
+
+            .side-menu-social {
+                display: flex;
+                gap: 2rem;
+                margin-top: auto;
+                margin-bottom: 2.5rem;
+            }
+
+            .side-menu-social a {
+                text-decoration: none;
+            }
+
+            .social-icon {
+                font-size: 1.6rem;
+                color: #F0F4F8;
+                transition: color 0.3s ease;
+            }
+
+            .social-icon:hover {
+                color: #ffffff;
+            }
+
+            .horizontal-line-side-menu {
+                width: 3.5cm;
+                height: 2px;
+                background-color: #F0F4F8;
+                border: none;
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+            }
+
+            /* Home Section */
+            #home {
+                min-height: 90vh;
+                padding-top: 8rem;
+                padding-bottom: 8rem;
+                position: relative;
+                background: 
+                    radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 45%),
+                    radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.12), transparent 42%),
+                    #1A2B3C;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Content Container */
+            .content-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4rem;
+                max-width: 800px;
+                width: 100%;
+                padding: 0 2rem;
+            }
+
+            .header-text {
+                text-align: center;
+                animation: fadeInDown 0.8s ease-out;
+            }
+
+            .header-text h1 {
+                font-family: 'SkemaProDisplay', sans-serif;
+                font-weight: 300;
+                font-size: 3.5rem;
+                color: #F0F4F8;
+                margin-bottom: 1rem;
+                letter-spacing: -0.02em;
+            }
+
+            .header-text .bold-name {
+                font-weight: 500;
+            }
+
+            .horizontal-line {
+                width: 8cm;
+                height: 2px;
+                background-color: #F0F4F8;
+                border: none;
+                margin: 1.5rem auto;
+                animation: expandWidth 1s ease-out 0.3s backwards;
+            }
+
+            .header-text p {
+                font-family: 'SkemaProDisplay', sans-serif;
+                font-weight: 100;
+                font-size: 1.3rem;
+                color: #B5B8BD;
+                opacity: 0.85;
+            }
+
+            /* Buttons Container */
+            .buttons-container {
+                display: flex;
+                gap: 3rem;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .doc-button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-decoration: none;
+                color: #F0F4F8;
+                transition: transform 0.3s ease;
+                animation: fadeInUp 0.8s ease-out;
+            }
+
+            .doc-button:nth-child(1) {
+                animation-delay: 0.4s;
+            }
+
+            .doc-button:nth-child(2) {
+                animation-delay: 0.6s;
+            }
+
+            .doc-button:hover {
+                transform: translateY(-8px);
+            }
+
+            .button-circle {
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                background: rgba(240, 244, 248, 0.05);
+                border: 2px solid rgba(240, 244, 248, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .button-circle::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: rgba(240, 244, 248, 0.1);
+                transform: translate(-50%, -50%);
+                transition: width 0.5s ease, height 0.5s ease;
+            }
+
+            .doc-button:hover .button-circle::before {
+                width: 200%;
+                height: 200%;
+            }
+
+            .doc-button:hover .button-circle {
+                border-color: rgba(240, 244, 248, 0.4);
+                box-shadow: 0 8px 30px rgba(240, 244, 248, 0.15);
+            }
+
+            .button-icon {
+                font-size: 3.5rem;
+                z-index: 1;
+            }
+
+            .button-label {
+                font-family: 'SkemaProDisplay', sans-serif;
+                font-weight: 300;
+                font-size: 1.4rem;
+                letter-spacing: 0.05em;
+                transition: color 0.3s ease;
+            }
+
+            .doc-button:hover .button-label {
+                color: #ffffff;
+            }
+
+            /* Animations */
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes expandWidth {
+                from {
+                    width: 0;
+                }
+                to {
+                    width: 8cm;
+                }
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 4rem;
+                background: #1A2B3C;
+                margin-top: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .footer-content {
+                font-family: 'SkemaProDisplay', sans-serif;
+                font-weight: 200;
+                font-size: 1.1rem;
+                color: #6B7280;
+            }
+
+            /* Mobile Responsive */
+            @media screen and (max-width: 768px) {
+                .logo {
+                    left: 2rem;
+                    top: 2.3rem;
+                }
+
+                .logo-image {
+                    height: 39px;
+                }
+
+                .menu-text {
+                    display: none;
+                }
+
+                .menu-toggle {
+                    top: 2.7rem;
+                    right: 2.5rem;
+                }
+
+                #home {
+                    padding-top: 4rem;
+                    padding-bottom: 4rem;
+                }
+
+                .header-text h1 {
+                    font-size: 2.5rem;
+                }
+
+                .header-text p {
+                    font-size: 1.1rem;
+                }
+
+                .horizontal-line {
+                    width: 60%;
+                }
+
+                .buttons-container {
+                    flex-direction: column;
+                    gap: 2.5rem;
+                }
+
+                .button-circle {
+                    width: 150px;
+                    height: 150px;
+                }
+
+                .button-icon {
+                    font-size: 3rem;
+                }
+
+                .button-label {
+                    font-size: 1.2rem;
+                }
+
+                .side-menu-content {
+                    padding-top: 6rem;
+                    padding-right: 2rem;
+                }
+
+                .side-menu-nav a {
+                    font-size: 1.5rem;
+                }
+
+                footer {
+                    padding: 1.5rem;
+                }
+
+                .footer-content {
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
+        
+        <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
+                <img src="assets/KT.png" alt="Logo" class="logo-image">
+            </a>
+            <div class="logo-line"></div>
+            <a href="mailto:toni.kukoc01@gmail.com" class="contact-link">
+                <span class="menu-text">contact</span>
+            </a>
+        </div>
+
+        <!-- Menu Toggle -->
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Side Menu -->
+        <div class="side-menu" id="sideMenu">
+            <div class="side-menu-content">
+                <div class="side-menu-social">
+                    <a href="https://www.linkedin.com/in/toni-kukoc/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://twitter.com/tonikukoc01" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/Tonikukoc01" class="social-icon"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="horizontal-line-side-menu"></div>
+                <nav class="side-menu-nav">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><a href="approach.html">approach to collaboration</a></li>
+                        <li><a href="about.html">about my life</a></li>
+                        <li><a href="blog.html">writing outlet</a></li>
+                        <li><a href="proving-value.html">value delivery</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Home Section -->
+        <section id="home">
+            <div class="content-container">
+                <div class="header-text">
+                    <h1><span class="bold-name">Toni Kukoč</span></h1>
+                    <hr class="horizontal-line">
+                    <p>Application Documents</p>
+                </div>
+
+                <div class="buttons-container">
+                    <a href="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/kukica-crochet-media/ToniKukoc_CV.pdf" target="_blank" class="doc-button">
+                        <div class="button-circle">
+                            <div class="button-icon">📄</div>
+                        </div>
+                        <div class="button-label">CURRICULUM VITAE</div>
+                    </a>
+
+                    <a href="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/kukica-crochet-media/ToniKukoc_coverletter.pdf" target="_blank" class="doc-button">
+                        <div class="button-circle">
+                            <div class="button-icon">✉️</div>
+                        </div>
+                        <div class="button-label">COVER LETTER</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">Toni Kukoč © MMXXV</div>
+        </footer>
+
+        <script>
+            function toggleMenu() {
+                const sideMenu = document.getElementById('sideMenu');
+                sideMenu.classList.toggle('active');
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const sideMenu = document.getElementById('sideMenu');
+                const menuToggle = document.querySelector('.menu-toggle');
+                
+                if (sideMenu.classList.contains('active') && 
+                    !sideMenu.contains(event.target) && 
+                    !menuToggle.contains(event.target)) {
+                    sideMenu.classList.remove('active');
+                }
+            });
+        </script>
+    </body>
+</html>
