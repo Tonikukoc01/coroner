@@ -523,12 +523,16 @@ display: none;
 
 /* Section-specific styles */
 #home {
-  min-height: 75vh; /* Remove the fixed height */
-  padding-top: 8rem; /* Add some top padding */
+  min-height: 75vh;
+  padding-top: 8rem;
   padding-bottom: 8rem;
   position: relative;
-  background: #1A2B3C;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 45%),
+    radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.12), transparent 42%),
+    #1A2B3C;
 }
+
 
 /* ===== SIDE SCROLL INDICATOR STYLES ===== */
 .side-scroll-indicator {
@@ -1024,10 +1028,14 @@ html, body {
 
 /* All mobile-specific styles should be inside this media query */
 @media screen and (max-width: 768px) {
-  #home {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    #home {
+    padding-bottom: 0rem;
+    overflow-x: hidden;
     min-height: 75vh;
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 45%),
+      radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.08), transparent 42%),
+      #1A2B3C;
   }
 
   #header {
