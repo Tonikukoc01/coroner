@@ -169,6 +169,63 @@
         .article-content p {
             margin-bottom: 2rem;
         }
+
+        .article-content h2 {
+            font-weight: 300;
+            font-size: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .article-content h3 {
+            font-weight: 200;
+            font-size: 1.4rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step {
+            margin-bottom: 3rem;
+            border-left: 2px solid rgba(240, 244, 248, 0.2);
+            padding-left: 1.5rem;
+        }
+
+        body.easy-reading .process-step {
+            border-left-color: rgba(10, 26, 42, 0.15);
+        }
+
+        .step-image-container {
+            margin-top: 2rem;
+        }
+
+        .step-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .tool-card {
+            margin-top: 4rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(240, 244, 248, 0.2);
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(240, 244, 248, 0.08), rgba(240, 244, 248, 0));
+        }
+
+        body.easy-reading .tool-card {
+            border-color: rgba(10, 26, 42, 0.12);
+            background: linear-gradient(135deg, rgba(10, 26, 42, 0.06), rgba(10, 26, 42, 0));
+        }
+
+        .tool-card ul {
+            margin: 1.5rem 0 0 0;
+            padding-left: 1.2rem;
+        }
+
+        .tool-card li {
+            margin-bottom: 1rem;
+        }
         
         /* Wide image container */
         .wide-image-container {
@@ -468,29 +525,84 @@
         
         <div class="article-content">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et lacus vel orci faucibus semper. Aliquam et sem vel magna imperdiet convallis. Sed vitae velit arcu. Donec ac nisl eu lacus dapibus egestas id sed orci. Nullam consectetur augue eget magna placerat, sit amet porta mauris placerat. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris ac elit fringilla, pellentesque ex id, suscipit lorem.
+                Large language models (LLMs) are no longer just clever autocomplete machines—they are becoming cognitive scaffolds that help teams turn ambiguous, messy situations into coherent action. When a product backlog overflows, when customer feedback contradicts itself, or when a crisis erupts across continents, LLMs can observe, synthesise, and recommend with a pace that keeps humans focused on judgement instead of drudgery.
             </p>
-            
+
             <p>
-                Praesent dignissim tortor at nisi dictum, a faucibus velit lacinia. Vestibulum nec dui euismod, interdum eros vitae, tincidunt justo. Aliquam sed pretium urna. Phasellus imperdiet est vitae magna elementum, ac ultricies tortor condimentum. Fusce non semper magna. Etiam finibus leo nec risus iaculis, at pharetra neque efficitur.
+                Below are five moments in the life of a chaotic project where LLMs shine. Each moment is paired with a visual prompt you can feed into your favourite generator to capture the feeling of moving from entropy to clarity.
             </p>
-            
-            <!-- Wide image section -->
-            <div class="wide-image-container">
-                <img src="/api/placeholder/1200/600" alt="AI Generated Art Example" class="wide-image">
-                <p class="image-caption">AI-generated artwork showcasing the fusion of technology and human creativity.</p>
+
+            <div class="process-step">
+                <h2>1. Signal Scouting: Separating urgent signals from noise</h2>
+                <p>
+                    Start by streaming chat logs, incident reports, and status updates into an LLM that is fine-tuned for anomaly detection. The model clusters conversations, flags outliers, and builds a heatmap of recurring phrases that suggest real risk. Humans then validate the shortlist instead of wading through thousands of lines manually.
+                </p>
+                <div class="step-image-container">
+                    <img src="/api/placeholder/1100/520" alt="Visual prompt of data streams coalescing into bright signal nodes" class="step-image">
+                    <p class="image-caption">Prompt idea: "Aurora-coloured data streams converging into a handful of glowing nodes above a dark operations room."</p>
+                </div>
             </div>
-            
+
+            <div class="process-step">
+                <h2>2. Context Weaving: Reconstructing the timeline</h2>
+                <p>
+                    Once the hot spots are known, a retrieval-augmented LLM assembles a structured timeline. It references ticket systems, deployment logs, and calendar events to explain what happened, who was involved, and which dependencies overlapped. The output becomes a living brief everyone can anchor to before making decisions.
+                </p>
+                <div class="step-image-container">
+                    <img src="/api/placeholder/1100/520?text=Context" alt="Visual prompt of timeline threads weaving into fabric" class="step-image">
+                    <p class="image-caption">Prompt idea: "Threads of time weaving into a luminous fabric with annotations floating in mid-air."</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h2>3. Option Sculpting: Designing actionable scenarios</h2>
+                <p>
+                    With context aligned, the LLM generates alternative recovery plans, each tagged with cost, confidence, and required roles. Human leads prune the list, but the heavy lifting of drafting scenarios—complete with dependencies and success metrics—is automated, shrinking hours of whiteboard work into minutes.
+                </p>
+                <div class="step-image-container">
+                    <img src="/api/placeholder/1100/520?text=Options" alt="Visual prompt of strategist sculpting pathways from clay" class="step-image">
+                    <p class="image-caption">Prompt idea: "A strategist sculpting pathways from glowing clay, each path labelled with metrics."</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h2>4. Alignment Broadcasting: Tailoring updates to every audience</h2>
+                <p>
+                    A conversational agent linked to communication templates turns the chosen plan into bespoke updates: executive summaries, customer notices, and engineer checklists. Tone, length, and jargon are adjusted per audience, ensuring clarity while eliminating the copy-paste fatigue that erodes focus during critical windows.
+                </p>
+                <div class="step-image-container">
+                    <img src="/api/placeholder/1100/520?text=Broadcast" alt="Visual prompt of light beams translating into messages" class="step-image">
+                    <p class="image-caption">Prompt idea: "Beams of light splitting through prisms into distinct message scrolls hovering above a command centre."</p>
+                </div>
+            </div>
+
+            <div class="process-step">
+                <h2>5. Learning Harvest: Capturing hindsight while it is fresh</h2>
+                <p>
+                    After the dust settles, the LLM interviews stakeholders via structured prompts, distils lessons, and enriches a knowledge base with reusable playbooks. It cross-references prior incidents, suggesting policy updates and training modules so the organisation accumulates resilience instead of institutional amnesia.
+                </p>
+                <div class="step-image-container">
+                    <img src="/api/placeholder/1100/520?text=Learning" alt="Visual prompt of a garden growing from archived documents" class="step-image">
+                    <p class="image-caption">Prompt idea: "A garden of bioluminescent plants sprouting from stacked documents, symbolising harvested learnings."</p>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <h3>Introducing the Order&mdash;in&mdash;Chaos Orchestrator</h3>
+                <p>
+                    To make these five moments seamless, imagine a command-line and web-based assistant called the <strong>Order-in-Chaos Orchestrator</strong>. It layers retrieval-augmented generation with workflow automation so teams can plug it into existing tools without ripping anything out.
+                </p>
+                <ul>
+                    <li><strong>Signal Graph</strong> &mdash; Streams Slack, PagerDuty, and monitoring alerts into embeddings that expose emerging clusters in real time.</li>
+                    <li><strong>Context Composer</strong> &mdash; Builds living timelines with links back to source artefacts, ready to export into Confluence or Notion.</li>
+                    <li><strong>Scenario Studio</strong> &mdash; Uses Monte Carlo-style prompting to draft and stress test multiple recovery plans.</li>
+                    <li><strong>Audience Adapter</strong> &mdash; Generates communication packs tuned to executives, customers, or engineers with one command.</li>
+                    <li><strong>Memory Gardener</strong> &mdash; Captures post-mortem insights, tags them semantically, and nudges teams with relevant lessons during future incidents.</li>
+                </ul>
+            </div>
+
             <p>
-                Quisque finibus, felis nec fringilla maximus, purus ante consectetur dui, at eleifend metus sapien eu arcu. Mauris interdum facilisis elit, eget faucibus enim rutrum sed. Mauris at neque libero. Integer commodo lacus at nulla condimentum, at egestas elit consectetur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur blandit sollicitudin pulvinar. Aliquam aliquam purus nibh, et tempus lacus molestie mollis. 
-            </p>
-            
-            <p>
-                Sed ultrices sem ac sagittis ultrices. Ut vitae tortor a metus ultricies varius. Integer blandit purus at justo posuere consectetur. Nulla auctor dui a mi sagittis dapibus. Aenean nec orci pellentesque, mollis magna at, vulputate quam. Cras quis hendrerit mi. Duis ornare enim blandit euismod tincidunt. Duis eget dui fringilla, egestas dolor eu, tempus dolor.
-            </p>
-            
-            <p>
-                Donec malesuada nulla vel risus gravida pharetra. Vestibulum in mi nibh. Integer finibus enim vehicula ipsum euismod ultrices. Nulla facilisi. Nulla facilisi. Cras lobortis, justo at varius interdum, nisi dui luctus eros, eu finibus justo ligula sed mauris. Aliquam erat volutpat. Curabitur finibus tortor nec justo facilisis, quis elementum dui lobortis.
+                When LLMs orchestrate these touchpoints, chaos becomes choreography. Humans still set priorities, weigh trade-offs, and carry accountability—but the machines take on the exhausting work of synthesis. The result is an organisation that can keep its empathy and creativity intact even when the world goes sideways.
             </p>
             
             <a href="/blog" class="back-link">
