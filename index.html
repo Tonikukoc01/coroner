@@ -204,7 +204,24 @@ body {
     font-weight: 500;
     font-size: 5.5rem;
     font-style: normal;
+    display: inline-block;
+    position: relative;
 }
+
+.bold-toni::after {
+    content: '';
+    display: inline-block;
+    width: 0.15em;
+    height: 0.15em;
+    background-color: #F0F4F8;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0.15em;
+    right: -0.25em;
+    opacity: 0;
+    animation: rollIn 0.9s 1.5s cubic-bezier(0.34, 0.48, 0.42, 0.95) forwards;
+}
+
 .bold-split {
     font-weight: 300;
     font-style: normal;
@@ -987,6 +1004,28 @@ overflow-x: hidden;
         font-size: 3.5rem;
     } 
 
+ .bold-toni::after {
+        width: 0.18em;
+        height: 0.18em;
+    }
+
+@keyframes rollIn {
+        0% {
+            opacity: 1;
+            transform: translateX(60px) translateY(0px) rotate(0deg);
+        }
+        70% {
+            transform: translateX(0px) translateY(0px) rotate(-720deg);
+        }
+        85% {
+            transform: translateX(0px) translateY(-3px) rotate(-720deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0px) translateY(0px) rotate(-720deg);
+        }
+    }
+
 .bold-split {
        font-size: 1.4rem;
        color: inherit;
@@ -1227,6 +1266,25 @@ footer {
     font-weight: 200;
     font-size: 1.1rem;
     color: #6B7280;
+}
+
+@media (max-width: 480px) {
+@keyframes rollIn {
+        0% {
+            opacity: 1;
+            transform: translateX(40px) translateY(0px) rotate(0deg);
+        }
+        70% {
+            transform: translateX(0px) translateY(0px) rotate(-540deg);
+        }
+        85% {
+            transform: translateX(0px) translateY(-2px) rotate(-540deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0px) translateY(0px) rotate(-540deg);
+        }
+    }
 }
 
         </style>
