@@ -30,13 +30,11 @@
 
         <!-- Lottie Web Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-
-        
-        <style>
-          /* Global Styles */
-
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>     
+ 
+/* Global Styles */
+<style>
+    
 @font-face {
     font-family: 'SkemaProDisplay';
     font-weight: 100;
@@ -47,42 +45,18 @@
 
 @font-face {
     font-family: 'SkemaProDisplay';
-    font-weight: 100;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
     font-weight: 200;
     font-style: normal;
     src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
          url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
 }
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
-}
-
+    
 @font-face {
     font-family: 'SkemaProDisplay';
     font-weight: 300;
     font-style: normal;
     src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
          url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 300;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
 }
 
 @font-face {
@@ -95,66 +69,10 @@
 
 @font-face {
     font-family: 'SkemaProDisplay';
-    font-weight: 400;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-Italic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Italic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
     font-weight: 500;
     font-style: normal;
     src: url('../assets/webfonts/SkemaProDisplay-SemiBold.woff2') format('woff2'),
          url('../assets/webfonts/SkemaProDisplay-SemiBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 500;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-SemiBoldItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-SemiBoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 600;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-Bold.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 600;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-BoldItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-BoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 700;
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-XBold.woff2') format('woff2'),
-         url('..//assets/webfonts/SkemaProDisplay-XBold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 700;
-    font-style: italic;
-    src: url('../assets/webfonts/SkemaProDisplay-XBoldItalic.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XBoldItalic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200; /* Adjust weight based on preference */
-    font-style: normal;
-    src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
-         url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
 }
 
 @keyframes fadeIn {
@@ -165,7 +83,6 @@
         opacity: 1;
     }
 }
-
 
 @keyframes slideFromRight {
     from {
@@ -198,7 +115,17 @@
     }
 }
 
-
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px) rotate(-2deg);
+    }
+    75% {
+        transform: translateX(2px) rotate(2deg);
+    }
+}
 
 html {
     scroll-behavior: smooth;
@@ -268,18 +195,20 @@ body {
     font-size: 1.8rem;
 }
 
-     #header p {
+#header p {
             font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
             font-size: 1.5rem; /* Increase size of subheader text */
             margin: 0 0 2rem; /* Increase margin below subheader */
             color: #F0F4F8;
         }
+
 .features-header {
     text-align: center;
     animation: fadeIn 1s 1.3s forwards;
     opacity: 0;
 }
+    
 .vertical-line {
     width: 2px;
     height: 4rem;
@@ -309,18 +238,6 @@ body {
     animation: shake 2s ease-in-out infinite;
 }
 
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-2px) rotate(-2deg);
-    }
-    75% {
-        transform: translateX(2px) rotate(2deg);
-    }
-}
-
 #header nav ul {
     display: flex;
     gap: 1rem;
@@ -343,8 +260,7 @@ body {
 }
 
 /* Navigation */
- /* Language Dropdown Styles - previously defined styles remain the same */
-       .language-dropdown {
+.language-dropdown {
     position: fixed;
     top: 3.3rem;
     right: 6.8rem; /* Adjusted to be left of the nav-menu */
@@ -354,7 +270,8 @@ body {
     align-items: center;
     cursor: pointer;
 }
-        .language-selector {
+
+.language-selector {
             display: flex;
             align-items: center;
             border: none;
@@ -366,11 +283,11 @@ body {
             justify-content: center;
         }
 
-        .language-selector:hover {
+.language-selector:hover {
             background-color: rgba(240, 244, 248, 0.1);
         }
 
-        .language-flag {
+.language-flag {
             width: 17px;
             height: 15px;
             object-fit: cover;
@@ -378,14 +295,14 @@ body {
             margin-bottom: 4px;
         }
 
-        .language-code {
+.language-code {
             color: #F0F4F8;
             font-family: 'SkemaProDisplay', sans-serif;
             font-size: 1.1rem;
             font-weight: 150;
         }
 
-        .language-options {
+.language-options {
             display: none;
             position: absolute;
             top: 100%;
@@ -399,11 +316,11 @@ body {
             overflow: hidden;
         }
 
-        .language-dropdown.active .language-options {
+.language-dropdown.active .language-options {
             display: block;
         }
 
-        .language-option {
+.language-option {
             display: flex;
             align-items: center;
             padding: 0.5rem 1rem;
@@ -412,11 +329,12 @@ body {
             min-width: 80px;
             border-top: 1px solid rgba(240, 244, 248, 0.1);
         }
-            .language-option:first-child {
+    
+.language-option:first-child {
     border-top: none; /* Remove border from first option */
 }
 
-        .language-option:hover {
+.language-option:hover {
             background-color: rgba(240, 244, 248, 0.1);
         }
 
@@ -466,8 +384,6 @@ body {
 }
 
 /* Logo Styling */
-
-
 .logo-link {
     font-family: 'SkemaProDisplay';
     font-weight: 200;
@@ -506,18 +422,18 @@ body {
     margin-bottom: 1px;
 }
 
-/* MENU Text Styling */
+/* Contact Text Styling */
 .menu-text {
     font-family: 'SkemaProDisplay';
     font-weight: 200;
     font-style: normal;
     color: #F0F4F8;
     font-size: 1.1rem;
-    margin-left: 1rem; /* Space between vertical line and "MENU" */
+    margin-left: 1rem; /* Space between vertical line and "contact" */
     cursor: pointer;
     transition: color 0.3s ease, text-shadow 0.3s ease;
-    bottom: 2rem; /* Move the "MENU" text closer to the bottom */
-    left: 4rem; /* Align the "MENU" text to the left */
+    bottom: 2rem; /* Move the "Contact" text closer to the bottom */
+    left: 4rem; /* Align the "contact" text to the left */
 
 }
 
@@ -564,7 +480,7 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(26, 43, 60, 0.75); /* #1A2B3C with 75% opacity */
-     backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   z-index: 1000;
   display: flex;
   justify-content: flex-end;
@@ -625,7 +541,7 @@ body {
   margin-bottom: 2rem; /* Increased margin between last menu item and social icons */
 }
 
- .side-menu-social a {
+.side-menu-social a {
   text-decoration: none; /* Remove underline */
 }
 
@@ -644,6 +560,7 @@ body {
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
+
 .social-icon:hover {
   color: #ffffff;
 }
@@ -703,10 +620,6 @@ body {
     radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.12), transparent 42%),
     #1A2B3C;
 }
-
-#about {
-    background: #1A2B3C;
-}
             
 @keyframes subtleFloat {
     0% {
@@ -721,9 +634,11 @@ body {
 }
 
 /* About Section Styles */
+    
 #about {
     position: relative;
     padding-top: 5rem; /* Adjust padding to give space at the top */
+    background: #1A2B3C;
 }
 
 #about::before {
@@ -775,7 +690,6 @@ body {
     max-height: 100% !important;
 }
 
-
 .about-collaboration-image {
     max-width: 100%;
     max-height: 200px;
@@ -786,7 +700,6 @@ body {
     transform: translateX(100px); /* Increased distance */
     transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 
 .about-collaboration-image.visible {
     opacity: 1;
@@ -865,7 +778,6 @@ body {
     align-items: center;
 }
 
-
 /* Button Styling */
 .collaboration-btn {
     display: inline-block;
@@ -902,7 +814,6 @@ body {
     margin-top: 25px
 }
 
-
 /* Hover Effect */
 .collaboration-btn:hover {
     background: linear-gradient(45deg, #5B7E9D, #3E607C); /* Lighter version of the original colors */
@@ -913,7 +824,6 @@ body {
     background: rgba(240, 244, 248, 0.1);
     transform: translateY(-2px);
 }
-
 
 .collaboration-btn:focus {
     outline: none;
@@ -1004,7 +914,7 @@ body {
 @media screen and (max-width: 768px) {
     /* Header section adjustments */
 
-    #home {
+#home {
     padding-bottom: 0rem;
     overflow-x: hidden;
     min-height: 85vh;
@@ -1013,10 +923,12 @@ body {
       radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.08), transparent 42%),
       #1A2B3C;
   }
+
 html, body {
 overflow-x: hidden;
 }
-    #header {
+
+#header {
         position: relative;
         top: 0;
         left: 0;
@@ -1028,12 +940,12 @@ overflow-x: hidden;
         margin-top: 3.5rem;
     }
 
-    #header h1 {
+#header h1 {
         font-size: 3.5rem;
         text-align: center;
     }
 
-    #header p {
+#header p {
         text-align: center;
         font-size: 1.2rem;
     }
@@ -1042,12 +954,11 @@ overflow-x: hidden;
         display: none;
     }
 
-
-    .bold-toni {
+.bold-toni {
         font-size: 3.5rem;
     } 
 
-    .bold-split {
+.bold-split {
        font-size: 1.4rem;
        color: inherit;
  } 
@@ -1056,24 +967,23 @@ overflow-x: hidden;
         height: 3rem; /* Start with full height on mobile */
     }
     
-    .vertical-line.visible {
+.vertical-line.visible {
         height: 0.8rem; /* Shrink to smaller height on mobile */
     }
 
-    /* About section adjustments */
- 
-#about {
+/* About section adjustments */
+ #about {
     padding-top: 1.5rem; /* Reduce top padding of about section */
 }
 
-    .about-layout {
+.about-layout {
         flex-direction: column-reverse;
         padding: 1.5rem 1.5rem;
         align-items: center;
         gap: 2rem;
     }
 
-    .about-text-column {
+.about-text-column {
         max-width: 100%;
         text-align: left;
         display: flex;
@@ -1081,22 +991,22 @@ overflow-x: hidden;
         align-items: flex-start;
     }
 
-    .about-header {
+.about-header {
         text-align: left;
         font-size: 2.3rem;
         margin-bottom: 2rem;
     }
 
-    .horizontal-line {
+.horizontal-line {
         margin: 0 0 1.5rem 0;   
  }
 
-    .about-subheader, .about-subheader1 {
+.about-subheader, .about-subheader1 {
         text-align: left;
         max-width: 100%;
     }
 
-  .buttons-container {
+.buttons-container {
 width: 100%;
         max-width: 350px;
         flex-direction: column;
@@ -1104,28 +1014,29 @@ width: 100%;
         gap: 5px;
       margin-top: 15px;
     }
-  .collaboration-btn,
-    .portfolio-btn {
+
+.collaboration-btn,
+.portfolio-btn {
         width: 100%;
         max-width: 350px;
     }
 
- #handshake-animation {
+#handshake-animation {
         max-width: 250px;
         max-height: 250px;
     }
 
-    .about-image-column {
+.about-image-column {
         width: 100%;
     }
 
-    .about-collaboration-image {
+.about-collaboration-image {
         max-width: 100%;
         height: auto;
     }
 
-    /* Menu toggle fixes */
-    .menu-toggle {
+/* Menu toggle fixes */
+.menu-toggle {
         display: flex !important;
         position: fixed;
         top: 3.7rem;
@@ -1135,24 +1046,26 @@ width: 100%;
         margin-top: 0;
     }
 
-    .side-menu {
+.side-menu {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background: rgba(26, 43, 60, 0.75); /* Same as desktop */
-backdrop-filter: blur(5px); /* Add blur effect */
+        backdrop-filter: blur(5px); /* Add blur effect */
         -webkit-backdrop-filter: blur(5px); /* For Safari support */
         z-index: 1000;
         opacity: 0; /* Start with transparency */
         pointer-events: none;
         transition: opacity 0.3s ease;
     }
-     .side-menu-nav {
+
+.side-menu-nav {
         margin-top: 1rem; /* Slightly reduced margin for mobile */
     }
-    .side-menu-content {
+
+.side-menu-content {
         padding-top: 6rem;
         padding-right: 2rem;
         align-items: flex-end;
@@ -1160,34 +1073,34 @@ backdrop-filter: blur(5px); /* Add blur effect */
         text-align: right;
     }
 
-    .side-menu-nav ul {
+.side-menu-nav ul {
         align-items: right;
         gap: 3rem;
     }
 
-    .side-menu-nav a {
+.side-menu-nav a {
         font-size: 1.5rem;
     }
 
-    .side-menu-social {
+.side-menu-social {
         gap: 1.5rem;
         justify-content: center; /* Center social icons */
         margin-top: 2rem;
         margin-bottom: 1.5rem;
     }
 
- .horizontal-line-side-menu {
+.horizontal-line-side-menu {
         width: 60%; /* Use percentage instead of cm for responsiveness */
         margin-bottom: 2rem;
         margin-top: 2rem;
     }
 
 @media screen and (max-width: 768px) {
-    .nav-menu ul li:not(:last-child) {
+.nav-menu ul li:not(:last-child) {
         display: none;
     }
 
-    .nav-menu.active ul {
+.nav-menu.active ul {
         display: flex;
         flex-direction: column;
         position: fixed;
@@ -1198,32 +1111,32 @@ backdrop-filter: blur(5px); /* Add blur effect */
         width: 250px;
     }
 
-    .nav-menu.active ul li {
+.nav-menu.active ul li {
         display: block;
     }
 
-    .content-section {
+.content-section {
         padding: 3rem 1rem;
         
     }
 }
 
-    /* Navigation adjustments */
-    .nav-menu {
+/* Navigation adjustments */
+.nav-menu {
         right: 4rem;
     }
 
-    /* Logo adjustments */
-    .logo {
+/* Logo adjustments */
+.logo {
         left: 2rem;
         top: 2.3rem;
     }
 
-   .logo-link span {
+.logo-link span {
         display: none; /* Hide the text logo on mobile */
     }
     
-    .logo-image {
+.logo-image {
         display: block; /* Show the image logo on mobile */
         height: 39px;
     }
@@ -1241,14 +1154,14 @@ backdrop-filter: blur(5px); /* Add blur effect */
         margin-left: 0.5rem;
     }
 
-    /* Language dropdown adjustments */
-    .language-dropdown {
+/* Language dropdown adjustments */
+.language-dropdown {
         top: 2.5rem;
         right: 5.5rem;
     }
 
-    /* Footer adjustments */
-    footer {
+/* Footer adjustments */
+footer {
         padding: 1.5rem;
     }
 }
@@ -1270,8 +1183,6 @@ backdrop-filter: blur(5px); /* Add blur effect */
     display: flex !important;
 }
 
-
-
 /* Footer Styles */
 footer {
     padding: 2rem 4rem;
@@ -1290,8 +1201,9 @@ footer {
 }
 
         </style>
-    </head>
-    <body class="is-preload">
+</head>
+    
+<body class="is-preload">
           <div class="logo">
     <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
         <span>tonikukoc.me</span>
