@@ -126,6 +126,23 @@
     }
 }
 
+@keyframes rollIn {
+            0% {
+                opacity: 1;
+                transform: translateX(80px) translateY(0px) rotate(0deg);
+            }
+            70% {
+                transform: translateX(0px) translateY(0px) rotate(-720deg);
+            }
+            85% {
+                transform: translateX(0px) translateY(-4px) rotate(-720deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0px) translateY(0px) rotate(-720deg);
+            }
+        }
+
 html {
     scroll-behavior: smooth;
     height: 100%;
@@ -193,6 +210,19 @@ body {
     font-style: normal;
     font-size: 1.8rem;
 }
+
+.dot {
+            display: inline-block;
+            width: 0.15em;
+            height: 0.15em;
+            background-color: #F0F4F8;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0.05em;
+            right: -0.25em;
+            opacity: 0;
+            animation: rollIn 0.9s 1.5s cubic-bezier(0.34, 0.48, 0.42, 0.95) forwards;
+  }
 
 #header p {
             font-family: 'SkemaProDisplay', sans-serif;
@@ -1272,15 +1302,15 @@ footer {
    <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-  <header id="header">
+   <header id="header">
         <h1>
-            Hi, my<br class="remove-br">
-            name is <span class="bold-toni">Toni.</span>
+            Hi, my<br>
+            name is <span class="bold-toni">Toni<span class="dot"></span></span>
         </h1>
-  <p>
-    I am independent <span class="bold-split">IT operations manager</span>
-    <br class="remove-br"> from Split, Croatia.
-</p>
+        <p>
+            I am independent <span class="bold-split">IT operations manager</span><br>
+            from Split, Croatia.
+        </p>
     </header>
 </section>
 
