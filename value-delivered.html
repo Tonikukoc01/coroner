@@ -152,6 +152,20 @@ body {
     font-size: 5.5rem;
     font-style: normal;
 }
+
+.bold-toni::after {
+    content: '';
+    display: inline-block;
+    width: 0.18em;
+    height: 0.18em;
+    background-color: #F0F4F8;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0.05em;
+    right: -0.25em;
+    opacity: 0;
+    animation: fallAndSettle 1.2s 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
 .bold-split {
     font-weight: 300;
     font-style: normal;
