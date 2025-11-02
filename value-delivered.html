@@ -151,6 +151,8 @@ body {
     font-weight: 500;
     font-size: 5.5rem;
     font-style: normal;
+    display: inline-block;
+    position: relative; 
 }
 .bold-toni::after {
     content: '';
@@ -166,6 +168,7 @@ body {
     animation: fallAndSettle 1.2s 1.5s 
 cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
+
 .bold-split {
     font-weight: 300;
     font-style: normal;
@@ -218,7 +221,7 @@ cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 @keyframes fallAndSettle {
     0% {
         opacity: 1;
-        transform: translateY(-100vh) rotate(0deg);
+        transform: translateY(-50vh) rotate(0deg);
     }
     70% {
         transform: translateY(0) rotate(720deg);
