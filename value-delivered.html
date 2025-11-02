@@ -151,41 +151,11 @@ body {
     font-weight: 500;
     font-size: 5.5rem;
     font-style: normal;
-    display: inline-block;
-    position: relative; 
 }
-.bold-toni::after {
-    content: '';
-    display: inline-block;
-    width: 0.18em;
-    height: 0.18em;
-    background-color: #F0F4F8;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 1.53em;
-    right: 3.86em;
-    opacity: 0;
-    animation: fallAndSettle 1.2s 1.5s 
-cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
 .bold-split {
     font-weight: 300;
     font-style: normal;
     font-size: 1.8rem;
-}
-
-.dot {
-    display: inline-block;
-    width: 0.15em;
-    height: 0.15em;
-    background-color: #F0F4F8;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0.05em;
-    right: -0.25em;
-    opacity: 0;
-    animation: fallAndSettle 1.2s 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
  #header p {
@@ -217,30 +187,6 @@ cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         opacity: 0.9;
     }
 }
-
-@keyframes fallAndSettle {
-    0% {
-        opacity: 1;
-        transform: translateY(-50vh) rotate(0deg);
-    }
-    70% {
-        transform: translateY(0) rotate(720deg);
-    }
-    80% {
-        transform: translateY(-0.3em) rotate(720deg);
-    }
-    90% {
-        transform: translateY(0) rotate(720deg);
-    }
-    95% {
-        transform: translateY(-0.1em) rotate(720deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) rotate(720deg);
-    }
-}   
-
 #header nav ul {
     display: flex;
     gap: 1rem;
@@ -1604,7 +1550,7 @@ footer {
     <!-- Header -->
   <header id="header">
         <h1>
-            Value <span class="bold-toni">delivered</span>
+            Value <span class="bold-toni">delivered.</span>
         </h1>
         
         <!-- Horizontal line -->
@@ -2115,14 +2061,13 @@ const translations = {
             'nav_value': 'value delivered',
             'footer_text': 'Toni Kukoč © MMXXV'
         },
-        
         'blog': {
             'page_title': 'My writing.',
             'page_description': 'I write about variety of topics. Is it AI, networking events, <br>new technology trends or anything else, you will find my creative outlet here.',
             'more_coming_soon': 'More articles coming soon...'
         },
         'proving-value': {
-            'page_title': 'Value delivered',
+            'page_title': 'Value delivered.',
             'page_description': 'From quiet wins to major changes, here\'s how I proved my value.',
             'section_title': 'results that mattered',
             'explore_ai': 'View my vibe coding exploration projects',
@@ -2159,7 +2104,7 @@ const translations = {
             'more_coming_soon': 'Plus d\'articles à venir...'
         },
         'proving-value': {
-            'page_title': 'Valeur livrée',
+            'page_title': 'Valeur livrée.',
             'page_description': 'Des victoires discrètes aux changements majeurs — voici comment j\'ai prouvé ma valeur.',
             'section_title': 'résultats qui comptent',
             'explore_ai': 'Voir mes projets d\'exploration de codage vibe',
@@ -2196,7 +2141,7 @@ const translations = {
             'more_coming_soon': 'Više članaka uskoro...'
         },
         'proving-value': {
-            'page_title': 'Isporučena vrijednost',
+            'page_title': 'Isporučena vrijednost.',
             'page_description': 'Od tihih pobjeda do značajnih promjena — evo kako sam dokazao svoju vrijednost.',
             'section_title': 'bitni rezultati',
             'explore_ai': 'Pogledajte moje vibe coding projekte',
