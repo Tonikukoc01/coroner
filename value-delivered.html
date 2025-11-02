@@ -158,6 +158,19 @@ body {
     font-size: 1.8rem;
 }
 
+.dot {
+    display: inline-block;
+    width: 0.15em;
+    height: 0.15em;
+    background-color: #F0F4F8;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0.05em;
+    right: -0.25em;
+    opacity: 0;
+    animation: fallAndSettle 1.2s 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
  #header p {
             font-family: 'SkemaProDisplay', sans-serif;
             font-weight: 100;
@@ -187,6 +200,30 @@ body {
         opacity: 0.9;
     }
 }
+
+@keyframes fallAndSettle {
+    0% {
+        opacity: 1;
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    70% {
+        transform: translateY(0) rotate(720deg);
+    }
+    80% {
+        transform: translateY(-0.3em) rotate(720deg);
+    }
+    90% {
+        transform: translateY(0) rotate(720deg);
+    }
+    95% {
+        transform: translateY(-0.1em) rotate(720deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(720deg);
+    }
+}   
+
 #header nav ul {
     display: flex;
     gap: 1rem;
