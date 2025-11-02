@@ -151,6 +151,22 @@ body {
     font-weight: 500;
     font-size: 5.5rem;
     font-style: normal;
+    display: inline-block;
+    position: relative;
+}
+
+ .bold-toni::after {
+    content: '';
+    display: inline-block;
+    width: 0.15em;
+    height: 0.15em;
+    background-color: #F0F4F8;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0.33em;
+    right: -0.20em;
+    opacity: 0;
+    animation: fallFromSky 1.2s 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 .bold-split {
     font-weight: 300;
@@ -185,6 +201,22 @@ body {
     to {
         transform: translateY(0);
         opacity: 0.9;
+    }
+}
+@keyframes fallFromSky {
+    0% {
+        opacity: 1;
+        transform: translateY(-100vh) scale(0.5);
+    }
+    60% {
+        transform: translateY(0) scale(1.2);
+    }
+    80% {
+        transform: translateY(-0.1em) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 #header nav ul {
