@@ -207,18 +207,21 @@ body {
         opacity: 1;
         transform: translateY(-100vh);
     }
-    60% {
-        transform: translateY(-0.75em);  /* First contact */
+    50% {
+        transform: translateY(0); /* Hits the ground */
     }
-    70% {
-        transform: translateY(0.1em); 
+    65% {
+        transform: translateY(-1.2em); /* First bounce - HIGH */
+    }
+    75% {
+        transform: translateY(0); /* Lands again */
     }
     85% {
-        transform: translateY(-0.3em); 
+        transform: translateY(-0.3em); /* Second bounce - small */
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Settles to rest */
+        transform: translateY(0); /* Final settle */
     }
 }
 #header nav ul {
