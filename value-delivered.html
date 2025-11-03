@@ -208,14 +208,17 @@ body {
         transform: translateY(-100vh);
     }
     60% {
-        transform: translateY(-0.75em);  /* Initial contact point - much higher */
+        transform: translateY(-0.75em);  /* First contact */
     }
-    80% {
-        transform: translateY(-0.5em); /* Second bounce - higher than before */
+    70% {
+        transform: translateY(0.1em); 
+    }
+    85% {
+        transform: translateY(-0.3em); 
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Final resting position */
+        transform: translateY(0); /* Settles to rest */
     }
 }
 #header nav ul {
