@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Future of AI in Creative Industries - Toni's Blog</title>
+    <title>Speaking the Language of Money - Toni's Blog</title>
     <style>
         @font-face {
             font-family: 'SkemaProDisplay';
@@ -111,12 +111,12 @@
         /* Article date - positioned at upper left with increased margin */
         .article-date {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 200; /* Reduced weight */
+            font-weight: 200;
             font-size: 1.2rem;
             color: var(--text-color);
             opacity: 0.8;
             position: absolute;
-            top: 8rem; /* Increased margin from top */
+            top: 8rem;
             left: 2rem;
         }
         
@@ -124,12 +124,12 @@
         .article-header {
             text-align: center;
             margin-bottom: 4rem;
-            margin-top: 5rem; /* Increased margin-top to accommodate the date */
+            margin-top: 5rem;
         }
         
         .article-title {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 200; /* Reduced weight */
+            font-weight: 200;
             font-size: 3.5rem;
             letter-spacing: -0.02em;
             color: var(--text-color);
@@ -148,7 +148,7 @@
         /* Article subheader */
         .article-subheader {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 100; /* Reduced weight */
+            font-weight: 100;
             font-size: 1.5rem;
             line-height: 1.5;
             margin-bottom: 3rem;
@@ -158,7 +158,7 @@
         /* Article content */
         .article-content {
             font-family: 'SkemaProDisplay', sans-serif;
-            font-weight: 200; /* Reduced weight */
+            font-weight: 200;
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text-color);
@@ -185,27 +185,37 @@
             margin-bottom: 1rem;
         }
 
-        .process-step {
+        .concept-section {
             margin-bottom: 3rem;
             border-left: 2px solid rgba(240, 244, 248, 0.2);
             padding-left: 1.5rem;
         }
 
-        body.easy-reading .process-step {
+        body.easy-reading .concept-section {
             border-left-color: rgba(10, 26, 42, 0.15);
         }
 
-        .step-image-container {
+        .image-placeholder {
             margin-top: 2rem;
-        }
-
-        .step-image {
-            width: 100%;
+            padding: 2rem;
+            border: 2px dashed rgba(240, 244, 248, 0.3);
             border-radius: 12px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            background: rgba(240, 244, 248, 0.05);
         }
 
-        .tool-card {
+        body.easy-reading .image-placeholder {
+            border-color: rgba(10, 26, 42, 0.2);
+            background: rgba(10, 26, 42, 0.03);
+        }
+
+        .image-placeholder-text {
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+
+        .insight-card {
             margin-top: 4rem;
             padding: 2.5rem;
             border: 1px solid rgba(240, 244, 248, 0.2);
@@ -213,51 +223,33 @@
             background: linear-gradient(135deg, rgba(240, 244, 248, 0.08), rgba(240, 244, 248, 0));
         }
 
-        body.easy-reading .tool-card {
+        body.easy-reading .insight-card {
             border-color: rgba(10, 26, 42, 0.12);
             background: linear-gradient(135deg, rgba(10, 26, 42, 0.06), rgba(10, 26, 42, 0));
         }
 
-        .tool-card ul {
+        .insight-card ul {
             margin: 1.5rem 0 0 0;
             padding-left: 1.2rem;
         }
 
-        .tool-card li {
+        .insight-card li {
             margin-bottom: 1rem;
         }
-        
-        /* Wide image container */
-        .wide-image-container {
-            width: 100vw;
-            max-width: 1200px;
-            margin-left: 50%;
-            transform: translateX(-50%);
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        
-        .wide-image {
-            width: 100%;
-            height: auto;
-            max-height: 600px;
-            object-fit: cover;
-        }
-        
-        .image-caption {
-            font-family: 'SkemaProDisplay', sans-serif;
+
+        .latin-quote {
             font-style: italic;
-            font-weight: 200; /* Reduced weight */
-            font-size: 0.9rem;
-            color: var(--text-color);
-            opacity: 0.7;
-            margin-top: 0.5rem;
-            text-align: center;
-            padding: 0 1rem;
+            opacity: 0.8;
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+            border-left: 3px solid rgba(240, 244, 248, 0.3);
+        }
+
+        body.easy-reading .latin-quote {
+            border-left-color: rgba(10, 26, 42, 0.2);
         }
         
-        /* Back link - improved styling */
+        /* Back link */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -362,7 +354,7 @@
             right: 30px;
             width: 50px;
             height: 50px;
-           background-color: rgba(70, 90, 110, 0.8);;
+            background-color: rgba(70, 90, 110, 0.8);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -432,18 +424,6 @@
                 padding: 0 0.5rem;
             }
             
-            .wide-image-container {
-                width: 100%;
-                margin-left: 0;
-                transform: none;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-            }
-            
-            .wide-image {
-                max-height: 400px;
-            }
-            
             .switch-container {
                 top: 10px;
                 right: 10px;
@@ -479,10 +459,6 @@
             .article-content {
                 font-size: 1rem;
             }
-            
-            .wide-image {
-                max-height: 300px;
-            }
         }
     </style>
 </head>
@@ -506,103 +482,108 @@
     
     <div class="article-container">
         <!-- Back to blog arrow link -->
-       <a href="/blog" class="back-to-blog">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="95" y1="5" x2="5" y2="5"></line>
-            <polyline points="15 1 5 5 15 9"></polyline>
-        </svg>
-  </a>
+        <a href="/blog" class="back-to-blog">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="95" y1="5" x2="5" y2="5"></line>
+                <polyline points="15 1 5 5 15 9"></polyline>
+            </svg>
+        </a>
         
-        <p class="article-date">28th February 2025</p>
+        <p class="article-date">4th November 2025</p>
         
         <div class="article-header">
-            <h1 class="article-title">The Future of AI in Creative Industries</h1>
+            <h1 class="article-title">Speaking the Language of Money</h1>
             <div class="divider"></div>
             <p class="article-subheader">
-                Exploring how artificial intelligence is reshaping content creation, design, and artistic expression in 2025.
+                Seeing money as energy—a product manager's guide to understanding the flow that fuels ideas and people.
             </p>
         </div>
         
         <div class="article-content">
             <p>
-                Large language models (LLMs) are no longer just clever autocomplete machines—they are becoming cognitive scaffolds that help teams turn ambiguous, messy situations into coherent action. When a product backlog overflows, when customer feedback contradicts itself, or when a crisis erupts across continents, LLMs can observe, synthesise, and recommend with a pace that keeps humans focused on judgement instead of drudgery.
+                Money is often treated as a cold, rigid thing. Just numbers on a page. But money is more like energy. It flows. It moves. It fuels ideas and people. If you build products for a living, learning how this energy works is essential.
             </p>
 
-            <p>
-                Below are five moments in the life of a chaotic project where LLMs shine. Each moment is paired with a visual prompt you can feed into your favourite generator to capture the feeling of moving from entropy to clarity.
-            </p>
-
-            <div class="process-step">
-                <h2>1. Signal Scouting: Separating urgent signals from noise</h2>
+            <div class="concept-section">
+                <h2>Why Understanding Money Matters</h2>
                 <p>
-                    Start by streaming chat logs, incident reports, and status updates into an LLM that is fine-tuned for anomaly detection. The model clusters conversations, flags outliers, and builds a heatmap of recurring phrases that suggest real risk. Humans then validate the shortlist instead of wading through thousands of lines manually.
+                    As a PM, you decide where to direct energy. When you choose which feature to build or which market to explore, you decide where the money goes. If you can read and talk about money, you will make better choices and explain them to your team.
                 </p>
-                <div class="step-image-container">
-                    <img src="/api/placeholder/1100/520" alt="Visual prompt of data streams coalescing into bright signal nodes" class="step-image">
-                    <p class="image-caption">Prompt idea: "Aurora-coloured data streams converging into a handful of glowing nodes above a dark operations room."</p>
+                <p>
+                    Money is not just logical. It is emotional too. Many of us grow up with fears or myths about money. When you understand the flow of money, you worry less and act with more confidence.
+                </p>
+                <div class="image-placeholder">
+                    <p class="image-placeholder-text">
+                        💡 Image suggestion: A product manager at a crossroads, with translucent streams of light flowing down different paths—representing the decision of where to direct resources and energy.
+                    </p>
                 </div>
             </div>
 
-            <div class="process-step">
-                <h2>2. Context Weaving: Reconstructing the timeline</h2>
+            <div class="concept-section">
+                <h2>Money as a Flow of Energy</h2>
                 <p>
-                    Once the hot spots are known, a retrieval-augmented LLM assembles a structured timeline. It references ticket systems, deployment logs, and calendar events to explain what happened, who was involved, and which dependencies overlapped. The output becomes a living brief everyone can anchor to before making decisions.
+                    Think of each euro you spend as a unit of energy. You invest that energy to create value, like building a feature or reaching new users. When the product grows, it returns energy to you in the form of revenue. This cycle repeats, growing stronger when guided wisely.
                 </p>
-                <div class="step-image-container">
-                    <img src="/api/placeholder/1100/520?text=Context" alt="Visual prompt of timeline threads weaving into fabric" class="step-image">
-                    <p class="image-caption">Prompt idea: "Threads of time weaving into a luminous fabric with annotations floating in mid-air."</p>
-                </div>
-            </div>
-
-            <div class="process-step">
-                <h2>3. Option Sculpting: Designing actionable scenarios</h2>
-                <p>
-                    With context aligned, the LLM generates alternative recovery plans, each tagged with cost, confidence, and required roles. Human leads prune the list, but the heavy lifting of drafting scenarios—complete with dependencies and success metrics—is automated, shrinking hours of whiteboard work into minutes.
+                <p class="latin-quote">
+                    As the old Latin maxim goes, <em>sequere pecuniam</em> — follow the money.
                 </p>
-                <div class="step-image-container">
-                    <img src="/api/placeholder/1100/520?text=Options" alt="Visual prompt of strategist sculpting pathways from clay" class="step-image">
-                    <p class="image-caption">Prompt idea: "A strategist sculpting pathways from glowing clay, each path labelled with metrics."</p>
-                </div>
-            </div>
-
-            <div class="process-step">
-                <h2>4. Alignment Broadcasting: Tailoring updates to every audience</h2>
                 <p>
-                    A conversational agent linked to communication templates turns the chosen plan into bespoke updates: executive summaries, customer notices, and engineer checklists. Tone, length, and jargon are adjusted per audience, ensuring clarity while eliminating the copy-paste fatigue that erodes focus during critical windows.
-                </p>
-                <div class="step-image-container">
-                    <img src="/api/placeholder/1100/520?text=Broadcast" alt="Visual prompt of light beams translating into messages" class="step-image">
-                    <p class="image-caption">Prompt idea: "Beams of light splitting through prisms into distinct message scrolls hovering above a command centre."</p>
-                </div>
-            </div>
-
-            <div class="process-step">
-                <h2>5. Learning Harvest: Capturing hindsight while it is fresh</h2>
-                <p>
-                    After the dust settles, the LLM interviews stakeholders via structured prompts, distils lessons, and enriches a knowledge base with reusable playbooks. It cross-references prior incidents, suggesting policy updates and training modules so the organisation accumulates resilience instead of institutional amnesia.
-                </p>
-                <div class="step-image-container">
-                    <img src="/api/placeholder/1100/520?text=Learning" alt="Visual prompt of a garden growing from archived documents" class="step-image">
-                    <p class="image-caption">Prompt idea: "A garden of bioluminescent plants sprouting from stacked documents, symbolising harvested learnings."</p>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <h3>Introducing the Order&mdash;in&mdash;Chaos Orchestrator</h3>
-                <p>
-                    To make these five moments seamless, imagine a command-line and web-based assistant called the <strong>Order-in-Chaos Orchestrator</strong>. It layers retrieval-augmented generation with workflow automation so teams can plug it into existing tools without ripping anything out.
+                    You don't need to master complex formulas to see money this way. Instead, notice simple flows:
                 </p>
                 <ul>
-                    <li><strong>Signal Graph</strong> &mdash; Streams Slack, PagerDuty, and monitoring alerts into embeddings that expose emerging clusters in real time.</li>
-                    <li><strong>Context Composer</strong> &mdash; Builds living timelines with links back to source artefacts, ready to export into Confluence or Notion.</li>
-                    <li><strong>Scenario Studio</strong> &mdash; Uses Monte Carlo-style prompting to draft and stress test multiple recovery plans.</li>
-                    <li><strong>Audience Adapter</strong> &mdash; Generates communication packs tuned to executives, customers, or engineers with one command.</li>
-                    <li><strong>Memory Gardener</strong> &mdash; Captures post-mortem insights, tags them semantically, and nudges teams with relevant lessons during future incidents.</li>
+                    <li><strong>Investing in the future:</strong> Money spent on things that help you grow, like better tools or skills, is energy put into long‑term strength.</li>
+                    <li><strong>Daily running costs:</strong> Money spent on keeping the lights on—like hosting or paying team members—is energy that keeps the system alive.</li>
+                    <li><strong>Value returned:</strong> When customers pay for your product, that energy returns. It can be used to improve the product, reward the team, or explore new ideas.</li>
+                </ul>
+                <p>
+                    By watching these flows, you understand whether your product is gaining energy or losing it. You can then decide where to adjust.
+                </p>
+                <div class="image-placeholder">
+                    <p class="image-placeholder-text">
+                        💡 Image suggestion: A circular diagram showing energy flowing through three stages—investment (planting seeds), operations (tending the garden), and returns (harvest)—with glowing pathways connecting them in an endless cycle.
+                    </p>
+                </div>
+            </div>
+
+            <div class="concept-section">
+                <h2>Mindful Decisions</h2>
+                <p>
+                    Seeing money as energy encourages mindfulness. You ask, "Does this decision give us more life, or does it drain us?" You weigh not just the cost, but the meaning. For example, delaying a flashy feature to focus on stability might not bring immediate excitement, but it preserves the product's health.
+                </p>
+                <p>
+                    You can still measure things like how much each customer contributes or how long it takes to recover an investment, but you don't need to dive into heavy formulas. Focus on the story behind the numbers. Keep asking simple questions:
+                </p>
+                <ul>
+                    <li>Are we spending money on things that matter to our users?</li>
+                    <li>Are we creating enough value to sustain and grow our work?</li>
+                    <li>How do our choices make our team feel about the product and the company?</li>
+                </ul>
+                <div class="image-placeholder">
+                    <p class="image-placeholder-text">
+                        💡 Image suggestion: A zen-like balance scale with intangible elements—glowing orbs representing health, growth, and meaning—floating in equilibrium, symbolizing mindful financial decisions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="insight-card">
+                <h3>Practical Wisdom</h3>
+                <p>
+                    Understanding money as energy transforms how you work as a product manager. Here are key takeaways to carry with you:
+                </p>
+                <ul>
+                    <li><strong>Communication without fear</strong> — Speaking the language of money lets you collaborate with finance teams as equals, not adversaries.</li>
+                    <li><strong>Clarity in decisions</strong> — When you see money flowing, you can explain your choices with confidence and help others understand the trade-offs.</li>
+                    <li><strong>Reduced stress</strong> — Understanding the basics removes the mystery and anxiety that often surrounds financial discussions.</li>
+                    <li><strong>Empowered action</strong> — You become a steward of energy, directing it where it creates the most value for users and the business.</li>
                 </ul>
             </div>
 
+            <h2>Final Thoughts</h2>
             <p>
-                When LLMs orchestrate these touchpoints, chaos becomes choreography. Humans still set priorities, weigh trade-offs, and carry accountability—but the machines take on the exhausting work of synthesis. The result is an organisation that can keep its empathy and creativity intact even when the world goes sideways.
+                Money is a powerful form of energy. It can build, connect, and sustain. When you, as a Product Manager, learn to see money this way, you gain a new tool. You can communicate with finance teams without fear and guide your product with clarity.
+            </p>
+            <p>
+                Understanding the basics of how money flows and affects your decisions reduces stress and empowers you. Embrace money not as a burden, but as an ally.
             </p>
             
             <a href="/blog" class="back-link">
@@ -623,7 +604,7 @@
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
             const pageHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollThreshold = pageHeight * 0.3; // 30% of scrollable content
+            const scrollThreshold = pageHeight * 0.3;
             
             if (scrollPosition > scrollThreshold) {
                 backToTopButton.classList.add('visible');
