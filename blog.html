@@ -596,30 +596,71 @@ body {
 
    /* Article List Styles */
     #articles {
-        padding: rem 0 4rem 0; /* Reduced top padding */
+        padding: 4rem 0; 
         position: relative;
         width: 100%;
-        background-color: #1A2B3C; /* Added background color */
+        background-color: #1A2B3C; 
         box-sizing: border-box;
+        opacity: 0;
+        transition: opacity 0.6s ease;
     }
-    
+
+    .article-visible {
+        opacity: 1;
+      }
+        
     .article-container {
         width: 80%;
-        margin-left: 10%; /* Aligns with your header's left: 10% */
+        margin-left: 10%; 
     }
     
-    .article-item {
-        display: flex;
-        margin-bottom: 5rem;
-        position: relative;
-    }
-    
-    .article-date {
-        width: 20%;
-        padding-right: 2rem;
-        margin-top: 0.5rem;
-    }
-    
+   .article-item .article-date {
+    transform: translateX(-40px);
+    filter: blur(8px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+    .article-item .article-content {
+    transform: translateX(80px);
+    filter: blur(8px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Visible State */
+.article-item.visible .article-date,
+.article-item.visible .article-content {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
+}
+
+            /* Staggered delays for multiple articles */
+.article-item:nth-child(1).visible .article-date {
+    transition-delay: 0.1s;
+}
+.article-item:nth-child(1).visible .article-content {
+    transition-delay: 0.2s;
+}
+
+.article-item:nth-child(2).visible .article-date {
+    transition-delay: 0.3s;
+}
+.article-item:nth-child(2).visible .article-content {
+    transition-delay: 0.4s;
+}
+
+.article-item:nth-child(3).visible .article-date {
+    transition-delay: 0.5s;
+}
+.article-item:nth-child(3).visible .article-content {
+    transition-delay: 0.6s;
+}
+
+.article-date {
+    width: 20%;
+    padding-right: 2rem;
+    margin-top: 0.5rem;
+}
     .article-date p {
         font-family: 'SkemaProDisplay', sans-serif;
         font-weight: 100;
@@ -633,11 +674,17 @@ body {
         font-size: 1.2rem;
         margin-left: 0.5rem;
         font-weight: 100;
+        display: inline-block;
+        transition: transform 0.3s ease;
     }
+
+   .article-item:hover .date-arrow {
+    transform: translateX(5px);
+}
     
     .article-content {
         width: 80%;
-        padding-left: 2rem; /* Added left padding to move content right */
+        padding-left: 2rem; 
     }
     
     .article-title {
@@ -651,17 +698,19 @@ body {
         padding-top: 0.5rem;
     }
     
-    .article-title a {
-        color: #F0F4F8;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
+.article-title a,
+.article-link {
+    color: #F0F4F8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+}
     
-    .article-title a:hover {
-        color: #FFFFFF;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    }
-    
+.article-title a:hover,
+.article-link:hover .article-title {
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
  .article-subtitle {
     font-family: 'SkemaProDisplay', sans-serif;
     font-weight: 100;
@@ -669,18 +718,6 @@ body {
     color: #F0F4F8;
     margin: 0;
     line-height: 1.4;
-    animation: fadeInSubtle 1s 1.7s forwards; 
-    opacity: 0;
-}
-
-.article-date p {
-    animation: fadeIn 1s 1.5s forwards;
-    opacity: 0;
-}
-
-.article-title {
-    animation: fadeIn 1s 1.6s forwards;
-    opacity: 0;
 }
 
 .coming-soon-container {
@@ -692,13 +729,21 @@ body {
     align-items: flex-start;
 }
 
+.coming-soon-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .coming-soon-line {
     width: 2cm;
     height: 1px;
     background-color: #F0F4F8;
     opacity: 0.6;
     margin-bottom: 1.5rem;
-    animation: fadeIn 2s ease-in-out;
+}
+
+.coming-soon-container.visible .coming-soon-line {
+    transform: scaleX(1);
 }
 
 .coming-soon-text {
@@ -708,7 +753,6 @@ body {
     color: #F0F4F8;
     opacity: 0.7;
     margin: 0;
-    animation: fadeIn 2.5s ease-in-out;
 }
 
 .horizontal-line {
@@ -752,6 +796,22 @@ body {
     letter-spacing: 0.05rem;
     z-index: 10;
     white-space: nowrap;
+}
+
+            /* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .article-item .article-date,
+    .article-item .article-content,
+    .coming-soon-container {
+        transform: none !important;
+        filter: none !important;
+        transition: opacity 0.3s ease !important;
+    }
+    
+    .article-item.visible .article-date,
+    .article-item.visible .article-content {
+        transition-delay: 0s !important;
+    }
 }
 
 /* Mobile Responsive */
@@ -823,38 +883,69 @@ overflow-x: hidden;
         width: 90%;
         margin-left: 5%;
     }
-    
-    .article-item {
-        flex-direction: column;
-        margin-bottom: 4rem;
+    /* Simpler mobile animations - fade + slight upward movement */
+    .article-item .article-date,
+    .article-item .article-content {
+        transform: translateY(20px);
+        filter: none; /* Remove blur on mobile for performance */
+        opacity: 0;
+        transition: all 0.4s ease-out; /* Faster animation */
+    }
+
+    .article-item.visible .article-date,
+    .article-item.visible .article-content {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+     /* Reduced stagger delays on mobile */
+    .article-item:nth-child(1).visible .article-date {
+        transition-delay: 0.05s;
+    }
+    .article-item:nth-child(1).visible .article-content {
+        transition-delay: 0.1s;
     }
     
-    .article-date {
-        width: 100%;
-        padding-right: 0;
-        margin-bottom: 0.5rem;
+    .article-item:nth-child(2).visible .article-date {
+        transition-delay: 0.15s;
+    }
+    .article-item:nth-child(2).visible .article-content {
+        transition-delay: 0.2s;
     }
     
-    .article-content {
-        width: 100%;
-        padding-left: 0;
+    .article-item:nth-child(3).visible .article-date {
+        transition-delay: 0.25s;
+    }
+    .article-item:nth-child(3).visible .article-content {
+        transition-delay: 0.3s;
     }
     
     .article-title {
         font-size: 1.8rem;
+    }
+
+     .article-date {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 0.5rem;
     }
     
     .article-subtitle {
         font-size: 1.1rem;
     }
 
-.tbd-tag {
+    .article-content {
+        width: 100%;
+        padding-left: 0;
+    }
+
+   .tbd-tag {
         top: -3px;
         right: -12px;
         font-size: 0.7rem;
         padding: 0.3rem 0.35rem;
     }
- .coming-soon-container {
+     .coming-soon-container {
         width: 90%;
         margin-left: 5%;
         padding-bottom: 4rem;
@@ -1561,7 +1652,78 @@ function animateVerticalLine() {
 // Add the event listeners
 window.addEventListener('scroll', animateVerticalLine);
 window.addEventListener('load', animateVerticalLine);
+// Article Scroll Animation with Intersection Observer
+function initArticleAnimations() {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Intersection Observer options
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -100px 0px', // Trigger slightly before element is fully in view
+        threshold: 0.15 // Trigger when 15% of the element is visible
+    };
+    
+    // Callback function for when elements intersect
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add visible class to trigger animation
+                entry.target.classList.add('visible');
+                
+                // Optional: Stop observing after animation to improve performance
+                // Comment out the line below if you want animations to replay on scroll up
+                observer.unobserve(entry.target);
+            }
+        });
+    };
+    
+    // Create the observer
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Observe the articles section
+    const articlesSection = document.querySelector('#articles');
+    if (articlesSection) {
+        observer.observe(articlesSection);
+    }
+    
+    // Observe each article item
+    const articleItems = document.querySelectorAll('.article-item');
+    articleItems.forEach(item => {
+        observer.observe(item);
+    });
+    
+    // Observe coming soon container
+    const comingSoonContainer = document.querySelector('.coming-soon-container');
+    if (comingSoonContainer) {
+        observer.observe(comingSoonContainer);
+    }
+    
+    // If reduced motion is preferred, add visible class immediately
+    if (prefersReducedMotion) {
+        if (articlesSection) articlesSection.classList.add('visible');
+        articleItems.forEach(item => item.classList.add('visible'));
+        if (comingSoonContainer) comingSoonContainer.classList.add('visible');
+    }
+}
 
+// Initialize animations when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initArticleAnimations);
+} else {
+    // DOM is already loaded
+    initArticleAnimations();
+}
+
+// Optional: Reinitialize if new articles are dynamically added
+function reinitArticleAnimations() {
+    initArticleAnimations();
+}
+
+// Export for use in other scripts if needed
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { initArticleAnimations, reinitArticleAnimations };
+}
         </script>
     </body>
 </html>
