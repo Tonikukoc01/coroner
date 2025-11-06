@@ -863,13 +863,18 @@ overflow-x: hidden;
         height: 7cm; /* Reduced height for mobile */
     }
 
-    /* About section adjustments */
- 
+    /* Mobile Optimizations */
 @media (max-width: 768px) {
     .article-container {
         width: 90%;
         margin-left: 5%;
     }
+    
+    .article-item {
+        flex-direction: column;
+        margin-bottom: 4rem;
+    }
+    
     /* Simpler mobile animations - fade + slight upward movement */
     .article-item .article-date,
     .article-item .article-content {
@@ -878,14 +883,14 @@ overflow-x: hidden;
         opacity: 0;
         transition: all 0.4s ease-out; /* Faster animation */
     }
-
+    
     .article-item.visible .article-date,
     .article-item.visible .article-content {
         transform: translateY(0);
         opacity: 1;
     }
-
-     /* Reduced stagger delays on mobile */
+    
+    /* Reduced stagger delays on mobile */
     .article-item:nth-child(1).visible .article-date {
         transition-delay: 0.05s;
     }
@@ -907,42 +912,44 @@ overflow-x: hidden;
         transition-delay: 0.3s;
     }
     
-    .article-title {
-        font-size: 1.8rem;
-    }
-
-     .article-date {
+    .article-date {
         width: 100%;
         padding-right: 0;
         margin-bottom: 0.5rem;
     }
     
-    .article-subtitle {
-        font-size: 1.1rem;
-    }
-
     .article-content {
         width: 100%;
         padding-left: 0;
     }
-
-   .tbd-tag {
+    
+    .article-title {
+        font-size: 1.8rem;
+    }
+    
+    .article-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .tbd-tag {
         top: -3px;
         right: -12px;
         font-size: 0.7rem;
         padding: 0.3rem 0.35rem;
     }
-     .coming-soon-container {
+    
+    .coming-soon-container {
         width: 90%;
         margin-left: 5%;
         padding-bottom: 4rem;
+        transition: all 0.5s ease-out;
     }
 }
 
 /* Small mobile adjustments */
 @media (max-width: 480px) {
     #articles {
-        padding: 2rem 0 3rem 1.5rem;
+        padding: 2rem 0 3rem 0;
     }
     
     .article-container {
@@ -950,12 +957,16 @@ overflow-x: hidden;
         margin-left: 4%;
     }
     
+    .article-item {
+        margin-bottom: 3rem;
+    }
+    
     .article-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
     
     .article-date p {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .article-subtitle {
@@ -969,10 +980,10 @@ overflow-x: hidden;
     }
     
     .coming-soon-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
-
-.tbd-tag {
+    
+    .tbd-tag {
         top: -4px;
         right: -10px;
         font-size: 0.55rem;
