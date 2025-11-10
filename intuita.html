@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intuita Interview Walkthrough</title>
+    <style>
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: normal;
+            src: url('assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                 url('assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: normal;
+            src: url('assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                 url('assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+        }
+
+        :root {
+            --bg-color: #1A2B3C;
+            --text-color: #F0F4F8;
+            --muted-text: rgba(240, 244, 248, 0.72);
+            --accent-color: #E4C178;
+            --highlight-color: #4A6D8C;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'SkemaProDisplay', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        body.loading {
+            overflow: hidden;
+        }
+
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 45%),
+                        radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.08), transparent 42%),
+                        #1A2B3C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            z-index: 999;
+            transition: opacity 0.6s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 3px solid rgba(240, 244, 248, 0.25);
+            border-top-color: var(--accent-color);
+            animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .preloader-visuals {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .preloader-visuals img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid rgba(240, 244, 248, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .page-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        header {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 45%),
+                        radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.08), transparent 42%),
+                        #1A2B3C;
+            padding: 5rem 1.5rem 4rem;
+        }
+
+        .hero {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-weight: 200;
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-weight: 100;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--muted-text);
+        }
+
+        .hero-meta {
+            display: grid;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--muted-text);
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .toc {
+            position: sticky;
+            top: 1.5rem;
+            align-self: start;
+            background: rgba(10, 26, 42, 0.35);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            font-weight: 200;
+            font-size: 1.2rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .toc a {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-weight: 100;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .toc a.active,
+        .toc a:hover {
+            color: var(--accent-color);
+        }
+
+        main {
+            padding: 3rem 1.5rem 6rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+            gap: 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-heading {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 200;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-weight: 100;
+            color: var(--muted-text);
+            max-width: 680px;
+            line-height: 1.7;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 2rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .card h3 {
+            font-weight: 200;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .card p,
+        .card li {
+            font-weight: 100;
+            line-height: 1.7;
+            color: var(--muted-text);
+        }
+
+        ul.bullet-list {
+            padding-left: 1.2rem;
+            margin: 0;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        ul.bullet-list li::marker {
+            color: var(--accent-color);
+        }
+
+        .experience-timeline {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            padding-left: 1.5rem;
+            border-left: 2px solid rgba(228, 193, 120, 0.35);
+        }
+
+        .experience-item h4 {
+            margin: 0 0 0.4rem;
+            font-weight: 200;
+            font-size: 1.2rem;
+        }
+
+        .experience-meta {
+            font-size: 0.95rem;
+            color: var(--muted-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .media-stage {
+            margin-top: 2.5rem;
+            display: grid;
+            gap: 1.5rem;
+            padding: 2rem;
+            border-radius: 18px;
+            border: 1px dashed rgba(228, 193, 120, 0.45);
+            background: rgba(74, 109, 140, 0.12);
+            color: var(--muted-text);
+            text-align: center;
+        }
+
+        .media-stage strong {
+            color: var(--text-color);
+            font-weight: 200;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            padding: 2.5rem 1.5rem 4rem;
+            text-align: center;
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 960px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+    <div class="preloader">
+        <div class="preloader-spinner" aria-hidden="true"></div>
+        <div class="preloader-visuals">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><rect width='140' height='140' rx='12' ry='12' fill='%231A2B3C'/><rect x='4' y='4' width='132' height='132' rx='10' ry='10' fill='none' stroke='%23E4C178' stroke-width='2' stroke-dasharray='6 8'/><text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle' fill='%23E4C178' font-family='sans-serif' font-size='14'>Media 1</text></svg>" alt="Replace with interview visual 1">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><rect width='140' height='140' rx='12' ry='12' fill='%231A2B3C'/><rect x='4' y='4' width='132' height='132' rx='10' ry='10' fill='none' stroke='%23E4C178' stroke-width='2' stroke-dasharray='6 8'/><text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle' fill='%23E4C178' font-family='sans-serif' font-size='14'>Media 2</text></svg>" alt="Replace with interview visual 2">
+        </div>
+        <p>Preparing the Intuita walkthrough…</p>
+    </div>
+
+    <div class="page-wrapper">
+        <header>
+            <div class="hero">
+                <div>
+                    <h1>Intuita Interview Walkthrough</h1>
+                    <p>
+                        A guided experience designed for the Intuita data consultant interview.
+                        We’ll walk through the role expectations, how my background maps to
+                        their needs, and the stories I want to highlight for the two interviewers.
+                    </p>
+                </div>
+                <div class="hero-meta">
+                    <span>🧭 Focus: Data Consultant &amp; Managed Services</span>
+                    <span>📍 Location: Šibenik, Šibenik-Knin County (Hybrid)</span>
+                    <span>👥 Audience: Two Intuita Interviewers</span>
+                    <span>🗓️ Goal: Demonstrate readiness, delivery mindset, and cultural fit</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="content-grid">
+                <aside class="toc" aria-label="Table of contents">
+                    <h2>Session Flow</h2>
+                    <ul>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#role-overview">Role &amp; Expectations</a></li>
+                        <li><a href="#alignment">Why I’m a fit</a></li>
+                        <li><a href="#experience">Experience stories</a></li>
+                        <li><a href="#capabilities">Capabilities</a></li>
+                        <li><a href="#culture">Culture &amp; values</a></li>
+                        <li><a href="#closing">Closing &amp; next steps</a></li>
+                    </ul>
+                </aside>
+
+                <div>
+                    <section id="introduction">
+                        <h2 class="section-heading">Setting the Scene</h2>
+                        <p class="section-subtitle">
+                            We’ll start by framing the opportunity and what I want the interviewers to take away:
+                            I understand Intuita’s mission, I have delivered similar outcomes, and I am excited to
+                            contribute to their Managed Service Team.
+                        </p>
+                        <div class="two-column">
+                            <div class="card">
+                                <h3>Intuita in my words</h3>
+                                <p>
+                                    A people-first data consultancy with a commitment to doing the right thing.
+                                    Their hybrid delivery model and investment in wellbeing aligns with how I like
+                                    to operate—deep client partnerships and sustainable results.
+                                </p>
+                            </div>
+                            <div class="card">
+                                <h3>Interview objectives</h3>
+                                <ul class="bullet-list">
+                                    <li>Show how I tackle complex data problems end-to-end.</li>
+                                    <li>Demonstrate collaboration and communication style.</li>
+                                    <li>Highlight adaptability across tools, teams, and domains.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="role-overview">
+                        <h2 class="section-heading">Role &amp; Expectations</h2>
+                        <p class="section-subtitle">
+                            Key excerpts from the Intuita job description to anchor the conversation.
+                        </p>
+                        <div class="two-column">
+                            <div class="card">
+                                <h3>Core responsibilities</h3>
+                                <ul class="bullet-list">
+                                    <li>Troubleshoot and resolve data &amp; reporting issues across industries.</li>
+                                    <li>Assess new datasets for analytics opportunities and insight delivery.</li>
+                                    <li>Improve client data models while protecting data quality &amp; security.</li>
+                                    <li>Collaborate with data engineers and report builders end-to-end.</li>
+                                    <li>Elevate managed service processes and efficiency.</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>Growth &amp; impact</h3>
+                                <ul class="bullet-list">
+                                    <li>Support expansion across consultancy and technology services.</li>
+                                    <li>Gain exposure to cross-functional initiatives and large deliverables.</li>
+                                    <li>Upskill across emerging tools (e.g., dbt) and share learnings internally.</li>
+                                    <li>Embody Intuita’s values: honesty, transparency, quality, and partnership.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="alignment">
+                        <h2 class="section-heading">Why I’m Aligned</h2>
+                        <p class="section-subtitle">
+                            Mapping my track record to what Intuita needs from the next Data Consultant.
+                        </p>
+                        <div class="two-column">
+                            <div class="card">
+                                <h3>Technical toolkit</h3>
+                                <ul class="bullet-list">
+                                    <li>SQL across AWS Athena, BigQuery, PostgreSQL, and MongoDB ecosystems.</li>
+                                    <li>Analytics delivery with Power BI, GA4, and bespoke dashboards.</li>
+                                    <li>Cloud-native infrastructure on AWS (EC2, S3, Lambda, CloudFront).</li>
+                                    <li>Automation &amp; integration with Python, Node.js, REST APIs, Stripe, PayPal.</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>Consulting behaviours</h3>
+                                <ul class="bullet-list">
+                                    <li>Ownership mindset managing €100k budgets and distributed teams.</li>
+                                    <li>Transparent communicator with stakeholders across continents.</li>
+                                    <li>Process builder who reduced project costs by €30k annually.</li>
+                                    <li>Trusted partner who aligns technical execution with strategic goals.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="experience">
+                        <h2 class="section-heading">Experience Stories</h2>
+                        <p class="section-subtitle">
+                            Hand-picked narratives to guide interview discussion—each linking to Intuita’s focus on
+                            data quality, managed services, and proactive problem solving.
+                        </p>
+                        <div class="experience-timeline">
+                            <div class="experience-item">
+                                <h4>ARTMO GmbH · IT Operations Manager</h4>
+                                <div class="experience-meta">Lisbon, Portugal · Sep 2022 – Oct 2025</div>
+                                <ul class="bullet-list">
+                                    <li>Cut incident resolution time by 65% by surfacing API failures via AWS Athena SQL analysis across S3 telemetry.</li>
+                                    <li>Reduced application load time ≈55% by optimising data sync between MongoDB and AWS RDS.</li>
+                                    <li>Introduced BigQuery + Power BI reporting to attribute a 25% uplift in premium conversions.</li>
+                                    <li>Coordinated 10+ engineers across 3 continents, aligning delivery under a €100k budget.</li>
+                                </ul>
+                            </div>
+                            <div class="experience-item">
+                                <h4>ARTMO GmbH · Data Intern</h4>
+                                <div class="experience-meta">Hybrid · May 2022 – Sep 2022</div>
+                                <ul class="bullet-list">
+                                    <li>Boosted subscription conversion by 30% via GA4 → BigQuery funnel analysis.</li>
+                                    <li>Modeled event-level data to reveal opportunities for product improvements.</li>
+                                </ul>
+                            </div>
+                            <div class="experience-item">
+                                <h4>Vannes IT Services · Founder</h4>
+                                <div class="experience-meta">Split, Croatia · Jun 2024 – Present</div>
+                                <ul class="bullet-list">
+                                    <li>Launched data consultancy delivering €25k+ annual revenue.</li>
+                                    <li>Built Supabase backend with RLS-secured APIs for live product &amp; payment data.</li>
+                                    <li>Created lightweight analytics dashboards consolidating marketing, sales, and ops data.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="media-stage">
+                            <strong>Media walk-through space</strong>
+                            <p>
+                                Reserve this area for dashboards, architecture diagrams, or demo clips. Embed images or iframes as you guide the interviewers through specific Intuita-relevant artefacts.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section id="capabilities">
+                        <h2 class="section-heading">Capabilities &amp; Credentials</h2>
+                        <div class="two-column">
+                            <div class="card">
+                                <h3>Tooling snapshot</h3>
+                                <ul class="bullet-list">
+                                    <li>Data &amp; Analytics: SQL, BigQuery, Athena, Power BI, GA4, Excel.</li>
+                                    <li>Databases: PostgreSQL/Supabase, MongoDB, AWS RDS, Redis.</li>
+                                    <li>Cloud &amp; Infra: AWS (EC2, S3, CloudFront, CloudWatch, Lambda), Docker, Fly.io.</li>
+                                    <li>Integration: Python, Node.js, REST APIs, Stripe, PayPal, Supabase.</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>Education &amp; certifications</h3>
+                                <ul class="bullet-list">
+                                    <li>Master’s in IT Management · Faculty of Economy &amp; Business, Split (2016–2022).</li>
+                                    <li>Thesis: Application of Big Data Analysis Processes in Urban Mobility of Smart Cities.</li>
+                                    <li>AWS Solutions Architect Associate (SA-C03) · Apr 2024.</li>
+                                    <li>Languages: English (C2, IELTS certified), French (B1).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="culture">
+                        <h2 class="section-heading">Culture &amp; Values</h2>
+                        <p class="section-subtitle">
+                            Intuita emphasises transparency, wellbeing, and empowerment. Here’s how I’ll contribute.
+                        </p>
+                        <div class="two-column">
+                            <div class="card">
+                                <h3>Working style</h3>
+                                <ul class="bullet-list">
+                                    <li>Hybrid collaboration with teams across Croatia, Portugal, and beyond.</li>
+                                    <li>Proactive in knowledge sharing—mentorship, documentation, and live demos.</li>
+                                    <li>Advocate for healthy delivery practices balancing pace with sustainability.</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>People-first alignment</h3>
+                                <ul class="bullet-list">
+                                    <li>Champion of psychological safety and inclusive discussions.</li>
+                                    <li>Experience in organising remote socials and async rituals to stay connected.</li>
+                                    <li>Excited by Intuita’s flexible structure and empowerment of consultants.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="closing">
+                        <h2 class="section-heading">Closing &amp; Next Steps</h2>
+                        <p class="section-subtitle">
+                            Wrap up with impact highlights and practical follow-ups after the session.
+                        </p>
+                        <div class="two-column">
+                            <div class="card">
+                                <h3>Key messages to reinforce</h3>
+                                <ul class="bullet-list">
+                                    <li>Immediate ability to stabilise and optimise managed data platforms.</li>
+                                    <li>History of translating complex data stories into stakeholder-ready insights.</li>
+                                    <li>Alignment with Intuita’s ethos—doing the right thing, even when it’s harder.</li>
+                                </ul>
+                            </div>
+                            <div class="card">
+                                <h3>Follow-up actions</h3>
+                                <ul class="bullet-list">
+                                    <li>Share curated artefacts (dashboards, automation scripts) post-interview.</li>
+                                    <li>Offer mini roadmap for the first 30-60-90 days supporting Managed Services.</li>
+                                    <li>Connect on LinkedIn and open lines for any additional questions.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © Toni Kukoč · www.tonikukoc.me · toni.kukoc01@gmail.com · +385 99 640 6061
+        </footer>
+    </div>
+
+    <script>
+        const preloader = document.querySelector('.preloader');
+        const body = document.body;
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                body.classList.remove('loading');
+            }, 2000);
+        });
+
+        const tocLinks = document.querySelectorAll('.toc a');
+        const sections = Array.from(tocLinks).map(link => document.querySelector(link.getAttribute('href')));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const index = sections.indexOf(entry.target);
+                if (index !== -1) {
+                    tocLinks[index].classList.toggle('active', entry.isIntersecting);
+                }
+            });
+        }, { threshold: 0.35 });
+
+        sections.forEach(section => {
+            if (section) observer.observe(section);
+        });
+    </script>
+</body>
+</html>
