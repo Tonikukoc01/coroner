@@ -85,14 +85,11 @@
             gap: 1rem;
         }
 
-        .preloader-visuals img {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid rgba(240, 244, 248, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-        }
+        .preloader-visuals svg {
+    width: 120px;
+    height: 120px;
+    opacity: 0.9;
+}
 
         .page-wrapper {
             position: relative;
@@ -327,11 +324,18 @@ footer {
     <div class="preloader">
         <div class="preloader-spinner" aria-hidden="true"></div>
         <div class="preloader-visuals">
-            <img src="assets/KT.png" alt="Logo" class="logo-image">
-            <img src="assets/intuita-logo.jpg" alt="Intuita logo">
-        </div>
-        <p>Preparing the Intuita walkthrough…</p>
-    </div>
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="52" stroke="#E4C178" stroke-width="2" fill="none" stroke-dasharray="6 10"/>
+        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+              fill="#E4C178" font-size="24" font-family="sans-serif">&lt;&gt;</text>
+    </svg>
+    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="112" height="112" rx="10" ry="10"
+              stroke="#E4C178" stroke-width="2" fill="none" stroke-dasharray="6 10"/>
+        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+              fill="#E4C178" font-size="22" font-family="sans-serif">Meet</text>
+    </svg>
+</div>
 
     <div class="page-wrapper">
         <header>
@@ -583,7 +587,7 @@ footer {
             setTimeout(() => {
                 preloader.classList.add('hidden');
                 body.classList.remove('loading');
-            }, 2000);
+            }, 2500);
         });
 
         const tocLinks = document.querySelectorAll('.toc a');
