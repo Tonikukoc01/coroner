@@ -84,19 +84,34 @@
             to { transform: rotate(360deg); }
         }
 
-        .preloader-title {
-            font-weight: 200;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            letter-spacing: 1px;
-        }
+         .preloader-title {
+  font-family: 'SkemaProDisplay', sans-serif;
+  font-weight: 200;
+  font-size: 1.2rem;
+  color: #1A2B3C;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
 
         .preloader-symbol {
             font-size: 4.5rem;
-            color: var(--accent-color);
+            color: #1A2B3C;
             font-weight: 200;
             letter-spacing: 3px;
         }
+
+ .preloader-visuals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+        .logo-image {
+  width: 120px;
+  height: auto;
+  opacity: 0.9;
+}
 
         /* Header / Hero */
         header {
@@ -626,11 +641,15 @@
     </style>
 </head>
 <body class="loading">
-    <div class="preloader">
-        <div class="preloader-spinner"></div>
-        <h2 class="preloader-title">Technical Overview</h2>
-        <div class="preloader-symbol">&lt;&gt;</div>
-    </div>
+   <div class="preloader">
+  <div class="preloader-spinner" aria-hidden="true"></div>
+  <h2 class="preloader-title">Technical Overview</h2>
+  <div class="preloader-visuals">
+    <img src="assets/KT.png" alt="Logo" class="logo-image">
+    <div class="preloader-symbol">&lt;&gt;</div>
+    <img src="assets/intuita.svg" alt="Intuita logo" class="logo-image">
+  </div>
+</div>
 
     <header>
         <div class="hero-container">
