@@ -141,42 +141,44 @@
             gap: 0.6rem;
         }
 
-        .toc {
-            position: sticky;
-            top: 1.5rem;
-            align-self: start;
-            background: rgba(10, 26, 42, 0.35);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+   
+.toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        .toc h2 {
-            margin-top: 0;
-            font-weight: 200;
-            font-size: 1.2rem;
-        }
+.toc li {
+    margin-bottom: 0.5rem;
+}
 
-        .toc ul {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0;
-            display: grid;
-            gap: 0.65rem;
-        }
+.toc a {
+    display: block;
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    position: relative;
+    border-left: 2px solid transparent;
+}
 
-        .toc a {
-            color: var(--muted-text);
-            text-decoration: none;
-            font-weight: 100;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
+.toc a:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(2px);
+}
 
-        .toc a.active,
-        .toc a:hover {
-            color: var(--accent-color);
-        }
+.toc a.active {
+    opacity: 1;
+    color: var(--accent-color);
+    background-color: rgba(78, 146, 223, 0.1);
+    border-left-color: var(--accent-color);
+}
 
         main {
             padding: 3rem 1.5rem 6rem;
@@ -293,12 +295,22 @@
             font-size: 1.2rem;
         }
 
-        footer {
-            padding: 2.5rem 1.5rem 4rem;
-            text-align: center;
-            color: var(--muted-text);
-            font-size: 0.95rem;
-        }
+    
+footer {
+    padding: 2rem 4rem;
+    background: #1A2B3C;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 200;
+    font-size: 1.1rem;
+    color: #6B7280;
+}
 
         @media (max-width: 960px) {
             .content-grid {
@@ -315,8 +327,8 @@
     <div class="preloader">
         <div class="preloader-spinner" aria-hidden="true"></div>
         <div class="preloader-visuals">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><rect width='140' height='140' rx='12' ry='12' fill='%231A2B3C'/><rect x='4' y='4' width='132' height='132' rx='10' ry='10' fill='none' stroke='%23E4C178' stroke-width='2' stroke-dasharray='6 8'/><text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle' fill='%23E4C178' font-family='sans-serif' font-size='14'>Media 1</text></svg>" alt="Replace with interview visual 1">
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><rect width='140' height='140' rx='12' ry='12' fill='%231A2B3C'/><rect x='4' y='4' width='132' height='132' rx='10' ry='10' fill='none' stroke='%23E4C178' stroke-width='2' stroke-dasharray='6 8'/><text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle' fill='%23E4C178' font-family='sans-serif' font-size='14'>Media 2</text></svg>" alt="Replace with interview visual 2">
+            <img src="assets/KT.png" alt="Logo" class="logo-image">
+            <img src="assets/intuita-logo.jpg" alt="Intuita logo">
         </div>
         <p>Preparing the Intuita walkthrough…</p>
     </div>
@@ -560,8 +572,8 @@
         </main>
 
         <footer>
-            © Toni Kukoč · www.tonikukoc.me · toni.kukoc01@gmail.com · +385 99 640 6061
-        </footer>
+    <div class="footer-content">Toni Kukoč © MMXXV</div>
+</footer>
     </div>
 
     <script>
