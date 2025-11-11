@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intuita Interview Walkthrough</title>
+    <title>Toni Kukoč – Intuita Data Portfolio</title>
     <style>
         @font-face {
             font-family: 'SkemaProDisplay';
             font-weight: 100;
             font-style: normal;
-            src: url('assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
-                 url('assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+            src: url('assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2');
         }
 
         @font-face {
             font-family: 'SkemaProDisplay';
             font-weight: 200;
             font-style: normal;
-            src: url('assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
-                 url('assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+            src: url('assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2');
         }
 
         :root {
@@ -32,21 +30,27 @@
 
         * {
             box-sizing: border-box;
-        }
-
-        html, body {
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
             font-family: 'SkemaProDisplay', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            scroll-behavior: smooth;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
         body.loading {
             overflow: hidden;
         }
 
+        /* Preloader */
         .preloader {
             position: fixed;
             inset: 0;
@@ -61,29 +65,11 @@
             z-index: 999;
             transition: opacity 0.6s ease;
         }
-        
-.preloader-symbol {
-  font-size: 4.5rem;        /* bigger symbol */
-  font-family: 'SkemaProDisplay', sans-serif;
-  color: #E4C178;
-  font-weight: 200;
-  letter-spacing: 3px;
-  line-height: 1;
-}
 
         .preloader.hidden {
             opacity: 0;
             pointer-events: none;
         }
-
-        .preloader-title {
-  font-family: 'SkemaProDisplay', sans-serif;
-  font-weight: 200;
-  font-size: 1.2rem;
-  color: #E4C178;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
-}
 
         .preloader-spinner {
             width: 64px;
@@ -98,534 +84,959 @@
             to { transform: rotate(360deg); }
         }
 
-        .preloader-visuals {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-}
-
-.logo-image {
-  width: 120px;
-  height: auto;
-  opacity: 0.9;
-}
-
-        .page-wrapper {
-            position: relative;
-            overflow: hidden;
+        .preloader-title {
+            font-weight: 200;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            letter-spacing: 1px;
         }
 
+        .preloader-symbol {
+            font-size: 4.5rem;
+            color: var(--accent-color);
+            font-weight: 200;
+            letter-spacing: 3px;
+        }
+
+        /* Header / Hero */
         header {
             background: radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 45%),
                         radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.08), transparent 42%),
                         #1A2B3C;
             padding: 5rem 1.5rem 4rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero {
+        .hero-container {
             max-width: 1080px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2.5rem;
-            align-items: center;
         }
 
         .hero h1 {
             font-weight: 200;
-            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.3s;
         }
 
         .hero p {
             font-weight: 100;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.7;
             color: var(--muted-text);
+            max-width: 720px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
         }
 
-        .hero-meta {
-            display: grid;
-            gap: 1rem;
-            font-size: 0.95rem;
-            color: var(--muted-text);
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .hero-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
- .toc {
-  position: sticky;
-  top: 6rem;
-  align-self: start;
-  height: fit-content;
-  justify-self: end;     /* pushes it to the far right */
-  width: 240px;
-}
-
-   
-.toc ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.toc li {
-    margin-bottom: 0.5rem;
-}
-
-.toc a {
-    display: block;
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-size: 0.8rem;
-    color: var(--text-color);
-    text-decoration: none;
-    padding: 0.5rem 0.75rem;
-    border-radius: 4px;
-    opacity: 0.7;
-    transition: all 0.3s ease;
-    position: relative;
-    border-left: 2px solid transparent;
-}
-
-.toc a:hover {
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 0.05);
-    transform: translateX(2px);
-}
-
-.toc a.active {
-    opacity: 1;
-    color: var(--accent-color);
-    background-color: rgba(78, 146, 223, 0.1);
-    border-left-color: var(--accent-color);
-}
-
+        /* Main Layout */
         main {
-            padding: 3rem 1.5rem 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 4rem;
+            align-items: start;
         }
 
-       .content-grid {
-  display: grid;
-  grid-template-columns: 1fr 260px; 
-  gap: 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-
-        section {
-            padding: 3rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .content {
+            min-width: 0;
         }
 
-        section:last-of-type {
-            border-bottom: none;
+        /* Sticky TOC */
+        .toc {
+            position: sticky;
+            top: 2rem;
+            align-self: start;
         }
 
-        .section-heading {
-            font-size: clamp(2rem, 4vw, 2.8rem);
+        .toc h3 {
             font-weight: 200;
-            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            display: block;
+            font-weight: 100;
+            font-size: 0.85rem;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+
+        .toc a:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(2px);
+        }
+
+        .toc a.active {
+            opacity: 1;
+            color: var(--accent-color);
+            background: rgba(228, 193, 120, 0.1);
+            border-left-color: var(--accent-color);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-weight: 200;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            color: var(--text-color);
         }
 
         .section-subtitle {
             font-weight: 100;
+            font-size: 1.1rem;
             color: var(--muted-text);
-            max-width: 680px;
+            margin-bottom: 2.5rem;
             line-height: 1.7;
+            max-width: 680px;
         }
 
-        .two-column {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
+        /* Project Cards */
+        .project-card {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 2rem;
-            display: grid;
-            gap: 1rem;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
         }
 
-        .card h3 {
+        .project-card:hover {
+            border-color: rgba(228, 193, 120, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
             font-weight: 200;
-            font-size: 1.3rem;
-            margin: 0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .card p,
-        .card li {
+        .project-summary {
             font-weight: 100;
-            line-height: 1.7;
             color: var(--muted-text);
+            font-size: 1rem;
         }
 
-        ul.bullet-list {
-            padding-left: 1.2rem;
-            margin: 0;
+        .project-details {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .detail-section {
             display: grid;
             gap: 0.75rem;
         }
 
-        ul.bullet-list li::marker {
+        .detail-label {
+            font-weight: 200;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .detail-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            font-weight: 100;
+            color: var(--muted-text);
+            line-height: 1.6;
+        }
+
+        .detail-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
             color: var(--accent-color);
         }
 
-        .experience-timeline {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .experience-item {
-            padding-left: 1.5rem;
-            border-left: 2px solid rgba(228, 193, 120, 0.35);
-        }
-
-        .experience-item h4 {
-            margin: 0 0 0.4rem;
-            font-weight: 200;
-            font-size: 1.2rem;
-        }
-
-        .experience-meta {
-            font-size: 0.95rem;
+        /* Wireframe Placeholder */
+        .wireframe {
+            margin-top: 1.5rem;
+            padding: 3rem 2rem;
+            border: 2px dashed rgba(228, 193, 120, 0.3);
+            border-radius: 12px;
+            background: rgba(74, 109, 140, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
             color: var(--muted-text);
-            margin-bottom: 0.75rem;
-        }
-
-        .media-stage {
-            margin-top: 2.5rem;
-            display: grid;
-            gap: 1.5rem;
-            padding: 2rem;
-            border-radius: 18px;
-            border: 1px dashed rgba(228, 193, 120, 0.45);
-            background: rgba(74, 109, 140, 0.12);
-            color: var(--muted-text);
+            font-weight: 100;
             text-align: center;
         }
 
-        .media-stage strong {
-            color: var(--text-color);
-            font-weight: 200;
-            font-size: 1.2rem;
+        /* Problem Solving Workflow */
+        .workflow-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-    
-footer {
-    padding: 2rem 4rem;
-    background: #1A2B3C;
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .workflow-step {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+            padding-left: 4rem;
+        }
 
-.footer-content {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-size: 1.1rem;
-    color: #6B7280;
-}
+        .workflow-number {
+            position: absolute;
+            left: 1.5rem;
+            top: 2rem;
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--accent-color);
+            opacity: 0.5;
+        }
 
+        .workflow-step h4 {
+            font-weight: 200;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .workflow-step p {
+            font-weight: 100;
+            color: var(--muted-text);
+            line-height: 1.6;
+        }
+
+        /* Tools Section */
+        .tools-cards {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+        }
+
+        .tool-card h3 {
+            font-weight: 200;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .icon-item:nth-child(1) { animation-delay: 0.1s; }
+        .icon-item:nth-child(2) { animation-delay: 0.2s; }
+        .icon-item:nth-child(3) { animation-delay: 0.3s; }
+        .icon-item:nth-child(4) { animation-delay: 0.4s; }
+        .icon-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(228, 193, 120, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .icon-item:hover .icon-circle {
+            background: rgba(228, 193, 120, 0.2);
+            transform: scale(1.1);
+        }
+
+        .icon-label {
+            font-size: 0.75rem;
+            color: var(--muted-text);
+            text-align: center;
+            font-weight: 100;
+        }
+
+        /* Collaboration Section */
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .collab-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .collab-card h4 {
+            font-weight: 200;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .collab-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .collab-card li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+            font-weight: 100;
+            color: var(--muted-text);
+            line-height: 1.6;
+        }
+
+        .collab-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Roadmap */
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .roadmap-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .roadmap-card h4 {
+            font-weight: 200;
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent-color);
+        }
+
+        .roadmap-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .roadmap-card li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+            font-weight: 100;
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .roadmap-card li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Closing Section */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(74, 109, 140, 0.2), rgba(228, 193, 120, 0.1));
+            border: 1px solid rgba(228, 193, 120, 0.3);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-box p {
+            font-weight: 100;
+            font-size: 1.1rem;
+            color: var(--muted-text);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .cta-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 200;
+            font-size: 1.1rem;
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .cta-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            font-weight: 200;
+            font-size: 0.9rem;
+            color: rgba(240, 244, 248, 0.5);
+        }
+
+        /* Responsive */
         @media (max-width: 960px) {
-            .content-grid {
+            main {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .toc {
+                position: relative;
+                top: 0;
+                order: -1;
+            }
+
+            .roadmap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 3rem 1rem 2rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .project-card,
+            .tool-card,
+            .collab-card,
+            .roadmap-card {
+                padding: 1.5rem;
+            }
+
+            .icon-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             }
         }
     </style>
 </head>
 <body class="loading">
-   <div class="preloader">
-  <div class="preloader-spinner" aria-hidden="true"></div>
-
-  <h2 class="preloader-title">Technical Overview</h2>
-
-  <div class="preloader-visuals">
-    <img src="assets/KT.png" alt="Logo" class="logo-image">
-    <div class="preloader-symbol">&lt;&gt;</div>
-    <img src="assets/intuita.svg" alt="Intuita logo" class="logo-image">
-  </div>
-</div>
-
-    <div class="page-wrapper">
-        <header>
-            <div class="hero">
-                <div>
-                    <h1>Intuita Interview Walkthrough</h1>
-                    <p>
-                        A guided experience designed for the Intuita data consultant interview.
-                        We’ll walk through the role expectations, how my background maps to
-                        their needs, and the stories I want to highlight for the two interviewers.
-                    </p>
-                </div>
-                <div class="hero-meta">
-                    <span>🧭 Focus: Data Consultant &amp; Managed Services</span>
-                    <span>📍 Location: Šibenik, Šibenik-Knin County (Hybrid)</span>
-                    <span>👥 Audience: Two Intuita Interviewers</span>
-                    <span>🗓️ Goal: Demonstrate readiness, delivery mindset, and cultural fit</span>
-                </div>
-            </div>
-        </header>
-
-        <main>
-            <div class="content-grid">
-                <div>
-                    <section id="introduction">
-                        <h2 class="section-heading">Setting the Scene</h2>
-                        <p class="section-subtitle">
-                            We’ll start by framing the opportunity and what I want the interviewers to take away:
-                            I understand Intuita’s mission, I have delivered similar outcomes, and I am excited to
-                            contribute to their Managed Service Team.
-                        </p>
-                        <div class="two-column">
-                            <div class="card">
-                                <h3>Intuita in my words</h3>
-                                <p>
-                                    A people-first data consultancy with a commitment to doing the right thing.
-                                    Their hybrid delivery model and investment in wellbeing aligns with how I like
-                                    to operate—deep client partnerships and sustainable results.
-                                </p>
-                            </div>
-                            <div class="card">
-                                <h3>Interview objectives</h3>
-                                <ul class="bullet-list">
-                                    <li>Show how I tackle complex data problems end-to-end.</li>
-                                    <li>Demonstrate collaboration and communication style.</li>
-                                    <li>Highlight adaptability across tools, teams, and domains.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="role-overview">
-                        <h2 class="section-heading">Role &amp; Expectations</h2>
-                        <p class="section-subtitle">
-                            Key excerpts from the Intuita job description to anchor the conversation.
-                        </p>
-                        <div class="two-column">
-                            <div class="card">
-                                <h3>Core responsibilities</h3>
-                                <ul class="bullet-list">
-                                    <li>Troubleshoot and resolve data &amp; reporting issues across industries.</li>
-                                    <li>Assess new datasets for analytics opportunities and insight delivery.</li>
-                                    <li>Improve client data models while protecting data quality &amp; security.</li>
-                                    <li>Collaborate with data engineers and report builders end-to-end.</li>
-                                    <li>Elevate managed service processes and efficiency.</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>Growth &amp; impact</h3>
-                                <ul class="bullet-list">
-                                    <li>Support expansion across consultancy and technology services.</li>
-                                    <li>Gain exposure to cross-functional initiatives and large deliverables.</li>
-                                    <li>Upskill across emerging tools (e.g., dbt) and share learnings internally.</li>
-                                    <li>Embody Intuita’s values: honesty, transparency, quality, and partnership.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="alignment">
-                        <h2 class="section-heading">Why I’m Aligned</h2>
-                        <p class="section-subtitle">
-                            Mapping my track record to what Intuita needs from the next Data Consultant.
-                        </p>
-                        <div class="two-column">
-                            <div class="card">
-                                <h3>Technical toolkit</h3>
-                                <ul class="bullet-list">
-                                    <li>SQL across AWS Athena, BigQuery, PostgreSQL, and MongoDB ecosystems.</li>
-                                    <li>Analytics delivery with Power BI, GA4, and bespoke dashboards.</li>
-                                    <li>Cloud-native infrastructure on AWS (EC2, S3, Lambda, CloudFront).</li>
-                                    <li>Automation &amp; integration with Python, Node.js, REST APIs, Stripe, PayPal.</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>Consulting behaviours</h3>
-                                <ul class="bullet-list">
-                                    <li>Ownership mindset managing €100k budgets and distributed teams.</li>
-                                    <li>Transparent communicator with stakeholders across continents.</li>
-                                    <li>Process builder who reduced project costs by €30k annually.</li>
-                                    <li>Trusted partner who aligns technical execution with strategic goals.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="experience">
-                        <h2 class="section-heading">Experience Stories</h2>
-                        <p class="section-subtitle">
-                            Hand-picked narratives to guide interview discussion—each linking to Intuita’s focus on
-                            data quality, managed services, and proactive problem solving.
-                        </p>
-                        <div class="experience-timeline">
-                            <div class="experience-item">
-                                <h4>ARTMO GmbH · IT Operations Manager</h4>
-                                <div class="experience-meta">Lisbon, Portugal · Sep 2022 – Oct 2025</div>
-                                <ul class="bullet-list">
-                                    <li>Cut incident resolution time by 65% by surfacing API failures via AWS Athena SQL analysis across S3 telemetry.</li>
-                                    <li>Reduced application load time ≈55% by optimising data sync between MongoDB and AWS RDS.</li>
-                                    <li>Introduced BigQuery + Power BI reporting to attribute a 25% uplift in premium conversions.</li>
-                                    <li>Coordinated 10+ engineers across 3 continents, aligning delivery under a €100k budget.</li>
-                                </ul>
-                            </div>
-                            <div class="experience-item">
-                                <h4>ARTMO GmbH · Data Intern</h4>
-                                <div class="experience-meta">Hybrid · May 2022 – Sep 2022</div>
-                                <ul class="bullet-list">
-                                    <li>Boosted subscription conversion by 30% via GA4 → BigQuery funnel analysis.</li>
-                                    <li>Modeled event-level data to reveal opportunities for product improvements.</li>
-                                </ul>
-                            </div>
-                            <div class="experience-item">
-                                <h4>Vannes IT Services · Founder</h4>
-                                <div class="experience-meta">Split, Croatia · Jun 2024 – Present</div>
-                                <ul class="bullet-list">
-                                    <li>Launched data consultancy delivering €25k+ annual revenue.</li>
-                                    <li>Built Supabase backend with RLS-secured APIs for live product &amp; payment data.</li>
-                                    <li>Created lightweight analytics dashboards consolidating marketing, sales, and ops data.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="media-stage">
-                            <strong>Media walk-through space</strong>
-                            <p>
-                                Reserve this area for dashboards, architecture diagrams, or demo clips. Embed images or iframes as you guide the interviewers through specific Intuita-relevant artefacts.
-                            </p>
-                        </div>
-                    </section>
-
-                    <section id="capabilities">
-                        <h2 class="section-heading">Capabilities &amp; Credentials</h2>
-                        <div class="two-column">
-                            <div class="card">
-                                <h3>Tooling snapshot</h3>
-                                <ul class="bullet-list">
-                                    <li>Data &amp; Analytics: SQL, BigQuery, Athena, Power BI, GA4, Excel.</li>
-                                    <li>Databases: PostgreSQL/Supabase, MongoDB, AWS RDS, Redis.</li>
-                                    <li>Cloud &amp; Infra: AWS (EC2, S3, CloudFront, CloudWatch, Lambda), Docker, Fly.io.</li>
-                                    <li>Integration: Python, Node.js, REST APIs, Stripe, PayPal, Supabase.</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>Education &amp; certifications</h3>
-                                <ul class="bullet-list">
-                                    <li>Master’s in IT Management · Faculty of Economy &amp; Business, Split (2016–2022).</li>
-                                    <li>Thesis: Application of Big Data Analysis Processes in Urban Mobility of Smart Cities.</li>
-                                    <li>AWS Solutions Architect Associate (SA-C03) · Apr 2024.</li>
-                                    <li>Languages: English (C2, IELTS certified), French (B1).</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="culture">
-                        <h2 class="section-heading">Culture &amp; Values</h2>
-                        <p class="section-subtitle">
-                            Intuita emphasises transparency, wellbeing, and empowerment. Here’s how I’ll contribute.
-                        </p>
-                        <div class="two-column">
-                            <div class="card">
-                                <h3>Working style</h3>
-                                <ul class="bullet-list">
-                                    <li>Hybrid collaboration with teams across Croatia, Portugal, and beyond.</li>
-                                    <li>Proactive in knowledge sharing—mentorship, documentation, and live demos.</li>
-                                    <li>Advocate for healthy delivery practices balancing pace with sustainability.</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>People-first alignment</h3>
-                                <ul class="bullet-list">
-                                    <li>Champion of psychological safety and inclusive discussions.</li>
-                                    <li>Experience in organising remote socials and async rituals to stay connected.</li>
-                                    <li>Excited by Intuita’s flexible structure and empowerment of consultants.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section id="closing">
-                        <h2 class="section-heading">Closing &amp; Next Steps</h2>
-                        <p class="section-subtitle">
-                            Wrap up with impact highlights and practical follow-ups after the session.
-                        </p>
-                        <div class="two-column">
-                            <div class="card">
-                                <h3>Key messages to reinforce</h3>
-                                <ul class="bullet-list">
-                                    <li>Immediate ability to stabilise and optimise managed data platforms.</li>
-                                    <li>History of translating complex data stories into stakeholder-ready insights.</li>
-                                    <li>Alignment with Intuita’s ethos—doing the right thing, even when it’s harder.</li>
-                                </ul>
-                            </div>
-                            <div class="card">
-                                <h3>Follow-up actions</h3>
-                                <ul class="bullet-list">
-                                    <li>Share curated artefacts (dashboards, automation scripts) post-interview.</li>
-                                    <li>Offer mini roadmap for the first 30-60-90 days supporting Managed Services.</li>
-                                    <li>Connect on LinkedIn and open lines for any additional questions.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-                <aside class="toc" aria-label="Table of contents">
-                    <h2>Session Flow</h2>
-                    <ul>
-                        <li><a href="#introduction">Introduction</a></li>
-                        <li><a href="#role-overview">Role &amp; Expectations</a></li>
-                        <li><a href="#alignment">Why I’m a fit</a></li>
-                        <li><a href="#experience">Experience stories</a></li>
-                        <li><a href="#capabilities">Capabilities</a></li>
-                        <li><a href="#culture">Culture &amp; values</a></li>
-                        <li><a href="#closing">Closing &amp; next steps</a></li>
-                    </ul>
-                </aside>
-            </div>
-        </main>
-
-        <footer>
-    <div class="footer-content">Toni Kukoč © MMXXV</div>
-</footer>
+    <div class="preloader">
+        <div class="preloader-spinner"></div>
+        <h2 class="preloader-title">Technical Overview</h2>
+        <div class="preloader-symbol">&lt;&gt;</div>
     </div>
 
+    <header>
+        <div class="hero-container">
+            <div class="hero">
+                <h1>Toni Kukoč – Intuita Data Portfolio</h1>
+                <p>A live overview of how I turn complex data ecosystems into clarity and measurable results.</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="content">
+            <!-- Section 1: From Data Chaos to Clarity -->
+            <section id="intro">
+                <h2 class="section-title">From Data Chaos to Clarity</h2>
+                <p class="section-subtitle">
+                    I bridge raw data, operations, and business insight. My approach transforms scattered information into actionable intelligence that drives decision-making and measurable outcomes.
+                </p>
+                <div class="wireframe">
+                    <strong>Raw Data → Modeling → Visualization → Decision</strong>
+                </div>
+            </section>
+
+            <!-- Section 2: Projects That Moved the Needle -->
+            <section id="projects">
+                <h2 class="section-title">Projects That Moved the Needle</h2>
+                <p class="section-subtitle">
+                    Real impact stories from data consulting and operations management across distributed teams and complex technical environments.
+                </p>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">ARTMO Incident Optimization</h3>
+                        <p class="project-summary">Athena SQL across S3 → −65% incident time</p>
+                    </div>
+                    <div class="project-details">
+                        <div class="detail-section">
+                            <div class="detail-label">Challenge</div>
+                            <ul class="detail-list">
+                                <li>Incident resolution taking 3+ hours due to scattered telemetry data</li>
+                                <li>API failures hidden across multiple S3 buckets</li>
+                                <li>No unified view of system health</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Solution</div>
+                            <ul class="detail-list">
+                                <li>Built AWS Athena SQL queries to surface API failures across S3</li>
+                                <li>Created automated alerting for critical patterns</li>
+                                <li>Established unified telemetry dashboard</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Result</div>
+                            <ul class="detail-list">
+                                <li>65% reduction in incident resolution time</li>
+                                <li>Proactive issue detection before customer impact</li>
+                                <li>Engineering team empowered with self-service diagnostics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wireframe">Dashboard visualization placeholder: Incident timeline & resolution metrics</div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Monetization Funnel Analytics</h3>
+                        <p class="project-summary">GA4 + BigQuery + Power BI → +25% conversions</p>
+                    </div>
+                    <div class="project-details">
+                        <div class="detail-section">
+                            <div class="detail-label">Challenge</div>
+                            <ul class="detail-list">
+                                <li>Premium subscription funnel showing high drop-off rates</li>
+                                <li>Limited visibility into user behavior patterns</li>
+                                <li>Marketing team making decisions without data backing</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Solution</div>
+                            <ul class="detail-list">
+                                <li>Integrated GA4 event tracking with BigQuery data warehouse</li>
+                                <li>Built Power BI dashboards for funnel analysis</li>
+                                <li>Identified friction points through cohort analysis</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Result</div>
+                            <ul class="detail-list">
+                                <li>25% uplift in premium conversions</li>
+                                <li>Data-driven product improvements implemented</li>
+                                <li>Marketing ROI visibility across all channels</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wireframe">Chart placeholder: Conversion funnel stages & drop-off analysis</div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Vannes IT Services Dashboards</h3>
+                        <p class="project-summary">Supabase + PostgreSQL → live SME insights</p>
+                    </div>
+                    <div class="project-details">
+                        <div class="detail-section">
+                            <div class="detail-label">Challenge</div>
+                            <ul class="detail-list">
+                                <li>Small business clients needed affordable analytics</li>
+                                <li>Data scattered across Stripe, PayPal, and spreadsheets</li>
+                                <li>No real-time view of business health</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Solution</div>
+                            <ul class="detail-list">
+                                <li>Built Supabase backend with RLS-secured APIs</li>
+                                <li>Consolidated payment and product data into PostgreSQL</li>
+                                <li>Created lightweight, real-time dashboards</li>
+                            </ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Result</div>
+                            <ul class="detail-list">
+                                <li>€25k+ annual revenue from consultancy</li>
+                                <li>Clients gained visibility into sales, marketing, and ops</li>
+                                <li>Scalable solution for SME data needs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wireframe">Metric summary placeholder: Revenue, customers, growth indicators</div>
+                </div>
+            </section>
+
+            <!-- Section 3: How I Solve Data Problems -->
+            <section id="problem-solving">
+                <h2 class="section-title">How I Solve Data Problems</h2>
+                <p class="section-subtitle">
+                    A structured approach to identifying issues, optimizing systems, and validating improvements through measurable KPIs.
+                </p>
+                <div class="workflow-grid">
+                    <div class="workflow-step">
+                        <div class="workflow-number">1</div>
+                        <h4>Identify Issues</h4>
+                        <p>Deep dive into telemetry, query logs, and user feedback to pinpoint bottlenecks. Use data profiling to understand current state before proposing solutions.</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-number">2</div>
+                        <h4>Optimize Schema & Caching</h4>
+                        <p>Redesign data models for performance. Implement smart caching strategies and optimize database queries to reduce latency and improve user experience.</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-number">3</div>
+                        <h4>Validate & Document</h4>
+                        <p>Measure impact through KPIs. Document improvements for team knowledge sharing and establish monitoring to ensure sustained performance gains.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Tools & Techniques -->
+            <section id="tools">
+                <h2 class="section-title">Tools & Techniques — Relevant for Intuita</h2>
+                <p class="section-subtitle">
+                    The technical toolkit I bring to managed data services and client consulting.
+                </p>
+                <div class="tools-cards">
+                    <div class="tool-card">
+                        <h3>Data & Infrastructure</h3>
+                        <div class="icon-grid">
+                            <div class="icon-item">
+                                <div class="icon-circle">🗄️</div>
+                                <div class="icon-label">SQL</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">☁️</div>
+                                <div class="icon-label">AWS</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">🔗</div>
+                                <div class="icon-label">APIs</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">🛡️</div>
+                                <div class="icon-label">Security</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">⚙️</div>
+                                <div class="icon-label">Python</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Analytics & Visualization</h3>
+                        <div class="icon-grid">
+                            <div class="icon-item">
+                                <div class="icon-circle">📊</div>
+                                <div class="icon-label">Power BI</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">📈</div>
+                                <div class="icon-label">BigQuery</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">🖥️</div>
+                                <div class="icon-label">Dashboards</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">📉</div>
+                                <div class="icon-label">GA4</div>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">🔧</div>
+                                <div class="icon-label">ETL</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Collaborating with Clients & Teams -->
+            <section id="collaboration">
+                <h2 class="section-title">Collaborating with Clients & Teams</h2>
+                <p class="section-subtitle">
+                    How I coordinate distributed teams and build trusted partnerships with stakeholders.
+                </p>
+                <div class="collab-grid">
+                    <div class="collab-card">
+                        <h4>Workflow</h4>
+                        <ul>
+                            <li>Coordinate 10+ engineers across 3 continents</li>
+                            <li>Build agile processes (sprint planning, stakeholder syncs)</li>
+                            <li>Reduce project costs and increase delivery reliability</li>
+                            <li>Establish clear documentation and knowledge transfer</li>
+                        </ul>
+                    </div>
+                    <div class="collab-card">
+                        <h4>Communication & Culture</h4>
+                        <ul>
+                            <li>Transparent stakeholder alignment</li>
+                            <li>Ownership and accountability mindset</li>
+                            <li>Promote healthy delivery pace and remote rituals</li>
+                            <li>Build trust through consistent execution</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="wireframe" style="margin-top: 2rem;">
+                    Timeline visualization: Plan → Build → Review → Learn
+                </div>
+            </section>
+
+            <!-- Section 6: 30-60-90 Day Plan -->
+            <section id="roadmap">
+                <h2 class="section-title">30–60–90 Day Plan at Intuita</h2>
+                <p class="section-subtitle">
+                    My approach to onboarding and delivering value from day one in the Managed Services team.
+                </p>
+                <div class="roadmap">
+                    <div class="roadmap-card">
+                        <h4>30 Days</h4>
+                        <ul>
+                            <li>Audit existing pipelines for latency issues</li>
+                            <li>Fix quick wins in data quality</li>
+                            <li>Document current data landscape</li>
+                            <li>Build relationships with key stakeholders</li>
+                            <li>Identify process improvement opportunities</li>
+                        </ul>
+                    </div>
+                    <div class="roadmap-card">
+                        <h4>60 Days</h4>
+                        <ul>
+                            <li>Propose dbt or modeling improvements</li>
+                            <li>Enhance data validation processes</li>
+                            <li>Lead first client optimization project</li>
+                            <li>Contribute to internal tooling</li>
+                            <li>Share learnings with team</li>
+                        </ul>
+                    </div>
+                    <div class="roadmap-card">
+                        <h4>90 Days</h4>
+                        <ul>
+                            <li>Deliver client dashboard independently</li>
+                            <li>Formalize QA and testing loops</li>
+                            <li>Mentor junior team members</li>
+                            <li>Drive process efficiency improvements</li>
+                            <li>Own end-to-end client engagements</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: Closing & Contact -->
+            <section id="closing">
+                <h2 class="section-title">Closing & Contact</h2>
+                <p class="section-subtitle">
+                    I'm aligned with Intuita's values of clarity, partnership, and reliability. Let's turn complex data challenges into competitive advantages together.
+                </p>
+                <div class="cta-box">
+                    <p>
+                        Ready to explore more impact stories and detailed case studies?<br>
+                        Visit my full portfolio for deeper dives into technical implementations and business outcomes.
+                    </p>
+                    <a href="https://tonikukoc.me/value-delivered" class="cta-link" target="_blank">
+                        Explore More Impact Stories
+                    </a>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/toni-kukoc/" class="social-link" target="_blank" title="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/Tonikukoc01" class="social-link" target="_blank" title="GitHub">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sticky Table of Contents -->
+        <aside class="toc">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#problem-solving">Problem Solving</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#collaboration">Collaboration</a></li>
+                <li><a href="#roadmap">30–60–90 Plan</a></li>
+                <li><a href="#closing">Closing</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="footer-content">© Toni Kukoč MMXXV</div>
+    </footer>
+
     <script>
-        const preloader = document.querySelector('.preloader');
-        const body = document.body;
+        // Preloader
         window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            const body = document.body;
             setTimeout(() => {
                 preloader.classList.add('hidden');
                 body.classList.remove('loading');
-            }, 2500);
+            }, 2000);
         });
 
-        const tocLinks = document.querySelectorAll('.toc a');
-        const sections = Array.from(tocLinks).map(link => document.querySelector(link.getAttribute('href')));
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-        const observer = new IntersectionObserver((entries) => {
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                const index = sections.indexOf(entry.target);
-                if (index !== -1) {
-                    tocLinks[index].classList.toggle('active', entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.35 });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // TOC active state
+        const tocLinks = document.querySelectorAll('.toc a');
+        const sections = Array.from(tocLinks).map(link => 
+            document.querySelector(link.getAttribute('href'))
+        );
+
+        const tocObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = sections.indexOf(entry.target);
+                    if (index !== -1) {
+                        tocLinks.forEach(link => link.classList.remove('active'));
+                        tocLinks[index].classList.add('active');
+                    }
+                }
+            });
+        }, {
+            threshold: 0.5,
+            rootMargin: '-20% 0px -35% 0px'
+        });
 
         sections.forEach(section => {
-            if (section) observer.observe(section);
+            if (section) tocObserver.observe(section);
+        });
+
+        // Smooth scroll for TOC links
+        tocLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
