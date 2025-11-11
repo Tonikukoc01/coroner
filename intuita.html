@@ -61,6 +61,15 @@
             z-index: 999;
             transition: opacity 0.6s ease;
         }
+        
+.preloader-symbol {
+  font-size: 4.5rem;        /* bigger symbol */
+  font-family: 'SkemaProDisplay', sans-serif;
+  color: #E4C178;
+  font-weight: 200;
+  letter-spacing: 3px;
+  line-height: 1;
+}
 
         .preloader.hidden {
             opacity: 0;
@@ -149,12 +158,15 @@
             gap: 0.6rem;
         }
 
-     .toc {
-    position: sticky;
-    top: 6rem; /* stays visible under header */
-    align-self: start;
-    height: fit-content;
+ .toc {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+  height: fit-content;
+  justify-self: end;     /* pushes it to the far right */
+  width: 240px;
 }
+
    
 .toc ul {
     list-style: none;
@@ -198,13 +210,13 @@
             padding: 3rem 1.5rem 6rem;
         }
 
-        .content-grid {
-           display: grid;
-           grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
-           gap: 3.5rem;
-            max-width: 1200px;
-           margin: 0 auto;
-          position: relative;
+       .content-grid {
+  display: grid;
+  grid-template-columns: 1fr 260px; 
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
 }
 
 
@@ -344,7 +356,7 @@ footer {
   <div class="preloader-visuals">
     <img src="assets/KT.png" alt="Logo" class="logo-image">
     <div class="preloader-symbol">&lt;&gt;</div>
-    <img src="assets/intuita-logo.jpg" alt="Intuita logo" class="logo-image">
+    <img src="assets/intuita.svg" alt="Intuita logo" class="logo-image">
   </div>
 </div>
 
