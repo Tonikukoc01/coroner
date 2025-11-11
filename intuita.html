@@ -67,6 +67,15 @@
             pointer-events: none;
         }
 
+        .preloader-title {
+  font-family: 'SkemaProDisplay', sans-serif;
+  font-weight: 200;
+  font-size: 1.2rem;
+  color: #E4C178;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
         .preloader-spinner {
             width: 64px;
             height: 64px;
@@ -140,6 +149,12 @@
             gap: 0.6rem;
         }
 
+     .toc {
+    position: sticky;
+    top: 6rem; /* stays visible under header */
+    align-self: start;
+    height: fit-content;
+}
    
 .toc ul {
     list-style: none;
@@ -184,12 +199,14 @@
         }
 
         .content-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
-            gap: 3.5rem;
+           display: grid;
+           grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+           gap: 3.5rem;
             max-width: 1200px;
-            margin: 0 auto;
-        }
+           margin: 0 auto;
+          position: relative;
+}
+
 
         section {
             padding: 3rem 0;
@@ -315,21 +332,20 @@ footer {
             .content-grid {
                 grid-template-columns: 1fr;
             }
-
-            .toc {
-                position: static;
-            }
         }
     </style>
 </head>
 <body class="loading">
-    <div class="preloader">
-        <div class="preloader-spinner" aria-hidden="true"></div>
-     <div class="preloader-visuals">
-  <img src="assets/KT.png" alt="Logo" class="logo-image">
-  <div class="preloader-symbol">&lt;&gt;</div>
-  <img src="assets/intuita-logo.jpg" alt="Intuita logo" class="logo-image">
-</div>
+   <div class="preloader">
+  <div class="preloader-spinner" aria-hidden="true"></div>
+
+  <h2 class="preloader-title">Technical Overview</h2>
+
+  <div class="preloader-visuals">
+    <img src="assets/KT.png" alt="Logo" class="logo-image">
+    <div class="preloader-symbol">&lt;&gt;</div>
+    <img src="assets/intuita-logo.jpg" alt="Intuita logo" class="logo-image">
+  </div>
 </div>
 
     <div class="page-wrapper">
@@ -354,19 +370,6 @@ footer {
 
         <main>
             <div class="content-grid">
-                <aside class="toc" aria-label="Table of contents">
-                    <h2>Session Flow</h2>
-                    <ul>
-                        <li><a href="#introduction">Introduction</a></li>
-                        <li><a href="#role-overview">Role &amp; Expectations</a></li>
-                        <li><a href="#alignment">Why I’m a fit</a></li>
-                        <li><a href="#experience">Experience stories</a></li>
-                        <li><a href="#capabilities">Capabilities</a></li>
-                        <li><a href="#culture">Culture &amp; values</a></li>
-                        <li><a href="#closing">Closing &amp; next steps</a></li>
-                    </ul>
-                </aside>
-
                 <div>
                     <section id="introduction">
                         <h2 class="section-heading">Setting the Scene</h2>
@@ -567,6 +570,18 @@ footer {
                         </div>
                     </section>
                 </div>
+                <aside class="toc" aria-label="Table of contents">
+                    <h2>Session Flow</h2>
+                    <ul>
+                        <li><a href="#introduction">Introduction</a></li>
+                        <li><a href="#role-overview">Role &amp; Expectations</a></li>
+                        <li><a href="#alignment">Why I’m a fit</a></li>
+                        <li><a href="#experience">Experience stories</a></li>
+                        <li><a href="#capabilities">Capabilities</a></li>
+                        <li><a href="#culture">Culture &amp; values</a></li>
+                        <li><a href="#closing">Closing &amp; next steps</a></li>
+                    </ul>
+                </aside>
             </div>
         </main>
 
