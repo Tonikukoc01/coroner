@@ -265,6 +265,22 @@
            margin: 0 auto;
            border-radius: 8px;
            opacity: 0.95;
+           transform: scale (1.10);
+}
+        .lightbox {
+display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
 
         /* Project Cards */
@@ -693,13 +709,17 @@
                 Every dataset tells a story. My role is to shape that story into actionable product insights that guide better decisions.
                 </p>
 
-    <div class="wireframe">
-    <img 
-      src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/ambacia/First-image.png"
-      alt="Data journey from raw to decision"
-      class="wireframe-image"
-    >
-  </div>
+   <div class="wireframe">
+  <img 
+    src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/ambacia/First-image.png"
+    alt="Data journey from raw to decision"
+    class="wireframe-image"
+    onclick="openLightbox(this)"
+  >
+</div>
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>         
 </section>
 
             <!-- Section 2: Projects That Moved the Needle -->
@@ -1127,6 +1147,16 @@
                 }
             });
         });
+
+function openLightbox(img) {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = img.src;
+  lightbox.style.display = 'flex';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+}
     </script>
 </body>
 </html>
