@@ -115,10 +115,10 @@
   transform: translateY(4px);
 }
 
-        /* Header / Hero */
+    /* Header / Hero */
      
-        header {
-      background:
+    header {
+    background:
     radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 25%),
     radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.08), transparent 20%),
     #1A2B3C;
@@ -131,30 +131,30 @@
      overflow: hidden;
 }
 
-        .hero-container {
-            max-width: 1080px;
-            margin: 0 auto;
+  .hero-container {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-weight: 200;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+   animation: fadeInUp 0.8s ease forwards 0.3s;
         }
 
-        .hero h1 {
-            font-weight: 200;
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.3s;
-        }
-
-        .hero p {
-            font-weight: 100;
-            font-size: 1.2rem;
-            line-height: 1.7;
-            color: var(--muted-text);
-            max-width: 720px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease forwards 0.5s;
-        }
+  .hero p {
+   font-weight: 100;
+   font-size: 1.2rem;
+   line-height: 1.7;
+   color: var(--muted-text);
+   max-width: 720px;
+   opacity: 0;
+   transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.5s;
+ }
 
         @keyframes fadeInUp {
             to {
@@ -256,6 +256,16 @@
             line-height: 1.7;
             max-width: 680px;
         }
+
+        .wireframe-image {
+           display: block;
+           max-width: 640px;
+           width: 100%;
+           height: auto;
+           margin: 0 auto;
+           border-radius: 8px;
+           opacity: 0.95;
+}
 
         /* Project Cards */
         .project-card {
@@ -676,52 +686,55 @@
 
     <main>
         <div class="content">
-            <!-- Section 1: From Data Chaos to Clarity -->
-            <section id="intro">
-                <h2 class="section-title">From Data Chaos to Clarity</h2>
+           <!-- Section 1: From Data Chaos to Clarity -->
+             <section id="intro">
+               <h2 class="section-title">Product mindset for Data Consultant</h2>
                 <p class="section-subtitle">
-                    I bridge raw data, operations, and business insight. My approach transforms scattered information into actionable intelligence that drives decision-making and measurable outcomes.
+                Every dataset tells a story. My role is to shape that story into actionable product insights that guide better decisions.
                 </p>
-                <div class="wireframe">
-                    <strong>Raw Data → Modeling → Visualization → Decision</strong>
-                </div>
-            </section>
+
+    <div class="wireframe">
+    <img 
+      src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/ambacia/First-image.png"
+      alt="Data journey from raw to decision"
+      class="wireframe-image"
+    >
+  </div>
+</section>
 
             <!-- Section 2: Projects That Moved the Needle -->
             <section id="projects">
-                <h2 class="section-title">Projects That Moved the Needle</h2>
+                <h2 class="section-title">How it plays out in practice</h2>
                 <p class="section-subtitle">
-                    Real impact stories from data consulting and operations management across distributed teams and complex technical environments.
-                </p>
-
+               Snapshots from real projects. What was broken, what we fixed, what improved.                </p>
                 <div class="project-card">
                     <div class="project-header">
-                        <h3 class="project-title">ARTMO Incident Optimization</h3>
+                        <h3 class="project-title">ARTMO Incident Optimization via Athena</h3>
                         <p class="project-summary">Athena SQL across S3 → −65% incident time</p>
                     </div>
                     <div class="project-details">
                         <div class="detail-section">
                             <div class="detail-label">Challenge</div>
                             <ul class="detail-list">
-                                <li>Incident resolution taking 3+ hours due to scattered telemetry data</li>
                                 <li>API failures hidden across multiple S3 buckets</li>
+                                <li>Inconsistent logging patterns across services made root cause unclear</li>
                                 <li>No unified view of system health</li>
                             </ul>
                         </div>
                         <div class="detail-section">
                             <div class="detail-label">Solution</div>
                             <ul class="detail-list">
-                                <li>Built AWS Athena SQL queries to surface API failures across S3</li>
-                                <li>Created automated alerting for critical patterns</li>
-                                <li>Established unified telemetry dashboard</li>
+                                <li>Established CloudWatch → S3 flow to collect structured log data.</li>
+                                <li>Queried S3 via Athena to extract actionable failure metrics.</li>
+                                <li>Built unified telemetry dashboard to visualize error trends and alert on anomalies.</li>
                             </ul>
                         </div>
                         <div class="detail-section">
                             <div class="detail-label">Result</div>
                             <ul class="detail-list">
                                 <li>65% reduction in incident resolution time</li>
-                                <li>Proactive issue detection before customer impact</li>
-                                <li>Engineering team empowered with self-service diagnostics</li>
+                                <li>Error pattern detection → easily surfaced recurring API or network failures.</li>
+                                <li>Faster diagnosis → engineers could pinpoint which endpoint, user, or timestamp caused the issue.</li>
                             </ul>
                         </div>
                     </div>
