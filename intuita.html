@@ -265,17 +265,20 @@
            margin: 0 auto;
            border-radius: 8px;
            opacity: 0.95;
-           transform: scale (1.10);
+           transform: scale(1.10);
+           transition: transform 0.3s ease;
 }
         .lightbox {
-display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+           display: none;
+           position: fixed;
+           inset: 0;
+           backdrop-filter: blur(10px); 
+          background: rgba(0, 0, 0, 0.4); 
+         justify-content: center;
+         z-index: 9999;
+         animation: fadeIn 0.3s ease;
 }
+    }
 .lightbox img {
   max-width: 90%;
   max-height: 90%;
@@ -1148,15 +1151,23 @@ display: none;
             });
         });
 
-function openLightbox(img) {
-  const lightbox = document.getElementById('lightbox');
+const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  lightboxImg.src = img.src;
-  lightbox.style.display = 'flex';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-}
+
+  function openLightbox(img) {
+    lightboxImg.src = img.src;
+    lightbox.style.display = 'flex';
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+  }
+
+  // Optional: close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
     </script>
 </body>
 </html>
