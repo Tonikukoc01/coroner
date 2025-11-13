@@ -704,113 +704,181 @@
         </div>       
 </section>
 
-            <!-- Section 2: Projects That Moved the Needle -->
-            <section id="projects">
-                <h2 class="section-title">How it plays out in practice</h2>
-                <p class="section-subtitle">
-               Snapshots from real projects. What was broken, what we fixed, what improved.                </p>
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">ARTMO Incident Optimization via Athena</h3>
-                        <p class="project-summary">Athena SQL across S3 → −65% incident time</p>
-                    </div>
-                    <div class="project-details">
-                        <div class="detail-section">
-                            <div class="detail-label">Challenge</div>
-                            <ul class="detail-list">
-                                <li>API failures hidden across multiple S3 buckets</li>
-                                <li>Inconsistent logging patterns across services made root cause unclear</li>
-                                <li>No unified view of system health</li>
-                            </ul>
-                        </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Solution</div>
-                            <ul class="detail-list">
-                                <li>Established CloudWatch → S3 flow to collect structured log data.</li>
-                                <li>Queried S3 via Athena to extract actionable failure metrics.</li>
-                                <li>Built unified telemetry dashboard to visualize error trends and alert on anomalies.</li>
-                            </ul>
-                        </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Result</div>
-                            <ul class="detail-list">
-                                <li>65% reduction in incident resolution time</li>
-                                <li>Error pattern detection → easily surfaced recurring API or network failures.</li>
-                                <li>Faster diagnosis → engineers could pinpoint which endpoint, user, or timestamp caused the issue.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="wireframe">Dashboard visualization placeholder: Incident timeline & resolution metrics</div>
-                </div>
+<!-- Section 2: Projects That Moved the Needle -->
+<section id="projects">
+    <h2 class="section-title">How it plays out in practice</h2>
+    <p class="section-subtitle">
+        Snapshots from real projects. What was broken, what we fixed, what improved.
+    </p>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Monetization Funnel Analytics</h3>
-                        <p class="project-summary">GA4 + BigQuery + Power BI → +25% conversions</p>
-                    </div>
-                    <div class="project-details">
-                        <div class="detail-section">
-                            <div class="detail-label">Challenge</div>
-                            <ul class="detail-list">
-                                <li>Premium subscription funnel showing high drop-off rates</li>
-                                <li>Limited visibility into user behavior patterns</li>
-                                <li>Marketing team making decisions without data backing</li>
-                            </ul>
-                        </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Solution</div>
-                            <ul class="detail-list">
-                                <li>Integrated GA4 event tracking with BigQuery data warehouse</li>
-                                <li>Built Power BI dashboards for funnel analysis</li>
-                                <li>Identified friction points through cohort analysis</li>
-                            </ul>
-                        </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Result</div>
-                            <ul class="detail-list">
-                                <li>25% uplift in premium conversions</li>
-                                <li>Data-driven product improvements implemented</li>
-                                <li>Marketing ROI visibility across all channels</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="wireframe">Chart placeholder: Conversion funnel stages & drop-off analysis</div>
-                </div>
+    <!-- Project 1: ARTMO Incident Optimization -->
+    <div class="project-card">
+        <div class="project-header">
+            <h3 class="project-title">ARTMO Incident Optimization via Athena</h3>
+            <p class="project-summary">Athena SQL across S3 → −65% incident time</p>
+        </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Vannes IT Services Dashboards</h3>
-                        <p class="project-summary">Supabase + PostgreSQL → live SME insights</p>
-                    </div>
-                    <div class="project-details">
-                        <div class="detail-section">
-                            <div class="detail-label">Challenge</div>
-                            <ul class="detail-list">
-                                <li>Small business clients needed affordable analytics</li>
-                                <li>Data scattered across Stripe, PayPal, and spreadsheets</li>
-                                <li>No real-time view of business health</li>
-                            </ul>
-                        </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Solution</div>
-                            <ul class="detail-list">
-                                <li>Built Supabase backend with RLS-secured APIs</li>
-                                <li>Consolidated payment and product data into PostgreSQL</li>
-                                <li>Created lightweight, real-time dashboards</li>
-                            </ul>
-                        </div>
-                        <div class="detail-section">
-                            <div class="detail-label">Result</div>
-                            <ul class="detail-list">
-                                <li>€25k+ annual revenue from consultancy</li>
-                                <li>Clients gained visibility into sales, marketing, and ops</li>
-                                <li>Scalable solution for SME data needs</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="wireframe">Metric summary placeholder: Revenue, customers, growth indicators</div>
-                </div>
-            </section>
+        <div class="project-details">
+            <div class="detail-section">
+                <div class="detail-label">Challenge</div>
+                <ul class="detail-list">
+                    <li>API failures hidden across multiple S3 buckets</li>
+                    <li>Inconsistent logging patterns across services made root cause unclear</li>
+                    <li>No unified view of system health</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Solution</div>
+                <ul class="detail-list">
+                    <li>Established CloudWatch → S3 flow to collect structured log data.</li>
+                    <li>Queried S3 via Athena to extract actionable failure metrics.</li>
+                    <li>Built unified telemetry dashboard to visualize error trends and alert on anomalies.</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Result</div>
+                <ul class="detail-list">
+                    <li>65% reduction in incident resolution time</li>
+                    <li>Error pattern detection → surfaced recurring API or network failures</li>
+                    <li>Faster diagnosis → pinpointed which endpoint, user, or timestamp caused the issue</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wireframe">
+            <img 
+                src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/Screenshot.png"
+                alt="Athena incident dashboard"
+                style="max-width:100%; height:auto; border-radius:8px; opacity:0.95;"
+            >
+        </div>
+    </div>
+
+    <!-- Project 2: GA4 Funnel Analytics -->
+    <div class="project-card">
+        <div class="project-header">
+            <h3 class="project-title">Monetization Funnel Analytics</h3>
+            <p class="project-summary">GA4 + BigQuery + Power BI → +25% conversions</p>
+        </div>
+
+        <div class="project-details">
+            <div class="detail-section">
+                <div class="detail-label">Challenge</div>
+                <ul class="detail-list">
+                    <li>Premium subscription funnel showing high drop-off rates</li>
+                    <li>Limited visibility into user behavior patterns</li>
+                    <li>Marketing team making decisions without data backing</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Solution</div>
+                <ul class="detail-list">
+                    <li>Integrated GA4 event tracking with BigQuery data warehouse</li>
+                    <li>Built Power BI dashboards for funnel analysis</li>
+                    <li>Identified friction points through cohort analysis</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Result</div>
+                <ul class="detail-list">
+                    <li>25% uplift in premium conversions</li>
+                    <li>Data-driven product improvements implemented</li>
+                    <li>Marketing ROI visibility across all channels</li>
+                </ul>
+            </div>
+        </div>
+        <!-- GA4 wireframe removed -->
+    </div>
+
+    <!-- NEW Project 3: Financial Consolidation -->
+    <div class="project-card">
+        <div class="project-header">
+            <h3 class="project-title">Financial Consolidation for VAT & Shareholder Reporting</h3>
+            <p class="project-summary">Stripe + PayPal + GPay + Apple Pay → unified tax-ready dataset</p>
+        </div>
+
+        <div class="project-details">
+            <div class="detail-section">
+                <div class="detail-label">Challenge</div>
+                <ul class="detail-list">
+                    <li>Payment data scattered across Stripe, PayPal, Google Pay, and Apple Pay</li>
+                    <li>12 quarterly reports with inconsistent formats</li>
+                    <li>VAT return preparation required manual correction each quarter</li>
+                    <li>Shareholder reporting needed structured financial breakdowns</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Solution</div>
+                <ul class="detail-list">
+                    <li>Extracted & normalized all transaction exports</li>
+                    <li>Used SQL + Excel automation to join and categorize financial data</li>
+                    <li>Delivered unified quarterly & monthly reporting templates</li>
+                    <li>Provided tax-office-ready VAT breakdowns</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Result</div>
+                <ul class="detail-list">
+                    <li>Saved significant administrative cost for the tax office process</li>
+                    <li>Reduced shareholder reporting time</li>
+                    <li>Consistent, repeatable financial reporting pipeline</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wireframe">
+            Consolidated transactions → VAT-ready quarterly reporting.
+        </div>
+    </div>
+
+    <!-- Project 4: Vannes IT Dashboards -->
+    <div class="project-card">
+        <div class="project-header">
+            <h3 class="project-title">Vannes IT Services Dashboards</h3>
+            <p class="project-summary">Supabase + PostgreSQL → live SME insights</p>
+        </div>
+
+        <div class="project-details">
+            <div class="detail-section">
+                <div class="detail-label">Challenge</div>
+                <ul class="detail-list">
+                    <li>Small business clients needed affordable analytics</li>
+                    <li>Data scattered across Stripe, PayPal, and spreadsheets</li>
+                    <li>No real-time view of business health</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Solution</div>
+                <ul class="detail-list">
+                    <li>Built Supabase backend with RLS-secured APIs</li>
+                    <li>Consolidated payment and product data into PostgreSQL</li>
+                    <li>Created lightweight, real-time dashboards</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="detail-label">Result</div>
+                <ul class="detail-list">
+                    <li>€25k+ annual revenue from consultancy</li>
+                    <li>Clients gained visibility into sales, marketing, and ops</li>
+                    <li>Scalable solution for SME data needs</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wireframe">
+            Metric summary placeholder: Revenue, customers, growth indicators
+        </div>
+    </div>
+</section>
+
 
             <!-- Section 3: Turning data into decisions -->
             <section id="problem-solving">
