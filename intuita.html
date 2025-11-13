@@ -1523,12 +1523,25 @@ I try to extract what matters from data and turn it into guidance for decisions.
 window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     const body = document.body;
+    const toc = document.querySelector('.toc');
+    
+    // Hide TOC initially
+    if (toc) toc.style.opacity = '0';
+    
     setTimeout(() => {
         preloader.classList.add('hidden');
         body.classList.remove('loading');
+        
+        // Show TOC
+        if (toc) {
+            toc.style.transition = 'opacity 0.6s ease';
+            toc.style.opacity = '1';
+        }
+        
         // Force first section visible immediately
         const firstSection = document.querySelector('section');
         if (firstSection) firstSection.classList.add('visible');
+        
         // NOW start observing
         startSectionObserver();
         // Initialize TOC after preloader
