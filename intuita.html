@@ -1081,7 +1081,6 @@ footer {
     src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/Third%20image..png"
     alt="VAT reporting visualization"
     style="max-width:100%; height:auto; border-radius:8px; opacity:0.95;"
-  class="wireframe-image"
   >
 </div>
 
@@ -1525,14 +1524,20 @@ footer {
 
     <script>
         // Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.querySelector('.preloader');
-            const body = document.body;
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-                body.classList.remove('loading');
-            }, 2000);
-        });
+       window.addEventListener('load', () => {
+    const preloader = document.querySelector('.preloader');
+    const body = document.body;
+
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        body.classList.remove('loading');
+
+        // 🔥 FIX: Make sure the first section is visible immediately
+        const firstSection = document.querySelector('section');
+        if (firstSection) firstSection.classList.add('visible');
+
+    }, 2000);
+});
 
         // Scroll-triggered animations
         const observerOptions = {
@@ -1544,6 +1549,7 @@ footer {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    
                 }
             });
         }, observerOptions);
