@@ -1528,10 +1528,6 @@ I try to extract what matters from data and turn it into guidance for decisions.
         preloader.classList.add('hidden');
         body.classList.remove('loading');
 
-        // Force first section visible immediately
-        const firstSection = document.querySelector('section');
-        if (firstSection) firstSection.classList.add('visible');
-
         // NOW start observing
         startSectionObserver();
 
