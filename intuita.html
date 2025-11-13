@@ -965,8 +965,8 @@ I try to extract what matters from data and turn it into guidance for decisions.
             <div class="detail-section">
                 <div class="detail-label">Challenge</div>
                 <ul class="detail-list">
-                    <li>API failures hidden across multiple S3 buckets</li>
-                    <li>Inconsistent logging patterns across services made root cause unclear</li>
+                    <li>API failures scattered across multiple S3 buckets</li>
+                    <li>Needed a way to check user IP patterns to distinguish normal traffic from potential attacks</li>
                     <li>No unified view of system health</li>
                 </ul>
             </div>
@@ -984,7 +984,7 @@ I try to extract what matters from data and turn it into guidance for decisions.
                 <div class="detail-label">Result</div>
                 <ul class="detail-list">
                     <li>65% reduction in incident resolution time</li>
-                    <li>Error pattern detection → surfaced recurring API or network failures</li>
+                    <li>Added IP aggregation to identify suspicious clusters, spikes, or repeated offenders</li>
                     <li>Faster diagnosis → pinpointed which endpoint, user, or timestamp caused the issue</li>
                 </ul>
             </div>
@@ -1008,7 +1008,7 @@ I try to extract what matters from data and turn it into guidance for decisions.
 
         <div class="project-details">
             <div class="detail-section">
-                <div class="detail-label">Challenge</div>
+                <div class="detail-label">Challenge(s)</div>
                 <ul class="detail-list">
                     <li>Premium subscription funnel showing high drop-off rates</li>
                     <li>Limited visibility into user behavior patterns</li>
@@ -1019,7 +1019,7 @@ I try to extract what matters from data and turn it into guidance for decisions.
             <div class="detail-section">
                 <div class="detail-label">Solution</div>
                 <ul class="detail-list">
-                    <li>Integrated GA4 event tracking with BigQuery data warehouse</li>
+                    <li>Integrated data from multiple sources into BigQuery for unified analysis.</li>
                     <li>Built Power BI dashboards for funnel analysis</li>
                     <li>Identified friction points through cohort analysis</li>
                 </ul>
@@ -1041,17 +1041,17 @@ I try to extract what matters from data and turn it into guidance for decisions.
     <div class="project-card">
         <div class="project-header">
             <h3 class="project-title">Financial Consolidation for VAT & Shareholder Reporting</h3>
-            <p class="project-summary">Stripe + PayPal + GPay + Apple Pay → unified tax-ready dataset</p>
+            <p class="project-summary">Stripe + PayPal→ unified tax-ready dataset</p>
         </div>
 
         <div class="project-details">
             <div class="detail-section">
                 <div class="detail-label">Challenge</div>
                 <ul class="detail-list">
-                    <li>Payment data scattered across Stripe, PayPal, Google Pay, and Apple Pay</li>
-                    <li>12 quarterly reports with inconsistent formats</li>
-                    <li>VAT return preparation required manual correction each quarter</li>
-                    <li>Shareholder reporting needed structured financial breakdowns</li>
+                    <li>Payment data scattered across Stripe (Google Pay, and Apple Pay) & PayPal across </li>
+                    <li> Mandatory quarterly financial reports to shareholders</li>
+                    <li>VAT return preparation required manual correction</li>
+                    <li>TAX datasets required heavy enrichment of Stripe and PayPal data.”</li>
                 </ul>
             </div>
 
@@ -1059,7 +1059,7 @@ I try to extract what matters from data and turn it into guidance for decisions.
                 <div class="detail-label">Solution</div>
                 <ul class="detail-list">
                     <li>Extracted & normalized all transaction exports</li>
-                    <li>Used SQL + Excel automation to join and categorize financial data</li>
+                    <li>Used SQL + Excel to join and categorize financial data</li>
                     <li>Delivered unified quarterly & monthly reporting templates</li>
                     <li>Provided tax-office-ready VAT breakdowns</li>
                 </ul>
@@ -1088,26 +1088,26 @@ I try to extract what matters from data and turn it into guidance for decisions.
     <!-- Project 4: Vannes IT Dashboards -->
     <div class="project-card">
         <div class="project-header">
-            <h3 class="project-title">Vannes IT Services Dashboards</h3>
-            <p class="project-summary">Supabase + PostgreSQL → live SME insights</p>
+            <h3 class="project-title">Entreprenurial stuff - Vannes IT</h3>
+            <p class="project-summary">Delivered analytics work through my own company.</p>
         </div>
 
         <div class="project-details">
             <div class="detail-section">
-                <div class="detail-label">Challenge</div>
+                <div class="detail-label">Type of clients</div>
                 <ul class="detail-list">
-                    <li>Small business clients needed affordable analytics</li>
-                    <li>Data scattered across Stripe, PayPal, and spreadsheets</li>
-                    <li>No real-time view of business health</li>
+                    <li>Clients needing improvement check-ups of their cloud architecture</li>
+                    <li>Teams needing an operations interim person to keep things running</li>
+                    <li>Small businesses wanting analytics dashboards “vibecoded” into clear insights</li>
                 </ul>
             </div>
 
             <div class="detail-section">
-                <div class="detail-label">Solution</div>
+                <div class="detail-label">Some solution</div>
                 <ul class="detail-list">
                     <li>Built Supabase backend with RLS-secured APIs</li>
                     <li>Consolidated payment and product data into PostgreSQL</li>
-                    <li>Created lightweight, real-time dashboards</li>
+                    <li>Built clear analytics dashboards to surface daily business insights</li>
                 </ul>
             </div>
 
@@ -1115,7 +1115,7 @@ I try to extract what matters from data and turn it into guidance for decisions.
                 <div class="detail-label">Result</div>
                 <ul class="detail-list">
                     <li>€25k+ annual revenue from consultancy</li>
-                    <li>Clients gained visibility into sales, marketing, and ops</li>
+                    <li>Improved clarity in sales, marketing, and operations for small businesses</li>
                     <li>Scalable solution for SME data needs</li>
                 </ul>
             </div>
@@ -1399,7 +1399,7 @@ I try to extract what matters from data and turn it into guidance for decisions.
   <h2 class="section-title">Bonus for Intuita – AI Clients?</h2>
 
   <p class="section-subtitle">
-    I believe this is a new type of market — here’s where I can add value.
+    I believe this is a new type of market. Here’s where I can add value.
   </p>
 
   <div class="project-card">
@@ -1460,10 +1460,9 @@ I try to extract what matters from data and turn it into guidance for decisions.
         alt="AWS Logo"
         style="width:48px; height:48px; opacity:1; filter:invert(1);"
       >
-      <strong>Currently pursuing AWS Certified Machine Learning – Specialty</strong>
+      <strong>Currently pursuing AWS Certified Machine Learning – Associate</strong>
       Strengthening theoretical understanding to deliver production-ready, cloud-native AI systems.
       <br>
-      LLM-assisted monitoring → Faster diagnostics → More stable data pipelines
     </div>
   </div>
 </section>
@@ -1473,11 +1472,9 @@ I try to extract what matters from data and turn it into guidance for decisions.
             <section id="closing">
                 <h2 class="section-title">Closing & Contact</h2>
                 <p class="section-subtitle">
-                    I'm aligned with Intuita's values of clarity, partnership, and reliability. Let's turn complex data challenges into competitive advantages together.
-                </p>
+                    I believe I'am aligned with Intuita's values of clarity, partnership, and reliability. Thanks for taking time and reading into this.
                 <div class="cta-box">
                     <p>
-                        Ready to explore more impact stories and detailed case studies?<br>
                         Visit my full portfolio for deeper dives into technical implementations and business outcomes.
                     </p>
                     <a href="https://tonikukoc.me/value-delivered" class="cta-link" target="_blank">
