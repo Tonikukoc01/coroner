@@ -1524,7 +1524,7 @@ footer {
 
     <script>
         // Preloader
-       window.addEventListener('load', () => {
+     window.addEventListener('load', () => {
     const preloader = document.querySelector('.preloader');
     const body = document.body;
 
@@ -1532,12 +1532,34 @@ footer {
         preloader.classList.add('hidden');
         body.classList.remove('loading');
 
-        // 🔥 FIX: Make sure the first section is visible immediately
+        // Force first section visible immediately
         const firstSection = document.querySelector('section');
         if (firstSection) firstSection.classList.add('visible');
 
+        // NOW start observing
+        startSectionObserver();
+
     }, 2000);
 });
+
+function startSectionObserver() {
+    const observerOptions = {
+        threshold: 0.1,              // safer
+        rootMargin: '0px 0px -20px'  // less aggressive
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('section').forEach(section => {
+        sectionObserver.observe(section);
+    });
+}
 
         // Scroll-triggered animations
         const observerOptions = {
