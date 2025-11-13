@@ -269,39 +269,6 @@ section.visible {
     transition: transform 0.3s ease;
 }
 
-        /* LIGHTBOX */
-.lightbox-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.lightbox-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.lightbox-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
-    transform: scale(1);
-    transition: transform 0.3s ease;
-}
-
-.lightbox-overlay.active img {
-    transform: scale(2);
-}
-
-
 /* Project Cards */
 .project-card {
     background: var(--card-bg);
@@ -976,10 +943,8 @@ footer {
               src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/ambacia/First-image%20(1).png"
               alt="Data journey from raw to decision"
               class="wireframe-image"
+              onclick="openLightbox(this)"
               >
-    <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="">
-</div>
         </div>       
 </section>
 
@@ -1643,19 +1608,6 @@ footer {
                 }
             });
         });
-
-        function openLightbox(img) {
-    const overlay = document.getElementById("lightbox");
-    const lightImg = document.getElementById("lightbox-img");
-
-    lightImg.src = img.src;
-    overlay.classList.add("active");
-}
-
-function closeLightbox() {
-    const overlay = document.getElementById("lightbox");
-    overlay.classList.remove("active");
-}
     </script>
 </body>
 </html>
