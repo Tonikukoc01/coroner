@@ -672,21 +672,27 @@ footer {
         font-size: 1rem;
     }
 
+    .preloader {
+        transform: translateY(0); 
+    }
     .preloader-visuals {
         flex-direction: column;
         gap: 1.5rem;
+        margin-right: 0; 
     }
-
     .logo-image {
         width: 70px;
     }
-
     .preloader-title {
         font-size: 1rem;
     }
-
     .preloader-symbol {
         font-size: 2rem;
+        margin-top: 10px;
+    }
+    .preloader-spinner {
+        width: 56px;
+        height: 56px;
     }
 
     .section-title {
@@ -740,9 +746,32 @@ footer {
 
 /* Mobile portrait */
 @media (max-width: 640px) {
+
+    .preloader {
+        gap: 1.2rem;
+    }
+    .preloader-visuals {
+        gap: 1.2rem;
+    }
+    .logo-image {
+        width: 60px;
+    }
+    .preloader-title {
+        font-size: 0.95rem;
+    }
+    .preloader-symbol {
+        font-size: 1.8rem;
+        margin-top: 8px;
+    }
+    .preloader-spinner {
+        width: 50px;
+        height: 50px;
+    }
+    
     header {
         padding: 4rem 1rem 3rem;
     }
+
 
     main {
         padding: 2rem 1rem;
@@ -864,6 +893,22 @@ footer {
         font-size: 0.9rem;
     }
 
+    .preloader {
+        gap: 1.2rem;
+    }
+    .preloader-visuals {
+        gap: 1.2rem;
+    }
+    .logo-image {
+        width: 60px;
+    }
+    .preloader-title {
+        font-size: 0.95rem;
+    }
+    .preloader-symbol {
+        font-size: 1.8rem;
+        margin-top: 8px;
+    }
     .preloader-spinner {
         width: 50px;
         height: 50px;
@@ -893,14 +938,25 @@ footer {
         padding: 3rem 1.5rem 2rem;
     }
 
+     .preloader {
+        gap: 1rem;
+        transform: translateY(0);
+    }
     .preloader-visuals {
         flex-direction: row;
         gap: 2rem;
+        margin-right: 1rem;
     }
-
     .preloader-spinner {
         width: 50px;
         height: 50px;
+    }
+    .preloader-title {
+        font-size: 0.9rem;
+    }
+    .preloader-symbol {
+        font-size: 1.6rem;
+        margin-top: 5px;
     }
 }
     </style>
