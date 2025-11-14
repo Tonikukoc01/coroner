@@ -673,16 +673,19 @@ footer {
     }
 
   .preloader {
-        transform: translateY(0); /* Center vertically */
+        transform: translate(0, 0);
         gap: 1.5rem;
+        padding: 0;
     }
     .preloader-visuals {
         flex-direction: row; /* Keep them horizontal! */
         gap: 1.5rem;
         margin-right: 0;
+        margin: 0;
     }
     .logo-image {
         width: 70px;
+        transform: translateY(0); 
     }
     .preloader-title {
         font-size: 1rem;
@@ -900,9 +903,11 @@ footer {
     .preloader-visuals {
         flex-direction: row; 
         gap: 1.2rem;
+        margin: 0;
     }
     .logo-image {
         width: 60px;
+        transform: translateY(0);
     }
     .preloader-title {
         font-size: 0.95rem;
