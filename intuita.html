@@ -672,13 +672,14 @@ footer {
         font-size: 1rem;
     }
 
-    .preloader {
-        transform: translateY(0); 
+  .preloader {
+        transform: translateY(0); /* Center vertically */
+        gap: 1.5rem;
     }
     .preloader-visuals {
-        flex-direction: column;
+        flex-direction: row; /* Keep them horizontal! */
         gap: 1.5rem;
-        margin-right: 0; 
+        margin-right: 0;
     }
     .logo-image {
         width: 70px;
@@ -694,7 +695,7 @@ footer {
         width: 56px;
         height: 56px;
     }
-
+    
     .section-title {
         font-size: clamp(1.6rem, 5vw, 2rem);
     }
@@ -897,6 +898,7 @@ footer {
         gap: 1.2rem;
     }
     .preloader-visuals {
+        flex-direction: row; 
         gap: 1.2rem;
     }
     .logo-image {
