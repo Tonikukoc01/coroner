@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Timeline</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/skema-pro-display');
+        
+        :root {
+            --bg-color: #1A2B3C;
+            --accent-color: #4A6D8C;
+            --text-light: #F0F4F8;
+            --text-muted: #B0B8C1;
+            --gold-accent: #E4C178;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SkemaProDisplay', sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgba(74, 109, 140, 0.25), transparent 35%),
+                        radial-gradient(circle at 88% 8%, rgba(228, 193, 120, 0.12), transparent 42%),
+                        #1A2B3C;
+            color: var(--text-light);
+            overflow-x: hidden;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .timeline-header h1 {
+            font-size: 3.5rem;
+            font-weight: 200;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-header p {
+            font-size: 1.2rem;
+            font-weight: 100;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .snake-path {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snake-path path {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 3;
+            transition: all 0.5s ease;
+        }
+
+        .snake-path path.glow {
+            filter: drop-shadow(0 0 8px rgba(228, 193, 120, 0.6));
+            stroke: rgba(228, 193, 120, 0.4);
+        }
+
+        .timeline-events {
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-event.left {
+            margin-left: 5%;
+            margin-right: 55%;
+        }
+
+        .timeline-event.right {
+            margin-left: 55%;
+            margin-right: 5%;
+        }
+
+        .event-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gold-accent);
+            border: 3px solid var(--bg-color);
+            border-radius: 50%;
+            z-index: 3;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-event.left .event-dot {
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-event.right .event-dot {
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(228, 193, 120, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(228, 193, 120, 0);
+            }
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .event-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--gold-accent);
+            box-shadow: 0 8px 32px rgba(228, 193, 120, 0.2);
+        }
+
+        .event-card:hover + .event-dot {
+            transform: translateY(-50%) scale(1.3);
+            box-shadow: 0 0 20px var(--gold-accent);
+        }
+
+        .event-date {
+            font-size: 0.9rem;
+            font-weight: 100;
+            color: var(--gold-accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: 200;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .event-preview {
+            font-size: 1rem;
+            font-weight: 100;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .event-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 0;
+        }
+
+        .event-card.expanded .event-details {
+            max-height: 1000px;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .event-details p {
+            font-size: 1rem;
+            font-weight: 100;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .event-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .event-details li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .event-details li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--gold-accent);
+        }
+
+        .expand-indicator {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--gold-accent);
+            transition: transform 0.3s ease;
+        }
+
+        .event-card.expanded .expand-indicator {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-event.left,
+            .timeline-event.right {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+
+            .timeline-event.left .event-dot,
+            .timeline-event.right .event-dot {
+                left: -30px;
+                right: auto;
+            }
+
+            .timeline-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline-header">
+        <h1>My Journey</h1>
+        <p>A winding path through time</p>
+    </div>
+
+    <div class="timeline-container">
+        <svg class="snake-path" viewBox="0 0 1400 3000" preserveAspectRatio="none">
+            <path id="snakePath" d="M 100,100 Q 700,100 1300,300 T 100,700 Q 700,700 1300,1000 T 100,1400 Q 700,1400 1300,1700 T 100,2100 Q 700,2100 1300,2400 T 100,2800" />
+        </svg>
+
+        <div class="timeline-events">
+            <!-- Event 1 - Left -->
+            <div class="timeline-event left" data-index="0">
+                <div class="event-card">
+                    <div class="event-date">2010</div>
+                    <div class="event-title">The Beginning <span class="expand-indicator">▼</span></div>
+                    <div class="event-preview">Where it all started...</div>
+                    <div class="event-details">
+                        <p>This was the moment everything changed. I discovered my passion for creating and building things that matter.</p>
+                        <ul>
+                            <li>Started learning the fundamentals</li>
+                            <li>Built my first project</li>
+                            <li>Met incredible mentors</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-dot"></div>
+            </div>
+
+            <!-- Event 2 - Right -->
+            <div class="timeline-event right" data-index="1">
+                <div class="event-card">
+                    <div class="event-date">2013</div>
+                    <div class="event-title">First Major Achievement <span class="expand-indicator">▼</span></div>
+                    <div class="event-preview">Breaking through barriers...</div>
+                    <div class="event-details">
+                        <p>Completed my first significant milestone that proved I could turn ideas into reality.</p>
+                        <ul>
+                            <li>Launched my first major project</li>
+                            <li>Gained recognition in the community</li>
+                            <li>Learned valuable lessons about persistence</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-dot"></div>
+            </div>
+
+            <!-- Event 3 - Left -->
+            <div class="timeline-event left" data-index="2">
+                <div class="event-card">
+                    <div class="event-date">2016</div>
+                    <div class="event-title">Pivotal Transition <span class="expand-indicator">▼</span></div>
+                    <div class="event-preview">A new direction emerges...</div>
+                    <div class="event-details">
+                        <p>Made the bold decision to pivot and explore new horizons that would define my career.</p>
+                        <ul>
+                            <li>Embraced new technologies</li>
+                            <li>Took calculated risks</li>
+                            <li>Built a stronger foundation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-dot"></div>
+            </div>
+
+            <!-- Event 4 - Right -->
+            <div class="timeline-event right" data-index="3">
+                <div class="event-card">
+                    <div class="event-date">2019</div>
+                    <div class="event-title">Collaboration & Growth <span class="expand-indicator">▼</span></div>
+                    <div class="event-preview">Working with amazing people...</div>
+                    <div class="event-details">
+                        <p>Joined forces with talented individuals who pushed me to grow beyond my limits.</p>
+                        <ul>
+                            <li>Led innovative projects</li>
+                            <li>Mentored aspiring creators</li>
+                            <li>Expanded my skill set dramatically</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-dot"></div>
+            </div>
+
+            <!-- Event 5 - Left -->
+            <div class="timeline-event left" data-index="4">
+                <div class="event-card">
+                    <div class="event-date">2022</div>
+                    <div class="event-title">New Horizons <span class="expand-indicator">▼</span></div>
+                    <div class="event-preview">Exploring uncharted territory...</div>
+                    <div class="event-details">
+                        <p>Ventured into new domains that challenged everything I thought I knew.</p>
+                        <ul>
+                            <li>Explored emerging technologies</li>
+                            <li>Built cutting-edge solutions</li>
+                            <li>Established thought leadership</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-dot"></div>
+            </div>
+
+            <!-- Event 6 - Right -->
+            <div class="timeline-event right" data-index="5">
+                <div class="event-card">
+                    <div class="event-date">2024</div>
+                    <div class="event-title">Present Day <span class="expand-indicator">▼</span></div>
+                    <div class="event-preview">Where I am now...</div>
+                    <div class="event-details">
+                        <p>Continuing to push boundaries and create meaningful work that impacts lives.</p>
+                        <ul>
+                            <li>Building the future</li>
+                            <li>Sharing knowledge with the community</li>
+                            <li>Looking forward to what's next</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-event').forEach(event => {
+            observer.observe(event);
+        });
+
+        // Snake path glow effect on scroll
+        let ticking = false;
+        const snakePath = document.getElementById('snakePath');
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                    
+                    if (scrollPercent > 0.1) {
+                        snakePath.classList.add('glow');
+                    } else {
+                        snakePath.classList.remove('glow');
+                    }
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Click to expand events
+        document.querySelectorAll('.event-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const wasExpanded = card.classList.contains('expanded');
+                
+                // Close all other cards
+                document.querySelectorAll('.event-card').forEach(c => {
+                    c.classList.remove('expanded');
+                });
+                
+                // Toggle current card
+                if (!wasExpanded) {
+                    card.classList.add('expanded');
+                }
+            });
+        });
+
+        // Hover effect on dots
+        document.querySelectorAll('.event-card').forEach((card, index) => {
+            const dot = card.nextElementSibling;
+            
+            card.addEventListener('mouseenter', () => {
+                snakePath.classList.add('glow');
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                if (scrollPercent <= 0.1) {
+                    snakePath.classList.remove('glow');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
