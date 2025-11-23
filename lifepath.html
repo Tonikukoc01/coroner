@@ -34,14 +34,14 @@
 
         .timeline-header {
             text-align: center;
-            margin-bottom: 6rem;
+            margin-bottom: 4rem;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease forwards;
         }
 
         .timeline-header h1 {
-            font-size: 3.5rem;
+            font-size: 3.7rem;
             font-weight: 200;
             color: var(--text-light);
             margin-bottom: 1rem;
@@ -62,7 +62,7 @@
 
         .timeline-container {
             position: relative;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 0;
         }
@@ -79,14 +79,13 @@
 
         .snake-path path {
             fill: none;
-            stroke: rgba(255, 255, 255, 0.15);
-            stroke-width: 3;
-            transition: all 0.5s ease;
+            stroke: rgba(255, 255, 255, 0.2);
+            stroke-width: 2;
+            transition: stroke 0.3s ease;
         }
 
         .snake-path path.glow {
-            filter: drop-shadow(0 0 8px rgba(228, 193, 120, 0.6));
-            stroke: rgba(228, 193, 120, 0.4);
+            stroke: rgba(228, 193, 120, 0.3);
         }
 
         .timeline-events {
@@ -96,7 +95,7 @@
 
         .timeline-event {
             position: relative;
-            margin-bottom: 8rem;
+            margin-bottom: 3rem;
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -108,83 +107,113 @@
         }
 
         .timeline-event.left {
-            margin-left: 5%;
-            margin-right: 55%;
+            margin-left: 8%;
+            margin-right: 52%;
         }
 
         .timeline-event.right {
-            margin-left: 55%;
-            margin-right: 5%;
+            margin-left: 52%;
+            margin-right: 8%;
         }
 
         .event-dot {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--gold-accent);
-            border: 3px solid var(--bg-color);
+            width: 16px;
+            height: 16px;
+            background: var(--accent-color);
+            border: 2px solid var(--bg-color);
             border-radius: 50%;
             z-index: 3;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
         }
 
         .timeline-event.left .event-dot {
-            right: -50px;
-            top: 50%;
-            transform: translateY(-50%);
+            right: -40px;
+            top: 1rem;
         }
 
         .timeline-event.right .event-dot {
-            left: -50px;
-            top: 50%;
-            transform: translateY(-50%);
+            left: -40px;
+            top: 1rem;
         }
 
-        @keyframes pulse {
+        .event-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--accent-color);
+            opacity: 0;
+            animation: subtlePulse 3s infinite;
+        }
+
+        @keyframes subtlePulse {
             0%, 100% {
-                box-shadow: 0 0 0 0 rgba(228, 193, 120, 0.7);
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
             }
             50% {
-                box-shadow: 0 0 0 15px rgba(228, 193, 120, 0);
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(2);
             }
         }
 
+        /* Compact default card */
         .event-card {
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+            max-height: 120px;
+            overflow: hidden;
         }
 
         .event-card:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             background: rgba(255, 255, 255, 0.05);
-            border-color: var(--gold-accent);
-            box-shadow: 0 8px 32px rgba(228, 193, 120, 0.2);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            max-height: 120px;
         }
 
-        .event-card:hover + .event-dot {
-            transform: translateY(-50%) scale(1.3);
-            box-shadow: 0 0 20px var(--gold-accent);
+        /* Expanded card on click */
+        .event-card.expanded {
+            max-height: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-card.expanded:hover {
+            max-height: 800px;
+        }
+
+        .event-card:hover + .event-dot,
+        .event-card.expanded + .event-dot {
+            background: var(--gold-accent);
+            transform: scale(1.2);
         }
 
         .event-date {
             font-size: 0.9rem;
             font-weight: 100;
-            color: var(--gold-accent);
+            opacity: 0.7;
             margin-bottom: 0.5rem;
-            letter-spacing: 1px;
+            color: var(--text-light);
         }
 
         .event-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 200;
             color: var(--text-light);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .event-preview {
@@ -192,19 +221,31 @@
             font-weight: 100;
             color: var(--text-muted);
             line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .event-card.expanded .event-preview {
+            display: block;
+            -webkit-line-clamp: unset;
+            margin-bottom: 1rem;
         }
 
         .event-details {
+            opacity: 0;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: 0;
         }
 
         .event-card.expanded .event-details {
-            max-height: 1000px;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
+            opacity: 1;
+            max-height: 600px;
+            margin-top: 1rem;
+            padding-top: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
@@ -227,20 +268,21 @@
             margin-bottom: 0.5rem;
             padding-left: 1.5rem;
             position: relative;
+            line-height: 1.6;
         }
 
         .event-details li::before {
-            content: "→";
+            content: "—";
             position: absolute;
             left: 0;
-            color: var(--gold-accent);
+            color: var(--accent-color);
         }
 
         .expand-indicator {
             display: inline-block;
             margin-left: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--gold-accent);
+            font-size: 0.7rem;
+            color: var(--text-muted);
             transition: transform 0.3s ease;
         }
 
@@ -251,8 +293,8 @@
         @media (max-width: 768px) {
             .timeline-event.left,
             .timeline-event.right {
-                margin-left: 5%;
-                margin-right: 5%;
+                margin-left: 8%;
+                margin-right: 8%;
             }
 
             .timeline-event.left .event-dot,
@@ -274,8 +316,8 @@
     </div>
 
     <div class="timeline-container">
-        <svg class="snake-path" viewBox="0 0 1400 3000" preserveAspectRatio="none">
-            <path id="snakePath" d="M 100,100 Q 700,100 1300,300 T 100,700 Q 700,700 1300,1000 T 100,1400 Q 700,1400 1300,1700 T 100,2100 Q 700,2100 1300,2400 T 100,2800" />
+        <svg class="snake-path" viewBox="0 0 1200 1800" preserveAspectRatio="none">
+            <path id="snakePath" d="M 100,80 C 100,80 400,80 600,120 C 800,160 1100,200 1100,200 C 1100,200 800,240 600,320 C 400,400 100,440 100,440 C 100,440 400,480 600,560 C 800,640 1100,680 1100,680 C 1100,680 800,720 600,800 C 400,880 100,920 100,920 C 100,920 400,960 600,1040 C 800,1120 1100,1160 1100,1160 C 1100,1160 800,1200 600,1280 C 400,1360 100,1400 100,1400" />
         </svg>
 
         <div class="timeline-events">
@@ -284,9 +326,9 @@
                 <div class="event-card">
                     <div class="event-date">2010</div>
                     <div class="event-title">The Beginning <span class="expand-indicator">▼</span></div>
-                    <div class="event-preview">Where it all started...</div>
+                    <div class="event-preview">Where it all started—discovering my passion for creating...</div>
                     <div class="event-details">
-                        <p>This was the moment everything changed. I discovered my passion for creating and building things that matter.</p>
+                        <p>This was the moment everything changed. I discovered my passion for creating and building things that matter, setting the foundation for everything that followed.</p>
                         <ul>
                             <li>Started learning the fundamentals</li>
                             <li>Built my first project</li>
@@ -302,9 +344,9 @@
                 <div class="event-card">
                     <div class="event-date">2013</div>
                     <div class="event-title">First Major Achievement <span class="expand-indicator">▼</span></div>
-                    <div class="event-preview">Breaking through barriers...</div>
+                    <div class="event-preview">Breaking through barriers and proving what's possible...</div>
                     <div class="event-details">
-                        <p>Completed my first significant milestone that proved I could turn ideas into reality.</p>
+                        <p>Completed my first significant milestone that proved I could turn ideas into reality. This achievement opened doors I never imagined.</p>
                         <ul>
                             <li>Launched my first major project</li>
                             <li>Gained recognition in the community</li>
@@ -320,9 +362,9 @@
                 <div class="event-card">
                     <div class="event-date">2016</div>
                     <div class="event-title">Pivotal Transition <span class="expand-indicator">▼</span></div>
-                    <div class="event-preview">A new direction emerges...</div>
+                    <div class="event-preview">A new direction emerges, reshaping my path forward...</div>
                     <div class="event-details">
-                        <p>Made the bold decision to pivot and explore new horizons that would define my career.</p>
+                        <p>Made the bold decision to pivot and explore new horizons that would define my career. Sometimes the best path forward isn't the one you planned.</p>
                         <ul>
                             <li>Embraced new technologies</li>
                             <li>Took calculated risks</li>
@@ -338,9 +380,9 @@
                 <div class="event-card">
                     <div class="event-date">2019</div>
                     <div class="event-title">Collaboration & Growth <span class="expand-indicator">▼</span></div>
-                    <div class="event-preview">Working with amazing people...</div>
+                    <div class="event-preview">Working with amazing people who challenged me...</div>
                     <div class="event-details">
-                        <p>Joined forces with talented individuals who pushed me to grow beyond my limits.</p>
+                        <p>Joined forces with talented individuals who pushed me to grow beyond my limits. Collaboration amplified what I could achieve alone.</p>
                         <ul>
                             <li>Led innovative projects</li>
                             <li>Mentored aspiring creators</li>
@@ -356,9 +398,9 @@
                 <div class="event-card">
                     <div class="event-date">2022</div>
                     <div class="event-title">New Horizons <span class="expand-indicator">▼</span></div>
-                    <div class="event-preview">Exploring uncharted territory...</div>
+                    <div class="event-preview">Exploring uncharted territory and pushing boundaries...</div>
                     <div class="event-details">
-                        <p>Ventured into new domains that challenged everything I thought I knew.</p>
+                        <p>Ventured into new domains that challenged everything I thought I knew. Growth happens at the edge of comfort.</p>
                         <ul>
                             <li>Explored emerging technologies</li>
                             <li>Built cutting-edge solutions</li>
@@ -374,9 +416,9 @@
                 <div class="event-card">
                     <div class="event-date">2024</div>
                     <div class="event-title">Present Day <span class="expand-indicator">▼</span></div>
-                    <div class="event-preview">Where I am now...</div>
+                    <div class="event-preview">Where I am now—building, creating, evolving...</div>
                     <div class="event-details">
-                        <p>Continuing to push boundaries and create meaningful work that impacts lives.</p>
+                        <p>Continuing to push boundaries and create meaningful work that impacts lives. The journey continues with new challenges ahead.</p>
                         <ul>
                             <li>Building the future</li>
                             <li>Sharing knowledge with the community</li>
@@ -392,8 +434,8 @@
     <script>
         // Scroll-triggered animations
         const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -408,7 +450,7 @@
             observer.observe(event);
         });
 
-        // Snake path glow effect on scroll
+        // Snake path subtle glow on scroll
         let ticking = false;
         const snakePath = document.getElementById('snakePath');
 
@@ -417,7 +459,7 @@
                 window.requestAnimationFrame(() => {
                     const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
                     
-                    if (scrollPercent > 0.1) {
+                    if (scrollPercent > 0.05) {
                         snakePath.classList.add('glow');
                     } else {
                         snakePath.classList.remove('glow');
@@ -431,7 +473,8 @@
 
         // Click to expand events
         document.querySelectorAll('.event-card').forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const wasExpanded = card.classList.contains('expanded');
                 
                 // Close all other cards
@@ -446,17 +489,24 @@
             });
         });
 
-        // Hover effect on dots
-        document.querySelectorAll('.event-card').forEach((card, index) => {
-            const dot = card.nextElementSibling;
-            
+        // Close expanded cards when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.event-card')) {
+                document.querySelectorAll('.event-card').forEach(c => {
+                    c.classList.remove('expanded');
+                });
+            }
+        });
+
+        // Subtle path glow on card hover
+        document.querySelectorAll('.event-card').forEach((card) => {
             card.addEventListener('mouseenter', () => {
                 snakePath.classList.add('glow');
             });
             
             card.addEventListener('mouseleave', () => {
                 const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-                if (scrollPercent <= 0.1) {
+                if (scrollPercent <= 0.05) {
                     snakePath.classList.remove('glow');
                 }
             });
