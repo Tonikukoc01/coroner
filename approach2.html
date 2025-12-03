@@ -1057,144 +1057,137 @@ body {
 
 /* New sections: opening hook, how I work, practice, why this works, CTA */
 
+/* New approach sections below hero */
+
 .opening-hook-section,
 .how-i-work-section,
 .practice-section,
 .why-this-works-section,
 .conversation-cta-section {
     background: #1A2B3C;
-    padding: 8rem 2rem;
+    /* override global .content-section height to avoid giant gaps */
+    min-height: auto;
+    padding: 6rem 2rem; /* smaller than before but still generous */
 }
 
-/* Override generic .section-content for these sections to keep them centered */
-.opening-hook-section .section-content,
-.how-i-work-section .section-content,
-.practice-section .section-content,
-.why-this-works-section .section-content,
-.conversation-cta-section .section-content {
+.opening-hook-content,
+.practice-content,
+.why-content,
+.conversation-cta-content {
     max-width: 800px;
     margin: 0 auto;
-    left: 0;
-    padding: 0;
-    text-align: center;
+}
+
+.how-i-work-content {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 /* Opening hook */
-.hook-paragraph {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-size: 1.2rem; /* ~19px */
-    line-height: 1.7;
-    color: #F0F4F8;
-    margin-bottom: 1.8rem;
+
+.opening-hook-heading {
+    margin-bottom: 1.75rem;
 }
 
-/* Shared centered heading */
-.section-heading-centered {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 400;
-    font-size: 2rem;
-    color: #F0F4F8;
+.opening-hook-line + .opening-hook-line {
+    margin-top: 1rem;
+}
+
+/* How I work */
+
+.how-i-work-heading {
     margin-bottom: 2.5rem;
 }
 
-/* "How I work" cards */
-.how-cards {
+.how-i-work-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .how-card {
-    background: rgba(10, 18, 28, 0.7);
-    border: 1px solid rgba(240, 244, 248, 0.08);
+    flex: 1 1 0;
+    min-width: 260px;
+    max-width: 340px;
+    padding: 2rem;
     border-radius: 12px;
-    padding: 2.5rem 2rem;
-    flex: 1 1 260px;
-    max-width: 360px;
-    text-align: left;
+    border: 1px solid rgba(240, 244, 248, 0.08);
+    background: rgba(15, 23, 42, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.how-card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1.2rem;
+.how-card-animation {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.25rem;
+}
+
+.how-card-animation lottie-player {
+    width: 100%;
+    height: 100%;
 }
 
 .how-card-title {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 400;
-    font-size: 1.3rem;
+    font-family: SkemaProDisplay;
+    font-size: 1.25rem;
+    font-weight: 200;
     color: #F0F4F8;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .how-card-text {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #B0B8C1;
+    font-size: 1.05rem;
 }
 
 /* Practice blocks */
-.practice-section .section-content {
-    max-width: 800px;
-}
 
-.practice-block {
-    text-align: left;
+.practice-heading {
     margin-bottom: 2.5rem;
 }
 
-.practice-title {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 400;
-    font-size: 1.25rem;
-    color: #F0F4F8;
-    margin-bottom: 0.7rem;
+.practice-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
-.practice-text {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #B0B8C1;
+.practice-block-title {
+    font-family: SkemaProDisplay;
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #F0F4F8;
+    margin-bottom: 0.5rem;
+}
+
+.practice-block-text {
+    font-size: 1.05rem;
 }
 
 /* Why this works */
+
 .why-quote {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 200;
-    font-size: 1.3rem; /* ~20–21px */
-    line-height: 1.8;
-    color: #F0F4F8;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* CTA section */
-.conversation-cta-section .section-content {
-    max-width: 900px;
-}
-
-.cta-subtext {
-    font-family: 'SkemaProDisplay', sans-serif;
-    font-weight: 100;
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.7;
-    color: #B0B8C1;
-    max-width: 640px;
-    margin: 1.2rem auto 0 auto;
 }
 
-.cta-buttons {
+/* Conversation CTA */
+
+.conversation-cta-heading {
+    margin-bottom: 1.5rem;
+}
+
+.conversation-cta-subtext {
+    font-size: 1.05rem;
+    margin-bottom: 2.5rem;
+}
+
+.conversation-cta-actions {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    margin-top: 2.5rem;
 }
 
 /* Mobile Responsive */
@@ -1533,36 +1526,32 @@ backdrop-filter: blur(5px); /* Add blur effect */
 
     }
 
-.opening-hook-section,
+    .opening-hook-section,
     .how-i-work-section,
     .practice-section,
     .why-this-works-section,
     .conversation-cta-section {
-        padding: 6rem 1.5rem;
+        padding: 4rem 1.5rem;
     }
 
-    .hook-paragraph {
-        font-size: 1.05rem;
-        text-align: left;
+    .how-i-work-grid {
+        flex-direction: column;
     }
 
     .how-card {
         max-width: 100%;
     }
 
-    .practice-block {
-        margin-bottom: 2rem;
+    .conversation-cta-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .why-quote {
-        font-size: 1.15rem;
-        text-align: left;
+    .conversation-cta-actions .collaboration-btn {
+        width: 100%;
+        max-width: none;
     }
-
-    .cta-subtext {
-        font-size: 0.95rem;
-    }
-
+    
 @media screen and (max-width: 480px) {
     #header h1 {
         font-size: 2.8rem;
@@ -1702,91 +1691,133 @@ footer {
 </div>
 
 <!-- Opening Hook Section -->
-<section id="opening-hook" class="section content-section opening-hook-section">
-    <div class="section-content animate-on-scroll">
-        <p class="hook-paragraph">
+<section id="approach-opening" class="content-section opening-hook-section">
+    <div class="section-content opening-hook-content">
+        <h1 class="about-header opening-hook-heading">
+            How I actually work with teams
+        </h1>
+        <p class="about-subheader opening-hook-line">
             You've probably worked with developers or agencies before. Maybe they were great at coding but terrible at communication. Or they understood your business but couldn't deliver on time.
         </p>
-        <p class="hook-paragraph">
+        <p class="about-subheader opening-hook-line">
             I built my approach differently: I'm technical enough to build it, business-minded enough to question it, and client-facing enough to explain it.
         </p>
     </div>
 </section>
 
-<!-- "How I Work" Section -->
-<section id="how-i-work" class="section content-section how-i-work-section">
-    <div class="section-content animate-on-scroll">
-        <h2 class="section-heading-centered">How I work</h2>
-        <div class="how-cards">
+<!-- How I Work Section -->
+<section id="how-i-work" class="content-section how-i-work-section">
+    <div class="section-content how-i-work-content">
+        <h1 class="about-header how-i-work-heading">
+            How I work
+        </h1>
+
+        <div class="how-i-work-grid">
+            <!-- Card 1 -->
             <div class="how-card">
-                <div class="how-card-icon">🔍</div>
+                <div class="how-card-animation">
+                    <lottie-player
+                        src="assets/optimization.json"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </lottie-player>
+                </div>
                 <h3 class="how-card-title">Understand the real problem first</h3>
-                <p class="how-card-text">
-                    Before touching any code or tool, I dig into what's actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most "tech problems" are actually communication or process issues in disguise.
+                <p class="about-subheader how-card-text">
+                    Before touching any code or tool, I dig into what's actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most “tech problems” are actually communication or process issues in disguise.
                 </p>
             </div>
+
+            <!-- Card 2 -->
             <div class="how-card">
-                <div class="how-card-icon">⚙️</div>
+                <div class="how-card-animation">
+                    <lottie-player
+                        src="assets/tailored.json"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </lottie-player>
+                </div>
                 <h3 class="how-card-title">Build only what moves the needle</h3>
-                <p class="how-card-text">
+                <p class="about-subheader how-card-text">
                     No over-engineering. No shiny tools for the sake of it. I implement solutions that solve your specific pain points, whether that is automating repetitive tasks, streamlining deployments, or setting up infrastructure that scales without ballooning costs.
                 </p>
             </div>
+
+            <!-- Card 3 -->
             <div class="how-card">
-                <div class="how-card-icon">💬</div>
+                <div class="how-card-animation">
+                    <lottie-player
+                        src="assets/scaling.json"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </lottie-player>
+                </div>
                 <h3 class="how-card-title">Stay close, stay clear</h3>
-                <p class="how-card-text">
-                    I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
+                <p class="about-subheader how-card-text">
+                    I do not disappear into “dev mode” for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
                 </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- "What This Looks Like in Practice" Section -->
-<section id="practice-examples" class="section content-section practice-section">
-    <div class="section-content animate-on-scroll">
-        <h2 class="section-heading-centered">What this looks like in practice</h2>
-        <div class="practice-block">
-            <h3 class="practice-title">For a startup</h3>
-            <p class="practice-text">
-                You need to ship fast without breaking things later. I will set up CI/CD, testing workflows, and monitoring so your team can move quickly with confidence.
-            </p>
-        </div>
-        <div class="practice-block">
-            <h3 class="practice-title">For a scaleup</h3>
-            <p class="practice-text">
-                Your systems are starting to creak under growth. I will audit your infrastructure, identify bottlenecks, and implement solutions that scale without requiring a full rebuild.
-            </p>
-        </div>
-        <div class="practice-block">
-            <h3 class="practice-title">For an agency</h3>
-            <p class="practice-text">
-                You are juggling multiple clients and need reliable, repeatable processes. I will standardize your deployments, automate the boring stuff, and create documentation so your team is not reinventing the wheel every project.
-            </p>
+<!-- What This Looks Like in Practice Section -->
+<section id="practice-examples" class="content-section practice-section">
+    <div class="section-content practice-content">
+        <h1 class="about-header practice-heading">
+            What this looks like in practice
+        </h1>
+
+        <div class="practice-blocks">
+            <div class="practice-block">
+                <h3 class="practice-block-title">For a startup</h3>
+                <p class="about-subheader practice-block-text">
+                    You need to ship fast without breaking things later. I will set up CI/CD, testing workflows, and monitoring so your team can move quickly with confidence.
+                </p>
+            </div>
+
+            <div class="practice-block">
+                <h3 class="practice-block-title">For a scaleup</h3>
+                <p class="about-subheader practice-block-text">
+                    Your systems are starting to creak under growth. I will audit your infrastructure, identify bottlenecks, and implement solutions that scale without requiring a full rebuild.
+                </p>
+            </div>
+
+            <div class="practice-block">
+                <h3 class="practice-block-title">For an agency</h3>
+                <p class="about-subheader practice-block-text">
+                    You are juggling multiple clients and need reliable, repeatable processes. I will standardize your deployments, automate the boring stuff, and create documentation so your team is not reinventing the wheel every project.
+                </p>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- "Why This Works" Section -->
-<section id="why-this-works" class="section content-section why-this-works-section">
-    <div class="section-content animate-on-scroll">
-        <p class="why-quote">
-            "I've worked with teams that were drowning in technical debt, agencies that could not scale, and startups that needed to move fast without burning out. The common thread? They needed someone who could translate between business goals and technical execution, and stick around to make sure it actually worked."
+<!-- Why This Works Section -->
+<section id="why-this-works" class="content-section why-this-works-section">
+    <div class="section-content why-content">
+        <p class="about-subheader why-quote">
+            I've worked with teams that were drowning in technical debt, agencies that could not scale, and startups that needed to move fast without burning out. The common thread? They needed someone who could translate between business goals and technical execution, and stick around to make sure it actually worked.
         </p>
     </div>
 </section>
 
-<!-- CTA Section -->
-<section id="conversation-cta" class="section content-section conversation-cta-section">
-    <div class="section-content animate-on-scroll">
-        <h2 class="section-heading-centered">
+<!-- CTA Section (Conversation) -->
+<section id="approach-cta" class="content-section conversation-cta-section">
+    <div class="section-content conversation-cta-content">
+        <h1 class="about-header conversation-cta-heading">
             Let's talk about what's slowing you down.
-        </h2>
-        <p class="cta-subtext">
+        </h1>
+        <p class="about-subheader conversation-cta-subtext">
             No sales pitch. Just a conversation about where you are stuck and whether I can help.
         </p>
-        <div class="cta-buttons">
+        <div class="conversation-cta-actions">
             <a href="/contact" class="collaboration-btn gradient-btn">
                 Book a call
             </a>
@@ -1796,6 +1827,9 @@ footer {
         </div>
     </div>
 </section>
+
+<section id="about" class="section content-section">
+    <div class="about-content">
 
 
 <section id="about" class="section content-section">
