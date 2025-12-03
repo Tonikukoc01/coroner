@@ -281,18 +281,20 @@ body {
     opacity: 0.7; /* Fade slightly */
 }
 
- .scroll-text {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: #F0F4F8; 
+.scroll-text {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 300;
+    font-size: 2.2rem;
+    color: #F0F4F8;
     letter-spacing: 0.1em;
+    animation: fadeIn 1s 1.4s forwards;
+    opacity: 0;
 }
 
 .scroll-text span {
     display: inline-block;
     animation: shake 2s ease-in-out infinite;
 }
-
 
 @keyframes fadeIn {
     from {
@@ -1062,20 +1064,18 @@ body {
 .opening-hook-section,
 .how-i-work-section,
 .practice-section,
-.why-this-works-section,
-.conversation-cta-section {
+.why-this-works-section {
     background: #1A2B3C;
-    /* override global .content-section height to avoid giant gaps */
     min-height: auto;
-    padding: 6rem 2rem; /* smaller than before but still generous */
+    padding: 4rem 2rem; /* Reduced from 6rem */
 }
 
 .opening-hook-content,
 .practice-content,
-.why-content,
-.conversation-cta-content {
+.why-content {
     max-width: 800px;
     margin: 0 auto;
+    text-align: center; /* Centered text */
 }
 
 .how-i-work-content {
@@ -1084,25 +1084,24 @@ body {
 }
 
 /* Opening hook */
-
 .opening-hook-heading {
-    margin-bottom: 1.75rem;
+    margin-bottom: 1.5rem; /* Reduced from 1.75rem */
 }
 
 .opening-hook-line + .opening-hook-line {
-    margin-top: 1rem;
+    margin-top: 0.75rem; /* Reduced from 1rem */
 }
 
 /* How I work */
-
 .how-i-work-heading {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem; /* Reduced from 2.5rem */
+    text-align: center;
 }
 
 .how-i-work-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 1.5rem; /* Reduced from 2rem */
     justify-content: space-between;
 }
 
@@ -1110,7 +1109,7 @@ body {
     flex: 1 1 0;
     min-width: 260px;
     max-width: 340px;
-    padding: 2rem;
+    padding: 1.75rem; /* Reduced from 2rem */
     border-radius: 12px;
     border: 1px solid rgba(240, 244, 248, 0.08);
     background: rgba(15, 23, 42, 0.3);
@@ -1120,9 +1119,9 @@ body {
 }
 
 .how-card-animation {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1.25rem;
+    width: 120px; /* Increased from 80px */
+    height: 120px; /* Increased from 80px */
+    margin-bottom: 1rem; /* Reduced from 1.25rem */
 }
 
 .how-card-animation lottie-player {
@@ -1135,7 +1134,7 @@ body {
     font-size: 1.25rem;
     font-weight: 200;
     color: #F0F4F8;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem; /* Reduced from 0.75rem */
 }
 
 .how-card-text {
@@ -1143,52 +1142,16 @@ body {
 }
 
 /* Practice blocks */
-
 .practice-heading {
-    margin-bottom: 2.5rem;
-}
-
-.practice-blocks {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.practice-block-title {
-    font-family: SkemaProDisplay;
-    font-size: 1.2rem;
-    font-weight: 200;
-    color: #F0F4F8;
-    margin-bottom: 0.5rem;
-}
-
-.practice-block-text {
-    font-size: 1.05rem;
+    margin-bottom: 2rem; /* Reduced from 2.5rem */
 }
 
 /* Why this works */
-
 .why-quote {
     font-size: 1.15rem;
     line-height: 1.7;
 }
 
-/* Conversation CTA */
-
-.conversation-cta-heading {
-    margin-bottom: 1.5rem;
-}
-
-.conversation-cta-subtext {
-    font-size: 1.05rem;
-    margin-bottom: 2.5rem;
-}
-
-.conversation-cta-actions {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
@@ -1526,32 +1489,37 @@ backdrop-filter: blur(5px); /* Add blur effect */
 
     }
 
-    .opening-hook-section,
+   .opening-hook-section,
     .how-i-work-section,
     .practice-section,
-    .why-this-works-section,
-    .conversation-cta-section {
-        padding: 4rem 1.5rem;
+    .why-this-works-section {
+        padding: 3rem 1.5rem; /* Reduced mobile padding */
+    }
+
+    .scroll-text {
+        font-size: 1.8rem; /* Adjusted for mobile */
     }
 
     .how-i-work-grid {
         flex-direction: column;
+        align-items: center;
     }
 
     .how-card {
         max-width: 100%;
     }
 
-    .conversation-cta-actions {
-        flex-direction: column;
-        align-items: stretch;
+    .how-card-animation {
+        width: 100px; /* Slightly smaller on mobile */
+        height: 100px;
     }
 
-    .conversation-cta-actions .collaboration-btn {
-        width: 100%;
-        max-width: none;
+    .opening-hook-heading,
+    .how-i-work-heading,
+    .practice-heading {
+        font-size: 2rem;
     }
-    
+ }   
 @media screen and (max-width: 480px) {
     #header h1 {
         font-size: 2.8rem;
@@ -1693,14 +1661,17 @@ footer {
 <!-- Opening Hook Section -->
 <section id="approach-opening" class="content-section opening-hook-section">
     <div class="section-content opening-hook-content">
-        <h1 class="about-header opening-hook-heading">
+        <h1 class="about-header opening-hook-heading" data-translate="approachOpeningHeading">
             How I actually work with teams
         </h1>
-        <p class="about-subheader opening-hook-line">
-            You've probably worked with developers or agencies before. Maybe they were great at coding but terrible at communication. Or they understood your business but couldn't deliver on time.
+        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine1">
+            You're at that point where the workload is stacking up, the team needs to grow, and people operations are starting to slow everything down. You need someone who can bridge business, operations, and tech without adding complexity.
         </p>
-        <p class="about-subheader opening-hook-line">
-            I built my approach differently: I'm technical enough to build it, business-minded enough to question it, and client-facing enough to explain it.
+        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine2">
+            Or you're in a flat market. New clients aren't coming in, budgets feel tight, and you're thinking about where to expand next.
+        </p>
+        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine3">
+            You want to bring someone in, but you're not sure what to commit to first. Which role actually moves the needle? How do you hire without wasting time on a long interview funnel? You might not even have the role fully defined. And you want someone strong, but at competitive rates that make sense.
         </p>
     </div>
 </section>
@@ -1708,7 +1679,7 @@ footer {
 <!-- How I Work Section -->
 <section id="how-i-work" class="content-section how-i-work-section">
     <div class="section-content how-i-work-content">
-        <h1 class="about-header how-i-work-heading">
+        <h1 class="about-header how-i-work-heading" data-translate="howIWorkHeading">
             How I work
         </h1>
 
@@ -1724,9 +1695,9 @@ footer {
                         autoplay>
                     </lottie-player>
                 </div>
-                <h3 class="how-card-title">Understand the real problem first</h3>
-                <p class="about-subheader how-card-text">
-                    Before touching any code or tool, I dig into what's actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most “tech problems” are actually communication or process issues in disguise.
+                <h3 class="how-card-title" data-translate="howCard1Title">Understand the real problem first</h3>
+                <p class="about-subheader how-card-text" data-translate="howCard1Text">
+                    Before touching any code or tool, I dig into what's actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most "tech problems" are actually communication or process issues in disguise.
                 </p>
             </div>
 
@@ -1741,8 +1712,8 @@ footer {
                         autoplay>
                     </lottie-player>
                 </div>
-                <h3 class="how-card-title">Build only what moves the needle</h3>
-                <p class="about-subheader how-card-text">
+                <h3 class="how-card-title" data-translate="howCard2Title">Build only what moves the needle</h3>
+                <p class="about-subheader how-card-text" data-translate="howCard2Text">
                     No over-engineering. No shiny tools for the sake of it. I implement solutions that solve your specific pain points, whether that is automating repetitive tasks, streamlining deployments, or setting up infrastructure that scales without ballooning costs.
                 </p>
             </div>
@@ -1758,9 +1729,9 @@ footer {
                         autoplay>
                     </lottie-player>
                 </div>
-                <h3 class="how-card-title">Stay close, stay clear</h3>
-                <p class="about-subheader how-card-text">
-                    I do not disappear into “dev mode” for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
+                <h3 class="how-card-title" data-translate="howCard3Title">Stay close, stay clear</h3>
+                <p class="about-subheader how-card-text" data-translate="howCard3Text">
+                    I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
                 </p>
             </div>
         </div>
@@ -1770,61 +1741,18 @@ footer {
 <!-- What This Looks Like in Practice Section -->
 <section id="practice-examples" class="content-section practice-section">
     <div class="section-content practice-content">
-        <h1 class="about-header practice-heading">
+        <h1 class="about-header practice-heading" data-translate="practiceHeading">
             What this looks like in practice
         </h1>
-
-        <div class="practice-blocks">
-            <div class="practice-block">
-                <h3 class="practice-block-title">For a startup</h3>
-                <p class="about-subheader practice-block-text">
-                    You need to ship fast without breaking things later. I will set up CI/CD, testing workflows, and monitoring so your team can move quickly with confidence.
-                </p>
-            </div>
-
-            <div class="practice-block">
-                <h3 class="practice-block-title">For a scaleup</h3>
-                <p class="about-subheader practice-block-text">
-                    Your systems are starting to creak under growth. I will audit your infrastructure, identify bottlenecks, and implement solutions that scale without requiring a full rebuild.
-                </p>
-            </div>
-
-            <div class="practice-block">
-                <h3 class="practice-block-title">For an agency</h3>
-                <p class="about-subheader practice-block-text">
-                    You are juggling multiple clients and need reliable, repeatable processes. I will standardize your deployments, automate the boring stuff, and create documentation so your team is not reinventing the wheel every project.
-                </p>
-            </div>
-        </div>
     </div>
 </section>
 
 <!-- Why This Works Section -->
 <section id="why-this-works" class="content-section why-this-works-section">
     <div class="section-content why-content">
-        <p class="about-subheader why-quote">
+        <p class="about-subheader why-quote" data-translate="whyQuote">
             I've worked with teams that were drowning in technical debt, agencies that could not scale, and startups that needed to move fast without burning out. The common thread? They needed someone who could translate between business goals and technical execution, and stick around to make sure it actually worked.
         </p>
-    </div>
-</section>
-
-<!-- CTA Section (Conversation) -->
-<section id="approach-cta" class="content-section conversation-cta-section">
-    <div class="section-content conversation-cta-content">
-        <h1 class="about-header conversation-cta-heading">
-            Let's talk about what's slowing you down.
-        </h1>
-        <p class="about-subheader conversation-cta-subtext">
-            No sales pitch. Just a conversation about where you are stuck and whether I can help.
-        </p>
-        <div class="conversation-cta-actions">
-            <a href="/contact" class="collaboration-btn gradient-btn">
-                Book a call
-            </a>
-            <a href="mailto:toni.kukoc01@gmail.com" class="collaboration-btn outline-btn">
-                Send a message
-            </a>
-        </div>
     </div>
 </section>
 
@@ -2327,7 +2255,7 @@ const translations = {
         'homeSectionTitle': 'Approach to <span class="bold-toni">work.</span>',
         'homeSectionText': 'I believe it\'s all about keeping things clear, practical, and adaptable.<br> Whether it\'s improving daily operations or tackling bigger challenges,  <br> I focus on understanding <span class="bold-split"> real needs </span> of your teams.<br> By breaking down complex ideas into manageable steps, I ensure that<br> your company has the right tools and support to <span class="bold-split"> succeed </span> and <span class="bold-split"> grow </span>.',
         'homeSectionTextMobile': 'By breaking down complex ideas into manageable steps, I ensure that your company has the right tools and support to <span class="bold-split">succeed</span> and <span class="bold-split">grow</span>.',
-        'scrollText': 'SCROLL',
+        'scrollText': 'your painpoints.',
         
         // About section - Block 1
         'block1Title': 'Optimizing operations',
@@ -2335,12 +2263,12 @@ const translations = {
         'block1Text': 'By reviewing workflows and implementing the right solutions, I\'ll ensure that your operations run more smoothly, allowing your team to focus on what matters most—delivering the product and creating value.',
         
         // About section - Block 2
-'block2Title': 'Tailored technology solutions',
-'block2TitleMobile': 'Tailored Solutions',
-'block2Text1': 'Every company has unique needs, and the right tech stack can make all the difference. I help with selecting, implementing, and maintaining solutions that optimize your team\'s workflow. This includes infrastructure and software integration to process automation and system performance improvement.',
-'block2Text2': 'With a focus on security, scalability, and alignment with business goals, I ensure that your technology works for you, not the other way around.',
+        'block2Title': 'Tailored technology solutions',
+        'block2TitleMobile': 'Tailored Solutions',
+        'block2Text1': 'Every company has unique needs, and the right tech stack can make all the difference. I help with selecting, implementing, and maintaining solutions that optimize your team\'s workflow. This includes infrastructure and software integration to process automation and system performance improvement.',
+        'block2Text2': 'With a focus on security, scalability, and alignment with business goals, I ensure that your technology works for you, not the other way around.',
        
- // About section - Block 3
+        // About section - Block 3
         'block3Title': 'Support & scalability',
         'block3Subtitle': 'As your company grows and things get intense, I\'ll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure.',
         'block3Text': 'Whether it\'s expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.',
@@ -2351,12 +2279,34 @@ const translations = {
         'ctaText': 'I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let\'s build something that works—get in touch.',
         'ctaButton1': 'View my work',
         'ctaButton2': 'About me',
-         // Add these entries to each language in your translations object
-            'navHome': 'home',
-            'navApproach': 'approach to collaboration',
-            'navAbout': 'about my life',
-            'navBlog': 'writing outlet',
-            'navValue': 'value delivered'
+        
+        // Navigation items
+        'navHome': 'home',
+        'navApproach': 'approach to collaboration',
+        'navAbout': 'about my life',
+        'navBlog': 'writing outlet',
+        'navValue': 'value delivered',
+
+        // Approach page - Opening hook
+        'approachOpeningHeading': 'How I actually work with teams',
+        'approachOpeningLine1': 'You\'re at that point where the workload is stacking up, the team needs to grow, and people operations are starting to slow everything down. You need someone who can bridge business, operations, and tech without adding complexity.',
+        'approachOpeningLine2': 'Or you\'re in a flat market. New clients aren\'t coming in, budgets feel tight, and you\'re thinking about where to expand next.',
+        'approachOpeningLine3': 'You want to bring someone in, but you\'re not sure what to commit to first. Which role actually moves the needle? How do you hire without wasting time on a long interview funnel? You might not even have the role fully defined. And you want someone strong, but at competitive rates that make sense.',
+
+        // Approach page - How I work cards
+        'howIWorkHeading': 'How I work',
+        'howCard1Title': 'Understand the real problem first',
+        'howCard1Text': 'Before touching any code or tool, I dig into what\'s actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most "tech problems" are actually communication or process issues in disguise.',
+        'howCard2Title': 'Build only what moves the needle',
+        'howCard2Text': 'No over-engineering. No shiny tools for the sake of it. I implement solutions that solve your specific pain points, whether that is automating repetitive tasks, streamlining deployments, or setting up infrastructure that scales without ballooning costs.',
+        'howCard3Title': 'Stay close, stay clear',
+        'howCard3Text': 'I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.',
+
+        // Approach page - Practice examples
+        'practiceHeading': 'What this looks like in practice',
+
+        // Approach page - Why this works
+        'whyQuote': 'I\'ve worked with teams that were drowning in technical debt, agencies that could not scale, and startups that needed to move fast without burning out. The common thread? They needed someone who could translate between business goals and technical execution, and stick around to make sure it actually worked.'
     },
     
     'fr': {
@@ -2364,18 +2314,18 @@ const translations = {
         'homeSectionTitle': 'Approche du <span class="bold-toni">travail</span>.',
         'homeSectionText': 'Je crois qu\'il s\'agit de garder les choses claires, pratiques et adaptables.<br> Qu\'il s\'agisse d\'améliorer les opérations quotidiennes ou de relever des défis plus importants,<br> je me concentre sur la compréhension des <span class="bold-split">besoins réels</span> de vos équipes.<br> En décomposant les idées complexes en étapes gérables, je m\'assure que<br> votre entreprise dispose des bons outils et du soutien nécessaire pour <span class="bold-split">réussir</span> et <span class="bold-split">grandir</span>.',
         'homeSectionTextMobile': 'En décomposant les idées complexes en étapes gérables, je m\'assure que votre entreprise dispose des bons outils et du soutien nécessaire pour <span class="bold-split">réussir</span> et <span class="bold-split">grandir</span>.',
-        'scrollText': 'DÉFILER',
+        'scrollText': 'vos points de douleur.',
         
         // About section - Block 1
         'block1Title': 'Optimisation des opérations',
         'block1Subtitle': 'Je travaille en étroite collaboration avec les équipes pour améliorer les opérations informatiques et éliminer les obstacles, facilitant ainsi le travail efficace des personnes.',
         'block1Text': 'En examinant les flux de travail et en mettant en œuvre les bonnes solutions, je veillerai à ce que vos opérations se déroulent plus facilement, permettant à votre équipe de se concentrer sur l\'essentiel—livrer le produit et créer de la valeur.',
         
-       // About section - Block 2
-'block2Title': 'Solutions technologiques sur mesure',
-'block2TitleMobile': 'solutions sur mesure',
-'block2Text1': 'Chaque entreprise a des besoins uniques, et la bonne pile technologique peut faire toute la différence. Je vous aide à sélectionner, mettre en œuvre et maintenir des solutions qui optimisent le flux de travail de votre équipe. Cela inclut l\'infrastructure et l\'intégration de logiciels, ainsi que l\'automatisation des processus et l\'amélioration des performances du système.',
-'block2Text2': 'Avec un accent sur la sécurité, l\'évolutivité et l\'alignement avec les objectifs commerciaux, je m\'assure que votre technologie travaille pour vous, et non l\'inverse.',
+        // About section - Block 2
+        'block2Title': 'Solutions technologiques sur mesure',
+        'block2TitleMobile': 'solutions sur mesure',
+        'block2Text1': 'Chaque entreprise a des besoins uniques, et la bonne pile technologique peut faire toute la différence. Je vous aide à sélectionner, mettre en œuvre et maintenir des solutions qui optimisent le flux de travail de votre équipe. Cela inclut l\'infrastructure et l\'intégration de logiciels, ainsi que l\'automatisation des processus et l\'amélioration des performances du système.',
+        'block2Text2': 'Avec un accent sur la sécurité, l\'évolutivité et l\'alignement avec les objectifs commerciaux, je m\'assure que votre technologie travaille pour vous, et non l\'inverse.',
         
         // About section - Block 3
         'block3Title': 'Support & évolutivité',
@@ -2389,14 +2339,33 @@ const translations = {
         'ctaButton1': 'Voir mon travail',
         'ctaButton2': 'À propos de moi',
 
-       // Navigation items
+        // Navigation items
         'navHome': 'accueil',
         'navApproach': 'approche de collaboration',
         'navAbout': 'à propos de ma vie',
         'navBlog': 'espace d\'écriture',
-        'navValue': 'valeur livrée', 
+        'navValue': 'valeur livrée',
 
+        // Approach page - Opening hook
+        'approachOpeningHeading': 'Comment je travaille réellement avec les équipes',
+        'approachOpeningLine1': 'Vous êtes à ce point où la charge de travail s\'accumule, l\'équipe doit grandir, et les opérations commencent à ralentir tout. Vous avez besoin de quelqu\'un qui peut relier affaires, opérations et technologie sans ajouter de complexité.',
+        'approachOpeningLine2': 'Ou vous êtes dans un marché plat. Les nouveaux clients n\'arrivent pas, les budgets semblent serrés, et vous réfléchissez à où vous développer ensuite.',
+        'approachOpeningLine3': 'Vous voulez intégrer quelqu\'un, mais vous n\'êtes pas sûr de ce à quoi vous engager d\'abord. Quel rôle fait vraiment la différence? Comment recruter sans perdre de temps dans un long processus d\'entretiens? Vous n\'avez peut-être même pas le rôle entièrement défini. Et vous voulez quelqu\'un de fort, mais à des tarifs compétitifs qui ont du sens.',
 
+        // Approach page - How I work cards
+        'howIWorkHeading': 'Comment je travaille',
+        'howCard1Title': 'Comprendre d\'abord le vrai problème',
+        'howCard1Text': 'Avant de toucher à du code ou à un outil, je creuse ce qui vous ralentit vraiment. Est-ce un problème technique? Un écart de workflow? Un problème de clarté? La plupart des "problèmes techniques" sont en fait des problèmes de communication ou de processus déguisés.',
+        'howCard2Title': 'Construire uniquement ce qui compte',
+        'howCard2Text': 'Pas de sur-ingénierie. Pas d\'outils brillants pour le plaisir. Je mets en œuvre des solutions qui résolvent vos points de douleur spécifiques, qu\'il s\'agisse d\'automatiser des tâches répétitives, de rationaliser les déploiements ou de mettre en place une infrastructure qui évolue sans exploser les coûts.',
+        'howCard3Title': 'Rester proche, rester clair',
+        'howCard3Text': 'Je ne disparais pas en "mode dev" pendant des semaines. Vous recevez des mises à jour régulières, des explications en langage clair, et un partenaire facile à joindre. Si quelque chose change, nous ajustons. Si quelque chose n\'est pas clair, nous en discutons.',
+
+        // Approach page - Practice examples
+        'practiceHeading': 'Ce que cela donne en pratique',
+
+        // Approach page - Why this works
+        'whyQuote': 'J\'ai travaillé avec des équipes qui se noyaient dans la dette technique, des agences qui ne pouvaient pas évoluer, et des startups qui devaient avancer vite sans s\'épuiser. Le point commun? Ils avaient besoin de quelqu\'un qui pouvait traduire entre les objectifs commerciaux et l\'exécution technique, et rester pour s\'assurer que cela fonctionnait réellement.'
     },
     
     'hr': {
@@ -2404,7 +2373,7 @@ const translations = {
         'homeSectionTitle': 'Pristup <span class="bold-toni">radu</span>.',
         'homeSectionText': 'Vjerujem da je sve u tome da stvari budu jasne, praktične i prilagodljive.<br> Bilo da se radi o poboljšanju svakodnevnih operacija ili rješavanju većih izazova,<br> fokusiram se na razumijevanje <span class="bold-split">stvarnih potreba</span> vaših timova.<br> Raščlanjujući složene ideje na lakše korake, osiguravam da<br> vaša tvrtka ima prave alate i podršku za <span class="bold-split">uspjeh</span> i <span class="bold-split">rast</span>.',
         'homeSectionTextMobile': 'Raščlanjujući složene ideje na lakše korake, osiguravam da vaša tvrtka ima prave alate i podršku za <span class="bold-split">uspjeh</span> i <span class="bold-split">rast</span>.',
-        'scrollText': 'SKROLAJ',
+        'scrollText': 'vaše probleme.',
         
         // About section - Block 1
         'block1Title': 'Optimizacija operacija',
@@ -2412,10 +2381,10 @@ const translations = {
         'block1Text': 'Pregledavanjem radnih tokova i implementacijom pravih rješenja, osigurat ću da vaše operacije teku glatko, omogućujući vašem timu da se usredotoči na ono što je najvažnije—isporuku proizvoda i stvaranje vrijednosti.',
         
         // About section - Block 2
-'block2Title': 'Prilagođena tehnološka rješenja',
-'block2TitleMobile': 'Prilagođena Rješenja',
-'block2Text1': 'Svaka tvrtka ima jedinstvene potrebe, a pravi tehnološki stack može činiti veliku razliku. Pomažem s odabirom, implementacijom i održavanjem rješenja koja optimiziraju radni tok vašeg tima. To uključuje infrastrukturu i integraciju softvera, automatizaciju procesa i poboljšanje performansi sustava.',
-'block2Text2': 'S fokusom na sigurnost, skalabilnost i usklađenost s poslovnim ciljevima, osiguravam da vaša tehnologija radi za vas, a ne obrnuto.',
+        'block2Title': 'Prilagođena tehnološka rješenja',
+        'block2TitleMobile': 'Prilagođena Rješenja',
+        'block2Text1': 'Svaka tvrtka ima jedinstvene potrebe, a pravi tehnološki stack može činiti veliku razliku. Pomažem s odabirom, implementacijom i održavanjem rješenja koja optimiziraju radni tok vašeg tima. To uključuje infrastrukturu i integraciju softvera, automatizaciju procesa i poboljšanje performansi sustava.',
+        'block2Text2': 'S fokusom na sigurnost, skalabilnost i usklađenost s poslovnim ciljevima, osiguravam da vaša tehnologija radi za vas, a ne obrnuto.',
         
         // About section - Block 3
         'block3Title': 'Podrška i skalabilnost',
@@ -2429,13 +2398,33 @@ const translations = {
         'ctaButton1': 'Moji projekti',
         'ctaButton2': 'O meni',
 
-        // Add these entries to each language in your translations object
-         'navHome': 'početna',
-       'navApproach': 'pristup suradnji',
+        // Navigation items
+        'navHome': 'početna',
+        'navApproach': 'pristup suradnji',
         'navAbout': 'o mom životu',
-       'navBlog': 'kutak za pisanje',
-       'navValue': 'isporučena vrijednost',
+        'navBlog': 'kutak za pisanje',
+        'navValue': 'isporučena vrijednost',
 
+        // Approach page - Opening hook
+        'approachOpeningHeading': 'Kako zapravo radim s timovima',
+        'approachOpeningLine1': 'Došli ste do točke gdje se posao gomila, tim treba rasti, a operacije usporavaju sve. Trebate nekoga tko može povezati poslovanje, operacije i tehnologiju bez dodavanja složenosti.',
+        'approachOpeningLine2': 'Ili ste na stagnantnom tržištu. Novi klijenti ne dolaze, budžeti su tijesni, i razmišljate gdje se dalje proširiti.',
+        'approachOpeningLine3': 'Želite dovesti nekoga, ali niste sigurni čemu se prvo posvetiti. Koja uloga zapravo čini razliku? Kako zaposliti bez gubljenja vremena na dugi proces intervjua? Možda čak nemate potpuno definiranu ulogu. I želite nekoga jakog, ali po konkurentnim cijenama koje imaju smisla.',
+
+        // Approach page - How I work cards
+        'howIWorkHeading': 'Kako radim',
+        'howCard1Title': 'Prvo razumjeti pravi problem',
+        'howCard1Text': 'Prije nego što dotaknem bilo kakav kod ili alat, istražujem što vas zapravo usporava. Je li to tehnički problem? Praznina u radnom toku? Problem jasnoće? Većina "tehničkih problema" su zapravo problemi komunikacije ili procesa u prerušenju.',
+        'howCard2Title': 'Graditi samo ono što čini razliku',
+        'howCard2Text': 'Bez pretjeranog inženjeringa. Bez sjajnih alata samo radi toga. Implementiram rješenja koja rješavaju vaše specifične probleme, bilo da se radi o automatizaciji ponavljajućih zadataka, pojednostavljenju implementacija ili postavljanju infrastrukture koja se skalira bez eksplozije troškova.',
+        'howCard3Title': 'Ostati blizu, ostati jasan',
+        'howCard3Text': 'Ne nestaje u "dev modu" tjednima. Dobivate redovite ažuriranja, objašnjenja jasnim jezikom i partnera koji je lako dostupan. Ako se nešto promijeni, prilagođavamo se. Ako nešto nije jasno, razgovaramo o tome.',
+
+        // Approach page - Practice examples
+        'practiceHeading': 'Kako to izgleda u praksi',
+
+        // Approach page - Why this works
+        'whyQuote': 'Radio sam s timovima koji su tonuli u tehničkom dugu, agencijama koje nisu mogle skalirati, i startupima koji su morali brzo napredovati bez sagorijevanja. Zajednička nit? Trebali su nekoga tko može prevoditi između poslovnih ciljeva i tehničke izvedbe, i ostati kako bi osigurao da to zapravo funkcionira.'
     }
 };
 
