@@ -795,49 +795,21 @@ body {
     font-weight: 100;
     font-style: normal;
     color: #B0B8C1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     max-width: 600px;
     text-align: left;
     padding: 0;
     animation-delay: 0.6s;
 }
-.about-subheader2,
-.about-subheader3 {
-    font-family: SkemaProDisplay;
-    font-size: 1.2rem;
-    font-weight: 100;
-    font-style: normal;
-    color: #B0B8C1;
-    max-width: 600px;
-    text-align: left;
-    padding: 0;
-}
 
-.about-subheader2 {
-    margin-bottom: 1rem;
-}
-
-.about-subheader3 {
-    margin-bottom: 2rem;
-}
-
-
-.about-subheader,
-.about-subheader1,
-.about-subheader2,
-.about-subheader3,
-.collaboration-btn,
-.portfolio-btn {
+.about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn {
     opacity: 0;
     transform: translateY(50px);
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
 .about-subheader.visible,
 .about-subheader1.visible,
-.about-subheader2.visible,
-.about-subheader3.visible,
 .collaboration-btn.visible,
 .portfolio-btn.visible {
     opacity: 1;
@@ -1394,7 +1366,8 @@ footer {
             name is <span class="bold-toni">Toni<span class="dot"></span></span>
         </h1>
         <p>
-            I am your <span class="bold-split">technical partner</span>
+            I am independent <span class="bold-split">IT operations manager</span><br>
+            from Split, Croatia.
         </p>
     </header>
 </section>
@@ -1410,20 +1383,18 @@ footer {
 <section id="about" class="section content-section">
     <div class="section-content about-layout">
         <div class="about-text-column">
-            <h1 class="about-header">Ship faster, worry less</h1>
+            <h1 class="about-header">let's collaborate</h1>
             <div class="horizontal-line"></div>
             <p class="about-subheader">
                 From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.
             </p>
-            <p class="about-subheader"></p>
-<p class="about-subheader1"></p>
-<p class="about-subheader2"></p>
-<p class="about-subheader3"></p>
+            <p class="about-subheader1">
+                The greater the challenge, the more rewarding the solution!
             </p>
             <!-- Buttons Container -->
             <div class="buttons-container">
-                <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Tell me more</a>
-                <a href="https://tonikukoc.me/value-delivered" class="portfolio-btn">Social proof</a>
+                <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Approach to work</a>
+                <a href="https://tonikukoc.me/value-delivered" class="portfolio-btn">Portfolio</a>
             </div>
         </div>
     <div class="about-image-column">
@@ -1651,14 +1622,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Observe the about section - include vertical line
-document.querySelector('#about').querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .about-subheader2, .about-subheader3, .collaboration-btn, .portfolio-btn, .vertical-line').forEach(element => {
+document.querySelector('#about').querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn, .vertical-line').forEach(element => {
     observer.observe(element);
 });
 
 // Update your scroll handler to include vertical-line
 function handleScrollAnimations() {
     const isMobile = window.innerWidth <= 768;
-    const animatedElements = document.querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .about-subheader2, .about-subheader3, .collaboration-btn, .portfolio-btn, .vertical-line');
+    const animatedElements = document.querySelectorAll('.horizontal-line, .about-subheader, .about-subheader1, .collaboration-btn, .portfolio-btn, .vertical-line');
     
     const triggerPoint = isMobile ? 
                          window.innerHeight * 0.95 : 
@@ -1836,86 +1807,60 @@ const translations = {
         'header_hi': 'Hi, my',
         'header_name': 'name is',
         'header_toni': 'Toni',
-        'independent': 'I am your',
-        'job_title': 'technical partner',
-        'location': '',
-
+        'independent': 'I am independent',
+        'job_title': 'IT operations manager',
+        'location': 'from Split, Croatia.',
         'scroll_text': 'SCROLL',
-
-        'about_header': 'Ship faster, worry less',
-        'about_subheader': 'I’ll be a Technical Partner for your startup, scaleup, or agency.',
-        'about_subheader1': 'I make your tech setup cost-efficient, your workflow clearer, and your delivery smoother. I also help you set up simple growth systems when needed.',
-        'about_subheader2': 'You get one dedicated partner who understands your challenges, stays client facing, and delivers what’s needed.',
-        'about_subheader3': 'We can start with a low-commitment setup to give you flexibility, and everything is priced at competitive CEE rates to keep your budget under control.',
-
-        'collaboration_btn': 'Tell me more',
-        'portfolio_btn': 'Social proof',
-
+        'about_header': 'Let\'s collaborate',
+        'about_subheader': 'From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.',
+        'about_subheader1': 'The greater the challenge, the more rewarding the solution!',
+        'collaboration_btn': 'Approach to work',
         'menu_text': 'contact',
         'nav_home': 'home',
         'nav_approach': 'approach to collaboration',
         'nav_about': 'about my life',
         'nav_blog': 'writing outlet',
         'nav_value': 'value delivered',
-
         'footer_text': 'Toni Kukoč © MMXXV'
     },
-
     'fr': {
         'header_hi': 'Bonjour, je',
         'header_name': 'm\'appelle',
         'header_toni': 'Toni',
-        'independent': 'Je suis votre',
-        'job_title': 'partenaire technique',
-        'location': '',
-
+        'independent': 'Je suis indépendant',
+        'job_title': 'responsable des opérations IT',
+        'location': 'de Split, Croatie.',
         'scroll_text': 'DÉFILER',
-
-        'about_header': 'Accélérez en toute sérénité',
-        'about_subheader': 'Je serai votre Partenaire Technique pour votre startup, scaleup ou agence.',
-        'about_subheader1': 'Je rends votre setup technologique plus économique, votre workflow plus clair et votre delivery plus fluide. Je peux aussi mettre en place des systèmes de croissance simples si nécessaire.',
-        'about_subheader2': 'Vous obtenez un partenaire dédié qui comprend vos enjeux, reste orienté client et livre ce qu’il faut.',
-        'about_subheader3': 'Nous pouvons commencer avec une collaboration flexible et à faible engagement, le tout à des tarifs compétitifs d’Europe centrale et orientale.',
-
-        'collaboration_btn': 'En savoir plus',
-        'portfolio_btn': 'Preuves sociales',
-
+        'about_header': 'Collaborons',
+        'about_subheader': 'De la maintenance des performances de l\'infrastructure à la gestion des ressources cloud; du support informatique quotidien à l\'évolutivité pour la croissance - j\'aide les entreprises à maintenir leur infrastructure informatique sécurisée, efficace et adaptable.',
+        'about_subheader1': 'Plus le défi est grand, plus la solution est gratifiante!',
+        'collaboration_btn': 'Approche du travail',
         'menu_text': 'contact',
         'nav_home': 'accueil',
         'nav_approach': 'approche de collaboration',
         'nav_about': 'à propos de ma vie',
-        'nav_blog': 'espace d’écriture',
-        'nav_value': 'valeur livrée',
-
+         'nav_blog': 'espace d\'écriture',
+     'nav_value': 'valeur livrée', 
         'footer_text': 'Toni Kukoč © MMXXV'
     },
-
     'hr': {
         'header_hi': 'Bok, moje',
         'header_name': 'ime je',
         'header_toni': 'Toni',
-        'independent': 'Ja sam vaš',
-        'job_title': 'tehnički partner',
-        'location': '',
-
+        'independent': 'Ja sam samostalni',
+        'job_title': 'IT operativni menadžer',
+        'location': 'iz Splita.',
         'scroll_text': 'SKROLAJ',
-
-        'about_header': 'Raspodijelite brže, brinite manje',
-        'about_subheader': 'Bit ću vaš Tehnički Partner za startup, scaleup ili agenciju.',
-        'about_subheader1': 'Činim vaš tech setup isplativijim, vaš workflow jasnijim i vašu isporuku učinkovitijom. Također mogu postaviti jednostavne sustave za rast kada je potrebno.',
-        'about_subheader2': 'Dobivate jednog posvećenog partnera koji razumije vaše izazove, komunicira jasno i isporučuje ono što je potrebno.',
-        'about_subheader3': 'Možemo započeti s fleksibilnim, niskorizičnim angažmanom, a sve je cjenovno usklađeno s konkurentnim CEE tržištem.',
-
-        'collaboration_btn': 'Saznaj više',
-        'portfolio_btn': 'Društveni dokaz',
-
+        'about_header': 'Surađujmo',
+        'about_subheader': 'Od održavanja performansi infrastrukture do upravljanja cloud resursima; od svakodnevne IT podrške do skaliranja za rast - pomažem tvrtkama njihova IT infrastruktura (p)ostane sigurna, učinkovita i prilagodljiva.',
+        'about_subheader1': 'Što je izazov veći, pobjeda je slađa!',
+        'collaboration_btn': 'Pristup radu',
         'menu_text': 'kontakt',
         'nav_home': 'početna',
         'nav_approach': 'pristup suradnji',
         'nav_about': 'o mom životu',
-        'nav_blog': 'kutak za pisanje',
+         'nav_blog': 'kutak za pisanje',
         'nav_value': 'isporučena vrijednost',
-
         'footer_text': 'Toni Kukoč © MMXXV'
     }
 };
@@ -1956,10 +1901,9 @@ function updateLanguage(lang) {
     }
     
     document.querySelector('.scroll-text').textContent = translations[lang].scroll_text;
+    document.querySelector('.about-header').textContent = translations[lang].about_header;
     document.querySelector('.about-subheader').textContent = translations[lang].about_subheader;
     document.querySelector('.about-subheader1').textContent = translations[lang].about_subheader1;
-    document.querySelector('.about-subheader2').textContent = translations[lang].about_subheader2;
-    document.querySelector('.about-subheader3').textContent = translations[lang].about_subheader3;
     document.querySelector('.collaboration-btn').textContent = translations[lang].collaboration_btn;
     document.querySelector('.menu-text').textContent = translations[lang].menu_text;
     
