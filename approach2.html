@@ -1903,7 +1903,7 @@ document.querySelectorAll("[data-animate]").forEach(el => {
 // Section visibility animations based on scroll position
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    document.querySelectorAll('.section-content').forEach(section => {
+document.querySelectorAll('.section-content:not([data-animate])').forEach(section => {
       if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
         section.classList.add('visible');
       } else {
