@@ -2157,13 +2157,19 @@ document.addEventListener('keydown', function(e) {
 document.addEventListener('DOMContentLoaded', () => {
     const scrollText = document.querySelector('.scroll-text');
     const text = scrollText.textContent;
-    scrollText.textContent = ''; // Clear the current text
+    scrollText.textContent = ''; // Clear current text
     
-    // Create spans for each letter
     [...text].forEach((letter, i) => {
         const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.animationDelay = `${i * 0.1}s`; // Stagger the animation
+
+        // Preserve spaces so words don't glue together
+        if (letter === " ") {
+            span.innerHTML = "&nbsp;";
+        } else {
+            span.textContent = letter;
+        }
+
+        span.style.animationDelay = `${i * 0.1}s`;
         scrollText.appendChild(span);
     });
 });
