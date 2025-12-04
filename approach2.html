@@ -2155,26 +2155,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const scrollText = document.querySelector('.scroll-text');
-    const text = scrollText.textContent;
-    scrollText.textContent = ''; // Clear current text
-    
-    [...text].forEach((letter, i) => {
-        const span = document.createElement('span');
-
-        // Preserve spaces so words don't glue together
-        if (letter === " ") {
-            span.innerHTML = "&nbsp;";
-        } else {
-            span.textContent = letter;
-        }
-
-        span.style.animationDelay = `${i * 0.1}s`;
-        scrollText.appendChild(span);
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     const buildSection = document.querySelector('section:last-of-type');
     
     const observer = new IntersectionObserver((entries) => {
