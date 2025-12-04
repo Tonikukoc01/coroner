@@ -2504,8 +2504,54 @@ function applyTranslation(langCode) {
     navItems[4].textContent = content.navValue;
 
     }
-
     
+// Update Opening Hook
+const openingHook = document.querySelector('#approach-opening');
+if (openingHook) {
+    const l1 = openingHook.querySelector('[data-translate="approachOpeningLine1"]');
+    const l2 = openingHook.querySelector('[data-translate="approachOpeningLine2"]');
+    const l3 = openingHook.querySelector('[data-translate="approachOpeningLine3"]');
+    const h  = openingHook.querySelector('[data-translate="approachOpeningHeading"]');
+
+    if (l1) l1.textContent = content.approachOpeningLine1;
+    if (l2) l2.textContent = content.approachOpeningLine2;
+    if (l3) l3.textContent = content.approachOpeningLine3;
+    if (h)  h.textContent  = content.approachOpeningHeading;
+}
+
+// Update How-I-Work section
+const howSection = document.querySelector('#how-i-work');
+
+if (howSection) {
+    const heading = howSection.querySelector('[data-translate="howIWorkHeading"]');
+    if (heading) heading.textContent = content.howIWorkHeading;
+
+    const c1Title = howSection.querySelector('[data-translate="howCard1Title"]');
+    const c1Text  = howSection.querySelector('[data-translate="howCard1Text"]');
+
+    const c2Title = howSection.querySelector('[data-translate="howCard2Title"]');
+    const c2Text  = howSection.querySelector('[data-translate="howCard2Text"]');
+
+    const c3Title = howSection.querySelector('[data-translate="howCard3Title"]');
+    const c3Text  = howSection.querySelector('[data-translate="howCard3Text"]');
+
+    if (c1Title) c1Title.textContent = content.howCard1Title;
+    if (c1Text)  c1Text.textContent  = content.howCard1Text;
+
+    if (c2Title) c2Title.textContent = content.howCard2Title;
+    if (c2Text)  c2Text.textContent  = content.howCard2Text;
+
+    if (c3Title) c3Title.textContent = content.howCard3Title;
+    if (c3Text)  c3Text.textContent  = content.howCard3Text;
+}
+
+    // Update Practice section
+const practice = document.querySelector('#practice-examples');
+if (practice) {
+    const h = practice.querySelector('[data-translate="practiceHeading"]');
+    if (h) h.textContent = content.practiceHeading;
+}
+
     // Update Block 1
     const block1 = document.querySelector('.block-1');
     if (block1) {
