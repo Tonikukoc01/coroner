@@ -1707,7 +1707,7 @@ footer {
 
 <!-- How I Work Section -->
 <section id="how-i-work" class="content-section how-i-work-section">
-            <div class="section-content how-i-work-content" data-animate="true">
+            <div class="section-content how-i-work-content" data-no-scroll="true">
         <h1 class="about-header how-i-work-heading" data-animate="left" data-translate="howIWorkHeading">
             How I work
         </h1>
@@ -1769,7 +1769,7 @@ footer {
 
 <!-- What This Looks Like in Practice Section -->
 <section id="practice-examples" class="content-section practice-section">
-    <div class="section-content practice-content" data-animate="true">
+    <div class="section-content practice-content" data-no-scroll="true">
         <h1 class="about-header practice-heading" data-animate="right" data-translate="practiceHeading">
             What this looks like in practice
         </h1>
@@ -1879,7 +1879,7 @@ window.onload = function() {
       });
     });
   });
- // Reveal animations for any data-animate element
+// Reveal animations for any data-animate element
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1899,18 +1899,18 @@ document.querySelectorAll("[data-animate]").forEach(el => {
 });
 
 // Section visibility animations based on scroll position
-  window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-document.querySelectorAll('.section-content:not([data-animate])').forEach(section => {
-      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
-        section.classList.add('visible');
-      } else {
-        section.classList.remove('visible');
-      }
-    });
-  });
-}
 
+    document.querySelectorAll('.section-content:not([data-no-scroll="true"])')
+        .forEach(section => {
+            if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
+                section.classList.add('visible');
+            } else {
+                section.classList.remove('visible');
+            }
+        });
+});
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
 const sideMenu = document.querySelector('.side-menu');
