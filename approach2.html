@@ -2260,186 +2260,187 @@ window.addEventListener("resize", function() {
     console.log("Window resized, running updateContentForMobile");
     updateContentForMobile();
 });
-
-// Language content translations
+            
+//Language translations
 const translations = {
     'en': {
-        // Home section
-        'homeSectionTitle': 'How I <span class="bold-toni">work.</span>',
-        'homeSectionText': 'My focus is simple: understand your real annoying pain points and create a setup that cuts friction, scales smoothly, and supports real growth.',
-        'homeSectionTextMobile': 'My focus is simple: understand your real annoying pain points and create a setup that cuts friction, scales smoothly, and supports real growth.',
-        'scrollText': 'your painpoints',
-        
-        // About section - Block 1
-        'block1Title': 'Optimizing operations',
-        'block1Subtitle': 'I work closely with teams to improve IT operations and remove obstacles, making it easier for people to work effectively.',
-        'block1Text': 'By reviewing workflows and implementing the right solutions, I\'ll ensure that your operations run more smoothly, allowing your team to focus on what matters most—delivering the product and creating value.',
-        
-        // About section - Block 2
-        'block2Title': 'Tailored technology solutions',
-        'block2TitleMobile': 'Tailored Solutions',
-        'block2Text1': 'Every company has unique needs, and the right tech stack can make all the difference. I help with selecting, implementing, and maintaining solutions that optimize your team\'s workflow. This includes infrastructure and software integration to process automation and system performance improvement.',
-        'block2Text2': 'With a focus on security, scalability, and alignment with business goals, I ensure that your technology works for you, not the other way around.',
-       
-        // About section - Block 3
-        'block3Title': 'Support & scalability',
-        'block3Subtitle': 'As your company grows and things get intense, I\'ll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure.',
-        'block3Text': 'Whether it\'s expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.',
-        
-        // CTA section
-        'ctaTitle': 'Let\'s build something together',
-        'ctaTitleMobile': 'Let\'s build together',
-        'ctaText': 'I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let\'s build something that works—get in touch.',
-        'ctaButton1': 'View my work',
-        'ctaButton2': 'About me',
-        
-        // Navigation items
-        'navHome': 'home',
-        'navApproach': 'approach to collaboration',
-        'navAbout': 'about my life',
-        'navBlog': 'writing outlet',
-        'navValue': 'value delivered',
+        /* HOME SECTION */
+        homeSectionTitle: 'How I <span class="bold-toni">work.</span>',
+        homeSectionText: 'My focus is simple: understand your real annoying pain <span class="home-text-break"></span>points and create a setup that cuts friction, scales smoothly, and supports real growth.',
+        homeSectionTextMobile: 'My focus is simple: understand your real annoying pain points and create a setup that cuts friction, scales smoothly, and supports real growth.',
+        scrollText: 'your painpoints',
 
-        // Approach page - Opening hook
-        'approachOpeningHeading': 'How I actually work with teams',
-        'approachOpeningLine1': 'You\'re at that point where the workload is stacking up, the team needs to grow, and people operations are starting to slow everything down. You need someone who can bridge business, operations, and tech without adding complexity.',
-        'approachOpeningLine2': 'Or you\'re in a flat market. New clients aren\'t coming in, budgets feel tight, and you\'re thinking about where to expand next.',
-        'approachOpeningLine3': 'You want to bring someone in, but you\'re not sure what to commit to first. Which role actually moves the needle? How do you hire without wasting time on a long interview funnel? You might not even have the role fully defined. And you want someone strong, but at competitive rates that make sense.',
+        /* NAVIGATION */
+        navHome: 'home',
+        navApproach: 'approach to collaboration',
+        navAbout: 'about my life',
+        navBlog: 'writing outlet',
+        navValue: 'value delivered',
 
-        // Approach page - How I work cards
-        'howIWorkHeading': 'How I work',
-        'howCard1Title': 'Understand the real problem first',
-        'howCard1Text': 'Before touching any code or tool, I dig into what\'s actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most "tech problems" are actually communication or process issues in disguise.',
-        'howCard2Title': 'Build only what moves the needle',
-        'howCard2Text': 'No over-engineering. No shiny tools for the sake of it. I implement solutions that solve your specific pain points, whether that is automating repetitive tasks, streamlining deployments, or setting up infrastructure that scales without ballooning costs.',
-        'howCard3Title': 'Stay close, stay clear',
-        'howCard3Text': 'I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.',
+        /* APPROACH PAGE - OPENING HOOK */
+        approachOpeningHeading: 'How I actually work with teams',
+        approachOpeningLine1: 'You\'re at that point where the workload is stacking up, the team needs to grow, and people operations are slowing everything down.',
+        approachOpeningLine2: 'Or you\'re in a market that feels flat. Fewer new clients, tighter budgets, and uncertainty about where to expand next.',
+        approachOpeningLine3: 'You want someone who can step in without adding noise, help you decide what role actually matters, and keep things moving without a long hiring process.',
 
-        // Approach page - Practice examples
-        'practiceHeading': 'What this looks like in practice',
+        /* APPROACH PAGE - HOW I WORK */
+        howIWorkHeading: 'How I work',
+        howCard1Title: 'Understand the problem before touching anything',
+        howCard1Text: 'Most issues are not technical at the core. I start by mapping the bottlenecks, the real blockers, and the gaps in clarity or process.',
+        howCard2Title: 'Build only what actually helps',
+        howCard2Text: 'No over-engineering. No shiny tools for fun. Only solutions that remove friction and create visible progress.',
+        howCard3Title: 'Communicate clearly and stay close',
+        howCard3Text: 'I keep you updated, simplify decisions, and adjust quickly when priorities shift.',
 
-        // Approach page - Why this works
-        'whyQuote': 'I\'ve worked with teams that were drowning in technical debt, agencies that could not scale, and startups that needed to move fast without burning out. The common thread? They needed someone who could translate between business goals and technical execution, and stick around to make sure it actually worked.'
+        /* APPROACH PAGE – PRACTICE */
+        practiceHeading: 'What this looks like in practice',
+
+        /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
+        block1Title: 'For startups',
+        block1Subtitle: 'You need to ship fast without breaking things later.',
+        block1Text: 'I set up CI/CD, testing workflows, and monitoring so your team can move quickly with confidence.',
+
+        /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
+        block2Title: 'For a scaleup',
+        block2TitleMobile: 'For a scaleup',
+        block2Text1: 'Your systems are starting to creak under growth. I audit your infrastructure, find bottlenecks, and implement solutions that scale without a full rebuild.',
+        block2Text2: '',
+
+        /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
+        block3Title: 'For a small agency',
+        block3Subtitle: 'You juggle multiple clients and need repeatable, reliable processes.',
+        block3Text: 'I standardize deployments, automate repetitive work, and create documentation so your team isn’t reinventing the wheel every project.',
+
+        /* CTA */
+        ctaTitle: 'Let\'s talk',
+        ctaTitleMobile: 'Let\'s talk',
+        ctaText: 'No pitch. Just a short conversation to see if what you need matches how I work.',
+        ctaButton1: 'View my work',
+        ctaButton2: 'About me',
+
+        /* WHY THIS WORKS */
+        whyQuote: 'I’ve worked with teams drowning in technical debt, agencies that needed structure, and startups moving fast with limited resources. The common thread? They needed someone who bridges business goals and technical execution—and stays until it works.'
     },
-    
+
     'fr': {
-        // Home section
-       'homeSectionTitle': 'Comment je <span class="bold-toni">travaille.</span>',
-       'homeSectionText': 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
-       'homeSectionTextMobile': 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
-        'scrollText': 'vos points de douleur',
-        
-        // About section - Block 1
-        'block1Title': 'Optimisation des opérations',
-        'block1Subtitle': 'Je travaille en étroite collaboration avec les équipes pour améliorer les opérations informatiques et éliminer les obstacles, facilitant ainsi le travail efficace des personnes.',
-        'block1Text': 'En examinant les flux de travail et en mettant en œuvre les bonnes solutions, je veillerai à ce que vos opérations se déroulent plus facilement, permettant à votre équipe de se concentrer sur l\'essentiel—livrer le produit et créer de la valeur.',
-        
-        // About section - Block 2
-        'block2Title': 'Solutions technologiques sur mesure',
-        'block2TitleMobile': 'solutions sur mesure',
-        'block2Text1': 'Chaque entreprise a des besoins uniques, et la bonne pile technologique peut faire toute la différence. Je vous aide à sélectionner, mettre en œuvre et maintenir des solutions qui optimisent le flux de travail de votre équipe. Cela inclut l\'infrastructure et l\'intégration de logiciels, ainsi que l\'automatisation des processus et l\'amélioration des performances du système.',
-        'block2Text2': 'Avec un accent sur la sécurité, l\'évolutivité et l\'alignement avec les objectifs commerciaux, je m\'assure que votre technologie travaille pour vous, et non l\'inverse.',
-        
-        // About section - Block 3
-        'block3Title': 'Support & évolutivité',
-        'block3Subtitle': 'Au fur et à mesure que votre entreprise se développe et que les choses s\'intensifient, je m\'assurerai que votre configuration informatique suit le rythme en offrant un support continu et des mises à jour pour que tout fonctionne sans problème sous pression.',
-        'block3Text': 'Qu\'il s\'agisse d\'étendre votre infrastructure pour plus d\'utilisateurs, d\'introduire de nouveaux outils numériques pour faciliter la vie, ou d\'organiser vos données pour aider à prendre des décisions commerciales plus intelligentes.',
-        
-        // CTA section
-        'ctaTitle': 'Construisons quelque chose ensemble',
-        'ctaTitleMobile': 'Construisons ensemble',
-        'ctaText': 'Je simplifie les projets complexes, optimise les flux de travail et mets en œuvre la bonne technologie pour que votre entreprise fonctionne sans problème. Construisons quelque chose qui fonctionne—contactez-moi.',
-        'ctaButton1': 'Voir mon travail',
-        'ctaButton2': 'À propos de moi',
+        /* HOME SECTION */
+        homeSectionTitle: 'Comment je <span class="bold-toni">travaille.</span>',
+        homeSectionText: 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants<span class="home-text-break"></span> et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
+        homeSectionTextMobile: 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
+        scrollText: 'vos points de douleur',
 
-        // Navigation items
-        'navHome': 'accueil',
-        'navApproach': 'approche de collaboration',
-        'navAbout': 'à propos de ma vie',
-        'navBlog': 'espace d\'écriture',
-        'navValue': 'valeur livrée',
+        /* NAVIGATION */
+        navHome: 'accueil',
+        navApproach: 'approche de collaboration',
+        navAbout: 'à propos de ma vie',
+        navBlog: 'espace d\'écriture',
+        navValue: 'valeur livrée',
 
-        // Approach page - Opening hook
-        'approachOpeningHeading': 'Comment je travaille réellement avec les équipes',
-        'approachOpeningLine1': 'Vous êtes à ce point où la charge de travail s\'accumule, l\'équipe doit grandir, et les opérations commencent à ralentir tout. Vous avez besoin de quelqu\'un qui peut relier affaires, opérations et technologie sans ajouter de complexité.',
-        'approachOpeningLine2': 'Ou vous êtes dans un marché plat. Les nouveaux clients n\'arrivent pas, les budgets semblent serrés, et vous réfléchissez à où vous développer ensuite.',
-        'approachOpeningLine3': 'Vous voulez intégrer quelqu\'un, mais vous n\'êtes pas sûr de ce à quoi vous engager d\'abord. Quel rôle fait vraiment la différence? Comment recruter sans perdre de temps dans un long processus d\'entretiens? Vous n\'avez peut-être même pas le rôle entièrement défini. Et vous voulez quelqu\'un de fort, mais à des tarifs compétitifs qui ont du sens.',
+        /* APPROACH PAGE - OPENING HOOK */
+        approachOpeningHeading: 'Comment je travaille réellement avec les équipes',
+        approachOpeningLine1: 'Vous êtes à un moment où la charge augmente, l’équipe doit grandir et les opérations commencent à tout ralentir.',
+        approachOpeningLine2: 'Ou vous êtes sur un marché plutôt plat. Moins de nouveaux clients, des budgets plus serrés et une incertitude sur la direction à prendre.',
+        approachOpeningLine3: 'Vous cherchez quelqu’un qui peut intervenir sans ajouter du bruit, aider à définir ce qui compte vraiment et avancer sans un long processus de recrutement.',
 
-        // Approach page - How I work cards
-        'howIWorkHeading': 'Comment je travaille',
-        'howCard1Title': 'Comprendre d\'abord le vrai problème',
-        'howCard1Text': 'Avant de toucher à du code ou à un outil, je creuse ce qui vous ralentit vraiment. Est-ce un problème technique? Un écart de workflow? Un problème de clarté? La plupart des "problèmes techniques" sont en fait des problèmes de communication ou de processus déguisés.',
-        'howCard2Title': 'Construire uniquement ce qui compte',
-        'howCard2Text': 'Pas de sur-ingénierie. Pas d\'outils brillants pour le plaisir. Je mets en œuvre des solutions qui résolvent vos points de douleur spécifiques, qu\'il s\'agisse d\'automatiser des tâches répétitives, de rationaliser les déploiements ou de mettre en place une infrastructure qui évolue sans exploser les coûts.',
-        'howCard3Title': 'Rester proche, rester clair',
-        'howCard3Text': 'Je ne disparais pas en "mode dev" pendant des semaines. Vous recevez des mises à jour régulières, des explications en langage clair, et un partenaire facile à joindre. Si quelque chose change, nous ajustons. Si quelque chose n\'est pas clair, nous en discutons.',
+        /* APPROACH PAGE - HOW I WORK */
+        howIWorkHeading: 'Comment je travaille',
+        howCard1Title: 'Comprendre le problème avant d’agir',
+        howCard1Text: 'La plupart des problèmes ne sont pas vraiment techniques. Je commence par analyser les blocages, les frictions et les manques de clarté.',
+        howCard2Title: 'Construire uniquement ce qui aide vraiment',
+        howCard2Text: 'Pas de sur-ingénierie. Pas d’outils brillants sans raison. Seulement des solutions qui réduisent la friction et génèrent des progrès visibles.',
+        howCard3Title: 'Communiquer clairement et rester proche',
+        howCard3Text: 'Je vous tiens informé, je simplifie les décisions et je m’adapte rapidement si les priorités changent.',
 
-        // Approach page - Practice examples
-        'practiceHeading': 'Ce que cela donne en pratique',
+        /* APPROACH PAGE – PRACTICE */
+        practiceHeading: 'Ce que cela donne en pratique',
 
-        // Approach page - Why this works
-        'whyQuote': 'J\'ai travaillé avec des équipes qui se noyaient dans la dette technique, des agences qui ne pouvaient pas évoluer, et des startups qui devaient avancer vite sans s\'épuiser. Le point commun? Ils avaient besoin de quelqu\'un qui pouvait traduire entre les objectifs commerciaux et l\'exécution technique, et rester pour s\'assurer que cela fonctionnait réellement.'
+        /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
+        block1Title: 'Pour les startups',
+        block1Subtitle: 'Vous devez livrer vite sans tout casser plus tard.',
+        block1Text: 'Je mets en place CI/CD, les workflows de tests et le monitoring afin que votre équipe avance rapidement et en toute confiance.',
+
+        /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
+        block2Title: 'Pour une scale-up',
+        block2TitleMobile: 'Pour une scale-up',
+        block2Text1: 'Vos systèmes commencent à montrer des limites avec la croissance. J’audite votre infrastructure, identifie les goulots d’étranglement et mets en place des solutions qui évoluent sans tout reconstruire.',
+        block2Text2: '',
+
+        /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
+        block3Title: 'Pour une petite agence',
+        block3Subtitle: 'Vous gérez plusieurs clients et avez besoin de processus fiables et reproductibles.',
+        block3Text: 'Je standardise les déploiements, j’automatise les tâches répétitives et je crée la documentation nécessaire pour éviter de tout refaire à chaque projet.',
+
+        /* CTA */
+        ctaTitle: 'Discutons',
+        ctaTitleMobile: 'Discutons',
+        ctaText: 'Pas de discours commercial. Juste une courte discussion pour voir si vos besoins correspondent à ma manière de travailler.',
+        ctaButton1: 'Voir mon travail',
+        ctaButton2: 'À propos de moi',
+
+        /* WHY THIS WORKS */
+        whyQuote: 'J’ai travaillé avec des équipes noyées dans la dette technique, des agences qui manquaient de structure et des startups qui devaient aller vite avec peu de ressources. Leur point commun? Elles avaient besoin d’un lien clair entre les objectifs business et l’exécution technique—et d’un partenaire qui reste jusqu’à ce que ça fonctionne.'
     },
-    
+
     'hr': {
-        // Home section
-            'homeSectionTitle': 'Kako <span class="bold-toni">radim.</span>',
-    'homeSectionText': 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
-    'homeSectionTextMobile': 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
-        'scrollText': 'vaše probleme',
-        
-        // About section - Block 1
-        'block1Title': 'Optimizacija operacija',
-        'block1Subtitle': 'Blisko surađujem s timovima kako bih poboljšao IT operacije i uklonio prepreke, olakšavajući ljudima da učinkovito rade.',
-        'block1Text': 'Pregledavanjem radnih tokova i implementacijom pravih rješenja, osigurat ću da vaše operacije teku glatko, omogućujući vašem timu da se usredotoči na ono što je najvažnije—isporuku proizvoda i stvaranje vrijednosti.',
-        
-        // About section - Block 2
-        'block2Title': 'Prilagođena tehnološka rješenja',
-        'block2TitleMobile': 'Prilagođena Rješenja',
-        'block2Text1': 'Svaka tvrtka ima jedinstvene potrebe, a pravi tehnološki stack može činiti veliku razliku. Pomažem s odabirom, implementacijom i održavanjem rješenja koja optimiziraju radni tok vašeg tima. To uključuje infrastrukturu i integraciju softvera, automatizaciju procesa i poboljšanje performansi sustava.',
-        'block2Text2': 'S fokusom na sigurnost, skalabilnost i usklađenost s poslovnim ciljevima, osiguravam da vaša tehnologija radi za vas, a ne obrnuto.',
-        
-        // About section - Block 3
-        'block3Title': 'Podrška i skalabilnost',
-        'block3Subtitle': 'Kako vaša tvrtka raste i tempo postaje intenzivniji, osiguravam da vaša IT infrastruktura drži korak pružajući kontinuiranu podršku i ažuriranja kako bi sve radilo besprijekorno, čak i pod pritiskom.',
-        'block3Text': 'Bilo da proširujete infrastrukturu za više korisnika, uvodite digitalne alate koji pojednostavljuju poslovanje ili organizirate podatke za bolje poslovne odluke – tu sam da optimiziram procese i olakšam vaš rast.',
-        
-        // CTA section
-        'ctaTitle': 'Izgradimo nešto zajedno',
-        'ctaTitleMobile': 'Izgradimo zajedno',
-        'ctaText': 'Pojednostavljujem složene projekte, optimiziram radne tokove i implementiram pravu tehnologiju kako bi vaše poslovanje teklo glatko. Izgradimo nešto što funkcionira—kontaktiraj me.',
-        'ctaButton1': 'Moji projekti',
-        'ctaButton2': 'O meni',
+        /* HOME SECTION */
+        homeSectionTitle: 'Kako <span class="bold-toni">radim.</span>',
+        homeSectionText: 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke<span class="home-text-break"></span> i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
+        homeSectionTextMobile: 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
+        scrollText: 'vaše probleme',
 
-        // Navigation items
-        'navHome': 'početna',
-        'navApproach': 'pristup suradnji',
-        'navAbout': 'o mom životu',
-        'navBlog': 'kutak za pisanje',
-        'navValue': 'isporučena vrijednost',
+        /* NAVIGATION */
+        navHome: 'početna',
+        navApproach: 'pristup suradnji',
+        navAbout: 'o mom životu',
+        navBlog: 'kutak za pisanje',
+        navValue: 'isporučena vrijednost',
 
-        // Approach page - Opening hook
-        'approachOpeningHeading': 'Kako zapravo radim s timovima',
-        'approachOpeningLine1': 'Došli ste do točke gdje se posao gomila, tim treba rasti, a operacije usporavaju sve. Trebate nekoga tko može povezati poslovanje, operacije i tehnologiju bez dodavanja složenosti.',
-        'approachOpeningLine2': 'Ili ste na stagnantnom tržištu. Novi klijenti ne dolaze, budžeti su tijesni, i razmišljate gdje se dalje proširiti.',
-        'approachOpeningLine3': 'Želite dovesti nekoga, ali niste sigurni čemu se prvo posvetiti. Koja uloga zapravo čini razliku? Kako zaposliti bez gubljenja vremena na dugi proces intervjua? Možda čak nemate potpuno definiranu ulogu. I želite nekoga jakog, ali po konkurentnim cijenama koje imaju smisla.',
+        /* APPROACH PAGE - OPENING HOOK */
+        approachOpeningHeading: 'Kako zapravo radim s timovima',
+        approachOpeningLine1: 'Na točki ste gdje se posao gomila, tim treba rasti, a operacije usporavaju sve oko sebe.',
+        approachOpeningLine2: 'Ili ste na tržištu koje je ravno. Manje novih klijenata, manji budžeti i neizvjesnost gdje ići dalje.',
+        approachOpeningLine3: 'Trebate nekoga tko može uskočiti bez dodavanja buke, pomoći definirati što je zapravo važno i pokrenuti stvari bez dugog procesa zapošljavanja.',
 
-        // Approach page - How I work cards
-        'howIWorkHeading': 'Kako radim',
-        'howCard1Title': 'Prvo razumjeti pravi problem',
-        'howCard1Text': 'Prije nego što dotaknem bilo kakav kod ili alat, istražujem što vas zapravo usporava. Je li to tehnički problem? Praznina u radnom toku? Problem jasnoće? Većina "tehničkih problema" su zapravo problemi komunikacije ili procesa u prerušenju.',
-        'howCard2Title': 'Graditi samo ono što čini razliku',
-        'howCard2Text': 'Bez pretjeranog inženjeringa. Bez sjajnih alata samo radi toga. Implementiram rješenja koja rješavaju vaše specifične probleme, bilo da se radi o automatizaciji ponavljajućih zadataka, pojednostavljenju implementacija ili postavljanju infrastrukture koja se skalira bez eksplozije troškova.',
-        'howCard3Title': 'Ostati blizu, ostati jasan',
-        'howCard3Text': 'Ne nestaje u "dev modu" tjednima. Dobivate redovite ažuriranja, objašnjenja jasnim jezikom i partnera koji je lako dostupan. Ako se nešto promijeni, prilagođavamo se. Ako nešto nije jasno, razgovaramo o tome.',
+        /* APPROACH PAGE - HOW I WORK */
+        howIWorkHeading: 'Kako radim',
+        howCard1Title: 'Razumjeti problem prije bilo čega',
+        howCard1Text: 'Većina problema nije tehnička u svojoj srži. Počinjem tako da mapiram uska grla, prave blokade i nedostatke u procesu ili jasnoći.',
+        howCard2Title: 'Graditi samo ono što stvarno pomaže',
+        howCard2Text: 'Bez prekompliciranih rješenja. Bez sjajnih alata bez svrhe. Samo rješenja koja uklanjaju trenje i stvaraju stvaran napredak.',
+        howCard3Title: 'Jasna komunikacija i stalna blizina',
+        howCard3Text: 'Redovno ažuriram, pojednostavljujem odluke i brzo se prilagođavam kad se prioriteti promijene.',
 
-        // Approach page - Practice examples
-        'practiceHeading': 'Kako to izgleda u praksi',
+        /* APPROACH PAGE – PRACTICE */
+        practiceHeading: 'Kako to izgleda u praksi',
 
-        // Approach page - Why this works
-        'whyQuote': 'Radio sam s timovima koji su tonuli u tehničkom dugu, agencijama koje nisu mogle skalirati, i startupima koji su morali brzo napredovati bez sagorijevanja. Zajednička nit? Trebali su nekoga tko može prevoditi između poslovnih ciljeva i tehničke izvedbe, i ostati kako bi osigurao da to zapravo funkcionira.'
+        /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
+        block1Title: 'Za startupe',
+        block1Subtitle: 'Morate isporučivati brzo, ali bez rušenja stvari kasnije.',
+        block1Text: 'Postavljam CI/CD, testne tokove i monitoring kako bi vaš tim mogao raditi brzo i s povjerenjem.',
+
+        /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
+        block2Title: 'Za scale-up',
+        block2TitleMobile: 'Za scale-up',
+        block2Text1: 'Vaši sustavi počinju škripati pod rastom. Analiziram infrastrukturu, pronalazim uska grla i implementiram rješenja koja skaliraju bez potpunog redizajna.',
+        block2Text2: '',
+
+        /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
+        block3Title: 'Za malu agenciju',
+        block3Subtitle: 'Radite s više klijenata i trebaju vam pouzdani, ponovljivi procesi.',
+        block3Text: 'Standardiziram deploymente, automatiziram rutinske zadatke i kreiram dokumentaciju kako vaš tim ne bi iznova radio iste stvari u svakom projektu.',
+
+        /* CTA */
+        ctaTitle: 'Popričajmo',
+        ctaTitleMobile: 'Popričajmo',
+        ctaText: 'Bez prodaje. Samo kratak razgovor da vidimo odgovaramo li si u načinu rada.',
+        ctaButton1: 'Moji projekti',
+        ctaButton2: 'O meni',
+
+        /* WHY THIS WORKS */
+        whyQuote: 'Radio sam s timovima koji su tonuli u tehničkom dugu, agencijama kojima je trebala struktura i startupima koji su morali napredovati brzo s malo resursa. Zajedničko im je bilo to da im je trebao netko tko povezuje poslovne ciljeve s tehničkom izvedbom—and ostaje dok to stvarno ne proradi.'
     }
 };
+
 
 function applyTranslation(langCode) {
     console.log("Applying translation for:", langCode);
