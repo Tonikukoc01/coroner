@@ -649,12 +649,6 @@ body {
   text-decoration: none;
 }
 
-<!-- Features Header - Between Sections -->
-<div class="features-header">
-    <h2 class="scroll-text animate-on-scroll">SCROLL</h2>
-    <div class="vertical-line animate-on-scroll"></div>
-</div>
-
 /* Sections */
 .content-section::before {
     content: '';
@@ -2491,21 +2485,6 @@ function applyTranslation(langCode) {
             }
             
             textContainer.appendChild(p);
-        });
-    }
-    
-    // Update scroll text (unchanged)
-    const scrollTextContainer = document.querySelector('.scroll-text');
-    if (scrollTextContainer) {
-        // Clear existing content
-        scrollTextContainer.innerHTML = '';
-        
-        // Create spans for each letter with animation
-        [...content.scrollText].forEach((letter, i) => {
-            const span = document.createElement('span');
-            span.textContent = letter;
-            span.style.animationDelay = `${i * 0.1}s`;
-            scrollTextContainer.appendChild(span);
         });
     }
 
