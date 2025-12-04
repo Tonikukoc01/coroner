@@ -681,15 +681,15 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    opacity: 1;
-    transform: none;
-    transition: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
     align-items: flex-start;
 }
 
 .section-content.visible {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
 }
 
 /* Section-specific styles */
@@ -1900,6 +1900,18 @@ document.querySelectorAll("[data-animate]").forEach(el => {
     sectionObserver.observe(el);
 });
 
+// Section visibility animations based on scroll position
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+document.querySelectorAll('.section-content:not([data-animate])').forEach(section => {
+      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
+        section.classList.add('visible');
+      } else {
+        section.classList.remove('visible');
+      }
+    });
+  });
+}
 
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
