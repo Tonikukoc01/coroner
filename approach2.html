@@ -293,7 +293,6 @@ body {
 
 .scroll-text span {
     display: inline-block;
-    animation: shake 2s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
@@ -1059,8 +1058,6 @@ body {
 
 /* New sections: opening hook, how I work, practice, why this works, CTA */
 
-/* New approach sections below hero */
-
 .opening-hook-section,
 .how-i-work-section,
 .practice-section,
@@ -1076,6 +1073,19 @@ body {
     max-width: 800px;
     margin: 0 auto;
     text-align: center; /* Centered text */
+}
+
+ .opening-hook-content .about-subheader {
+    text-align: center; /* Center the paragraphs */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ .practice-content,
+.why-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left; /* Left-aligned text for other sections */
 }
 
 .how-i-work-content {
@@ -1661,9 +1671,6 @@ footer {
 <!-- Opening Hook Section -->
 <section id="approach-opening" class="content-section opening-hook-section">
     <div class="section-content opening-hook-content">
-        <h1 class="about-header opening-hook-heading" data-translate="approachOpeningHeading">
-            How I actually work with teams
-        </h1>
         <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine1">
             You're at that point where the workload is stacking up, the team needs to grow, and people operations are starting to slow everything down. You need someone who can bridge business, operations, and tech without adding complexity.
         </p>
@@ -2247,7 +2254,7 @@ const translations = {
         'homeSectionTitle': 'How I <span class="bold-toni">work.</span>',
         'homeSectionText': 'My focus is simple: understand your real annoying pain points and create a setup that cuts friction, scales smoothly, and supports real growth.',
         'homeSectionTextMobile': 'My focus is simple: understand your real annoying pain points and create a setup that cuts friction, scales smoothly, and supports real growth.',
-        'scrollText': 'your painpoints.',
+        'scrollText': 'your painpoints',
         
         // About section - Block 1
         'block1Title': 'Optimizing operations',
@@ -2306,7 +2313,7 @@ const translations = {
        'homeSectionTitle': 'Comment je <span class="bold-toni">travaille.</span>',
        'homeSectionText': 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
        'homeSectionTextMobile': 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
-        'scrollText': 'vos points de douleur.',
+        'scrollText': 'vos points de douleur',
         
         // About section - Block 1
         'block1Title': 'Optimisation des opérations',
@@ -2365,7 +2372,7 @@ const translations = {
             'homeSectionTitle': 'Kako <span class="bold-toni">radim.</span>',
     'homeSectionText': 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
     'homeSectionTextMobile': 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
-        'scrollText': 'vaše probleme.',
+        'scrollText': 'vaše probleme',
         
         // About section - Block 1
         'block1Title': 'Optimizacija operacija',
