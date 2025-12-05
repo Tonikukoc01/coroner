@@ -740,6 +740,19 @@ body {
     }
 }
 
+@keyframes growLineReverse {
+    from {s
+        width: 0;
+        margin-left: auto;
+        margin-right: 0;
+    }
+    to {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 
 .slide-from-left {
     opacity: 0;
@@ -775,7 +788,10 @@ body {
 .grow-line {
     animation: growLine 0.8s ease-out forwards;
 }
-
+.grow-line-reverse {
+    animation: growLineReverse 1s ease-out forwards;
+}
+            
 /* Update the timing for the buttons */
 .slide-from-bottom.delay-400 {
     animation-delay: 400ms;
@@ -1682,6 +1698,9 @@ footer {
     <div class="vertical-line animate-on-scroll"></div>
 </div>
 
+<!-- Horizontal Line Above -->
+<div class="horizontal-line" style="margin: 3rem auto; width: 0;"></div>
+
 <!-- Opening Hook Section -->
 <section id="approach-opening" class="content-section opening-hook-section">
     <div class="section-content opening-hook-content" data-animate="bottom">
@@ -1696,6 +1715,9 @@ footer {
         </p>
     </div>
 </section>
+
+<!-- Horizontal Line Below -->
+<div class="horizontal-line horizontal-line-reverse" style="margin: 3rem auto; width: 0;"></div>
 
 <!-- How I Work Section -->
 <section id="how-i-work" class="content-section how-i-work-section">
@@ -2156,6 +2178,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     observer.observe(buildSection);
+    // New code for horizontal lines around approach-opening section
+    const horizontalLines = document.querySelectorAll('.horizontal-line');
+    
+    const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('horizontal-line-reverse')) {
+                    entry.target.classList.add('grow-line-reverse');
+                } else {
+                    entry.target.classList.add('grow-line');
+                }
+                lineObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+    
+    horizontalLines.forEach(line => lineObserver.observe(line));
 });
 
 function updateHeaderForMobile() {
