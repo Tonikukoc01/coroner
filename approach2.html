@@ -1906,20 +1906,17 @@ function handleSectionVisibility() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const triggerOffset = window.innerHeight * 0.8;
 
-     document.querySelectorAll(
-        '.section-content:not([data-animate]):not(.opening-hook-content):not(.how-i-work-content):not(.practice-content)'
-    ).forEach(section => {
-        
+    document.querySelectorAll('.section-content.auto-fade').forEach(section => {
         if (scrollTop >= section.offsetTop - triggerOffset) {
-            section.classList.add("visible");
+            section.classList.add('visible');
         } else {
-            section.classList.remove("visible");
+            section.classList.remove('visible');
         }
     });
 }
 
 handleSectionVisibility();
-window.addEventListener("scroll", handleSectionVisibility);
+window.addEventListener('scroll', handleSectionVisibility);
 
 // 3. Opening hook: one clean entrance
 const openingObserver = new IntersectionObserver((entries) => {
