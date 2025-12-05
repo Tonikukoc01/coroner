@@ -1690,7 +1690,7 @@ footer {
 
 <!-- Opening Hook Section -->
 <section id="approach-opening" class="content-section opening-hook-section">
-    <div class="section-content opening-hook-content" data-animate="bottom">
+    <div class="section-content opening-hook-content">
         <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine1">
             You're at that point where the workload is stacking up, the team needs to grow, and people operations are starting to slow everything down. You need someone who can bridge business, operations, and tech without adding complexity.
         </p>
@@ -1705,14 +1705,14 @@ footer {
 
 <!-- How I Work Section -->
 <section id="how-i-work" class="content-section how-i-work-section">
-            <div class="section-content how-i-work-content" data-animate="true">
+            <h1 class="about-header how-i-work-heading" data-translate="howIWorkHeading">
         <h1 class="about-header how-i-work-heading" data-animate="left" data-translate="howIWorkHeading">
             How I work
         </h1>
 
         <div class="how-i-work-grid">
             <!-- Card 1 -->
-           <div class="how-card" data-animate="left">
+           <div class="how-card">
                 <div class="how-card-animation">
                     <lottie-player
                         src="assets/optimization.json"
@@ -1729,7 +1729,7 @@ footer {
             </div>
 
             <!-- Card 2 -->
-            <div class="how-card" data-animate="bottom">
+            <div class="how-card">
                 <div class="how-card-animation">
                     <lottie-player
                         src="assets/tailored.json"
@@ -1746,7 +1746,7 @@ footer {
             </div>
 
             <!-- Card 3 -->
-            <div class="how-card" data-animate="right">
+            <div class="how-card">
                 <div class="how-card-animation">
                     <lottie-player
                         src="assets/scaling.json"
@@ -1768,7 +1768,7 @@ footer {
 <!-- What This Looks Like in Practice Section -->
 <section id="practice-examples" class="content-section practice-section">
     <div class="section-content practice-content" data-animate="true">
-        <h1 class="about-header practice-heading" data-animate="right" data-translate="practiceHeading">
+        <h1 class="about-header practice-heading" data-translate="practiceHeading">
             What this looks like in practice
         </h1>
     </div>
@@ -1877,24 +1877,111 @@ window.onload = function() {
       });
     });
   });
- // Reveal animations for any data-animate element
+
+// 1. Generic reveal animations for any data-animate element
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const direction = entry.target.dataset.animate;
+        if (!entry.isIntersecting) return;
 
-            if (direction === "left") entry.target.classList.add("slide-from-left");
-            if (direction === "right") entry.target.classList.add("slide-from-right");
-            if (direction === "bottom") entry.target.classList.add("slide-from-bottom");
+        const direction = entry.target.dataset.animate;
 
-            sectionObserver.unobserve(entry.target);
+        if (direction === "left") {
+            entry.target.classList.add("slide-from-left");
+        } else if (direction === "right") {
+            entry.target.classList.add("slide-from-right");
+        } else if (direction === "bottom") {
+            entry.target.classList.add("slide-from-bottom");
         }
+
+        sectionObserver.unobserve(entry.target);
     });
 }, { threshold: 0.25 });
 
 document.querySelectorAll("[data-animate]").forEach(el => {
     sectionObserver.observe(el);
 });
+
+// 2. Section visibility animations based on scroll position
+function handleSectionVisibility() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const triggerOffset = window.innerHeight * 0.8;
+
+    document.querySelectorAll(".section-content:not([data-animate])").forEach(section => {
+        if (scrollTop >= section.offsetTop - triggerOffset) {
+            section.classList.add("visible");
+        } else {
+            section.classList.remove("visible");
+        }
+    });
+}
+
+handleSectionVisibility();
+window.addEventListener("scroll", handleSectionVisibility);
+
+// 3. Opening hook: one clean entrance
+const openingObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const content = entry.target.querySelector(".opening-hook-content");
+        if (content) {
+            content.classList.add("slide-from-bottom");
+        }
+
+        openingObserver.unobserve(entry.target);
+    });
+}, { threshold: 0.25 });
+
+const openingSection = document.querySelector("#approach-opening");
+if (openingSection) {
+    openingObserver.observe(openingSection);
+}
+
+// 4. "How I work": heading and cards, single controller
+const howObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const heading = entry.target.querySelector(".how-i-work-heading");
+        const cards = entry.target.querySelectorAll(".how-card");
+
+        if (heading) {
+            heading.classList.add("slide-from-right");
+        }
+
+        cards.forEach((card, index) => {
+            card.classList.add("slide-from-bottom");
+            if (index === 1) card.classList.add("delay-200");
+            if (index === 2) card.classList.add("delay-400");
+        });
+
+        howObserver.unobserve(entry.target);
+    });
+}, { threshold: 0.25 });
+
+const howSection = document.querySelector("#how-i-work");
+if (howSection) {
+    howObserver.observe(howSection);
+}
+
+// 5. Practice heading: simple one-shot slide
+const practiceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const heading = entry.target.querySelector(".practice-heading");
+        if (heading) {
+            heading.classList.add("slide-from-right");
+        }
+
+        practiceObserver.unobserve(entry.target);
+    });
+}, { threshold: 0.3 });
+
+const practiceSection = document.querySelector("#practice-examples");
+if (practiceSection) {
+    practiceObserver.observe(practiceSection);
+}
 
 // Section visibility animations based on scroll position
   window.addEventListener('scroll', () => {
@@ -1907,7 +1994,6 @@ document.querySelectorAll('.section-content:not([data-animate])').forEach(sectio
       }
     });
   });
-}
 
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
@@ -2701,7 +2787,6 @@ function initializeCustomLanguageSelector() {
             });
         });
     }
-    
 
 // Get stored language or default to 'fr'
 const storedLang = localStorage.getItem('selectedLanguage') || 'fr';
