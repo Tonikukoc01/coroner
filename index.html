@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
@@ -1759,6 +1760,19 @@ function updateLanguageSelectors(langCode) {
         // Update available options
         updateLanguageOptions(dropdown, langCode);
     });
+}
+
+// Initialize mobile enhancements
+document.addEventListener('DOMContentLoaded', enhanceSideMenuForMobile);
+
+function updateTextForMobile() {
+    const boldSplit = document.querySelector(".bold-split");
+
+    if (window.innerWidth <= 768) {
+        boldSplit.textContent = "IT Manager"; // Change for mobile
+    } else {
+        boldSplit.textContent = "IT operations manager"; // Restore for desktop
+    }
 }
 
 // Run on page load
