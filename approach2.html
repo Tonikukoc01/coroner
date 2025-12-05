@@ -2494,6 +2494,12 @@ function applyTranslation(langCode) {
     navItems[4].textContent = content.navValue;
 
     }
+
+// Update scroll text
+const scrollTextEl = document.querySelector('.scroll-text[data-translate="scrollText"]');
+if (scrollTextEl) {
+    scrollTextEl.textContent = content.scrollText;
+}
     
 // Update Opening Hook
 const openingHook = document.querySelector('#approach-opening');
