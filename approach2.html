@@ -1906,7 +1906,10 @@ function handleSectionVisibility() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const triggerOffset = window.innerHeight * 0.8;
 
-    document.querySelectorAll(".section-content:not([data-animate])").forEach(section => {
+     document.querySelectorAll(
+        '.section-content:not([data-animate]):not(.opening-hook-content):not(.how-i-work-content):not(.practice-content)'
+    ).forEach(section => {
+        
         if (scrollTop >= section.offsetTop - triggerOffset) {
             section.classList.add("visible");
         } else {
