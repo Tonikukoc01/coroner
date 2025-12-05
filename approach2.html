@@ -979,7 +979,7 @@ body {
     flex: 1;
 }
 
-* Lottie animation containers */
+/* Lottie animation containers */
 #optimization-animation,
 #tailored-animation,
 #scaling-animation {
@@ -1164,6 +1164,11 @@ body {
 .why-quote {
     font-size: 1.15rem;
     line-height: 1.7;
+}
+
+ [data-animate] {
+    opacity: 0;
+    transform: translateY(20px); /* small neutral offset so it's not sitting in final position */
 }
 
 @media (min-width: 769px) {
