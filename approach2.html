@@ -1890,23 +1890,6 @@ document.querySelectorAll("[data-animate]").forEach(el => {
     sectionObserver.observe(el);
 });
 
-// 2. Section visibility animations based on scroll position
-function handleSectionVisibility() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const triggerOffset = window.innerHeight * 0.8;
-
-    document.querySelectorAll('.section-content.auto-fade').forEach(section => {
-        if (scrollTop >= section.offsetTop - triggerOffset) {
-            section.classList.add('visible');
-        } else {
-            section.classList.remove('visible');
-        }
-    });
-}
-
-handleSectionVisibility();
-window.addEventListener('scroll', handleSectionVisibility);
-
 // 3. Opening hook: one clean entrance
 const openingObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1971,19 +1954,6 @@ const practiceSection = document.querySelector("#practice-examples");
 if (practiceSection) {
     practiceObserver.observe(practiceSection);
 }
-
-// Section visibility animations based on scroll position
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-document.querySelectorAll('.section-content:not([data-animate])').forEach(section => {
-      if (scrollTop >= section.offsetTop - window.innerHeight * 0.8) {
-        section.classList.add('visible');
-      } else {
-        section.classList.remove('visible');
-      }
-    });
-  });
-    }
 
 // Toggle side menu
 const menuToggle = document.querySelector('.menu-toggle');
