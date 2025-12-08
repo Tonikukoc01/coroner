@@ -1192,6 +1192,107 @@ body {
     transform: translateY(20px); /* small neutral offset so it's not sitting in final position */
 }
 
+            /* Pricing Section */
+        .pricing-section {
+            background: #1A2B3C;
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .pricing-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-header {
+            font-family: SkemaProDisplay;
+            color: #F0F4F8;
+            font-size: 2.3rem;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .horizontal-line-pricing {
+            width: 3.5cm;
+            height: 2px;
+            background-color: #F0F4F8;
+            border: none;
+            margin: 0 auto 3rem auto;
+        }
+
+        .pricing-intro {
+            font-family: SkemaProDisplay;
+            font-size: 1.2rem;
+            font-weight: 100;
+            color: #B0B8C1;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .pricing-box {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(240, 244, 248, 0.08);
+            border-radius: 12px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-model {
+            font-family: SkemaProDisplay;
+            font-size: 1.5rem;
+            font-weight: 200;
+            color: #F0F4F8;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-range {
+            font-family: SkemaProDisplay;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #4A6D8C;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-description {
+            font-family: SkemaProDisplay;
+            font-size: 1.1rem;
+            font-weight: 100;
+            color: #B0B8C1;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-features li {
+            font-family: SkemaProDisplay;
+            font-size: 1.05rem;
+            font-weight: 100;
+            color: #B0B8C1;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-features li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4A6D8C;
+        }
+
 @media (min-width: 769px) {
   .home-text-break {
     display: block;
@@ -1476,6 +1577,50 @@ backdrop-filter: blur(5px); /* Add blur effect */
         display: inline-block; /* Show icon on mobile */
         margin-left: 0.5rem;
     }
+
+    .pricing-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .pricing-header {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .horizontal-line-pricing {
+                width: 2.5cm;
+                margin-bottom: 2rem;
+            }
+
+            .pricing-intro {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .pricing-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .pricing-model {
+                font-size: 1.3rem;
+            }
+
+            .pricing-range {
+                font-size: 1.6rem;
+            }
+
+            .pricing-description {
+                font-size: 1rem;
+            }
+
+            .pricing-features li {
+                font-size: 0.95rem;
+            }
+
+            .pricing-note {
+                font-size: 1rem;
+                padding: 1.5rem;
+            }
 
     /* Language dropdown adjustments */
     .language-dropdown {
@@ -1816,6 +1961,35 @@ footer {
         </div>
     </div>
 </section>
+
+      <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="pricing-content">
+            <h1 class="pricing-header">For what price?</h1>
+            <div class="horizontal-line-pricing"></div>
+            
+            <p class="pricing-intro">
+                We'll go month-to-month. If we're creating value together, we'll continue naturally and with an increasing time horizon. If it doesn't make sense, we'll part ways.
+            </p>
+
+            <div class="pricing-box">
+                <div class="pricing-range">Mid-level CEE rates</div>
+                <p class="pricing-description">
+                    What you need to understand as a baseline: I want to cover my bills, and we're speaking mid-level Central & Eastern European rates.
+                </p>
+                <ul class="pricing-features">
+                    <li>Micro-tracked workload</li>
+                    <li>Complete transparency in invoicing</li>
+                    <li>No surprises—everything is documented and argued</li>
+                    <li>You'll never wonder "why did we pay this much?"</li>
+                </ul>
+            </div>
+
+            <p class="pricing-note">
+                We can go into detail on the call. The exact numbers depend on what you need, but expect straightforward pricing with full accountability for every hour billed.
+            </p>
+        </div>
+    </section>
 <!-- Call to Action Section -->
 <section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
     <div style="max-width: 1200px; margin: 0 auto;">
