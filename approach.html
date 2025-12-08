@@ -284,7 +284,7 @@ body {
 .scroll-text {
     font-family: 'SkemaProDisplay', sans-serif;
     font-weight: 300;
-    font-size: 2.7rem;
+    font-size: 2.4rem;
     color: #F0F4F8;
     animation: fadeIn 1s 1.4s forwards;
     opacity: 0;
@@ -2297,9 +2297,10 @@ const translations = {
     'en': {
         /* HOME SECTION */
         homeSectionTitle: 'How I <span class="bold-toni">work.</span>',
-        homeSectionText: 'My focus is <span class="bold-split">simple</span>: understand your <span class="bold-split">real pain<span class="home-text-break"></span>points</span> and create a setup that removes friction, scales smoothly, and supports real growth.',
-        homeSectionTextMobile: 'My focus is simple: understand your real pain points and create a setup that removes friction, scales smoothly, and supports real growth.',
+        homeSectionText: 'I step in to find where <span class="bold-split">time and money</span> are being lost, remove bottlenecks, and do the dirty but necessary work to build a setup that <span class="bold-split">delivers faster</span> with less stress.',
+        homeSectionTextMobile: 'I find where time and money are being lost, remove bottlenecks, and do the dirty but necessary work to build a setup that delivers faster with less stress.',
         scrollText: 'your pain points',
+
 
         /* NAVIGATION */
         navHome: 'home',
@@ -2308,47 +2309,51 @@ const translations = {
         navBlog: 'writing outlet',
         navValue: 'value delivered',
 
-        /* APPROACH PAGE - OPENING HOOK */
-        approachOpeningHeading: 'How I actually work with teams',
-        approachOpeningLine1: 'You\'re at that point where the workload is stacking up, the team needs to grow, and people operations are slowing everything down.',
-        approachOpeningLine2: 'Or you\'re in a market that feels flat. Fewer new clients, tighter budgets, and uncertainty about where to expand next.',
-        approachOpeningLine3: 'You want someone who can step in without adding noise, help you decide what role actually matters, and keep things moving without a long hiring process.',
+    /* APPROACH PAGE - OPENING HOOK */
+       approachOpeningHeading: 'How I actually work with teams',
+       approachOpeningLine1: 'Decisions are piling up, priorities keep shifting, context switching is constant, and you still need to work on the next investment deck while the daily work keeps eating all your time.',
+       approachOpeningLine2: 'Or you’re an early scaleup: teams are busy, projects overlap, ownership is unclear, and delivery slows because everyone is context-switching instead of driving the work that actually moves the company forward.',
+       approachOpeningLine3: 'Or you’re an agency with multiple active clients: deadlines stack up, team capacity is tight, and delivery slows because every project uses a slightly different setup and too much work is still manual.',
+
 
         /* APPROACH PAGE - HOW I WORK */
         howIWorkHeading: 'How I step in',
-        howCard1Title: 'Understand the problem before touching anything',
-        howCard1Text: 'Most issues are not technical at the core. I start by mapping the bottlenecks, the real blockers, and the gaps in clarity or process.',
-        howCard2Title: 'Build only what actually helps',
-        howCard2Text: 'No over-engineering. No shiny tools for fun. Only solutions that remove friction and create visible progress.',
-        howCard3Title: 'Communicate clearly and stay close',
-        howCard3Text: 'I keep you updated, simplify decisions, and adjust quickly when priorities shift.',
+        howCard1Title: 'Find where momentum is lost',
+        howCard1Text: 'I map bottlenecks, context switching, unclear ownership, and work that keeps getting postponed so we know what actually slows you down.',
+        howCard2Title: 'Take ownership and do the work',
+        howCard2Text: 'I handle the messy parts directly: automation, documentation, fixing deployment issues, supporting hiring, adding leads, joining conferences and client calls, whatever keeps things moving.',
+        howCard3Title: 'Make delivery predictable',
+        howCard3Text: 'I design scalable cloud setups, improve data flows, add CI/CD, monitoring and alerts so deployments are safe, performance is visible, and systems scale without surprises.',
+        howCard4Title: 'Stay close and adjust fast',
+        howCard4Text: 'Priorities shift. I work with your team, communicate clearly, and adjust quickly so decisions are simple and work keeps flowing.'
+
 
         /* APPROACH PAGE – PRACTICE */
         practiceHeading: 'What does this mean in practice?',
 
         /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
-        block1Title: 'For startups',
-        block1Subtitle: 'You need to ship fast without breaking things later.',
-        block1Text: 'I set up CI/CD, testing workflows, and monitoring so your team can move quickly with confidence.',
+         block1Title: 'For startups',
+         block1Subtitle: 'You need to ship without getting stuck in daily noise.',
+         block1Text: 'I take over the small tasks that slow everyone down: writing requirements, creating tickets, planning releases, and keeping a single list of what needs to be done next. I prepare user stories, check pull requests, set up CI/CD, improve logging and make sure work moves so the founder can focus on product and the next round.',
 
-        /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
-        block2Title: 'For a scaleup',
-        block2TitleMobile: 'For a scaleup',
-        block2Text1: 'Your systems are starting to creak under growth. I audit your infrastructure, find bottlenecks, and implement solutions that scale without a full rebuild.',
-        block2Text2: '',
+       /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
+         block2Title: 'For a scaleup',
+         block2TitleMobile: 'For a scaleup',
+         block2Text1: 'Teams are busy, but delivery slows when work bounces between people. I reorganize the backlog, simplify handovers, clean up environments and set up CI/CD, logging and alerts so delivery stays steady.',
+         block2Text2: 'I join planning sessions, check what is blocked, help with infrastructure and cloud costs, and make sure important work keeps moving when priorities shift.',
 
-        /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
-        block3Title: 'For a small agency',
-        block3Subtitle: 'You juggle multiple clients and need repeatable, reliable processes.',
-        block3Text: 'I standardize deployments, automate repetitive work, and create documentation so your team isn’t reinventing the wheel every project.',
+       /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
+         block3Title: 'For an agency',
+         block3Subtitle: 'Multiple clients, tight deadlines and repeated work.',
+         block3Text: 'I standardize how projects are set up, write simple checklists, clean up repos and documents, and remove repetitive work. I set up shared environments, automate common tasks, join client calls when needed, and make sure the agency does not depend on heroic effort to finish projects.',
 
         /* CTA */
-        ctaTitle: 'Let\'s talk',
-        ctaTitleMobile: 'Let\'s talk',
-        ctaText: 'No pitch. Just a short conversation to see if what you need matches how I work.',
-        ctaButton1: 'Social proof',
-        ctaButton2: 'About me',
-
+          ctaTitle: 'Let\'s talk',
+          ctaTitleMobile: 'Let\'s talk',
+          ctaText: 'A short call is usually enough to understand if I can help. No pitch, no pressure, just a conversation about what is stuck, what needs to move, and whether I am the right person to step in.',
+          ctaButton1: 'Social proof',
+          ctaButton2: 'About me',
+    
         /* WHY THIS WORKS */
         whyQuote: 'I’ve worked with teams drowning in technical debt, agencies that needed structure, and startups moving fast with limited resources. The common thread? They needed someone who bridges business goals and technical execution—and stays until it works.'
     },
