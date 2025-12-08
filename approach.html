@@ -2086,28 +2086,31 @@ footer {
 
       <!-- Pricing Section -->
     <section class="pricing-section">
-        <div class="pricing-content">
-            <h1 class="pricing-header" data-animate="left">For what price?</h1>
-            <div class="horizontal-line-pricing"></div>
-            
-            <p class="pricing-intro" data-animate="right">
-                We'll go month-to-month. If we're creating value together, we'll continue naturally and with an increasing time horizon. If it doesn't make sense, we'll part ways.
-            </p>
+    <div class="pricing-content">
+        <h1 class="pricing-header" data-animate="left" data-translate="pricingHeader">
+            For what price?
+        </h1>
+        <div class="horizontal-line-pricing"></div>
+        
+        <p class="pricing-intro" data-animate="right" data-translate="pricingIntro">
+            We'll go month-to-month. If we're creating value together, we'll continue naturally and with an increasing time horizon. If it doesn't make sense, we'll part ways.
+        </p>
 
-            <div class="pricing-box" data-animate="right">
-                <div class="pricing-range">Mid-level CEE rates</div>
-                <p class="pricing-description">
-                    What you need to understand as a baseline: I want to cover my bills, and we're speaking mid-level Central & Eastern European rates.
-                </p>
-                <ul class="pricing-features">
-                    <li>Micro-tracked workload</li>
-                    <li>Complete transparency in invoicing</li>
-                    <li>No surprises—everything is documented and argued</li>
-                    <li>You'll never wonder "why did we pay this much?"</li>
-                </ul>
-            </div>
+        <div class="pricing-box" data-animate="right">
+            <div class="pricing-range" data-translate="pricingRange">Mid-level CEE rates</div>
+            <p class="pricing-description">
+                What you need to understand as a baseline: I want to cover my bills, and we're speaking mid-level Central & Eastern European rates.
+            </p>
+            <ul class="pricing-features">
+                <li data-translate="pricingFeature1">Micro-tracked workload</li>
+                <li data-translate="pricingFeature2">Complete transparency in invoicing</li>
+                <li data-translate="pricingFeature3">No surprises—everything is documented and argued</li>
+                <li data-translate="pricingFeature4">You'll never wonder "why did we pay this much?"</li>
+            </ul>
         </div>
-    </section>
+    </div>
+</section>
+
 <!-- Call to Action Section -->
 <section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
     <div style="max-width: 1200px; margin: 0 auto;">
@@ -2590,9 +2593,8 @@ const translations = {
         /* HOME SECTION */
         homeSectionTitle: 'How I <span class="bold-toni">work.</span>',
         homeSectionText: 'I step in to find where <span class="bold-split">time and money</span> are being lost, remove bottlenecks,<span class="home-text-break"></span> and do the dirty but necessary work to build a setup that <span class="bold-split">delivers faster</span> with less stress.',
-        homeSectionTextMobile: 'I find where time and money are being lost, remove bottlenecks, and do the dirty but necessary work to build a setup that delivers faster with less stress.',
+        homeSectionTextMobile: 'I find where <span class="bold-split">time and money</span> are being lost, remove bottlenecks, and do the dirty but necessary work to build a setup that <span class="bold-split">delivers faster</span> with less stress.',
         scrollText: 'your pain points',
-
 
         /* NAVIGATION */
         navHome: 'home',
@@ -2601,12 +2603,11 @@ const translations = {
         navBlog: 'writing outlet',
         navValue: 'value delivered',
 
-    /* APPROACH PAGE - OPENING HOOK */
-       approachOpeningHeading: 'How I actually work with teams',
-       approachOpeningLine1: 'Decisions are piling up, priorities keep shifting, context switching is constant, and you still need to work on the next investment deck while the daily work keeps eating all your time.',
-       approachOpeningLine2: 'Or you’re an early scaleup: teams are busy, projects overlap, ownership is unclear, and delivery slows because everyone is context-switching instead of driving the work that actually moves the company forward.',
-       approachOpeningLine3: 'Or you’re an agency with multiple active clients: deadlines stack up, team capacity is tight, and delivery slows because every project uses a slightly different setup and too much work is still manual.',
-
+        /* APPROACH PAGE - OPENING HOOK */
+        approachOpeningHeading: 'How I actually work with teams',
+        approachOpeningLine1: 'Decisions are piling up, priorities keep shifting, context switching is constant, and you still need to work on the next investment deck while the daily work keeps eating all your time.',
+        approachOpeningLine2: 'Or you’re an early scaleup: teams are busy, projects overlap, ownership is unclear, and delivery slows because everyone is context-switching instead of driving the work that actually moves the company forward.',
+        approachOpeningLine3: 'Or you’re an agency with multiple active clients: deadlines stack up, team capacity is tight, and delivery slows because every project uses a slightly different setup and too much work is still manual.',
 
         /* APPROACH PAGE - HOW I WORK */
         howIWorkHeading: 'How I step in',
@@ -2619,33 +2620,41 @@ const translations = {
         howCard4Title: 'Stay close and adjust fast',
         howCard4Text: 'Priorities shift. I work with your team, communicate clearly, and adjust quickly so decisions are simple and work keeps flowing.',
 
-
         /* APPROACH PAGE – PRACTICE */
         practiceHeading: 'What does this mean in practice?',
 
         /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
-         block1Title: 'For startups',
-         block1Subtitle: 'You need to ship without getting stuck in daily noise.',
-         block1Text: 'I take over the small tasks that slow everyone down: writing requirements, creating tickets, planning releases, and keeping a single list of what needs to be done next. I prepare user stories, check pull requests, set up CI/CD, improve logging and make sure work moves so the founder can focus on product and the next round.',
+        block1Title: 'For startups',
+        block1Subtitle: 'You need to ship without getting stuck in daily noise.',
+        block1Text: 'I take over the small tasks that slow everyone down: writing requirements, creating tickets, planning releases, and keeping a single list of what needs to be done next. I prepare user stories, check pull requests, set up CI/CD, improve logging and make sure work moves so the founder can focus on product and the next round.',
 
-       /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
-         block2Title: 'For a scaleup',
-         block2TitleMobile: 'For a scaleup',
-         block2Text1: 'Teams are busy, but delivery slows when work bounces between people. I reorganize the backlog, simplify handovers, clean up environments and set up CI/CD, logging and alerts so delivery stays steady.',
-         block2Text2: 'I join planning sessions, check what is blocked, help with infrastructure and cloud costs, and make sure important work keeps moving when priorities shift.',
+        /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
+        block2Title: 'For a scaleup',
+        block2TitleMobile: 'For a scaleup',
+        block2Text1: 'Teams are busy, but delivery slows when work bounces between people. I reorganize the backlog, simplify handovers, clean up environments and set up CI/CD, logging and alerts so delivery stays steady.',
+        block2Text2: 'I join planning sessions, check what is blocked, help with infrastructure and cloud costs, and make sure important work keeps moving when priorities shift.',
 
-       /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
-         block3Title: 'For an agency',
-         block3Subtitle: 'Multiple clients, tight deadlines and repeated work.',
-         block3Text: 'I standardize how projects are set up, write simple checklists, clean up repos and documents, and remove repetitive work. I set up shared environments, automate common tasks, join client calls when needed, and make sure the agency does not depend on heroic effort to finish projects.',
+        /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
+        block3Title: 'For an agency',
+        block3Subtitle: 'Multiple clients, tight deadlines and repeated work.',
+        block3Text: 'I standardize how projects are set up, write simple checklists, clean up repos and documents, and remove repetitive work. I set up shared environments, automate common tasks, join client calls when needed, and make sure the agency does not depend on heroic effort to finish projects.',
+
+        /* PRICING */
+        pricingHeader: 'For what price?',
+        pricingIntro: 'We\'ll go month-to-month. If we\'re creating value together, we\'ll continue naturally and with an increasing time horizon. If it doesn\'t make sense, we\'ll part ways.',
+        pricingRange: 'Mid-level CEE rates',
+        pricingFeature1: 'Micro-tracked workload',
+        pricingFeature2: 'Complete transparency in invoicing',
+        pricingFeature3: 'No surprises—everything is documented and argued',
+        pricingFeature4: 'You\'ll never wonder "why did we pay this much?"',
 
         /* CTA */
-          ctaTitle: 'Let\'s talk',
-          ctaTitleMobile: 'Let\'s talk',
-          ctaText: 'A short call is usually enough to understand if I can help. No pitch, no pressure, just a conversation about what is stuck, what needs to move, and whether I am the right person to step in.',
-          ctaButton1: 'Social proof',
-          ctaButton2: 'About me',
-    
+        ctaTitle: 'Let\'s talk',
+        ctaTitleMobile: 'Let\'s talk',
+        ctaText: 'A short call is usually enough to understand if I can help. No pitch, no pressure, just a conversation about what is stuck, what needs to move, and whether I am the right person to step in.',
+        ctaButton1: 'Social proof',
+        ctaButton2: 'About me',
+
         /* WHY THIS WORKS */
         whyQuote: 'I’ve worked with teams drowning in technical debt, agencies that needed structure, and startups moving fast with limited resources. The common thread? They needed someone who bridges business goals and technical execution—and stays until it works.'
     },
@@ -2653,8 +2662,8 @@ const translations = {
     'fr': {
         /* HOME SECTION */
         homeSectionTitle: 'Comment je <span class="bold-toni">travaille.</span>',
-        homeSectionText: 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants<span class="home-text-break"></span> et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
-        homeSectionTextMobile: 'Mon objectif est simple: comprendre vos vrais points de douleur agaçants et créer une configuration qui réduit les frictions, évolue sans effort et soutient une croissance réelle.',
+        homeSectionText: 'Mon objectif est simple: comprendre vos <span class="bold-split">vrais points de douleur</span> agaçants<span class="home-text-break"></span> et créer une configuration qui <span class="bold-split">réduit les frictions</span>, évolue sans effort et soutient une <span class="bold-split">croissance réelle</span>.',
+        homeSectionTextMobile: 'Mon objectif est simple: comprendre vos <span class="bold-split">vrais points de douleur</span> agaçants et créer une configuration qui <span class="bold-split">réduit les frictions</span>, évolue sans effort et soutient une <span class="bold-split">croissance réelle</span>.',
         scrollText: 'vos points de douleur',
 
         /* NAVIGATION */
@@ -2671,49 +2680,60 @@ const translations = {
         approachOpeningLine3: 'Vous cherchez quelqu’un qui peut intervenir sans ajouter du bruit, aider à définir ce qui compte vraiment et avancer sans un long processus de recrutement.',
 
         /* APPROACH PAGE - HOW I WORK */
-        howIWorkHeading: 'Comment je travaille',
+        howIWorkHeading: 'Comment j’interviens',
         howCard1Title: 'Comprendre le problème avant d’agir',
         howCard1Text: 'La plupart des problèmes ne sont pas vraiment techniques. Je commence par analyser les blocages, les frictions et les manques de clarté.',
         howCard2Title: 'Construire uniquement ce qui aide vraiment',
         howCard2Text: 'Pas de sur-ingénierie. Pas d’outils brillants sans raison. Seulement des solutions qui réduisent la friction et génèrent des progrès visibles.',
-        howCard3Title: 'Communiquer clairement et rester proche',
-        howCard3Text: 'Je vous tiens informé, je simplifie les décisions et je m’adapte rapidement si les priorités changent.',
+        howCard3Title: 'Rendre la livraison prévisible',
+        howCard3Text: 'Je conçois des architectures cloud évolutives, j’améliore les flux de données, j’ajoute CI/CD, monitoring et alertes pour que les déploiements soient sûrs, les performances visibles et les systèmes stables.',
+        howCard4Title: 'Rester proche et s’adapter vite',
+        howCard4Text: 'Les priorités changent. Je travaille au plus près de votre équipe, je communique clairement et j’ajuste rapidement pour que les décisions restent simples et que le travail avance.',
 
         /* APPROACH PAGE – PRACTICE */
         practiceHeading: 'Ce que cela donne en pratique',
 
         /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
         block1Title: 'Pour les startups',
-        block1Subtitle: 'Vous devez livrer vite sans tout casser plus tard.',
-        block1Text: 'Je mets en place CI/CD, les workflows de tests et le monitoring afin que votre équipe avance rapidement et en toute confiance.',
+        block1Subtitle: 'Vous devez livrer vite sans vous perdre dans le bruit du quotidien.',
+        block1Text: 'Je reprends les petites tâches qui ralentissent tout le monde: rédaction des besoins, création de tickets, préparation des releases et maintien d’une liste claire de ce qui doit être fait ensuite. Je prépare les user stories, vérifie les pull requests, mets en place CI/CD, améliore les logs et m’assure que le travail avance pour que le fondateur puisse se concentrer sur le produit et le prochain tour.',
 
         /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
         block2Title: 'Pour une scale-up',
         block2TitleMobile: 'Pour une scale-up',
-        block2Text1: 'Vos systèmes commencent à montrer des limites avec la croissance. J’audite votre infrastructure, identifie les goulots d’étranglement et mets en place des solutions qui évoluent sans tout reconstruire.',
-        block2Text2: '',
+        block2Text1: 'Les équipes sont occupées, mais la livraison ralentit dès que le travail rebondit entre les personnes. Je réorganise le backlog, simplifie les passages de relais, nettoie les environnements et mets en place CI/CD, logs et alertes pour garder un rythme stable.',
+        block2Text2: 'Je participe aux séances de planning, je vois ce qui est bloqué, j’aide sur l’infrastructure et les coûts cloud, et je m’assure que le travail important continue d’avancer quand les priorités changent.',
 
         /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
-        block3Title: 'Pour une petite agence',
-        block3Subtitle: 'Vous gérez plusieurs clients et avez besoin de processus fiables et reproductibles.',
-        block3Text: 'Je standardise les déploiements, j’automatise les tâches répétitives et je crée la documentation nécessaire pour éviter de tout refaire à chaque projet.',
+        block3Title: 'Pour une agence',
+        block3Subtitle: 'Plusieurs clients, des délais serrés et du travail répétitif.',
+        block3Text: 'Je standardise la façon dont les projets sont montés, j’écris des checklists simples, je nettoie les dépôts et la documentation, et je supprime le travail répétitif. Je crée des environnements partagés, j’automatise les tâches courantes, je rejoins les appels clients si nécessaire et j’évite que l’agence ne dépende d’efforts héroïques pour finir les projets.',
+
+        /* PRICING */
+        pricingHeader: 'Pour quel prix ?',
+        pricingIntro: 'Nous fonctionnons au mois. Si nous créons de la valeur ensemble, la collaboration continue naturellement avec un horizon qui s’allonge. Si ce n’est pas le cas, on s’arrête sans friction.',
+        pricingRange: 'TJM de niveau intermédiaire en Europe centrale et de l’Est',
+        pricingFeature1: 'Charge de travail suivie finement',
+        pricingFeature2: 'Transparence complète sur la facturation',
+        pricingFeature3: 'Aucune surprise—tout est documenté et argumenté',
+        pricingFeature4: 'Vous ne vous demanderez jamais « pourquoi avons-nous payé autant ? »',
 
         /* CTA */
         ctaTitle: 'Discutons',
         ctaTitleMobile: 'Discutons',
-        ctaText: 'Pas de discours commercial. Juste une courte discussion pour voir si vos besoins correspondent à ma manière de travailler.',
+        ctaText: 'Un court appel suffit généralement pour voir si je peux aider. Pas de pitch, pas de pression, juste une conversation sur ce qui bloque, ce qui doit avancer et si je suis la bonne personne pour intervenir.',
         ctaButton1: 'Voir mon travail',
         ctaButton2: 'À propos de moi',
 
         /* WHY THIS WORKS */
-        whyQuote: 'J’ai travaillé avec des équipes noyées dans la dette technique, des agences qui manquaient de structure et des startups qui devaient aller vite avec peu de ressources. Leur point commun? Elles avaient besoin d’un lien clair entre les objectifs business et l’exécution technique—et d’un partenaire qui reste jusqu’à ce que ça fonctionne.'
+        whyQuote: 'J’ai travaillé avec des équipes noyées dans la dette technique, des agences qui manquaient de structure et des startups qui devaient aller vite avec peu de ressources. Leur point commun ? Elles avaient besoin d’un lien clair entre les objectifs business et l’exécution technique—et d’un partenaire qui reste jusqu’à ce que ça fonctionne.'
     },
 
     'hr': {
         /* HOME SECTION */
         homeSectionTitle: 'Kako <span class="bold-toni">radim.</span>',
-        homeSectionText: 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke<span class="home-text-break"></span> i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
-        homeSectionTextMobile: 'Moj fokus je jednostavan: razumjeti vaše stvarne dosadne bolne točke i stvoriti postavu koja smanjuje trenje, lako se skalira i podržava pravi rast.',
+        homeSectionText: 'Moj fokus je jednostavan: razumjeti vaše <span class="bold-split">stvarne bolne točke</span><span class="home-text-break"></span> i stvoriti postavu koja <span class="bold-split">smanjuje trenje</span>, lako se skalira i podržava <span class="bold-split">pravi rast</span>.',
+        homeSectionTextMobile: 'Moj fokus je jednostavan: razumjeti vaše <span class="bold-split">stvarne bolne točke</span> i stvoriti postavu koja <span class="bold-split">smanjuje trenje</span>, lako se skalira i podržava <span class="bold-split">pravi rast</span>.',
         scrollText: 'vaše probleme',
 
         /* NAVIGATION */
@@ -2730,42 +2750,53 @@ const translations = {
         approachOpeningLine3: 'Trebate nekoga tko može uskočiti bez dodavanja buke, pomoći definirati što je zapravo važno i pokrenuti stvari bez dugog procesa zapošljavanja.',
 
         /* APPROACH PAGE - HOW I WORK */
-        howIWorkHeading: 'Kako radim',
-        howCard1Title: 'Razumjeti problem prije bilo čega',
-        howCard1Text: 'Većina problema nije tehnička u svojoj srži. Počinjem tako da mapiram uska grla, prave blokade i nedostatke u procesu ili jasnoći.',
-        howCard2Title: 'Graditi samo ono što stvarno pomaže',
-        howCard2Text: 'Bez prekompliciranih rješenja. Bez sjajnih alata bez svrhe. Samo rješenja koja uklanjaju trenje i stvaraju stvaran napredak.',
-        howCard3Title: 'Jasna komunikacija i stalna blizina',
-        howCard3Text: 'Redovno ažuriram, pojednostavljujem odluke i brzo se prilagođavam kad se prioriteti promijene.',
+        howIWorkHeading: 'Kako uskačem',
+        howCard1Title: 'Pronaći gdje se gubi momentum',
+        howCard1Text: 'Mapiram uska grla, česta prebacivanja konteksta, nejasno vlasništvo i posao koji se stalno odgađa kako bismo znali što vas zapravo usporava.',
+        howCard2Title: 'Preuzeti odgovornost i odraditi posao',
+        howCard2Text: 'Direktno se bavim “neurednim” dijelovima: automatizacijom, dokumentacijom, rješavanjem problema s deployem, podrškom u zapošljavanju, dodavanjem leadova, konferencijama i klijentskim pozivima—što god treba da posao ide dalje.',
+        howCard3Title: 'Učiniti isporuku predvidivom',
+        howCard3Text: 'Dizajniram skalabilne cloud postave, poboljšavam tok podataka, uvodim CI/CD, nadzor i alarme kako bi deployi bili sigurni, performanse vidljive, a sustavi skalabilni bez iznenađenja.',
+        howCard4Title: 'Biti blizu i brzo se prilagoditi',
+        howCard4Text: 'Prioriteti se mijenjaju. Radim uz vaš tim, jasno komuniciram i brzo se prilagođavam kako bi odluke bile jednostavne, a posao kontinuirano tekao.',
 
         /* APPROACH PAGE – PRACTICE */
         practiceHeading: 'Kako to izgleda u praksi',
 
         /* ABOUT PAGE – BLOCK 1 (STARTUPS) */
         block1Title: 'Za startupe',
-        block1Subtitle: 'Morate isporučivati brzo, ali bez rušenja stvari kasnije.',
-        block1Text: 'Postavljam CI/CD, testne tokove i monitoring kako bi vaš tim mogao raditi brzo i s povjerenjem.',
+        block1Subtitle: 'Morate isporučivati brzo, ali bez gušenja u svakodnevnom šumu.',
+        block1Text: 'Preuzimam male zadatke koji usporavaju sve: pisanje zahtjeva, kreiranje ticketa, planiranje izdanja i održavanje jasne liste što je sljedeće. Pripremam user storyje, provjeravam pull requestove, postavljam CI/CD, poboljšavam logiranje i pazim da se posao kreće kako bi se founder mogao fokusirati na proizvod i sljedeću rundu.',
 
         /* ABOUT PAGE – BLOCK 2 (SCALEUP) */
         block2Title: 'Za scale-up',
         block2TitleMobile: 'Za scale-up',
-        block2Text1: 'Vaši sustavi počinju škripati pod rastom. Analiziram infrastrukturu, pronalazim uska grla i implementiram rješenja koja skaliraju bez potpunog redizajna.',
-        block2Text2: '',
+        block2Text1: 'Timovi su zauzeti, ali isporuka se usporava kad se posao stalno prebacuje između ljudi. Reorganiziram backlog, pojednostavljujem predaje, čistim okruženja i postavljam CI/CD, logiranje i alarme kako bi ritam isporuke ostao stabilan.',
+        block2Text2: 'Sudjelujem na planiranjima, provjeravam što je blokirano, pomažem oko infrastrukture i cloud troškova te pazim da važan posao nastavi napredovati kad se prioriteti promijene.',
 
         /* ABOUT PAGE – BLOCK 3 (SMALL AGENCY) */
-        block3Title: 'Za malu agenciju',
-        block3Subtitle: 'Radite s više klijenata i trebaju vam pouzdani, ponovljivi procesi.',
-        block3Text: 'Standardiziram deploymente, automatiziram rutinske zadatke i kreiram dokumentaciju kako vaš tim ne bi iznova radio iste stvari u svakom projektu.',
+        block3Title: 'Za agenciju',
+        block3Subtitle: 'Više klijenata, kratki rokovi i ponavljajući posao.',
+        block3Text: 'Standardiziram način na koji su projekti postavljeni, pišem jednostavne checkliste, čistim repozitorije i dokumente te uklanjam ponavljajući rad. Postavljam zajednička okruženja, automatiziram česte zadatke, priključujem se klijentskim pozivima po potrebi i pazim da agencija ne ovisi o herojskim naporima za završetak projekata.',
+
+        /* PRICING */
+        pricingHeader: 'Po kojoj cijeni?',
+        pricingIntro: 'Radimo iz mjeseca u mjesec. Ako zajedno stvaramo vrijednost, suradnja se prirodno nastavlja i horizont se širi. Ako nema smisla, jednostavno stanemo.',
+        pricingRange: 'Srednje razine cijena za CEE tržište',
+        pricingFeature1: 'Detaljno praćenje utroška vremena',
+        pricingFeature2: 'Potpuna transparentnost u fakturiranju',
+        pricingFeature3: 'Bez iznenađenja—sve je dokumentirano i obrazloženo',
+        pricingFeature4: 'Nikad se nećete pitati „zašto smo platili ovoliko?”',
 
         /* CTA */
         ctaTitle: 'Popričajmo',
         ctaTitleMobile: 'Popričajmo',
-        ctaText: 'Bez prodaje. Samo kratak razgovor da vidimo odgovaramo li si u načinu rada.',
+        ctaText: 'Kratak poziv je obično dovoljan da vidimo mogu li pomoći. Bez prodajnog pritiska—samo razgovor o tome što je zapelo, što treba pokrenuti i jesam li prava osoba da uskočim.',
         ctaButton1: 'Moji projekti',
         ctaButton2: 'O meni',
 
         /* WHY THIS WORKS */
-        whyQuote: 'Radio sam s timovima koji su tonuli u tehničkom dugu, agencijama kojima je trebala struktura i startupima koji su morali napredovati brzo s malo resursa. Zajedničko im je bilo to da im je trebao netko tko povezuje poslovne ciljeve s tehničkom izvedbom—and ostaje dok to stvarno ne proradi.'
+        whyQuote: 'Radio sam s timovima koji tonu u tehničkom dugu, agencijama kojima je trebala struktura i startupima koji moraju napredovati brzo s malo resursa. Zajedničko im je bilo to da im je trebao netko tko povezuje poslovne ciljeve s tehničkom izvedbom—and ostaje dok to stvarno ne proradi.'
     }
 };
 
@@ -2854,6 +2885,9 @@ if (howSection) {
     const c3Title = howSection.querySelector('[data-translate="howCard3Title"]');
     const c3Text  = howSection.querySelector('[data-translate="howCard3Text"]');
 
+    const c4Title = howSection.querySelector('[data-translate="howCard4Title"]');
+    const c4Text  = howSection.querySelector('[data-translate="howCard4Text"]');
+
     if (c1Title) c1Title.textContent = content.howCard1Title;
     if (c1Text)  c1Text.textContent  = content.howCard1Text;
 
@@ -2862,7 +2896,11 @@ if (howSection) {
 
     if (c3Title) c3Title.textContent = content.howCard3Title;
     if (c3Text)  c3Text.textContent  = content.howCard3Text;
+
+    if (c4Title) c4Title.textContent = content.howCard4Title;
+    if (c4Text)  c4Text.textContent  = content.howCard4Text;
 }
+
 
     // Update Practice section
 const practice = document.querySelector('#practice-examples');
@@ -2914,7 +2952,27 @@ if (practice) {
         block3.querySelector('.about-subheader').textContent = content.block3Subtitle;
         block3.querySelector('.about-subheader1').textContent = content.block3Text;
     }
-    
+
+    // Update Pricing section
+const pricingSection = document.querySelector('.pricing-section');
+if (pricingSection) {
+    const pHeader   = pricingSection.querySelector('[data-translate="pricingHeader"]');
+    const pIntro    = pricingSection.querySelector('[data-translate="pricingIntro"]');
+    const pRange    = pricingSection.querySelector('[data-translate="pricingRange"]');
+    const pFeatures = pricingSection.querySelectorAll('[data-translate^="pricingFeature"]');
+
+    if (pHeader) pHeader.textContent = content.pricingHeader;
+    if (pIntro)  pIntro.textContent  = content.pricingIntro;
+    if (pRange)  pRange.textContent  = content.pricingRange;
+
+    if (pFeatures.length >= 4) {
+        pFeatures[0].textContent = content.pricingFeature1;
+        pFeatures[1].textContent = content.pricingFeature2;
+        pFeatures[2].textContent = content.pricingFeature3;
+        pFeatures[3].textContent = content.pricingFeature4;
+    }
+}
+
     // Update CTA section
     const ctaSection = document.querySelector('section:last-of-type');
     if (ctaSection) {
