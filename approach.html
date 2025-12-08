@@ -1174,6 +1174,48 @@ body {
     font-size: 1.05rem;
 }
 
+ .aws-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(240, 244, 248, 0.08);
+}
+
+.aws-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+}
+
+.aws-badge-text {
+    font-family: SkemaProDisplay;
+    font-size: 0.95rem;
+    color: #F0F4F8;
+    font-weight: 200;
+    white-space: nowrap;
+}
+
+.aws-checkmark {
+    font-weight: 600;
+    margin-right: 0.25rem;
+    color: #4A6D8C;
+}
+
+/* On small screens allow wrapping so it does not overflow */
+@media screen and (max-width: 768px) {
+    .aws-badge {
+        white-space: normal;
+    }
+    .aws-badge-text {
+        white-space: normal;
+    }
+}
+
+
 /* Practice blocks */
 .practice-heading {
      margin-bottom: 2rem;
@@ -1292,6 +1334,19 @@ body {
             left: 0;
             color: #4A6D8C;
         }
+
+        @media screen and (min-width: 1024px) {
+    .how-i-work-grid {
+        display: flex;
+        flex-wrap: nowrap; /* prevent wrapping */
+        gap: 1.5rem;
+        justify-content: space-between;
+    }
+            .how-card {
+        flex: 0 0 calc(25% - 1.2rem); /* four equal cards */
+        max-width: calc(25% - 1.2rem);
+    }
+ }
 
 @media (min-width: 769px) {
   .home-text-break {
@@ -1896,15 +1951,24 @@ footer {
                 </p>
             </div>
             <!-- Card 3 -->
-            <div class="how-card" data-animate="bottom">
-                <div class="how-card-animation">
-                    <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/chat.png" alt="Chat icon">
-                </div>
-                <h3 class="how-card-title" data-translate="howCard3Title">Stay close, stay clear</h3>
-                <p class="about-subheader how-card-text" data-translate="howCard3Text">
-                    I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
-                </p>
-            </div>
+           <div class="how-card" data-animate="bottom">
+    <div class="how-card-animation">
+        <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/chat.png" alt="Chat icon">
+    </div>
+    <h3 class="how-card-title" data-translate="howCard3Title">Stay close, stay clear</h3>
+    <p class="about-subheader how-card-text" data-translate="howCard3Text">
+        I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
+    </p>
+
+    <div class="aws-badge">
+        <img src="assets/aws-certified.png" alt="AWS Certified" class="aws-logo">
+        <span class="aws-badge-text">
+            <span class="aws-checkmark">✓</span>
+            Experienced with AWS infrastructure and services
+        </span>
+    </div>
+</div>
+
             <!-- Card 4 -->
          <div class="how-card" data-animate="bottom">
           <div class="how-card-animation">
