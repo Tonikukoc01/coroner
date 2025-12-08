@@ -1046,6 +1046,31 @@ body {
     animation-delay: 0s;
 }
 
+.case-study-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    font-family: SkemaProDisplay;
+    font-size: 1.05rem;
+    font-weight: 200;
+    color: #E4C178;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.case-study-link-icon {
+    margin-left: 0.35rem;
+    font-size: 1.05rem;
+}
+
+.case-study-link:hover {
+    color: #F0F4F8;
+    text-decoration-color: #F0F4F8;
+}
+
 /* New sections: opening hook, how I work, practice, why this works, CTA */
 
 .opening-hook-section,
@@ -1961,12 +1986,15 @@ footer {
     </p>
 
     <div class="aws-badge">
-        <img src="assets/aws-certified.png" alt="AWS Certified" class="aws-logo">
-        <span class="aws-badge-text">
-            <span class="aws-checkmark">✓</span>
-            Experienced with AWS infrastructure and services
-        </span>
-    </div>
+    <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/aws-logo.svg"
+         alt="AWS Certified"
+         class="aws-logo">
+
+    <span class="aws-badge-text">
+        <span class="aws-checkmark">✓</span>
+        Experienced with AWS infrastructure and services
+    </span>
+ </div>
 </div>
 
             <!-- Card 4 -->
@@ -2022,17 +2050,23 @@ footer {
         </div>
         <!-- Third Block -->
         <div class="content-block block-3">
-            <div class="content-text">
-                <h1 class="about-header">Support & Scalability</h1>
-                <p class="about-subheader">
-                    As your company grows and things get intense, I'll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure. 
-                </p>
-                <p class="about-subheader1">
-                    Whether it's expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.
-                </p>
-            </div>
-            <div id="scaling-animation" class="content-image"></div>
-        </div>
+    <div class="content-text">
+        <h1 class="about-header">Support & Scalability</h1>
+        <p class="about-subheader">
+            As your company grows and things get intense, I'll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure. 
+        </p>
+        <p class="about-subheader1">
+            Whether it's expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.
+        </p>
+        <a href="https://tonikukoc.me/project-ops" class="case-study-link">
+            Check out the Project Ops case study
+            <span class="case-study-link-icon">↗</span>
+        </a>
+    </div>
+
+    <div id="scaling-animation" class="content-image"></div>
+</div>
+
     </div>
 </section>
 
