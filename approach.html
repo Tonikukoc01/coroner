@@ -1371,6 +1371,368 @@ body {
             color: #4A6D8C;
         }
 
+            /* CTA Section Styles */
+        .cta-section {
+            text-align: center;
+            padding: 8rem 2rem 3rem 2rem;
+            background: #1A2B3C;
+        }
+
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cta-header {
+            font-family: SkemaProDisplay;
+            color: #F0F4F8;
+            font-size: 2.3rem;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .horizontal-line {
+            width: 3.5cm;
+            height: 2px;
+            background-color: #F0F4F8;
+            border: none;
+            margin: 0 auto 3rem auto;
+        }
+
+        .cta-subheader {
+            font-family: SkemaProDisplay;
+            font-size: 1.2rem;
+            font-weight: 100;
+            color: #B0B8C1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* Contact Card */
+        .contact-card {
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            padding: 2.5rem;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(240, 244, 248, 0.08);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-card-header {
+            font-family: SkemaProDisplay;
+            font-size: 1.3rem;
+            font-weight: 200;
+            color: #F0F4F8;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Calendar Booking Method */
+        .contact-method.calendar-method {
+            flex-direction: column;
+            padding: 1.5rem;
+            cursor: pointer;
+        }
+
+        .contact-method.calendar-method:hover {
+            transform: none;
+        }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-toggle-btn {
+            background: none;
+            border: none;
+            color: #4A6D8C;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            padding: 0;
+        }
+
+        .calendar-method.active .calendar-toggle-btn {
+            transform: rotate(180deg);
+        }
+
+        .calendar-content {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .calendar-method.active .calendar-content {
+            max-height: 500px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-day-header {
+            font-family: SkemaProDisplay;
+            font-size: 0.85rem;
+            color: #B0B8C1;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: 200;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: SkemaProDisplay;
+            font-size: 0.9rem;
+            color: #F0F4F8;
+            background: rgba(26, 43, 60, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .calendar-day:hover:not(.disabled):not(.empty) {
+            background: rgba(74, 109, 140, 0.3);
+            border-color: rgba(74, 109, 140, 0.5);
+        }
+
+        .calendar-day.selected {
+            background: rgba(74, 109, 140, 0.5);
+            border-color: #4A6D8C;
+        }
+
+        .calendar-day.disabled {
+            color: #4A5568;
+            cursor: not-allowed;
+            opacity: 0.3;
+        }
+
+        .calendar-day.empty {
+            background: transparent;
+            cursor: default;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .time-slot {
+            padding: 0.75rem;
+            font-family: SkemaProDisplay;
+            font-size: 0.95rem;
+            color: #F0F4F8;
+            background: rgba(26, 43, 60, 0.3);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .time-slot:hover:not(.disabled) {
+            background: rgba(74, 109, 140, 0.3);
+            border-color: rgba(74, 109, 140, 0.5);
+        }
+
+        .time-slot.selected {
+            background: rgba(74, 109, 140, 0.5);
+            border-color: #4A6D8C;
+        }
+
+        .time-slot.disabled {
+            color: #4A5568;
+            cursor: not-allowed;
+            opacity: 0.3;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input {
+            padding: 0.75rem;
+            font-family: SkemaProDisplay;
+            font-size: 1rem;
+            color: #F0F4F8;
+            background: rgba(26, 43, 60, 0.5);
+            border: 1px solid rgba(240, 244, 248, 0.08);
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: rgba(74, 109, 140, 0.5);
+        }
+
+        .form-input::placeholder {
+            color: #6B7280;
+        }
+
+        .submit-booking-btn {
+            padding: 0.75rem 1.5rem;
+            font-family: SkemaProDisplay;
+            font-size: 1rem;
+            font-weight: 200;
+            color: #F0F4F8;
+            background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-booking-btn:hover {
+            background: linear-gradient(45deg, #5A7D9C, #3D5F7B);
+            transform: translateY(-2px);
+        }
+
+        .submit-booking-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .selected-info {
+            font-family: SkemaProDisplay;
+            font-size: 0.95rem;
+            color: #B0B8C1;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* Regular Contact Methods */
+        .contact-method {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: rgba(26, 43, 60, 0.5);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .contact-method:hover {
+            background: rgba(74, 109, 140, 0.15);
+            border-color: rgba(240, 244, 248, 0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-method-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon-circle {
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 109, 140, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-method-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .contact-method-label {
+            font-family: SkemaProDisplay;
+            font-size: 0.9rem;
+            color: #B0B8C1;
+            font-weight: 100;
+        }
+
+        .contact-method-value {
+            font-family: SkemaProDisplay;
+            font-size: 1.05rem;
+            color: #F0F4F8;
+            font-weight: 200;
+        }
+
+        .contact-arrow {
+            color: #4A6D8C;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover .contact-arrow {
+            transform: translateX(5px);
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .collaboration-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            color: #F0F4F8;
+            font-family: SkemaproDisplay;
+            font-size: 1.2rem;
+            font-weight: 200;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .gradient-btn {
+            background: linear-gradient(45deg, #4A6D8C, #2D4F6B);
+        }
+
+        .gradient-btn:hover {
+            background: linear-gradient(45deg, #1A2B3C, #2D4F6B);
+            transform: translateY(-2px);
+        }
+
+        .outline-btn {
+            background: transparent;
+            border: 0.5px solid #F0F4F8;
+        }
+
+        .outline-btn:hover {
+            background: rgba(240, 244, 248, 0.1);
+            transform: translateY(-2px);
+        }
+
         @media screen and (min-width: 1024px) {
     .how-i-work-grid {
         display: flex;
@@ -1804,6 +2166,72 @@ backdrop-filter: blur(5px); /* Add blur effect */
         margin-left: auto;
         margin-right: auto;
     }
+
+       .cta-section {
+                padding: 4rem 1.5rem 2rem 1.5rem;
+            }
+
+            .cta-header {
+                font-size: 1.8rem;
+            }
+
+            .horizontal-line {
+                width: 2.5cm;
+            }
+
+            .cta-subheader {
+                font-size: 1.1rem;
+            }
+
+            .contact-card {
+                padding: 1.5rem;
+            }
+
+            .contact-card-header {
+                font-size: 1.1rem;
+            }
+
+            .contact-method {
+                padding: 0.8rem 1rem;
+            }
+
+            .contact-method-value {
+                font-size: 0.95rem;
+            }
+
+            .contact-icon-circle {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .calendar-grid {
+                gap: 0.3rem;
+            }
+
+            .calendar-day {
+                font-size: 0.8rem;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .time-slot {
+                font-size: 0.85rem;
+                padding: 0.6rem;
+            }
+
+            .collaboration-btn {
+                width: 100%;
+                max-width: 280px;
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+
+            .cta-buttons {
+                gap: 1rem;
+            }
  }   
 @media screen and (max-width: 480px) {
     #header h1 {
@@ -2108,22 +2536,124 @@ footer {
 </section>
 
 <!-- Call to Action Section -->
-<section style="text-align: center; padding: 8rem 2rem; background: #1A2B3C;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-        <h1 class="about-header" style="text-align: center; margin-bottom: 2rem; opacity: 0;">
+<section class="cta-section">
+    <div class="cta-container">
+        <h1 class="cta-header">
             Let's Build Something Together
         </h1>
-        <!-- Horizontal Line -->
-        <div class="horizontal-line" style="margin: 0 auto 3rem auto; width: 0;">
-        </div>
-        <p class="about-subheader" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; opacity: 0;">
-           I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let's build something that works—get in touch.
+        <div class="horizontal-line"></div>
+        <p class="cta-subheader">
+            I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let's build something that works—get in touch.
         </p>
-        <div style="display: flex; justify-content: center; gap: 2rem;">
-            <a href="value-delivered.html" class="collaboration-btn gradient-btn" style="opacity: 0;">
+
+        <div class="contact-card">
+            <div class="contact-card-header">Choose how to connect</div>
+            <div class="contact-methods">
+                
+                <!-- Calendar Booking -->
+                <div class="contact-method calendar-method" onclick="toggleCalendar(this)">
+                    <div class="calendar-header">
+                        <div class="contact-method-left">
+                            <div class="contact-icon-circle">📅</div>
+                            <div class="contact-method-text">
+                                <span class="contact-method-label">Book a call</span>
+                                <span class="contact-method-value">Schedule 30min consultation</span>
+                            </div>
+                        </div>
+                        <button class="calendar-toggle-btn">▼</button>
+                    </div>
+                    
+                    <div class="calendar-content">
+                        <div class="calendar-grid">
+                            <div class="calendar-day-header">Mon</div>
+                            <div class="calendar-day-header">Tue</div>
+                            <div class="calendar-day-header">Wed</div>
+                            <div class="calendar-day-header">Thu</div>
+                            <div class="calendar-day-header">Fri</div>
+                            <div class="calendar-day-header">Sat</div>
+                            <div class="calendar-day-header">Sun</div>
+                            
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day empty"></div>
+                            <div class="calendar-day disabled">1</div>
+                            <div class="calendar-day disabled">2</div>
+                            <div class="calendar-day disabled">3</div>
+                            <div class="calendar-day disabled">4</div>
+                            <div class="calendar-day disabled">5</div>
+                            <div class="calendar-day" onclick="selectDay(this, '10')">10</div>
+                            <div class="calendar-day" onclick="selectDay(this, '11')">11</div>
+                            <div class="calendar-day disabled">12</div>
+                            <div class="calendar-day" onclick="selectDay(this, '13')">13</div>
+                            <div class="calendar-day" onclick="selectDay(this, '14')">14</div>
+                            <div class="calendar-day disabled">15</div>
+                            <div class="calendar-day disabled">16</div>
+                            <div class="calendar-day" onclick="selectDay(this, '17')">17</div>
+                            <div class="calendar-day" onclick="selectDay(this, '18')">18</div>
+                            <div class="calendar-day disabled">19</div>
+                            <div class="calendar-day" onclick="selectDay(this, '20')">20</div>
+                            <div class="calendar-day" onclick="selectDay(this, '21')">21</div>
+                            <div class="calendar-day disabled">22</div>
+                            <div class="calendar-day disabled">23</div>
+                            <div class="calendar-day" onclick="selectDay(this, '24')">24</div>
+                            <div class="calendar-day" onclick="selectDay(this, '25')">25</div>
+                            <div class="calendar-day disabled">26</div>
+                            <div class="calendar-day" onclick="selectDay(this, '27')">27</div>
+                            <div class="calendar-day" onclick="selectDay(this, '28')">28</div>
+                            <div class="calendar-day disabled">29</div>
+                            <div class="calendar-day disabled">30</div>
+                        </div>
+
+                        <div class="time-slots" id="timeSlots" style="display: none;">
+                            <div class="time-slot" onclick="selectTime(this, '9:00')">9:00 AM</div>
+                            <div class="time-slot" onclick="selectTime(this, '10:00')">10:00 AM</div>
+                            <div class="time-slot" onclick="selectTime(this, '11:00')">11:00 AM</div>
+                            <div class="time-slot" onclick="selectTime(this, '14:00')">2:00 PM</div>
+                            <div class="time-slot" onclick="selectTime(this, '15:00')">3:00 PM</div>
+                            <div class="time-slot" onclick="selectTime(this, '16:00')">4:00 PM</div>
+                        </div>
+
+                        <div class="booking-form" id="bookingForm" style="display: none;">
+                            <div class="selected-info" id="selectedInfo"></div>
+                            <input type="text" class="form-input" placeholder="Your Name" id="bookingName" required>
+                            <input type="email" class="form-input" placeholder="Your Email" id="bookingEmail" required>
+                            <input type="tel" class="form-input" placeholder="Your Phone (optional)" id="bookingPhone">
+                            <textarea class="form-input" placeholder="What would you like to discuss?" id="bookingMessage" rows="3"></textarea>
+                            <button class="submit-booking-btn" onclick="submitBooking()">Confirm Booking</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <a href="tel:+385996406061" class="contact-method">
+                    <div class="contact-method-left">
+                        <div class="contact-icon-circle">📞</div>
+                        <div class="contact-method-text">
+                            <span class="contact-method-label">Phone</span>
+                            <span class="contact-method-value">+385 99 640 60 61</span>
+                        </div>
+                    </div>
+                    <span class="contact-arrow">→</span>
+                </a>
+                
+                <!-- Email -->
+                <a href="mailto:toni.kukoc01@gmail.com" class="contact-method">
+                    <div class="contact-method-left">
+                        <div class="contact-icon-circle">✉️</div>
+                        <div class="contact-method-text">
+                            <span class="contact-method-label">Email</span>
+                            <span class="contact-method-value">toni.kukoc01@gmail.com</span>
+                        </div>
+                    </div>
+                    <span class="contact-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="value-delivered.html" class="collaboration-btn gradient-btn">
                 View my work
             </a>
-            <a href="https://tonikukoc.me/about.html" class="collaboration-btn outline-btn" style="opacity: 0;">
+            <a href="https://tonikukoc.me/about.html" class="collaboration-btn outline-btn">
                 About me
             </a>
         </div>
@@ -3135,7 +3665,69 @@ function animateVerticalLine() {
 // Add the event listeners
 window.addEventListener('scroll', animateVerticalLine);
 window.addEventListener('load', animateVerticalLine);
+ 
+            
+let selectedDay = null;
+    let selectedTime = null;
 
+    function toggleCalendar(element) {
+        element.classList.toggle('active');
+    }
+
+    function selectDay(element, day) {
+        // Remove previous selection
+        document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedDay = day;
+        
+        // Show time slots
+        document.getElementById('timeSlots').style.display = 'grid';
+        document.getElementById('bookingForm').style.display = 'none';
+        
+        // Clear time selection
+        document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+        selectedTime = null;
+    }
+
+    function selectTime(element, time) {
+        // Remove previous selection
+        document.querySelectorAll('.time-slot').forEach(t => t.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedTime = time;
+        
+        // Show booking form
+        document.getElementById('bookingForm').style.display = 'flex';
+        document.getElementById('selectedInfo').textContent = `Selected: December ${selectedDay}, 2024 at ${time} CET`;
+    }
+
+    function submitBooking() {
+        const name = document.getElementById('bookingName').value;
+        const email = document.getElementById('bookingEmail').value;
+        const phone = document.getElementById('bookingPhone').value;
+        const message = document.getElementById('bookingMessage').value;
+
+        if (!name || !email) {
+            alert('Please fill in your name and email');
+            return;
+        }
+
+        // Here you would typically send this to your backend or email service
+        const bookingDetails = `
+Booking Request:
+Date: December ${selectedDay}, 2024
+Time: ${selectedTime} CET
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Message: ${message}
+        `;
+
+        // For now, create a mailto link
+        const mailtoLink = `mailto:toni.kukoc01@gmail.com?subject=Booking Request - Dec ${selectedDay} at ${selectedTime}&body=${encodeURIComponent(bookingDetails)}`;
+        window.location.href = mailtoLink;
+        
+        alert('Opening your email client to confirm booking...');
+    }
 
         </script>
     </body>
