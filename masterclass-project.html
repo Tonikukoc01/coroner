@@ -1493,21 +1493,28 @@ infrastructure instead of introducing new providers. Conveniently, AWS offers IV
 specifically for low-latency live streaming at scale. It handled the heavy lifting around video delivery and,
 just as importantly, came with built-in live chat through IVS Chat, giving us real-time interaction out of the box.
 </p>
-
+           
 <p>
-Rather than reinventing the wheel, we integrated the remaining interactive logic using our existing frontend and
-backend stack built with React and Node.js. This allowed the masterclass experience to feel like a natural extension
-of the platform instead of a bolted-on feature, while keeping development fast and long-term maintenance simple.
-</p>
-
-<p>
-Another big win was how recordings were handled. AWS IVS automatically stores live sessions in S3, which we fully
+On the matter of recordings; AWS IVS automatically stores live sessions in S3, which we fully
 leveraged for on-demand playback. We added a lightweight Lambda workflow that surfaced new recordings in the
 frontend and notified our content moderation team. From there, recordings could be reviewed, branded, packaged,
 and published using existing admin dashboard components, without introducing new operational overhead.
 </p>
+
+<div class="tech-stack">
+    <span class="tech-item">AWS IVS</span>
+    <span class="tech-item">IVS Chat</span>
+    <span class="tech-item">S3</span>
+    <span class="tech-item">Lambda</span>
+    <span class="tech-item">Translate</span>
+    <span class="tech-item">Transcribe</span>
+    <span class="tech-item">CloudFront</span>
+    <span class="tech-item">React</span>
+    <span class="tech-item">Node.js</span>
+    <span class="tech-item">Redis</span>
+</div>
             
-         <h2 class="section-heading" id="approach">From idea to launch</h2>
+        <h2 class="section-heading" id="approach">From idea to launch</h2>
 
 <div class="timeline">
     <div class="timeline-line"></div>
@@ -1515,55 +1522,71 @@ and published using existing admin dashboard components, without introducing new
     <div class="timeline-event">
         <div class="timeline-dot"></div>
         <div class="timeline-date">March 2024</div>
-        <div class="timeline-title">Problem Validation & Scope Definition</div>
+        <div class="timeline-title">Scoping the Product</div>
         <div class="timeline-description">
-            We reviewed competitor platforms and spoke directly with artists and users to understand what actually
-            mattered in a live education setting. This helped us narrow the scope early, avoid overbuilding, and
-            define clear technical and business constraints for a first scalable version.
+            We started with a deep dive into the market by reviewing how other platforms approached masterclasses,
+            including live sessions, recorded content, interaction quality, and pricing models. In parallel, I
+            spoke directly with ARTMO artists to understand their interest in hosting live sessions and with users
+            to learn what kind of educational content they would actually value.
+            <br><br>
+            The goal during this phase was to set the stage, validate demand on both sides, and form a realistic
+            picture of how the product could take shape.
         </div>
     </div>
     
     <div class="timeline-event">
         <div class="timeline-dot"></div>
         <div class="timeline-date">April–May 2024</div>
-        <div class="timeline-title">Architecture Decisions & Prototyping</div>
+        <div class="timeline-title">Design, Alignment & Prototyping</div>
         <div class="timeline-description">
-            We locked in the core architecture around AWS IVS to minimize risk and time to market. Prototypes were
-            built for streaming, chat, and interactive elements, while on-demand playback and monetization flows
-            were designed to reuse existing platform components wherever possible.
+            With a clear direction in place, I began sketching early concepts and flows in Figma to explore how
+            masterclasses would fit naturally into the platform. I led brainstorming sessions to refine the user
+            and instructor experience and ran regular syncs with the development team to align on technical
+            approaches and trade-offs.
+            <br><br>
+            At the same time, I worked closely with the content moderation team to define how recordings would be
+            reviewed, branded, and published, ensuring the full workflow was clear and scalable from day one.
         </div>
     </div>
     
     <div class="timeline-event">
         <div class="timeline-dot"></div>
         <div class="timeline-date">Summer 2024</div>
-        <div class="timeline-title">Build, Iterate & Stress Test</div>
+        <div class="timeline-title">Build, Test & Iterate</div>
         <div class="timeline-description">
-            We implemented the streaming backend, real-time interaction tools, and an instructor-facing dashboard.
-            Load testing and internal dry runs were used to validate performance under high concurrency and identify
-            weak points before exposing the feature to users.
+            Development moved into execution mode, organized through sprints and continuous testing. We built the
+            streaming backend, real-time interaction features, and instructor dashboard while running multiple
+            internal and external test sessions.
+            <br><br>
+            These tests helped validate stability under load, uncover usability issues, and refine both technical
+            and product details before broader exposure.
         </div>
     </div>
     
     <div class="timeline-event">
         <div class="timeline-dot"></div>
         <div class="timeline-date">September 2024</div>
-        <div class="timeline-title">Beta Launch & Instructor Enablement</div>
+        <div class="timeline-title">Beta Launch & Artist Onboarding</div>
         <div class="timeline-description">
-            The feature was released to a limited audience of early users and selected artists. We focused on
-            onboarding instructors, observing real usage, and gathering feedback on both the viewing and hosting
-            experience to refine workflows and performance.
+            We launched a beta version with a limited group of artists and users to observe real-world usage.
+            The focus was on onboarding instructors, supporting live sessions, and collecting direct feedback on
+            both the viewing and hosting experience.
+            <br><br>
+            Insights from these early sessions directly informed performance tuning and workflow improvements.
         </div>
     </div>
     
     <div class="timeline-event">
         <div class="timeline-dot"></div>
         <div class="timeline-date">October–December 2024</div>
-        <div class="timeline-title">Full Launch & Scaling</div>
+        <div class="timeline-title">Full Launch & Season One</div>
         <div class="timeline-description">
-            Masterclasses were rolled out to the entire ARTMO community. We optimized performance, added analytics,
-            and iterated on features based on live usage data. At this point, masterclasses transitioned from an
-            experiment into a core product pillar.
+            Masterclasses were rolled out to the entire ARTMO community and promoted through platform visibility
+            and artist-driven social efforts. Throughout Q4 2024, masterclasses ran as a full season one program,
+            validating the format at scale.
+            <br><br>
+            By the end of the year, masterclasses had evolved from an experiment into a repeatable, core product
+            offering with clear workflows, strong adoption, and measurable impact.
         </div>
     </div>
 </div>
