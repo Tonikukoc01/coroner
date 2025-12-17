@@ -1327,7 +1327,7 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
             <h1 class="case-study-title">ARTMO Masterclass Implementation</h1>
             <div class="divider"></div>
             <p class="case-study-subheader">
-Led the launch of scalable live-streaming for artists and educators. Reached 5,000+ viewers, boosted revenue by 25%, and drove 45% user growth with 10+ masterclasses.            </p>
+Led the launch of scalable live-streaming platform from 0→1 for artists and educators. Reached 5,000+ viewers, boosted revenue by 25%, and drove quarterly 45% user growth with the 10+ masterclasses.            </p>
         </div>
 
         <!-- Device Toggle -->
@@ -1390,102 +1390,183 @@ Led the launch of scalable live-streaming for artists and educators. Reached 5,0
             </div>
         </div>
         
-        <div class="case-study-content">
-            <h2 class="section-heading" id="overview">Overview</h2>
-            <p>
-          We identified a significant opportunity to expand our platform's reach by offering high quality educational content from our already established artists. However, implementing this feature presented several technical challenges:            </p>
-            <!-- Wide image section -->
-            <div class="wide-image-container">
-                <img src="/assets/frame-afterwards.png" alt="ARTMO Masterclass Dashboard" class="wide-image" onclick="openModal(this)">
-            </div>
+       <div class="case-study-content">
+    <h2 class="section-heading" id="overview">Overview</h2>
+    <p>
+        Under pressure from investors to increase revenue and diversify income streams, we needed to move quickly.
+        The masterclass idea had been on our roadmap for a long time, but we kept postponing it due to the technical
+        complexity involved. However, given our understanding of the artist market, the clear demand for accessible
+        education, and the strong position we already had through a network of talented artists, it became obvious
+        that it was time to tackle this.
+    </p>
 
-            <div class="image-modal" id="imageModal" onclick="closeModal()">
-                <img src="" alt="" class="modal-image" onclick="event.stopPropagation()">
-            </div>    
-            
-            <h2 class="section-heading" id="the-challenge">The Challenge</h2>
-            <p>
-                We identified a significant opportunity to expand our platform's reach by offering high quality educational content from our established artists & art educators. However, implementing this feature presented several technical challenges:
-            </p>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Scalable Streaming Infrastructure</h3>
-                <p>
-We needed a streaming solution that could reliably support thousands of concurrent viewers worldwide, maintain high video quality without buffering, and, very important, keep infrastructure costs under control. Recordings of the live classes also had to be stored and easily accessible on the platform.
-                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Interactive Learning Experience</h3>
-                <p>
-Video alone wasn’t enough. We needed real-time features such as live chat, post-class Q&A, and interactive elements like polls to create engaging learning environment and add more value to the product.                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">E-commerce Integration</h3>
-                <p>
-The masterclasses needed to be integrated with the existing payment system and additionally, enabling different promotions and a variety of income options like subscriptions, free trials and package deals.                </p>
-            </div>
+    <!-- Wide image section -->
+    <div class="wide-image-container">
+        <img src="/assets/frame-afterwards.png" alt="ARTMO Masterclass Dashboard" class="wide-image" onclick="openModal(this)">
+    </div>
+
+    <div class="image-modal" id="imageModal" onclick="closeModal()">
+        <img src="" alt="" class="modal-image" onclick="event.stopPropagation()">
+    </div>    
+
+    <h2 class="section-heading" id="the-challenge">The Challenge</h2>
+    <p>
+        Launching masterclasses was not a single feature build. It required aligning technology, operations,
+        content ownership, and distribution into one coherent product experience. Success did not depend only
+        on delivering live sessions, but on defining how masterclasses would be created, managed, promoted,
+        and monetized at scale.
+    </p>
+
+    <div class="challenge-solution">
+        <h3 class="challenge-title">Scalable Streaming Infrastructure (without draining the budget)</h3>
+        <p>
+            We needed a globally accessible streaming solution capable of handling thousands of concurrent viewers
+            with low latency and consistent video quality. All live sessions had to be recorded automatically,
+            stored, and made available for on-demand access without manual intervention, so they could be resold
+            or bundled later.
+        </p>
+        <p>
+            At the same time, this had to be achieved in a cost-efficient way, as we were operating as a startup
+            with limited runway.
+        </p>
+    </div>
+
+    <div class="challenge-solution">
+        <h3 class="challenge-title">Interactive Learning Experience</h3>
+        <p>
+            A passive video stream was not sufficient. To create real value in the art education space, users
+            needed real-time interaction through live chat, Q&A sessions, and polls to support learning,
+            engagement, and direct instructor feedback.
+        </p>
+    </div>
+
+    <div class="challenge-solution">
+        <h3 class="challenge-title">Ownership & Instructor Management</h3>
+        <p>
+            We had to define who could host masterclasses, how instructors were onboarded, and how sessions were
+            scheduled, moderated, and supported.
+        </p>
+        <p>
+            The system needed to work for non-technical artists and scale without ongoing engineering involvement.
+        </p>
+    </div>
+
+    <div class="challenge-solution">
+        <h3 class="challenge-title">E-commerce & Monetization</h3>
+        <p>
+            Masterclasses had to integrate with our existing payment system while supporting multiple pricing
+            and promotion models, including free trials, subscriptions, and pay-per-view access.
+        </p>
+        <p>
+            We also had to establish revenue sharing with artists and implement a reliable payout system.
+        </p>
+    </div>
+
+    <div class="challenge-solution">
+        <h3 class="challenge-title">Promotion & Discovery</h3>
+        <p>
+            We needed a clear way for users to discover upcoming masterclasses, create urgency around live events,
+            and leverage both platform-driven and artist-driven promotion, all without relying on marketing spend.
+        </p>
+    </div>
+</div>
             
             <h2 class="section-heading" id="technologies-used">Technologies Used</h2>
-            <div class="tech-stack">
-                <span class="tech-item">AWS IVS</span>
-                <span class="tech-item">IVS Chat</span>
-                <span class="tech-item">S3</span>
-                <span class="tech-item">Lambda</span>
-                <span class="tech-item">Translate</span>
-                <span class="tech-item">Transcribe</span>
-                <span class="tech-item">CloudFront</span>
-                <span class="tech-item">React</span>
-                <span class="tech-item">Node.js</span>
-                <span class="tech-item">Redis</span>
-            </div>
+
+<div class="tech-stack">
+    <span class="tech-item">AWS IVS</span>
+    <span class="tech-item">IVS Chat</span>
+    <span class="tech-item">S3</span>
+    <span class="tech-item">Lambda</span>
+    <span class="tech-item">Translate</span>
+    <span class="tech-item">Transcribe</span>
+    <span class="tech-item">CloudFront</span>
+    <span class="tech-item">React</span>
+    <span class="tech-item">Node.js</span>
+    <span class="tech-item">Redis</span>
+</div>
+
+<p>
+ARTMO was already running on AWS, so naturally it made sense to build the masterclass feature on top of our existing
+infrastructure instead of introducing new providers. Conveniently, AWS offers IVS, a managed service designed
+specifically for low-latency live streaming at scale. It handled the heavy lifting around video delivery and,
+just as importantly, came with built-in live chat through IVS Chat, giving us real-time interaction out of the box.
+</p>
+
+<p>
+Rather than reinventing the wheel, we integrated the remaining interactive logic using our existing frontend and
+backend stack built with React and Node.js. This allowed the masterclass experience to feel like a natural extension
+of the platform instead of a bolted-on feature, while keeping development fast and long-term maintenance simple.
+</p>
+
+<p>
+Another big win was how recordings were handled. AWS IVS automatically stores live sessions in S3, which we fully
+leveraged for on-demand playback. We added a lightweight Lambda workflow that surfaced new recordings in the
+frontend and notified our content moderation team. From there, recordings could be reviewed, branded, packaged,
+and published using existing admin dashboard components, without introducing new operational overhead.
+</p>
             
-            <h2 class="section-heading" id="approach">Approach</h2>
-            
-            <div class="timeline">
-                <div class="timeline-line"></div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">March 2024</div>
-                    <div class="timeline-title">Competition Research & Requirements Gathering</div>
-                    <div class="timeline-description">
-We analyzed competitor platforms and interviewed users to identify desired features and pain points. Defined clear technical and business requirements for a scalable masterclass product.                    </div>
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">April-May 2024</div>
-                    <div class="timeline-title">Architecture & Prototyping</div>
-                    <div class="timeline-description">
-Designed a cloud-based streaming architecture with AWS IVS for low-latency delivery. Built prototypes for interactive features and planned e-commerce integration. Added on-demand playback through S3 and repurposed existing modules for chat and interactivity.                    </div>
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Summer 2024</div>
-                    <div class="timeline-title">Development & Testing</div>
-                    <div class="timeline-description">
-Developed the streaming backend, interactive tools, and a user-friendly instructor dashboard. Conducted load tests to ensure the system could handle high concurrency with minimal lag.                    </div>
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">September 2024</div>
-                    <div class="timeline-title">Beta Launch & Artist Onboarding</div>
-                    <div class="timeline-description">
-Onboarded initial instructors and launched to 500 early users via bulk outreach. Gathered feedback on usability and identified performance bottlenecks to refine the architecture.                    </div>
-                </div>
-                
-                <div class="timeline-event">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">October-December 2024</div>
-                    <div class="timeline-title">Full Launch & Scaling</div>
-                    <div class="timeline-description">
-Rolled out the masterclass feature to the entire ARTMO community. Integrated analytics, optimized performance, and added new features based on user feedback, establishing masterclasses as a core platform offering.                    </div>
-                </div>
-            </div>
+         <h2 class="section-heading" id="approach">From idea to launch</h2>
+
+<div class="timeline">
+    <div class="timeline-line"></div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">March 2024</div>
+        <div class="timeline-title">Problem Validation & Scope Definition</div>
+        <div class="timeline-description">
+            We reviewed competitor platforms and spoke directly with artists and users to understand what actually
+            mattered in a live education setting. This helped us narrow the scope early, avoid overbuilding, and
+            define clear technical and business constraints for a first scalable version.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April–May 2024</div>
+        <div class="timeline-title">Architecture Decisions & Prototyping</div>
+        <div class="timeline-description">
+            We locked in the core architecture around AWS IVS to minimize risk and time to market. Prototypes were
+            built for streaming, chat, and interactive elements, while on-demand playback and monetization flows
+            were designed to reuse existing platform components wherever possible.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Summer 2024</div>
+        <div class="timeline-title">Build, Iterate & Stress Test</div>
+        <div class="timeline-description">
+            We implemented the streaming backend, real-time interaction tools, and an instructor-facing dashboard.
+            Load testing and internal dry runs were used to validate performance under high concurrency and identify
+            weak points before exposing the feature to users.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">September 2024</div>
+        <div class="timeline-title">Beta Launch & Instructor Enablement</div>
+        <div class="timeline-description">
+            The feature was released to a limited audience of early users and selected artists. We focused on
+            onboarding instructors, observing real usage, and gathering feedback on both the viewing and hosting
+            experience to refine workflows and performance.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">October–December 2024</div>
+        <div class="timeline-title">Full Launch & Scaling</div>
+        <div class="timeline-description">
+            Masterclasses were rolled out to the entire ARTMO community. We optimized performance, added analytics,
+            and iterated on features based on live usage data. At this point, masterclasses transitioned from an
+            experiment into a core product pillar.
+        </div>
+    </div>
+</div>
+
             
             <h2 class="section-heading" id="key-implementations">Key Implementations</h2>
             
