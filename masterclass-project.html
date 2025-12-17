@@ -1590,73 +1590,95 @@ and published using existing admin dashboard components, without introducing new
         </div>
     </div>
 </div>
+<h2 class="section-heading" id="key-implementations">Key Implementations</h2>
 
-            
-            <h2 class="section-heading" id="key-implementations">Key Implementations</h2>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Low-Latency Streaming Architecture</h3>
-                <p>
-Built a multi-region AWS IVS setup with adaptive streaming, ensuring smooth, high-quality video for thousands of global viewers with minimal lag                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Real-Time Interaction Engine</h3>
-                <p>
-Integrated WebSocket and IVS Chat to power live polls, Q&A, and highlighted comments, turning passive video into an engaging experience.                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Integrated E-commerce Experience</h3>
-                <p>
-Connected masterclasses with ARTMO’s existing payment system, enabling product sales directly within the stream and supporting subscriptions, free trials, discounts, and pay-per-view options.                </p>
-            </div>
+<div class="challenge-solution">
+    <h3 class="challenge-title">Low-Latency Streaming Architecture</h3>
+    <p>
+        Built a low-latency live streaming setup using AWS IVS to support thousands of concurrent viewers globally.
+        By leveraging managed services already available within our AWS environment, the implementation had
+        minimal impact on our existing cloud infrastructure and barely moved overall monthly costs.
+    </p>
+</div>
 
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Dashboard for Instructors</h3>
-                <p>
-Created an intuitive dashboard that lets artists easily onboard, manage, and host their own masterclasses without technical overhead.
-                </p>
-            </div>
-            
-            <h2 class="section-heading" id="results-impact">Results & Impact</h2>
-            
-            <p>
-                The masterclass implementation delivered very good results across key metrics:
-            </p>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Platform Growth</h3>
-                <p>
-Reached 1,000+ viewers across just three masterclasses in the first month, with almost zero marketing money spend.                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Revenue Impact</h3>
-                <p>
-Increased overall platform revenue by 25% through subscriptions and pay-per-view access.  Boosted product sales during masterclasses, turning them into a major e-commerce driver.                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">Technical Excellence</h3>
-                <p>
-Delivered highly reliable, low-latency streams at minimal cost. Automated transfer to S3 and CloudFront ensured smooth playback and long-term content availability.                </p>
-            </div>
-            
-            <div class="challenge-solution">
-                <h3 class="challenge-title">User Growth</h3>
-                <p>
-Free first-time masterclasses drove a 45% increase in new users during Q4 2024, becoming the single biggest driver of platform growth that year.
-                </p>
-            </div>
-            
-            <h2 class="section-heading" id="conclusion">Conclusion</h2>
-            <p>
-ARTMO Masterclass turned out to be one of those rare projects where everything clicked. We pulled it off in a short time and with minimal development overhead. It ended up as a scalable live-streaming system that artists loved using and viewers kept coming back for. It started as a technical experiment that quickly became a new revenue stream. And a core part of the platform’s identity.            </p>
-            
-            <p>
-For me, the big takeaway is how the right mix of tech and design can unlock real business value. Solid streaming infrastructure, smooth UX, and simple e-commerce hooks combined to make something sustainable and profitable. This feature still keeps driving growth and engagement today.
-            </p>
+<div class="challenge-solution">
+    <h3 class="challenge-title">Real-Time Interaction via IVS Chat</h3>
+    <p>
+        Used AWS IVS Chat to enable live Q&A, polls, and highlighted comments directly alongside the stream.
+        This allowed us to deliver real-time interaction out of the box, without introducing additional services
+        or operational complexity, while keeping costs predictable and low.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Integrated E-commerce Experience</h3>
+    <p>
+        Integrated masterclasses into ARTMO’s existing payment system, enabling in-stream purchases and supporting
+        subscriptions, free trials, discounts, and pay-per-view access. This reused established billing flows
+        and avoided the need for separate commerce infrastructure.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Instructor Dashboard</h3>
+    <p>
+        Extended existing admin and dashboard components to allow artists to onboard, manage, and host
+        masterclasses independently. This minimized development effort and operational overhead while keeping
+        the workflow familiar for internal teams.
+    </p>
+</div>
+
+<h2 class="section-heading" id="results-impact">Results & Impact</h2>
+
+<p>
+    The masterclass implementation delivered strong results across key metrics:
+</p>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Platform Growth</h3>
+    <p>
+        Reached 1,000+ viewers across three masterclasses in the first month, with almost no marketing spend.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Revenue Impact</h3>
+    <p>
+        Increased overall platform revenue by 25% through subscriptions and pay-per-view access, while
+        significantly boosting product sales during live sessions.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Cost Efficiency</h3>
+    <p>
+        Despite high concurrency and global reach, the masterclass feature had negligible impact on monthly
+        cloud costs by relying on managed AWS services and existing infrastructure.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">User Growth</h3>
+    <p>
+        Free introductory masterclasses drove a 45% increase in new users during Q4 2024, becoming the single
+        largest driver of platform growth that year.
+    </p>
+</div>
+
+<h2 class="section-heading" id="conclusion">Conclusion</h2>
+
+<p>
+    ARTMO Masterclass started as a focused experiment and quickly evolved into a scalable, cost-efficient
+    live education product. Artists embraced the format, users kept returning, and the platform gained a
+    reliable new revenue stream without increasing operational complexity.
+</p>
+
+<p>
+    By building on existing infrastructure and choosing the right managed services, we delivered a feature
+    that balanced performance, usability, and cost efficiency, and established masterclasses as a core part
+    of ARTMO’s product offering.
+</p>
+
             
             <!-- Contact section -->
             <div class="contact-section">
