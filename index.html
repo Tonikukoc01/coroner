@@ -421,80 +421,81 @@ body {
 }
 
 /* Logo */
-.logo {
-    position: fixed;
-    top: 3rem;
-    left: 4rem;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    
-    /* Frosted glass effect */
-    background: rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 0.8rem 1.2rem;
-    border-radius: 12px;
-}
+        .logo {
+            position: fixed;
+            top: 3rem;
+            left: 4rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
 
-/* Logo Styling */
-.logo-link {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    color: #F0F4F8;
-    text-decoration: none;
-    font-size: 1.3rem;
-    margin-right: 0.5rem;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-.logo-link:hover {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-.logo-link:focus {
-    outline: none;
-}
-.logo-link span {
-    display: none;
-}
-.logo-image {
-    height: 70px; 
-    width: auto;
-    display: block; 
-}
+        /* Frosted glass effect - only when active */
+        .logo.has-content-behind {
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
 
-/* Vertical Line Styling */
-.logo-line {
-    width: 1px;
-    height: 0.9rem;
-    background-color: #F0F4F8;
-    margin-left: 0.5rem;
-    margin-bottom: 1px;
-}
+        /* Logo Styling */
+        .logo-link {
+            font-family: 'SkemaProDisplay', Arial, sans-serif;
+            font-weight: 200;
+            color: #F0F4F8;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin-right: 0.5rem;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .logo-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .logo-link:focus {
+            outline: none;
+        }
+        .logo-link span {
+            display: none;
+        }
+        .logo-image {
+            height: 70px; 
+            width: auto;
+            display: block; 
+        }
 
-/* Contact Text Styling */
-.menu-text {
-    font-family: 'SkemaProDisplay';
-    font-weight: 200;
-    font-style: normal;
-    color: #F0F4F8;
-    font-size: 1.1rem;
-    margin-left: 1rem;
-    cursor: pointer;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-    bottom: 2rem;
-    left: 4rem;
-}
-.contact-icon {
-    display: none;
-    height: 24px;
-    width: auto;
-    vertical-align: middle;
-}
-.menu-text:hover {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
+        /* Vertical Line Styling */
+        .logo-line {
+            width: 1px;
+            height: 0.9rem;
+            background-color: #F0F4F8;
+            margin-left: 0.5rem;
+            margin-bottom: 1px;
+        }
+
+        /* Contact Text Styling */
+        .menu-text {
+            font-family: 'SkemaProDisplay', Arial, sans-serif;
+            font-weight: 200;
+            font-style: normal;
+            color: #F0F4F8;
+            font-size: 1.1rem;
+            margin-left: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        .contact-icon {
+            display: none;
+            height: 24px;
+            width: auto;
+            vertical-align: middle;
+        }
+        .menu-text:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
 
 /* Hamburger Menu */
 .menu-toggle {
@@ -1198,27 +1199,30 @@ width: 100%;
 
 /* Logo adjustments */
 .logo {
-        left: 2rem;
-        top: 2.3rem;
-        padding: 0.6rem 1rem;
-    }
-    .logo-link span {
-        display: none;
-    }
-    .logo-image {
-        display: block;
-        height: 39px;
-    }
-    .logo-line {
-        margin-left: 0;
-    }
-    .menu-text {
-        display: none;
-    }
-    .contact-icon {
-        display: inline-block;
-        margin-left: 0.5rem;
-    }
+                left: 2rem;
+                top: 2.3rem;
+                padding: 0.3rem 0.5rem;
+            }
+            .logo-link span {
+                display: none;
+            }
+            .logo-image {
+                display: block;
+                height: 39px;
+            }
+            .logo-line {
+                margin-left: 0;
+            }
+            .menu-text {
+                display: none;
+            }
+            .contact-icon {
+                display: inline-block;
+                margin-left: 0.5rem;
+            }
+            .content {
+                padding: 10rem 2rem 2rem 2rem;
+            }
 
 /* Language dropdown adjustments */
 .language-dropdown {
@@ -1289,19 +1293,17 @@ footer {
 </head>
     
 <body class="is-preload">
-          <div class="logo">
-    <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
-        <span>tonikukoc.me</span>
-        <img src="assets/KT.png" alt="Logo" class="logo-image">
-    </a>
-    <!-- Vertical Line -->
-    <div class="logo-line"></div>
-    <!-- Contact link with both text and icon -->
-    <a href="mailto:toni.kukoc01@gmail.com" class="contact-link">
-        <span class="menu-text">contact</span>
-        <img src="assets/contact.png" alt="Contact" class="contact-icon">
-    </a>
-</div>
+          <div class="logo" id="logo">
+        <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
+            <span>tonikukoc.me</span>
+            <img src="https://via.placeholder.com/70x70/F0F4F8/1a1a2e?text=KT" alt="Logo" class="logo-image">
+        </a>
+        <div class="logo-line"></div>
+        <a href="mailto:toni.kukoc01@gmail.com" class="contact-link">
+            <span class="menu-text">contact</span>
+            <img src="https://via.placeholder.com/24x24/F0F4F8/1a1a2e?text=C" alt="Contact" class="contact-icon">
+        </a>
+    </div>
 
 
 </div>
@@ -2071,6 +2073,67 @@ document.addEventListener('DOMContentLoaded', () => {
         lottieObserver.observe(animationContainer);
     }
 });
+
+             // Get the logo element
+        const logo = document.getElementById('logo');
+        
+        // Get logo's position and dimensions
+        function getLogoRect() {
+            return logo.getBoundingClientRect();
+        }
+
+        // Create observer for content detection
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0
+        };
+
+        // Check if any content is behind the logo
+        function checkContentBehindLogo() {
+            const logoRect = getLogoRect();
+            const elements = document.querySelectorAll('.content, .content *');
+            
+            let hasContentBehind = false;
+            
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                
+                // Check if element overlaps with logo area
+                if (!(rect.right < logoRect.left || 
+                      rect.left > logoRect.right || 
+                      rect.bottom < logoRect.top || 
+                      rect.top > logoRect.bottom)) {
+                    hasContentBehind = true;
+                }
+            });
+            
+            // Toggle class based on content detection
+            if (hasContentBehind) {
+                logo.classList.add('has-content-behind');
+            } else {
+                logo.classList.remove('has-content-behind');
+            }
+        }
+
+        // Run check on scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    checkContentBehindLogo();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Run check on load and resize
+        window.addEventListener('load', checkContentBehindLogo);
+        window.addEventListener('resize', checkContentBehindLogo);
+
+        // Initial check
+        checkContentBehindLogo();
 
         </script>
     </body>
