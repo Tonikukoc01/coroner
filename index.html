@@ -428,15 +428,6 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
-    transition: background 0.3s ease, backdrop-filter 0.3s ease;
-}
-
-    .logo.has-content-behind {
-    background: rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 0.4rem 0.6rem;
-    border-radius: 8px;
 }
 
 /* Logo Styling */
@@ -1302,7 +1293,7 @@ footer {
 </head>
     
 <body class="is-preload">
-         <div class="logo" id="logo">
+          <div class="logo">
     <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
         <span>tonikukoc.me</span>
         <img src="assets/KT.png" alt="Logo" class="logo-image">
@@ -2084,57 +2075,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lottieObserver.observe(animationContainer);
     }
 });
-         // logo
-            const logo = document.getElementById('logo');
-            if (!logo) {
-                console.warn('Logo element not found');
-                return;
-            }
-    
-    function getLogoRect() {
-        return logo.getBoundingClientRect();
-    }
 
-    function checkContentBehindLogo() {
-        const logoRect = getLogoRect();
-        const elements = document.querySelectorAll('body *:not(.logo):not(.logo *)');
-        
-        let hasContentBehind = false;
-        
-        elements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            
-            if (!(rect.right < logoRect.left || 
-                  rect.left > logoRect.right || 
-                  rect.bottom < logoRect.top || 
-                  rect.top > logoRect.bottom)) {
-                hasContentBehind = true;
-            }
-        });
-        
-        if (hasContentBehind) {
-            logo.classList.add('has-content-behind');
-        } else {
-            logo.classList.remove('has-content-behind');
-        }
-    }
-
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                checkContentBehindLogo();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    window.addEventListener('load', checkContentBehindLogo);
-    window.addEventListener('resize', checkContentBehindLogo);
-    
-    checkContentBehindLogo();
-}
         </script>
     </body>
 </html>
