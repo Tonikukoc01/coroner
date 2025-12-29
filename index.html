@@ -428,6 +428,13 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
+    
+    /* Frosted glass effect */
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
 }
 
 /* Logo Styling */
@@ -440,20 +447,16 @@ body {
     margin-right: 0.5rem;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 .logo-link:hover {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
-
 .logo-link:focus {
     outline: none;
 }
-
 .logo-link span {
-        display: none;
-    }
-
+    display: none;
+}
 .logo-image {
     height: 70px; 
     width: auto;
@@ -462,10 +465,10 @@ body {
 
 /* Vertical Line Styling */
 .logo-line {
-    width: 1px;         /* Width of the vertical line */
-    height: 0.9rem;     /* Height should match the logo's font size */
-    background-color: #F0F4F8; /* Gold color */
-    margin-left: 0.5rem; /* Space between logo and vertical line */
+    width: 1px;
+    height: 0.9rem;
+    background-color: #F0F4F8;
+    margin-left: 0.5rem;
     margin-bottom: 1px;
 }
 
@@ -476,21 +479,18 @@ body {
     font-style: normal;
     color: #F0F4F8;
     font-size: 1.1rem;
-    margin-left: 1rem; /* Space between vertical line and "contact" */
+    margin-left: 1rem;
     cursor: pointer;
     transition: color 0.3s ease, text-shadow 0.3s ease;
-    bottom: 2rem; /* Move the "Contact" text closer to the bottom */
-    left: 4rem; /* Align the "contact" text to the left */
-
+    bottom: 2rem;
+    left: 4rem;
 }
-
 .contact-icon {
-    display: none; /* Hide icon on desktop */
-    height: 24px; /* Adjust height as needed */
+    display: none;
+    height: 24px;
     width: auto;
     vertical-align: middle;
 }
-
 .menu-text:hover {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -1200,27 +1200,23 @@ width: 100%;
 .logo {
         left: 2rem;
         top: 2.3rem;
+        padding: 0.6rem 1rem;
     }
-
-.logo-link span {
-        display: none; /* Hide the text logo on mobile */
+    .logo-link span {
+        display: none;
     }
-    
-.logo-image {
-        display: block; /* Show the image logo on mobile */
+    .logo-image {
+        display: block;
         height: 39px;
     }
-
-.logo-line {
-    margin-left: 0;
-}
-
-.menu-text {
-    display: none;
-}
-
-.contact-icon {
-        display: inline-block; /* Show icon on mobile */
+    .logo-line {
+        margin-left: 0;
+    }
+    .menu-text {
+        display: none;
+    }
+    .contact-icon {
+        display: inline-block;
         margin-left: 0.5rem;
     }
 
