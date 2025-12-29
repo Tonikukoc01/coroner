@@ -1302,7 +1302,7 @@ footer {
 </head>
     
 <body class="is-preload">
-          <div class="logo">
+         <div class="logo" id="logo">
     <a href="https://tonikukoc01.github.io/coroner/" class="logo-link">
         <span>tonikukoc.me</span>
         <img src="assets/KT.png" alt="Logo" class="logo-image">
@@ -2086,6 +2086,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
          // logo
             const logo = document.getElementById('logo');
+            if (!logo) {
+                console.warn('Logo element not found');
+                return;
+            }
     
     function getLogoRect() {
         return logo.getBoundingClientRect();
