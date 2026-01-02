@@ -428,15 +428,19 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
+    border-radius: 999px;
+    transition: background 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease,
+    backdrop-filter 0.3s ease;
 }
 
  .logo.is-overlapping {
-    background: rgba(240, 244, 248, 0.12);
-    border: 1px solid rgba(240, 244, 248, 0.2);
-    border-radius: 999px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 0.4rem 0.9rem;
+    background: rgba(0, 0, 0, 0.75);
+    outline: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
+    box-shadow:
+        0 8px 32px 0 rgba(0, 0, 0, 0.3),
+        inset 0 0.5px 0 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Logo Styling */
