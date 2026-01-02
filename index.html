@@ -430,6 +430,15 @@ body {
     align-items: center;
 }
 
+ .logo.is-overlapping {
+    background: rgba(240, 244, 248, 0.12);
+    border: 1px solid rgba(240, 244, 248, 0.2);
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.4rem 0.9rem;
+}
+
 /* Logo Styling */
 .logo-link {
     font-family: 'SkemaProDisplay';
@@ -1385,8 +1394,8 @@ footer {
 <section id="about" class="section content-section">
     <div class="section-content about-layout">
         <div class="about-text-column">
-            <h1 class="about-header">let's collaborate</h1>
-            <div class="horizontal-line"></div>
+            <h1 class="about-header" data-logo-overlap>let's collaborate</h1>
+            <div class="horizontal-line" data-logo-overlap></div>
             <p class="about-subheader">
                 From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.
             </p>
@@ -2075,6 +2084,46 @@ document.addEventListener('DOMContentLoaded', () => {
         lottieObserver.observe(animationContainer);
     }
 });
+
+            document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo');
+    const overlapTargets = document.querySelectorAll('[data-logo-overlap]');
+
+    if (!logo || overlapTargets.length === 0) {
+        return;
+    }
+
+    const updateLogoOverlap = () => {
+        const logoRect = logo.getBoundingClientRect();
+        let isOverlapping = false;
+
+        for (const target of overlapTargets) {
+            const targetRect = target.getBoundingClientRect();
+            const intersects = !(
+                logoRect.right < targetRect.left ||
+                logoRect.left > targetRect.right ||
+                logoRect.bottom < targetRect.top ||
+                logoRect.top > targetRect.bottom
+            );
+
+            if (intersects) {
+                isOverlapping = true;
+                break;
+            }
+        }
+
+        logo.classList.toggle('is-overlapping', isOverlapping);
+    };
+
+    const scheduleUpdate = () => {
+        window.requestAnimationFrame(updateLogoOverlap);
+    };
+
+    updateLogoOverlap();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+});
+
 
         </script>
     </body>
