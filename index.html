@@ -1377,32 +1377,29 @@ footer {
    <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-   <header id="header">
-        <h1>
+   <header id="header" data-logo-overlap-mobile>
+        <h1 data-logo-overlap-mobile>
             Hi, my<br>
             name is <span class="bold-toni">Toni<span class="dot"></span></span>
         </h1>
-        <p>
+        <p data-logo-overlap-mobile>
             I am independent <span class="bold-split">IT operations manager</span><br>
             from Split, Croatia.
         </p>
     </header>
 </section>
-
-
 <!-- Features Header - Between Sections -->
 <div class="features-header">
     <h2 class="scroll-text animate-on-scroll">SCROLL</h2>
     <div class="vertical-line animate-on-scroll"></div>
 </div>
-
 <!-- About Section -->
 <section id="about" class="section content-section">
     <div class="section-content about-layout">
         <div class="about-text-column">
             <h1 class="about-header" data-logo-overlap>let's collaborate</h1>
             <div class="horizontal-line" data-logo-overlap></div>
-            <p class="about-subheader">
+            <p class="about-subheader" data-logo-overlap-mobile>
                 From maintaining infrastructure performance to managing cloud resources; from everyday IT support to scaling for growth - I help companies keep their IT infrastructure secure, efficient and adaptable.
             </p>
             <p class="about-subheader1">
@@ -1415,7 +1412,7 @@ footer {
             </div>
         </div>
     <div class="about-image-column">
-    <div id="handshake-animation" class="about-collaboration-image"></div>
+    <div id="handshake-animation" class="about-collaboration-image" data-logo-overlap-mobile></div>
 </div>
     </div>
 </section>
@@ -2091,19 +2088,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-            document.addEventListener('DOMContentLoaded', () => {
+           document.addEventListener('DOMContentLoaded', () => {
     const logo = document.querySelector('.logo');
-    const overlapTargets = document.querySelectorAll('[data-logo-overlap]');
-
-    if (!logo || overlapTargets.length === 0) {
-        return;
-    }
-
+    if (!logo) return;
+    
+    const isMobile = () => window.innerWidth <= 768; // Adjust breakpoint as needed
+    
     const updateLogoOverlap = () => {
+        // Get appropriate targets based on screen size
+        const desktopTargets = document.querySelectorAll('[data-logo-overlap]');
+        const mobileTargets = document.querySelectorAll('[data-logo-overlap-mobile]');
+        
+        const targets = isMobile() 
+            ? [...desktopTargets, ...mobileTargets] // Combine both on mobile
+            : desktopTargets; // Only desktop targets on desktop
+        
+        if (targets.length === 0) return;
+        
         const logoRect = logo.getBoundingClientRect();
         let isOverlapping = false;
-
-        for (const target of overlapTargets) {
+        
+        for (const target of targets) {
             const targetRect = target.getBoundingClientRect();
             const intersects = !(
                 logoRect.right < targetRect.left ||
@@ -2111,26 +2116,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 logoRect.bottom < targetRect.top ||
                 logoRect.top > targetRect.bottom
             );
-
             if (intersects) {
                 isOverlapping = true;
                 break;
             }
         }
-
         logo.classList.toggle('is-overlapping', isOverlapping);
     };
-
+    
     const scheduleUpdate = () => {
         window.requestAnimationFrame(updateLogoOverlap);
     };
-
+    
     updateLogoOverlap();
     window.addEventListener('scroll', scheduleUpdate, { passive: true });
     window.addEventListener('resize', scheduleUpdate);
 });
-
-
         </script>
     </body>
 </html>
