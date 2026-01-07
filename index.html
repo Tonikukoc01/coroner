@@ -1615,6 +1615,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const collaborationBtn = document.querySelector('.collaboration-btn');
     const portfolioBtn = document.querySelector('.portfolio-btn');
     
+    // Different settings for desktop vs mobile
+    const isDesktop = window.innerWidth >= 768;
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1628,7 +1631,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.2
+        threshold: 0.2,
+        rootMargin: isDesktop ? '200px 0px 0px 0px' : '0px'
     });
     
     if (collaborationBtn) observer.observe(collaborationBtn);
