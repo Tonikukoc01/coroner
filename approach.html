@@ -458,6 +458,21 @@ body {
     z-index: 1000;
     display: flex;
     align-items: center;
+    border-radius: 999px;
+    padding: 0.2rem 0.5rem;
+    transition: 
+        background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        outline 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+        backdrop-filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo.is-overlapping {
+    background: rgba(255, 255, 255, 0.06);
+    outline: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
 }
 
 /* Logo Styling */
@@ -1971,37 +1986,37 @@ footer {
     </ul>
 </nav>
 
-   <!-- Home Section -->
+  <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-    <header id="header">
-    <h1>
+    <header id="header" data-logo-overlap-mobile>
+    <h1 data-logo-overlap-mobile>
         Approach to <span class="bold-toni">work</span><span class="dot"></span>
     </h1>
     <!-- We'll keep a hidden horizontal line for selector purposes -->
     <div class="horizontal-line-header" style="display:none;"></div>
-    <div id="header-text-container">
+    <div id="header-text-container" data-logo-overlap-mobile>
         <!-- Text will be inserted here by the translation function -->
     </div>
 </header>
 </section>
 
 <!-- Features Header - Between Sections -->
-<div class="features-header">
-    <h2 class="scroll-text" data-translate="scrollText">SCROLL</h2>
-    <div class="vertical-line animate-on-scroll"></div>
+<div class="features-header" data-logo-overlap-mobile>
+    <h2 class="scroll-text" data-translate="scrollText" data-logo-overlap-mobile>SCROLL</h2>
+    <div class="vertical-line animate-on-scroll" data-logo-overlap-mobile></div>
 </div>
 
 <!-- Opening Hook Section -->
 <section id="approach-opening" class="content-section opening-hook-section">
     <div class="section-content opening-hook-content" data-animate="bottom">
-        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine1">
+        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine1" data-logo-overlap-mobile>
             You're at that point where the workload is stacking up, the team needs to grow, and people operations are starting to slow everything down. You need someone who can bridge business, operations, and tech without adding complexity.
         </p>
-        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine2">
+        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine2" data-logo-overlap-mobile>
             Or you're in a flat market. New clients aren't coming in, budgets feel tight, and you're thinking about where to expand next.
         </p>
-        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine3">
+        <p class="about-subheader opening-hook-line" data-translate="approachOpeningLine3" data-logo-overlap-mobile>
             You want to bring someone in, but you're not sure what to commit to first. Which role actually moves the needle? How do you hire without wasting time on a long interview funnel? You might not even have the role fully defined. And you want someone strong, but at competitive rates that make sense.
         </p>
 <div class="horizontal-line" style="margin: 2rem auto; width: 0;"></div>
@@ -2011,54 +2026,54 @@ footer {
 <!-- How I Work Section -->
 <section id="how-i-work" class="content-section how-i-work-section">
     <div class="section-content how-i-work-content">
-        <h1 class="about-header how-i-work-heading" data-translate="howIWorkHeading" data-animate="right">
+        <h1 class="about-header how-i-work-heading" data-translate="howIWorkHeading" data-animate="right" data-logo-overlap-mobile>
             How I work
         </h1>
-        <div class="how-i-work-grid">
+        <div class="how-i-work-grid" data-logo-overlap>
             <!-- Card 1 -->
-           <div class="how-card" data-animate="bottom">
-                <div class="how-card-animation">
+           <div class="how-card" data-animate="bottom" data-logo-overlap-mobile>
+                <div class="how-card-animation" data-logo-overlap-mobile>
                     <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/puzzle.svg" alt="Puzzle icon">
                 </div>
-                <h3 class="how-card-title" data-translate="howCard1Title">Understand the real problem first</h3>
-                <p class="about-subheader how-card-text" data-translate="howCard1Text">
+                <h3 class="how-card-title" data-translate="howCard1Title" data-logo-overlap-mobile>Understand the real problem first</h3>
+                <p class="about-subheader how-card-text" data-translate="howCard1Text" data-logo-overlap-mobile>
                     Before touching any code or tool, I dig into what's actually slowing you down. Is it a technical issue? A workflow gap? A clarity problem? Most "tech problems" are actually communication or process issues in disguise.
                 </p>
             </div>
             <!-- Card 2 -->
-            <div class="how-card" data-animate="bottom">
-                <div class="how-card-animation">
+            <div class="how-card" data-animate="bottom" data-logo-overlap-mobile>
+                <div class="how-card-animation" data-logo-overlap-mobile>
                     <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/checklist.svg" alt="Checklist icon">
                 </div>
-                <h3 class="how-card-title" data-translate="howCard2Title">Build only what moves the needle</h3>
-                <p class="about-subheader how-card-text" data-translate="howCard2Text">
+                <h3 class="how-card-title" data-translate="howCard2Title" data-logo-overlap-mobile>Build only what moves the needle</h3>
+                <p class="about-subheader how-card-text" data-translate="howCard2Text" data-logo-overlap-mobile>
                     No over-engineering. No shiny tools for the sake of it. I implement solutions that solve your specific pain points, whether that is automating repetitive tasks, streamlining deployments, or setting up infrastructure that scales without ballooning costs.
                 </p>
             </div>
             <!-- Card 3 -->
-<div class="how-card" data-animate="bottom">
-    <div class="how-card-animation">
+<div class="how-card" data-animate="bottom" data-logo-overlap-mobile>
+    <div class="how-card-animation" data-logo-overlap-mobile>
         <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/saas.svg" alt="SaaS icon">
     </div>
-    <h3 class="how-card-title" data-translate="howCard3Title">Stay close, stay clear</h3>
-    <p class="about-subheader how-card-text" data-translate="howCard3Text">
+    <h3 class="how-card-title" data-translate="howCard3Title" data-logo-overlap-mobile>Stay close, stay clear</h3>
+    <p class="about-subheader how-card-text" data-translate="howCard3Text" data-logo-overlap-mobile>
         I do not disappear into "dev mode" for weeks. You get regular updates, plain language explanations, and a partner who is easy to reach. If something changes, we adjust. If something is unclear, we talk it through.
     </p>
 
-    <div class="aws-badge">
+    <div class="aws-badge" data-logo-overlap-mobile>
         <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/aws-logo.svg" alt="AWS Certified" class="aws-logo">
         <span class="aws-badge-text">2× AWS Certified <span class="aws-checkmark">✓</span></span>
     </div>
 </div>
 
           <!-- Card 4 -->
-<div class="how-card" data-animate="bottom">
-    <div class="how-card-animation">
+<div class="how-card" data-animate="bottom" data-logo-overlap-mobile>
+    <div class="how-card-animation" data-logo-overlap-mobile>
         <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/tonikukoc/chat.png" alt="Chat icon">
     </div>
 
-    <h3 class="how-card-title" data-translate="howCard4Title">Stay close and adjust fast</h3>
-    <p class="about-subheader how-card-text" data-translate="howCard4Text">
+    <h3 class="how-card-title" data-translate="howCard4Title" data-logo-overlap-mobile>Stay close and adjust fast</h3>
+    <p class="about-subheader how-card-text" data-translate="howCard4Text" data-logo-overlap-mobile>
         Priorities shift. I work with your team, communicate clearly, and adjust quickly so decisions are simple and work keeps flowing.
     </p>
 </div>
@@ -2068,7 +2083,7 @@ footer {
 <!-- What This Looks Like in Practice Section -->
 <section id="practice-examples" class="content-section practice-section">
     <div class="section-content practice-content">
-        <h1 class="about-header practice-heading" data-translate="practiceHeading" data-animate="right">
+        <h1 class="about-header practice-heading" data-translate="practiceHeading" data-animate="right" data-logo-overlap-mobile>
             What this looks like in practice
         </h1>
     </div>
@@ -2079,17 +2094,17 @@ footer {
         <!-- First Block -->
 <div class="content-block block-1">
     <div class="content-text">
-        <h1 class="about-header">Optimizing Operations</h1>
+        <h1 class="about-header" data-logo-overlap data-logo-overlap-mobile>Optimizing Operations</h1>
 
-        <p class="about-subheader">
+        <p class="about-subheader" data-logo-overlap data-logo-overlap-mobile>
             I work closely with teams to improve IT operations and remove obstacles, making it easier for people to work effectively.
         </p>
 
-        <p class="about-subheader1">
+        <p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
             By reviewing workflows and implementing the right solutions, I'll ensure that your operations run more smoothly, allowing your team to focus on what matters most—delivering the product and creating value.
         </p>
 
-        <a href="https://tonikukoc.me/project-ops" class="case-study-link">
+        <a href="https://tonikukoc.me/project-ops" class="case-study-link" data-logo-overlap data-logo-overlap-mobile>
             Check out the Project Ops case study
             <span class="case-study-link-icon">↗</span>
         </a>
@@ -2101,11 +2116,11 @@ footer {
         <!-- Second Block -->
         <div class="content-block right-aligned block-2">
             <div class="content-text">
-                <h1 class="about-header">Tailored Technology Solutions</h1>
-                <p class="about-subheader1">
+                <h1 class="about-header" data-logo-overlap data-logo-overlap-mobile>Tailored Technology Solutions</h1>
+                <p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
                      I focus on selecting, implementing, and maintaining technology solutions that fit your team's specific needs. This involves choosing the right infrastructure, integrating third-party tools, automating tasks, and improving system performance.
                 </p>
-                <p class="about-subheader1">
+                <p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
                     Whether it's upgrading existing systems or setting up new platforms, I ensure solutions are scalable, secure, and aligned with both technical and business goals.
                 </p>
             </div>
@@ -2114,11 +2129,11 @@ footer {
         <!-- Third Block -->
         <div class="content-block block-3">
     <div class="content-text">
-        <h1 class="about-header">Support & Scalability</h1>
-        <p class="about-subheader">
+        <h1 class="about-header" data-logo-overlap data-logo-overlap-mobile>Support & Scalability</h1>
+        <p class="about-subheader" data-logo-overlap data-logo-overlap-mobile>
             As your company grows and things get intense, I'll make sure your IT setup keeps up by offering ongoing support and updates to keep everything running smoothly under pressure. 
         </p>
-        <p class="about-subheader1">
+        <p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
             Whether it's expanding your infrastructure for more users, introducing new digital tools to make life easier, or organizing your data to help make smarter business decisions.
         </p>
     </div>
@@ -2132,16 +2147,16 @@ footer {
       <!-- Pricing Section -->
     <section class="pricing-section">
     <div class="pricing-content">
-        <h1 class="pricing-header" data-animate="left" data-translate="pricingHeader">
+        <h1 class="pricing-header" data-animate="left" data-translate="pricingHeader" data-logo-overlap-mobile>
             For what price?
         </h1>
         <div class="horizontal-line-pricing"></div>
         
-        <p class="pricing-intro" data-animate="right" data-translate="pricingIntro">
+        <p class="pricing-intro" data-animate="right" data-translate="pricingIntro" data-logo-overlap-mobile>
             We'll go month-to-month. If we're creating value together, we'll continue naturally and with an increasing time horizon. If it doesn't make sense, we'll part ways.
         </p>
 
-        <div class="pricing-box" data-animate="right">
+        <div class="pricing-box" data-animate="right" data-logo-overlap-mobile>
             <div class="pricing-range" data-translate="pricingRange">Mid-level CEE rates</div>
             <p class="pricing-description">
                 What you need to understand as a baseline: I want to cover my bills, and we're speaking mid-level Central & Eastern European rates.
@@ -2165,7 +2180,7 @@ footer {
         <!-- Horizontal Line -->
         <div class="horizontal-line" style="margin: 0 auto 3rem auto; width: 0;">
         </div>
-        <p class="about-subheader" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; opacity: 0;">
+        <p class="about-subheader" data-logo-overlap-mobile style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto; opacity: 0;">
            I simplify complex projects, optimize workflows, and implement the right technology to keep your business running smoothly. Let's build something that works—get in touch.
         </p>
 
@@ -3228,6 +3243,51 @@ function animateVerticalLine() {
 // Add the event listeners
 window.addEventListener('scroll', animateVerticalLine);
 window.addEventListener('load', animateVerticalLine);
+
+    document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+    
+    const isMobile = () => window.innerWidth <= 768; // Adjust breakpoint as needed
+    
+    const updateLogoOverlap = () => {
+        // Get appropriate targets based on screen size
+        const desktopTargets = document.querySelectorAll('[data-logo-overlap]');
+        const mobileTargets = document.querySelectorAll('[data-logo-overlap-mobile]');
+        
+        const targets = isMobile() 
+            ? [...desktopTargets, ...mobileTargets] // Combine both on mobile
+            : desktopTargets; // Only desktop targets on desktop
+        
+        if (targets.length === 0) return;
+        
+        const logoRect = logo.getBoundingClientRect();
+        let isOverlapping = false;
+        
+        for (const target of targets) {
+            const targetRect = target.getBoundingClientRect();
+            const intersects = !(
+                logoRect.right < targetRect.left ||
+                logoRect.left > targetRect.right ||
+                logoRect.bottom < targetRect.top ||
+                logoRect.top > targetRect.bottom
+            );
+            if (intersects) {
+                isOverlapping = true;
+                break;
+            }
+        }
+        logo.classList.toggle('is-overlapping', isOverlapping);
+    };
+    
+    const scheduleUpdate = () => {
+        window.requestAnimationFrame(updateLogoOverlap);
+    };
+    
+    updateLogoOverlap();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+});
 
 
         </script>
