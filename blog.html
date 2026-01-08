@@ -213,7 +213,7 @@ body {
  /* Language Dropdown Styles - previously defined styles remain the same */
 .language-dropdown {
     position: fixed;
-    top: 3.3rem;
+    top: 4.1rem;
     right: 6.8rem; /* Adjusted to be left of the nav-menu */
     z-index: 1001;
     font-family: 'SkemaProDisplay';
@@ -289,7 +289,7 @@ body {
 
 .nav-menu {
     position: fixed;
-    top: 3.7rem;
+    top: 4.5rem;
     right: 4rem;
     z-index: 1000;
     font-family: 'SkemaProDisplay';
@@ -359,7 +359,7 @@ body {
     }
 
 .logo-image {
-    height: 75px;
+    height: 60px;
     width: auto;
     display: block;
 }
@@ -827,6 +827,7 @@ overflow-x: hidden;
         text-align: center;
         align-items: center;
         width: 100%;
+        margin-top: 3.5rem;
     }
 
     #header h1 {
@@ -1111,8 +1112,8 @@ backdrop-filter: blur(5px); /* Add blur effect */
 
     /* Language dropdown adjustments */
     .language-dropdown {
-        top: 2.5rem;
-        right: 5.5rem;
+        top: 2.8rem;
+        right: 4.8rem;
     }
 
     /* Footer adjustments */
@@ -1126,7 +1127,7 @@ backdrop-filter: blur(5px); /* Add blur effect */
 .menu-toggle {
     visibility: visible !important;
     opacity: 1 !important;
-    top: 2.7rem;
+    top: 3rem;
     right: 2.5rem; /* Moved more to the right from 4rem */
     z-index: 1001;
     margin-left: 0;
@@ -1227,42 +1228,38 @@ footer {
     </ul>
 </nav>
 
-   <!-- Home Section -->
 <!-- Home Section -->
 <section id="home">
     <!-- Header -->
-  <header id="header">
-        <h1>
+  <header id="header" data-logo-overlap-mobile>
+        <h1 data-logo-overlap-mobile>
             My <span class="bold-toni">writing.</span>
         </h1>
         
         <!-- Horizontal line -->
         <hr style="width: 3cm; height: 2px; background-color: #F0F4F8; border: none; margin: 1rem 0;">
         
-        <p>
+        <p data-logo-overlap-mobile>
             I write about variety of topics. Is it AI, networking events, 
            <br>new technology trends or anything else, you will find my creative outlet here.
         </p>
   </header>
 </section>
-
 <!-- Features Header - Between Sections -->
 <div class="features-header">
     <h2 class="scroll-text animate-on-scroll">SCROLL</h2>
     <div class="vertical-line animate-on-scroll"></div>
 </div>
-
-
         <!-- Article List Section -->
     <section id="articles">
         <div class="article-container">
             <article class="article-item">
                 <div class="article-date">
-                    <p>4th November 25 <span class="date-arrow">→</span></p>
+                    <p data-logo-overlap data-logo-overlap-mobile>4th November 25 <span class="date-arrow">→</span></p>
                 </div>
                 <div class="article-content">
                     <a href="/first-post" class="article-link">
-                        <h2 class="article-title">
+                        <h2 class="article-title" data-logo-overlap-mobile>
                             Speaking the Language of Money
                         </h2>
                         <p class="article-subtitle">
@@ -1723,6 +1720,51 @@ window.addEventListener('load', animateVerticalLine);
             // DOM is already loaded
             initArticleAnimations();
         }
+
+            document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+    
+    const isMobile = () => window.innerWidth <= 768; // Adjust breakpoint as needed
+    
+    const updateLogoOverlap = () => {
+        // Get appropriate targets based on screen size
+        const desktopTargets = document.querySelectorAll('[data-logo-overlap]');
+        const mobileTargets = document.querySelectorAll('[data-logo-overlap-mobile]');
+        
+        const targets = isMobile() 
+            ? [...desktopTargets, ...mobileTargets] // Combine both on mobile
+            : desktopTargets; // Only desktop targets on desktop
+        
+        if (targets.length === 0) return;
+        
+        const logoRect = logo.getBoundingClientRect();
+        let isOverlapping = false;
+        
+        for (const target of targets) {
+            const targetRect = target.getBoundingClientRect();
+            const intersects = !(
+                logoRect.right < targetRect.left ||
+                logoRect.left > targetRect.right ||
+                logoRect.bottom < targetRect.top ||
+                logoRect.top > targetRect.bottom
+            );
+            if (intersects) {
+                isOverlapping = true;
+                break;
+            }
+        }
+        logo.classList.toggle('is-overlapping', isOverlapping);
+    };
+    
+    const scheduleUpdate = () => {
+        window.requestAnimationFrame(updateLogoOverlap);
+    };
+    
+    updateLogoOverlap();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+});
         </script>
     </body>
 </html>
