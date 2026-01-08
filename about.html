@@ -318,7 +318,7 @@ body {
  /* Language Dropdown Styles - previously defined styles remain the same */
        .language-dropdown {
     position: fixed;
-    top: 3.3rem;
+    top: 4.1rem;
     right: 6.8rem; /* Adjusted to be left of the nav-menu */
     z-index: 1001;
     font-family: 'SkemaProDisplay';
@@ -394,7 +394,7 @@ body {
 
 .nav-menu {
     position: fixed;
-    top: 3.7rem;
+    top: 4.5rem;
     right: 4rem;
     z-index: 1000;
     font-family: 'SkemaProDisplay';
@@ -437,6 +437,14 @@ body {
     align-items: center;
 }
 
+ .logo.is-overlapping {
+    background: rgba(255, 255, 255, 0.06);
+    outline: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06);
+}
+
 /* Logo Styling */
 
 
@@ -457,11 +465,11 @@ body {
 .logo-link span {
         display: none;
     }
+            
 .logo-image {
-    height: 70px;
+    height: 60px;
     width: auto;
 }
-
 
 /* Vertical Line Styling */
 .logo-line {
@@ -1191,7 +1199,7 @@ backdrop-filter: blur(5px); /* Add blur effect */
     .menu-toggle {
         display: flex !important;
         position: fixed;
-        top: 3.7rem;
+        top: 4.5rem;
         right: 4rem;
         z-index: 1001;
         margin-left: 0;
@@ -1262,8 +1270,8 @@ backdrop-filter: blur(5px); /* Add blur effect */
 
     /* Language dropdown adjustments */
     .language-dropdown {
-        top: 2.5rem;
-        right: 5.5rem;
+        top: 2.8rem;
+        right: 4.8rem;
     }
 
     /* Footer adjustments */
@@ -1595,15 +1603,15 @@ footer {
     </ul>
 </nav>
 
-  <!-- Home Section -->
+ <!-- Home Section -->
 <section id="home">
     <!-- Header -->
     <header id="header">
-        <h1>
+        <h1 data-logo-overlap-mobile>
         About <span class="bold-toni">me.</span>
   </h1>
 <div class="horizontal-line-header"></div>
-       <p> I'm an IT manager with a background in business economics and analytics.
+       <p data-logo-overlap-mobile> I'm an IT manager with a background in business economics and analytics.
 <br>  I am passionate about startups and traveling, 
 <br>   and navigating the ever-changing challenges of the tech world.
 </p>  
@@ -1619,16 +1627,16 @@ footer {
         <!-- First Block -->
         <div class="content-block">
             <div class="content-text">
-                <p class="about-subheader">
+                <p class="about-subheader" data-logo-overlap data-logo-overlap-mobile>
                     I grew up in a small village on the Dalmatian coast, surrounded by the remnants of a quiet, agricultural life. It is a place where tradition rans deep, but my curiosity always pulled me toward something different. When I wasn't playing basketball,  I was glued to my computer, fascinated by the world of technology.
                 </p>
-                <p class="about-subheader1">
+                <p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
      University in Split introduced me to Croatia's startup scene—a world of bold risk-takers and fast-moving builders. That energy stuck with me. After finishing my master's across Portugal and Spain, I came back to Split to wrap up my studies before heading to Lisbon, one of Europe's startup hotspots, to see what I could make of it.
                 </p>
-<p class="about-subheader1">
+<p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
                   
                 </p>
-<p class="about-subheader1">
+<p class="about-subheader1" data-logo-overlap data-logo-overlap-mobile>
                     These days, I'm still based in Lisbon, working in the ever-changing world of IT always looking for new challenges in a field that never sits still.
                 </p>
             </div>
@@ -1637,11 +1645,11 @@ footer {
         <!-- Second Block (Right-aligned) -->
         <div class="content-block right-aligned">
             <div class="content-text">
-                <h1 class="about-header">fitness & nutrition enthusiast</h1>
-                <p class="about-subheader">
+                <h1 class="about-header" data-logo-overlap-mobile>fitness & nutrition enthusiast</h1>
+                <p class="about-subheader" data-logo-overlap-mobile>
                    With over a decade spent in the gym and hundreds of hours researching body mechanics and nutrition, fitness has always been more than just a hobby for me. I'm fascinated by how small adjustments in movement, diet and recovery <br> can make a huge difference in performance and well-being.
                 </p>
-                <p class="about-subheader1">
+                <p class="about-subheader1" data-logo-overlap-mobile>
                  These days, I'm especially interested in how technology can enhance fitness and nutrition. With countless apps and trackers flooding the market, I'm exploring ways tech can cut through the noise—offering real insights that help people build sustainable, science-backed habits instead of chasing trends.
                 </p>
             </div>
@@ -1650,8 +1658,8 @@ footer {
         <!-- Third Block -->
         <div class="content-block">
             <div class="content-text">
-                <h1 class="about-header">On the move</h1>
-                <p class="about-subheader">
+                <h1 class="about-header" data-logo-overlap data-logo-overlap-mobile>On the move</h1>
+                <p class="about-subheader" data-logo-overlap data-logo-overlap-mobile>
                     I've visited 20 countries, explored hundreds of European cities, and lived in four different countries along the way. Experiencing new cultures, meeting people from different backgrounds, and constantly adapting to new environments keeps life exciting.
                 </p>
             </div>
@@ -2263,6 +2271,51 @@ document.addEventListener('DOMContentLoaded', () => {
     if (gymContainer) {
         lottieObserver.observe(gymContainer);
     }
+});
+
+               document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo');
+    if (!logo) return;
+    
+    const isMobile = () => window.innerWidth <= 768; // Adjust breakpoint as needed
+    
+    const updateLogoOverlap = () => {
+        // Get appropriate targets based on screen size
+        const desktopTargets = document.querySelectorAll('[data-logo-overlap]');
+        const mobileTargets = document.querySelectorAll('[data-logo-overlap-mobile]');
+        
+        const targets = isMobile() 
+            ? [...desktopTargets, ...mobileTargets] // Combine both on mobile
+            : desktopTargets; // Only desktop targets on desktop
+        
+        if (targets.length === 0) return;
+        
+        const logoRect = logo.getBoundingClientRect();
+        let isOverlapping = false;
+        
+        for (const target of targets) {
+            const targetRect = target.getBoundingClientRect();
+            const intersects = !(
+                logoRect.right < targetRect.left ||
+                logoRect.left > targetRect.right ||
+                logoRect.bottom < targetRect.top ||
+                logoRect.top > targetRect.bottom
+            );
+            if (intersects) {
+                isOverlapping = true;
+                break;
+            }
+        }
+        logo.classList.toggle('is-overlapping', isOverlapping);
+    };
+    
+    const scheduleUpdate = () => {
+        window.requestAnimationFrame(updateLogoOverlap);
+    };
+    
+    updateLogoOverlap();
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
 });
         </script>
     </body>
