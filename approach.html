@@ -228,15 +228,31 @@ body {
     font-size: 1.8rem;
 }
 
-.dot {
+ .dot-ink {
     display: inline-block;
-    width: 0.22em;
-    height: 0.22em;
+    width: 0.15em;
+    height: 0.15em;
     background-color: #F0F4F8;
     border-radius: 50%;
-    position: relative;
+    position: absolute;
     bottom: 0.05em;
-    margin-left: 0.1em;
+    right: -0.25em;
+    opacity: 0;
+    animation: inkDrop 1.2s 1.5s cubic-bezier(0.34, 0.48, 0.42, 0.95) forwards;
+}
+
+.bold-toni-ink::after {
+    content: '';
+    display: inline-block;
+    width: 0.15em;
+    height: 0.15em;
+    background-color: #F0F4F8;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0.33em;
+    right: -0.20em;
+    opacity: 0;
+    animation: inkDrop 1.2s 1.5s cubic-bezier(0.34, 0.48, 0.42, 0.95) forwards;
 }
 
 .horizontal-line-header {
@@ -315,6 +331,42 @@ body {
         transform: translateX(2px) rotate(2deg);
     }
 }
+
+    @keyframes inkDropDramatic {
+    0% {
+        opacity: 0;
+        transform: scale(0.05);
+    }
+    10% {
+        opacity: 1;
+        transform: scale(0.05);
+    }
+    35% {
+        opacity: 0.85;
+        transform: scale(5.5);
+        filter: blur(3px);
+        border-radius: 40%;
+    }
+    60% {
+        opacity: 1;
+        transform: scale(0.5);
+        filter: blur(0px);
+        border-radius: 50%;
+    }
+    75% {
+        transform: scale(1.2);
+    }
+    88% {
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+        border-radius: 50%;
+    }
+}
+            
 
 #header nav ul {
     display: flex;
