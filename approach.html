@@ -234,7 +234,7 @@ body {
 .bold-toni::after {
     content: '';
     display: inline-block;
-    width: 0.3em;  /* Bigger ball - doubled from 0.15em */
+    width: 0.22em;  
     height: 0.3em;
     background-color: #F0F4F8;
     border-radius: 50%;
@@ -322,58 +322,76 @@ body {
     }
 }
 
- @keyframes bounceSettle {
-    /* Horizontal bounces from right - more frames for smoothness */
+@keyframes bounceSettle {
+    /* Horizontal bounces from right - way more frames */
     0% {
         opacity: 1;
         transform: translateX(120px) translateY(0);
     }
-    8% {
-        transform: translateX(100px) translateY(-10px);
+    5% {
+        transform: translateX(110px) translateY(-8px);
     }
-    16% {
+    10% {
+        transform: translateX(100px) translateY(0);
+    }
+    15% {
+        transform: translateX(90px) translateY(-7px);
+    }
+    20% {
         transform: translateX(80px) translateY(0);
     }
-    24% {
-        transform: translateX(60px) translateY(-8px);
+    25% {
+        transform: translateX(70px) translateY(-6px);
     }
-    32% {
-        transform: translateX(40px) translateY(0);
+    30% {
+        transform: translateX(60px) translateY(0);
+    }
+    35% {
+        transform: translateX(50px) translateY(-5px);
     }
     40% {
-        transform: translateX(20px) translateY(-5px);
+        transform: translateX(40px) translateY(0);
+    }
+    45% {
+        transform: translateX(30px) translateY(-4px);
+    }
+    50% {
+        transform: translateX(20px) translateY(0);
+    }
+    55% {
+        transform: translateX(10px) translateY(-3px);
     }
     
-    /* Hit the word - bounce UP */
-    48% {
-        transform: translateX(0) translateY(0);
+    /* COLLISION - goes LEFT to hit bold-toni, then bounces UP */
+    60% {
+        transform: translateX(-15px) translateY(0);  /* Goes LEFT past the final position */
     }
     
-    /* First vertical bounce */
-    58% {
-        transform: translateX(0) translateY(-30px);
-    }
+    /* First BIG vertical bounce after hitting */
     68% {
+        transform: translateX(0) translateY(-35px);  /* Shoots up high */
+    }
+    76% {
         transform: translateX(0) translateY(0);
     }
     
-    /* Second smaller vertical bounce */
-    76% {
-        transform: translateX(0) translateY(-15px);
+    /* Second vertical bounce */
+    82% {
+        transform: translateX(0) translateY(-18px);
     }
-    84% {
+    88% {
         transform: translateX(0) translateY(0);
     }
     
     /* Tiny settle bounce */
-    90% {
-        transform: translateX(0) translateY(-5px);
+    94% {
+        transform: translateX(0) translateY(-6px);
     }
     100% {
         opacity: 1;
         transform: translateX(0) translateY(0);
     }
-}         
+}
 #header nav ul {
     display: flex;
     gap: 1rem;
