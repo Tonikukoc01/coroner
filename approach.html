@@ -230,18 +230,6 @@ body {
     font-size: 1.8rem;
 }
 
- .dot-ink {
-    display: inline-block;
-    width: 0.15em;
-    height: 0.15em;
-    background-color: #F0F4F8;
-    border-radius: 50%;
-    position: absolute;
-    bottom: 0.05em;
-    right: -0.25em;
-    opacity: 0;
-    animation: inkDropDramatic 1.2s 1.5s cubic-bezier(0.34, 0.48, 0.42, 0.95) forwards;
-}
 
 .bold-toni::after {
     content: '';
@@ -253,8 +241,8 @@ body {
     position: absolute;
     bottom: 0.33em;
     right: -0.20em;
-    opacity: 0;
-    animation: inkDropDramatic 1.2s 1.5s cubic-bezier(0.34, 0.48, 0.42, 0.95) forwards;
+    opacity: 1;
+    animation: bounceSettle 2s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .horizontal-line-header {
@@ -334,42 +322,51 @@ body {
     }
 }
 
-    @keyframes inkDropDramatic {
+ @keyframes bounceSettle {
+    /* Horizontal bounces from right */
     0% {
-        opacity: 0;
-        transform: scale(0.05);
+        transform: translateX(120px) translateY(0);
     }
-    10% {
-        opacity: 1;
-        transform: scale(0.05);
+    12% {
+        transform: translateX(80px) translateY(-8px);
     }
-    35% {
-        opacity: 0.85;
-        transform: scale(5.5);
-        filter: blur(3px);
-        border-radius: 40%;
+    24% {
+        transform: translateX(40px) translateY(0);
     }
+    36% {
+        transform: translateX(20px) translateY(-5px);
+    }
+    
+    /* Hit the word - bounce UP */
+    48% {
+        transform: translateX(0) translateY(0);
+    }
+    
+    /* First vertical bounce */
     60% {
-        opacity: 1;
-        transform: scale(0.5);
-        filter: blur(0px);
-        border-radius: 50%;
+        transform: translateX(0) translateY(-25px);
     }
-    75% {
-        transform: scale(1.2);
+    72% {
+        transform: translateX(0) translateY(0);
     }
-    88% {
-        transform: scale(0.95);
+    
+    /* Second smaller vertical bounce */
+    82% {
+        transform: translateX(0) translateY(-12px);
+    }
+    92% {
+        transform: translateX(0) translateY(0);
+    }
+    
+    /* Tiny settle bounce */
+    96% {
+        transform: translateX(0) translateY(-3px);
     }
     100% {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0px);
-        border-radius: 50%;
+        transform: translateX(0) translateY(0);
     }
 }
             
-
 #header nav ul {
     display: flex;
     gap: 1rem;
