@@ -159,7 +159,30 @@
          url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
 }
 
+ /* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(240, 244, 248, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(240, 244, 248, 0.4);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 244, 248, 0.2) transparent;
+}
 html {
     scroll-behavior: smooth;
     height: 100%;
