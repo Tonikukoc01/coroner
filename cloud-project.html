@@ -29,7 +29,30 @@
                  url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
         }
 
-        /* Rest of the font-face and base styles remain the same as in the previous artifact */
+        /* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(240, 244, 248, 0.2);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(240, 244, 248, 0.4);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 244, 248, 0.2) transparent;
+}
 
         :root {
             --bg-color: #1A2B3C;
