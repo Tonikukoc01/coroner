@@ -248,6 +248,62 @@
         body.easy-reading .latin-quote {
             border-left-color: rgba(10, 26, 42, 0.2);
         }
+
+        /* Pull quote styling */
+        .pull-quote {
+            font-size: 1.4rem;
+            font-weight: 100;
+            font-style: italic;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            opacity: 0.9;
+        }
+
+        .pull-quote::before,
+        .pull-quote::after {
+            content: '"';
+            font-size: 3rem;
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .pull-quote::before {
+            left: -1rem;
+            top: 0.5rem;
+        }
+
+        .pull-quote::after {
+            right: -1rem;
+            bottom: 0.5rem;
+        }
+
+        /* Drop cap for first paragraph */
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 4.5rem;
+            line-height: 0.9;
+            margin: 0.1rem 0.1rem 0 0;
+            font-weight: 200;
+        }
+
+        /* Emphasized phrases */
+        .emphasis {
+            font-weight: 300;
+            position: relative;
+            display: inline;
+        }
+
+        /* Subtle highlight effect */
+        .highlight {
+            background: linear-gradient(180deg, transparent 60%, rgba(240, 244, 248, 0.15) 60%);
+            padding: 0 0.2rem;
+        }
+
+        body.easy-reading .highlight {
+            background: linear-gradient(180deg, transparent 60%, rgba(10, 26, 42, 0.08) 60%);
+        }
         
         /* Back link */
         .back-link {
@@ -500,19 +556,19 @@
         </div>
 
         <div class="article-content">
-            <p>
+            <p class="drop-cap">
                 Money in IT often feels distant, something recorded elsewhere and discussed by other people, a line in a spreadsheet or a number in a meeting summary, yet it sits quietly inside almost every action, shaping what is built, what is postponed, and what never begins at all.
             </p>
 
             <p>
-                A feature request arrives and looks purely technical, a bug appears and seems only inconvenient, a delay feels harmless, but each of these carries a consequence, and that consequence is not only technical but material, because time, attention, and effort are always limited, and limitation is simply another form of cost.
+                A feature request arrives and looks purely technical, a bug appears and seems only inconvenient, a delay feels harmless, but each of these carries a consequence, and that consequence is not only technical but material, because time, attention, and effort are always limited, and <span class="highlight">limitation is simply another form of cost</span>.
             </p>
 
             <p>
                 To work in IT is therefore not only to solve problems but to choose between possibilities, and every choice narrows the future in one direction while closing it in another.
             </p>
 
-            <p>
+            <p class="pull-quote">
                 Understanding money is only recognizing this reality.
             </p>
 
@@ -522,23 +578,24 @@
                     Every decision directs resources even when no one names them as such, because to improve one system is to leave another untouched, to optimize performance is to postpone a feature, and to pursue novelty is to accept instability.
                 </p>
                 <p>
-                    Time and money are not separate forces, they are the same boundary viewed from different perspectives, one experienced by engineers as effort and fatigue, the other seen by the organization as expense and risk.
+                    <span class="highlight">Time and money are not separate forces</span>, they are the same boundary viewed from different perspectives, one experienced by engineers as effort and fatigue, the other seen by the organization as expense and risk.
                 </p>
                 <p>
                     When you begin to see this, your decisions become quieter and more deliberate, and your explanations to nontechnical colleagues become possible, since the business rarely measures elegance but always measures consequence.
                 </p>
                 <p>
-                    Many avoid speaking about costs not because it is complicated but because it forces commitment, it removes the comfort of endless improvement and demands that something be enough, and from this avoidance grow long debates, defensive reasoning, and systems that expand beyond their purpose.
+                    Many avoid speaking about costs not because it is complicated but because <span class="emphasis">it forces commitment</span>, it removes the comfort of endless improvement and demands that something be enough, and from this avoidance grow long debates, defensive reasoning, and systems that expand beyond their purpose.
                 </p>
                 <p>
                     Clarity begins the moment we accept that every action has weight.
                 </p>
+                <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/kukica-crochet-media/thinking-man.png" alt="IT professional contemplating decisions" style="max-width: 100%; height: auto; display: block; margin: 2rem auto;">
             </div>
 
             <div class="concept-section">
                 <h2>Money as movement</h2>
                 <p>
-                    Money should not be understood only as a constraint but as a movement through the system, something that enters, circulates, and either returns strengthened or disappears without trace.
+                    Money should not be understood only as a constraint but as <span class="highlight">a movement through the system</span>, something that enters, circulates, and either returns strengthened or disappears without trace.
                 </p>
                 <p>
                     We spend resources to produce value, and value appears in many forms, sometimes visible as revenue, sometimes invisible as reliability, sometimes felt only as the absence of crisis, a week without urgent calls or anxious messages.
@@ -549,7 +606,7 @@
                 <p>
                     When value is false, the system continues to operate but requires constant attention, small failures accumulate, support requests increase, and energy drains from people faster than it returns.
                 </p>
-                <p>
+                <p class="pull-quote">
                     No financial model is required to notice this, only observation.
                 </p>
                 <p>
@@ -562,24 +619,25 @@
                     There is value that comes back, through retained customers, reduced incidents, faster delivery cycles, and confidence inside the team.
                 </p>
                 <p>
-                    By watching these movements you understand whether a system gains strength or quietly weakens, and by following the money you discover what the organization truly cares about, which is often different from what it claims.
+                    By watching these movements you understand whether a system gains strength or quietly weakens, and by following the money you discover <span class="emphasis">what the organization truly cares about</span>, which is often different from what it claims.
                 </p>
             </div>
 
             <div class="concept-section">
                 <h2>Decisions and responsibility</h2>
                 <p>
-                    With this awareness the nature of decisions shifts, because the question is no longer whether something can be built but whether it deserves to exist.
+                    With this awareness the nature of decisions shifts, because <span class="highlight">the question is no longer whether something can be built but whether it deserves to exist</span>.
                 </p>
                 <p>
                     You begin to ask whether the work reduces friction or merely relocates it, whether it helps users in a meaningful way or only satisfies an internal preference, whether it strengthens the system or adds another fragile layer that must be protected later.
                 </p>
                 <p>
-                    Often the wiser decision is modest and almost invisible, improving reliability instead of releasing a visible feature, simplifying a process instead of expanding capability, work that brings little recognition today yet protects trust tomorrow.
+                    Often the wiser decision is modest and almost invisible, improving reliability instead of releasing a visible feature, simplifying a process instead of expanding capability, work that brings little recognition today yet <span class="emphasis">protects trust tomorrow</span>.
                 </p>
                 <p>
                     Metrics can assist but they cannot decide, numbers describe the situation but responsibility remains human.
                 </p>
+                <img src="https://oetriadqxluedjcqvitc.supabase.co/storage/v1/object/public/kukica-crochet-media/balance.png" alt="Balance in decision making" style="max-width: 100%; height: auto; display: block; margin: 2rem auto;">
             </div>
 
             <div class="insight-card">
@@ -606,7 +664,7 @@
                 Every system lives within limits, and recognizing those limits does not diminish the work but gives it shape and purpose.
             </p>
             <p>
-                To speak the language of money is simply to see the full reality of what we build and to act within it deliberately.
+                <span class="highlight">To speak the language of money is simply to see the full reality of what we build and to act within it deliberately.</span>
             </p>
 
             <a href="/blog" class="back-link">
