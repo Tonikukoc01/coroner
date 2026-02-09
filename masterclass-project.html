@@ -1286,27 +1286,24 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
         <nav class="toc-nav">
             <ul class="toc-list">
                 <li class="toc-item">
-                    <a href="#overview" class="toc-link">Overview</a>
+                    <a href="#context" class="toc-link">Context</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#the-challenge" class="toc-link">The Challenge</a>
+                    <a href="#commercial-challenge" class="toc-link">Commercial Challenge</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#technologies-used" class="toc-link">Technologies Used</a>
+                    <a href="#my-role" class="toc-link">My Role</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#approach" class="toc-link">Approach</a>
+                    <a href="#launch-adoption" class="toc-link">Launch & Adoption</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#key-implementations" class="toc-link">Key Implementations</a>
+                    <a href="#results" class="toc-link">Results</a>
                 </li>
                 <li class="toc-item">
-                    <a href="#results-impact" class="toc-link">Results & Impact</a>
+                    <a href="#takeaways" class="toc-link">Takeaways</a>
                 </li>
-                <li class="toc-item">
-                    <a href="#conclusion" class="toc-link">Conclusion</a>
-                </li>
-            </ul>
+            </ul>            
         </nav>
     </div>
 
@@ -1324,11 +1321,19 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
         <p class="project-timeframe">March 2024 - December 2024</p>
         
         <div class="case-study-header">
-            <h1 class="case-study-title">ARTMO Masterclass Implementation</h1>
-            <div class="divider"></div>
-            <p class="case-study-subheader">
-Led the launch of scalable live-streaming platform from 0→1 for artists and educators. Reached 5,000+ viewers, boosted revenue by 25%, and drove quarterly 45% user growth with the 10+ masterclasses.            </p>
-        </div>
+            <h1 class="case-study-title">Launching a Revenue Channel Through Creator Partnerships</h1>
+          
+            <p class="summary-line">
+              Launched a paid live masterclass program by onboarding artists as hosts and validating demand through direct conversations.
+            </p>
+          
+            <div class="metrics-row">
+              <div class="metric"><span class="metric-number">5,000+</span><span class="metric-label">Viewers</span></div>
+              <div class="metric"><span class="metric-number">+25%</span><span class="metric-label">Revenue</span></div>
+              <div class="metric"><span class="metric-number">+45%</span><span class="metric-label">User growth</span></div>
+              <div class="metric"><span class="metric-number">10+</span><span class="metric-label">Sessions</span></div>
+            </div>
+          </div>          
 
         <!-- Device Toggle -->
         <div class="device-toggle-container">
@@ -1473,47 +1478,7 @@ Led the launch of scalable live-streaming platform from 0→1 for artists and ed
         </p>
     </div>
          
-            <h2 class="section-heading" id="technologies-used">Technologies Used</h2>
-
-<div class="tech-stack">
-    <span class="tech-item">AWS IVS</span>
-    <span class="tech-item">IVS Chat</span>
-    <span class="tech-item">S3</span>
-    <span class="tech-item">Lambda</span>
-    <span class="tech-item">Translate</span>
-    <span class="tech-item">Transcribe</span>
-    <span class="tech-item">CloudFront</span>
-    <span class="tech-item">React</span>
-    <span class="tech-item">Node.js</span>
-    <span class="tech-item">Redis</span>
-            </div>
-<p>
-ARTMO was already running on AWS, so naturally it made sense to build the masterclass feature on top of our existing
-infrastructure instead of introducing new providers. Conveniently, AWS offers IVS, a managed service designed
-specifically for low-latency live streaming at scale. It handled the heavy lifting around video delivery and,
-just as importantly, came with built-in live chat through IVS Chat, giving us real-time interaction out of the box.
-</p>
-           
-<p>
-On the matter of recordings; AWS IVS automatically stores live sessions in S3, which we fully
-leveraged for on-demand playback. We added a lightweight Lambda workflow that surfaced new recordings in the
-frontend and notified our content moderation team. From there, recordings could be reviewed, branded, packaged,
-and published using existing admin dashboard components, without introducing new operational overhead.
-</p>
-
-<div class="tech-stack">
-    <span class="tech-item">AWS IVS</span>
-    <span class="tech-item">IVS Chat</span>
-    <span class="tech-item">S3</span>
-    <span class="tech-item">Lambda</span>
-    <span class="tech-item">Translate</span>
-    <span class="tech-item">Transcribe</span>
-    <span class="tech-item">CloudFront</span>
-    <span class="tech-item">React</span>
-    <span class="tech-item">Node.js</span>
-    <span class="tech-item">Redis</span>
-</div>
-            
+    
         <h2 class="section-heading" id="approach">From idea to launch</h2>
 
 <div class="timeline">
