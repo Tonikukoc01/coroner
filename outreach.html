@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTMO Masterclass Implementation - Toni's Portfolio</title>
+    <style>
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-XLight.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLight.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 100;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-XLightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Light.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 200;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-LightItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: normal;
+            src: url('../assets/webfonts/SkemaProDisplay-Medium.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'SkemaProDisplay';
+            font-weight: 300;
+            font-style: italic;
+            src: url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff2') format('woff2'),
+                 url('../assets/webfonts/SkemaProDisplay-MediumItalic.woff') format('woff');
+        }
+
+        /* Base styles */
+        :root {
+            --bg-color: #1A2B3C;
+            --text-color: #F0F4F8;
+            --dark-text-color: #0A1A2A;
+            --accent-color: #4E92DF;
+            --success-color: #3EB489;
+            --section-padding: 3rem 0;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'SkemaProDisplay', sans-serif;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Case study container */
+        .case-study-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+          .other-projects-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+margin-bottom: 4rem;
+    border-top: 1px solid rgba(240, 244, 248, 0.2);
+    max-width: 800px;       /* align with case-study-container */
+    margin-left: auto;      /* center align */
+    margin-right: auto;
+    padding-left: 1.5rem;   /* match internal padding */
+    padding-right: 1.5rem;
+}
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-image-container {
+    width: 100%;
+    height: 140px; /* slightly taller for consistency */
+    overflow: hidden;
+    position: relative;
+}
+.project-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-card-arrow svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.5; /* thinner so it feels balanced */
+}
+
+        .project-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-card-title {
+    font-size: 1.3rem;
+    font-weight: 200;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.project-card-description {
+    font-size: 1rem;
+    font-weight: 100;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.85;
+    flex-grow: 1; /* pushes arrow down on desktop */
+}
+
+.project-card-arrow {
+    margin-top: 1rem;
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+        
+        .toc-container {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    background-color: rgba(26, 43, 60, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    z-index: 99;
+    max-width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.toc-container:hover {
+    opacity: 1;
+}
+
+.toc-header {
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin-bottom: 0.5rem;
+}
+
+.toc-link {
+    display: block;
+    font-family: 'SkemaProDisplay', sans-serif;
+    font-weight: 100;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    position: relative;
+    border-left: 2px solid transparent;
+}
+
+.toc-link:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(2px);
+}
+
+.toc-link.active {
+    opacity: 1;
+    color: var(--accent-color);
+    background-color: rgba(78, 146, 223, 0.1);
+    border-left-color: var(--accent-color);
+}
+
+/* Easy reading mode styles for TOC */
+body.easy-reading .toc-container {
+    background-color: rgba(240, 244, 248, 0.95);
+    border-color: rgba(10, 26, 42, 0.1);
+}
+
+body.easy-reading .toc-link.active {
+    color: var(--accent-color);
+    background-color: rgba(26, 101, 192, 0.1);
+}
+        /* Back to projects arrow */
+       .back-to-projects {
+            position: absolute;
+            top: 3.5rem;
+            left: 2rem;
+            font-weight: 100;
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+        }
+        
+        .back-to-projects:hover {
+            opacity: 1;
+        }
+        
+       .back-to-projects svg {
+            margin-right: 0.3rem;
+            margin-bottom: 0.1rem;
+            width: 24px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Project timeframe - positioned at upper left with increased margin */
+        .project-timeframe {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            position: absolute;
+            top: 8rem;
+            left: 2rem;
+        }
+        
+        /* Case study header */
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            margin-top: 5rem;
+        }
+        
+        .case-study-title {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            color: var(--text-color);
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+        }
+        
+        /* Divider line */
+        .divider {
+            width: 50px;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 0 auto 2rem auto;
+        }
+        
+        /* Case study subheader */
+        .case-study-subheader {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        /* Case study content */
+        .case-study-content {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        
+        /* Section heading */
+        .section-heading {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 200;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        /* Paragraphs in case study */
+        .case-study-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Wide image container */
+        .wide-image-container {
+            width: 100vw;
+            max-width: 1200px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+        
+        .wide-image {
+            width: 100%;
+            height: auto;
+            max-height: 700px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .image-caption {
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-style: italic;
+            font-weight: 200;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.7;
+            margin-top: 0.5rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+.image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.image-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.wide-image {
+    cursor: pointer; /* Add this to your existing .wide-image style */
+}
+
+body.modal-open {
+    overflow: hidden;
+}    
+        /* Project metrics */
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 3rem 0;
+            gap: 1.5rem;
+        }
+        
+        .metric-card {
+            flex: 1 1 calc(33% - 1.5rem);
+            min-width: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 200;
+            color: var(--success-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-label {
+            font-size: 1rem;
+            font-weight: 100;
+            opacity: 0.8;
+        }
+        
+        /* Tech stack list */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tech-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 100;
+        }
+        
+        /* Quote section */
+        .quote-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--accent-color);
+            font-style: italic;
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-author {
+            font-size: 1rem;
+            font-weight: 200;
+            opacity: 0.8;
+            text-align: right;
+        }
+        
+        /* Project timeline */
+        .timeline {
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-event {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            font-weight: 100;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 200;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Challenges and solutions */
+        .challenge-solution {
+            margin: 2rem 0;
+        }
+        
+        .challenge-title {
+            font-size: 1.2rem;
+            font-weight: 200;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Back link - improved styling */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 4rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-family: 'SkemaProDisplay', sans-serif;
+            font-weight: 100;
+        }
+        
+        .back-link:hover {
+            background-color: rgba(240, 244, 248, 0.1);
+        }
+        
+        .back-link svg {
+            margin-right: 0.5rem;
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Reading mode switch */
+        .switch-container {
+            position: fixed;
+            top: 3rem;
+            right: 22rem;
+            display: flex;
+            align-items: center;
+            background-color: rgba(26, 43, 60, 0.7);
+            padding: 8px 12px;
+            border-radius: 20px;
+            z-index: 100;
+            backdrop-filter: blur(4px);
+            gap: 8px;
+        }
+
+/* Theme icons */
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    stroke: var(--text-color);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.theme-icon.sun-icon {
+    opacity: 0.4;
+}
+
+.theme-icon.moon-icon {
+    opacity: 0.8;
+}
+
+/* Update icon opacity based on theme */
+body.easy-reading .theme-icon.sun-icon {
+    opacity: 0.8;
+}
+
+body.easy-reading .theme-icon.moon-icon {
+    opacity: 0.4;
+}
+        
+        .switch-label {
+            margin-right: 10px;
+            font-size: 0.9rem;
+            font-weight: 100;
+            color: var(--text-color);
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2c3e50;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #F0F4F8;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(18px);
+            background-color: #1A2B3C;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(70, 90, 110, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, background-color 0.3s;
+            visibility: hidden;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: rgba(90, 110, 130, 0.9);
+        }
+        
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: var(--text-color);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* Easy reading mode */
+        body.easy-reading {
+            --bg-color: #F0F4F8;
+            --text-color: #0A1A2A;
+            --accent-color: #1A65C0;
+            --success-color: #1E8A60;
+        }
+
+        body.easy-reading .tech-item {
+        background-color: rgba(26, 101, 192, 0.15);  
+       border: 1px solid rgba(26, 101, 192, 0.3);   
+       color: var(--text-color);                    
+}
+
+       body.easy-reading .timeline-line {
+       background-color: rgba(10, 26, 42, 0.3);    
+}
+
+body.easy-reading .device-toggle {
+    background: rgba(26, 101, 192, 0.1);
+    border: 1px solid rgba(26, 101, 192, 0.3);
+}
+
+body.easy-reading .device-option {
+    color: rgba(10, 26, 42, 0.7);
+}
+
+body.easy-reading .device-option.active {
+    background: linear-gradient(135deg, #1A65C0 0%, #2c5aa0 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(26, 101, 192, 0.3);
+}
+
+body.easy-reading .device-option:not(.active):hover {
+    color: rgba(10, 26, 42, 0.9);
+    background: rgba(26, 101, 192, 0.08);
+}
+
+        /* Video container */
+        .video-container {
+        width: 100%;
+        max-width: 1000px;
+        margin: 2rem auto;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+    }
+
+       /* Mobile device frame */
+        .video-container.mobile-frame {
+            max-width: 350px;
+            background: linear-gradient(145deg, #243548, #1A2B3C);
+            border-radius: 35px;
+            padding: 20px 12px 30px 12px;
+            box-shadow: 
+                0 8px 30px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .video-container.mobile-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #333, #555);
+            border-radius: 2px;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-container.mobile-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #444, #666);
+            border-radius: 2px;
+            box-shadow: 
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container.mobile-frame .feature-video {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+    
+    .feature-video {
+        width: 100%;
+        height: auto;
+        display: block;
+       transition: opacity 0.3s ease;
+
+    }
+    
+    /* Custom video controls */
+    .video-controls {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        display: flex;
+        gap: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 8px;
+        border-radius: 20px;
+    }
+    
+    .video-container:hover .video-controls {
+        opacity: 1;
+    }
+    
+    .video-controls button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s;
+    }
+    
+    .video-controls button:hover {
+        transform: scale(1.2);
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    /* Loading spinner */
+    .loading-spinner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+        }
+
+ /* Device Toggle Styles */
+        .device-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.5rem auto;
+            max-width: 1000px;
+            gap: 1rem;
+        }
+
+        .device-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .device-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 46px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device-option.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .device-option:not(.active):hover {
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .device-icon {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .device-option.active .device-icon {
+            transform: scale(1.1);
+        }
+
+        /* Video transition effects */
+        .video-switching {
+            opacity: 0.7;
+        }
+
+/* Mobile video container adjustments - triggered by data attribute or class */
+.video-container[data-current-device="mobile"],
+.video-container.showing-mobile {
+    max-width: 350px !important;
+    max-height: 70vh;
+    aspect-ratio: 9/16;
+    margin: 1rem auto;
+}
+
+/* Mobile video element adjustments */
+.video-container[data-current-device="mobile"] .feature-video,
+.video-container.showing-mobile .feature-video {
+    object-fit: contain;
+    max-height: 70vh;
+    width: 100%;
+    height: auto;
+}
+
+/* Enhanced mobile frame for mobile videos */
+.video-container[data-current-device="mobile"].mobile-frame,
+.video-container.showing-mobile.mobile-frame {
+    max-width: 350px !important;
+    max-height: 75vh;
+    padding: 20px 12px 30px 12px;
+background: linear-gradient(145deg, #243548, #1A2B3C);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-container[data-current-device="mobile"].mobile-frame .feature-video,
+.video-container.showing-mobile.mobile-frame .feature-video {
+    max-height: 65vh;
+    border-radius: 15px;
+}
+
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    other-projects-section {
+        padding-left: 1rem;
+        padding-right: 1rem;
+                margin-top: 1.5rem;
+                margin-bottom: 3rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    .project-image-container {
+        height: 180px; /* Even smaller on mobile */
+    }
+    
+    .project-card-content {
+        padding: 1rem;
+        min-height: auto;
+    }
+    
+    .project-card-title {
+        font-size: 1rem; /* Smaller text on mobile */
+    }
+    
+    .project-card-description {
+        font-size: 0.85rem;
+        line-height: 1.3;
+    }
+    .toc-container {
+        display: none;
+    }
+.project-timeframe {
+        font-family: 'SkemaProDisplay', sans-serif;
+        font-weight: 200;
+        font-size: 1rem; /* Reduced from 1.2rem */
+        position: static; /* Changed from absolute */
+        text-align: center;
+        margin-bottom: 1.5rem;
+        margin-top: 2rem;
+        left: auto; /* Reset absolute positioning */
+        top: auto; /* Reset absolute positioning */
+    }
+
+           .case-study-container {
+                padding: 5rem 1.5rem 4rem;
+            }
+            
+            .back-to-projects {
+                top: 1.3rem;
+                left: 1.5rem;
+            }
+            
+            .case-study-header {
+                margin-top: 0;
+                margin-bottom: 2.5rem;
+            }
+            
+            .case-study-title {
+                font-size: 2.2rem;
+            }
+            
+            .case-study-subheader {
+                font-size: 1.2rem;
+                padding: 0 1rem;
+                line-height: 1.4; 
+            }
+            
+            .metric-card {
+                flex: 1 1 100%;
+            }
+            
+            .wide-image-container {
+                width: 100%;
+                margin-left: 0;
+                transform: none;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .wide-image {
+                max-height: 400px;
+            }
+            
+          .switch-container {
+             top: 13.5px;
+             right: 10px;
+             padding: 6px 10px; /* Slightly smaller padding */
+            border-radius: 16px; /* Smaller border radius */
+               gap: 6px;
+    }
+
+    .theme-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .switch-label {
+        margin-right: 8px;
+    }
+    
+    .switch {
+        width: 36px; /* Smaller switch */
+        height: 20px;
+    }
+    
+    .slider:before {
+        height: 14px; /* Smaller slider dot */
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(16px); /* Adjusted for smaller switch */
+    }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+
+.device-toggle-container {
+                margin: 1rem auto;
+            }
+            
+            .device-option {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            
+            .device-icon {
+                width: 16px;
+                height: 16px;
+            }
+.video-container[data-current-device="mobile"],
+    .video-container.showing-mobile {
+        max-width: 85vw !important;
+        max-height: 60vh;
+    }
+    
+    .video-container[data-current-device="mobile"] .feature-video,
+    .video-container.showing-mobile .feature-video {
+        max-height: 60vh;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame,
+    .video-container.showing-mobile.mobile-frame {
+        max-width: 85vw !important;
+        max-height: 65vh;
+        padding: 15px 10px 25px 10px;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame .feature-video,
+    .video-container.showing-mobile.mobile-frame .feature-video {
+        max-height: 55vh;
+    }
+        }
+        
+      @media (max-width: 480px) {
+
+          .projects-grid {
+        gap: 0.75rem;
+    }
+    
+    .project-image-container {
+        height: 140px; /* Very compact on small screens */
+    }
+    
+    .project-card-content {
+        padding: 0.75rem;
+    }
+    
+    .project-card-title {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .project-card-description {
+        font-size: 0.75rem;
+    }
+    
+    .project-card-arrow {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 14px;
+        height: 14px;
+    }
+    .case-study-container {
+        padding: 4rem 1rem 3rem;
+    }
+    
+    .back-to-projects {
+        top: 1rem;
+        left: 1rem;
+    }
+    
+    .project-timeframe {
+        font-size: 0.9rem; /* Even smaller for very small screens */
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .case-study-title {
+        font-size: 2rem; /* Smaller for very small screens */
+        padding: 0 0.25rem; /* Reduced padding */
+    }
+    
+    .case-study-subheader {
+        font-size: 1.1rem;
+        padding: 0 0.5rem; /* Reduced padding */
+    }
+    
+    .case-study-content {
+        font-size: 1rem;
+    }
+    
+    .wide-image {
+        max-height: 300px;
+    }
+    
+    .section-heading {
+        font-size: 1.5rem;
+    }
+    
+    /* Extra small switch for very small screens */
+    .switch-container {
+        padding: 4px 8px;
+        border-radius: 14px;
+        gap: 4px;
+    }
+
+       .theme-icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .switch-label {
+        font-size: 0.8rem;
+        margin-right: 6px;
+    }
+    
+    .switch {
+        width: 32px;
+        height: 18px;
+    }
+    
+    .slider:before {
+        height: 12px;
+        width: 12px;
+        left: 3px;
+        bottom: 3px;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(14px);
+    }
+
+.video-container[data-current-device="mobile"],
+    .video-container.showing-mobile {
+        max-width: 90vw !important;
+        max-height: 50vh;
+    }
+    
+    .video-container[data-current-device="mobile"] .feature-video,
+    .video-container.showing-mobile .feature-video {
+        max-height: 50vh;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame,
+    .video-container.showing-mobile.mobile-frame {
+        max-width: 90vw !important;
+        max-height: 55vh;
+        padding: 12px 8px 20px 8px;
+    }
+    
+    .video-container[data-current-device="mobile"].mobile-frame .feature-video,
+    .video-container.showing-mobile .feature-video {
+        max-height: 45vh;
+    }
+
+}
+    </style>
+</head>
+<body>
+      <!-- Back to top button -->
+      <div class="back-to-top" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </div>
+    
+  <!-- Theme toggle switch -->
+    <div class="switch-container">
+        <svg class="theme-icon moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <label class="switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+        </label>
+        <svg class="theme-icon sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+    
+    <!-- Table of Contents - Desktop -->
+    <div class="toc-container">
+        <div class="toc-header">Contents</div>
+        <nav class="toc-nav">
+            <ul class="toc-list">
+                <li class="toc-item">
+                    <a href="#context" class="toc-link">Context</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#commercial-challenge" class="toc-link">The Challenge</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#platform-support" class="toc-link">Platform Support</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#my-role" class="toc-link">My Role & Timeline</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#results-impact" class="toc-link">Results & Impact</a>
+                </li>
+                <li class="toc-item">
+                    <a href="#takeaways" class="toc-link">Takeaways</a>
+                </li>
+            </ul>               
+        </nav>
+    </div>
+
+   
+    <div class="case-study-container">
+        <!-- Back to projects arrow link -->
+        <a href="/value-delivered" class="back-to-projects">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back
+        </a>
+        
+        <p class="project-timeframe">March 2024 - December 2024</p>
+        
+        <div class="case-study-header">
+            <h1 class="case-study-title">Live Masterclass Platform</h1>
+          
+            <p class="case-study-subheader">
+                Launched paid live masterclasses with platform artists, confirming interest before expanding the program. The sessions reached 5,000+ viewers, increased revenue by 25%, and drove 45% user growth across 10+ masterclasses.            </p>
+          </div>          
+
+        <!-- Device Toggle -->
+        <div class="device-toggle-container">
+            <div class="device-toggle">
+                <div class="device-option active" 
+                     data-device="desktop" 
+                     data-video-url="https://public-access-images.s3.eu-central-1.amazonaws.com/artmo-masterclass-demo1.mp4">
+                    <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="12" rx="2"></rect>
+                        <line x1="2" y1="20" x2="22" y2="20"></line>
+                        <line x1="12" y1="16" x2="12" y2="20"></line>
+                    </svg>
+                </div>
+                <div class="device-option" 
+                     data-device="mobile" 
+                     data-video-url="https://public-access-images.s3.eu-central-1.amazonaws.com/artmo-masterclass-mobile-compressed+(online-video-cutter.com).mp4">
+                    <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="video-container">
+            <video id="demo-video" autoplay muted loop playsinline class="feature-video">
+                <source src="https://public-access-images.s3.eu-central-1.amazonaws.com/artmo-masterclass-demo1.mp4" type="video/mp4">
+                <!-- Fallback for browsers that don't support video -->
+                <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
+            </video>
+            
+            <!-- Custom video controls -->
+            <div class="video-controls">
+                <button id="play-pause-btn" aria-label="Play/Pause">
+                    <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                    <svg class="play-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </button>
+                <button id="mute-btn" aria-label="Mute/Unmute">
+                    <svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <svg class="mute-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Loading indicator -->
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+            </div>
+        </div>
+        
+       <div class="case-study-content">
+    <h2 class="section-heading" id="context">Context</h2>
+    <p>
+        ARTMO had an active community of artists and users, but revenue still depended mostly on marketplace activity. As the platform grew, there was increasing pressure to introduce a more reliable and predictable source of income.
+        </p>
+    
+    <p>
+        Masterclasses were introduced as a new layer on top of the existing platform: live sessions that also remained available afterward as permanent content. The idea was to let artists interact directly with their audience while also creating material that could continue to be viewed and monetized over time.
+        </p>
+
+    <!-- Wide image section -->
+    <div class="wide-image-container">
+        <img src="/assets/frame-afterwards.png" alt="ARTMO Masterclass Dashboard" class="wide-image" onclick="openModal(this)">
+    </div>
+
+    <div class="image-modal" id="imageModal" onclick="closeModal()">
+        <img src="" alt="" class="modal-image" onclick="event.stopPropagation()">
+    </div>    
+
+    <h2 class="section-heading" id="commercial-challenge">The Challenge</h2>
+
+<p>
+Launching masterclasses was not just adding a feature. It introduced a new activity on the platform: live sessions hosted by artists that also needed to remain available afterward as permanent content. Success depended not only on running a live event, but on creating a process that could continue operating without constant manual or engineering involvement.
+</p>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Artists as Hosts (Onboarding & Ownership)</h3>
+    <p>
+        Masterclasses were hosted by artists, not internal staff. We had to define who could host, how instructors would be onboarded, and how sessions would be scheduled and moderated.
+    </p>
+    <p>
+        Most hosts were non-technical, so the workflow needed to be simple enough for them to manage independently. If each session required direct technical support, the program would not scale.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Live Participation (Interactive Experience)</h3>
+    <p>
+        A passive video stream was not enough. To make live attendance worthwhile, sessions needed real-time interaction so participants could ask questions and engage with the artist during the event.
+    </p>
+    <p>
+        The value of the format depended on people joining at a specific time rather than watching later, so the live experience had to feel meaningfully different from recorded content.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Live to Permanent Content (Recording & Access)</h3>
+    <p>
+        Each session had to automatically become long-term content. Recordings needed to be stored, accessible, and available for on-demand viewing without manual handling so sessions could continue to be used and monetized afterward.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Cost & Infrastructure Constraints</h3>
+    <p>
+        The platform needed a globally accessible streaming solution capable of handling real usage with consistent quality, but it also had to remain within a startup budget.
+    </p>
+    <p>
+        If infrastructure costs increased with every session or required ongoing operational work, the program would not be sustainable.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Discovery & Attendance (Promotion Without Marketing)</h3>
+    <p>
+        Users needed a clear way to discover upcoming sessions and a reason to attend live events. Artists also needed a simple way to promote sessions to their audiences.
+    </p>
+    <p>
+        The program depended on platform visibility and artist-driven promotion rather than paid marketing, so attendance and communication had to work reliably for the format to generate revenue.
+    </p>
+</div>
+
+<h2 class="section-heading" id="platform-support">Platform Support</h2>
+
+<p>
+To make the masterclass program sustainable, the platform needed to support live events, ongoing access, and host independence. The technical setup was not an end in itself; it enabled artists to run sessions repeatedly while keeping operational work and costs manageable.
+</p>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Live streaming</h3>
+    <p>
+        Reliable live streaming allowed artists to host sessions for a global audience without managing technical setup. Sessions could run consistently and did not require manual preparation before each event.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Real-time interaction</h3>
+    <p>
+        Live chat and questions enabled direct communication between artists and participants. This made attending live sessions worthwhile and differentiated them from recorded videos.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Automatic recordings</h3>
+    <p>
+        Every session was recorded and published for later viewing. Recordings remained accessible on the platform, allowing sessions to continue providing value and generating revenue after the live broadcast ended.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Access and payments</h3>
+    <p>
+        Sessions were connected to existing platform accounts and payment flows. Users could join without a separate purchase process, and artists could receive revenue without manual coordination or follow-up administration.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Host independence</h3>
+    <p>
+        Artists were able to schedule and manage sessions through the platform interface. After initial preparation, sessions could be run by hosts themselves, reducing the need for ongoing operational or engineering involvement.
+    </p>
+</div>
+
+
+        <h2 class="section-heading" id="my-role">My Role & Timeline</h2>
+
+<div class="timeline">
+    <div class="timeline-line"></div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">March 2024</div>
+        <div class="timeline-title">Demand validation</div>
+        <div class="timeline-description">
+            We started with a deep dive into the market by reviewing how other platforms approached masterclasses,
+            including live sessions, recorded content, interaction quality, and pricing models. In parallel, I
+            spoke directly with ARTMO artists to gauge willigness to host sessions and with users
+            to understand what learning content they would attend and pay for.
+            <br><br>
+            The goal was to confirm demand and understand the practical conditions required for both hosts and viewers before committing development effort.        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April–May 2024</div>
+        <div class="timeline-title">Format design and host preparation</div>
+        <div class="timeline-description">
+            Based on early conversations, we defined the session structure, expectations for hosts, and how live sessions would translate into permanent content on the platform. I worked on preparing the first instructors, clarifying scheduling, flow of the session, and what support they could expect.
+            <br><br>
+At the same time, I coordinated internally on how recordings would be reviewed and published so the hosting process was predictable and repeatable.At the same time, I coordinated internally on how recordings would be reviewed and published so the hosting process was predictable and repeatable.        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Summer 2024</div>
+        <div class="timeline-title">First sessions and iteration</div>
+        <div class="timeline-description">
+            We ran the first live sessions and observed both host and audience behavior. I gathered feedback from instructors and participants and identified points of friction in communication, timing, and participation.
+            <br><br>
+            Based on this feedback, we adjusted session expectations, preparation materials, and the hosting workflow to make participation easier and more reliable.
+        </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">September 2024</div>
+        <div class="timeline-title">Expanding adoption</div>
+        <div class="timeline-description">
+            Additional artists were onboarded and repeat sessions were introduced. I continued collecting feedback and refining communication and scheduling so artists could host more confidently and users knew what to expect.
+            <br><br>
+            The focus shifted from testing the concept to making it consistently usable.
+                </div>
+    </div>
+    
+    <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">October–December 2024</div>
+        <div class="timeline-title">Establishing a repeatable program</div>
+        <div class="timeline-description">
+            Masterclasses were rolled out across the community and ran as a structured program. Artists hosted sessions regularly and users returned for new events.
+            <br><br>
+            At this stage the format functioned not only as a feature but as an ongoing engagement and revenue channel for the platform.
+        </div>
+    </div>
+</div>
+
+<h2 class="section-heading" id="results-impact">Results & Impact</h2>
+
+<p>
+    The program moved from an experiment to a repeatable part of the platform and produced measurable business impact.
+</p>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Adoption</h3>
+    <p>
+        Early sessions attracted consistent attendance, confirming users would join scheduled events rather than only consume passive content.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Revenue Impact</h3>
+    <p>
+        Paid sessions and continued access to recordings created a new revenue stream for the platform, contributing to an overall 25% increase in revenue.
+    </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">Durability</h3>
+    <p>
+        Because each session remained available afterward, the same content continued to generate engagement and value without additional operational work.
+   </p>
+</div>
+
+<div class="challenge-solution">
+    <h3 class="challenge-title">User Growth</h3>
+    <p>
+        Introductory masterclasses brought new users to the platform and encouraged return visits. During Q4 2024, user growth increased by 45%.
+    </p>
+</div>
+
+<h2 class="section-heading" id="takeaways">Takeaways</h2>
+
+<p>
+The biggest lesson was that a live format only scales when hosting feels predictable for the instructor and attending feels worth it for the viewer. The product is not just the stream, it is the workflow around it.
+</p>
+
+<p>
+Turning live sessions into permanent content changed the economics. Each masterclass kept delivering value after it ended, which made the program sustainable and reduced pressure to “start from zero” with every event.
+</p>
+
+<p>
+Working with artists also reinforced that adoption depends on clarity and confidence. When expectations, scheduling, and the post-session process were simple, hosts were more willing to repeat sessions and promote them to their audience.
+</p>
+
+            
+            <!-- Contact section -->
+            <div class="contact-section">
+                <h2 class="section-heading">Want to discuss this project?</h2>
+                <p>
+                    I'm always happy to share more details about the technical implementation or discuss how similar solutions could benefit your organization.
+                </p>
+            </div>
+        </div>
+    </div>
+
+  <!-- Other Projects Navigation Section -->
+<div class="other-projects-section">
+    <h2 class="section-heading">Explore Other Projects</h2>
+    <div class="projects-grid">
+        <a href="https://tonikukoc.me/cloud-project" class="project-card">
+            <div class="project-image-container">
+                <img src="assets/cloud-recomposition.jpg" alt="Cloud Recomposition" class="project-image">
+            </div>
+            <div class="project-card-content">
+                <h3 class="project-card-title">Cloud Recomposition</h3>
+                <p class="project-card-description">Aligned infrastructure and business needs, reducing operating costs by 60% and improving scalability.</p>
+                <div class="project-card-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </a>
+        
+        <a href="https://tonikukoc.me/project-ops" class="project-card">
+            <div class="project-image-container">
+                <img src="assets/project-leadership.jpg" alt="Leadership Platform" class="project-image">
+            </div>
+            <div class="project-card-content">
+                <h3 class="project-card-title">Projects Ops Leadership</h3>
+                <p class="project-card-description">Coordinated a distributed development team and stakeholders, improving delivery reliability and saving €200k+.</p>
+                <div class="project-card-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+        
+    <!-- Scripts section -->
+    <script>
+       // Back to top functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const backToTopButton = document.getElementById('backToTop');
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when button is clicked
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const bodyElement = document.body;
+            
+            themeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    // Checked = Day mode (light theme)
+                    bodyElement.classList.add('easy-reading');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // Unchecked = Night mode (dark theme) 
+                    bodyElement.classList.remove('easy-reading');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Check if light theme was previously enabled
+            if (localStorage.getItem('theme') === 'light') {
+                themeToggle.checked = true;
+                bodyElement.classList.add('easy-reading');
+            }
+    
+    // Timeline animation on scroll
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    timelineEvents.forEach(event => {
+        observer.observe(event);
+    });
+
+    // VIDEO FUNCTIONALITY - All video-related code in one place
+    const video = document.getElementById('demo-video');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const loadingSpinner = document.querySelector('.loading-spinner');
+    const playIcon = document.querySelector('.play-icon');
+    const pauseIcon = document.querySelector('.pause-icon');
+    const muteIcon = document.querySelector('.mute-icon');
+    const unmuteIcon = document.querySelector('.unmute-icon');
+    
+    // Device toggle elements
+    const deviceOptions = document.querySelectorAll('.device-option');
+    let currentDevice = 'desktop';
+    
+    // Force hide loading spinner after 2 seconds as a fallback
+    setTimeout(function() {
+        loadingSpinner.style.display = 'none';
+    }, 2000);
+    
+    // Better event handling for video loading
+    function hideSpinner() {
+        loadingSpinner.style.display = 'none';
+    }
+    
+    // Multiple events to ensure spinner hides properly
+    video.addEventListener('canplay', hideSpinner);
+    video.addEventListener('playing', hideSpinner);
+    video.addEventListener('loadeddata', hideSpinner);
+    
+    // If video is already loaded/cached
+    if (video.readyState >= 3) {
+        hideSpinner();
+    }
+    
+    // Handle play/pause button
+    playPauseBtn.addEventListener('click', function() {
+        if (video.paused || video.ended) {
+            video.play()
+                .then(() => {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                })
+                .catch(err => {
+                    console.error('Error playing video:', err);
+                });
+        } else {
+            video.pause();
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        }
+    });
+    
+    // Handle mute button
+    muteBtn.addEventListener('click', function() {
+        video.muted = !video.muted;
+        if (video.muted) {
+            unmuteIcon.classList.add('hidden');
+            muteIcon.classList.remove('hidden');
+        } else {
+            unmuteIcon.classList.remove('hidden');
+            muteIcon.classList.add('hidden');
+        }
+    });
+    
+    // Update UI based on video state
+    video.addEventListener('pause', function() {
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+    });
+    
+    video.addEventListener('play', function() {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+        hideSpinner();
+    });
+    
+    // Show loading spinner if video stalls
+    video.addEventListener('waiting', function() {
+        loadingSpinner.style.display = 'flex';
+    });
+
+    // DEVICE TOGGLE FUNCTIONALITY
+    deviceOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedDevice = option.dataset.device;
+            const videoUrl = option.dataset.videoUrl;
+            
+            if (selectedDevice !== currentDevice) {
+                switchVideo(videoUrl, selectedDevice);
+                updateActiveOption(option);
+            }
+        });
+    });
+
+    function switchVideo(videoUrl, device) {
+        const wasPlaying = !video.paused;
+        const currentTime = video.currentTime;
+        
+        // Show loading spinner
+        loadingSpinner.style.display = 'flex';
+        video.classList.add('video-switching');
+        
+        // Change video source
+        video.src = videoUrl;
+        currentDevice = device;
+
+    const videoContainer = document.querySelector('.video-container');
+    if (device === 'mobile') {
+        videoContainer.classList.add('showing-mobile');
+        videoContainer.classList.add('mobile-frame'); // Optional: add mobile frame styling
+    } else {
+        videoContainer.classList.remove('showing-mobile');
+        videoContainer.classList.remove('mobile-frame'); // Remove mobile frame for desktop
+    }
+        
+        // Handle video loading
+        video.addEventListener('loadeddata', function onLoad() {
+            video.removeEventListener('loadeddata', onLoad);
+            
+            // Hide loading spinner
+            hideSpinner();
+            video.classList.remove('video-switching');
+            
+            // Try to maintain playback position (approximate)
+            video.currentTime = Math.min(currentTime, video.duration);
+            
+            // Resume playback if it was playing
+            if (wasPlaying) {
+                video.play().catch(e => console.log('Autoplay prevented'));
+            }
+        });
+        
+        // Handle loading errors
+        video.addEventListener('error', function onError() {
+            video.removeEventListener('error', onError);
+            hideSpinner();
+            video.classList.remove('video-switching');
+            console.error('Error loading video for', device);
+        });
+    }
+
+    function updateActiveOption(selectedOption) {
+        deviceOptions.forEach(option => {
+            option.classList.remove('active');
+        });
+        selectedOption.classList.add('active');
+    }
+});
+
+function openModal(img) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = modal.querySelector('.modal-image');
+    
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+}
+
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+}
+// TABLE OF CONTENTS SCROLLSPY FUNCTIONALITY
+const tocLinks = document.querySelectorAll('.toc-link');
+const sections = document.querySelectorAll('h2[id]');
+
+// Smooth scrolling for TOC links
+tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 100;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Scrollspy functionality
+function updateActiveSection() {
+    const scrollPosition = window.scrollY + 200;
+    let currentSection = '';
+    
+    // Find the last section that we've scrolled past
+    for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const sectionTop = section.offsetTop;
+        
+        if (scrollPosition >= sectionTop) {
+            currentSection = section.id;
+            break;
+        }
+    }
+    
+    // If we haven't reached any section yet, use the first one
+    if (!currentSection && sections.length > 0) {
+        currentSection = sections[0].id;
+    }
+    
+    // Update active TOC link
+    tocLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Throttled scroll handler
+let scrollTimeout;
+window.addEventListener('scroll', function() {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(updateActiveSection, 10);
+});
+
+// Initialize on page load
+updateActiveSection();
+    </script>
+</body>
