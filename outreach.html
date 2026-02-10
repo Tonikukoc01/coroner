@@ -1280,347 +1280,390 @@ background: linear-gradient(145deg, #243548, #1A2B3C);
         </svg>
     </div>
     
-    <!-- Table of Contents - Desktop -->
-    <div class="toc-container">
-        <div class="toc-header">Contents</div>
-        <nav class="toc-nav">
-            <ul class="toc-list">
-                <li class="toc-item">
-                    <a href="#context" class="toc-link">Context</a>
-                </li>
-                <li class="toc-item">
-                    <a href="#commercial-challenge" class="toc-link">The Challenge</a>
-                </li>
-                <li class="toc-item">
-                    <a href="#platform-support" class="toc-link">Platform Support</a>
-                </li>
-                <li class="toc-item">
-                    <a href="#my-role" class="toc-link">My Role & Timeline</a>
-                </li>
-                <li class="toc-item">
-                    <a href="#results-impact" class="toc-link">Results & Impact</a>
-                </li>
-                <li class="toc-item">
-                    <a href="#takeaways" class="toc-link">Takeaways</a>
-                </li>
-            </ul>               
-        </nav>
-    </div>
-
+   <!-- Table of Contents - Desktop -->
+<div class="toc-container">
+    <div class="toc-header">Contents</div>
+    <nav class="toc-nav">
+      <ul class="toc-list">
+        <li class="toc-item">
+          <a href="#context" class="toc-link">Context</a>
+        </li>
+        <li class="toc-item">
+          <a href="#targeting-research" class="toc-link">Targeting & Research</a>
+        </li>
+        <li class="toc-item">
+          <a href="#outreach-system" class="toc-link">Outreach System</a>
+        </li>
+        <li class="toc-item">
+          <a href="#qualification" class="toc-link">Conversations & Qualification</a>
+        </li>
+        <li class="toc-item">
+          <a href="#fundraising-support" class="toc-link">Fundraising & Partnership Support</a>
+        </li>
+        <li class="toc-item">
+          <a href="#results-impact" class="toc-link">Results & Impact</a>
+        </li>
+        <li class="toc-item">
+          <a href="#takeaways" class="toc-link">What I Learned</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
    
-    <div class="case-study-container">
-        <!-- Back to projects arrow link -->
-        <a href="/value-delivered" class="back-to-projects">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Back
-        </a>
-        
-        <p class="project-timeframe">March 2024 - December 2024</p>
-        
-        <div class="case-study-header">
-            <h1 class="case-study-title">Live Masterclass Platform</h1>
-          
-            <p class="case-study-subheader">
-                Launched paid live masterclasses with platform artists, confirming interest before expanding the program. The sessions reached 5,000+ viewers, increased revenue by 25%, and drove 45% user growth across 10+ masterclasses.            </p>
-          </div>          
+  <div class="case-study-container">
 
-        <!-- Device Toggle -->
-        <div class="device-toggle-container">
-            <div class="device-toggle">
-                <div class="device-option active" 
-                     data-device="desktop" 
-                     data-video-url="https://public-access-images.s3.eu-central-1.amazonaws.com/artmo-masterclass-demo1.mp4">
-                    <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="4" width="20" height="12" rx="2"></rect>
-                        <line x1="2" y1="20" x2="22" y2="20"></line>
-                        <line x1="12" y1="16" x2="12" y2="20"></line>
-                    </svg>
-                </div>
-                <div class="device-option" 
-                     data-device="mobile" 
-                     data-video-url="https://public-access-images.s3.eu-central-1.amazonaws.com/artmo-masterclass-mobile-compressed+(online-video-cutter.com).mp4">
-                    <svg class="device-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                    </svg>
-                </div>
-            </div>
-        </div>
-        
-        <div class="video-container">
-            <video id="demo-video" autoplay muted loop playsinline class="feature-video">
-                <source src="https://public-access-images.s3.eu-central-1.amazonaws.com/artmo-masterclass-demo1.mp4" type="video/mp4">
-                <!-- Fallback for browsers that don't support video -->
-                <img src="/api/placeholder/1000/563" alt="ARTMO Masterclass Interface Demo">
-            </video>
-            
-            <!-- Custom video controls -->
-            <div class="video-controls">
-                <button id="play-pause-btn" aria-label="Play/Pause">
-                    <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="6" y="4" width="4" height="16"></rect>
-                        <rect x="14" y="4" width="4" height="16"></rect>
-                    </svg>
-                    <svg class="play-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                </button>
-                <button id="mute-btn" aria-label="Mute/Unmute">
-                    <svg class="unmute-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                    <svg class="mute-icon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <line x1="23" y1="9" x2="17" y2="15"></line>
-                        <line x1="17" y1="9" x2="23" y2="15"></line>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Loading indicator -->
-            <div class="loading-spinner">
-                <div class="spinner"></div>
-            </div>
-        </div>
-        
-       <div class="case-study-content">
-    <h2 class="section-heading" id="context">Context</h2>
-    <p>
-        ARTMO had an active community of artists and users, but revenue still depended mostly on marketplace activity. As the platform grew, there was increasing pressure to introduce a more reliable and predictable source of income.
-        </p>
-    
-    <p>
-        Masterclasses were introduced as a new layer on top of the existing platform: live sessions that also remained available afterward as permanent content. The idea was to let artists interact directly with their audience while also creating material that could continue to be viewed and monetized over time.
-        </p>
-
-    <!-- Wide image section -->
-    <div class="wide-image-container">
-        <img src="/assets/frame-afterwards.png" alt="ARTMO Masterclass Dashboard" class="wide-image" onclick="openModal(this)">
+    <!-- Back to projects arrow link -->
+    <a href="/value-delivered" class="back-to-projects">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back
+    </a>
+  
+    <p class="project-timeframe">2023 – 2025</p>
+  
+    <div class="case-study-header">
+      <h1 class="case-study-title">Creating Pipeline From Zero</h1>
+  
+      <p class="case-study-subheader">
+        Pipeline creation, investor outreach, and market entry through direct prospecting and structured sales conversations across multiple companies and markets.
+      </p>
+    </div>
+  
+    <!-- Intro paragraph -->
+    <div class="case-study-content">
+      <p>
+        In several projects I worked on, the challenge was not building a product but connecting it to the right people.
+        Companies had a platform, service, or offering, but no predictable way to reach customers, partners, or investors.
+        Instead of relying on inbound interest, I built outbound processes that identified decision makers, started
+        conversations, and moved relevant prospects toward meetings, demos, and investor discussions.
+      </p>
+  
+      <!-- Scope of Work -->
+      <div class="challenge-solution">
+        <h3 class="challenge-title">Scope of Work</h3>
+        <ul>
+          <li>B2B outbound prospecting and account research</li>
+          <li>Cold email, LinkedIn outreach, and cold calling</li>
+          <li>Discovery conversations and qualification</li>
+          <li>Investor outreach and follow up coordination</li>
+          <li>Demo preparation and partnership introductions</li>
+        </ul>
+      </div>
     </div>
 
+   <!-- Hero Evidence Visual -->
+<div class="video-container">
+
+    <img src="/assets/pipeline-placeholder.png"
+         alt="Outbound pipeline tracking and account research"
+         class="feature-video">
+  
+    <p class="image-caption">
+      Example of account tracking and pipeline management used to organize outreach, follow ups, and next actions.
+    </p>
+  
+  </div>
+  
+        
+  <div class="case-study-content">
+
+    <h2 class="section-heading" id="context">Context</h2>
+  
+    <p>
+      Across several projects the core issue was the same: companies had a product, service, or funding goal,
+      but no structured way to consistently reach the right people. Growth depended on inbound interest,
+      personal networks, or occasional introductions, which made results unpredictable.
+    </p>
+  
+    <p>
+      At ARTMO, the platform was preparing investment rounds and needed a way to identify and approach relevant
+      investors across Europe, the Middle East, and South Asia while maintaining communication with existing
+      investors. The work required researching investors, organizing communication, and supporting meetings.
+    </p>
+  
+    <p>
+      At Ambacia, the objective was market entry into the DACH region. The company needed to identify target
+      companies, reach decision makers, and start business discussions in a market where no prior relationships
+      or inbound demand existed.
+    </p>
+  
+    <p>
+      With the CompensationX platform, the goal became direct product interest. There was no existing pipeline,
+      so opportunities had to be created through outbound prospecting, conversations, and follow up with HR and
+      business leaders.
+    </p>
+  
+    <p>
+      In all cases, the business problem was market access. My role was to create a repeatable process that
+      connected companies to investors, partners, and potential customers through structured research,
+      outreach, and follow up.
+    </p>
+  
+    <!-- Context Visual Placeholder -->
+    <div class="wide-image-container">
+        <img src="/assets/context-placeholder.png"
+             alt="Regions and target markets for outreach and investor research"
+             class="wide-image"
+             onclick="openModal(this)">
+    </div>
+  
     <div class="image-modal" id="imageModal" onclick="closeModal()">
         <img src="" alt="" class="modal-image" onclick="event.stopPropagation()">
-    </div>    
+    </div>
+  
 
-    <h2 class="section-heading" id="commercial-challenge">The Challenge</h2>
+    <!-- Targeting & Research Section -->
+<h2 class="section-heading" id="targeting-research">Targeting & Research</h2>
 
 <p>
-Launching masterclasses was not just adding a feature. It introduced a new activity on the platform: live sessions hosted by artists that also needed to remain available afterward as permanent content. Success depended not only on running a live event, but on creating a process that could continue operating without constant manual or engineering involvement.
+Outbound work started with deciding who to contact and why. Instead of broad outreach, I first defined target
+profiles based on the specific objective: fundraising, partnerships, or product interest.
+</p>
+
+<p>
+For ARTMO, investor research focused on relevance rather than volume. I reviewed venture funds and angels based
+on stage, investment size, geography, and previous investments in marketplaces, creative platforms, and social
+networks. The goal was to approach investors already aligned with the business model instead of contacting funds
+randomly.
+</p>
+
+<p>
+For Ambacia and CompensationX, the research focused on companies. I identified organizations based on hiring
+activity, company size, expansion signals, and operational structure. Decision makers were selected according
+to buying influence: HR leaders and finance stakeholders for CompensationX, and founders or operational leaders
+for collaboration discussions.
+</p>
+
+<p>
+Before contacting anyone, I reviewed public information such as hiring plans, team size, and company structure.
+This allowed outreach to reference a relevant situation instead of a generic introduction and improved the
+likelihood of a response.
+</p>
+
+<!-- Research Evidence Visual -->
+<div class="wide-image-container">
+    <img src="/assets/research-placeholder.png"
+         alt="Account research and target company tracking"
+         class="wide-image"
+         onclick="openModal(this)">
+</div>
+
+
+<!-- Outreach System Section -->
+<h2 class="section-heading" id="outreach-system">Outreach System</h2>
+
+<p>
+Once targets were identified, I used a consistent multichannel outreach process designed to create responses and
+move conversations forward. The objective was not a single message, but a sequence of touches that built context
+and increased the chance of a reply.
 </p>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Artists as Hosts (Onboarding & Ownership)</h3>
-    <p>
-        Masterclasses were hosted by artists, not internal staff. We had to define who could host, how instructors would be onboarded, and how sessions would be scheduled and moderated.
-    </p>
-    <p>
-        Most hosts were non-technical, so the workflow needed to be simple enough for them to manage independently. If each session required direct technical support, the program would not scale.
-    </p>
+  <h3 class="challenge-title">Channels used</h3>
+  <p>
+    Outreach combined LinkedIn connection requests, short email sequences, and direct calling. LinkedIn was used
+    as a soft entry point, email was used for clear positioning and follow up, and calls were used to create
+    direct conversation with decision makers when digital outreach was not enough.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Live Participation (Interactive Experience)</h3>
-    <p>
-        A passive video stream was not enough. To make live attendance worthwhile, sessions needed real-time interaction so participants could ask questions and engage with the artist during the event.
-    </p>
-    <p>
-        The value of the format depended on people joining at a specific time rather than watching later, so the live experience had to feel meaningfully different from recorded content.
-    </p>
+  <h3 class="challenge-title">Cadence and follow ups</h3>
+  <p>
+    Contacts were reached through multiple touches over time. A typical sequence started with a LinkedIn connect,
+    followed by a short message or email, then follow up touches, and finally a call attempt. If the timing was
+    not right, I kept the contact active and returned later in the quarter or when a relevant trigger appeared
+    (for example hiring activity or budgeting cycles).
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Live to Permanent Content (Recording & Access)</h3>
-    <p>
-        Each session had to automatically become long-term content. Recordings needed to be stored, accessible, and available for on-demand viewing without manual handling so sessions could continue to be used and monetized afterward.
-    </p>
+  <h3 class="challenge-title">Tracking and pipeline management</h3>
+  <p>
+    I tracked every account and contact with a clear status and next action. This avoided repeated outreach with
+    no direction and made follow ups predictable. The tracking included basic account data, the decision maker role,
+    last touch, response status, and next step (follow up, call, meeting, or demo).
+  </p>
 </div>
 
-<div class="challenge-solution">
-    <h3 class="challenge-title">Cost & Infrastructure Constraints</h3>
-    <p>
-        The platform needed a globally accessible streaming solution capable of handling real usage with consistent quality, but it also had to remain within a startup budget.
-    </p>
-    <p>
-        If infrastructure costs increased with every session or required ongoing operational work, the program would not be sustainable.
-    </p>
+<!-- Outreach Proof Visual -->
+<div class="wide-image-container">
+  <img src="/assets/outreach-proof-placeholder.png"
+       alt="Example outreach thread or reply (blurred)"
+       class="wide-image"
+       onclick="openModal(this)">
 </div>
 
-<div class="challenge-solution">
-    <h3 class="challenge-title">Discovery & Attendance (Promotion Without Marketing)</h3>
-    <p>
-        Users needed a clear way to discover upcoming sessions and a reason to attend live events. Artists also needed a simple way to promote sessions to their audiences.
-    </p>
-    <p>
-        The program depended on platform visibility and artist-driven promotion rather than paid marketing, so attendance and communication had to work reliably for the format to generate revenue.
-    </p>
-</div>
 
-<h2 class="section-heading" id="platform-support">Platform Support</h2>
+
+        <!-- Conversations & Qualification Section -->
+<h2 class="section-heading" id="qualification">Conversations & Qualification</h2>
 
 <p>
-To make the masterclass program sustainable, the platform needed to support live events, ongoing access, and host independence. The technical setup was not an end in itself; it enabled artists to run sessions repeatedly while keeping operational work and costs manageable.
+Outreach alone did not create value. The goal of each contact was a conversation where I could understand the
+company’s situation and decide whether a meeting or demo made sense. When a prospect replied or answered a call,
+the focus shifted from introduction to discovery.
 </p>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Live streaming</h3>
-    <p>
-        Reliable live streaming allowed artists to host sessions for a global audience without managing technical setup. Sessions could run consistently and did not require manual preparation before each event.
-    </p>
+  <h3 class="challenge-title">Discovery conversations</h3>
+  <p>
+    During calls I asked about hiring plans, team growth, budgeting cycles, and current processes. For HR leaders
+    this often meant understanding how they determined salary ranges and whether they relied on internal data or
+    external benchmarks. For collaboration discussions the focus was on capacity, hiring difficulties, and project
+    workload.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Real-time interaction</h3>
-    <p>
-        Live chat and questions enabled direct communication between artists and participants. This made attending live sessions worthwhile and differentiated them from recorded videos.
-    </p>
+  <h3 class="challenge-title">Qualification</h3>
+  <p>
+    Not every conversation led to a meeting. I qualified opportunities based on timing, relevance, and decision
+    ownership. When a company had upcoming hiring plans, compensation reviews, or operational bottlenecks, the
+    discussion moved to a demo or a deeper meeting. If the timing was wrong, I scheduled a later follow up instead
+    of continuing immediate outreach.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Automatic recordings</h3>
-    <p>
-        Every session was recorded and published for later viewing. Recordings remained accessible on the platform, allowing sessions to continue providing value and generating revenue after the live broadcast ended.
-    </p>
+  <h3 class="challenge-title">Handling objections</h3>
+  <p>
+    Common objections included “not a priority right now”, “we already use our own process”, or “we do not outsource”.
+    Instead of ending the conversation, I clarified timing and context. Many initial rejections became future
+    meetings once hiring cycles or internal needs changed.
+  </p>
+</div>
+
+<p>
+These conversations determined which contacts became real opportunities and which remained future follow ups. The
+focus was to move relevant prospects to demos, partnership discussions, or investor meetings while keeping others
+in a structured follow up process.
+</p>
+
+
+<!-- Fundraising & Partnership Support Section -->
+<h2 class="section-heading" id="fundraising-support">Fundraising & Partnership Support</h2>
+
+<p>
+In addition to sales outreach, I supported fundraising and partnership communication. The work included investor
+research, preparation of communication materials, and follow up coordination before and after meetings.
+</p>
+
+<div class="challenge-solution">
+  <h3 class="challenge-title">Investor outreach and preparation</h3>
+  <p>
+    For ARTMO, I researched potential investors based on stage, investment focus, and geography, and helped maintain
+    communication with existing investors during seed rounds. For Series A preparation, the outreach expanded toward
+    investors in the Middle East and South Asia. I prepared background information, coordinated meetings, and
+    supported follow up communication after discussions.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Access and payments</h3>
-    <p>
-        Sessions were connected to existing platform accounts and payment flows. Users could join without a separate purchase process, and artists could receive revenue without manual coordination or follow-up administration.
-    </p>
+  <h3 class="challenge-title">Meeting support and follow ups</h3>
+  <p>
+    I attended investor meetings in a supporting role, took notes, prepared materials, and coordinated post meeting
+    communication. This ensured conversations continued after initial discussions and reduced response delays between
+    the company and investors.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Host independence</h3>
-    <p>
-        Artists were able to schedule and manage sessions through the platform interface. After initial preparation, sessions could be run by hosts themselves, reducing the need for ongoing operational or engineering involvement.
-    </p>
+  <h3 class="challenge-title">Funding and documentation support</h3>
+  <p>
+    I also supported research and documentation for funding applications, including preparation and follow up
+    coordination. This contributed to successful funding support and helped maintain operational runway for the
+    company.
+  </p>
 </div>
 
-
-        <h2 class="section-heading" id="my-role">My Role & Timeline</h2>
-
-<div class="timeline">
-    <div class="timeline-line"></div>
-    
-    <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">March 2024</div>
-        <div class="timeline-title">Demand validation</div>
-        <div class="timeline-description">
-            We started with a deep dive into the market by reviewing how other platforms approached masterclasses,
-            including live sessions, recorded content, interaction quality, and pricing models. In parallel, I
-            spoke directly with ARTMO artists to gauge willigness to host sessions and with users
-            to understand what learning content they would attend and pay for.
-            <br><br>
-            The goal was to confirm demand and understand the practical conditions required for both hosts and viewers before committing development effort.        </div>
-    </div>
-    
-    <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">April–May 2024</div>
-        <div class="timeline-title">Format design and host preparation</div>
-        <div class="timeline-description">
-            Based on early conversations, we defined the session structure, expectations for hosts, and how live sessions would translate into permanent content on the platform. I worked on preparing the first instructors, clarifying scheduling, flow of the session, and what support they could expect.
-            <br><br>
-At the same time, I coordinated internally on how recordings would be reviewed and published so the hosting process was predictable and repeatable.At the same time, I coordinated internally on how recordings would be reviewed and published so the hosting process was predictable and repeatable.        </div>
-    </div>
-    
-    <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Summer 2024</div>
-        <div class="timeline-title">First sessions and iteration</div>
-        <div class="timeline-description">
-            We ran the first live sessions and observed both host and audience behavior. I gathered feedback from instructors and participants and identified points of friction in communication, timing, and participation.
-            <br><br>
-            Based on this feedback, we adjusted session expectations, preparation materials, and the hosting workflow to make participation easier and more reliable.
-        </div>
-    </div>
-    
-    <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">September 2024</div>
-        <div class="timeline-title">Expanding adoption</div>
-        <div class="timeline-description">
-            Additional artists were onboarded and repeat sessions were introduced. I continued collecting feedback and refining communication and scheduling so artists could host more confidently and users knew what to expect.
-            <br><br>
-            The focus shifted from testing the concept to making it consistently usable.
-                </div>
-    </div>
-    
-    <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">October–December 2024</div>
-        <div class="timeline-title">Establishing a repeatable program</div>
-        <div class="timeline-description">
-            Masterclasses were rolled out across the community and ran as a structured program. Artists hosted sessions regularly and users returned for new events.
-            <br><br>
-            At this stage the format functioned not only as a feature but as an ongoing engagement and revenue channel for the platform.
-        </div>
-    </div>
-</div>
-
+<!-- Results & Impact Section -->
 <h2 class="section-heading" id="results-impact">Results & Impact</h2>
 
 <p>
-    The program moved from an experiment to a repeatable part of the platform and produced measurable business impact.
+The outreach and communication processes moved the work from ad hoc conversations to a repeatable commercial
+pipeline. The results appeared across fundraising, partnerships, and product interest.
 </p>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Adoption</h3>
-    <p>
-        Early sessions attracted consistent attendance, confirming users would join scheduled events rather than only consume passive content.
-    </p>
+  <h3 class="challenge-title">Fundraising</h3>
+  <p>
+    Supported investor communication and preparation during seed rounds that contributed to approximately €350k
+    raised. Investor outreach into new regions initiated multiple investment discussions and extended the company’s
+    operational runway.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Revenue Impact</h3>
-    <p>
-        Paid sessions and continued access to recordings created a new revenue stream for the platform, contributing to an overall 25% increase in revenue.
-    </p>
+  <h3 class="challenge-title">Market entry</h3>
+  <p>
+    Initiated conversations with companies in new markets, including DACH region outreach and early partnership
+    discussions. This created initial commercial presence where no prior network or inbound demand existed.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">Durability</h3>
-    <p>
-        Because each session remained available afterward, the same content continued to generate engagement and value without additional operational work.
-   </p>
+  <h3 class="challenge-title">Product pipeline</h3>
+  <p>
+    For the CompensationX platform, outbound prospecting generated recurring discovery calls and scheduled product
+    demos. The outreach created the first structured pipeline and validated interest from HR and business decision
+    makers.
+  </p>
 </div>
 
 <div class="challenge-solution">
-    <h3 class="challenge-title">User Growth</h3>
-    <p>
-        Introductory masterclasses brought new users to the platform and encouraged return visits. During Q4 2024, user growth increased by 45%.
-    </p>
+  <h3 class="challenge-title">Funding support</h3>
+  <p>
+    Research and documentation coordination supported additional funding initiatives, including preparation work
+    related to funding applications and communication follow ups.
+  </p>
 </div>
 
-<h2 class="section-heading" id="takeaways">Takeaways</h2>
-
-<p>
-The biggest lesson was that a live format only scales when hosting feels predictable for the instructor and attending feels worth it for the viewer. The product is not just the stream, it is the workflow around it.
-</p>
-
-<p>
-Turning live sessions into permanent content changed the economics. Each masterclass kept delivering value after it ended, which made the program sustainable and reduced pressure to “start from zero” with every event.
-</p>
-
-<p>
-Working with artists also reinforced that adoption depends on clarity and confidence. When expectations, scheduling, and the post-session process were simple, hosts were more willing to repeat sessions and promote them to their audience.
-</p>
+<!-- Results Visual -->
+<div class="wide-image-container">
+  <img src="/assets/results-placeholder.png"
+       alt="Pipeline funnel and meeting activity"
+       class="wide-image"
+       onclick="openModal(this)">
+</div>
 
             
-            <!-- Contact section -->
-            <div class="contact-section">
-                <h2 class="section-heading">Want to discuss this project?</h2>
-                <p>
-                    I'm always happy to share more details about the technical implementation or discuss how similar solutions could benefit your organization.
-                </p>
-            </div>
-        </div>
-    </div>
+        <!-- Takeaways Section -->
+<h2 class="section-heading" id="takeaways">What I Learned</h2>
+
+<p>
+Working on outreach, fundraising, and market entry showed that commercial traction depends more on targeting and
+follow up discipline than on message volume. A smaller number of relevant contacts consistently produced more
+conversations than broad outreach.
+</p>
+
+<p>
+Timing mattered as much as interest. Many initial rejections were not true objections but timing issues. Structured
+follow ups aligned with hiring plans or budgeting cycles frequently turned previous “not now” responses into
+meetings.
+</p>
+
+<p>
+Conversations created opportunities, not messages. Written outreach opened doors, but real progress happened only
+after direct discussions where needs, constraints, and priorities became clear.
+</p>
+
+<p>
+Finally, consistent tracking proved essential. Maintaining clear next steps for each contact prevented lost
+opportunities and made outreach repeatable instead of reactive.
+</p>
+
+<!-- Contact section -->
+<div class="contact-section">
+  <h2 class="section-heading">Discuss this project</h2>
+  <p>
+    If you would like more detail about the outreach process, qualification approach, or how similar pipeline
+    creation could apply to your organization, feel free to reach out.
+  </p>
+</div>
 
   <!-- Other Projects Navigation Section -->
 <div class="other-projects-section">
