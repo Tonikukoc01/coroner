@@ -2765,8 +2765,7 @@ window.addEventListener("resize", function() {
 });
             
 //Language translations
-const translations = {
-  en: {
+en: {
     /* HOME SECTION */
     homeSectionTitle: 'How I <span class="bold-toni">work</span>',
     homeSectionText: 'I handle outreach, lead <span class="bold-split">first conversations</span>, and qualify prospects so the right ones reach <span class="bold-split">you.</span>',
@@ -2854,74 +2853,79 @@ const translations = {
   },
 
   fr: {
-  /* HOME SECTION */
-  homeSectionTitle: 'Comment je <span class="bold-toni">travaille</span>',
-  homeSectionText: 'Je gère la prospection, mène les <span class="bold-split">premières conversations</span>, et qualifie les prospects pour que les bons vous <span class="bold-split">parviennent.</span>',
-  homeSectionTextMobile: 'Je gère la prospection, mène les premières conversations, et qualifie les prospects pour que les bons vous parviennent.',
-  scrollText: 'à quoi cela ressemble',
+    /* HOME SECTION */
+    homeSectionTitle: 'Comment je <span class="bold-toni">travaille</span>',
+    homeSectionText:
+      'Je recherche des prospects, je lance des <span class="bold-split">conversations clients</span> et je fais avancer les opportunités au <span class="bold-split">stade initial</span>.',
+    homeSectionTextMobile:
+      'Je recherche des prospects, je lance des conversations clients et je fais avancer les opportunités au stade initial.',
+    scrollText: 'à quoi cela ressemble',
 
-  /* NAVIGATION */
-  navHome: 'accueil',
-  navApproach: 'approche de travail',
-  navAbout: 'à propos de ma vie',
-  navBlog: 'espace d\'écriture',
-  navValue: 'stimuler la croissance',
+    /* NAVIGATION */
+    navHome: 'accueil',
+    navApproach: 'approche de travail',
+    navAbout: 'à propos de ma vie',
+    navBlog: "espace d'écriture",
+    navValue: 'valeur livrée',
 
-  /* APPROACH PAGE - OPENING HOOK */
-  approachOpeningHeading: 'Comment je travaille réellement avec les équipes',
-  approachOpeningLine1:
-    'Les équipes ont souvent de l\'intérêt du marché, mais la prospection initiale et les suivis sont incohérents et les opportunités stagnent.',
-  approachOpeningLine2:
-    'J\'interviens pour démarrer des conversations avec les bonnes entreprises, qualifier l\'intérêt réel, et faire avancer les opportunités vers une démo ou une prochaine étape.',
-  approachOpeningLine3:
-    'En pratique, cela signifie recherche, prospection, premiers appels avec les prospects, et retours clairs aux fondateurs ou équipes commerciales.',
+    /* APPROACH PAGE - OPENING HOOK */
+    approachOpeningHeading: 'Comment je travaille réellement avec les équipes',
+    approachOpeningLine1:
+      "Il y a de l'intérêt côté marché, mais la prospection et les relances de début de cycle sont irrégulières, et les opportunités stagnent.",
+    approachOpeningLine2:
+      "Je me concentre sur le bon ciblage, le démarrage des conversations, la qualification de l'intérêt et l'avancement des opportunités.",
+    approachOpeningLine3:
+      "Concrètement : recherche, prospection, premiers échanges avec les prospects, puis feedback aux fondateurs ou à l'équipe sales.",
 
-  /* APPROACH PAGE - HOW I WORK */
-  howIWorkHeading: 'Comment j\'interviens',
+    /* APPROACH PAGE - HOW I WORK */
+    howIWorkHeading: "Comment j'interviens",
 
-  howCard1Title: 'Cibler les bons prospects',
-  howCard1Text:
-    'Je recherche des entreprises, comprends les cas d\'usage, et construis des listes de comptes ciblées basées sur l\'adéquation réelle du produit.',
+    howCard1Title: 'Cibler les bons comptes',
+    howCard1Text:
+      "Rechercher les entreprises, comprendre les cas d'usage et construire des listes de comptes alignées avec le bon fit produit.",
 
-  howCard2Title: 'Démarrer les conversations',
-  howCard2Text:
-    'Je lance la prospection sur plusieurs canaux et ouvre les premières conversations avec les parties prenantes pertinentes, que ce soit par contact direct, introductions, ou appels.',
+    howCard2Title: 'Lancer des conversations',
+    howCard2Text:
+      'Faire de la prospection et obtenir des premiers échanges avec les bons interlocuteurs via email et LinkedIn.',
 
-  howCard3Title: 'Comprendre les besoins',
-  howCard3Text:
-    'Je parle avec les prospects pour comprendre leurs flux de travail, problèmes, et urgence, et décide si l\'opportunité vaut la peine d\'être poursuivie.',
+    howCard3Title: 'Comprendre les besoins',
+    howCard3Text:
+      "Échanger avec les prospects pour comprendre les process, les problèmes et l'urgence, et identifier les vraies opportunités.",
 
-  howCard4Title: 'Connecter produit et client',
-  howCard4Text:
-    'Je participe aux appels de découverte, aligne les besoins des clients avec ce que le produit fait réellement, et prépare l\'opportunité pour une démo utile.',
+    howCard4Title: 'Relier produit et client',
+    howCard4Text:
+      'Participer aux discovery calls, traduire les besoins en contexte produit et aider à positionner la solution de façon réaliste.',
 
-  /* APPROACH PAGE – PRACTICE */
-  practiceHeading: 'À quoi cela ressemble en pratique',
+    /* APPROACH PAGE – PRACTICE */
+    practiceHeading: "À quoi cela ressemble en pratique",
 
-  /* BLOCK 1 */
-  block1Title: 'Équipes en phase de démarrage',
-  block1Subtitle: 'Construire un premier mouvement commercial reproductible. J\'interviens quand les premières ventes reposent sur les fondateurs et se font de manière ad-hoc, et je transforme cela en un processus structuré sur lequel l\'équipe peut compter.',
-  block1Text:
-    'Je définis le profil client idéal, construis des listes de prospects ciblées, lance la prospection, et gère les premières conversations. Je suis les interactions dans le CRM et fournis des retours clairs sur quels messages et positionnements résonnent avec les clients potentiels.',
+    /* BLOCK 1 */
+    block1Title: 'Équipes early-stage',
+    block1Subtitle: 'Mettre en place un premier sales motion répétable.',
+    block1Text:
+      "J'aide à définir l'ICP, à construire des listes ciblées, à démarrer la prospection et à mener les premiers échanges. Je trace tout dans le CRM et je partage ce qui fonctionne en termes de message et de positionnement.",
 
-  /* BLOCK 2 */
-  block2Title: 'Équipes en croissance',
-  block2TitleMobile: 'Équipes en croissance',
-  block2Text1: 'L\'activité commerciale existe, mais les opportunités stagnent souvent entre produit et ventes. J\'interviens pour gérer le pipeline initial et maintenir les prospects intéressés en mouvement.',
-  block2Text2: 'Je rejoins les syncs internes, fais remonter les opportunités bloquées, et relaie les retours clients pour que les équipes puissent aligner les messages, priorités, et prochaines étapes.',
+    /* BLOCK 2 */
+    block2Title: 'Équipes en croissance',
+    block2TitleMobile: 'Équipes en croissance',
+    block2Text1:
+      "Quand l'activité augmente, les opportunités se perdent souvent entre produit et sales. Je garde la prospection et les relances organisées pour que rien ne tombe entre les mailles.",
+    block2Text2:
+      "Je participe aux syncs internes, je remonte les opportunités bloquées et je fais remonter la voix du client pour ajuster le messaging, les priorités ou certaines décisions produit.",
 
-  /* BLOCK 3 */
-  block3Title: 'Équipes de services et agences',
-  block3Subtitle: 'Plusieurs clients et capacité commerciale limitée.',
-  block3Text: 'Je gère les leads entrants et la prospection, gère les premiers appels, et qualifie quelles opportunités valent la peine d\'être poursuivies pour que votre équipe se concentre sur de vrais prospects. J\'organise aussi les suivis et le pipeline pour que les conversations ne se perdent pas.',
+    /* BLOCK 3 */
+    block3Title: 'Équipes service et agences',
+    block3Subtitle: 'Plusieurs clients et peu de bande passante sales.',
+    block3Text:
+      "Je structure la gestion des leads, je fais la prospection et les premiers calls, et j'aide à qualifier les opportunités à poursuivre. Je peux aussi mettre au propre le CRM et les workflows de prospection pour des relances régulières.",
 
-  /* CTA */
-  ctaTitle: 'Parlons-en',
-  ctaTitleMobile: 'Parlons-en',
-  ctaText:
-    'Un court appel suffit généralement pour comprendre si je peux aider. Pas de pitch, pas de pression, juste une conversation sur ce qui bloque, ce qui doit avancer, et si je suis la bonne personne pour intervenir.',
-  ctaButton1: 'Preuve sociale',
-  ctaButton2: 'À propos de moi',
+    /* CTA */
+    ctaTitle: 'Parlons-en',
+    ctaTitleMobile: 'Parlons-en',
+    ctaText:
+      "Un court appel suffit généralement pour voir si je peux aider. Pas de pitch, pas de pression : juste une discussion sur ce qui est bloqué, ce qui doit avancer, et si je suis la bonne personne.",
+    ctaButton1: 'Preuve sociale',
+    ctaButton2: 'À propos',
 
   /* CONTACT CARD */
   contactCardTitle: 'Entrer en contact',
@@ -2936,80 +2940,83 @@ const translations = {
 },
 
 hr: {
-  /* HOME SECTION */
-  homeSectionTitle: 'Kako <span class="bold-toni">radim</span>',
-  homeSectionText: 'Bavim se kontaktiranjem, vodim <span class="bold-split">prve razgovore</span>, i kvalificiram potencijalne klijente tako da pravi dođu do <span class="bold-split">vas.</span>',
-  homeSectionTextMobile: 'Bavim se kontaktiranjem, vodim prve razgovore, i kvalificiram potencijalne klijente tako da pravi dođu do vas.',
-  scrollText: 'kako to izgleda',
+    /* HOME SECTION */
+      homeSectionTitle: 'Način <span class="bold-toni">rada</span>',
+      homeSectionText: 'Vodim outreach, prve razgovore i kvalificiram leadove kako bi pravi došli do <span class="bold-split"> vas.</span>',
+      homeSectionTextMobile: 'Vodim outreach, prve razgovore i kvalificiram kontakte kako bi pravi došli do  <span class="bold-split">vas.</span>',
+      scrollText: 'pain pointovi',
 
-  /* NAVIGATION */
-  navHome: 'početna',
-  navApproach: 'pristup radu',
-  navAbout: 'o mom životu',
-  navBlog: 'prostor za pisanje',
-  navValue: 'pokretanje rasta',
+    /* NAVIGATION */
+    navHome: 'početna',
+    navApproach: 'pristup radu',
+    navAbout: 'o meni',
+    navBlog: 'kutak za pisanje',
+    navValue: 'isporučena vrijednost',
 
-  /* APPROACH PAGE - OPENING HOOK */
-  approachOpeningHeading: 'Kako zapravo radim s timovima',
-  approachOpeningLine1:
-    'Timovi često imaju interes s tržišta, ali rano kontaktiranje i praćenje su nedosljedni i prilike stagniraju.',
-  approachOpeningLine2:
-    'Uključujem se kako bih započeo razgovore s pravim tvrtkama, kvalificirao pravi interes, i pomaknuo prilike prema demu ili sljedećem koraku.',
-  approachOpeningLine3:
-    'U praksi to znači istraživanje, kontaktiranje, prvi pozivi s potencijalnim klijentima, i jasne povratne informacije osnivačima ili prodajnim timovima.',
+    /* APPROACH PAGE - OPENING HOOK */
+    approachOpeningHeading: 'Kako zapravo radim s timovima',
+    approachOpeningLine1:
+      'Postoji interes s tržišta, ali outreach i follow-up u ranoj fazi nisu dosljedni pa prilike zapnu.',
+    approachOpeningLine2:
+      'Fokus mi je na targetiranju ICP-a, pokretanju razgovora, kvalifikaciji interesa i pomicanju leadova prema  sljedećem koraku.',
+    approachOpeningLine3:
+      'U praksi to znači: research, outreach, prvi razgovori s prospektima, te feedback founderima ili salesu.',
 
-  /* APPROACH PAGE - HOW I WORK */
-  howIWorkHeading: 'Kako se uključujem',
+    /* APPROACH PAGE - HOW I WORK */
+    howIWorkHeading: 'Kako uskačem',
 
-  howCard1Title: 'Ciljati prave potencijalne klijente',
-  howCard1Text:
-    'Istražujem tvrtke, razumijem slučajeve uporabe, i gradim fokusirane liste računa temeljene na tome gdje proizvod zapravo odgovara.',
+    howCard1Title: 'Ciljam prave prospekte',
+    howCard1Text:
+      'Istražujem tvrtke, razumijem njihove use-caseove i slažem fokusirane liste tamo gdje je proizvod pravi fit.',
 
-  howCard2Title: 'Započeti razgovore',
-  howCard2Text:
-    'Pokrećem kontaktiranje kroz više kanala i otviram prve razgovore s relevantnim dionicima, bilo kroz izravan kontakt, preporuke, ili pozive.',
+    howCard2Title: 'Pokrećem razgovore',
+    howCard2Text:
+      'Vodim outreach i dogovaram prve razgovore s relevantnim decision makerima.',
 
-  howCard3Title: 'Razumjeti potrebe',
-  howCard3Text:
-    'Razgovaram s potencijalnim klijentima kako bih razumio njihove radne tokove, probleme, i hitnost, i odlučujem je li prilika vrijedna praćenja.',
+    howCard3Title: 'Potreba?',
+    howCard3Text:
+      'Razgovaram s potencijalnim kupcima kako bih razumio njihov workflow, probleme i hitnost te procijenio ima li smisla ići dalje.',
 
-  howCard4Title: 'Povezati proizvod i kupca',
-  howCard4Text:
-    'Pridružujem se pozivima za otkrivanje, usklađujem potrebe kupaca s onim što proizvod zapravo radi, i pripremam priliku za koristan demo.',
+    howCard4Title: 'Proizvod <> Kupac ',
+    howCard4Text:
+      'Sudjelujem na discovery pozivima, razjasnim što kupcu stvarno treba i povežem to s onim što proizvod zaista može.',
 
-  /* APPROACH PAGE – PRACTICE */
-  practiceHeading: 'Kako to izgleda u praksi',
+    /* APPROACH PAGE – PRACTICE */
+    practiceHeading: 'Kako to izgleda u praksi',
 
-  /* BLOCK 1 */
-  block1Title: 'Timovi u ranoj fazi',
-  block1Subtitle: 'Izgradnja prvog ponovljivog prodajnog pokreta. Uključujem se kada rana prodaja leži na osnivačima i događa se ad-hoc, i pretvarajući to u strukturirani proces na koji tim može računati.',
-  block1Text:
-    'Definiram idealni profil kupca, gradim ciljane liste potencijalnih klijenata, pokrećem kontaktiranje, i vodim prve razgovore. Pratim interakcije u CRM-u i pružam jasne povratne informacije o tome koje poruke i pozicioniranje odjekuju s potencijalnim kupcima.',
+    /* BLOCK 1 */
+    block1Title: 'Early-stage timovi',
+    block1Subtitle: 'Izgrađujem prvi ponovljivi sales proces. Uskačem u situacijama kada prodaju stihijski vode founderi i pretvaram je u strukturirani i jasan proces.',
+    block1Text: 'Definiram ICP, slažem ciljane liste prospekata, vodim outreach i intro razgovore. Interakcije bilježim u CRM-u i dijelim feedback s tržišta.',
 
-  /* BLOCK 2 */
-  block2Title: 'Timovi u rastu',
-  block2TitleMobile: 'Timovi u rastu',
-  block2Text1: 'Prodajna aktivnost postoji, ali prilike često stagniraju između proizvoda i prodaje. Uključujem se kako bih upravljao ranim pipelineom i održao zainteresirane potencijalne klijente u pokretu.',
-  block2Text2: 'Pridružujem se internim usklađivanjima, ističem blokirane prilike, i prenosim povratne informacije kupaca kako bi timovi mogli uskladiti poruke, prioritete, i sljedeće korake.',
 
-  /* BLOCK 3 */
-  block3Title: 'Servisni timovi i agencije',
-  block3Subtitle: 'Više klijenata i ograničeni prodajni kapacitet.',
-  block3Text: 'Upravljam dolaznim potencijalnim klijentima i kontaktiranjem, vodim prve pozive, i kvalificiram koje prilike vrijedi pratiti tako da se vaš tim fokusira na prave potencijalne klijente. Također organiziram praćenja i pipeline tako da razgovori ne budu izgubljeni.',
+    /* BLOCK 2 */
+    block2Title: 'Rastući timovi',
+    block2TitleMobile: 'Rastući timovi',
+    block2Text1:
+      'Sales postoji, ali prilike često zapinju izmedju sales i producta. Uključujem se kako preuzeo early pipeline i odrzao zainteresirane leadove aktivnim.',
+    block2Text2:
+      'Uključujem se u interne syncove, iznosim blokirane prilike i prenosim feedback potencijalnih kupaca kako bi se prilagodili messaging, prioriteti ili odluke oko proizvoda.',
 
-  /* CTA */
-  ctaTitle: 'Razgovarajmo',
-  ctaTitleMobile: 'Razgovarajmo',
-  ctaText:
-    'Kratak poziv je obično dovoljan da razumijem mogu li pomoći. Bez pitcha, bez pritiska, samo razgovor o tome što je zapelo, što se treba pokrenuti, i jesam li ja prava osoba koja se treba uključiti.',
-  ctaButton1: 'Društveni dokaz',
-  ctaButton2: 'O meni',
+    /* BLOCK 3 */
+    block3Title: 'Agencije i servisi',
+    block3Subtitle: 'Više klijenata i ograničen sales kapacitet.',
+    block3Text:
+      'Strukturiram upravljanje leadovima, vodim outreach i intro pozive te filtriram što ima smisla gurati dalje. Organiziram follow-up i pipeline kako se razgovori ne bi izgubili.',
+
+    /* CTA */
+    ctaTitle: 'Razgovarajmo',
+    ctaTitleMobile: 'Razgovarajmo',
+    ctaText:
+      'Kratak 15-minutni call je obično dovoljan da vidimo mogu li pomoći. Bez pitchana i bez pritiska, samo kratak razgovor o tome što je zapelo, što treba pogurati i jesam li prava osoba za to.',
+    ctaButton1: 'Social proof',
+    ctaButton2: 'O meni',
 
   /* CONTACT CARD */
   contactCardTitle: 'Javite se',
   contactCalendlyLabel: 'Zakažite poziv',
-  contactCalendlyText: 'Rezerviraj 15min razgovor',
-  contactPhoneLabel: 'Telefon',
+  contactCalendlyText: 'Rezervirajte 15minutni call',
+  contactPhoneLabel: 'Mobilni',
   contactEmailLabel: 'Email',
 
   /* WHY THIS WORKS */
@@ -3017,6 +3024,7 @@ hr: {
     'Radio sam s timovima koji su se davili u tehničkom dugu, agencijama kojima je bila potrebna struktura, i startupovima koji su se brzo kretali s ograničenim resursima. Zajednička nit? Trebali su nekoga tko premošćuje poslovne ciljeve i tehničko izvršenje—i ostaje dok ne prorade.'
 }
 }
+
 function applyTranslation(langCode) {
     console.log("Applying translation for:", langCode);
     const content = translations[langCode];
