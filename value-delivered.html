@@ -2496,6 +2496,12 @@ function updateProvingValueLanguage(lang) {
         featureDescriptions[2].textContent = translations[lang]['proving-value'].feature3_desc;
     }
 
+    // Update Feature 4
+if (featureTitles.length > 3 && featureDescriptions.length > 3) {
+  featureTitles[3].textContent = translations[lang]['proving-value'].feature4_title;
+  featureDescriptions[3].textContent = translations[lang]['proving-value'].feature4_desc;
+}
+
     // Update coding feature content - UPDATED VERSION
 const codingFeatureTitles = document.querySelectorAll('.coding-feature-title');
 const codingFeatureDescriptions = document.querySelectorAll('.coding-feature-description');
