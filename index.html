@@ -1438,7 +1438,7 @@ footer {
             <!-- Buttons Container -->
             <div class="buttons-container">
                 <a href="https://tonikukoc01.github.io/coroner/approach.html" class="collaboration-btn">Approach to work</a>
-                <a href="https://tonikukoc.me/value-delivered" class="portfolio-btn">Social proof</a>
+                <a href="https://tonikukoc.me/value-delivered" class="portfolio-btn">See the results</a>
             </div>
         </div>
     <div class="about-image-column">
@@ -1857,7 +1857,8 @@ const translations = {
         'about_header': 'Outreach → Opportunity',
         'about_subheader': 'I target accounts, run outreach, and lead the first conversations, moving the right prospects toward a next step.',
         'about_subheader1': 'I independently handle technical conversations, so calls don’t stall waiting for an engineer. I involve you only when the contact is worth your time.',
-        'collaboration_btn': 'Tell me more',
+        'collaboration_btn': 'How I work,
+        'portfolio_btn': 'See the results,
         'menu_text': 'contact',
         'nav_home': 'home',
         'nav_approach': 'approach to work',
@@ -1897,7 +1898,8 @@ const translations = {
         'about_header': 'Outreach → Leadovi',
         'about_subheader': 'Identificiram ICP-ove, vodim outreach i intro razgovore, usmjeravajući kvalificirane leadove prema sljedećem koraku.',
         'about_subheader1': 'Samostalno vodim i tehničke razgovore, bez potrebe za inženjerom na svakom pozivu. Uključujem vas tek kada je kontakt vrijedan vašeg vremena.',
-        'collaboration_btn': 'Više detalja',
+        'collaboration_btn': 'Način rada',
+        'portfolio_btn': 'Konkretni rezultati',
         'menu_text': 'kontakt',
         'nav_home': 'početna',
         'nav_approach': 'pristup radu',
@@ -1948,6 +1950,7 @@ function updateLanguage(lang) {
     document.querySelector('.about-subheader').textContent = translations[lang].about_subheader;
     document.querySelector('.about-subheader1').textContent = translations[lang].about_subheader1;
     document.querySelector('.collaboration-btn').textContent = translations[lang].collaboration_btn;
+    document.querySelector('.portfolio-btn').textContent = translations[lang].portfolio_btn;
     document.querySelector('.menu-text').textContent = translations[lang].menu_text;
     
     // Update navigation
